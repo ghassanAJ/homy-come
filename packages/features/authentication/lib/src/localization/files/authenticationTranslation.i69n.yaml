@@ -1,0 +1,198 @@
+# Common Labels
+common:
+  continueLabel: Continue
+  next: next
+  back: Back
+  cancel: Cancel
+  submit: Submit
+  done: Done
+  skip: Skip
+
+# Authentication Identity Screen
+authIdentity:
+  emailTitle: Email
+  phoneTitle: Phone number
+  emailSubtitle: Add Email Address you would like to use
+  phoneSubtitle: Add Phone number you would like to use
+  sendVerificationCode: Send verification code
+  orContinueWith: Or continue with
+  apple: Apple
+  google: Google
+
+# Verification Screen
+verification:
+  title: Verification
+  description: Enter the verification code sent to
+  didntReceiveCode: Didn't receive the code?
+  resend: Resend
+  resendIn: Resend in {time}
+  verificationCodeSent: Verification code sent successfully
+  invalidCode: Invalid verification code
+  codeSent: Code sent successfully
+  newUserVerified: "Verification successful! Let's set up your profile"
+  returningUserVerified: "Welcome back! We're logging you in..."
+
+# Personal Information Screen
+personalInfo:
+  title: Personal Information
+  subtitle: Complete your info
+  username: Username
+  usernamePlaceholder: e.g., ahmed_khan
+  usernameRequired: Please enter a username
+  firstName: First Name
+  firstNamePlaceholder: e.g., Ahmed
+  firstNameRequired: Please enter your first name
+  lastName: Last Name
+  lastNamePlaceholder: e.g., Al Mansouri
+  lastNameRequired: Please enter your last name
+  nickname: Nickname (optional)
+  nicknamePlaceholder: e.g., Hamood
+  dateOfBirth: Date of Birth
+  dateOfBirthPlaceholder: Select date
+  dateOfBirthRequired: Please enter your date of birth
+  gender: Gender
+  male: Male
+  female: Female
+  accountCreated: Welcome! Your account has been created successfully
+  profileCompleted: "All set! Welcome to Maddo 🎉"
+
+# User Role Selection
+userRole:
+  welcomeEmoji: 👋
+  welcomeTitle: Welcome to maddo
+  welcomeSubtitle: the smart way to teach kids\nmoney skills.
+  parent: Parent
+  parentDescription: Manage children' money and help them learn
+  child: Child
+  childDescription: Save money and have fun learning
+  guest: Continue as guest
+  guestDescription: Explore the app before creating an account
+  continueButton: Continue
+  imTheParent: I'm the parent
+  imTheChild: I'm the child
+  imAGuest: I'm a guest
+  guestModeNotSupported: Guest mode is not supported yet
+
+# Onboarding
+onboarding:
+  slide1Title: the digital debit card designed for families
+  slide1Subtitle: Digital & physical,  safe and simple to use.
+  slide2Title: send and receive money with a tap
+  slide2Subtitle: Kids learn saving, spending, and goal-setting
+  slide3Title: Help your children learn the value of money
+  slide3Subtitle: Set limits, track spending, guide responsible habits
+  getStarted: Let's get started
+  skip: Skip
+
+# Child Login
+childLogin:
+  title: Child Login
+  description: Ask your parent for the 6-digit passcode
+  hint: Tap the boxes to enter your code
+  loginButton: Continue
+  orLoginWith: Or continue with
+  encouragement:
+    typing: You're doing great! Keep going! 👍
+    almostThere: Almost there! Just a few more! 🌟
+    success: Amazing! Welcome back! 🎉
+  error:
+    wrongCode: Oops! That code didn't work. Ask your parent to help you try again
+    tryAgain: No worries, let's try again!
+
+# Login Screen
+login:
+  title: Login with PIN
+  subtitle: Enter your 6-digit PIN to continue
+  passcodeLabel: Passcode
+  loginButton: Login
+  verificationCodeSent: Verification code sent successfully
+  loginSuccessful: Login successful!
+  invalidPin: Invalid PIN. Please try again.
+  otpVerifiedSuccessfully: OTP verified successfully
+
+# Social Login
+socialLogin:
+  orLoginWith: Or login with
+
+# Terms and Privacy
+termsAndPrivacy:
+  agreementText: By continuing, you agree to the
+  termsOfUse: Terms of use
+  and: and
+  privacyPolicy: Privacy policy
+
+# Legacy keys (keeping for backward compatibility)
+title: Sign In
+description: Sign in to your account
+label:
+  signIn: sign In
+  register: register
+  phone: Phone
+  email: Email
+  password: Password
+  forgotPassword: Forgot password?
+  nextButton: next
+supportiveText:
+  email: Enter your email address
+  phone: Enter your phone number
+  password: Enter 4 digits numeric password
+error:
+  email: Please enter a valid email address
+  password: Please enter a valid password
+signUpPhone:
+  title: What's your mobile number?
+  iWantToUseEmail: I want to use
+  myEmail: my email
+  phone: Enter your phone number
+  disclaimerText: We will send you a text with a verification code. Message and data rates may apply. By continuing, you agree to our
+  termsAndConditions: Terms & Conditions
+  privacyPolicy: Privacy Policy
+  and: and
+signUpOTP:
+  otpResendSuccessfully: OTP resend successfully
+  verificationCodeSent: Verification code sent
+  description: We have sent a verification code to your phone number
+  resendCode: send a new code.
+  didntReceiveCode: didn't receive a code?
+signUpPassword:
+  title: Create your PIN
+  description: Create a secure 4-digit PIN for your account
+  enterPin: Enter PIN
+  confirmPassword: Confirm PIN
+  yourPinWillBeUsedToSecureYourAccount: Your PIN will be used to secure your account
+  pinDoNotMatch: PINs do not match. Please try again.
+signUpOnboardingDetail:
+  title: Let's get to know you
+  name: What's your name?
+  nameLabel: As per Emirates ID
+  whoAreYou: Who are you?
+  continueLabel: Continue
+createNewPassword:
+  passwordLabel: "Password"
+  rePasswordLabel: "Re-enter password"
+  rules:
+    length: "Password must be at least 8 characters long"
+    match: "Passwords must match"
+  sendResetLink: "Send reset link"
+  resetSuccess: "Password reset successful!"
+  otpSentSuccessfully: OTP sent successfully
+  otpVerifiedSuccessfully: 'OTP verified successfully'
+
+  verificationCode:
+    title: "Please enter the verification code sent to {userInput}"
+    resend:
+      question: "Didn't receive a code?"
+      action: "Send a new code."
+    sendResetLink: "Send reset link"
+    createNewPasswordTitle: "Create new password"
+
+  forgotPassword:
+    emailInstruction: "Please enter your email address to reset your password"
+    phoneInstruction: "Please enter your mobile number to reset your password"
+    emailLabel: "Email address"
+    phoneLabel: "Phone Number"
+    toggle:
+      toPhone: "Reset with mobile OTP"
+      toEmail: "Reset with email"
+    sendResetLink: "Send reset link"
+    verificationTitle: "Forgot Password"

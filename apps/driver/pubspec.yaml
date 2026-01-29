@@ -1,0 +1,38 @@
+name: driver
+version: 0.0.1
+publish_to: "none"
+resolution: workspace
+
+environment:
+  sdk: ">=3.7.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  authentication:
+  design_system:
+  util:
+  api_client:
+
+  flutter_svg: ^2.2.0
+  i69n: ^3.3.0
+  get_it: ^9.1.0
+  go_router: ^17.0.0
+  injectable: ^2.6.0
+  flutter_bloc: ^9.1.1
+  dio: ^5.9.0
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.10.4
+  injectable_generator: ^2.9.1
+  freezed: ^3.2.3
+  json_serializable: ^6.11.2
+  flutter_gen_runner: ^5.6.0
+
+flutter:
+  uses-material-design: true

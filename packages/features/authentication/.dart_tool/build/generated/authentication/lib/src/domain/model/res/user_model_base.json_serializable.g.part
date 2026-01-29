@@ -1,0 +1,47 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
+  id: json['id'] as String,
+  firstName: json['first_name'] as String,
+  lastName: json['last_name'] as String,
+  dob: json['dob'] as String,
+  email: json['email'] as String?,
+  phone: json['phone'] as String?,
+  username: json['username'] as String?,
+  nickname: json['nickname'] as String?,
+  gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
+  profilePicture: json['profile_picture'] as String?,
+  address: json['address'] as Map<String, dynamic>?,
+  countryCode: json['country_code'] as String?,
+  emailVerified: json['email_verified'] as bool?,
+  phoneVerified: json['phone_verified'] as bool?,
+  createdAt: json['created_at'] as String?,
+  updatedAt: json['updated_at'] as String?,
+  profileCompleted: json['profile_completed'] as bool?,
+  status: json['status'] as String?,
+);
+
+Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
+  'id': instance.id,
+  'first_name': instance.firstName,
+  'profile_picture': instance.profilePicture,
+  'dob': instance.dob,
+  'email': instance.email,
+  'phone': instance.phone,
+  'username': instance.username,
+  'nickname': instance.nickname,
+  'gender': _$GenderEnumMap[instance.gender],
+  'address': instance.address,
+  'country_code': instance.countryCode,
+  'email_verified': instance.emailVerified,
+  'phone_verified': instance.phoneVerified,
+  'created_at': instance.createdAt,
+  'updated_at': instance.updatedAt,
+  'profile_completed': instance.profileCompleted,
+  'status': instance.status,
+  'last_name': instance.lastName,
+};
+
+const _$GenderEnumMap = {Gender.male: 'male', Gender.female: 'female'};

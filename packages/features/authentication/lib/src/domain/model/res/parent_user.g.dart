@@ -1,0 +1,54 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'parent_user.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ParentUser _$ParentUserFromJson(Map<String, dynamic> json) => ParentUser(
+  id: json['id'] as String,
+  firstName: json['first_name'] as String,
+  lastName: json['last_name'] as String,
+  dob: json['dob'] as String,
+  email: json['email'] as String?,
+  phone: json['phone'] as String?,
+  username: json['username'] as String?,
+  nickname: json['nickname'] as String?,
+  gender: $enumDecodeNullable(_$GenderEnumMap, json['gender']),
+  profilePicture: json['profile_picture'] as String?,
+  address: json['address'] as Map<String, dynamic>?,
+  countryCode: json['country_code'] as String?,
+  emailVerified: json['email_verified'] as bool?,
+  phoneVerified: json['phone_verified'] as bool?,
+  profileCompleted: json['profile_completed'] as bool?,
+  createdAt: json['created_at'] as String?,
+  updatedAt: json['updated_at'] as String?,
+  status: json['status'] as String?,
+  cognitoId: json['cognito_id'] as String,
+);
+
+Map<String, dynamic> _$ParentUserToJson(ParentUser instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'first_name': instance.firstName,
+      'profile_picture': instance.profilePicture,
+      'dob': instance.dob,
+      'email': instance.email,
+      'phone': instance.phone,
+      'username': instance.username,
+      'nickname': instance.nickname,
+      'gender': _$GenderEnumMap[instance.gender],
+      'address': instance.address,
+      'country_code': instance.countryCode,
+      'email_verified': instance.emailVerified,
+      'phone_verified': instance.phoneVerified,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
+      'profile_completed': instance.profileCompleted,
+      'status': instance.status,
+      'last_name': instance.lastName,
+      'cognito_id': instance.cognitoId,
+    };
+
+const _$GenderEnumMap = {Gender.male: 'male', Gender.female: 'female'};
