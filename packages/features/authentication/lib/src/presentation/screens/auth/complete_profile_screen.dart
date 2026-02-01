@@ -1,9 +1,11 @@
 import 'package:authentication/authentication.dart';
 import 'package:authentication/src/presentation/widgets/complete_profile/complete_profile_logout_button.dart';
 import 'package:design_system/design_system.dart' as ui;
+import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:util/util.dart';
@@ -130,8 +132,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                                 placeholder: 'Select your date of birth',
                                 name: AuthFormFieldNames.dateOfBirth,
                                 label: 'Date of Birth',
-                                suffixIcon: Image.asset(
-                                  'assets/calendar.svg',
+                                suffixIcon: SvgPicture.asset(
+                                  Assets.icons.calendar,
+
                                   package: 'authentication',
                                   fit: BoxFit.scaleDown,
                                 ),

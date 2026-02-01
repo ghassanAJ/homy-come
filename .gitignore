@@ -79,3 +79,7 @@ pubspec.lock
 analysis_options.yaml
 .claude/settings.local.json
 .vscode/launch.json
+
+.fvm/
+
+.vscode/

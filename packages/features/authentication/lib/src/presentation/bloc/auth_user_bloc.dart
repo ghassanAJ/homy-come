@@ -65,7 +65,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
     final result = await ResultAsync.fromAsync(_sessionRepository.clearSession);
 
     if (refreshToken != null && refreshToken.isNotEmpty) {
-      _authRepository.logout(refreshToken).ignore();
+      _authRepository.logout(refreshToken);
     }
 
     result.fold(

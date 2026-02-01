@@ -1,6 +1,7 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:driver/navigation/driver_app_route_config.dart';
+import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homy_provider/navigation/provider_app_route_config.dart';
 import 'package:injectable/injectable.dart';
@@ -18,7 +19,7 @@ class AppRouter {
     );
   }
 
-  static GoRouter creaetDriverRouter(AppCubit appCubit) {
+  static GoRouter createDriverRouter(AppCubit appCubit) {
     return _buildBaseRoute(
       appCubit,
       DriverAppRouteConfig.createRoutes(shellNavigatorKey),
@@ -37,7 +38,7 @@ class AppRouter {
       initialLocation: AuthenticationPaths.splash,
       navigatorKey: rootNavigatorKey,
       redirectLimit: 5,
-      debugLogDiagnostics: true,
+      debugLogDiagnostics: kDebugMode,
       refreshListenable: AppCubitListenable(appCubit),
       redirect:
           (context, state) =>

@@ -20,7 +20,7 @@ class OTPResendSection extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        UIText.bodySmall('didint erecive?', color: UIColor.textSecondary),
+        UIText.bodySmall('Didn\'t receive?', color: UIColor.textSecondary),
         const SizedBox(height: 4),
         if (resendTimer.canResend)
           GestureDetector(

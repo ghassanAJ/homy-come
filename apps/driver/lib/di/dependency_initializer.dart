@@ -17,7 +17,7 @@ void initializeDependencies(String env) {
   initMain(diContainer, env);
   diContainer.registerSingleton<LocalizationCubit>(LocalizationCubit());
   diContainer.registerSingleton<CustomRouter>(
-    CustomRouter(AppRouter.creaetDriverRouter(diContainer.get<AppCubit>())),
+    CustomRouter(AppRouter.createDriverRouter(diContainer.get<AppCubit>())),
   );
 }
 
