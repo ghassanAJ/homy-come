@@ -1,9 +1,8 @@
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:authentication/src/presentation/widgets/complete_profile/complete_profile_logout_button.dart';
 import 'package:design_system/design_system.dart' as ui;
+import 'package:design_system/design_system.dart';
 import 'package:design_system/gen/assets.gen.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';

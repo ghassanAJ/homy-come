@@ -1,11 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:authentication/authentication.dart';
+import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'child_user.dart';
-import 'parent_user.dart';
-import 'user_type.dart';
 
 abstract class BaseUserModel extends Equatable {
   final String id;

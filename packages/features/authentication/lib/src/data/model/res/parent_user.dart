@@ -1,8 +1,6 @@
 import 'package:authentication/authentication.dart';
+import 'package:design_system/design_system.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'user_model_base.dart';
-import 'user_type.dart';
 
 part 'parent_user.g.dart';
 
