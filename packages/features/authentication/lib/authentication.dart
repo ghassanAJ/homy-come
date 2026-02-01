@@ -35,6 +35,9 @@ export 'src/domain/enums/user_role.dart';
 export 'src/domain/repository/auth_api_repository.dart';
 // Domain - Service
 export 'src/domain/service/session_repository.dart';
+// Localization
+export 'src/localization/auth_localization_delegate.dart';
+export 'src/localization/files/authenticationTranslation.i69n.dart';
 // Navigation
 export 'src/navigation/app_router.dart';
 export 'src/navigation/app_router_guard.dart';

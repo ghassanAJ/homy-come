@@ -1,6 +1,7 @@
 import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/gestures.dart';
+import 'package:util/util.dart';
 
 class AuthTermsAndPrivacy extends StatelessWidget {
   final VoidCallback? onTermsTap;
@@ -10,7 +11,7 @@ class AuthTermsAndPrivacy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tr = AuthenticationTranslation();
+    final tr = context.loc<AuthenticationTranslation>();
 
     return RichText(
       textAlign: TextAlign.center,

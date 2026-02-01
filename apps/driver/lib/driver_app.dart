@@ -17,23 +17,28 @@ class DriverApp extends StatelessWidget {
       child: AppProviders(
         child: BlocProvider.value(
           value: localeCubit,
-          child: AuthNavigationListener(
-            router: router,
-            child: BlocBuilder<LocalizationCubit, Locale>(
-              builder:
-                  (context, locale) => MaterialApp.router(
-                    debugShowCheckedModeBanner: false,
-                    title: 'Homy Driver',
-                    localizationsDelegates: [
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalWidgetsLocalizations.delegate,
-                      GlobalCupertinoLocalizations.delegate,
-                    ],
-                    supportedLocales: Config.supportedLocales,
-                    locale: locale,
-                    routerConfig: router,
-                  ),
-            ),
+          child: BlocBuilder<LocalizationCubit, Locale>(
+            builder:
+                (context, locale) =>
+                    LocalizationProvider<AuthenticationTranslation>(
+                      delegate: AuthLocalizationDelegate(),
+                      locale: locale,
+                      child: AuthNavigationListener(
+                        router: router,
+                        child: MaterialApp.router(
+                          debugShowCheckedModeBanner: false,
+                          title: 'Homy Driver',
+                          localizationsDelegates: [
+                            GlobalMaterialLocalizations.delegate,
+                            GlobalWidgetsLocalizations.delegate,
+                            GlobalCupertinoLocalizations.delegate,
+                          ],
+                          supportedLocales: Config.supportedLocales,
+                          locale: locale,
+                          routerConfig: router,
+                        ),
+                      ),
+                    ),
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:authentication/authentication.dart';
+import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -18,12 +19,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormBuilderState>();
   final ValueNotifier<bool> _isFormValidNotifier = ValueNotifier(false);
-
-  static const String _title = 'Enter Your Phone Number for Verification';
-  static const String _phoneLabel = 'Phone Number';
-  static const String _verifyLabel = 'Verify';
-  static const String _signUpLabel = 'Sign up';
-  static const String _joinAsGuestLabel = 'Join as guest';
 
   @override
   void dispose() {
@@ -58,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     return BlocListener<AuthUserBloc, AuthUserState>(
       listenWhen:
           (_, current) =>
@@ -75,13 +71,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 (current is AuthUserStateLoading),
         builder: (context, state) {
           final isLoading = state is AuthUserStateLoading;
-          return _buildLayout(isLoading);
+          return _buildLayout(isLoading, tr);
         },
       ),
     );
   }
 
-  Widget _buildLayout(bool isLoading) {
+  Widget _buildLayout(bool isLoading, AuthenticationTranslation tr) {
     return Stack(
       children: [
         Scaffold(
@@ -102,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         //   onPressed: () => context.pop(),
                         // ),
                         // SizedBox(height: UI.spacing.md),
-                        _buildHeader(),
+                        _buildHeader(tr),
                         SizedBox(height: UI.spacing.xl),
                         FormBuilder(
                           key: _formKey,
@@ -111,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               UIText.bodyMedium(
-                                _phoneLabel,
+                                tr.login.phoneLabel,
                                 color: UIColor.textPrimary,
                               ),
                               SizedBox(height: UI.spacing.xs),
@@ -134,16 +130,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           valueListenable: _isFormValidNotifier,
                           builder: (context, isValid, _) {
                             return UIButton.primary(
-                              label: _verifyLabel,
+                              label: tr.login.verifyButton,
                               onPressed: isValid ? _sendOTP : null,
                               expanded: true,
                             );
                           },
                         ),
                         SizedBox(height: UI.spacing.xl),
-                        _buildSignUpLink(),
+                        _buildSignUpLink(tr),
                         SizedBox(height: UI.spacing.lg),
-                        _buildJoinAsGuestLink(),
+                        _buildJoinAsGuestLink(tr),
                       ],
                     ),
                   ),
@@ -157,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(AuthenticationTranslation tr) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -172,24 +168,24 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Icon(Icons.smartphone, color: UIColor.textPrimary, size: 28),
         ),
         SizedBox(height: UI.spacing.lg),
-        UIText.h1(_title, textAlign: TextAlign.center),
+        UIText.h1(tr.login.title, textAlign: TextAlign.center),
       ],
     );
   }
 
-  Widget _buildSignUpLink() {
+  Widget _buildSignUpLink(AuthenticationTranslation tr) {
     return Center(
       child: GestureDetector(
         onTap: () {
           // TODO: Navigate to sign-up flow if different from login
           // For now same screen; can push auth entry or sign-up screen
         },
-        child: UIText.bodyMedium(_signUpLabel, color: UIColor.primary),
+        child: UIText.bodyMedium(tr.login.signUp, color: UIColor.primary),
       ),
     );
   }
 
-  Widget _buildJoinAsGuestLink() {
+  Widget _buildJoinAsGuestLink(AuthenticationTranslation tr) {
     return Center(
       child: GestureDetector(
         onTap: () {
@@ -200,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              _joinAsGuestLabel,
+              tr.login.joinAsGuest,
               style: TextStyle(
                 color: UIColor.textSecondary,
                 decoration: TextDecoration.underline,

@@ -1,5 +1,5 @@
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/presentation/widgets/otp_verification/otp_resend_section.dart';
+import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -72,6 +72,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     return BlocListener<AuthUserBloc, AuthUserState>(
       listenWhen:
           (_, current) =>
@@ -113,12 +114,15 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                           SizedBox(height: UI.spacing.md),
                           // Header
                           UIText.h2(
-                            'Enter the Code to Continue',
+                            tr.verification.title,
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(height: UI.spacing.xs),
                           UIText.bodyMedium(
-                            'A verification code has been sent to ${widget.userInput} via SMS.',
+                            tr.verification.description.replaceAll(
+                              '{userInput}',
+                              widget.userInput,
+                            ),
                             color: UIColor.textSecondary,
                             textAlign: TextAlign.center,
                           ),

@@ -1,5 +1,7 @@
 import 'package:authentication/authentication.dart';
+import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:design_system/design_system.dart';
+import 'package:util/util.dart';
 
 /// Submit button widget for auth entry screen
 ///
@@ -22,13 +24,14 @@ class AuthEntrySubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     if (isPinMode) {
       return ValueListenableBuilder<String>(
         valueListenable: pinNotifier ?? ValueNotifier(''),
         builder: (context, pinValue, _) {
           final isValid = pinValue.length == AuthenticationConfig.pinLength;
           return UIButton.primary(
-            label: 'login',
+            label: tr.authEntry.loginButton,
             onPressed: isValid ? onPinSubmit : null,
             expanded: true,
           );
@@ -39,7 +42,7 @@ class AuthEntrySubmitButton extends StatelessWidget {
       valueListenable: isFormValidNotifier ?? ValueNotifier(false),
       builder: (context, isValid, _) {
         return UIButton.primary(
-          label: 'send verification code',
+          label: tr.authEntry.sendVerificationCode,
           onPressed: isValid ? onOTPSubmit : null,
           expanded: true,
         );

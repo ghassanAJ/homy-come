@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:authentication/authentication.dart';
+import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:authentication/src/presentation/widgets/onboarding/onboarding_card.dart';
 import 'package:design_system/design_system.dart';
+import 'package:util/util.dart';
 
 class AppIntroSlider extends StatefulWidget {
   const AppIntroSlider({super.key});
@@ -60,21 +62,22 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
 
   @override
   Widget build(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     final pages = [
       _OnboardingData(
         image: 'assets/onboarding/onboarding-1.png',
-        title: 'Slide 1 Title',
-        subtitle: 'Slide 1 Subtitle',
+        title: tr.onboarding.slide1Title,
+        subtitle: tr.onboarding.slide1Subtitle,
       ),
       _OnboardingData(
         image: 'assets/onboarding/onboarding-2.png',
-        title: 'Slide 2 Title',
-        subtitle: 'Slide 2 Subtitle',
+        title: tr.onboarding.slide2Title,
+        subtitle: tr.onboarding.slide2Subtitle,
       ),
       _OnboardingData(
         image: 'assets/onboarding/onboarding-3.png',
-        title: 'Slide 3 Title',
-        subtitle: 'Slide 3 Subtitle',
+        title: tr.onboarding.slide3Title,
+        subtitle: tr.onboarding.slide3Subtitle,
       ),
     ];
     return LayoutBuilder(
@@ -146,11 +149,12 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
   }
 
   Container _buildGetStartedButton(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
       margin: EdgeInsets.only(bottom: 16),
       child: UIButton.primary(
-        label: 'Get started',
+        label: tr.onboarding.getStarted,
         onPressed: () {
           AuthInternalRouter.of(context).toLogin();
         },

@@ -1,6 +1,6 @@
-import 'package:authentication/src/navigation/user_navigation_config.dart';
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
+import 'package:user/navigation/user_navigation_config.dart';
 
 class DashboardNavigationScaffold extends StatelessWidget {
   const DashboardNavigationScaffold({

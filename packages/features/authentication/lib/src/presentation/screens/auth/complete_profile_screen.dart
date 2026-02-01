@@ -1,4 +1,5 @@
 import 'package:authentication/authentication.dart';
+import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:authentication/src/presentation/widgets/complete_profile/complete_profile_logout_button.dart';
 import 'package:design_system/design_system.dart' as ui;
 import 'package:design_system/gen/assets.gen.dart';
@@ -53,6 +54,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     return BlocListener<AuthUserBloc, AuthUserState>(
       listenWhen:
           (_, current) =>
@@ -87,41 +89,39 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              ui.UIText.h2('Complete Your Profile'),
+                              ui.UIText.h2(tr.personalInfo.title),
                               CompleteProfileLogoutButton(
                                 onLogout: () => _logout(context),
                               ),
                             ],
                           ),
                           SizedBox(height: ui.UI.spacing.xs),
-                          ui.UIText.bodyMedium(
-                            'Please fill in your personal information',
-                          ),
+                          ui.UIText.bodyMedium(tr.personalInfo.subtitle),
                           SizedBox(height: ui.UI.spacing.lg),
                           ui.AppFormBuilderTextField(
                             name: AuthFormFieldNames.username,
-                            label: 'Username',
-                            placeholder: 'Enter your username',
+                            label: tr.personalInfo.username,
+                            placeholder: tr.personalInfo.usernamePlaceholder,
                             validator: FormBuilderValidators.required(
-                              errorText: 'Username is required',
+                              errorText: tr.personalInfo.usernameRequired,
                             ),
                           ),
                           SizedBox(height: ui.UI.spacing.md),
                           ui.AppFormBuilderTextField(
                             name: AuthFormFieldNames.firstName,
-                            label: 'First Name',
-                            placeholder: 'Enter your first name',
+                            label: tr.personalInfo.firstName,
+                            placeholder: tr.personalInfo.firstNamePlaceholder,
                             validator: FormBuilderValidators.required(
-                              errorText: 'First name is required',
+                              errorText: tr.personalInfo.firstNameRequired,
                             ),
                           ),
                           SizedBox(height: ui.UI.spacing.md),
                           ui.AppFormBuilderTextField(
                             name: AuthFormFieldNames.lastName,
-                            label: 'Last Name',
-                            placeholder: 'Enter your last name',
+                            label: tr.personalInfo.lastName,
+                            placeholder: tr.personalInfo.lastNamePlaceholder,
                             validator: FormBuilderValidators.required(
-                              errorText: 'Last name is required',
+                              errorText: tr.personalInfo.lastNameRequired,
                             ),
                           ),
                           SizedBox(height: ui.UI.spacing.md),
@@ -129,23 +129,24 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             onTap: () => _selectDate(context),
                             child: AbsorbPointer(
                               child: ui.AppFormBuilderTextField(
-                                placeholder: 'Select your date of birth',
+                                placeholder:
+                                    tr.personalInfo.dateOfBirthPlaceholder,
                                 name: AuthFormFieldNames.dateOfBirth,
-                                label: 'Date of Birth',
+                                label: tr.personalInfo.dateOfBirth,
                                 suffixIcon: SvgPicture.asset(
                                   Assets.icons.calendar,
-
                                   package: 'authentication',
                                   fit: BoxFit.scaleDown,
                                 ),
                                 validator: FormBuilderValidators.required(
-                                  errorText: 'Date of birth is required',
+                                  errorText:
+                                      tr.personalInfo.dateOfBirthRequired,
                                 ),
                               ),
                             ),
                           ),
                           SizedBox(height: ui.UI.spacing.md),
-                          ui.UIText.fieldLabel('Gender'),
+                          ui.UIText.fieldLabel(tr.personalInfo.gender),
                           SizedBox(height: ui.UI.spacing.xs),
                           ui.OptionSelector<Gender>(
                             selectedValue: _selectedGender!,
@@ -157,12 +158,12 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             options: [
                               ui.SelectorOption(
                                 value: Gender.male,
-                                label: 'Male',
+                                label: tr.personalInfo.male,
                                 icon: IconsaxPlusLinear.man,
                               ),
                               ui.SelectorOption(
                                 value: Gender.female,
-                                label: 'Female',
+                                label: tr.personalInfo.female,
                                 icon: IconsaxPlusLinear.woman,
                               ),
                             ],
@@ -170,7 +171,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           SizedBox(height: ui.UI.spacing.xxl),
                           ui.UIButton.primary(
                             expanded: true,
-                            label: 'Continue',
+                            label: tr.common.continueLabel,
                             onPressed: () => _continue(context),
                           ),
                         ],

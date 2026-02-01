@@ -1,6 +1,6 @@
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/navigation/dashboard_navigation_scaffold.dart';
 import 'package:design_system/design_system.dart';
+import 'package:design_system/src/widgets/shared/dashboard_navigation_scaffold.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homy_provider/navigation/provider_navigation_config.dart';

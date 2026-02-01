@@ -1,5 +1,4 @@
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -39,7 +38,7 @@ class AuthNavigationListener extends StatelessWidget {
       case AuthUserStateOTPSent():
         _onOtpSent(context, state);
       case AuthUserStateAuthenticated():
-        _onAuthenticated(state);
+        _onAuthenticated(context, state);
       case AuthUserStateLoggedOut():
       case AuthUserStateSessionExpired():
         _onLoggedOut();
@@ -49,7 +48,7 @@ class AuthNavigationListener extends StatelessWidget {
   }
 
   void _onOtpSent(BuildContext context, AuthUserStateOTPSent state) {
-    final tr = AuthenticationTranslation();
+    final tr = context.loc<AuthenticationTranslation>();
     ToastificationUtil.success(tr.verification.codeSent);
 
     // Only navigate to OTP screen if not already there (prevents duplicate push on resend)
@@ -69,26 +68,29 @@ class AuthNavigationListener extends StatelessWidget {
     }
   }
 
-  void _onAuthenticated(AuthUserStateAuthenticated state) {
+  void _onAuthenticated(
+    BuildContext context,
+    AuthUserStateAuthenticated state,
+  ) {
     final hasCompletedProfile =
         state.session.user?.hasCompletedProfile ?? false;
     final authContext = state.context;
 
     switch (authContext) {
       case AuthenticationContext.otpVerification:
-        _navigateAfterOtpVerification(hasCompletedProfile);
+        _navigateAfterOtpVerification(context, hasCompletedProfile);
 
       case AuthenticationContext.profileSave:
-        _navigateAfterProfileSave();
+        _navigateAfterProfileSave(context);
 
       case AuthenticationContext.pinLogin:
-        _navigateAfterPinLogin();
+        _navigateAfterPinLogin(context);
 
       case AuthenticationContext.tokenLogin:
         _navigateAfterTokenLogin(hasCompletedProfile);
 
       case AuthenticationContext.socialLogin:
-        _navigateAfterSocialLogin(hasCompletedProfile);
+        _navigateAfterSocialLogin(context, hasCompletedProfile);
 
       default:
         break;
@@ -99,8 +101,11 @@ class AuthNavigationListener extends StatelessWidget {
     router.go(AuthenticationPaths.login);
   }
 
-  void _navigateAfterOtpVerification(bool hasCompletedProfile) {
-    final tr = AuthenticationTranslation();
+  void _navigateAfterOtpVerification(
+    BuildContext context,
+    bool hasCompletedProfile,
+  ) {
+    final tr = context.loc<AuthenticationTranslation>();
 
     if (hasCompletedProfile) {
       ToastificationUtil.success(tr.verification.returningUserVerified);
@@ -111,14 +116,14 @@ class AuthNavigationListener extends StatelessWidget {
     }
   }
 
-  void _navigateAfterProfileSave() {
-    final tr = AuthenticationTranslation();
+  void _navigateAfterProfileSave(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     ToastificationUtil.success(tr.personalInfo.profileCompleted);
     router.go(dashboardPath);
   }
 
-  void _navigateAfterPinLogin() {
-    final tr = AuthenticationTranslation();
+  void _navigateAfterPinLogin(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     ToastificationUtil.success(tr.verification.returningUserVerified);
     router.go(dashboardPath);
   }
@@ -132,8 +137,11 @@ class AuthNavigationListener extends StatelessWidget {
     router.go(destination);
   }
 
-  void _navigateAfterSocialLogin(bool hasCompletedProfile) {
-    final tr = AuthenticationTranslation();
+  void _navigateAfterSocialLogin(
+    BuildContext context,
+    bool hasCompletedProfile,
+  ) {
+    final tr = context.loc<AuthenticationTranslation>();
 
     if (hasCompletedProfile) {
       ToastificationUtil.success(tr.verification.returningUserVerified);
