@@ -15,6 +15,7 @@ void initializeDependencies(String env) {
 
   _configureAuthInterceptor();
   initMain(diContainer, env);
+  diContainer.registerSingleton<LocalizationCubit>(LocalizationCubit());
   diContainer.registerSingleton<CustomRouter>(
     CustomRouter(AppRouter.creaetDriverRouter(diContainer.get<AppCubit>())),
   );

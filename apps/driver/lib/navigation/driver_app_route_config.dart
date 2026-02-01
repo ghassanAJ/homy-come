@@ -5,6 +5,7 @@ import 'package:driver/navigation/driver_navigation_config.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:user/navigation/route.dart';
+import 'package:util/src/localization/locale_cubit.dart';
 
 /// Configuration for all app routes
 ///
@@ -61,6 +62,22 @@ class DriverAppRouteConfig {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text('Home'),
+                          const SizedBox(height: 16),
+                          BlocBuilder<LocalizationCubit, Locale>(
+                            builder:
+                                (context, locale) => UIButton.primary(
+                                  label:
+                                      locale.languageCode == 'en'
+                                          ? 'العربية'
+                                          : 'English',
+                                  onPressed: () {
+                                    context
+                                        .read<LocalizationCubit>()
+                                        .toggleLanguage();
+                                  },
+                                ),
+                          ),
+                          const SizedBox(height: 16),
                           UIButton.primary(
                             label: 'logout',
                             onPressed: () {

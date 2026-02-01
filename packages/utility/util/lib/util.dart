@@ -26,6 +26,8 @@ export 'src/image_picker/image_picker_config.dart';
 export 'src/image_picker/image_picker_result.dart';
 export 'src/image_picker/image_picker_service.dart';
 export 'src/interface/storage.dart';
+export 'src/localization/config.dart';
+export 'src/localization/locale_cubit.dart';
 export 'src/md_exception.dart';
 export 'src/models/base_model.dart';
 export 'src/pagination/page_model.dart';

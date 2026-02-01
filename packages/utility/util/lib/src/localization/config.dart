@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Config {
-  static List<Locale> supportedLocales = [Locale('en'), Locale('hi')];
+  static List<Locale> supportedLocales = [Locale('en'), Locale('ar')];
   static Locale defaultLocale = Locale('en');
 
   /// Get the device locale without context

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:homy_provider/di/di_container.dart';
-import 'package:homy_provider/localization/config.dart';
 import 'package:util/util.dart';
 
 class ProviderApp extends StatelessWidget {

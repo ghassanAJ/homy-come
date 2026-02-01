@@ -9,7 +9,7 @@ abstract class AuthUserState with _$AuthUserState {
   const factory AuthUserState.initial() = AuthUserStateInitial;
 
   const factory AuthUserState.authenticated({
-    required Session session,
+    required SessionModel session,
     @Default(AuthenticationContext.unknown) AuthenticationContext context,
   }) = AuthUserStateAuthenticated;
 

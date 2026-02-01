@@ -1,25 +1,27 @@
+import 'package:equatable/equatable.dart';
+
 import 'res/user_model.dart';
 
-class Session {
+class SessionModel extends Equatable {
   final String accessToken;
   final String refreshToken;
   final UserModel? user;
 
-  const Session({
+  const SessionModel({
     required this.accessToken,
     required this.refreshToken,
     this.user,
   });
 
-  factory Session.fromTokens({
+  factory SessionModel.fromTokens({
     required String accessToken,
     required String refreshToken,
   }) {
-    return Session(accessToken: accessToken, refreshToken: refreshToken);
+    return SessionModel(accessToken: accessToken, refreshToken: refreshToken);
   }
 
-  Session withUser(UserModel user) {
-    return Session(
+  SessionModel withUser(UserModel user) {
+    return SessionModel(
       accessToken: accessToken,
       refreshToken: refreshToken,
       user: user,
@@ -29,4 +31,7 @@ class Session {
   bool get hasUser => user != null;
 
   bool get isProfileComplete => hasUser && user!.hasCompletedProfile;
+
+  @override
+  List<Object?> get props => [accessToken, refreshToken, user];
 }

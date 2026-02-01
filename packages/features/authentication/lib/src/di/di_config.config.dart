@@ -10,14 +10,15 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:authentication/authentication.dart' as _i6;
-import 'package:authentication/src/data/api/authentication_api.dart' as _i905;
+import 'package:authentication/src/data/api/authentication_api.dart' as _i28;
+import 'package:authentication/src/data/api/user_api.dart' as _i420;
 import 'package:authentication/src/domain/repository/auth_api_repository.dart'
     as _i744;
 import 'package:authentication/src/domain/service/session_repository.dart'
     as _i86;
 import 'package:authentication/src/navigation/app_router.dart' as _i859;
 import 'package:authentication/src/presentation/bloc/auth_user_bloc.dart'
-    as _i295;
+    as _i37;
 import 'package:authentication/src/presentation/cubit/app_cubit.dart' as _i372;
 import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
@@ -39,8 +40,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i609.BiometricService>(),
       ),
     );
-    gh.factory<_i905.AuthenticationAPI>(
-      () => _i905.AuthenticationAPI(gh<_i361.Dio>(instanceName: 'authDio')),
+    gh.factory<_i420.UserAPI>(() => _i420.UserAPI(gh<_i361.Dio>()));
+    gh.factory<_i28.AuthenticationAPI>(
+      () => _i28.AuthenticationAPI(gh<_i361.Dio>(instanceName: 'authDio')),
     );
     gh.singleton<_i372.AppCubit>(
       () => _i372.AppCubit(gh<_i6.SessionRepository>()),
@@ -51,8 +53,8 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i6.UserAPI>(),
       ),
     );
-    gh.lazySingleton<_i295.AuthUserBloc>(
-      () => _i295.AuthUserBloc(
+    gh.lazySingleton<_i37.AuthUserBloc>(
+      () => _i37.AuthUserBloc(
         gh<_i6.AuthRepository>(),
         gh<_i6.SessionRepository>(),
       ),

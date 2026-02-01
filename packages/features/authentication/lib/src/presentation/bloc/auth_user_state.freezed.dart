@@ -137,7 +137,7 @@ return otpSent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( Session session,  AuthenticationContext context)?  authenticated,TResult Function()?  loading,TResult Function( APIException error,  AuthUserErrorStateType stateType)?  error,TResult Function()?  loggedOut,TResult Function()?  sessionExpired,TResult Function( String sessionId,  String identifier,  String? userType)?  otpSent,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( SessionModel session,  AuthenticationContext context)?  authenticated,TResult Function()?  loading,TResult Function( APIException error,  AuthUserErrorStateType stateType)?  error,TResult Function()?  loggedOut,TResult Function()?  sessionExpired,TResult Function( String sessionId,  String identifier,  String? userType)?  otpSent,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case AuthUserStateInitial() when initial != null:
 return initial();case AuthUserStateAuthenticated() when authenticated != null:
@@ -164,7 +164,7 @@ return otpSent(_that.sessionId,_that.identifier,_that.userType);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( Session session,  AuthenticationContext context)  authenticated,required TResult Function()  loading,required TResult Function( APIException error,  AuthUserErrorStateType stateType)  error,required TResult Function()  loggedOut,required TResult Function()  sessionExpired,required TResult Function( String sessionId,  String identifier,  String? userType)  otpSent,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( SessionModel session,  AuthenticationContext context)  authenticated,required TResult Function()  loading,required TResult Function( APIException error,  AuthUserErrorStateType stateType)  error,required TResult Function()  loggedOut,required TResult Function()  sessionExpired,required TResult Function( String sessionId,  String identifier,  String? userType)  otpSent,}) {final _that = this;
 switch (_that) {
 case AuthUserStateInitial():
 return initial();case AuthUserStateAuthenticated():
@@ -190,7 +190,7 @@ return otpSent(_that.sessionId,_that.identifier,_that.userType);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( Session session,  AuthenticationContext context)?  authenticated,TResult? Function()?  loading,TResult? Function( APIException error,  AuthUserErrorStateType stateType)?  error,TResult? Function()?  loggedOut,TResult? Function()?  sessionExpired,TResult? Function( String sessionId,  String identifier,  String? userType)?  otpSent,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( SessionModel session,  AuthenticationContext context)?  authenticated,TResult? Function()?  loading,TResult? Function( APIException error,  AuthUserErrorStateType stateType)?  error,TResult? Function()?  loggedOut,TResult? Function()?  sessionExpired,TResult? Function( String sessionId,  String identifier,  String? userType)?  otpSent,}) {final _that = this;
 switch (_that) {
 case AuthUserStateInitial() when initial != null:
 return initial();case AuthUserStateAuthenticated() when authenticated != null:
@@ -246,7 +246,7 @@ class AuthUserStateAuthenticated implements AuthUserState {
   const AuthUserStateAuthenticated({required this.session, this.context = AuthenticationContext.unknown});
   
 
- final  Session session;
+ final  SessionModel session;
 @JsonKey() final  AuthenticationContext context;
 
 /// Create a copy of AuthUserState
@@ -279,7 +279,7 @@ abstract mixin class $AuthUserStateAuthenticatedCopyWith<$Res> implements $AuthU
   factory $AuthUserStateAuthenticatedCopyWith(AuthUserStateAuthenticated value, $Res Function(AuthUserStateAuthenticated) _then) = _$AuthUserStateAuthenticatedCopyWithImpl;
 @useResult
 $Res call({
- Session session, AuthenticationContext context
+ SessionModel session, AuthenticationContext context
 });
 
 
@@ -299,7 +299,7 @@ class _$AuthUserStateAuthenticatedCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') $Res call({Object? session = null,Object? context = null,}) {
   return _then(AuthUserStateAuthenticated(
 session: null == session ? _self.session : session // ignore: cast_nullable_to_non_nullable
-as Session,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
+as SessionModel,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
 as AuthenticationContext,
   ));
 }

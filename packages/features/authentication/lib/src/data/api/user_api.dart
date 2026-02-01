@@ -1,6 +1,7 @@
 import 'package:api_client/api_client.dart';
 import 'package:authentication/authentication.dart';
 import 'package:dio/dio.dart' hide Headers;
+import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'user_api.g.dart';
@@ -10,8 +11,10 @@ class UserAPIEndpoints {
   static const String updateProfile = '/api/v1/users/{id}';
 }
 
+@injectable
 @RestApi()
 abstract class UserAPI {
+  @factoryMethod
   factory UserAPI(Dio dio) = _UserAPI;
   @POST(UserAPIEndpoints.createProfile)
   Future<APIResponse<LoginResponseModel>> createProfile(

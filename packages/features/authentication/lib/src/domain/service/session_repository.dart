@@ -109,7 +109,7 @@ class SessionRepository {
     _userController.add(null);
   }
 
-  Future<Session?> getSession() async {
+  Future<SessionModel?> getSession() async {
     final accessToken = await _tokenStorage.getAccessToken();
     final refreshToken = await _tokenStorage.getRefreshToken();
 
@@ -119,7 +119,7 @@ class SessionRepository {
 
     final user = await getUser();
 
-    return Session(
+    return SessionModel(
       accessToken: accessToken,
       refreshToken: refreshToken,
       user: user,
@@ -139,7 +139,7 @@ class SessionRepository {
     }
   }
 
-  Future<void> saveSession(Session session) async {
+  Future<void> saveSession(SessionModel session) async {
     await _tokenStorage.saveTokens(
       accessToken: session.accessToken,
       refreshToken: session.refreshToken,

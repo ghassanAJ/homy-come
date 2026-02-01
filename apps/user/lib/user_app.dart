@@ -3,7 +3,6 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:user/di/di_container.dart';
-import 'package:user/localization/config.dart';
 import 'package:util/util.dart';
 
 class UserApp extends StatelessWidget {
