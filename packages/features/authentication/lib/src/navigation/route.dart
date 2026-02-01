@@ -1,5 +1,4 @@
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/presentation/screens/auth/login_screen.dart';
 import 'package:authentication/src/presentation/screens/onboarding/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,6 +11,14 @@ class AuthenticationPaths {
   static const String otpVerification = '/otp-verification';
   static const String completeProfile = '/complete-profile';
   static const String login = '/login';
+}
+
+class AuthRouteParams {
+  AuthRouteParams._();
+  static const String userInput = 'userInput';
+  static const String verificationId = 'verificationId';
+  static const String userType = 'userType';
+  static const String userRole = 'userRole';
 }
 
 class AuthenticationRoute {

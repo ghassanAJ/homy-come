@@ -6,48 +6,47 @@ export 'package:util/src/base_cubit/base_state.dart';
 export 'src/config/auth_ui_constants.dart';
 export 'src/config/auth_user_config.dart';
 export 'src/config/authentication_config.dart';
+// Domain - APIs
+export 'src/data/api/authentication_api.dart';
+export 'src/data/api/user_api.dart';
+// Domain - Models (Request)
+export 'src/data/model/req/login_request_model.dart';
+export 'src/data/model/req/register_request_model.dart';
+// Domain - Models (Response)
+export 'src/data/model/res/child_user.dart';
+export 'src/data/model/res/login_response_model.dart';
+export 'src/data/model/res/otp_response_model.dart';
+export 'src/data/model/res/parent_user.dart';
+export 'src/data/model/res/register_response_model.dart';
+export 'src/data/model/res/token_model.dart';
+export 'src/data/model/res/user_model.dart';
+export 'src/data/model/res/user_model_base.dart';
+export 'src/data/model/res/user_type.dart';
+// Domain - Session
+export 'src/data/model/session.dart';
 // DI
 export 'src/di/di_config.dart';
-// Domain - APIs
-export 'src/domain/api/authentication_api.dart';
-export 'src/domain/api/user_api.dart';
-// Domain - Bloc
-export 'src/domain/bloc/auth_user_bloc.dart';
-export 'src/domain/bloc/auth_user_event.dart';
-export 'src/domain/bloc/auth_user_state.dart';
 // Domain - Enums
 export 'src/domain/enums/auth_method.dart';
 export 'src/domain/enums/gender.dart';
 export 'src/domain/enums/user_registration_status.dart';
 export 'src/domain/enums/user_role.dart';
-// Domain - Models (Request)
-export 'src/domain/model/req/login_request_model.dart';
-export 'src/domain/model/req/register_request_model.dart';
-// Domain - Models (Response)
-export 'src/domain/model/res/child_user.dart';
-export 'src/domain/model/res/login_response_model.dart';
-export 'src/domain/model/res/otp_response_model.dart';
-export 'src/domain/model/res/parent_user.dart';
-export 'src/domain/model/res/register_response_model.dart';
-export 'src/domain/model/res/token_model.dart';
-export 'src/domain/model/res/user_model.dart';
-export 'src/domain/model/res/user_model_base.dart';
-export 'src/domain/model/res/user_type.dart';
-// Domain - Session
-export 'src/domain/model/session.dart';
 // Domain - Repository
 export 'src/domain/repository/auth_api_repository.dart';
 // Domain - Service
 export 'src/domain/service/session_repository.dart';
-export 'src/navigation/app_cubit_listenable.dart';
 // Navigation
 export 'src/navigation/app_router.dart';
 export 'src/navigation/app_router_guard.dart';
 // Navigation
 export 'src/navigation/auth_internal_router.dart';
-export 'src/navigation/auth_navigation_listener.dart';
-export 'src/navigation/auth_route_params.dart';
 export 'src/navigation/route.dart';
+export 'src/presentation/bloc/app_cubit_listenable.dart';
+export 'src/presentation/bloc/auth_navigation_listener.dart';
+// Domain - Bloc
+export 'src/presentation/bloc/auth_user_bloc.dart';
+export 'src/presentation/bloc/auth_user_event.dart';
+export 'src/presentation/bloc/auth_user_state.dart';
 // Controllers
 export 'src/presentation/controllers/resend_timer_controller.dart';
 export 'src/presentation/cubit/app_state.dart';

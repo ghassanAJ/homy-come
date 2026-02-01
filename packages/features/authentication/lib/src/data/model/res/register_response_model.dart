@@ -1,6 +1,6 @@
+import 'package:authentication/src/data/model/res/token_model.dart';
+import 'package:authentication/src/data/model/res/user_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:authentication/src/domain/model/res/token_model.dart';
-import 'package:authentication/src/domain/model/res/user_model.dart';
 
 part 'register_response_model.freezed.dart';
 part 'register_response_model.g.dart';
@@ -45,8 +45,10 @@ abstract class RegisterInitResponseModel with _$RegisterInitResponseModel {
     @JsonKey(name: 'id') String? id, // New field from /api/v1/register-user
     String? message,
     @Default(false) bool verified,
-    @JsonKey(name: 'temporary_access_token') String? accessToken, // Token from verify OTP
-    @JsonKey(name: 'phone_verified') bool? phoneVerified, // Phone verification status
+    @JsonKey(name: 'temporary_access_token')
+    String? accessToken, // Token from verify OTP
+    @JsonKey(name: 'phone_verified')
+    bool? phoneVerified, // Phone verification status
   }) = _RegisterInitResponseModel;
 
   factory RegisterInitResponseModel.fromJson(Map<String, dynamic> json) =>

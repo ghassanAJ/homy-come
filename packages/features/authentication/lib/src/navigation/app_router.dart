@@ -11,7 +11,6 @@ class AppRouter {
   static final rootNavigatorKey = GlobalKey<NavigatorState>();
   static final shellNavigatorKey = GlobalKey<NavigatorState>();
 
-  @factory
   static GoRouter createUserRouter(AppCubit appCubit) {
     return _buildBaseRoute(
       appCubit,
@@ -19,14 +18,14 @@ class AppRouter {
     );
   }
 
-  static GoRouter buildDriverRouter(AppCubit appCubit) {
+  static GoRouter creaetDriverRouter(AppCubit appCubit) {
     return _buildBaseRoute(
       appCubit,
       DriverAppRouteConfig.createRoutes(shellNavigatorKey),
     );
   }
 
-  static GoRouter buildProviderRouter(AppCubit appCubit) {
+  static GoRouter createProviderRouter(AppCubit appCubit) {
     return _buildBaseRoute(
       appCubit,
       ProviderAppRouteConfig.createRoutes(shellNavigatorKey),

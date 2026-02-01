@@ -1,4 +1,4 @@
-import '../model/res/user_model.dart';
+import 'res/user_model.dart';
 
 class Session {
   final String accessToken;

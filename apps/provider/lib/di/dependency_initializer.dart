@@ -16,7 +16,7 @@ void initializeDependencies(String env) {
   _configureAuthInterceptor();
   initMain(diContainer, env);
   diContainer.registerSingleton<CustomRouter>(
-    CustomRouter(AppRouter.buildProviderRouter(diContainer.get<AppCubit>())),
+    CustomRouter(AppRouter.createProviderRouter(diContainer.get<AppCubit>())),
   );
 }
 
