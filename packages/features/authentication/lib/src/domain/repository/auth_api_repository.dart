@@ -24,7 +24,7 @@ abstract class AuthRepository {
   Future<Result<void, APIException>> logout(String refreshToken);
 }
 
-@Injectable(as: AuthRepository)
+@Injectable(as: AuthRepository, env: ['prod', 'dev'])
 class AuthRepositoryImpl implements AuthRepository {
   final AuthenticationAPI _authenticationAPI;
   final UserAPI _userAPI;

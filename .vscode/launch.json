@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "User App",
+            "name": "User App Dev",
             "request": "launch",
             "type": "dart",
             "program": "apps/user/lib/main.dart",
@@ -15,7 +15,17 @@
 
         },
         {
-            "name": "Driver App",
+            "name": "User App Mock",
+            "request": "launch",
+            "type": "dart",
+            "program": "apps/user/lib/main.dart",
+            "toolArgs": [
+                "--dart-define-from-file=${workspaceFolder}/apps/user/env/config.mock.json"
+            ]
+
+        },
+        {
+            "name": "Driver App Dev",
             "request": "launch",
             "type": "dart",
             "program": "apps/driver/lib/main.dart",
@@ -24,12 +34,30 @@
             ]
         },
         {
-            "name": "Provider App",
+            "name": "Driver App Mock",
+            "request": "launch",
+            "type": "dart",
+            "program": "apps/driver/lib/main.dart",
+            "toolArgs": [
+                "--dart-define-from-file=${workspaceFolder}/apps/driver/env/config.mock.json"
+            ]
+        },
+        {
+            "name": "Provider App Dev",
             "request": "launch",
             "type": "dart",
             "program": "apps/provider/lib/main.dart",
             "toolArgs": [
                 "--dart-define-from-file=${workspaceFolder}/apps/provider/env/config.dev.json"
+            ]
+        },
+        {
+            "name": "Provider App Mock",
+            "request": "launch",
+            "type": "dart",
+            "program": "apps/provider/lib/main.dart",
+            "toolArgs": [
+                "--dart-define-from-file=${workspaceFolder}/apps/provider/env/config.mock.json"
             ]
         },
        

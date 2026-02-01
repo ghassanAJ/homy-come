@@ -1,15 +1,14 @@
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/domain/repository/mock_auth_api_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:util/util.dart';
 
 @lazySingleton
 class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
-  final AuthRepository _authApiRepository;
+  final AuthRepository _authRepository;
   final SessionRepository _sessionRepository;
 
-  AuthUserBloc(this._authApiRepository, this._sessionRepository)
+  AuthUserBloc(this._authRepository, this._sessionRepository)
     : super(AuthUserStateInitial()) {
     on<AuthUserEvent>((event, emit) async {
       await switch (event) {
@@ -27,8 +26,6 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
       };
     });
   }
-
-  AuthRepository get _repo => MockAuthRepository();
 
   Future<void> _loginWithToken(
     AutoLogin event,
@@ -68,7 +65,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
     final result = await ResultAsync.fromAsync(_sessionRepository.clearSession);
 
     if (refreshToken != null && refreshToken.isNotEmpty) {
-      _repo.logout(refreshToken).ignore();
+      _authRepository.logout(refreshToken).ignore();
     }
 
     result.fold(
@@ -109,7 +106,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
       return;
     }
 
-    final response = await _repo.updateUserProfile(
+    final response = await _authRepository.updateUserProfile(
       userId: userId,
       profileData: event.profileData,
     );
@@ -132,7 +129,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
   Future<void> _sendOTP(SendOTP event, Emitter<AuthUserState> emit) async {
     emit(AuthUserStateLoading());
 
-    final response = await _repo.sendOTP(event.request);
+    final response = await _authRepository.sendOTP(event.request);
     emit(
       response.fold(
         (data) => AuthUserStateOTPSent(
@@ -150,7 +147,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
     Emitter<AuthUserState> emit,
   ) async {
     emit(AuthUserStateLoading());
-    final response = await _repo.verifyOTP(event.request);
+    final response = await _authRepository.verifyOTP(event.request);
 
     await response.fold(
       (data) async => _handleVerifyOTPSuccess(data, emit),
@@ -224,7 +221,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
     Emitter<AuthUserState> emit,
   ) async {
     emit(AuthUserStateLoading());
-    final response = await _repo.loginWithPin(event.request);
+    final response = await _authRepository.loginWithPin(event.request);
 
     await response.fold(
       (loginResponse) async {

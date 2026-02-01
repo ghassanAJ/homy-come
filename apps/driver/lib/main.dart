@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:design_system/design_system.dart';
 import 'package:driver/driver_app.dart';
@@ -10,7 +11,9 @@ void main() async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
-      final env = const String.fromEnvironment('ENV', defaultValue: 'dev');
+      var env = const String.fromEnvironment('ENV', defaultValue: 'dev');
+      if (env.isEmpty) env = 'dev';
+      log('Environment: $env');
 
       initializeDependencies(env);
 

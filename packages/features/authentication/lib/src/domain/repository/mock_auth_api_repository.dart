@@ -1,10 +1,14 @@
 import 'package:authentication/authentication.dart';
+import 'package:injectable/injectable.dart';
 import 'package:util/util.dart';
 
 /// Mock implementation of [AuthRepository] for testing and development.
 ///
 /// Returns successful results with fake data. Set [failNextSendOTP],
 /// [failNextVerifyOTP], etc. to true to simulate failures on the next call.
+///
+/// Registered only when running with [ENV]=dev.
+@Injectable(as: AuthRepository, env: ['mock'])
 class MockAuthRepository implements AuthRepository {
   MockAuthRepository();
 

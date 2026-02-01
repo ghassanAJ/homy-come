@@ -14,6 +14,8 @@ import 'package:authentication/src/data/api/authentication_api.dart' as _i28;
 import 'package:authentication/src/data/api/user_api.dart' as _i420;
 import 'package:authentication/src/domain/repository/auth_api_repository.dart'
     as _i744;
+import 'package:authentication/src/domain/repository/mock_auth_api_repository.dart'
+    as _i601;
 import 'package:authentication/src/domain/service/session_repository.dart'
     as _i86;
 import 'package:authentication/src/navigation/app_router.dart' as _i859;
@@ -24,6 +26,10 @@ import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:util/util.dart' as _i609;
+
+const String _mock = 'mock';
+const String _prod = 'prod';
+const String _dev = 'dev';
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -40,6 +46,10 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i609.BiometricService>(),
       ),
     );
+    gh.factory<_i6.AuthRepository>(
+      () => _i601.MockAuthRepository(),
+      registerFor: {_mock},
+    );
     gh.factory<_i420.UserAPI>(() => _i420.UserAPI(gh<_i361.Dio>()));
     gh.factory<_i28.AuthenticationAPI>(
       () => _i28.AuthenticationAPI(gh<_i361.Dio>(instanceName: 'authDio')),
@@ -52,6 +62,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i6.AuthenticationAPI>(),
         gh<_i6.UserAPI>(),
       ),
+      registerFor: {_prod, _dev},
     );
     gh.lazySingleton<_i37.AuthUserBloc>(
       () => _i37.AuthUserBloc(

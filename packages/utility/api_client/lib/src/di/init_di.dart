@@ -8,6 +8,5 @@ import 'init_di.config.dart';
   preferRelativeImports: true,
   asExtension: true,
 )
-void initApiClient(GetIt getIt, String environment) {
-  getIt.init(environment: environment);
-}
+void initApiClient(GetIt getIt, String environment) =>
+    getIt.init(environment: environment);
