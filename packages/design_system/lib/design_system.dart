@@ -2,6 +2,11 @@ export 'package:flutter/material.dart';
 export 'package:intl_phone_number_input/intl_phone_number_input.dart'
     show PhoneNumber;
 
+// Domain - Enums
+export '/src/enums/auth_method.dart';
+export '/src/enums/gender.dart';
+export '/src/enums/user_registration_status.dart';
+export '/src/enums/user_role.dart';
 export 'src/theme/theme_data.dart';
 export 'src/tokens/colors.dart';
 export 'src/ui.dart';
@@ -36,6 +41,7 @@ export 'src/widgets/selection/weekday_selector.dart';
 export 'src/widgets/shared/amount_with_reward_widget.dart';
 export 'src/widgets/shared/base_card_button.dart';
 export 'src/widgets/shared/confetti_widget.dart';
+export 'src/widgets/shared/dashboard_navigation_scaffold.dart';
 export 'src/widgets/shared/gradiant_linear_progress.dart';
 export 'src/widgets/shared/keep_alive_widget.dart';
 export 'src/widgets/shared/selected_buttons_in_row.dart';
