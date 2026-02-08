@@ -1,0 +1,93 @@
+# Common Labels
+common:
+  continueLabel: Continue
+  skip: Skip
+  logout: Logout
+
+# Login Screen
+login:
+  title: Enter Your Phone Number for Verification
+  phoneLabel: Phone Number
+  verifyButton: Verify
+  signUp: Sign up
+  joinAsGuest: Join as guest
+
+# Verification Screen
+verification:
+  title: Enter the Code to Continue
+  description: A verification code has been sent to {userInput} via SMS.
+  didntReceive: Didn't receive?
+  resendCode: Resend Code
+  resend: resend
+  codeSent: Code sent successfully
+  newUserVerified: "Verification successful! Let's set up your profile"
+  returningUserVerified: "Welcome back! We're logging you in..."
+
+# Personal Information / Complete Profile Screen
+personalInfo:
+  title: Complete Your Profile
+  subtitle: Please fill in your personal information
+  username: Username
+  usernamePlaceholder: Enter your username
+  usernameRequired: Username is required
+  firstName: First Name
+  firstNamePlaceholder: Enter your first name
+  firstNameRequired: First name is required
+  lastName: Last Name
+  lastNamePlaceholder: Enter your last name
+  lastNameRequired: Last name is required
+  dateOfBirth: Date of Birth
+  dateOfBirthPlaceholder: Select your date of birth
+  dateOfBirthRequired: Date of birth is required
+  gender: Gender
+  male: Male
+  female: Female
+  profileCompleted: "All set! Welcome to Maddo 🎉"
+
+# Auth Entry Screen
+authEntry:
+  pinLabel: password
+  loginButton: login
+  sendVerificationCode: send verification code
+  orLoginWith: or login with
+  orContinueWith: or continue with
+
+# Onboarding
+onboarding:
+  slide1Title: the digital debit card designed for families
+  slide1Subtitle: Digital & physical, safe and simple to use.
+  slide2Title: send and receive money with a tap
+  slide2Subtitle: Kids learn saving, spending, and goal-setting
+  slide3Title: Help your children learn the value of money
+  slide3Subtitle: Set limits, track spending, guide responsible habits
+  getStarted: Get started
+  skip: skip
+
+# User Role Selection
+userRole:
+  welcome: Welcome to maddo
+  welcomeSubtitle: the smart way to teach kids money skills.
+  imTheParent: I'm the parent
+  imTheChild: I'm the child
+  imAGuest: I'm a guest
+  continueButton: Continue
+  guestModeNotSupported: Guest mode is not supported yet
+
+# Auth Identity (for auth entry header)
+authIdentity:
+  emailTitle: Email
+  emailSubtitle: Add Email Address you would like to use
+  phoneTitle: Phone number
+  phoneSubtitle: Add Phone number you would like to use
+
+# Child Login
+childLogin:
+  title: Child Login
+  subtitle: Ask your parent for the 6-digit passcode
+
+# Terms and Privacy
+termsAndPrivacy:
+  agreementText: By continuing, you agree to the
+  termsOfUse: Terms of use
+  and: and
+  privacyPolicy: Privacy policy

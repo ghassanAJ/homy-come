@@ -1,0 +1,15 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'amount_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_AmountModel _$AmountModelFromJson(Map<String, dynamic> json) => _AmountModel(
+  value: (json['value'] as num).toDouble(),
+  currency: json['currency'] as String,
+);
+
+Map<String, dynamic> _$AmountModelToJson(_AmountModel instance) =>
+    <String, dynamic>{'value': instance.value, 'currency': instance.currency};

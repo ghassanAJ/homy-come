@@ -1,0 +1,66 @@
+Running `(cd /Users/yazanshlash/.pub-cache/hosted/pub.dev/objective_c-9.2.2/; TMPDIR=/var/folders/lx/75sdjp1d3z5_xnyvdfj7c5_w0000gn/T/ PATH=/Users/yazanshlash/.gem/ruby/4.0/bin:/Users/yazanshlash/.gem/ruby/4.0.0/bin:/opt/homebrew/opt/ruby/bin:/Users/yazanshlash/.gem/ruby/4.0.0/bin:/Users/yazanshlash/development/flutter/bin/:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/pmk/env/global/bin:/Library/Apple/usr/bin:/Users/yazanshlash/development/flutter/bin/:/Users/yazanshlash/.gem/ruby/4.0/bin:/Users/yazanshlash/.gem/ruby/4.0.0/bin:/opt/homebrew/opt/ruby/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/yazanshlash/.pub-cache/bin:/Users/yazanshlash/development/flutter/bin:/Users/yazanshlash/.pub-cache/bin:/Users/yazanshlash/development/flutter/bin HOME=/Users/yazanshlash /Users/yazanshlash/development/flutter/bin/cache/dart-sdk/bin/dart --packages=/Users/yazanshlash/StudioProjects/homy/.dart_tool/package_config.json /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/objective_c/9fb02c5622aea66c3a53a942a16bf409/hook.dill --config=/Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/objective_c/9fb02c5622aea66c3a53a942a16bf409/input.json )`.
+INFO: 2026-02-01 21:52:55.210158: Running `which clang`.
+
+INFO: 2026-02-01 21:52:55.222394: Running `/usr/bin/clang --version`.
+
+INFO: 2026-02-01 21:52:55.340118: Running `/usr/bin/clang --version`.
+
+INFO: 2026-02-01 21:52:55.354392: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -c /Users/yazanshlash/.pub-cache/hosted/pub.dev/objective_c-9.2.2/src/include/dart_api_dl.c -fpic -I src -o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/include/dart_api_dl.c.o
+
+INFO: 2026-02-01 21:52:55.354644: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -c /Users/yazanshlash/.pub-cache/hosted/pub.dev/objective_c-9.2.2/src/objective_c.c -fpic -I src -o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.c.o
+
+INFO: 2026-02-01 21:52:55.354746: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -c /Users/yazanshlash/.pub-cache/hosted/pub.dev/objective_c-9.2.2/test/util.c -fpic -I src -o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/test/util.c.o
+
+INFO: 2026-02-01 21:52:55.354820: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -x objective-c -fobjc-arc -c /Users/yazanshlash/.pub-cache/hosted/pub.dev/objective_c-9.2.2/src/input_stream_adapter.m -fpic -I src -o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/input_stream_adapter.m.o
+
+INFO: 2026-02-01 21:52:55.354891: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -x objective-c -fobjc-arc -c /Users/yazanshlash/.pub-cache/hosted/pub.dev/objective_c-9.2.2/src/objective_c.m -fpic -I src -o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.m.o
+
+INFO: 2026-02-01 21:52:55.354954: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -x objective-c -fobjc-arc -c /Users/yazanshlash/.pub-cache/hosted/pub.dev/objective_c-9.2.2/src/observer.m -fpic -I src -o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/observer.m.o
+
+INFO: 2026-02-01 21:52:55.355077: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -x objective-c -fobjc-arc -c /Users/yazanshlash/.pub-cache/hosted/pub.dev/objective_c-9.2.2/src/protocol.m -fpic -I src -o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/protocol.m.o
+
+obj/src/objective_c_bindings_generated.m.o
+
+INFO: 2026-02-01 21:52:55.355016: Running: /usr/bin/clang -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin -x objective-c -fobjc-arc -c /Users/yazanshlash/.pub-cache/hosted/pub.dev/objective_c-9.2.2/src/ns_number.m -fpic -I src -o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/ns_number.m.o
+
+INFO: 2026-02-01 21:52:55.446581: 
+INFO: 2026-02-01 21:52:55.446642: 
+INFO: 2026-02-01 21:52:55.446663: Generated /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.c.o
+INFO: 2026-02-01 21:52:55.446729: 
+INFO: 2026-02-01 21:52:55.446738: 
+INFO: 2026-02-01 21:52:55.446745: Generated /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/include/dart_api_dl.c.o
+
+INFO: 2026-02-01 21:52:55.457585: 
+INFO: 2026-02-01 21:52:55.457623: 
+INFO: 2026-02-01 21:52:55.457633: Generated /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/observer.m.o
+
+INFO: 2026-02-01 21:52:55.460257: 
+INFO: 2026-02-01 21:52:55.460337: 
+INFO: 2026-02-01 21:52:55.460358: Generated /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/protocol.m.o
+
+INFO: 2026-02-01 21:52:55.461700: 
+INFO: 2026-02-01 21:52:55.461721: 
+INFO: 2026-02-01 21:52:55.461734: Generated /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/test/util.c.o
+
+INFO: 2026-02-01 21:52:55.676948: 
+INFO: 2026-02-01 21:52:55.676988: 
+INFO: 2026-02-01 21:52:55.676998: Generated /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/ns_number.m.o
+
+INFO: 2026-02-01 21:52:55.682288: 
+INFO: 2026-02-01 21:52:55.682316: 
+INFO: 2026-02-01 21:52:55.682325: Generated /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.m.o
+
+INFO: 2026-02-01 21:52:55.684351: 
+INFO: 2026-02-01 21:52:55.684376: 
+INFO: 2026-02-01 21:52:55.684384: Generated /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/input_stream_adapter.m.o
+
+INFO: 2026-02-01 21:52:55.697234: 
+INFO: 2026-02-01 21:52:55.697262: 
+INFO: 2026-02-01 21:52:55.697270: Generated /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c_bindings_generated.m.o
+
+INFO: 2026-02-01 21:52:55.697485: Running: /usr/bin/clang -shared -undefined dynamic_lookup -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.2.sdk -target arm64-apple-darwin /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/include/dart_api_dl.c.o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.c.o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/test/util.c.o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/input_stream_adapter.m.o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c.m.o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/observer.m.o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/ns_number.m.o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/protocol.m.o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/obj/src/objective_c_bindings_generated.m.o -o /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/objective_c.dylib
+
+INFO: 2026-02-01 21:52:55.822753: 
+INFO: 2026-02-01 21:52:55.822797: 
+INFO: 2026-02-01 21:52:55.822805: Generated /Users/yazanshlash/StudioProjects/homy/.dart_tool/hooks_runner/shared/objective_c/build/9fb02c5622/objective_c.dylib
+
