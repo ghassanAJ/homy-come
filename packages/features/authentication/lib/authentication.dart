@@ -26,11 +26,6 @@ export 'src/data/model/res/user_type.dart';
 export 'src/data/model/session.dart';
 // DI
 export 'src/di/di_config.dart';
-// Domain - Enums
-export 'src/domain/enums/auth_method.dart';
-export 'src/domain/enums/gender.dart';
-export 'src/domain/enums/user_registration_status.dart';
-export 'src/domain/enums/user_role.dart';
 // Domain - Repository
 export 'src/domain/repository/auth_api_repository.dart';
 // Domain - Service

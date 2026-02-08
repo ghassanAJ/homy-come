@@ -1,6 +1,5 @@
 import 'package:authentication/authentication.dart';
 import 'package:authentication/src/presentation/widgets/complete_profile/complete_profile_logout_button.dart';
-import 'package:design_system/design_system.dart' as ui;
 import 'package:design_system/design_system.dart';
 import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,29 +74,29 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
           return Stack(
             children: [
               Scaffold(
-                backgroundColor: ui.UIColor.background,
+                backgroundColor: UIColor.background,
                 body: SafeArea(
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.all(ui.UI.spacing.md),
+                    padding: EdgeInsets.all(UI.spacing.md),
                     child: FormBuilder(
                       key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: ui.UI.spacing.md),
+                          SizedBox(height: UI.spacing.md),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              ui.UIText.h2(tr.personalInfo.title),
+                              UIText.h2(tr.personalInfo.title),
                               CompleteProfileLogoutButton(
                                 onLogout: () => _logout(context),
                               ),
                             ],
                           ),
-                          SizedBox(height: ui.UI.spacing.xs),
-                          ui.UIText.bodyMedium(tr.personalInfo.subtitle),
-                          SizedBox(height: ui.UI.spacing.lg),
-                          ui.AppFormBuilderTextField(
+                          SizedBox(height: UI.spacing.xs),
+                          UIText.bodyMedium(tr.personalInfo.subtitle),
+                          SizedBox(height: UI.spacing.lg),
+                          AppFormBuilderTextField(
                             name: AuthFormFieldNames.username,
                             label: tr.personalInfo.username,
                             placeholder: tr.personalInfo.usernamePlaceholder,
@@ -105,8 +104,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                               errorText: tr.personalInfo.usernameRequired,
                             ),
                           ),
-                          SizedBox(height: ui.UI.spacing.md),
-                          ui.AppFormBuilderTextField(
+                          SizedBox(height: UI.spacing.md),
+                          AppFormBuilderTextField(
                             name: AuthFormFieldNames.firstName,
                             label: tr.personalInfo.firstName,
                             placeholder: tr.personalInfo.firstNamePlaceholder,
@@ -114,8 +113,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                               errorText: tr.personalInfo.firstNameRequired,
                             ),
                           ),
-                          SizedBox(height: ui.UI.spacing.md),
-                          ui.AppFormBuilderTextField(
+                          SizedBox(height: UI.spacing.md),
+                          AppFormBuilderTextField(
                             name: AuthFormFieldNames.lastName,
                             label: tr.personalInfo.lastName,
                             placeholder: tr.personalInfo.lastNamePlaceholder,
@@ -123,11 +122,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                               errorText: tr.personalInfo.lastNameRequired,
                             ),
                           ),
-                          SizedBox(height: ui.UI.spacing.md),
+                          SizedBox(height: UI.spacing.md),
                           GestureDetector(
                             onTap: () => _selectDate(context),
                             child: AbsorbPointer(
-                              child: ui.AppFormBuilderTextField(
+                              child: AppFormBuilderTextField(
                                 placeholder:
                                     tr.personalInfo.dateOfBirthPlaceholder,
                                 name: AuthFormFieldNames.dateOfBirth,
@@ -144,10 +143,10 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(height: ui.UI.spacing.md),
-                          ui.UIText.fieldLabel(tr.personalInfo.gender),
-                          SizedBox(height: ui.UI.spacing.xs),
-                          ui.OptionSelector<Gender>(
+                          SizedBox(height: UI.spacing.md),
+                          UIText.fieldLabel(tr.personalInfo.gender),
+                          SizedBox(height: UI.spacing.xs),
+                          OptionSelector<Gender>(
                             selectedValue: _selectedGender!,
                             onChanged: (gender) {
                               setState(() {
@@ -155,20 +154,20 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                               });
                             },
                             options: [
-                              ui.SelectorOption(
+                              SelectorOption(
                                 value: Gender.male,
                                 label: tr.personalInfo.male,
                                 icon: IconsaxPlusLinear.man,
                               ),
-                              ui.SelectorOption(
+                              SelectorOption(
                                 value: Gender.female,
                                 label: tr.personalInfo.female,
                                 icon: IconsaxPlusLinear.woman,
                               ),
                             ],
                           ),
-                          SizedBox(height: ui.UI.spacing.xxl),
-                          ui.UIButton.primary(
+                          SizedBox(height: UI.spacing.xxl),
+                          UIButton.primary(
                             expanded: true,
                             label: tr.common.continueLabel,
                             onPressed: () => _continue(context),
@@ -179,7 +178,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                 ),
               ),
-              if (isLoading) const ui.MDProgressIndicator(styled: true),
+              if (isLoading) const MDProgressIndicator(styled: true),
             ],
           );
         },

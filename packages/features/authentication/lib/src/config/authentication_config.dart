@@ -1,5 +1,5 @@
-import 'package:authentication/src/domain/enums/auth_method.dart';
-import 'package:authentication/src/domain/enums/user_role.dart';
+import 'package:design_system/src/enums/auth_method.dart';
+import 'package:design_system/src/enums/user_role.dart';
 
 abstract class AuthenticationConfig {
   static String get deviceId => 'TEST_DEVICE_001';

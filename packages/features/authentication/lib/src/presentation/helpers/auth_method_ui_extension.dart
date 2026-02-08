@@ -1,4 +1,4 @@
-import 'package:authentication/src/domain/enums/auth_method.dart';
+import 'package:design_system/src/enums/auth_method.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
