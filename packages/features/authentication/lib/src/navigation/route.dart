@@ -38,12 +38,7 @@ class AuthenticationRoute {
         ),
         GoRoute(
           path: AuthenticationPaths.onboarding,
-          builder: (context, state) {
-            final extra = state.extra as Map<String, dynamic>?;
-            final roleString = extra?[AuthRouteParams.userRole] as String?;
-            final userRole = UserRole.tryParse(roleString) ?? UserRole.parent;
-            return AuthEntryScreen(userRole: userRole);
-          },
+          builder: (context, state) => const OnboardingScreen(),
         ),
         GoRoute(
           path: AuthenticationPaths.login,

@@ -24,7 +24,7 @@ class UIRadius {
 
   double get buttonSm => md;
   double get buttonMd => lg;
-  double get button => 10; // Default button radius: 16px
+  double get button => 4.3; // Default button radius: 16px
 
   double get input => md;
 }

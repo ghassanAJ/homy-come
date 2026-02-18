@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:authentication/src/presentation/widgets/onboarding/onboarding_card.dart';
 import 'package:design_system/design_system.dart';
+import 'package:design_system/gen/assets.gen.dart';
 import 'package:util/util.dart';
 
 class AppIntroSlider extends StatefulWidget {
@@ -60,68 +60,84 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
     _startAutoScroll();
   }
 
+  Future<void> _onSkip(BuildContext context) async {
+    _stopAutoScroll();
+    AuthInternalRouter.of(context).toLogin();
+  }
+
+  Future<void> _onNext(BuildContext context, int pagesLength) async {
+    if (_currentPage >= pagesLength - 1) {
+      _stopAutoScroll();
+      AuthInternalRouter.of(context).toLogin();
+      return;
+    }
+
+    await _controller.animateToPage(
+      _currentPage + 1,
+      duration: Duration(
+        milliseconds:
+            AuthenticationConfig.onBoardingAutoScrollDurationPerMilliSeconds,
+      ),
+      curve: Curves.easeInOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final tr = context.loc<AuthenticationTranslation>();
     final pages = [
       _OnboardingData(
-        image: 'assets/onboarding/onboarding-1.png',
+        image: Assets.images.onboarding1,
         title: tr.onboarding.slide1Title,
         subtitle: tr.onboarding.slide1Subtitle,
       ),
       _OnboardingData(
-        image: 'assets/onboarding/onboarding-2.png',
+        image: Assets.images.onboarding2,
         title: tr.onboarding.slide2Title,
         subtitle: tr.onboarding.slide2Subtitle,
       ),
       _OnboardingData(
-        image: 'assets/onboarding/onboarding-3.png',
+        image: Assets.images.onboarding3,
         title: tr.onboarding.slide3Title,
         subtitle: tr.onboarding.slide3Subtitle,
       ),
     ];
+
     return LayoutBuilder(
       builder: (context, constraints) {
-        return SingleChildScrollView(
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        final sliderHeight = constraints.maxHeight * 1.1;
+        final topSpacing = MediaQuery.paddingOf(context).top + 100;
+        return Padding(
+          padding: EdgeInsets.only(top: topSpacing),
           child: Column(
             children: [
-              Container(
-                constraints: BoxConstraints(
-                  minHeight: constraints.maxHeight / 1.2,
-                  maxHeight: constraints.maxHeight / 1.2,
-                  minWidth: constraints.maxWidth / 1,
-                ),
-                child: PageView.builder(
-                  controller: _controller,
-                  itemCount: pages.length,
-                  onPageChanged: (index) {
-                    setState(() {
-                      _currentPage = index;
-                    });
-                    // Restart auto-scroll when user manually swipes
-                    _restartAutoScroll();
-                  },
-                  itemBuilder: (context, index) {
-                    final data = pages[index];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24.0,
-                        vertical: 16,
-                      ),
-                      child: MDOnboardingCard(
+              Expanded(
+                child: SizedBox(
+                  width: constraints.maxWidth,
+                  child: PageView.builder(
+                    controller: _controller,
+                    itemCount: pages.length,
+                    onPageChanged: (index) {
+                      setState(() {
+                        _currentPage = index;
+                      });
+                      _restartAutoScroll();
+                    },
+                    itemBuilder: (context, index) {
+                      final data = pages[index];
+                      return MDOnboardingCard(
                         image: data.image,
                         title: data.title,
-                        height: constraints.maxHeight / 1.2,
+                        height: sliderHeight,
                         subtitle: data.subtitle,
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
-
               _buildPageIndicator(pages),
-              _buildGetStartedButton(context),
+              SizedBox(height: UI.spacing.xxxl),
+              _buildBottomActions(context, pages.length),
             ],
           ),
         );
@@ -136,36 +152,51 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
         pages.length,
         (index) => AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
-          width: 8,
-          height: 8,
+          margin:  EdgeInsets.symmetric(horizontal: UI.spacing.xxs),
+          width: UI.spacing.xs,
+          height: UI.spacing.xs,
           decoration: BoxDecoration(
             color: _currentPage == index ? UIColor.primary : UIColor.border,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(UI.radius.sm),
           ),
         ),
       ),
     );
   }
 
-  Container _buildGetStartedButton(BuildContext context) {
+  Widget _buildBottomActions(BuildContext context, int pagesLength) {
     final tr = context.loc<AuthenticationTranslation>();
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
-      margin: EdgeInsets.only(bottom: 16),
-      child: UIButton.primary(
-        label: tr.onboarding.getStarted,
-        onPressed: () {
-          AuthInternalRouter.of(context).toLogin();
-        },
-        expanded: true,
+    final isLastPage = _currentPage == pagesLength - 1;
+
+    return Padding(
+      padding:  EdgeInsets.fromLTRB(UI.spacing.xxl, 0, UI.spacing.lg, UI.spacing.xl),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => _onSkip(context),
+            child: Padding(
+              padding:  EdgeInsets.symmetric(vertical: UI.spacing.sm),
+              child: UIText.bodyMedium(
+                tr.onboarding.skip,
+                color: UIColor.balck,
+                fontSize: 17,
+              ),
+            ),
+          ),
+          UIButton.primary(
+            label: isLastPage ? tr.onboarding.finish : tr.onboarding.next,
+            onPressed: () => _onNext(context, pagesLength),
+          ),
+        ],
       ),
     );
   }
 }
 
 class _OnboardingData {
-  final String image;
+  final AssetGenImage image;
   final String title;
   final String subtitle;
 

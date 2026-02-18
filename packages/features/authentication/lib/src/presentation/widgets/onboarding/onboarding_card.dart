@@ -1,7 +1,8 @@
 import 'package:design_system/design_system.dart';
+import 'package:design_system/gen/assets.gen.dart';
 
 class MDOnboardingCard extends StatelessWidget {
-  final String image;
+  final AssetGenImage image;
   final String title;
   final double height;
   final String subtitle;
@@ -16,17 +17,34 @@ class MDOnboardingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Icon(Icons.check, size: 40),
-        // Image.asset(image, height: height / 1.75),
-        const SizedBox(height: 32),
-        UIText.h2(title, textAlign: TextAlign.center),
-        const SizedBox(height: 4),
-        UIText.bodyMedium(
-          subtitle,
-          textAlign: TextAlign.center,
-          color: UIColor.textSecondary,
+        image.image(
+          package: 'design_system',
+          width: 331,
+          height: 278,
+          fit: BoxFit.contain,
+        ),
+
+        const SizedBox(height: 40),
+        Padding(
+          padding:  EdgeInsets.symmetric(horizontal: UI.spacing.xl),
+          child: UIText.h2(
+            title,
+            textAlign: TextAlign.center,
+            color: UIColor.black,
+          ),
+        ),
+        SizedBox(height: UI.spacing.md),
+        Padding(
+          padding: const EdgeInsets.only(left: 53, right: 44),
+          child: UIText.bodyMedium(
+            subtitle,
+            textAlign: TextAlign.center,
+            color: UIColor.textSecondary,
+            maxLines: 5,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       ],
     );

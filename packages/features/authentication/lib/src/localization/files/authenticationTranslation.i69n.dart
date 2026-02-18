@@ -290,15 +290,22 @@ class AuthEntryAuthenticationTranslation implements i69n.I69nMessageBundle {
 class OnboardingAuthenticationTranslation implements i69n.I69nMessageBundle {
   final AuthenticationTranslation _parent;
   const OnboardingAuthenticationTranslation(this._parent);
-  String get slide1Title => "the digital debit card designed for families";
-  String get slide1Subtitle => "Digital & physical, safe and simple to use.";
-  String get slide2Title => "send and receive money with a tap";
-  String get slide2Subtitle => "Kids learn saving, spending, and goal-setting";
-  String get slide3Title => "Help your children learn the value of money";
+  String get introTitle => "Best Helping\nHands for you";
+  String get introSubtitle =>
+      "With Our On-Demand Services App,\nWe Give Better Services To You.";
+  String get getStarted => "Gets Started";
+  String get slide1Title => "Security & Privacy";
+  String get slide1Subtitle =>
+      "We ensure top-level protection of user data, maintaining full privacy to provide a safe and trusted experience.";
+  String get slide2Title => "Fast Ordering & Convenience";
+  String get slide2Subtitle =>
+      "The app is designed to make service requests quick and effortless, offering a smooth and comfortable experience from selection to delivery.";
+  String get slide3Title => "Easy Service Selection";
   String get slide3Subtitle =>
-      "Set limits, track spending, guide responsible habits";
-  String get getStarted => "Get started";
+      "A simple and intuitive interface that allows users to choose the right service in just a few steps, with well-organized categories for fast and hassle-free browsing.";
+  String get finish => "Finish";
   String get skip => "skip";
+  String get next => "Next";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -306,6 +313,12 @@ class OnboardingAuthenticationTranslation implements i69n.I69nMessageBundle {
           as i69n.I69nMessageBundle)[key.substring(index + 1)];
     }
     switch (key) {
+      case 'introTitle':
+        return introTitle;
+      case 'introSubtitle':
+        return introSubtitle;
+      case 'getStarted':
+        return getStarted;
       case 'slide1Title':
         return slide1Title;
       case 'slide1Subtitle':
@@ -318,10 +331,12 @@ class OnboardingAuthenticationTranslation implements i69n.I69nMessageBundle {
         return slide3Title;
       case 'slide3Subtitle':
         return slide3Subtitle;
-      case 'getStarted':
-        return getStarted;
+      case 'finish':
+        return finish;
       case 'skip':
         return skip;
+      case 'next':
+        return next;
       default:
         return key;
     }

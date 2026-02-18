@@ -42,7 +42,7 @@ class AppRouterGuard {
   static String? _handleUnauthenticatedRedirect(String currentPath) {
     // 1. Splash → Onboarding
     if (currentPath == AuthenticationPaths.splash) {
-      return AuthenticationPaths.login;
+      return AuthenticationPaths.onboarding;
     }
 
     // 2. If on any auth path, stay there (onboarding, login, select-role, etc.)

@@ -294,15 +294,22 @@ class OnboardingAuthenticationTranslation_ar
     extends OnboardingAuthenticationTranslation {
   final AuthenticationTranslation_ar _parent;
   const OnboardingAuthenticationTranslation_ar(this._parent) : super(_parent);
-  String get slide1Title => "البطاقة المصرفية الرقمية المصممة للعائلات";
-  String get slide1Subtitle => "رقمية ومادية، آمنة وسهلة الاستخدام.";
-  String get slide2Title => "أرسل واستلم المال بلمسة واحدة";
-  String get slide2Subtitle => "يتعلم الأطفال الادخار والإنفاق وتحديد الأهداف";
-  String get slide3Title => "ساعد أطفالك على تعلم قيمة المال";
+  String get introTitle => "أفضل خدمات\nبين يديك";
+  String get introSubtitle =>
+      "تطبيق الخدمات عند الطلب يمنحك\nتجربة سريعة، سهلة، وموثوقة.";
+  String get getStarted => "ابدأ الآن";
+  String get slide1Title => "الأمان والخصوصية";
+  String get slide1Subtitle =>
+      "نضمن أعلى مستويات حماية بيانات المستخدمين، مع الحفاظ الكامل على الخصوصية لتقديم تجربة آمنة وموثوقة.";
+  String get slide2Title => "الطلب السريع والسهولة";
+  String get slide2Subtitle =>
+      "تم تصميم التطبيق لجعل طلب الخدمات سريعًا وسهلًا، مع توفير تجربة سلسة ومريحة من اختيار الخدمة حتى استلامها.";
+  String get slide3Title => "اختيار الخدمة بسهولة";
   String get slide3Subtitle =>
-      "حدد الحدود، تتبع المصروفات، ووجه العادات المسؤولة";
-  String get getStarted => "لنبدأ";
+      "واجهة بسيطة وسهلة الاستخدام تُمكّن المستخدم من اختيار الخدمة المناسبة خلال خطوات قليلة، مع تصنيفات منظمة لتصفح سريع وبدون تعقيد.";
+  String get finish => "إنهاء";
   String get skip => "تخطي";
+  String get next => "متابعة";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -310,6 +317,12 @@ class OnboardingAuthenticationTranslation_ar
           as i69n.I69nMessageBundle)[key.substring(index + 1)];
     }
     switch (key) {
+      case 'introTitle':
+        return introTitle;
+      case 'introSubtitle':
+        return introSubtitle;
+      case 'getStarted':
+        return getStarted;
       case 'slide1Title':
         return slide1Title;
       case 'slide1Subtitle':
@@ -322,10 +335,12 @@ class OnboardingAuthenticationTranslation_ar
         return slide3Title;
       case 'slide3Subtitle':
         return slide3Subtitle;
-      case 'getStarted':
-        return getStarted;
+      case 'finish':
+        return finish;
       case 'skip':
         return skip;
+      case 'next':
+        return next;
       default:
         return super[key];
     }

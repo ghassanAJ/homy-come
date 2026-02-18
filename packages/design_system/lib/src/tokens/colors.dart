@@ -4,7 +4,7 @@ class UIColor extends Color {
   const UIColor._(super.value);
 
   // Primary colors
-  static const UIColor primary = UIColor._(0xFFFAB4F0);
+  static const UIColor primary = UIColor._(0xFFF231F20);
   static const UIColor softGreen = UIColor._(0xffD6F0C0);
   static const UIColor softGreen1 = UIColor._(0xffF7FFF1);
   static const UIColor softYellow = UIColor._(0xffF6E7B0);
@@ -26,7 +26,7 @@ class UIColor extends Color {
   static const UIColor neutral25 = UIColor._(0xffF6F7F9);
   // static const UIColor neutral100 = UIColor._(0xFFFFFFFF);
 
-  static const UIColor neutral200 = UIColor._(0xFFE2E0E9);
+  static const UIColor neutral200 = UIColor._(0xFFC4C4C4);
   static const UIColor neutral400 = UIColor._(0xFFA5A2AF);
   static const UIColor neutral500 = UIColor._(0xFF5F5972);
 

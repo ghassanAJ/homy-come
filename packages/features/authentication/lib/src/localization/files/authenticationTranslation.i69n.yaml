@@ -54,14 +54,18 @@ authEntry:
 
 # Onboarding
 onboarding:
-  slide1Title: the digital debit card designed for families
-  slide1Subtitle: Digital & physical, safe and simple to use.
-  slide2Title: send and receive money with a tap
-  slide2Subtitle: Kids learn saving, spending, and goal-setting
-  slide3Title: Help your children learn the value of money
-  slide3Subtitle: Set limits, track spending, guide responsible habits
-  getStarted: Get started
+  introTitle: "Best Helping\nHands for you"
+  introSubtitle: "With Our On-Demand Services App,\nWe Give Better Services To You."
+  getStarted: Gets Started
+  slide1Title: Security & Privacy
+  slide1Subtitle: We ensure top-level protection of user data, maintaining full privacy to provide a safe and trusted experience.
+  slide2Title: Fast Ordering & Convenience
+  slide2Subtitle: The app is designed to make service requests quick and effortless, offering a smooth and comfortable experience from selection to delivery.
+  slide3Title: Easy Service Selection
+  slide3Subtitle: A simple and intuitive interface that allows users to choose the right service in just a few steps, with well-organized categories for fast and hassle-free browsing.
+  finish: Finish
   skip: skip
+  next: Next
 
 # User Role Selection
 userRole:

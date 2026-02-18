@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 /// Typography tokens for the design system
 ///
-/// All text styles use Cairo font family
+/// All text styles use Montserrat font family
 /// Access via: UI.text.h1(), UI.text.h2(), UI.text.h3()
 class UITypography {
   const UITypography();
 
-  static const String _fontFamily = 'Cairo';
+  static const String _fontFamily = 'Montserrat';
 
   // ============================================================================
   // HEADINGS
@@ -24,7 +24,7 @@ class UITypography {
   /// Usage: Page titles, main headings
   TextStyle get h1 => const TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: FontWeight.w700,
     height: 1.25,
     letterSpacing: 0,
@@ -89,7 +89,7 @@ class UITypography {
 
   /// Body Small - Regular
   ///
-  /// Weight: 400 (Regular)
+  /// Weight: 500 (Regular)
   /// Size: 14px
   /// Line height: 20px (1.43)
   ///
@@ -97,7 +97,7 @@ class UITypography {
   TextStyle get bodySmall => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 14,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w500,
     height: 1.43,
     letterSpacing: 0,
     overflow: TextOverflow.ellipsis,
