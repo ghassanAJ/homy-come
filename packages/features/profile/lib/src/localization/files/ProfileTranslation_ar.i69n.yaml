@@ -1,0 +1,22 @@
+# Common Labels
+profile:
+  more: المزيد
+  myProfile: معلوماتي
+  editProfile: تعديل الملف الشخصي
+
+
+option:
+  help: مساعدة و دعم
+  about: حول التطبيق
+  contact: اتصل بنا
+  faq: اسئلة شائعة
+  notification: اشعارات
+  logout: تسجيل خروج
+  deleteAccount: حذف الحساب
+  savedBeneficiary: Saved Beneficiary
+  location: موقعي
+# Terms and Privacy
+termsAndPrivacy:
+  termsOfUse: شروط الاستخدام
+  and: و
+  privacyPolicy: سياسة الخصوصية

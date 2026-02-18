@@ -1,33 +1,39 @@
-import 'dart:developer';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
+import 'package:profile/profile.dart';
+import 'package:profile/src/localization/files/ProfileTranslation.i69n.dart';
+import 'package:profile/src/presentation/widget/more_setting_widget.dart';
 import 'package:profile/src/presentation/widget/setting_profile_widget.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfileScreenState extends State<ProfileScreen> {
   ValueNotifier<bool> isActiveNotification = ValueNotifier(false);
+
   @override
   Widget build(BuildContext context) {
+    final ProfileTranslation tr = context.profileTranslation;
     return Scaffold(
       // backgroundColor: UIColor.babyBlue,
       // appBar: UIAppBarVariant(),
-      body: BackgroundApp(
+      body: UIBackground(
         content: CustomScrollView(
           slivers: [
             UISliverAppBar(
-              bottom: const PreferredSize(
+              bottom: PreferredSize(
                 preferredSize: Size.fromHeight(1),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 32, top: 16),
+                  padding: EdgeInsets.only(
+                    left: UI.spacing.xl,
+                    top: UI.spacing.md,
+                  ),
                   child: Divider(height: 4, color: UIColor.divider),
                 ),
               ),
@@ -35,30 +41,33 @@ class _ProfilePageState extends State<ProfilePage> {
               leading: backButtonAppBar(),
 
               centerTitle: true,
-              titleWidget: UIText.h4('My profile'),
+              titleWidget: UIText.h4(
+                tr.profile.myProfile,
+              ),
               pinned: false,
             ),
 
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
+                padding: EdgeInsets.symmetric(
+                  horizontal: UI.spacing.lg,
                   vertical: 37,
                 ),
                 child: Column(
                   children: [
                     _dataUserProfileWidget(),
-                    SizedBox(height: 24),
+                    SizedBox(height: UI.spacing.lg), //24
+
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: EdgeInsets.symmetric(horizontal: UI.spacing.md),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SettingProfileWidget(
                             isActiveNotification: isActiveNotification,
                           ),
-                          SizedBox(height: 17),
-                          _MoreSettingWidget(),
+                          SizedBox(height: UI.spacing.md),
+                          MoreSettingWidget(),
                         ],
                       ),
                     ),
@@ -72,57 +81,14 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Column _MoreSettingWidget() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        UIText.h5('More'),
-        SizedBox(height: 20),
-        Container(
-          padding: const EdgeInsets.fromLTRB(16, 17, 16, 0),
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            color: UIColor.background,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 44,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-              SettingOptionProfileWidget(
-                title: 'Help & Support',
-                imgUrl: Assets.icons.notification,
-                colorIcon: UIColor.grey,
-                // descreption: 'FAQ',
-                onTap: () {
-                  log('pressed on FAQ button');
-                },
-              ),
-              SettingOptionProfileWidget(
-                title: 'About App',
-                imgUrl: Assets.icons.heart,
-                colorIcon: UIColor.grey,
-                onTap: () {
-                  log('pressed on FAQ button');
-                },
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Container _dataUserProfileWidget() {
+  Widget _dataUserProfileWidget() {
     final ImagePicker picker = ImagePicker();
     ValueNotifier<XFile?> images = ValueNotifier(XFile(''));
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+      padding: EdgeInsets.symmetric(
+        vertical: UI.spacing.sm,
+        horizontal: UI.spacing.md,
+      ),
       width: double.infinity,
       // height: 89,
       decoration: BoxDecoration(
@@ -165,9 +131,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           Positioned(
                             child: Container(
-                              padding: EdgeInsets.all(4),
-                              width: 20,
-                              height: 20,
+                              padding: EdgeInsets.all(UI.spacing.xxs),
+                              width: UI.sizes.iconSm,
+                              height: UI.sizes.iconSm,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: UIColor.background,
@@ -182,7 +148,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
               ),
-              SizedBox(width: 13),
+              SizedBox(width: UI.spacing.sm), //13
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -198,16 +164,13 @@ class _ProfilePageState extends State<ProfilePage> {
             alignment: AlignmentGeometry.bottomCenter,
             child: Row(
               children: [
-                UIText.bodySmallBold('Edit profile', color: UIColor.grey),
+                UIText.bodySmallBold(context.profileTranslation.profile.editProfile, color: UIColor.grey),
                 SizedBox(width: UI.spacing.xs),
                 SvgPicture.asset(
                   Assets.icons.arrowRight,
                   color: UIColor.grey,
                   package: "design_system",
                 ),
-                // Icon(
-                //   Icons.arrow_circle_right_outlined
-                // )
               ],
             ),
           ),

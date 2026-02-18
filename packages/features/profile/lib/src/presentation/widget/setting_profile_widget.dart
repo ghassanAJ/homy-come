@@ -1,6 +1,6 @@
-
 import 'package:design_system/design_system.dart';
-import 'package:profile/src/presentation/screens/profile_page.dart';
+import 'package:profile/profile.dart';
+import 'package:profile/src/presentation/screens/profile_screen.dart';
 import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
 class SettingProfileWidget extends StatelessWidget {
@@ -27,16 +27,16 @@ class SettingProfileWidget extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
         child: Column(
           children: [
-            SettingOptionProfileWidget(
-              title: 'My Location',
+            ProfileSettingOptionWidget(
+              title: context.profileTranslation.option.location,
               descreption: 'my location I selected UEA',
-               imgUrl: Assets.icons.profile,
+              imgUrl: Assets.icons.profile,
               onTap: () {
                 // log('pressed on FAQ button');
               },
             ),
-            SettingOptionProfileWidget(
-              title: 'Saved Beneficiary',
+            ProfileSettingOptionWidget(
+              title: context.profileTranslation.option.savedBeneficiary,
               descreption: 'Manage your saved account',
               imgUrl: Assets.icons.profile,
               onTap: () {
@@ -44,10 +44,10 @@ class SettingProfileWidget extends StatelessWidget {
               },
             ),
 
-            SettingOptionProfileWidget(
-              title: 'App Notifications',
+            ProfileSettingOptionWidget(
+              title: context.profileTranslation.option.notification,
               descreption: 'app notifications',
-               imgUrl: Assets.icons.lock,
+              imgUrl: Assets.icons.lock,
               customTrailing: ValueListenableBuilder(
                 valueListenable: isActiveNotification,
                 builder:
@@ -70,51 +70,51 @@ class SettingProfileWidget extends StatelessWidget {
                     ),
               ),
             ),
-            SettingOptionProfileWidget(
+            ProfileSettingOptionWidget(
               title: 'Privacy Policy',
               descreption: 'Privacy Policy',
-               imgUrl: Assets.icons.shieldDone,
+              imgUrl: Assets.icons.shieldDone,
 
               onTap: () {
                 // log('pressed on FAQ button');
               },
             ),
 
-                        SettingOptionProfileWidget(
-              title: 'FAQ',
+            ProfileSettingOptionWidget(
+              title: context.profileTranslation.option.faq,
               descreption: 'FAQ',
-               imgUrl: Assets.icons.shieldDone,
-              
+              imgUrl: Assets.icons.shieldDone,
+
               onTap: () {
                 // log('pressed on FAQ button');
               },
             ),
-            SettingOptionProfileWidget(
-              title: 'Contact Us',
+            ProfileSettingOptionWidget(
+              title: context.profileTranslation.option.contact,
               descreption: 'Contact Us',
-               imgUrl: Assets.icons.shieldDone,
-              
+              imgUrl: Assets.icons.shieldDone,
+
               onTap: () {
                 // log('pressed on FAQ button');
               },
             ),
 
-            SettingOptionProfileWidget(
-              title: 'Log out',
+            ProfileSettingOptionWidget(
+              title: context.profileTranslation.option.logout,
               descreption: 'Log out',
-               imgUrl: Assets.icons.logout,
-              
+              imgUrl: Assets.icons.logout,
+
               onTap: () {
                 // log('pressed on FAQ butt/on');
               },
             ),
-            SettingOptionProfileWidget(
-              title: 'Delete my account',
+            ProfileSettingOptionWidget(
+              title: context.profileTranslation.option.deleteAccount,
               descreption: 'Delete my account',
               imgUrl: Assets.icons.logout,
               color: UIColor.backgroungAvaterRed,
               colorIcon: UIColor.iconsAvaterRed,
-              
+
               onTap: () {
                 // log('pressed on FAQ button');
               },

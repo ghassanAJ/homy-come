@@ -14,6 +14,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter    
   design_system:
     path: ../../design_system
   authentication:
@@ -21,12 +23,13 @@ dependencies:
   go_router: ^17.0.0
   image_picker: ^1.2.1
   flutter_svg: ^2.0.10+1
-    
+  i69n: ^3.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-
+  build_runner: ^2.10.4
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
