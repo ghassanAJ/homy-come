@@ -83,3 +83,12 @@ analysis_options.yaml
 .fvm/
 
 .vscode/
+
+
+# Flutter / Dart
+.dart_tool/
+
+
+# IDEs
+.idea/
+.vscode/
