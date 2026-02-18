@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class UITypography {
   const UITypography();
 
-  static const String _fontFamily = 'Cairo';
+  static const String _fontFamily = 'DMSans';
 
   // ============================================================================
   // HEADINGS
@@ -60,6 +60,23 @@ class UITypography {
     letterSpacing: 0,
   );
 
+  TextStyle get h4 => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    height: 1.4,
+    letterSpacing: 0,
+  );
+
+    TextStyle get h5 => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    height: 1.4,
+    letterSpacing: 0,
+  );
+
+
   // ============================================================================
   // BODY TEXT
   // ============================================================================
@@ -103,6 +120,7 @@ class UITypography {
     overflow: TextOverflow.ellipsis,
   );
 
+
   /// Body Small Bold
   ///
   /// Weight: 700 (Bold)
@@ -141,6 +159,16 @@ class UITypography {
     letterSpacing: 0,
   );
 
+
+
+  TextStyle get headerBody => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 13,
+    fontWeight: FontWeight.w500,
+    height: 1.43,
+    letterSpacing: 0,
+    overflow: TextOverflow.ellipsis,
+  );
   // ============================================================================
   // CAPTION
   // ============================================================================
@@ -257,6 +285,23 @@ class UITypography {
     letterSpacing: 0,
   );
 
+
+  TextStyle get black512 => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    height: 1.33,
+    letterSpacing: 0,
+  );
+
+    TextStyle get black714 => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    height: 1.33,
+    letterSpacing: 0,
+
+  );
   // ============================================================================
   // ALIASES (for convenience)
   // ============================================================================

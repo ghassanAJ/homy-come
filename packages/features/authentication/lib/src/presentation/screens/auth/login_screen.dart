@@ -114,7 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               UIFormBuilderPhoneField(
                                 name: AuthFormFieldNames.phone,
                                 placeholder: '50 512 3412',
-                                defaultSelectedCountryIsoCode: 'PK',
+                                countryFilterByIsoCode: ['AE', 'SA', 'KW'],
+                                // defaultSelectedCountryIsoCode: 'AE',
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 validator: FormBuilderValidators.compose([

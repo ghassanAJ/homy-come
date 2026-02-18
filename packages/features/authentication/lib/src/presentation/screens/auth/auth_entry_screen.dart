@@ -38,7 +38,7 @@ class _AuthEntryScreenState extends State<AuthEntryScreen> {
     super.dispose();
   }
 
-  List<AuthMethod> get _allowedMethods =>
+  List<AuthMethod> get _allowedMethod =>
       AuthenticationConfig.allowedMethodsFor(widget.userRole);
 
   List<AuthMethod> get _socialMethods =>
@@ -137,7 +137,7 @@ class _AuthEntryScreenState extends State<AuthEntryScreen> {
                         SizedBox(height: UI.spacing.md),
                         AuthEntryHeader(
                           currentMethod: _currentMethod,
-                          isChildMode: widget.userRole.isChild,
+                          isChildMode: widget.userRole.isParent,
                         ),
                         _isPinMode
                             ? PinInput(
@@ -170,7 +170,7 @@ class _AuthEntryScreenState extends State<AuthEntryScreen> {
                           onOTPSubmit: _sendOTP,
                         ),
                         AuthMethodSelector(
-                          availableMethods: _allowedMethods,
+                          availableMethods: _allowedMethod,
                           socialMethods: _socialMethods,
                           currentMethod: _currentMethod,
                           isChildMode: widget.userRole.isChild,

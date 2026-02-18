@@ -23,7 +23,7 @@ class DatePickerHelper {
             colorScheme: ColorScheme.light(
               primary: UIColor.primary,
               onPrimary: Colors.white,
-              surface: Colors.white,
+              surface: Colors.black,
               onSurface: UIColor.background,
             ),
           ),

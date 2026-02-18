@@ -27,6 +27,18 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  flutter_gen: ^5.0.1
+  flutter_gen_runner: ^5.12.0
+  build_runner: ^2.10.4
+
+flutter_gen:
+  output: lib/gen/
+  line_length: 80
+  assets:
+    enabled: true
+    outputs:
+      class_name: Assets
+      package_parameter_enabled: false
 
 flutter:
   uses-material-design: true
@@ -55,3 +67,60 @@ flutter:
           weight: 800
         - asset: assets/fonts/cairo/Cairo-Black.ttf
           weight: 900
+
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/cairo/Montserrat-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/cairo/Montserrat-Light.ttf  
+          weight: 300
+        - asset: assets/fonts/cairo/Montserrat-Regular.ttf    
+          weight: 400
+        - asset: assets/fonts/cairo/Montserrat-SemiBold.ttf
+          weight: 500
+        - asset: assets/fonts/cairo/Montserrat-Bold.ttf
+          weight: 600
+        - asset: assets/fonts/cairo/Montserrat-ExtraBold.ttf
+          weight: 700
+        - asset: assets/fonts/cairo/Montserrat-Black.ttf
+          weight: 800
+
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/cairo/Roboto_Condensed-ExtraLight.ttf    
+          weight: 200
+        - asset: assets/fonts/cairo/Roboto_Condensed-Light.ttf  
+          weight: 300
+        - asset: assets/fonts/cairo/Roboto_Condensed-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/cairo/Roboto_Condensed-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/cairo/Roboto_Condensed-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/cairo/Roboto_Condensed-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/cairo/Roboto_Condensed-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/cairo/Roboto_Condensed-Black.ttf
+          weight: 900
+
+    - family: DMSans
+      fonts:
+        - asset: assets/fonts/cairo/DMSans-ExtraLight.ttf      
+          weight: 200
+        - asset: assets/fonts/cairo/DMSans-Light.ttf  
+          weight: 300
+        - asset: assets/fonts/cairo/DMSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/cairo/DMSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/cairo/DMSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/cairo/DMSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/cairo/DMSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/cairo/DMSans-Black.ttf
+          weight: 900
+
+

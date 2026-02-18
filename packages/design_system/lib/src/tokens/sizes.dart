@@ -1,3 +1,5 @@
+import 'package:design_system/design_system.dart';
+
 /// Size tokens for the design system
 ///
 /// Access via: UI.sizes.iconSm
@@ -14,7 +16,7 @@ class UISizes {
   double get iconXs => 16;
 
   /// Small icon: 20px
-  ///
+  double get iconXXs => 13;
   /// Usage: Button icons, form field icons
   double get iconSm => 20;
 
@@ -99,3 +101,10 @@ class UISizes {
   /// Usage: Bottom navigation bar height
   double get bottomNavigationBarHeight => 87;
 }
+
+// extension spacerCustom on UISizes{
+
+//   SizedBox get sizedH=> SizedBox(
+//     height: this.,
+//   );
+// }

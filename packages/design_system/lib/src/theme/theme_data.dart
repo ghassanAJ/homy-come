@@ -24,7 +24,7 @@ class AppTheme {
     );
   }
 
-  // =========================================== ================================
+  // ===========================================================================
   // APP BAR THEME
   // ===========================================================================
 
@@ -212,8 +212,8 @@ class AppTheme {
   /// )
   /// ```
   static ThemeData get light => ThemeData(
-        // Use Cairo as default font
-        fontFamily: 'Cairo',
+        // Use Montserrat as default font
+        fontFamily: 'DMSans',
 
         // Color scheme
         colorScheme: _buildLightColorScheme(),

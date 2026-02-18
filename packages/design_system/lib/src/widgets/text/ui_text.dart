@@ -68,6 +68,28 @@ class UIText extends StatelessWidget {
     super.key,
   }) : style = _typography.h3;
 
+  UIText.h4(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    super.key,
+  }) : style = _typography.h4;
+
+
+  UIText.h5(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    super.key,
+  }) : style = _typography.h5;
+
+
   // ===========================================================================
   // BODY TEXT
   // ===========================================================================
@@ -141,6 +163,16 @@ class UIText extends StatelessWidget {
     this.softWrap,
     super.key,
   }) : style = _typography.bodyXSmall;
+
+  UIText.headerBody(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    super.key,
+  }) : style = _typography.headerBody;
 
   // ===========================================================================
   // CAPTION

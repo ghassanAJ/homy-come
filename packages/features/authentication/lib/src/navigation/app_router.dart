@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:homy_provider/navigation/provider_app_route_config.dart';
 import 'package:injectable/injectable.dart';
 import 'package:user/navigation/user_app_route_config.dart';
+import 'package:profile/src/navigation/router.dart';
 
 @lazySingleton
 class AppRouter {
@@ -35,7 +36,7 @@ class AppRouter {
 
   static GoRouter _buildBaseRoute(AppCubit appCubit, List<RouteBase> routes) {
     return GoRouter(
-      initialLocation: AuthenticationPaths.splash,
+      initialLocation: ProfilePaths.profile,
       navigatorKey: rootNavigatorKey,
       redirectLimit: 5,
       debugLogDiagnostics: kDebugMode,
@@ -43,7 +44,7 @@ class AppRouter {
       redirect:
           (context, state) =>
               AppRouterGuard.handleRedirect(state, appCubit.state),
-      routes: [...AuthenticationRoute.routes, ...routes],
+      routes: [...AuthenticationRoute.routes, ...routes,...ProfileRoute.routes],
     );
   }
 }

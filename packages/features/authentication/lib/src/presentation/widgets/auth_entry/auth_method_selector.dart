@@ -101,6 +101,7 @@ class AuthMethodSelector extends StatelessWidget {
           label: method.label,
           onPressed: onPressed,
           expanded: true,
+          
           centerLabel: true,
         ),
         SizedBox(height: UI.spacing.md),

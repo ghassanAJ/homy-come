@@ -29,11 +29,15 @@ class UIColor extends Color {
   static const UIColor neutral200 = UIColor._(0xFFE2E0E9);
   static const UIColor neutral400 = UIColor._(0xFFA5A2AF);
   static const UIColor neutral500 = UIColor._(0xFF5F5972);
+  static const UIColor neutral100 = UIColor._(0xFFF4F4F4);
 
   // Background colors
   static const UIColor background = white;
   static const UIColor backgroundInactive = UIColor._(0xFFA5A2AF);
   static const UIColor backgroundResting = UIColor._(0xFFFBFAFF);
+  static const UIColor iconsAvaterRed = UIColor._(0xffff0000);
+    static const UIColor backgroungAvaterRed = UIColor._(0xff1aff0000);
+  static const UIColor backgroungSwitchUnactive = UIColor._(0xffEBEBEB);
 
   // Surface colors
   static const UIColor surface = neutral000;
@@ -45,6 +49,7 @@ class UIColor extends Color {
   static const UIColor textPrimary = primaryDark;
   static const UIColor textSecondary = neutral500;
   static const UIColor textPlaceholder = neutral400;
+  static const UIColor textGray = UIColor._(0xffABABAB);
 
   // Border colors
   static const UIColor border = neutral200;
@@ -64,6 +69,9 @@ class UIColor extends Color {
 
   // black
   static const UIColor black = UIColor._(0xFF000000);
+
+  // divider Colros
+  static const UIColor divider = UIColor._(0xFFF5F5F5);
 }
 
 class UIPieChartColors {
@@ -91,5 +99,9 @@ class UIColorGradient {
   static const List<Color> savingInRowLabel = [
     Color(0xffFFF3DF),
     Color(0xffE3DFFF),
+  ];
+
+  static const List<Color> backgroundGradiant = [
+   UIColor.softGreen, UIColor.background
   ];
 }
