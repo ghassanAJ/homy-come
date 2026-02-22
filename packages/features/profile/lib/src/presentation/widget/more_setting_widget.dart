@@ -1,7 +1,8 @@
-
 import 'package:design_system/design_system.dart';
 import 'package:design_system/gen/assets.gen.dart';
+import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
+import 'package:profile/src/navigation/router.dart';
 import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
 class MoreSettingWidget extends StatelessWidget {
@@ -20,13 +21,7 @@ class MoreSettingWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             color: UIColor.background,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 44,
-                offset: const Offset(0, 4),
-              ),
-            ],
+            boxShadow: UI.shadows.cardMd,
           ),
           child: Column(
             children: [
@@ -37,6 +32,7 @@ class MoreSettingWidget extends StatelessWidget {
                 // descreption: 'FAQ',
                 onTap: () {
                   // log('pressed on FAQ button');
+                  context.go(ProfilePaths.aboutApp);
                 },
               ),
               ProfileSettingOptionWidget(

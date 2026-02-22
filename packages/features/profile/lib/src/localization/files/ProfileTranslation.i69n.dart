@@ -37,6 +37,9 @@ class ProfileTranslation implements i69n.I69nMessageBundle {
   const ProfileTranslation();
   ProfileProfileTranslation get profile => ProfileProfileTranslation(this);
   OptionProfileTranslation get option => OptionProfileTranslation(this);
+  LabelsProfileTranslation get Labels => LabelsProfileTranslation(this);
+  PlaceHolderProfileTranslation get placeHolder =>
+      PlaceHolderProfileTranslation(this);
   TermsAndPrivacyProfileTranslation get termsAndPrivacy =>
       TermsAndPrivacyProfileTranslation(this);
   Object operator [](String key) {
@@ -50,6 +53,10 @@ class ProfileTranslation implements i69n.I69nMessageBundle {
         return profile;
       case 'option':
         return option;
+      case 'Labels':
+        return Labels;
+      case 'placeHolder':
+        return placeHolder;
       case 'termsAndPrivacy':
         return termsAndPrivacy;
       default:
@@ -64,6 +71,8 @@ class ProfileProfileTranslation implements i69n.I69nMessageBundle {
   String get more => "More";
   String get myProfile => "My Profile";
   String get editProfile => "Edit Profile";
+  String get myOrder => "my order";
+  String get term => "terms and condition";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -77,6 +86,10 @@ class ProfileProfileTranslation implements i69n.I69nMessageBundle {
         return myProfile;
       case 'editProfile':
         return editProfile;
+      case 'myOrder':
+        return myOrder;
+      case 'term':
+        return term;
       default:
         return key;
     }
@@ -87,7 +100,7 @@ class OptionProfileTranslation implements i69n.I69nMessageBundle {
   final ProfileTranslation _parent;
   const OptionProfileTranslation(this._parent);
   String get help => "Help and Support";
-  String get about => "About Us";
+  String get about => "About App";
   String get contact => "Contact Us";
   String get faq => "FAQ";
   String get notification => "Notification";
@@ -120,6 +133,50 @@ class OptionProfileTranslation implements i69n.I69nMessageBundle {
         return savedBeneficiary;
       case 'location':
         return location;
+      default:
+        return key;
+    }
+  }
+}
+
+class LabelsProfileTranslation implements i69n.I69nMessageBundle {
+  final ProfileTranslation _parent;
+  const LabelsProfileTranslation(this._parent);
+  String get email => "Email";
+  String get send => "Send";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'email':
+        return email;
+      case 'send':
+        return send;
+      default:
+        return key;
+    }
+  }
+}
+
+class PlaceHolderProfileTranslation implements i69n.I69nMessageBundle {
+  final ProfileTranslation _parent;
+  const PlaceHolderProfileTranslation(this._parent);
+  String get email => "write your email";
+  String get note => "write your Note";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'email':
+        return email;
+      case 'note':
+        return note;
       default:
         return key;
     }

@@ -1,6 +1,5 @@
 import 'package:design_system/design_system.dart';
 import 'package:profile/profile.dart';
-import 'package:profile/src/presentation/screens/profile_screen.dart';
 import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
 class SettingProfileWidget extends StatelessWidget {
@@ -15,13 +14,7 @@ class SettingProfileWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: UIColor.background,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 44,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        boxShadow:UI.shadows.cardMd
       ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),

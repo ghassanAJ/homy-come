@@ -39,6 +39,9 @@ class ProfileTranslation_ar extends ProfileTranslation {
   ProfileProfileTranslation_ar get profile =>
       ProfileProfileTranslation_ar(this);
   OptionProfileTranslation_ar get option => OptionProfileTranslation_ar(this);
+  LabelsProfileTranslation_ar get Labels => LabelsProfileTranslation_ar(this);
+  PlaceHolderProfileTranslation_ar get placeHolder =>
+      PlaceHolderProfileTranslation_ar(this);
   TermsAndPrivacyProfileTranslation_ar get termsAndPrivacy =>
       TermsAndPrivacyProfileTranslation_ar(this);
   Object operator [](String key) {
@@ -52,6 +55,10 @@ class ProfileTranslation_ar extends ProfileTranslation {
         return profile;
       case 'option':
         return option;
+      case 'Labels':
+        return Labels;
+      case 'placeHolder':
+        return placeHolder;
       case 'termsAndPrivacy':
         return termsAndPrivacy;
       default:
@@ -66,6 +73,8 @@ class ProfileProfileTranslation_ar extends ProfileProfileTranslation {
   String get more => "المزيد";
   String get myProfile => "معلوماتي";
   String get editProfile => "تعديل الملف الشخصي";
+  String get myOrder => "طلباتي";
+  String get term => "شروط و الاحكام";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -79,6 +88,10 @@ class ProfileProfileTranslation_ar extends ProfileProfileTranslation {
         return myProfile;
       case 'editProfile':
         return editProfile;
+      case 'myOrder':
+        return myOrder;
+      case 'term':
+        return term;
       default:
         return super[key];
     }
@@ -122,6 +135,50 @@ class OptionProfileTranslation_ar extends OptionProfileTranslation {
         return savedBeneficiary;
       case 'location':
         return location;
+      default:
+        return super[key];
+    }
+  }
+}
+
+class LabelsProfileTranslation_ar extends LabelsProfileTranslation {
+  final ProfileTranslation_ar _parent;
+  const LabelsProfileTranslation_ar(this._parent) : super(_parent);
+  String get email => "حساب";
+  String get send => "ارسال";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'email':
+        return email;
+      case 'send':
+        return send;
+      default:
+        return super[key];
+    }
+  }
+}
+
+class PlaceHolderProfileTranslation_ar extends PlaceHolderProfileTranslation {
+  final ProfileTranslation_ar _parent;
+  const PlaceHolderProfileTranslation_ar(this._parent) : super(_parent);
+  String get email => "ادخل حسابك";
+  String get note => "اكتب ملاحظاتك";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'email':
+        return email;
+      case 'note':
+        return note;
       default:
         return super[key];
     }

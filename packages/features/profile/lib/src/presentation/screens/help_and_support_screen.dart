@@ -1,40 +1,150 @@
-// import 'package:design_system/design_system.dart';
-// import 'package:flutter/material.dart';
+import 'package:design_system/design_system.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:profile/src/helper/profile_form_field_names.dart';
+import 'package:profile/src/localization/profile_localization_scope.dart';
 
-// class HelpAndSupportScreen extends StatelessWidget {
-//   const HelpAndSupportScreen({super.key});
+class HelpAndSupportScreen extends StatefulWidget {
+  const HelpAndSupportScreen({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: UIBackground(
-//         content: CustomScrollView(
-//           slivers: [
-//             UISliverAppBar(
-//               bottom: const PreferredSize(
-//                 preferredSize: Size.fromHeight(1),
-//                 child: Padding(
-//                   padding: EdgeInsets.only(left: 32, top: 16),
-//                   child: Divider(height: 4, color: UIColor.divider),
-//                 ),
-//               ),
-//               variant: UISliverAppBarVariant.transparent,
-//               leading: backButtonAppBar(),
-//               centerTitle: true,
-//               titleWidget: UIText.h4('Help and Support'),
-//             ),
-//             SliverToBoxAdapter(
-//               child: Column(
-//                 children: [
-//                   UIText.caption(
-//                     'Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt Ut Labore Et Dolore Magna Aliqua. Ut Enim Ad Minim Veniam, Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat.',
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  State<HelpAndSupportScreen> createState() => _HelpAndSupportScreenState();
+}
+
+class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
+  final _formKey = GlobalKey<FormBuilderState>();
+  final ValueNotifier<bool> _isFormValidNotifier = ValueNotifier(false);
+
+  @override
+  Widget build(BuildContext context) {
+    final double w = MediaQuery.sizeOf(context).width;
+    final double h = MediaQuery.sizeOf(context).width;
+    return Scaffold(
+      body: UIBackground(
+        content: CustomScrollView(
+          slivers: [
+            UISliverAppBar(
+              bottom:  PreferredSize(
+                preferredSize: Size.fromHeight(1),
+                child: Padding(
+                  padding: EdgeInsets.only(left: UI.spacing.xl, top: UI.spacing.md),
+                  child: Divider(height: 4, color: UIColor.divider),
+                ),
+              ),
+              variant: UISliverAppBarVariant.transparent,
+              leading: backButtonAppBar(),
+              centerTitle: true,
+              titleWidget: UIText.h4(context.profileTranslation.option.help),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                  UI.spacing.lg,
+                  UI.spacing.md,
+                  UI.spacing.md,
+                  0,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    UIText.bodyLarge(
+                      overflow: TextOverflow.clip,
+                      color: UIColor.textNatral600,
+                      'Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt Ut Labore Et Dolore Magna Aliqua. Ut Enim Ad Minim Veniam, Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat.',
+                    ),
+                    SizedBox(height: UI.spacing.lg),
+                    Container(
+                      padding: EdgeInsets.all(UI.spacing.md),
+                      width: double.infinity,
+                      height: h * 0.3,
+                      decoration: BoxDecoration(
+                        color: UIColor.surface,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: UI.shadows.md,
+                      ),
+                      child: TextFormField(//   TODO 
+                        maxLines: null,
+                        expands: true,
+                        textAlignVertical: TextAlignVertical.top,
+                        decoration: InputDecoration(
+                          hintText: 'write your note',
+                          hintStyle: UI.text.inputPlaceholder.copyWith(
+                            color: UIColor.textPlaceholder,
+                          ),
+                          filled: false,
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          focusedErrorBorder: InputBorder.none,
+                          contentPadding: EdgeInsets.zero,
+                        ),
+                        style: UI.text.inputText.copyWith(
+                          color: UIColor.textPrimary,
+                        ),
+                      ),
+                      // child:UIText.bodyMedium('Write your note',color: UIColor.textNatral600,) ,
+                    ),
+                    SizedBox(height: UI.spacing.lg),
+                
+
+                    FormBuilder(
+                      key: _formKey,
+                      onChanged: _onValid(),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      child: Column(
+                        children: [
+                          AppFormBuilderTextField(
+                            name: ProfileFormFieldNames.email,
+                            placeholder:context.profileTranslation.placeHolder.email ,
+                            label: context.profileTranslation.Labels.email,
+
+                            validator: FormBuilderValidators.compose([
+                              // FormBuilderValidators.required(),
+                              FormBuilderValidators.email(),
+                            ]),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: UI.spacing.lg),
+                    ValueListenableBuilder<bool>(
+                      valueListenable: _isFormValidNotifier,
+                      builder: (context, isValid, _) {
+                        print(isValid);
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(
+                              width: w * 0.42,
+                              height: h * 0.1,
+                              child: UIButton.primary(
+                                label: context.profileTranslation.Labels.send,
+
+                                onPressed: () {},
+                                expanded: false,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _onValid() {
+    final isValid = _formKey.currentState?.isValid ?? false;
+    if (_isFormValidNotifier.value != isValid) {
+      _isFormValidNotifier.value = isValid;
+    }
+  }
+}

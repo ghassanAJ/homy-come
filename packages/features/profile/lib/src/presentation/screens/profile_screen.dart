@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/localization/files/ProfileTranslation.i69n.dart';
+import 'package:profile/src/presentation/widget/data_user_profile.dart';
 import 'package:profile/src/presentation/widget/more_setting_widget.dart';
 import 'package:profile/src/presentation/widget/setting_profile_widget.dart';
 
@@ -26,7 +29,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: UIBackground(
         content: CustomScrollView(
           slivers: [
-            UISliverAppBar(
+            UIAnimatedSliverAppBarSimple(
+              expandedHeight: 60,
+              backgroundColor: Colors.transparent,
+              // collapsedTitle: UIText.bodyLarge('my profile'),
+              collapsedTitle: Row(
+                children: [
+                  CircleAvatar(radius: 14),
+                  SizedBox(width: 8),
+                  UIText.bodyLarge(context.profileTranslation.profile.myProfile),
+                ],
+              ),
               bottom: PreferredSize(
                 preferredSize: Size.fromHeight(1),
                 child: Padding(
@@ -37,16 +50,45 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Divider(height: 4, color: UIColor.divider),
                 ),
               ),
-              variant: UISliverAppBarVariant.transparent,
-              leading: backButtonAppBar(),
-
-              centerTitle: true,
-              titleWidget: UIText.h4(
-                tr.profile.myProfile,
+              scrollController: ScrollController(),
+              expandedContent: Stack(
+                fit: StackFit.expand,
+                children: [
+                  CustomUIAppBarWidget(tr: tr),
+                ],
               ),
-              pinned: false,
             ),
 
+            // UISliverAppBar(
+            //   flexibleSpace: BackdropFilter(
+            //     filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // Blur effect
+            //     child: Container(
+            //       decoration: BoxDecoration(
+            //         color: Colors.white.withOpacity(
+            //           0.2,
+            //         ), // Semi-transparent white background
+            //       ),
+            //     ),
+            //   ),
+            //   bottom: PreferredSize(
+            //     preferredSize: Size.fromHeight(1),
+            //     child: Padding(
+            //       padding: EdgeInsets.only(
+            //         left: UI.spacing.xl,
+            //         top: UI.spacing.md,
+            //       ),
+            //       child: Divider(height: 4, color: UIColor.divider),
+            //     ),
+            //   ),
+            //   variant: UISliverAppBarVariant.transparent,
+            //   leading: const backButtonAppBar(),
+
+            //   centerTitle: true,
+            //   titleWidget: UIText.h4(tr.profile.myProfile),
+            //   pinned: true,
+            //   // floating: true,
+            //   // snap: true,
+            // ),
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(
@@ -55,7 +97,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 child: Column(
                   children: [
-                    _dataUserProfileWidget(),
+                    DataUserProfileWidget(context: context),
                     SizedBox(height: UI.spacing.lg), //24
 
                     Padding(
@@ -80,102 +122,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+}
 
-  Widget _dataUserProfileWidget() {
-    final ImagePicker picker = ImagePicker();
-    ValueNotifier<XFile?> images = ValueNotifier(XFile(''));
-    return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: UI.spacing.sm,
-        horizontal: UI.spacing.md,
-      ),
-      width: double.infinity,
-      // height: 89,
-      decoration: BoxDecoration(
-        boxShadow: UI.shadows.sm,
-        borderRadius: BorderRadius.circular(5),
-        gradient: LinearGradient(
-          begin: AlignmentGeometry.topCenter,
-          end: AlignmentGeometry.bottomCenter,
-          colors: [UIColor.borderFocused, UIColor.softYellow],
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Row(
-            children: [
-              ValueListenableBuilder(
-                valueListenable: images,
-                builder:
-                    (context, value, Widget? child) => SizedBox(
-                      height: UI.sizes.avatarLg,
-                      width: UI.sizes.avatarLg,
-                      child: Stack(
-                        alignment: AlignmentGeometry.bottomRight,
-                        children: [
-                          ProfilePictureWidget(
-                            imageUrl: value?.path,
-                            backgroundColor: UIColor.neutral200,
-                            onTap: () async {
-                              // Pick an image.
-                              final XFile? image = await picker.pickImage(
-                                source: ImageSource.gallery,
-                              );
-                              print(image?.path);
-                              images.value = image;
-                            },
-                            showBorder: true,
-                            size: ProfilePictureSize.lg,
-                          ),
-                          Positioned(
-                            child: Container(
-                              padding: EdgeInsets.all(UI.spacing.xxs),
-                              width: UI.sizes.iconSm,
-                              height: UI.sizes.iconSm,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: UIColor.background,
-                              ),
-                              child: SvgPicture.asset(
-                                Assets.icons.carema,
-                                package: 'design_system',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-              ),
-              SizedBox(width: UI.spacing.sm), //13
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  UIText.bodySmallBold('User name'),
-                  UIText.headerBody('+999 123 456 789'),
-                ],
-              ),
-            ],
-          ),
+class CustomUIAppBarWidget extends StatelessWidget {
+  const CustomUIAppBarWidget({
+    super.key,
+    required this.tr,
+  });
 
-          Align(
-            alignment: AlignmentGeometry.bottomCenter,
-            child: Row(
-              children: [
-                UIText.bodySmallBold(context.profileTranslation.profile.editProfile, color: UIColor.grey),
-                SizedBox(width: UI.spacing.xs),
-                SvgPicture.asset(
-                  Assets.icons.arrowRight,
-                  color: UIColor.grey,
-                  package: "design_system",
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+  final ProfileTranslation tr;
+
+  @override
+  Widget build(BuildContext context) {
+    return UIAppBar(
+      leading: backButtonAppBar(),
+      variant: UIAppBarVariant.transparent,
+      title: 'my',
+      // backgroundColor: Colors.transparent,
+      centerTitle: true,
+      titleWidget: UIText.h4(tr.profile.myProfile),
+    
+      // floating: true,
+      // snap: true,
     );
   }
 }

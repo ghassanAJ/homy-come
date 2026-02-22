@@ -3,8 +3,9 @@ profile:
   more: المزيد
   myProfile: معلوماتي
   editProfile: تعديل الملف الشخصي
-
-
+  myOrder: طلباتي
+  term: شروط و الاحكام
+  
 option:
   help: مساعدة و دعم
   about: حول التطبيق
@@ -15,6 +16,15 @@ option:
   deleteAccount: حذف الحساب
   savedBeneficiary: Saved Beneficiary
   location: موقعي
+
+Labels:
+  email: حساب
+  send: ارسال
+
+placeHolder: 
+  email: ادخل حسابك
+  note:  اكتب ملاحظاتك
+  
 # Terms and Privacy
 termsAndPrivacy:
   termsOfUse: شروط الاستخدام

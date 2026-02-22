@@ -3,10 +3,12 @@ profile:
   more: More
   myProfile: My Profile
   editProfile: Edit Profile
+  myOrder: my order 
+  term: terms and condition
 # ooption title
 option:
   help: Help and Support
-  about: About Us
+  about: About App
   contact: Contact Us
   faq: FAQ
   notification: Notification
@@ -14,7 +16,15 @@ option:
   deleteAccount: Delete Account
   savedBeneficiary: Saved Beneficiary
   location: My Location
-  
+
+Labels:
+  email: Email
+  send: Send
+
+placeHolder: 
+  email: write your email
+  note:  write your Note
+      
 
 # Terms and Privacy
 termsAndPrivacy:

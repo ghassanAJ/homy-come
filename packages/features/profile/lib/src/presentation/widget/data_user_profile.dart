@@ -1,0 +1,116 @@
+
+import 'package:design_system/design_system.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:profile/profile.dart';
+
+class DataUserProfileWidget extends StatelessWidget {
+  const DataUserProfileWidget({
+    super.key,
+    required this.context,
+  });
+
+  final BuildContext context;
+
+  @override
+  Widget build(BuildContext context) {
+    final ImagePicker picker = ImagePicker();
+    ValueNotifier<XFile?> images = ValueNotifier(XFile(''));
+    return Container(
+      padding: EdgeInsets.symmetric(
+        vertical: UI.spacing.sm,
+        horizontal: UI.spacing.md,
+      ),
+      width: double.infinity,
+      // height: 89,
+      decoration: BoxDecoration(
+        boxShadow: UI.shadows.sm,
+        borderRadius: BorderRadius.circular(5),
+        gradient: LinearGradient(
+          begin: AlignmentGeometry.topCenter,
+          end: AlignmentGeometry.bottomCenter,
+          colors: [UIColor.borderFocused, UIColor.softYellow],
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Row(
+            children: [
+              ValueListenableBuilder(
+                valueListenable: images,
+                builder:
+                    (context, value, Widget? child) => SizedBox(
+                      height: UI.sizes.avatarLg,
+                      width: UI.sizes.avatarLg,
+                      child: Stack(
+                        alignment: AlignmentGeometry.bottomRight,
+                        children: [
+                          ProfilePictureWidget(
+                            imageUrl: value?.path,
+                            backgroundColor: UIColor.neutral200,
+                            onTap: () async {
+                              // Pick an image.
+                              final XFile? image = await picker.pickImage(
+                                source: ImageSource.gallery,
+                              );
+                              // print(image?.path);
+                              images.value = image;
+                            },
+                            showBorder: true,
+                            size: ProfilePictureSize.lg,
+                          ),
+                          Positioned(
+                            child: Container(
+                              padding: EdgeInsets.all(UI.spacing.xxs),
+                              width: UI.sizes.iconSm,
+                              height: UI.sizes.iconSm,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: UIColor.background,
+                              ),
+                              child: SvgPicture.asset(
+                                Assets.icons.carema,
+                                // package: 'design_system',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+              ),
+              SizedBox(width: UI.spacing.sm), //13
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  UIText.bodySmallBold('User name'),
+                  UIText.headerBody('+999 123 456 789'),
+                ],
+              ),
+            ],
+          ),
+
+          Align(
+            alignment: AlignmentGeometry.bottomCenter,
+            child: Row(
+              children: [
+                UIText.bodySmallBold(
+                  context.profileTranslation.profile.editProfile,
+                  color: UIColor.grey,
+                ),
+                SizedBox(width: UI.spacing.xs),
+                SvgPicture.asset(
+                  Assets.icons.arrowRight,
+                  color: UIColor.grey,
+                  // package: "design_system",
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

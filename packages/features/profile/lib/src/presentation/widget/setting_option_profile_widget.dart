@@ -27,9 +27,7 @@ class ProfileSettingOptionWidget extends StatelessWidget {
       onTap: onTap,
       child: ListTile(
         contentPadding: EdgeInsets.only(bottom: 12.5),
-        trailing:
-            customTrailing ??
-            SvgPicture.asset(Assets.icons.right, package: "design_system"),
+        trailing: customTrailing ?? UISvg(icon: Assets.icons.right),
         leading: _buildProfileIcon(
           isSvgIcon: isSvgIcon,
           imgUrl: imgUrl,
@@ -121,11 +119,29 @@ class ProfileSettingOptionWidget extends StatelessWidget {
           child: SizedBox(
             child: SvgPicture.asset(
               imgUrl,
-              package: "design_system",
-              color: colorIcon,
+              colorFilter: ColorFilter.mode(
+                colorIcon ?? UIColor.grey,
+                BlendMode.srcIn,
+              ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class UISvg extends StatelessWidget {
+  const UISvg({super.key, required this.icon, this.color});
+  final String icon;
+  final UIColor? color;
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(
+      icon, 
+      colorFilter: ColorFilter.mode(
+        color ?? UIColor.grey,
+        BlendMode.srcIn,
       ),
     );
   }
