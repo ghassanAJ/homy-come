@@ -102,18 +102,11 @@ class AuthNavigationListener extends StatelessWidget {
   }
 
   void _navigateAfterOtpVerification(
-    BuildContext context,
-    bool hasCompletedProfile,
+    BuildContext _,
+    bool __,
   ) {
-    final tr = context.loc<AuthenticationTranslation>();
-
-    if (hasCompletedProfile) {
-      ToastificationUtil.success(tr.verification.returningUserVerified);
-      router.go(dashboardPath);
-    } else {
-      ToastificationUtil.success(tr.verification.newUserVerified);
-      router.go(AuthenticationPaths.completeProfile);
-    }
+    // OTP success flow is handled by OTPVerificationScreen bottom sheet action.
+    return;
   }
 
   void _navigateAfterProfileSave(BuildContext context) {
