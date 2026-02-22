@@ -3,6 +3,7 @@ common:
   continueLabel: Continue
   skip: Skip
   logout: Logout
+  goToHome: Go to Home
 
 # Login Screen
 login:
@@ -21,7 +22,7 @@ verification:
   resendCode: Resend Code
   resend: resend
   codeSent: Code sent successfully
-  newUserVerified: "Verification successful"
+  newUserVerified: "Verification Successful"
   returningUserVerified: "Welcome back! We're logging you in..."
 
 # Personal Information / Complete Profile Screen
@@ -31,12 +32,18 @@ personalInfo:
   personalPhoto: Personal Photo
   addPhoto: Add Photo
   fullName: Full Name
-  userNamePlaceholder: USER NAME
-  emailPlaceholder: user name @ gmail.com
+  fullNameRequired: Full name is required
+  email: user name @ gmail.com
+  emailPlaceholder: Enter your email address
+  emailRequired: Email is required
+  emailInvalid: Please enter a valid email
   phonePlaceholder: "Ex : +971 50 123 4567"
+  phoneRequired: Phone number is required
+  phoneInvalid: Phone number must be 10 digits
   country: Country
   countryPlaceholder: User Country
-  username: Username
+  countryRequired: Country is required
+  username: USER NAME
   usernamePlaceholder: Enter your username
   usernameRequired: Username is required
   firstName: First Name

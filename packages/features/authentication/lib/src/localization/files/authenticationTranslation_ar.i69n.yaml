@@ -3,6 +3,7 @@ common:
   continueLabel: متابعة
   skip: تخطي
   logout: تسجيل الخروج
+  goToHome: انتقل إلى الصفحة الرئيسية
 
 # Login Screen
 login:
@@ -31,11 +32,18 @@ personalInfo:
   personalPhoto: الصورة الشخصية
   addPhoto: إضافة صورة
   fullName: الاسم الكامل
-  userNamePlaceholder: اسم المستخدم
-  emailPlaceholder: user name @ gmail.com
-  phonePlaceholder: +971 50 123 4567
+  fullNameRequired: الاسم الكامل مطلوب
+  email: user name @ gmail.com
+  emailPlaceholder: أدخل عنوان البريد الإلكتروني
+  emailRequired: البريد الإلكتروني مطلوب
+  emailInvalid: الرجاء إدخال بريد إلكتروني صحيح
+  phonePlaceholder: "Ex : +971 50 123 4567"
+  phoneRequired: رقم الهاتف مطلوب
+  phoneInvalid: رقم الهاتف يجب أن يتكون من 10 أرقام
   country: الدولة
   countryPlaceholder: دولة المستخدم
+  countryRequired: الدولة مطلوبة
+  userName: اسم المستخدم
   usernamePlaceholder: أدخل اسم المستخدم
   usernameRequired: اسم المستخدم مطلوب
   firstName: الاسم الأول

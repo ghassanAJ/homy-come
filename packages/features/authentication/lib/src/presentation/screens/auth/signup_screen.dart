@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/gen/assets.gen.dart';
@@ -15,25 +17,23 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  static const _fullNameField = 'full_name';
+  static const _countryField = 'country';
+
   final _formKey = GlobalKey<FormBuilderState>();
-  final ValueNotifier<bool> _isFormValidNotifier = ValueNotifier(false);
 
-  @override
-  void dispose() {
-    _isFormValidNotifier.dispose();
-    super.dispose();
-  }
+  void _onSignupPressed() {
+    FocusManager.instance.primaryFocus?.unfocus();
+    final isValid = _formKey.currentState?.saveAndValidate() ?? false;
+    if (!isValid) return;
 
-  void _onFormChanged() {
-    final isValid = _formKey.currentState?.isValid ?? false;
-    if (_isFormValidNotifier.value != isValid) {
-      _isFormValidNotifier.value = isValid;
-    }
+    // TODO: Submit signup request.
   }
 
   @override
   Widget build(BuildContext context) {
     final tr = context.loc<AuthenticationTranslation>();
+    final personalInfo = tr.personalInfo;
     return Scaffold(
       backgroundColor: UIColor.background,
       body: AuthEllipseBackground(
@@ -42,15 +42,9 @@ class _SignupScreenState extends State<SignupScreen> {
             children: [
               Expanded(
                 child: SingleChildScrollView(
-                  padding: EdgeInsets.fromLTRB(
-                    UI.spacing.lg,
-                    UI.spacing.xxl,
-                    UI.spacing.lg,
-                    UI.spacing.xl,
-                  ),
+                  padding: UI.padding.authScrollable,
                   child: FormBuilder(
                     key: _formKey,
-                    onChanged: _onFormChanged,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -66,133 +60,68 @@ class _SignupScreenState extends State<SignupScreen> {
                           fontWeight: FontWeight.w500,
                         ),
                         SizedBox(height: UI.spacing.xs),
-                        Row(
-                          children: [
-                            Container(
-                              width: 57,
-                              height: 57,
-                              decoration: const BoxDecoration(
-                                color: UIColor.textPlaceholder,
-                                shape: BoxShape.circle,
-                              ),
-                              alignment: Alignment.center,
-                              child: SizedBox(
-                                width: 33,
-                                height: 33,
-                                child: SvgPicture.asset(
-                                  Assets.icons.photoCamera,
-                                  package: 'design_system',
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: UI.spacing.xs),
-                            UIText.bodySmall(
-                              tr.personalInfo.addPhoto,
-                              color: UIColor.neutral300,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ],
-                        ),
+                        ProfilePicturePicker(onPhotoPicked: (_) {}),
                         SizedBox(height: UI.spacing.xl),
 
                         AppFormBuilderTextField(
-                          name: tr.personalInfo.fullName,
-                          label: tr.personalInfo.fullName,
-                          placeholder: tr.personalInfo.userNamePlaceholder,
-                          prefixIcon: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(width: UI.spacing.md),
-                              SvgPicture.asset(
-                                Assets.icons.user,
-                                package: 'design_system',
-                              ),
-                              SizedBox(width: UI.spacing.md),
-                              Container(
-                                width: 1,
-                                height: 34,
-                                color: UIColor.softgrey,
-                              ),
-                              SizedBox(width: UI.spacing.xs),
-                            ],
+                          name: _fullNameField,
+                          label: personalInfo.fullName,
+                          placeholder: personalInfo.username,
+                          prefixIcon: _FieldPrefixIcon(
+                            iconPath: Assets.icons.user,
                           ),
-                          validator: FormBuilderValidators.required(),
+                          validator: FormBuilderValidators.required(
+                            errorText: personalInfo.fullNameRequired,
+                          ),
                         ),
 
                         SizedBox(height: UI.spacing.md),
                         AppFormBuilderTextField(
-                          name: tr.authIdentity.emailTitle,
+                          name: AuthFormFieldNames.email,
                           label: tr.authIdentity.emailTitle,
-                          placeholder: tr.personalInfo.emailPlaceholder,
-                          prefixIcon: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(width: UI.spacing.md),
-                              SvgPicture.asset(
-                                Assets.icons.email,
-                                package: 'design_system',
-                              ),
-                              SizedBox(width: UI.spacing.md),
-                              Container(
-                                width: 1,
-                                height: 34,
-                                color: UIColor.softgrey,
-                              ),
-                              SizedBox(width: UI.spacing.xs),
-                            ],
+                          placeholder: personalInfo.emailPlaceholder,
+                          prefixIcon: _FieldPrefixIcon(
+                            iconPath: Assets.icons.email,
                           ),
                           validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(),
-                            FormBuilderValidators.email(),
+                            FormBuilderValidators.required(
+                              errorText: personalInfo.emailRequired,
+                            ),
+                            FormBuilderValidators.email(
+                              errorText: personalInfo.emailInvalid,
+                            ),
                           ]),
                         ),
                         SizedBox(height: UI.spacing.md),
                         AppFormBuilderTextField(
-                          name: tr.login.phoneLabel,
+                          name: AuthFormFieldNames.phone,
                           label: tr.login.phoneLabel,
-                          placeholder: tr.personalInfo.phonePlaceholder,
-                          prefixIcon: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(width: UI.spacing.md),
-                              SvgPicture.asset(
-                                Assets.icons.call,
-                                package: 'design_system',
-                              ),
-                              SizedBox(width: UI.spacing.md),
-                              Container(
-                                width: 1,
-                                height: 34,
-                                color: UIColor.softgrey,
-                              ),
-                              SizedBox(width: UI.spacing.xs),
-                            ],
+                          placeholder: personalInfo.phonePlaceholder,
+                          keyboardType: TextInputType.phone,
+                          prefixIcon: _FieldPrefixIcon(
+                            iconPath: Assets.icons.call,
                           ),
-                          validator: FormBuilderValidators.required(),
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(
+                              errorText: personalInfo.phoneRequired,
+                            ),
+                            FormBuilderValidators.match(
+                              RegExp(r'^\d{10}$'),
+                              errorText: personalInfo.phoneInvalid,
+                            ),
+                          ]),
                         ),
                         SizedBox(height: UI.spacing.md),
                         AppFormBuilderTextField(
-                          name: tr.personalInfo.country,
-                          label: tr.personalInfo.country,
-                          placeholder: tr.personalInfo.countryPlaceholder,
-                          prefixIcon: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              SizedBox(width: UI.spacing.md),
-                              SvgPicture.asset(
-                                Assets.icons.location,
-                                package: 'design_system',
-                              ),
-                              SizedBox(width: UI.spacing.md),
-                              Container(
-                                width: 1,
-                                height: 34,
-                                color: UIColor.softgrey,
-                              ),
-                              SizedBox(width: UI.spacing.xs),
-                            ],
+                          name: _countryField,
+                          label: personalInfo.country,
+                          placeholder: personalInfo.countryPlaceholder,
+                          prefixIcon: _FieldPrefixIcon(
+                            iconPath: Assets.icons.location,
                           ),
-                          validator: FormBuilderValidators.required(),
+                          validator: FormBuilderValidators.required(
+                            errorText: personalInfo.countryRequired,
+                          ),
                         ),
                       ],
                     ),
@@ -200,24 +129,14 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(
-                  UI.spacing.xl,
-                  UI.spacing.md,
-                  UI.spacing.xl,
-                  UI.spacing.lg,
-                ),
+                padding: UI.padding.authActions,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    ValueListenableBuilder<bool>(
-                      valueListenable: _isFormValidNotifier,
-                      builder: (context, isValid, _) {
-                        return UIButton.primary(
-                          label: tr.login.signUp,
-                          expanded: true,
-                          onPressed: isValid ? () {} : null,
-                        );
-                      },
+                    UIButton.primary(
+                      label: tr.login.signUp,
+                      expanded: true,
+                      onPressed: _onSignupPressed,
                     ),
                     SizedBox(height: UI.spacing.lg),
                     GestureDetector(
@@ -253,6 +172,120 @@ class _SignupScreenState extends State<SignupScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _FieldPrefixIcon extends StatelessWidget {
+  final String iconPath;
+
+  const _FieldPrefixIcon({required this.iconPath});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(width: UI.spacing.md),
+        SvgPicture.asset(iconPath, package: 'design_system'),
+        SizedBox(width: UI.spacing.md),
+        Container(width: 1, height: 34, color: UIColor.softgrey),
+        SizedBox(width: UI.spacing.xs),
+      ],
+    );
+  }
+}
+
+class ProfilePicturePicker extends StatefulWidget {
+  final ValueChanged<File?> onPhotoPicked;
+
+  const ProfilePicturePicker({required this.onPhotoPicked, super.key});
+
+  @override
+  State<ProfilePicturePicker> createState() => _ProfilePicturePickerState();
+}
+
+class _ProfilePicturePickerState extends State<ProfilePicturePicker> {
+  final BaseImagePicker _imagePicker = ImagePickerStrategy();
+  File? _selectedPhoto;
+
+  Future<void> _showImageSourceSheet() async {
+    await UIImageSelectionBottomSheet.show(
+      context: context,
+      showDelete: _selectedPhoto != null,
+      onDelete: () {
+        setState(() {
+          _selectedPhoto = null;
+        });
+        widget.onPhotoPicked(null);
+        Navigator.of(context).pop();
+      },
+      onChooseFromLibrary: () async {
+        final pickedFile = await _imagePicker.pickPhotoFromGallery();
+        if (!mounted) return;
+        Navigator.of(context).pop();
+        if (pickedFile == null) return;
+        setState(() {
+          _selectedPhoto = pickedFile;
+        });
+        widget.onPhotoPicked(pickedFile);
+      },
+      onTakePhoto: () async {
+        final pickedFile = await _imagePicker.pickPhotoFromCamera();
+        if (!mounted) return;
+        Navigator.of(context).pop();
+        if (pickedFile == null) return;
+        setState(() {
+          _selectedPhoto = pickedFile;
+        });
+        widget.onPhotoPicked(pickedFile);
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: _showImageSourceSheet,
+      child: Row(
+        children: [
+          Container(
+            width: 57,
+            height: 57,
+            decoration: const BoxDecoration(
+              color: UIColor.textPlaceholder,
+              shape: BoxShape.circle,
+            ),
+            alignment: Alignment.center,
+            child:
+                _selectedPhoto == null
+                    ? SizedBox(
+                      width: 33,
+                      height: 33,
+                      child: SvgPicture.asset(
+                        Assets.icons.photoCamera,
+                        package: 'design_system',
+                      ),
+                    )
+                    : ClipOval(
+                      child: Image.file(
+                        _selectedPhoto!,
+                        width: 57,
+                        height: 57,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+          ),
+          SizedBox(width: UI.spacing.xs),
+          UIText.bodySmall(
+            tr.personalInfo.addPhoto,
+            color: UIColor.neutral300,
+            fontWeight: FontWeight.w500,
+          ),
+        ],
       ),
     );
   }

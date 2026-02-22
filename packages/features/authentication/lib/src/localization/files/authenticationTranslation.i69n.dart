@@ -94,6 +94,7 @@ class CommonAuthenticationTranslation implements i69n.I69nMessageBundle {
   String get continueLabel => "Continue";
   String get skip => "Skip";
   String get logout => "Logout";
+  String get goToHome => "Go to Home";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -107,6 +108,8 @@ class CommonAuthenticationTranslation implements i69n.I69nMessageBundle {
         return skip;
       case 'logout':
         return logout;
+      case 'goToHome':
+        return goToHome;
       default:
         return key;
     }
@@ -155,7 +158,7 @@ class VerificationAuthenticationTranslation implements i69n.I69nMessageBundle {
   String get resendCode => "Resend Code";
   String get resend => "resend";
   String get codeSent => "Code sent successfully";
-  String get newUserVerified => "Verification successful";
+  String get newUserVerified => "Verification Successful";
   String get returningUserVerified => "Welcome back! We're logging you in...";
   Object operator [](String key) {
     var index = key.indexOf('.');
@@ -196,12 +199,18 @@ class PersonalInfoAuthenticationTranslation implements i69n.I69nMessageBundle {
   String get personalPhoto => "Personal Photo";
   String get addPhoto => "Add Photo";
   String get fullName => "Full Name";
-  String get userNamePlaceholder => "USER NAME";
-  String get emailPlaceholder => "user name @ gmail.com";
+  String get fullNameRequired => "Full name is required";
+  String get email => "user name @ gmail.com";
+  String get emailPlaceholder => "Enter your email address";
+  String get emailRequired => "Email is required";
+  String get emailInvalid => "Please enter a valid email";
   String get phonePlaceholder => "Ex : +971 50 123 4567";
+  String get phoneRequired => "Phone number is required";
+  String get phoneInvalid => "Phone number must be 10 digits";
   String get country => "Country";
   String get countryPlaceholder => "User Country";
-  String get username => "Username";
+  String get countryRequired => "Country is required";
+  String get username => "USER NAME";
   String get usernamePlaceholder => "Enter your username";
   String get usernameRequired => "Username is required";
   String get firstName => "First Name";
@@ -234,16 +243,28 @@ class PersonalInfoAuthenticationTranslation implements i69n.I69nMessageBundle {
         return addPhoto;
       case 'fullName':
         return fullName;
-      case 'userNamePlaceholder':
-        return userNamePlaceholder;
+      case 'fullNameRequired':
+        return fullNameRequired;
+      case 'email':
+        return email;
       case 'emailPlaceholder':
         return emailPlaceholder;
+      case 'emailRequired':
+        return emailRequired;
+      case 'emailInvalid':
+        return emailInvalid;
       case 'phonePlaceholder':
         return phonePlaceholder;
+      case 'phoneRequired':
+        return phoneRequired;
+      case 'phoneInvalid':
+        return phoneInvalid;
       case 'country':
         return country;
       case 'countryPlaceholder':
         return countryPlaceholder;
+      case 'countryRequired':
+        return countryRequired;
       case 'username':
         return username;
       case 'usernamePlaceholder':

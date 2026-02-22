@@ -96,6 +96,7 @@ class CommonAuthenticationTranslation_ar
   String get continueLabel => "متابعة";
   String get skip => "تخطي";
   String get logout => "تسجيل الخروج";
+  String get goToHome => "انتقل إلى الصفحة الرئيسية";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -109,6 +110,8 @@ class CommonAuthenticationTranslation_ar
         return skip;
       case 'logout':
         return logout;
+      case 'goToHome':
+        return goToHome;
       default:
         return super[key];
     }
@@ -199,11 +202,18 @@ class PersonalInfoAuthenticationTranslation_ar
   String get personalPhoto => "الصورة الشخصية";
   String get addPhoto => "إضافة صورة";
   String get fullName => "الاسم الكامل";
-  String get userNamePlaceholder => "اسم المستخدم";
-  String get emailPlaceholder => "user name @ gmail.com";
-  String get phonePlaceholder => "+971 50 123 4567";
+  String get fullNameRequired => "الاسم الكامل مطلوب";
+  String get email => "user name @ gmail.com";
+  String get emailPlaceholder => "أدخل عنوان البريد الإلكتروني";
+  String get emailRequired => "البريد الإلكتروني مطلوب";
+  String get emailInvalid => "الرجاء إدخال بريد إلكتروني صحيح";
+  String get phonePlaceholder => "Ex : +971 50 123 4567";
+  String get phoneRequired => "رقم الهاتف مطلوب";
+  String get phoneInvalid => "رقم الهاتف يجب أن يتكون من 10 أرقام";
   String get country => "الدولة";
   String get countryPlaceholder => "دولة المستخدم";
+  String get countryRequired => "الدولة مطلوبة";
+  String get userName => "اسم المستخدم";
   String get usernamePlaceholder => "أدخل اسم المستخدم";
   String get usernameRequired => "اسم المستخدم مطلوب";
   String get firstName => "الاسم الأول";
@@ -236,16 +246,30 @@ class PersonalInfoAuthenticationTranslation_ar
         return addPhoto;
       case 'fullName':
         return fullName;
-      case 'userNamePlaceholder':
-        return userNamePlaceholder;
+      case 'fullNameRequired':
+        return fullNameRequired;
+      case 'email':
+        return email;
       case 'emailPlaceholder':
         return emailPlaceholder;
+      case 'emailRequired':
+        return emailRequired;
+      case 'emailInvalid':
+        return emailInvalid;
       case 'phonePlaceholder':
         return phonePlaceholder;
+      case 'phoneRequired':
+        return phoneRequired;
+      case 'phoneInvalid':
+        return phoneInvalid;
       case 'country':
         return country;
       case 'countryPlaceholder':
         return countryPlaceholder;
+      case 'countryRequired':
+        return countryRequired;
+      case 'userName':
+        return userName;
       case 'usernamePlaceholder':
         return usernamePlaceholder;
       case 'usernameRequired':
