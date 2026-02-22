@@ -19,6 +19,10 @@ class AuthInternalRouter {
     context.go(AuthenticationPaths.login);
   }
 
+  void toSignup() {
+    context.push(AuthenticationPaths.signup);
+  }
+
   void toSelectRole() {
     context.go(AuthenticationPaths.selectRole);
   }

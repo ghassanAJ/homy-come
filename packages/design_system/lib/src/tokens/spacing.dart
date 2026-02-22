@@ -32,6 +32,11 @@ class UISpacing {
   /// Usage: Major section dividers
   double get xl => 32;
 
+  /// Extra large-plus spacing: 40px
+  ///
+  /// Usage: Between section spacing and page-level spacing
+  double get xxl2 => 40;
+
   /// Extra extra large spacing: 48px
   ///
   /// Usage: Page-level spacing

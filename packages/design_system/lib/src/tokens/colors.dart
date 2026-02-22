@@ -12,6 +12,7 @@ class UIColor extends Color {
   static const UIColor babyPink = UIColor._(0xFFFAB4F0);
   static const UIColor balck = UIColor._(0xFF282828);
   static const UIColor grey = UIColor._(0xff767676);
+  static const UIColor softgrey = UIColor._(0xFFECECEC);
   static const UIColor primaryDark = UIColor._(0xFF2B2148);
   static const UIColor secondary = UIColor._(0xFFE3DAFF);
   static const UIColor tertiary = UIColor._(0xFF6ADBDA);
@@ -27,8 +28,10 @@ class UIColor extends Color {
   // static const UIColor neutral100 = UIColor._(0xFFFFFFFF);
 
   static const UIColor neutral200 = UIColor._(0xFFC4C4C4);
+  static const UIColor neutral300 = UIColor._(0xFFA4A4A4);
   static const UIColor neutral400 = UIColor._(0xFFA5A2AF);
   static const UIColor neutral500 = UIColor._(0xFF5F5972);
+  static const UIColor neutral600 = UIColor._(0xFF6F7485);
 
   // Background colors
   static const UIColor background = white;
@@ -43,11 +46,11 @@ class UIColor extends Color {
 
   // Text colors
   static const UIColor textPrimary = primaryDark;
-  static const UIColor textSecondary = neutral500;
-  static const UIColor textPlaceholder = neutral400;
+  static const UIColor textSecondary = neutral600;
+  static const UIColor textPlaceholder = neutral300;
 
   // Border colors
-  static const UIColor border = neutral200;
+  static const UIColor border = softgrey;
   static const UIColor borderFocused = primary;
   static const UIColor borderError = error;
 
@@ -64,6 +67,8 @@ class UIColor extends Color {
 
   // black
   static const UIColor black = UIColor._(0xFF000000);
+
+  static const UIColor successBright = UIColor._(0xFF0FCC5D);
 }
 
 class UIPieChartColors {

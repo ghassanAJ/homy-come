@@ -3,10 +3,16 @@ import 'package:go_router/go_router.dart';
 import 'package:user/navigation/route.dart';
 
 class AppRouterGuard {
+  static bool _isOtpPath(String path) =>
+      path == AuthenticationPaths.otpVerification ||
+      path.endsWith(AuthenticationPaths.otpVerification) ||
+      path.contains('${AuthenticationPaths.otpVerification}/');
+
   static final List<String> authPaths = [
     AuthenticationPaths.onboarding,
     AuthenticationPaths.splash,
     AuthenticationPaths.login,
+    AuthenticationPaths.signup,
     AuthenticationPaths.selectRole,
     AuthenticationPaths.authEntry,
     AuthenticationPaths.otpVerification,
@@ -28,6 +34,11 @@ class AppRouterGuard {
     }
 
     if (appState.isAuthenticated && appState.user != null) {
+      // Allow OTP screen to display success state and let user continue manually.
+      if (_isOtpPath(currentPath)) {
+        return null;
+      }
+
       // Check if profile is complete before allowing access to authenticated routes
       if (!appState.user!.hasCompletedProfile &&
           currentPath != AuthenticationPaths.completeProfile) {
@@ -67,6 +78,10 @@ class AppRouterGuard {
     AppState appState,
   ) {
     final user = appState.user;
+
+    if (_isOtpPath(currentPath)) {
+      return null;
+    }
 
     // Redirect completed profiles from auth screens to dashboard
     if (authPaths.contains(currentPath)) {

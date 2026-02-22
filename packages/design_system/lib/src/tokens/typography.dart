@@ -24,7 +24,7 @@ class UITypography {
   /// Usage: Page titles, main headings
   TextStyle get h1 => const TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 30,
+    fontSize: 32,
     fontWeight: FontWeight.w700,
     height: 1.25,
     letterSpacing: 0,
@@ -89,7 +89,7 @@ class UITypography {
 
   /// Body Small - Regular
   ///
-  /// Weight: 500 (Regular)
+  /// Weight: 400 (Regular)
   /// Size: 14px
   /// Line height: 20px (1.43)
   ///
@@ -97,7 +97,7 @@ class UITypography {
   TextStyle get bodySmall => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 14,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
     height: 1.43,
     letterSpacing: 0,
     overflow: TextOverflow.ellipsis,
@@ -262,7 +262,9 @@ class UITypography {
   // ============================================================================
 
   /// Alias for field labels (same as bodySmall)
-  TextStyle get fieldLabel => bodySmall;
+  TextStyle get fieldLabel => bodySmallBold.fontWeight == FontWeight.w600
+      ? bodySmallBold
+      : bodySmall.copyWith(fontWeight: FontWeight.w600);
 }
 
 class UITextScale {
