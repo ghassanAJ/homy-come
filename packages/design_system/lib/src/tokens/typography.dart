@@ -77,6 +77,7 @@ class UITypography {
     fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0,
+    decoration: TextDecoration.none
   );
 
   TextStyle get bodyLarge => const TextStyle(

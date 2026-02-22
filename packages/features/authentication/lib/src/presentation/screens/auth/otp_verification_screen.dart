@@ -4,7 +4,6 @@ import 'package:design_system/design_system.dart';
 import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:util/util.dart';
 
@@ -35,7 +34,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   late final ResendTimerController _resendTimer;
   late final TextEditingController _otpController;
   bool _isOtpValid = false;
-  bool _isSuccessSheetVisible = false;
+  bool _isSuccessDialogVisible = false;
 
   @override
   void initState() {
@@ -100,73 +99,6 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
     context.read<AuthUserBloc>().add(CompleteOtpAuthentication());
   }
 
-  Future<void> _showSuccessBottomSheet(AuthenticationTranslation tr) async {
-    if (!mounted || _isSuccessSheetVisible) return;
-    _isSuccessSheetVisible = true;
-
-    await showModalBottomSheet<void>(
-      context: context,
-      isDismissible: false,
-      enableDrag: false,
-      backgroundColor: Colors.transparent,
-      barrierColor: UIColor.black.withValues(alpha: 0.35),
-      builder:
-          (_) => SafeArea(
-            child: Padding(
-              padding: EdgeInsets.all(UI.spacing.md),
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(UI.spacing.xl),
-                decoration: BoxDecoration(
-                  color: UIColor.white,
-                  borderRadius: BorderRadius.circular(UI.radius.lg),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 99,
-                      height: 99,
-                      decoration: const BoxDecoration(
-                        color: UIColor.softGreen,
-                        shape: BoxShape.circle,
-                      ),
-                      alignment: Alignment.center,
-                      child: SizedBox(
-                        width: 64,
-                        height: 64,
-                        child: SvgPicture.asset(
-                          Assets.icons.successful,
-                          package: 'design_system',
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: UI.spacing.lg),
-                    UIText.bodyMedium(
-                      tr.verification.newUserVerified,
-                      textAlign: TextAlign.center,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    SizedBox(height: UI.spacing.xl),
-                    UIButton.primary(
-                      label: tr.common.continueLabel,
-                      expanded: true,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                        _handleGoToHome();
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-    );
-
-    _isSuccessSheetVisible = false;
-  }
-
   @override
   Widget build(BuildContext context) {
     final tr = context.loc<AuthenticationTranslation>();
@@ -184,7 +116,19 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
         }
         if (state is AuthUserStateAuthenticated &&
             state.context == AuthenticationContext.otpVerification) {
-          _showSuccessBottomSheet(tr);
+          if (_isSuccessDialogVisible || !mounted) return;
+          _isSuccessDialogVisible = true;
+          DialogsManager.showSuccessDialog(
+            context: context,
+            title: tr.verification.newUserVerified,
+            buttonLabel: tr.common.goToHome,
+            onPressed: () {
+              Navigator.of(context).pop();
+              _handleGoToHome();
+            },
+          ).whenComplete(() {
+            _isSuccessDialogVisible = false;
+          });
         }
       },
       child: BlocBuilder<AuthUserBloc, AuthUserState>(
@@ -199,6 +143,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
           final hasError =
               state is AuthUserStateError &&
               state.stateType == AuthUserErrorStateType.verifyOTP;
+          final otpErrorMessage =
+              hasError ? (state as AuthUserStateError).error.message : null;
 
           return Stack(
             children: [
@@ -250,41 +196,11 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                               SizedBox(height: UI.spacing.sm),
                               Center(child: _buildVerificationDescription(tr)),
                               SizedBox(height: 70),
-                              Container(
-                                width: double.infinity,
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: UI.spacing.md,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: UIColor.turshry,
-                                  borderRadius: BorderRadius.circular(
-                                    UI.radius.sm,
-                                  ),
-                                  border:
-                                      hasError
-                                          ? Border.all(
-                                            color: UIColor.borderError,
-                                          )
-                                          : null,
-                                ),
-                                child: TextField(
-                                  controller: _otpController,
-                                  keyboardType: TextInputType.number,
-                                  textAlign: TextAlign.center,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                    LengthLimitingTextInputFormatter(
-                                      AuthenticationConfig.otpLength,
-                                    ),
-                                  ],
-                                  decoration: InputDecoration(
-                                    hintText:
-                                        tr.verification.enterCodePlaceholder,
-                                    border: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                    enabledBorder: InputBorder.none,
-                                  ),
-                                ),
+                              PinInput(
+                                controller: _otpController,
+                                length: AuthenticationConfig.otpLength,
+                                hasError: hasError,
+                                errorText: otpErrorMessage,
                               ),
                             ],
                           ),
@@ -323,6 +239,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                 '${tr.verification.resendCode} in ${_resendTimer.remainingSeconds} sec',
                                 color: UIColor.textPlaceholder,
                                 textAlign: TextAlign.center,
+                                fontWeight: FontWeight.w500,
                               ),
                           ],
                         ),
