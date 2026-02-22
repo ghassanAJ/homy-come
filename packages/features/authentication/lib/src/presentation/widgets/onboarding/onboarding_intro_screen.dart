@@ -1,9 +1,21 @@
 import 'package:authentication/authentication.dart';
+import 'package:authentication/src/presentation/widgets/common/onboarding_bubble.dart';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/gen/assets.gen.dart';
 import 'package:util/util.dart';
 
 class OnboardingIntroPage extends StatelessWidget {
+  static const double _contentTopPadding = 130;
+  static const double _heroCircleSize = 246;
+  static const double _rightBubbleOffset = 18;
+
+  static const List<OnboardingBubbleSpec> _decorativeBubbles = [
+    OnboardingBubbleSpec(top: -31, right: -26, size: _heroCircleSize),
+    OnboardingBubbleSpec(top: 230, left: 12),
+    OnboardingBubbleSpec(bottom: 270, left: 12),
+    OnboardingBubbleSpec(bottom: 120, right: _rightBubbleOffset),
+  ];
+
   final VoidCallback onGetStarted;
 
   const OnboardingIntroPage({super.key, required this.onGetStarted});
@@ -11,62 +23,20 @@ class OnboardingIntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tr = context.loc<AuthenticationTranslation>();
+    final horizontalPadding = UI.spacing.lg;
+    final bottomPadding = UI.spacing.xl;
+    final subtitleSpacing = UI.spacing.md + UI.spacing.xxs;
+    final imageSpacing = UI.spacing.lg;
+
     return Stack(
       children: [
-        Positioned(
-          top: -31,
-          right: -26,
-          child: Container(
-            width: 246,
-            height: 246,
-            decoration: const BoxDecoration(
-              color: UIColor.softGreen,
-              shape: BoxShape.circle,
-            ),
-          ),
-        ),
-        Positioned(
-          top: 178,
-          left: 12,
-          child: Container(
-            width: 16,
-            height: 16,
-            decoration: const BoxDecoration(
-              color: UIColor.softGreen,
-              shape: BoxShape.circle,
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 170,
-          left: 12,
-          child: Container(
-            width: 16,
-            height: 16,
-            decoration: const BoxDecoration(
-              color: UIColor.softGreen,
-              shape: BoxShape.circle,
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 120,
-          right: 18,
-          child: Container(
-            width: 16,
-            height: 16,
-            decoration: const BoxDecoration(
-              color: UIColor.softGreen,
-              shape: BoxShape.circle,
-            ),
-          ),
-        ),
+        ..._decorativeBubbles.map((bubble) => OnboardingBubble(spec: bubble)),
         Padding(
           padding: EdgeInsets.fromLTRB(
-            UI.spacing.lg,
-            130,
-            UI.spacing.lg,
-            UI.spacing.xl,
+            horizontalPadding,
+            _contentTopPadding,
+            horizontalPadding,
+            bottomPadding,
           ),
           child: Column(
             children: [
@@ -75,15 +45,14 @@ class OnboardingIntroPage extends StatelessWidget {
                 textAlign: TextAlign.center,
                 color: UIColor.balck,
               ),
-
-              const SizedBox(height: 20),
+              SizedBox(height: subtitleSpacing),
               UIText.bodySmall(
                 tr.onboarding.introSubtitle,
                 textAlign: TextAlign.center,
                 color: UIColor.balck,
                 fontWeight: FontWeight.w500,
               ),
-              SizedBox(height: UI.spacing.lg),
+              SizedBox(height: imageSpacing),
               Assets.images.onboarding.image(
                 package: 'design_system',
                 fit: BoxFit.contain,

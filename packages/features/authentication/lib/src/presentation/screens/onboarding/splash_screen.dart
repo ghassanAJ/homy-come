@@ -1,3 +1,4 @@
+import 'package:authentication/src/presentation/widgets/common/onboarding_bubble.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,9 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final smallBubbleSize = UI.spacing.sm;
+    final largeBubbleSize = UI.spacing.xl + UI.spacing.sm;
+
     // Splash should cover the whole screen safely (notch/status bar),
     // without changing the page content (same gradient + same dots).
     return Scaffold(
@@ -24,48 +28,35 @@ class SplashScreen extends StatelessWidget {
                 ),
               ),
             ),
-              
-            const Positioned(
-              top: 40,
-              right: -18,
-              child: _SplashDot(size: 44),
+            OnboardingBubble(
+              spec: OnboardingBubbleSpec(
+                top: 40,
+                right: -18,
+                size: largeBubbleSize,
+              ),
             ),
-            const Positioned(
+            Positioned(
               top: 155,
               left: 0,
               right: 0,
-              child: Center(child: _SplashDot(size: 12)),
+              child: Center(child: OnboardingBubbleDot(size: smallBubbleSize)),
             ),
-            const Positioned(
-              bottom: 170,
-              left: -2,
-              child: _SplashDot(size: 12),
+            OnboardingBubble(
+              spec: OnboardingBubbleSpec(
+                bottom: 170,
+                left: -2,
+                size: smallBubbleSize,
+              ),
             ),
-            const Positioned(
-              bottom: 104,
-              right: 12,
-              child: _SplashDot(size: 12),
+            OnboardingBubble(
+              spec: OnboardingBubbleSpec(
+                bottom: 104,
+                right: 12,
+                size: smallBubbleSize,
+              ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _SplashDot extends StatelessWidget {
-  final double size;
-
-  const _SplashDot({required this.size});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: const BoxDecoration(
-        color: UIColor.softGreen,
-        shape: BoxShape.circle,
       ),
     );
   }
