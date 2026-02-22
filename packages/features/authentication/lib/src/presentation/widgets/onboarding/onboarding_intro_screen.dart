@@ -62,7 +62,12 @@ class OnboardingIntroPage extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.fromLTRB(UI.spacing.lg, 130, UI.spacing.lg, UI.spacing.xl),
+          padding: EdgeInsets.fromLTRB(
+            UI.spacing.lg,
+            130,
+            UI.spacing.lg,
+            UI.spacing.xl,
+          ),
           child: Column(
             children: [
               UIText.h1(
@@ -76,6 +81,7 @@ class OnboardingIntroPage extends StatelessWidget {
                 tr.onboarding.introSubtitle,
                 textAlign: TextAlign.center,
                 color: UIColor.balck,
+                fontWeight: FontWeight.w500,
               ),
               SizedBox(height: UI.spacing.lg),
               Assets.images.onboarding.image(

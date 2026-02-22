@@ -1,8 +1,11 @@
 import 'package:authentication/authentication.dart';
 import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:design_system/design_system.dart';
+import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:util/util.dart';
 
@@ -84,64 +87,77 @@ class _LoginScreenState extends State<LoginScreen> {
           backgroundColor: UIColor.background,
           body: SafeArea(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
                   child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.fromLTRB(
+                      UI.spacing.xxl2,
+                      150,
+                      UI.spacing.xxl2,
+                      UI.spacing.md,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // const DefaultUIAppBarActions().backButton(
-                        //   context,
-                        //   onPressed: () => context.pop(),
-                        // ),
-                        // SizedBox(height: UI.spacing.md),
                         _buildHeader(tr),
-                        SizedBox(height: UI.spacing.xl),
-                        FormBuilder(
-                          key: _formKey,
-                          onChanged: _onFormChanged,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              UIText.bodyMedium(
-                                tr.login.phoneLabel,
-                                color: UIColor.textPrimary,
-                              ),
-                              SizedBox(height: UI.spacing.xs),
-                              UIFormBuilderPhoneField(
-                                name: AuthFormFieldNames.phone,
-                                placeholder: '50 512 3412',
-                                defaultSelectedCountryIsoCode: 'PK',
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(),
-                                  FormBuilderValidators.phoneNumber(),
-                                ]),
-                              ),
-                            ],
+                        SizedBox(height: UI.spacing.xxl),
+                        Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: FormBuilder(
+                            key: _formKey,
+                            onChanged: _onFormChanged,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                UIText.bodySmall(
+                                  tr.login.phoneLabel,
+                                  color: UIColor.textSecondary,
+                                ),
+                                SizedBox(height: UI.spacing.md),
+                                UIFormBuilderPhoneField(
+                                  name: AuthFormFieldNames.phone,
+                                  placeholder: '321456987',
+                                  defaultSelectedCountryIsoCode: 'AE',
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  validator: FormBuilderValidators.compose([
+                                    FormBuilderValidators.required(),
+                                    FormBuilderValidators.phoneNumber(),
+                                  ]),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        SizedBox(height: UI.spacing.xl),
-                        ValueListenableBuilder<bool>(
-                          valueListenable: _isFormValidNotifier,
-                          builder: (context, isValid, _) {
-                            return UIButton.primary(
-                              label: tr.login.verifyButton,
-                              onPressed: isValid ? _sendOTP : null,
-                              expanded: true,
-                            );
-                          },
-                        ),
-                        SizedBox(height: UI.spacing.xl),
-                        _buildSignUpLink(tr),
-                        SizedBox(height: UI.spacing.lg),
-                        _buildJoinAsGuestLink(tr),
                       ],
                     ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    UI.spacing.xl,
+                    UI.spacing.md,
+                    UI.spacing.xl,
+                    UI.spacing.lg,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ValueListenableBuilder<bool>(
+                        valueListenable: _isFormValidNotifier,
+                        builder: (context, isValid, _) {
+                          return UIButton.primary(
+                            label: tr.login.verifyButton,
+                            onPressed: isValid ? _sendOTP : null,
+                            expanded: true,
+                          );
+                        },
+                      ),
+                      SizedBox(height: UI.spacing.lg),
+                      _buildSignUpLink(tr),
+                      SizedBox(height: UI.spacing.xl),
+                      _buildJoinAsGuestLink(tr),
+                    ],
                   ),
                 ),
               ],
@@ -154,33 +170,48 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildHeader(AuthenticationTranslation tr) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          width: 56,
-          height: 56,
-          decoration: BoxDecoration(
-            color: UIColor.softGreen,
-            shape: BoxShape.circle,
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: 90,
+            height: 90,
+            decoration: const BoxDecoration(
+              color: UIColor.softGreen,
+              shape: BoxShape.circle,
+            ),
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: 45,
+              height: 45,
+              child: SvgPicture.asset(
+                Assets.icons.phone,
+                package: 'design_system',
+              ),
+            ),
           ),
-          alignment: Alignment.center,
-          child: Icon(Icons.smartphone, color: UIColor.textPrimary, size: 28),
-        ),
-        SizedBox(height: UI.spacing.lg),
-        UIText.h1(tr.login.title, textAlign: TextAlign.center),
-      ],
+          SizedBox(height: UI.spacing.lg),
+          UIText.bodyMedium(
+            tr.login.title,
+            textAlign: TextAlign.center,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildSignUpLink(AuthenticationTranslation tr) {
     return Center(
       child: GestureDetector(
-        onTap: () {
-          // TODO: Navigate to sign-up flow if different from login
-          // For now same screen; can push auth entry or sign-up screen
-        },
-        child: UIText.bodyMedium(tr.login.signUp, color: UIColor.primary),
+        onTap: () => AuthInternalRouter.of(context).toSignup(),
+        child: UIText.buttonText(
+          tr.login.signUp,
+          color: UIColor.successBright,
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }
@@ -195,16 +226,16 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
+            SvgPicture.asset(Assets.icons.logOut, package: 'design_system'),
             Text(
               tr.login.joinAsGuest,
-              style: TextStyle(
-                color: UIColor.textSecondary,
+              style: UI.text.bodySmall.copyWith(
+                color: UIColor.grey,
                 decoration: TextDecoration.underline,
-                fontSize: 14,
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(width: UI.spacing.xs),
-            Icon(Icons.arrow_forward, size: 16, color: UIColor.textSecondary),
           ],
         ),
       ),
