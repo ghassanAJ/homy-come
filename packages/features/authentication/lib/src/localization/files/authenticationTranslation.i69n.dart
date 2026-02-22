@@ -116,7 +116,7 @@ class CommonAuthenticationTranslation implements i69n.I69nMessageBundle {
 class LoginAuthenticationTranslation implements i69n.I69nMessageBundle {
   final AuthenticationTranslation _parent;
   const LoginAuthenticationTranslation(this._parent);
-  String get title => "Enter Your Phone Number for Verification";
+  String get title => "Enter Your Phone Number\nfor Verification";
   String get phoneLabel => "Phone Number";
   String get verifyButton => "Verify";
   String get signUp => "Sign up";
@@ -149,13 +149,13 @@ class VerificationAuthenticationTranslation implements i69n.I69nMessageBundle {
   const VerificationAuthenticationTranslation(this._parent);
   String get title => "Enter the Code to Continue";
   String get description =>
-      "A verification code has been sent to {userInput} via SMS.";
+      "A verification code has been sent\nto {userInput} via SMS.";
+  String get enterCodePlaceholder => "Enter Code here";
   String get didntReceive => "Didn't receive?";
   String get resendCode => "Resend Code";
   String get resend => "resend";
   String get codeSent => "Code sent successfully";
-  String get newUserVerified =>
-      "Verification successful! Let's set up your profile";
+  String get newUserVerified => "Verification successful";
   String get returningUserVerified => "Welcome back! We're logging you in...";
   Object operator [](String key) {
     var index = key.indexOf('.');
@@ -168,6 +168,8 @@ class VerificationAuthenticationTranslation implements i69n.I69nMessageBundle {
         return title;
       case 'description':
         return description;
+      case 'enterCodePlaceholder':
+        return enterCodePlaceholder;
       case 'didntReceive':
         return didntReceive;
       case 'resendCode':
@@ -190,7 +192,15 @@ class PersonalInfoAuthenticationTranslation implements i69n.I69nMessageBundle {
   final AuthenticationTranslation _parent;
   const PersonalInfoAuthenticationTranslation(this._parent);
   String get title => "Complete Your Profile";
-  String get subtitle => "Please fill in your personal information";
+  String get subtitle => "add your information to creat new account";
+  String get personalPhoto => "Personal Photo";
+  String get addPhoto => "Add Photo";
+  String get fullName => "Full Name";
+  String get userNamePlaceholder => "USER NAME";
+  String get emailPlaceholder => "user name @ gmail.com";
+  String get phonePlaceholder => "Ex : +971 50 123 4567";
+  String get country => "Country";
+  String get countryPlaceholder => "User Country";
   String get username => "Username";
   String get usernamePlaceholder => "Enter your username";
   String get usernameRequired => "Username is required";
@@ -218,6 +228,22 @@ class PersonalInfoAuthenticationTranslation implements i69n.I69nMessageBundle {
         return title;
       case 'subtitle':
         return subtitle;
+      case 'personalPhoto':
+        return personalPhoto;
+      case 'addPhoto':
+        return addPhoto;
+      case 'fullName':
+        return fullName;
+      case 'userNamePlaceholder':
+        return userNamePlaceholder;
+      case 'emailPlaceholder':
+        return emailPlaceholder;
+      case 'phonePlaceholder':
+        return phonePlaceholder;
+      case 'country':
+        return country;
+      case 'countryPlaceholder':
+        return countryPlaceholder;
       case 'username':
         return username;
       case 'usernamePlaceholder':
@@ -260,7 +286,7 @@ class AuthEntryAuthenticationTranslation implements i69n.I69nMessageBundle {
   final AuthenticationTranslation _parent;
   const AuthEntryAuthenticationTranslation(this._parent);
   String get pinLabel => "password";
-  String get loginButton => "login";
+  String get loginButton => "Log in";
   String get sendVerificationCode => "send verification code";
   String get orLoginWith => "or login with";
   String get orContinueWith => "or continue with";
@@ -306,6 +332,10 @@ class OnboardingAuthenticationTranslation implements i69n.I69nMessageBundle {
   String get finish => "Finish";
   String get skip => "skip";
   String get next => "Next";
+  String get securityVerificationTitle => "Security Verification";
+  String get securityVerificationDescription =>
+      "This is your first login from this device.\nTo ensure the security of your account,\nplease verify your identity.";
+  String get startToVerify => "Start to verify";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -337,6 +367,12 @@ class OnboardingAuthenticationTranslation implements i69n.I69nMessageBundle {
         return skip;
       case 'next':
         return next;
+      case 'securityVerificationTitle':
+        return securityVerificationTitle;
+      case 'securityVerificationDescription':
+        return securityVerificationDescription;
+      case 'startToVerify':
+        return startToVerify;
       default:
         return key;
     }

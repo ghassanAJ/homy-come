@@ -151,12 +151,13 @@ class VerificationAuthenticationTranslation_ar
   final AuthenticationTranslation_ar _parent;
   const VerificationAuthenticationTranslation_ar(this._parent) : super(_parent);
   String get title => "أدخل الرمز للمتابعة";
-  String get description => "تم إرسال رمز التحقق إلى {userInput} عبر SMS.";
+  String get description => "تم إرسال رمز التحقق\nإلى {userInput} عبر SMS.";
+  String get enterCodePlaceholder => "أدخل الرمز هنا";
   String get didntReceive => "لم تستلم؟";
   String get resendCode => "إعادة إرسال الرمز";
   String get resend => "إعادة الإرسال";
   String get codeSent => "تم إرسال الرمز بنجاح";
-  String get newUserVerified => "تم التحقق بنجاح! دعنا نجهز ملفك الشخصي";
+  String get newUserVerified => "تم التحقق بنجاح";
   String get returningUserVerified => "مرحباً بعودتك! جاري تسجيل دخولك...";
   Object operator [](String key) {
     var index = key.indexOf('.');
@@ -169,6 +170,8 @@ class VerificationAuthenticationTranslation_ar
         return title;
       case 'description':
         return description;
+      case 'enterCodePlaceholder':
+        return enterCodePlaceholder;
       case 'didntReceive':
         return didntReceive;
       case 'resendCode':
@@ -192,8 +195,15 @@ class PersonalInfoAuthenticationTranslation_ar
   final AuthenticationTranslation_ar _parent;
   const PersonalInfoAuthenticationTranslation_ar(this._parent) : super(_parent);
   String get title => "أكمل ملفك الشخصي";
-  String get subtitle => "الرجاء إدخال معلوماتك الشخصية";
-  String get username => "اسم المستخدم";
+  String get subtitle => "أضف معلوماتك لإنشاء حساب جديد";
+  String get personalPhoto => "الصورة الشخصية";
+  String get addPhoto => "إضافة صورة";
+  String get fullName => "الاسم الكامل";
+  String get userNamePlaceholder => "اسم المستخدم";
+  String get emailPlaceholder => "user name @ gmail.com";
+  String get phonePlaceholder => "+971 50 123 4567";
+  String get country => "الدولة";
+  String get countryPlaceholder => "دولة المستخدم";
   String get usernamePlaceholder => "أدخل اسم المستخدم";
   String get usernameRequired => "اسم المستخدم مطلوب";
   String get firstName => "الاسم الأول";
@@ -220,8 +230,22 @@ class PersonalInfoAuthenticationTranslation_ar
         return title;
       case 'subtitle':
         return subtitle;
-      case 'username':
-        return username;
+      case 'personalPhoto':
+        return personalPhoto;
+      case 'addPhoto':
+        return addPhoto;
+      case 'fullName':
+        return fullName;
+      case 'userNamePlaceholder':
+        return userNamePlaceholder;
+      case 'emailPlaceholder':
+        return emailPlaceholder;
+      case 'phonePlaceholder':
+        return phonePlaceholder;
+      case 'country':
+        return country;
+      case 'countryPlaceholder':
+        return countryPlaceholder;
       case 'usernamePlaceholder':
         return usernamePlaceholder;
       case 'usernameRequired':
@@ -310,6 +334,10 @@ class OnboardingAuthenticationTranslation_ar
   String get finish => "إنهاء";
   String get skip => "تخطي";
   String get next => "متابعة";
+  String get securityVerificationTitle => "التحقق الأمني";
+  String get securityVerificationDescription =>
+      "هذا أول تسجيل دخول لك من هذا الجهاز.\nلضمان أمان حسابك،\nيرجى التحقق من هويتك.";
+  String get startToVerify => "ابدأ التحقق";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -341,6 +369,12 @@ class OnboardingAuthenticationTranslation_ar
         return skip;
       case 'next':
         return next;
+      case 'securityVerificationTitle':
+        return securityVerificationTitle;
+      case 'securityVerificationDescription':
+        return securityVerificationDescription;
+      case 'startToVerify':
+        return startToVerify;
       default:
         return super[key];
     }

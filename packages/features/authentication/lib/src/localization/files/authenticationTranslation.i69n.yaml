@@ -6,7 +6,7 @@ common:
 
 # Login Screen
 login:
-  title: Enter Your Phone Number for Verification
+  title: "Enter Your Phone Number\nfor Verification"
   phoneLabel: Phone Number
   verifyButton: Verify
   signUp: Sign up
@@ -15,18 +15,27 @@ login:
 # Verification Screen
 verification:
   title: Enter the Code to Continue
-  description: A verification code has been sent to {userInput} via SMS.
+  description: "A verification code has been sent\nto {userInput} via SMS."
+  enterCodePlaceholder: Enter Code here
   didntReceive: Didn't receive?
   resendCode: Resend Code
   resend: resend
   codeSent: Code sent successfully
-  newUserVerified: "Verification successful! Let's set up your profile"
+  newUserVerified: "Verification successful"
   returningUserVerified: "Welcome back! We're logging you in..."
 
 # Personal Information / Complete Profile Screen
 personalInfo:
   title: Complete Your Profile
-  subtitle: Please fill in your personal information
+  subtitle: add your information to creat new account
+  personalPhoto: Personal Photo
+  addPhoto: Add Photo
+  fullName: Full Name
+  userNamePlaceholder: USER NAME
+  emailPlaceholder: user name @ gmail.com
+  phonePlaceholder: "Ex : +971 50 123 4567"
+  country: Country
+  countryPlaceholder: User Country
   username: Username
   usernamePlaceholder: Enter your username
   usernameRequired: Username is required
@@ -47,7 +56,7 @@ personalInfo:
 # Auth Entry Screen
 authEntry:
   pinLabel: password
-  loginButton: login
+  loginButton: Log in
   sendVerificationCode: send verification code
   orLoginWith: or login with
   orContinueWith: or continue with
@@ -66,6 +75,9 @@ onboarding:
   finish: Finish
   skip: skip
   next: Next
+  securityVerificationTitle: Security Verification
+  securityVerificationDescription: "This is your first login from this device.\nTo ensure the security of your account,\nplease verify your identity."
+  startToVerify: Start to verify
 
 # User Role Selection
 userRole:

@@ -15,19 +15,27 @@ login:
 # Verification Screen
 verification:
   title: أدخل الرمز للمتابعة
-  description: تم إرسال رمز التحقق إلى {userInput} عبر SMS.
+  description: تم إرسال رمز التحقق\nإلى {userInput} عبر SMS.
+  enterCodePlaceholder: أدخل الرمز هنا
   didntReceive: لم تستلم؟
   resendCode: إعادة إرسال الرمز
   resend: إعادة الإرسال
   codeSent: تم إرسال الرمز بنجاح
-  newUserVerified: "تم التحقق بنجاح! دعنا نجهز ملفك الشخصي"
+  newUserVerified: "تم التحقق بنجاح"
   returningUserVerified: "مرحباً بعودتك! جاري تسجيل دخولك..."
 
 # Personal Information / Complete Profile Screen
 personalInfo:
   title: أكمل ملفك الشخصي
-  subtitle: الرجاء إدخال معلوماتك الشخصية
-  username: اسم المستخدم
+  subtitle: أضف معلوماتك لإنشاء حساب جديد
+  personalPhoto: الصورة الشخصية
+  addPhoto: إضافة صورة
+  fullName: الاسم الكامل
+  userNamePlaceholder: اسم المستخدم
+  emailPlaceholder: user name @ gmail.com
+  phonePlaceholder: +971 50 123 4567
+  country: الدولة
+  countryPlaceholder: دولة المستخدم
   usernamePlaceholder: أدخل اسم المستخدم
   usernameRequired: اسم المستخدم مطلوب
   firstName: الاسم الأول
@@ -66,6 +74,9 @@ onboarding:
   finish: إنهاء
   skip: تخطي
   next: متابعة
+  securityVerificationTitle: التحقق الأمني
+  securityVerificationDescription: "هذا أول تسجيل دخول لك من هذا الجهاز.\nلضمان أمان حسابك،\nيرجى التحقق من هويتك."
+  startToVerify: ابدأ التحقق
 
 # User Role Selection
 userRole:

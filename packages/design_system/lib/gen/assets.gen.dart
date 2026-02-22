@@ -26,11 +26,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/calendar.svg
   String get calendar => 'assets/icons/calendar.svg';
 
+  /// File path: assets/icons/call.svg
+  String get call => 'assets/icons/call.svg';
+
   /// File path: assets/icons/camera.svg
   String get camera => 'assets/icons/camera.svg';
 
   /// File path: assets/icons/close.svg
   String get close => 'assets/icons/close.svg';
+
+  /// File path: assets/icons/email.svg
+  String get email => 'assets/icons/email.svg';
 
   /// File path: assets/icons/gallery.svg
   String get gallery => 'assets/icons/gallery.svg';
@@ -38,8 +44,32 @@ class $AssetsIconsGen {
   /// File path: assets/icons/google.svg
   String get google => 'assets/icons/google.svg';
 
+  /// File path: assets/icons/location.svg
+  String get location => 'assets/icons/location.svg';
+
+  /// File path: assets/icons/logOut.svg
+  String get logOut => 'assets/icons/logOut.svg';
+
+  /// File path: assets/icons/message.svg
+  String get message => 'assets/icons/message.svg';
+
+  /// File path: assets/icons/phone.svg
+  String get phone => 'assets/icons/phone.svg';
+
+  /// File path: assets/icons/photoCamera.svg
+  String get photoCamera => 'assets/icons/photoCamera.svg';
+
+  /// File path: assets/icons/smileyXEyes.svg
+  String get smileyXEyes => 'assets/icons/smileyXEyes.svg';
+
+  /// File path: assets/icons/successful.svg
+  String get successful => 'assets/icons/successful.svg';
+
   /// File path: assets/icons/trash.svg
   String get trash => 'assets/icons/trash.svg';
+
+  /// File path: assets/icons/user.svg
+  String get user => 'assets/icons/user.svg';
 
   /// File path: assets/icons/warning.svg
   String get warning => 'assets/icons/warning.svg';
@@ -50,11 +80,21 @@ class $AssetsIconsGen {
     apple,
     arrowLeft,
     calendar,
+    call,
     camera,
     close,
+    email,
     gallery,
     google,
+    location,
+    logOut,
+    message,
+    phone,
+    photoCamera,
+    smileyXEyes,
+    successful,
     trash,
+    user,
     warning,
   ];
 }

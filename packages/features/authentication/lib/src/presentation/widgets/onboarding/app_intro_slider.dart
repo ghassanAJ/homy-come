@@ -7,7 +7,9 @@ import 'package:design_system/gen/assets.gen.dart';
 import 'package:util/util.dart';
 
 class AppIntroSlider extends StatefulWidget {
-  const AppIntroSlider({super.key});
+  final VoidCallback onComplete;
+
+  const AppIntroSlider({super.key, required this.onComplete});
 
   @override
   State<AppIntroSlider> createState() => _AppIntroSliderState();
@@ -60,15 +62,15 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
     _startAutoScroll();
   }
 
-  Future<void> _onSkip(BuildContext context) async {
+  Future<void> _onSkip() async {
     _stopAutoScroll();
-    AuthInternalRouter.of(context).toLogin();
+    widget.onComplete();
   }
 
-  Future<void> _onNext(BuildContext context, int pagesLength) async {
+  Future<void> _onNext(int pagesLength) async {
     if (_currentPage >= pagesLength - 1) {
       _stopAutoScroll();
-      AuthInternalRouter.of(context).toLogin();
+      widget.onComplete();
       return;
     }
 
@@ -169,13 +171,19 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
     final isLastPage = _currentPage == pagesLength - 1;
 
     return Padding(
-      padding:  EdgeInsets.fromLTRB(UI.spacing.xxl, 0, UI.spacing.lg, UI.spacing.xl),
+      padding: EdgeInsetsDirectional.fromSTEB(
+        UI.spacing.xxl,
+        0,
+        UI.spacing.lg,
+        UI.spacing.xl,
+      ),
       child: Row(
+        textDirection: Directionality.of(context),
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => _onSkip(context),
+            onTap: _onSkip,
             child: Padding(
               padding:  EdgeInsets.symmetric(vertical: UI.spacing.sm),
               child: UIText.bodyMedium(
@@ -187,7 +195,7 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
           ),
           UIButton.primary(
             label: isLastPage ? tr.onboarding.finish : tr.onboarding.next,
-            onPressed: () => _onNext(context, pagesLength),
+            onPressed: () => _onNext(pagesLength),
           ),
         ],
       ),
