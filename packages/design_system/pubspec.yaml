@@ -38,7 +38,7 @@ flutter_gen:
     enabled: true
     outputs:
       class_name: Assets
-      package_parameter_enabled: false
+      package_parameter_enabled: true
 
 flutter:
   uses-material-design: true
@@ -70,57 +70,57 @@ flutter:
 
     - family: Montserrat
       fonts:
-        - asset: assets/fonts/cairo/Montserrat-ExtraLight.ttf
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraLight.ttf
           weight: 200
-        - asset: assets/fonts/cairo/Montserrat-Light.ttf  
+        - asset: assets/fonts/Montserrat/Montserrat-Light.ttf  
           weight: 300
-        - asset: assets/fonts/cairo/Montserrat-Regular.ttf    
+        - asset: assets/fonts/Montserrat/Montserrat-Regular.ttf    
           weight: 400
-        - asset: assets/fonts/cairo/Montserrat-SemiBold.ttf
+        - asset: assets/fonts/Montserrat/Montserrat-SemiBold.ttf
           weight: 500
-        - asset: assets/fonts/cairo/Montserrat-Bold.ttf
+        - asset: assets/fonts/Montserrat/Montserrat-Bold.ttf
           weight: 600
-        - asset: assets/fonts/cairo/Montserrat-ExtraBold.ttf
+        - asset: assets/fonts/Montserrat/Montserrat-ExtraBold.ttf
           weight: 700
-        - asset: assets/fonts/cairo/Montserrat-Black.ttf
+        - asset: assets/fonts/Montserrat/Montserrat-Black.ttf
           weight: 800
 
     - family: Roboto
       fonts:
-        - asset: assets/fonts/cairo/Roboto_Condensed-ExtraLight.ttf    
+        - asset: assets/fonts/Roboto/Roboto_Condensed-ExtraLight.ttf    
           weight: 200
-        - asset: assets/fonts/cairo/Roboto_Condensed-Light.ttf  
+        - asset: assets/fonts/Roboto/Roboto_Condensed-Light.ttf  
           weight: 300
-        - asset: assets/fonts/cairo/Roboto_Condensed-Regular.ttf
+        - asset: assets/fonts/Roboto/Roboto_Condensed-Regular.ttf
           weight: 400
-        - asset: assets/fonts/cairo/Roboto_Condensed-Medium.ttf
+        - asset: assets/fonts/Roboto/Roboto_Condensed-Medium.ttf
           weight: 500
-        - asset: assets/fonts/cairo/Roboto_Condensed-SemiBold.ttf
+        - asset: assets/fonts/Roboto/Roboto_Condensed-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/cairo/Roboto_Condensed-Bold.ttf
+        - asset: assets/fonts/Roboto/Roboto_Condensed-Bold.ttf
           weight: 700
-        - asset: assets/fonts/cairo/Roboto_Condensed-ExtraBold.ttf
+        - asset: assets/fonts/Roboto/Roboto_Condensed-ExtraBold.ttf
           weight: 800
-        - asset: assets/fonts/cairo/Roboto_Condensed-Black.ttf
+        - asset: assets/fonts/Roboto/Roboto_Condensed-Black.ttf
           weight: 900
 
     - family: DMSans
       fonts:
-        - asset: assets/fonts/cairo/DMSans-ExtraLight.ttf      
+        - asset: assets/fonts/DMSens/DMSans-ExtraLight.ttf      
           weight: 200
-        - asset: assets/fonts/cairo/DMSans-Light.ttf  
+        - asset: assets/fonts/DMSens/DMSans-Light.ttf  
           weight: 300
-        - asset: assets/fonts/cairo/DMSans-Regular.ttf
+        - asset: assets/fonts/DMSens/DMSans-Regular.ttf
           weight: 400
-        - asset: assets/fonts/cairo/DMSans-Medium.ttf
+        - asset: assets/fonts/DMSens/DMSans-Medium.ttf
           weight: 500
-        - asset: assets/fonts/cairo/DMSans-SemiBold.ttf
+        - asset: assets/fonts/DMSens/DMSans-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/cairo/DMSans-Bold.ttf
+        - asset: assets/fonts/DMSens/DMSans-Bold.ttf
           weight: 700
-        - asset: assets/fonts/cairo/DMSans-ExtraBold.ttf
+        - asset: assets/fonts/DMSens/DMSans-ExtraBold.ttf
           weight: 800
-        - asset: assets/fonts/cairo/DMSans-Black.ttf
+        - asset: assets/fonts/DMSens/DMSans-Black.ttf
           weight: 900
 
 

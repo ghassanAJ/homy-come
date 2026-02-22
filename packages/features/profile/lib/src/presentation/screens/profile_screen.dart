@@ -137,7 +137,7 @@ class CustomUIAppBarWidget extends StatelessWidget {
     return UIAppBar(
       leading: backButtonAppBar(),
       variant: UIAppBarVariant.transparent,
-      title: 'my',
+      // title: 'my',
       // backgroundColor: Colors.transparent,
       centerTitle: true,
       titleWidget: UIText.h4(tr.profile.myProfile),

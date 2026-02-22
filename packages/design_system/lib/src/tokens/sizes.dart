@@ -30,6 +30,8 @@ class UISizes {
   /// Usage: Feature icons, prominent actions
   double get iconLg => 32;
 
+
+  double get iconXl => 38;
   // ============================================================================
   // INPUT FIELD SIZES
   // ============================================================================

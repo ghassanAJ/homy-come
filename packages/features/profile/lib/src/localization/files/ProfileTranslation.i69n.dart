@@ -100,7 +100,7 @@ class OptionProfileTranslation implements i69n.I69nMessageBundle {
   final ProfileTranslation _parent;
   const OptionProfileTranslation(this._parent);
   String get help => "Help and Support";
-  String get about => "About App";
+  String get about => "About Us";
   String get contact => "Contact Us";
   String get faq => "FAQ";
   String get notification => "Notification";

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class UITypography {
   const UITypography();
 
-  static const String _fontFamily = 'DMSans';
+  static const String _fontFamily = 'DMSens';
 
   // ============================================================================
   // HEADINGS
@@ -68,14 +68,13 @@ class UITypography {
     letterSpacing: 0,
   );
 
-    TextStyle get h5 => const TextStyle(
+  TextStyle get h5 => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 14,
     fontWeight: FontWeight.w500,
     height: 1.4,
     letterSpacing: 0,
   );
-
 
   // ============================================================================
   // BODY TEXT
@@ -112,14 +111,13 @@ class UITypography {
   ///
   /// Usage: Secondary text, field labels, supporting content
   TextStyle get bodySmall => const TextStyle(
-    fontFamily: _fontFamily,
+    fontFamily: 'Montserrat',
     fontSize: 14,
     fontWeight: FontWeight.w400,
     height: 1.43,
     letterSpacing: 0,
     overflow: TextOverflow.ellipsis,
   );
-
 
   /// Body Small Bold
   ///
@@ -152,14 +150,12 @@ class UITypography {
   ///
   /// Usage: Small body text, metadata
   TextStyle get bodyXSmall => const TextStyle(
-    fontFamily: _fontFamily,
+    fontFamily: 'Montserrat',
     fontSize: 12,
     fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0,
   );
-
-
 
   TextStyle get headerBody => const TextStyle(
     fontFamily: _fontFamily,
@@ -214,6 +210,21 @@ class UITypography {
   ///
   /// Usage: Primary buttons, secondary buttons, action buttons
   TextStyle get buttonText => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    height: 1.5,
+    letterSpacing: 0,
+  );
+  TextStyle get buttonTextXSm => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    height: 1.5,
+    letterSpacing: 0,
+  );
+
+  TextStyle get buttonTextSm => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 16,
     fontWeight: FontWeight.w600,
@@ -285,7 +296,6 @@ class UITypography {
     letterSpacing: 0,
   );
 
-
   TextStyle get black512 => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 12,
@@ -294,13 +304,12 @@ class UITypography {
     letterSpacing: 0,
   );
 
-    TextStyle get black714 => const TextStyle(
+  TextStyle get black714 => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 14,
     fontWeight: FontWeight.w700,
     height: 1.33,
     letterSpacing: 0,
-
   );
   // ============================================================================
   // ALIASES (for convenience)

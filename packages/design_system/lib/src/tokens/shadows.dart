@@ -73,4 +73,13 @@ class UIShadows {
           spreadRadius: 0,
         ),
       ];
+
+
+  List<BoxShadow> get cardMd => [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 44,
+                offset: const Offset(0, 4),
+              ),
+      ];
 }

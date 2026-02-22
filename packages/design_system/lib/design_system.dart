@@ -56,3 +56,4 @@ export 'src/widgets/shared/background_app_gradient_color.dart';
 export 'src/widgets/shared/back_button_app_bar.dart';
 export 'gen/assets.gen.dart';
 export 'src/enums/packages_name.dart';
+export 'src/widgets/shared/ui_chips_bar.dart';
