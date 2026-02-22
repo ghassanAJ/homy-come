@@ -34,6 +34,7 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     final tr = context.loc<AuthenticationTranslation>();
     final personalInfo = tr.personalInfo;
+    final isKeyboardVisible = MediaQuery.viewInsetsOf(context).bottom > 0;
     return Scaffold(
       backgroundColor: UIColor.background,
       body: AuthEllipseBackground(
@@ -129,47 +130,48 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: UI.padding.authActions,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    UIButton.primary(
-                      label: tr.login.signUp,
-                      expanded: true,
-                      onPressed: _onSignupPressed,
-                    ),
-                    SizedBox(height: UI.spacing.lg),
-                    GestureDetector(
-                      onTap: () => AuthInternalRouter.of(context).toLogin(),
-                      child: UIText.bodyMedium(
-                        tr.authEntry.loginButton,
-                        color: UIColor.successBright,
-                        fontWeight: FontWeight.w700,
+              if (!isKeyboardVisible)
+                Padding(
+                  padding: UI.padding.authActions,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      UIButton.primary(
+                        label: tr.login.signUp,
+                        expanded: true,
+                        onPressed: _onSignupPressed,
                       ),
-                    ),
-                    SizedBox(height: UI.spacing.xl),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SvgPicture.asset(
-                          Assets.icons.logOut,
-                          package: 'design_system',
+                      SizedBox(height: UI.spacing.lg),
+                      GestureDetector(
+                        onTap: () => AuthInternalRouter.of(context).toLogin(),
+                        child: UIText.bodyMedium(
+                          tr.authEntry.loginButton,
+                          color: UIColor.successBright,
+                          fontWeight: FontWeight.w700,
                         ),
-                        Text(
-                          tr.login.joinAsGuest,
-                          style: UI.text.bodySmall.copyWith(
-                            color: UIColor.grey,
-                            decoration: TextDecoration.underline,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
+                      ),
+                      SizedBox(height: UI.spacing.xl),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SvgPicture.asset(
+                            Assets.icons.logOut,
+                            package: 'design_system',
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          Text(
+                            tr.login.joinAsGuest,
+                            style: UI.text.bodySmall.copyWith(
+                              color: UIColor.grey,
+                              decoration: TextDecoration.underline,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
             ],
           ),
         ),
