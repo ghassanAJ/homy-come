@@ -26,29 +26,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     });
   }
 
+  Widget _buildSliderContent() {
+    switch (_step) {
+      case 0:
+        return OnboardingIntroPage(onGetStarted: _openSlider);
+      case 1:
+        return AuthEllipseBackground(
+          child: AppIntroSlider(onComplete: _openSecurityVerification),
+        );
+      case 2:
+      default:
+        return AuthEllipseBackground(
+          showBottomRightEllipse: true,
+          child: SecurityVerificationScreen(
+            onStartVerify: () => AuthInternalRouter.of(context).toLogin(),
+          ),
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    late final Widget content;
-    if (_step == 0) {
-      content = OnboardingIntroPage(onGetStarted: _openSlider);
-    } else if (_step == 1) {
-      content = AuthEllipseBackground(
-        child: AppIntroSlider(onComplete: _openSecurityVerification),
-      );
-    } else {
-      content = AuthEllipseBackground(
-        showBottomRightEllipse: true,
-        child: SecurityVerificationScreen(
-          onStartVerify: () => AuthInternalRouter.of(context).toLogin(),
-        ),
-      );
-    }
-
     return Scaffold(
       backgroundColor: UIColor.background,
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 280),
-        child: content,
+        child: _buildSliderContent(),
       ),
     );
   }
