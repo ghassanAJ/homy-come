@@ -31,21 +31,17 @@ class OTPResendSection extends StatelessWidget {
         if (resendTimer.canResend)
           GestureDetector(
             onTap: onResend,
-            child: Text(
+            child: UIText.bodySmall(
               tr.verification.resendCode,
-              style: UI.text.bodySmall.copyWith(
-                color: UIColor.success,
-                fontWeight: FontWeight.w600,
-              ),
+              color: UIColor.success,
+              fontWeight: FontWeight.w600,
             ),
           )
         else
-          Text(
+          UIText.bodySmall(
             '${tr.verification.resend} ${resendTimer.formattedTime}',
-            style: UI.text.bodySmall.copyWith(
-              color: UIColor.textPlaceholder,
-              fontWeight: FontWeight.w500,
-            ),
+            color: UIColor.textPlaceholder,
+            fontWeight: FontWeight.w500,
           ),
       ],
     );

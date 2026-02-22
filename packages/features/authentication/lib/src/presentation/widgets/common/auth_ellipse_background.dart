@@ -1,3 +1,4 @@
+import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 /// A reusable background widget with decorative ellipses for authentication screens.
@@ -32,8 +33,8 @@ class AuthEllipseBackground extends StatelessWidget {
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  Color(0xFFD6F0C0).withValues(alpha: 0.8),
-                  Color(0xFFFFFFFF),
+                  UIColor.softGreen.withValues(alpha: 0.8),
+                  UIColor.white,
                 ],
                 stops: [0.0, 1.0],
               ),
@@ -53,8 +54,8 @@ class AuthEllipseBackground extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    const Color(0xFFFAB4F0).withValues(alpha: 0.3),
-                    const Color(0xFFFFFFFF),
+                    UIColor.babyPink.withValues(alpha: 0.3),
+                    UIColor.white,
                   ],
                   stops: const [0.0, 1.0],
                 ),

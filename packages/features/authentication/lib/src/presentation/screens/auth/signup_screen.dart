@@ -65,13 +65,13 @@ class _SignupScreenState extends State<SignupScreen> {
 
                         AppFormBuilderTextField(
                           name: _fullNameField,
-                          label: personalInfo.fullName,
-                          placeholder: personalInfo.username,
+                          label: tr.personalInfo.fullName,
+                          placeholder: tr.personalInfo.username,
                           prefixIcon: _FieldPrefixIcon(
                             iconPath: Assets.icons.user,
                           ),
                           validator: FormBuilderValidators.required(
-                            errorText: personalInfo.fullNameRequired,
+                            errorText: tr.personalInfo.fullNameRequired,
                           ),
                         ),
 
@@ -80,6 +80,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           name: AuthFormFieldNames.email,
                           label: tr.authIdentity.emailTitle,
                           placeholder: personalInfo.emailPlaceholder,
+                          // showClearButton: false,
                           prefixIcon: _FieldPrefixIcon(
                             iconPath: Assets.icons.email,
                           ),

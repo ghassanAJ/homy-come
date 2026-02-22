@@ -156,6 +156,7 @@ class VerificationAuthenticationTranslation implements i69n.I69nMessageBundle {
   String get enterCodePlaceholder => "Enter Code here";
   String get didntReceive => "Didn't receive?";
   String get resendCode => "Resend Code";
+  String get resendCodeIn => "in {seconds} sec";
   String get resend => "resend";
   String get codeSent => "Code sent successfully";
   String get newUserVerified => "Verification Successful";
@@ -177,6 +178,8 @@ class VerificationAuthenticationTranslation implements i69n.I69nMessageBundle {
         return didntReceive;
       case 'resendCode':
         return resendCode;
+      case 'resendCodeIn':
+        return resendCodeIn;
       case 'resend':
         return resend;
       case 'codeSent':

@@ -20,6 +20,7 @@ verification:
   enterCodePlaceholder: Enter Code here
   didntReceive: Didn't receive?
   resendCode: Resend Code
+  resendCodeIn: in {seconds} sec
   resend: resend
   codeSent: Code sent successfully
   newUserVerified: "Verification Successful"

@@ -1,8 +1,6 @@
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/gen/assets.gen.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:util/util.dart';
@@ -143,8 +141,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
           final hasError =
               state is AuthUserStateError &&
               state.stateType == AuthUserErrorStateType.verifyOTP;
-          final otpErrorMessage =
-              hasError ? (state as AuthUserStateError).error.message : null;
+          final otpErrorMessage = hasError ? (state).error.message : null;
 
           return Stack(
             children: [
@@ -211,7 +208,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                           UI.spacing.xl,
                           UI.spacing.md,
                           UI.spacing.xl,
-                          77,
+                          UI.spacing.xxxl + UI.spacing.md,
                         ),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -236,7 +233,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                               )
                             else
                               UIText.bodyMedium(
-                                '${tr.verification.resendCode} in ${_resendTimer.remainingSeconds} sec',
+                                '${tr.verification.resendCode} ${tr.verification.resendCodeIn.replaceAll('{seconds}', _resendTimer.remainingSeconds.toString())}',
                                 color: UIColor.textPlaceholder,
                                 textAlign: TextAlign.center,
                                 fontWeight: FontWeight.w500,

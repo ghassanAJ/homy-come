@@ -89,17 +89,17 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
     final tr = context.loc<AuthenticationTranslation>();
     final pages = [
       _OnboardingData(
-        image: Assets.images.onboarding1,
+        imagePath: Assets.images.onboarding1.path,
         title: tr.onboarding.slide1Title,
         subtitle: tr.onboarding.slide1Subtitle,
       ),
       _OnboardingData(
-        image: Assets.images.onboarding2,
+        imagePath: Assets.images.onboarding2.path,
         title: tr.onboarding.slide2Title,
         subtitle: tr.onboarding.slide2Subtitle,
       ),
       _OnboardingData(
-        image: Assets.images.onboarding3,
+        imagePath: Assets.images.onboarding3.path,
         title: tr.onboarding.slide3Title,
         subtitle: tr.onboarding.slide3Subtitle,
       ),
@@ -128,7 +128,7 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
                     itemBuilder: (context, index) {
                       final data = pages[index];
                       return MDOnboardingCard(
-                        image: data.image,
+                        imagePath: data.imagePath,
                         title: data.title,
                         height: sliderHeight,
                         subtitle: data.subtitle,
@@ -204,12 +204,12 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
 }
 
 class _OnboardingData {
-  final AssetGenImage image;
+  final String imagePath;
   final String title;
   final String subtitle;
 
   _OnboardingData({
-    required this.image,
+    required this.imagePath,
     required this.title,
     required this.subtitle,
   });

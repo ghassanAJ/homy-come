@@ -20,6 +20,7 @@ verification:
   enterCodePlaceholder: أدخل الرمز هنا
   didntReceive: لم تستلم؟
   resendCode: إعادة إرسال الرمز
+  resendCodeIn: خلال {seconds} ثانية
   resend: إعادة الإرسال
   codeSent: تم إرسال الرمز بنجاح
   newUserVerified: "تم التحقق بنجاح"
@@ -43,7 +44,7 @@ personalInfo:
   country: الدولة
   countryPlaceholder: دولة المستخدم
   countryRequired: الدولة مطلوبة
-  userName: اسم المستخدم
+  username: اسم المستخدم
   usernamePlaceholder: أدخل اسم المستخدم
   usernameRequired: اسم المستخدم مطلوب
   firstName: الاسم الأول

@@ -158,6 +158,7 @@ class VerificationAuthenticationTranslation_ar
   String get enterCodePlaceholder => "أدخل الرمز هنا";
   String get didntReceive => "لم تستلم؟";
   String get resendCode => "إعادة إرسال الرمز";
+  String get resendCodeIn => "خلال {seconds} ثانية";
   String get resend => "إعادة الإرسال";
   String get codeSent => "تم إرسال الرمز بنجاح";
   String get newUserVerified => "تم التحقق بنجاح";
@@ -179,6 +180,8 @@ class VerificationAuthenticationTranslation_ar
         return didntReceive;
       case 'resendCode':
         return resendCode;
+      case 'resendCodeIn':
+        return resendCodeIn;
       case 'resend':
         return resend;
       case 'codeSent':
@@ -213,7 +216,7 @@ class PersonalInfoAuthenticationTranslation_ar
   String get country => "الدولة";
   String get countryPlaceholder => "دولة المستخدم";
   String get countryRequired => "الدولة مطلوبة";
-  String get userName => "اسم المستخدم";
+  String get username => "اسم المستخدم";
   String get usernamePlaceholder => "أدخل اسم المستخدم";
   String get usernameRequired => "اسم المستخدم مطلوب";
   String get firstName => "الاسم الأول";
@@ -268,8 +271,8 @@ class PersonalInfoAuthenticationTranslation_ar
         return countryPlaceholder;
       case 'countryRequired':
         return countryRequired;
-      case 'userName':
-        return userName;
+      case 'username':
+        return username;
       case 'usernamePlaceholder':
         return usernamePlaceholder;
       case 'usernameRequired':
