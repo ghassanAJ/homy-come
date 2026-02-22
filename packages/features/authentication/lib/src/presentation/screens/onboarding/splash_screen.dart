@@ -9,7 +9,7 @@ class SplashScreen extends StatelessWidget {
     // Splash should cover the whole screen safely (notch/status bar),
     // without changing the page content (same gradient + same dots).
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: UIColor.white.withOpacity(0),
       body: SizedBox.expand(
         child: Stack(
           children: [
@@ -19,7 +19,7 @@ class SplashScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Color(0xFFEAB0D2), Color(0xFFF0DEBC)],
+                    colors: [UIColor.babyPink, UIColor.softYellow],
                   ),
                 ),
               ),
@@ -64,7 +64,7 @@ class _SplashDot extends StatelessWidget {
       width: size,
       height: size,
       decoration: const BoxDecoration(
-        color: Color(0xFFC9E4B5),
+        color: UIColor.softGreen,
         shape: BoxShape.circle,
       ),
     );
