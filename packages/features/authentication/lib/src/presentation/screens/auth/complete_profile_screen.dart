@@ -1,9 +1,10 @@
 import 'package:authentication/authentication.dart';
 import 'package:authentication/src/presentation/widgets/complete_profile/complete_profile_logout_button.dart';
-import 'package:design_system/design_system.dart' as ui;
-import 'package:flutter/material.dart';
+import 'package:design_system/design_system.dart';
+import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:util/util.dart';
@@ -51,6 +52,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     return BlocListener<AuthUserBloc, AuthUserState>(
       listenWhen:
           (_, current) =>
@@ -72,79 +74,79 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
           return Stack(
             children: [
               Scaffold(
-                backgroundColor: ui.UIColor.background,
+                backgroundColor: UIColor.background,
                 body: SafeArea(
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.all(ui.UI.spacing.md),
+                    padding: EdgeInsets.all(UI.spacing.md),
                     child: FormBuilder(
                       key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: ui.UI.spacing.md),
+                          SizedBox(height: UI.spacing.md),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              ui.UIText.h2('Complete Your Profile'),
+                              UIText.h2(tr.personalInfo.title),
                               CompleteProfileLogoutButton(
                                 onLogout: () => _logout(context),
                               ),
                             ],
                           ),
-                          SizedBox(height: ui.UI.spacing.xs),
-                          ui.UIText.bodyMedium(
-                            'Please fill in your personal information',
-                          ),
-                          SizedBox(height: ui.UI.spacing.lg),
-                          ui.AppFormBuilderTextField(
+                          SizedBox(height: UI.spacing.xs),
+                          UIText.bodyMedium(tr.personalInfo.subtitle),
+                          SizedBox(height: UI.spacing.lg),
+                          AppFormBuilderTextField(
                             name: AuthFormFieldNames.username,
-                            label: 'Username',
-                            placeholder: 'Enter your username',
+                            label: tr.personalInfo.username,
+                            placeholder: tr.personalInfo.usernamePlaceholder,
                             validator: FormBuilderValidators.required(
-                              errorText: 'Username is required',
+                              errorText: tr.personalInfo.usernameRequired,
                             ),
                           ),
-                          SizedBox(height: ui.UI.spacing.md),
-                          ui.AppFormBuilderTextField(
+                          SizedBox(height: UI.spacing.md),
+                          AppFormBuilderTextField(
                             name: AuthFormFieldNames.firstName,
-                            label: 'First Name',
-                            placeholder: 'Enter your first name',
+                            label: tr.personalInfo.firstName,
+                            placeholder: tr.personalInfo.firstNamePlaceholder,
                             validator: FormBuilderValidators.required(
-                              errorText: 'First name is required',
+                              errorText: tr.personalInfo.firstNameRequired,
                             ),
                           ),
-                          SizedBox(height: ui.UI.spacing.md),
-                          ui.AppFormBuilderTextField(
+                          SizedBox(height: UI.spacing.md),
+                          AppFormBuilderTextField(
                             name: AuthFormFieldNames.lastName,
-                            label: 'Last Name',
-                            placeholder: 'Enter your last name',
+                            label: tr.personalInfo.lastName,
+                            placeholder: tr.personalInfo.lastNamePlaceholder,
                             validator: FormBuilderValidators.required(
-                              errorText: 'Last name is required',
+                              errorText: tr.personalInfo.lastNameRequired,
                             ),
                           ),
-                          SizedBox(height: ui.UI.spacing.md),
+                          SizedBox(height: UI.spacing.md),
                           GestureDetector(
                             onTap: () => _selectDate(context),
                             child: AbsorbPointer(
-                              child: ui.AppFormBuilderTextField(
-                                placeholder: 'Select your date of birth',
+                              child: AppFormBuilderTextField(
+                                placeholder:
+                                    tr.personalInfo.dateOfBirthPlaceholder,
                                 name: AuthFormFieldNames.dateOfBirth,
-                                label: 'Date of Birth',
-                                suffixIcon: Image.asset(
-                                  'assets/calendar.svg',
+                                label: tr.personalInfo.dateOfBirth,
+                                suffixIcon: SvgPicture.asset(
+                                  Assets.icons.calendar,
                                   package: 'authentication',
                                   fit: BoxFit.scaleDown,
                                 ),
                                 validator: FormBuilderValidators.required(
-                                  errorText: 'Date of birth is required',
+                                  errorText:
+                                      tr.personalInfo.dateOfBirthRequired,
                                 ),
                               ),
                             ),
                           ),
-                          SizedBox(height: ui.UI.spacing.md),
-                          ui.UIText.fieldLabel('Gender'),
-                          SizedBox(height: ui.UI.spacing.xs),
-                          ui.OptionSelector<Gender>(
+                          SizedBox(height: UI.spacing.md),
+                          UIText.fieldLabel(tr.personalInfo.gender),
+                          SizedBox(height: UI.spacing.xs),
+                          OptionSelector<Gender>(
                             selectedValue: _selectedGender!,
                             onChanged: (gender) {
                               setState(() {
@@ -152,22 +154,22 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                               });
                             },
                             options: [
-                              ui.SelectorOption(
+                              SelectorOption(
                                 value: Gender.male,
-                                label: 'Male',
+                                label: tr.personalInfo.male,
                                 icon: IconsaxPlusLinear.man,
                               ),
-                              ui.SelectorOption(
+                              SelectorOption(
                                 value: Gender.female,
-                                label: 'Female',
+                                label: tr.personalInfo.female,
                                 icon: IconsaxPlusLinear.woman,
                               ),
                             ],
                           ),
-                          SizedBox(height: ui.UI.spacing.xxl),
-                          ui.UIButton.primary(
+                          SizedBox(height: UI.spacing.xxl),
+                          UIButton.primary(
                             expanded: true,
-                            label: 'Continue',
+                            label: tr.common.continueLabel,
                             onPressed: () => _continue(context),
                           ),
                         ],
@@ -176,7 +178,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                 ),
               ),
-              if (isLoading) const ui.MDProgressIndicator(styled: true),
+              if (isLoading) const MDProgressIndicator(styled: true),
             ],
           );
         },

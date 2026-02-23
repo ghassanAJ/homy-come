@@ -1,5 +1,7 @@
 import 'package:authentication/authentication.dart';
+import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:design_system/design_system.dart';
+import 'package:util/util.dart';
 
 /// Widget displaying resend code option with countdown timer
 ///
@@ -17,16 +19,20 @@ class OTPResendSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        UIText.bodySmall('didint erecive?', color: UIColor.textSecondary),
+        UIText.bodySmall(
+          tr.verification.didntReceive,
+          color: UIColor.textSecondary,
+        ),
         const SizedBox(height: 4),
         if (resendTimer.canResend)
           GestureDetector(
             onTap: onResend,
             child: Text(
-              'Resend Code',
+              tr.verification.resendCode,
               style: UI.text.bodySmall.copyWith(
                 color: UIColor.success,
                 fontWeight: FontWeight.w600,
@@ -35,7 +41,7 @@ class OTPResendSection extends StatelessWidget {
           )
         else
           Text(
-            '${'resend'} ${resendTimer.formattedTime}',
+            '${tr.verification.resend} ${resendTimer.formattedTime}',
             style: UI.text.bodySmall.copyWith(
               color: UIColor.textPlaceholder,
               fontWeight: FontWeight.w500,

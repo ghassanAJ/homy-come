@@ -11,7 +11,8 @@ void main() async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
-      final env = const String.fromEnvironment('ENV');
+      var env = const String.fromEnvironment('ENV', defaultValue: 'dev');
+      if (env.isEmpty) env = 'dev';
 
       initializeDependencies(env);
 

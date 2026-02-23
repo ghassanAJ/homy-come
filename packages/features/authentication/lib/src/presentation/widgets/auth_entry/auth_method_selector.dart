@@ -1,7 +1,9 @@
 import 'package:authentication/authentication.dart';
+import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:authentication/src/presentation/helpers/auth_method_ui_extension.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:util/util.dart';
 
 class AuthMethodSelector extends StatelessWidget {
   final List<AuthMethod> availableMethods;
@@ -23,6 +25,7 @@ class AuthMethodSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     // Get methods that are not currently selected
     final otherMethods =
         availableMethods.where((method) => method != currentMethod).toList();
@@ -44,7 +47,9 @@ class AuthMethodSelector extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: UI.spacing.md),
               child: UIText.bodySmall(
-                isChildMode ? 'or login with' : 'or continue with',
+                isChildMode
+                    ? tr.authEntry.orLoginWith
+                    : tr.authEntry.orContinueWith,
                 color: UIColor.textSecondary,
               ),
             ),

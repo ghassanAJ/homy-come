@@ -3,7 +3,6 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:user/di/di_container.dart';
-import 'package:user/localization/config.dart';
 import 'package:util/util.dart';
 
 class UserApp extends StatelessWidget {
@@ -13,27 +12,31 @@ class UserApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final router = diContainer.get<CustomRouter>().router;
 
-    return MDToastificationWrapper(
-      child: AppProviders(
-        child: AuthNavigationListener(
-          router: router,
-          child: MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            title: 'Homy',
-            // theme: MDTheme.styles.createThemeData(),
-            localizationsDelegates: [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              // BaseLocalization<ChildTranslation>().delegate(
-              //   ChildTranslationMap.translation,
-              // ),
-              // BaseLocalization<TaskTranslation>().delegate(
-              //   TaskTranslationMap.translation,
-              // ),
-            ],
-            supportedLocales: Config.supportedLocales,
-            locale: Config.getDeviceLocale(),
-            routerConfig: diContainer.get<CustomRouter>().router,
+    return LocalizationProvider<AuthenticationTranslation>(
+      delegate: AuthLocalizationDelegate(),
+      locale: Config.getDeviceLocale(),
+      child: MDToastificationWrapper(
+        child: AppProviders(
+          child: AuthNavigationListener(
+            router: router,
+            child: MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              title: 'Homy',
+              // theme: MDTheme.styles.createThemeData(),
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                // BaseLocalization<ChildTranslation>().delegate(
+                //   ChildTranslationMap.translation,
+                // ),
+                // BaseLocalization<TaskTranslation>().delegate(
+                //   TaskTranslationMap.translation,
+                // ),
+              ],
+              supportedLocales: Config.supportedLocales,
+              locale: Config.getDeviceLocale(),
+              routerConfig: diContainer.get<CustomRouter>().router,
+            ),
           ),
         ),
       ),

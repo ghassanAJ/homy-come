@@ -7,6 +7,7 @@ import 'di_init.dart';
 
 void initializeDependencies(String env) {
   diContainer.registerSingleton<String>(env, instanceName: 'env');
+  diContainer.registerSingleton<LocalizationCubit>(LocalizationCubit());
 
   initBaseCubit(diContainer, env);
   initApiClient(diContainer, env);
@@ -16,7 +17,7 @@ void initializeDependencies(String env) {
   _configureAuthInterceptor();
   initMain(diContainer, env);
   diContainer.registerSingleton<CustomRouter>(
-    CustomRouter(AppRouter.buildDriverRouter(diContainer.get<AppCubit>())),
+    CustomRouter(AppRouter.createDriverRouter(diContainer.get<AppCubit>())),
   );
 }
 

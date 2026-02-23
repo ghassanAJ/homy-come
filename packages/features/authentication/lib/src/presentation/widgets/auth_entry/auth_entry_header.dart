@@ -1,5 +1,7 @@
 import 'package:authentication/authentication.dart';
+import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:design_system/design_system.dart';
+import 'package:util/util.dart';
 
 class AuthEntryHeader extends StatelessWidget {
   final AuthMethod currentMethod;
@@ -13,18 +15,19 @@ class AuthEntryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tr = context.loc<AuthenticationTranslation>();
     String title;
     String subtitle;
 
     if (currentMethod == AuthMethod.pin) {
-      title = isChildMode ? 'childLogin.title ' : 'login';
-      subtitle = isChildMode ? 'sa' : 'tr.login.subtitle';
+      title = isChildMode ? tr.childLogin.title : tr.authEntry.loginButton;
+      subtitle = isChildMode ? tr.childLogin.subtitle : tr.authEntry.pinLabel;
     } else if (currentMethod == AuthMethod.email) {
-      title = ' ntity.emailTitle';
-      subtitle = 'tr.authIdentity.emailSubtitle';
+      title = tr.authIdentity.emailTitle;
+      subtitle = tr.authIdentity.emailSubtitle;
     } else {
-      title = ' tr.authIdentity.phoneTitle';
-      subtitle = ' tr.authIdentity.phoneSubtitle';
+      title = tr.authIdentity.phoneTitle;
+      subtitle = tr.authIdentity.phoneSubtitle;
     }
 
     return Column(

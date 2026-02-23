@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:homy_provider/di/di_container.dart';
-import 'package:homy_provider/localization/config.dart';
 import 'package:util/util.dart';
 
 class ProviderApp extends StatelessWidget {
@@ -14,20 +13,24 @@ class ProviderApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final router = diContainer.get<CustomRouter>().router;
 
-    return MDToastificationWrapper(
-      child: AppProviders(
-        child: AuthNavigationListener(
-          router: router,
-          child: MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            title: 'Homy Provider',
-            localizationsDelegates: [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-            ],
-            supportedLocales: Config.supportedLocales,
-            locale: Config.getDeviceLocale(),
-            routerConfig: router,
+    return LocalizationProvider<AuthenticationTranslation>(
+      delegate: AuthLocalizationDelegate(),
+      locale: Config.getDeviceLocale(),
+      child: MDToastificationWrapper(
+        child: AppProviders(
+          child: AuthNavigationListener(
+            router: router,
+            child: MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              title: 'Homy Provider',
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              supportedLocales: Config.supportedLocales,
+              locale: Config.getDeviceLocale(),
+              routerConfig: router,
+            ),
           ),
         ),
       ),

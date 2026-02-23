@@ -3,24 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 /// Internal router for driver app navigation.
+
 class DriverInternalRouter {
   final BuildContext context;
 
   const DriverInternalRouter(this.context);
 
-  void goBack() {
-    context.pop();
-  }
-
-  void toHome() {
+  void gotoHome() {
     context.go(DriverPaths.home);
   }
 
-  void toMyTeam() {
+  void gotoMyTeam() {
     context.go(DriverPaths.myTeam);
   }
 
-  void toProfile() {
+  void gotoProfile() {
     context.go(DriverPaths.profile);
   }
 

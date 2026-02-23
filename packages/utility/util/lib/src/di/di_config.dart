@@ -8,4 +8,4 @@ void initUtil(GetIt diContainer, String environment) {
 }
 
 @InjectableInit(asExtension: true)
-initBaseCubit(GetIt getIt, String env) => getIt.init();
+GetIt initBaseCubit(GetIt getIt, String env) => getIt.init(environment: env);
