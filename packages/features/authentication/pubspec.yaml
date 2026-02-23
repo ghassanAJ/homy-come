@@ -28,7 +28,6 @@ dependencies:
   intl_phone_number_input: ^0.7.5
   flutter_svg: ^2.0.10+1
   go_provider: ^2.0.1
-  # util:
   nested: ^1.0.0
   retrofit: ^4.9.1
   dio: ^5.9.0
