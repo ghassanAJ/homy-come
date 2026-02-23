@@ -5,6 +5,7 @@ import 'package:design_system/gen/assets.gen.dart';
 import 'package:util/util.dart';
 
 class OnboardingIntroPage extends StatelessWidget {
+  static const double _contentTopPadding = 130;
   static const double _heroCircleSize = 246;
   static const double _rightBubbleOffset = 18;
 
@@ -22,14 +23,8 @@ class OnboardingIntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tr = context.loc<AuthenticationTranslation>();
-    final mediaQuery = MediaQuery.of(context);
-    final screenSize = mediaQuery.size;
-    final safePadding = mediaQuery.padding;
-    final contentPadding = UI.padding.onboardingIntroContent(
-      screenHeight: screenSize.height,
-      safeTop: safePadding.top,
-      safeBottom: safePadding.bottom,
-    ).copyWith(bottom: 0);
+    final horizontalPadding = UI.spacing.lg;
+    final bottomPadding = UI.spacing.xl;
     final subtitleSpacing = UI.spacing.md + UI.spacing.xxs;
     final imageSpacing = UI.spacing.lg;
 
@@ -37,7 +32,12 @@ class OnboardingIntroPage extends StatelessWidget {
       children: [
         ..._decorativeBubbles.map((bubble) => OnboardingBubble(spec: bubble)),
         Padding(
-          padding: contentPadding,
+          padding: EdgeInsets.fromLTRB(
+            horizontalPadding,
+            _contentTopPadding,
+            horizontalPadding,
+            bottomPadding,
+          ),
           child: Column(
             children: [
               UIText.h1(
@@ -64,7 +64,7 @@ class OnboardingIntroPage extends StatelessWidget {
                   label: tr.onboarding.getStarted,
                   expanded: true,
                   onPressed: onGetStarted,
-                ),
+               ),
               ),
             ],
           ),

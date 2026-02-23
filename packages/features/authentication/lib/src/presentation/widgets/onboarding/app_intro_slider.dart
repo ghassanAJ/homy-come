@@ -111,7 +111,7 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
         mediaQuery.padding.top +
         UI.padding.onboardingSliderTopOffset(screenHeight: screenSize.height);
     final availableHeight = screenSize.height - topPadding;
-    final sliderHeight = availableHeight * 0.62;
+    final sliderHeight = availableHeight * 0.66;
 
     return Padding(
       padding: EdgeInsets.only(top: topPadding),
