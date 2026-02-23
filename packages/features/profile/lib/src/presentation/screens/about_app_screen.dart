@@ -7,7 +7,11 @@ class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return AppInfoScreen(title: context.profileTranslation.option.about, content:  'Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt Ut Labore Et Dolore Magna Aliqua. Ut Enim Ad Minim Veniam, Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat.',);
+    return AppInfoScreen(
+      title: context.profileTranslation.option.about,
+      content:
+          'Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt Ut Labore Et Dolore Magna Aliqua. Ut Enim Ad Minim Veniam, Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat.',
+    );
   }
 }
 
@@ -33,27 +37,22 @@ class AppInfoScreen extends StatelessWidget {
                 ),
               ),
               variant: UISliverAppBarVariant.transparent,
-              leading: backButtonAppBar(),
+              leading: BackButtonAppBar(),
               centerTitle: true,
-              titleWidget: UIText.h4(
-              title,
-              ),
+              titleWidget: UIText.h4(title),
               pinned: false,
             ),
             SliverToBoxAdapter(
               child: Padding(
-                              padding: EdgeInsets.fromLTRB(
-                UI.spacing.lg,
-                UI.spacing.md,
-                UI.spacing.md,
-                0,
-              ),
+                padding: EdgeInsets.fromLTRB(
+                  UI.spacing.lg,
+                  UI.spacing.md,
+                  UI.spacing.md,
+                  0,
+                ),
                 child: Column(
                   children: [
-                    UIText.bodyLarge(
-                     content,
-                      color: UIColor.textSecondary,
-                    ),
+                    UIText.bodyLarge(content, color: UIColor.textSecondary),
                   ],
                 ),
               ),

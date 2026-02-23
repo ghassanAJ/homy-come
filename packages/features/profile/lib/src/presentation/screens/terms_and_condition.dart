@@ -6,12 +6,20 @@ class TermsAndCondition extends StatelessWidget {
   const TermsAndCondition({super.key});
   @override
   Widget build(BuildContext context) {
-    return InfoAppCommonScreen(title: context.profileTranslation.profile.term, content:  'Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt Ut Labore Et Dolore Magna Aliqua. Ut Enim Ad Minim Veniam, Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat.',);
+    return InfoAppCommonScreen(
+      title: context.profileTranslation.profile.term,
+      content:
+          'Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt Ut Labore Et Dolore Magna Aliqua. Ut Enim Ad Minim Veniam, Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat.',
+    );
   }
 }
 
 class InfoAppCommonScreen extends StatelessWidget {
-  const InfoAppCommonScreen({super.key, required this.title, required this.content});
+  const InfoAppCommonScreen({
+    super.key,
+    required this.title,
+    required this.content,
+  });
   final String title;
   final String content;
   @override
@@ -32,27 +40,22 @@ class InfoAppCommonScreen extends StatelessWidget {
                 ),
               ),
               variant: UISliverAppBarVariant.transparent,
-              leading: backButtonAppBar(),
+              leading: BackButtonAppBar(),
               centerTitle: true,
-              titleWidget: UIText.h4(
-              title,
-              ),
+              titleWidget: UIText.h4(title),
               pinned: false,
             ),
             SliverToBoxAdapter(
               child: Padding(
-                              padding: EdgeInsets.fromLTRB(
-                UI.spacing.lg,
-                UI.spacing.md,
-                UI.spacing.md,
-                0,
-              ),
+                padding: EdgeInsets.fromLTRB(
+                  UI.spacing.lg,
+                  UI.spacing.md,
+                  UI.spacing.md,
+                  0,
+                ),
                 child: Column(
                   children: [
-                    UIText.bodyMedium(
-                     content,
-                      color: UIColor.textSecondary,
-                    ),
+                    UIText.bodyMedium(content, color: UIColor.textSecondary),
                   ],
                 ),
               ),

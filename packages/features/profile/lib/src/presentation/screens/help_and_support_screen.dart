@@ -26,15 +26,18 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
         content: CustomScrollView(
           slivers: [
             UISliverAppBar(
-              bottom:  PreferredSize(
+              bottom: PreferredSize(
                 preferredSize: Size.fromHeight(1),
                 child: Padding(
-                  padding: EdgeInsets.only(left: UI.spacing.xl, top: UI.spacing.md),
+                  padding: EdgeInsets.only(
+                    left: UI.spacing.xl,
+                    top: UI.spacing.md,
+                  ),
                   child: Divider(height: 4, color: UIColor.divider),
                 ),
               ),
               variant: UISliverAppBarVariant.transparent,
-              leading: backButtonAppBar(),
+              leading: BackButtonAppBar(),
               centerTitle: true,
               titleWidget: UIText.h4(context.profileTranslation.option.help),
             ),
@@ -64,7 +67,8 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                         borderRadius: BorderRadius.circular(5),
                         boxShadow: UI.shadows.md,
                       ),
-                      child: TextFormField(//   TODO 
+                      child: TextFormField(
+                        //   TODO
                         maxLines: null,
                         expands: true,
                         textAlignVertical: TextAlignVertical.top,
@@ -88,7 +92,6 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                       // child:UIText.bodyMedium('Write your note',color: UIColor.textNatral600,) ,
                     ),
                     SizedBox(height: UI.spacing.lg),
-                
 
                     FormBuilder(
                       key: _formKey,
@@ -98,7 +101,8 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                         children: [
                           AppFormBuilderTextField(
                             name: ProfileFormFieldNames.email,
-                            placeholder:context.profileTranslation.placeHolder.email ,
+                            placeholder:
+                                context.profileTranslation.placeHolder.email,
                             label: context.profileTranslation.Labels.email,
 
                             validator: FormBuilderValidators.compose([

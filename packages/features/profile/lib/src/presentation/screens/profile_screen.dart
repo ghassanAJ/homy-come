@@ -37,7 +37,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   CircleAvatar(radius: 14),
                   SizedBox(width: 8),
-                  UIText.bodyLarge(context.profileTranslation.profile.myProfile),
+                  UIText.bodyLarge(
+                    context.profileTranslation.profile.myProfile,
+                  ),
                 ],
               ),
               bottom: PreferredSize(
@@ -53,42 +55,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               scrollController: ScrollController(),
               expandedContent: Stack(
                 fit: StackFit.expand,
-                children: [
-                  CustomUIAppBarWidget(tr: tr),
-                ],
+                children: [CustomUIAppBarWidget()],
               ),
             ),
 
-            // UISliverAppBar(
-            //   flexibleSpace: BackdropFilter(
-            //     filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // Blur effect
-            //     child: Container(
-            //       decoration: BoxDecoration(
-            //         color: Colors.white.withOpacity(
-            //           0.2,
-            //         ), // Semi-transparent white background
-            //       ),
-            //     ),
-            //   ),
-            //   bottom: PreferredSize(
-            //     preferredSize: Size.fromHeight(1),
-            //     child: Padding(
-            //       padding: EdgeInsets.only(
-            //         left: UI.spacing.xl,
-            //         top: UI.spacing.md,
-            //       ),
-            //       child: Divider(height: 4, color: UIColor.divider),
-            //     ),
-            //   ),
-            //   variant: UISliverAppBarVariant.transparent,
-            //   leading: const backButtonAppBar(),
-
-            //   centerTitle: true,
-            //   titleWidget: UIText.h4(tr.profile.myProfile),
-            //   pinned: true,
-            //   // floating: true,
-            //   // snap: true,
-            // ),
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(
@@ -125,23 +95,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
 }
 
 class CustomUIAppBarWidget extends StatelessWidget {
-  const CustomUIAppBarWidget({
-    super.key,
-    required this.tr,
-  });
+  const CustomUIAppBarWidget({super.key});
 
-  final ProfileTranslation tr;
+
 
   @override
   Widget build(BuildContext context) {
+    final  tr = context.profileTranslation;
     return UIAppBar(
-      leading: backButtonAppBar(),
+      leading: BackButtonAppBar(),
       variant: UIAppBarVariant.transparent,
       // title: 'my',
       // backgroundColor: Colors.transparent,
       centerTitle: true,
       titleWidget: UIText.h4(tr.profile.myProfile),
-    
+
       // floating: true,
       // snap: true,
     );
