@@ -16,45 +16,26 @@ class SecurityVerificationScreen extends StatelessWidget {
     return SafeArea(
       child: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: UI.spacing.lg),
+          padding: UI.padding.horizontalLg,
           child: Container(
             width: double.infinity,
             constraints: const BoxConstraints(maxWidth: 340),
-            padding: EdgeInsets.fromLTRB(
-              UI.spacing.xl,
-              UI.spacing.xl,
-              UI.spacing.xl,
-              UI.spacing.xl,
-            ),
+            padding: UI.padding.allXl,
             decoration: BoxDecoration(
               color: UIColor.white,
               borderRadius: BorderRadius.circular(UI.radius.lg),
-              boxShadow: [
-                BoxShadow(
-                  color: UIColor.black.withValues(alpha: 0.08),
-                  blurRadius: 24,
-                  offset: const Offset(0, 8),
-                ),
-              ],
+              boxShadow: UI.shadows.lg,
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  width: 90,
-                  height: 90,
-                  decoration: const BoxDecoration(
-                    color: UIColor.babyPink,
-                    shape: BoxShape.circle,
-                  ),
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    width: 45,
-                    height: 45,
-                    child: SvgPicture.asset(
-                      Assets.icons.smileyXEyes,
-                      package: 'design_system',
-                    ),
+                UIIconBackground(
+                  size: 90,
+                  iconSize: 45,
+                  backgroundColor: UIColor.babyPink,
+                  child: SvgPicture.asset(
+                    Assets.icons.smileyXEyes,
+                    package: 'design_system',
                   ),
                 ),
 
