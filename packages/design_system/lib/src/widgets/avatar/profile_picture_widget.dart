@@ -162,13 +162,8 @@ class ProfilePictureWidget extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: backgroundColor ?? UIColor.neutral200,
-        border:
-            showBorder
-                ? Border.all(
-                  color: UIColor.surface,
-                  width: 2,
-                )
-                : null,
+        border:_buildBorder(showBorder)
+            
       ),
       clipBehavior: Clip.antiAlias,
       child: ClipRRect(
@@ -188,6 +183,15 @@ class ProfilePictureWidget extends StatelessWidget {
       ),
     );
   }
+
+BoxBorder? _buildBorder(bool showBorder){
+  return showBorder
+                ? Border.all(
+                  color: UIColor.surface,
+                  width: 2,
+                )
+                : null;
+}
 
   Widget _buildContent(BuildContext context) {
     if (imageUrl != null && imageUrl!.isNotEmpty) {

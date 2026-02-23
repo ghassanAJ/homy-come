@@ -1,17 +1,16 @@
-
 import 'package:design_system/design_system.dart';
 
 class UIchipsBar extends StatefulWidget {
-  UIchipsBar({super.key, required this.label});
+  UIchipsBar({super.key, required this.label, this.firstLabel});
   int? indexSelected = 0;
   final List<String> label;
+  final String? firstLabel;
   @override
   State<UIchipsBar> createState() => _UIchipsBarState();
 }
 
 class _UIchipsBarState extends State<UIchipsBar> {
   @override
-  // List<String> labels = ['In Progress', 'Scheduled', 'Complete'];
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: UI.spacing.lg, vertical: 2),
@@ -20,10 +19,12 @@ class _UIchipsBarState extends State<UIchipsBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+
+          if(widget.firstLabel!=null)
           SizedBox(
-            child: UIChipsWidget(
-              labal: 'All',
-              
+            child: InteractiveChipsBar(
+              labal: widget.firstLabel!,
+
               isSelect: widget.indexSelected == 0,
               onSelect: (value) {
                 setState(() {
@@ -36,7 +37,7 @@ class _UIchipsBarState extends State<UIchipsBar> {
             widget.label.length,
             (i) => Expanded(
               child: SizedBox.expand(
-                child: UIChipsWidget(
+                child: InteractiveChipsBar(
                   labal: widget.label[i],
                   isSelect: widget.indexSelected == i + 1,
                   onSelect: (value) {
@@ -54,52 +55,8 @@ class _UIchipsBarState extends State<UIchipsBar> {
   }
 }
 
-// class UIChipsWidget extends StatefulWidget {
-//   const UIChipsWidget({
-//     super.key,
-//     this.selectcolor,
-//     this.color,
-//     required this.labal,
-//     required this.isSelect,
-//     required this.onSelect,
-//   });
-//   final UIColor? selectcolor;
-//   final UIColor? color;
-//   final String labal;
-//   final bool isSelect;
-//   final ValueChanged onSelect;
-
-//   @override
-//   State<UIChipsWidget> createState() => _UIChipsWidgetState();
-// }
-
-// class _UIChipsWidgetState extends State<UIChipsWidget> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ChoiceChip(
-//       label: UIText.headerBody(widget.labal),
-//       onSelected: (value) {
-//         setState(() {
-//            widget.onSelect(value);
-//         });
-
-//       },
-//       labelStyle: UI.text.headerBody,
-//       backgroundColor: widget.color ?? UIColor.neutral100,
-//       selected: widget.isSelect,
-//       shape: RoundedRectangleBorder(
-//         borderRadius: BorderRadiusGeometry.circular(UI.radius.sm),
-//       ),
-//       showCheckmark: false,
-
-//       selectedColor: widget.selectcolor ?? UIColor.babyBlue,
-//       side: BorderSide.none,
-//     );
-//   }
-// }
-
-class UIChipsWidget extends StatelessWidget {
-  const UIChipsWidget({
+class InteractiveChipsBar extends StatelessWidget {
+  const InteractiveChipsBar({
     super.key,
     this.selectcolor,
     this.color,
@@ -135,7 +92,7 @@ class UIChipsWidget extends StatelessWidget {
         child: UIText.buttonTextXsm(
           overflow: TextOverflow.clip,
           labal,
-          color:  UIColor.black,
+          color: UIColor.black,
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:design_system/src/tokens/UIFonts.dart';
 import 'package:flutter/material.dart';
 
 /// Typography tokens for the design system
@@ -9,7 +10,7 @@ import 'package:flutter/material.dart';
 class UITypography {
   const UITypography();
 
-  static const String _fontFamily = 'DMSens';
+  static const String _fontFamily = 'cairo';
 
   // ============================================================================
   // HEADINGS
@@ -111,7 +112,7 @@ class UITypography {
   ///
   /// Usage: Secondary text, field labels, supporting content
   TextStyle get bodySmall => const TextStyle(
-    fontFamily: 'Montserrat',
+    fontFamily: UIFonts.montserrat,
     fontSize: 14,
     fontWeight: FontWeight.w400,
     height: 1.43,
@@ -150,7 +151,7 @@ class UITypography {
   ///
   /// Usage: Small body text, metadata
   TextStyle get bodyXSmall => const TextStyle(
-    fontFamily: 'Montserrat',
+    fontFamily: UIFonts.montserrat,
     fontSize: 12,
     fontWeight: FontWeight.w400,
     height: 1.5,
