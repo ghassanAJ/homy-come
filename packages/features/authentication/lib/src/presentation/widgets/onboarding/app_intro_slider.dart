@@ -86,6 +86,8 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final screenSize = mediaQuery.size;
     final tr = context.loc<AuthenticationTranslation>();
     final pages = [
       _OnboardingData(
@@ -105,45 +107,49 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
       ),
     ];
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final sliderHeight = constraints.maxHeight * 1.1;
-        final topSpacing = MediaQuery.paddingOf(context).top + 100;
-        return Padding(
-          padding: EdgeInsets.only(top: topSpacing),
-          child: Column(
-            children: [
-              Expanded(
-                child: SizedBox(
-                  width: constraints.maxWidth,
-                  child: PageView.builder(
-                    controller: _controller,
-                    itemCount: pages.length,
-                    onPageChanged: (index) {
-                      setState(() {
-                        _currentPage = index;
-                      });
-                      _restartAutoScroll();
-                    },
-                    itemBuilder: (context, index) {
-                      final data = pages[index];
-                      return MDOnboardingCard(
-                        imagePath: data.imagePath,
-                        title: data.title,
-                        height: sliderHeight,
-                        subtitle: data.subtitle,
-                      );
-                    },
-                  ),
-                ),
+    final topPadding =
+        mediaQuery.padding.top +
+        UI.padding.onboardingSliderTopOffset(screenHeight: screenSize.height);
+    final availableHeight = screenSize.height - topPadding;
+    final sliderHeight = availableHeight * 0.62;
+
+    return Padding(
+      padding: EdgeInsets.only(top: topPadding),
+      child: SizedBox(
+        width: screenSize.width,
+        height: availableHeight,
+        child: Column(
+          children: [
+            SizedBox(
+              width: screenSize.width,
+              height: sliderHeight,
+              child: PageView.builder(
+                controller: _controller,
+                itemCount: pages.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentPage = index;
+                  });
+                  _restartAutoScroll();
+                },
+                itemBuilder: (context, index) {
+                  final data = pages[index];
+                  return MDOnboardingCard(
+                    imagePath: data.imagePath,
+                    title: data.title,
+                    height: sliderHeight,
+                    subtitle: data.subtitle,
+                  );
+                },
               ),
-              _buildPageIndicator(pages),
-              SizedBox(height: UI.spacing.xxxl),
-              _buildBottomActions(context, pages.length),
-            ],
-          ),
-        );
-      },
+            ),
+            SizedBox(height: UI.spacing.lg),
+            _buildPageIndicator(pages),
+            const Spacer(),
+            _buildBottomActions(context, pages.length),
+          ],
+        ),
+      ),
     );
   }
 
@@ -154,7 +160,7 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
         pages.length,
         (index) => AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          margin:  EdgeInsets.symmetric(horizontal: UI.spacing.xxs),
+          margin: EdgeInsets.symmetric(horizontal: UI.spacing.xxs),
           width: UI.spacing.xs,
           height: UI.spacing.xs,
           decoration: BoxDecoration(
@@ -171,12 +177,7 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
     final isLastPage = _currentPage == pagesLength - 1;
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(
-        UI.spacing.xxl,
-        0,
-        UI.spacing.lg,
-        UI.spacing.xl,
-      ),
+      padding: UI.padding.onboardingActions,
       child: Row(
         textDirection: Directionality.of(context),
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -185,7 +186,7 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
             behavior: HitTestBehavior.opaque,
             onTap: _onSkip,
             child: Padding(
-              padding:  EdgeInsets.symmetric(vertical: UI.spacing.sm),
+              padding: EdgeInsets.symmetric(vertical: UI.spacing.sm),
               child: UIText.bodyMedium(
                 tr.onboarding.skip,
                 color: UIColor.balck,

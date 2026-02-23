@@ -20,9 +20,7 @@ class MDOnboardingCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: UI.spacing.xxl + UI.spacing.xs,
-          ),
+          padding: UI.padding.onboardingCardImageHorizontal,
           child: AspectRatio(
             aspectRatio: 331 / 278,
             child: SizedBox(
@@ -36,7 +34,7 @@ class MDOnboardingCard extends StatelessWidget {
 
         SizedBox(height: UI.spacing.xxl2),
         Padding(
-          padding: EdgeInsetsDirectional.symmetric(horizontal: UI.spacing.xl),
+          padding: UI.padding.onboardingCardTitleHorizontal,
           child: UIText.h2(
             title,
             textAlign: TextAlign.center,
@@ -45,10 +43,7 @@ class MDOnboardingCard extends StatelessWidget {
         ),
         SizedBox(height: UI.spacing.md),
         Padding(
-          padding: EdgeInsetsDirectional.only(
-            start: UI.spacing.xxl + UI.spacing.xxs,
-            end: UI.spacing.xxl2 + UI.spacing.xxs,
-          ),
+          padding: UI.padding.onboardingCardSubtitleHorizontal,
           child: UIText.bodyMedium(
             subtitle,
             textAlign: TextAlign.center,
