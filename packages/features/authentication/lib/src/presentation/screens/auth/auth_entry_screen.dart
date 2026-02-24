@@ -126,7 +126,7 @@ class _AuthEntryScreenState extends State<AuthEntryScreen> {
               children: [
                 Expanded(
                   child: SingleChildScrollView(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: UI.padding.allMd,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -180,8 +180,8 @@ class _AuthEntryScreenState extends State<AuthEntryScreen> {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 16.0),
+                Padding(
+                  padding: UI.padding.bottomMd,
                   child: Center(child: AuthTermsAndPrivacy()),
                 ),
               ],

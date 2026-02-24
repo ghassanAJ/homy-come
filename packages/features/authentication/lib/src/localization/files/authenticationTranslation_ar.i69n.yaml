@@ -3,6 +3,7 @@ common:
   continueLabel: متابعة
   skip: تخطي
   logout: تسجيل الخروج
+  goToHome: انتقل إلى الصفحة الرئيسية
 
 # Login Screen
 login:
@@ -15,18 +16,34 @@ login:
 # Verification Screen
 verification:
   title: أدخل الرمز للمتابعة
-  description: تم إرسال رمز التحقق إلى {userInput} عبر SMS.
+  description: تم إرسال رمز التحقق\nإلى {userInput} عبر SMS.
+  enterCodePlaceholder: أدخل الرمز هنا
   didntReceive: لم تستلم؟
   resendCode: إعادة إرسال الرمز
+  resendCodeIn: خلال {seconds} ثانية
   resend: إعادة الإرسال
   codeSent: تم إرسال الرمز بنجاح
-  newUserVerified: "تم التحقق بنجاح! دعنا نجهز ملفك الشخصي"
+  newUserVerified: "تم التحقق بنجاح"
   returningUserVerified: "مرحباً بعودتك! جاري تسجيل دخولك..."
 
 # Personal Information / Complete Profile Screen
 personalInfo:
   title: أكمل ملفك الشخصي
-  subtitle: الرجاء إدخال معلوماتك الشخصية
+  subtitle: أضف معلوماتك لإنشاء حساب جديد
+  personalPhoto: الصورة الشخصية
+  addPhoto: إضافة صورة
+  fullName: الاسم الكامل
+  fullNameRequired: الاسم الكامل مطلوب
+  email: user name @ gmail.com
+  emailPlaceholder: أدخل عنوان البريد الإلكتروني
+  emailRequired: البريد الإلكتروني مطلوب
+  emailInvalid: الرجاء إدخال بريد إلكتروني صحيح
+  phonePlaceholder: "Ex : +971 50 123 4567"
+  phoneRequired: رقم الهاتف مطلوب
+  phoneInvalid: رقم الهاتف يجب أن يتكون من 10 أرقام
+  country: الدولة
+  countryPlaceholder: دولة المستخدم
+  countryRequired: الدولة مطلوبة
   username: اسم المستخدم
   usernamePlaceholder: أدخل اسم المستخدم
   usernameRequired: اسم المستخدم مطلوب
@@ -54,14 +71,21 @@ authEntry:
 
 # Onboarding
 onboarding:
-  slide1Title: البطاقة المصرفية الرقمية المصممة للعائلات
-  slide1Subtitle: رقمية ومادية، آمنة وسهلة الاستخدام.
-  slide2Title: أرسل واستلم المال بلمسة واحدة
-  slide2Subtitle: يتعلم الأطفال الادخار والإنفاق وتحديد الأهداف
-  slide3Title: ساعد أطفالك على تعلم قيمة المال
-  slide3Subtitle: حدد الحدود، تتبع المصروفات، ووجه العادات المسؤولة
-  getStarted: لنبدأ
+  introTitle: "أفضل خدمات\nبين يديك"
+  introSubtitle: "تطبيق الخدمات عند الطلب يمنحك\nتجربة سريعة، سهلة، وموثوقة."
+  getStarted: ابدأ الآن
+  slide1Title: الأمان والخصوصية
+  slide1Subtitle: نضمن أعلى مستويات حماية بيانات المستخدمين، مع الحفاظ الكامل على الخصوصية لتقديم تجربة آمنة وموثوقة.
+  slide2Title: الطلب السريع والسهولة
+  slide2Subtitle: تم تصميم التطبيق لجعل طلب الخدمات سريعًا وسهلًا، مع توفير تجربة سلسة ومريحة من اختيار الخدمة حتى استلامها.
+  slide3Title: اختيار الخدمة بسهولة
+  slide3Subtitle: واجهة بسيطة وسهلة الاستخدام تُمكّن المستخدم من اختيار الخدمة المناسبة خلال خطوات قليلة، مع تصنيفات منظمة لتصفح سريع وبدون تعقيد.
+  finish: إنهاء
   skip: تخطي
+  next: متابعة
+  securityVerificationTitle: التحقق الأمني
+  securityVerificationDescription: "هذا أول تسجيل دخول لك من هذا الجهاز.\nلضمان أمان حسابك،\nيرجى التحقق من هويتك."
+  startToVerify: ابدأ التحقق
 
 # User Role Selection
 userRole:

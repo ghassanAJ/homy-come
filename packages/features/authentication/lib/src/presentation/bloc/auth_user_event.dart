@@ -26,6 +26,11 @@ class VerifyOTP extends AuthUserEvent {
   VerifyOTP(this.request);
 }
 
+/// Finalize OTP login after user confirms success bottom sheet action
+class CompleteOtpAuthentication extends AuthUserEvent {
+  CompleteOtpAuthentication();
+}
+
 /// Update user profile - used to complete profile after registration
 /// The userId is retrieved automatically from the current session
 class UpdateProfile extends AuthUserEvent {

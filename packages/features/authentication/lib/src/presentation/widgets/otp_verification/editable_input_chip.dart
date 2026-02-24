@@ -20,10 +20,7 @@ class EditableInputChip extends StatelessWidget {
     return GestureDetector(
       onTap: onEdit,
       child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: UI.spacing.xs,
-          vertical: UI.spacing.xxs,
-        ),
+        padding: UI.padding.chipCompact,
         decoration: BoxDecoration(
           color: UIColor.white,
           borderRadius: BorderRadius.circular(UI.radius.lg),

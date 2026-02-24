@@ -239,7 +239,7 @@ class _AppTextFieldState extends State<AppTextField> {
       children: [
         if (widget.label != null) ...[
           InputUtils.buildLabel(widget.label!),
-          SizedBox(height: UI.spacing.xxs),
+          SizedBox(height: UI.spacing.sm),
         ],
         InputUtils.buildShadowContainer(
           isFocused: _isFocused,

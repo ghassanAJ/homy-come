@@ -96,6 +96,7 @@ class CommonAuthenticationTranslation_ar
   String get continueLabel => "متابعة";
   String get skip => "تخطي";
   String get logout => "تسجيل الخروج";
+  String get goToHome => "انتقل إلى الصفحة الرئيسية";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -109,6 +110,8 @@ class CommonAuthenticationTranslation_ar
         return skip;
       case 'logout':
         return logout;
+      case 'goToHome':
+        return goToHome;
       default:
         return super[key];
     }
@@ -151,12 +154,14 @@ class VerificationAuthenticationTranslation_ar
   final AuthenticationTranslation_ar _parent;
   const VerificationAuthenticationTranslation_ar(this._parent) : super(_parent);
   String get title => "أدخل الرمز للمتابعة";
-  String get description => "تم إرسال رمز التحقق إلى {userInput} عبر SMS.";
+  String get description => "تم إرسال رمز التحقق\nإلى {userInput} عبر SMS.";
+  String get enterCodePlaceholder => "أدخل الرمز هنا";
   String get didntReceive => "لم تستلم؟";
   String get resendCode => "إعادة إرسال الرمز";
+  String get resendCodeIn => "خلال {seconds} ثانية";
   String get resend => "إعادة الإرسال";
   String get codeSent => "تم إرسال الرمز بنجاح";
-  String get newUserVerified => "تم التحقق بنجاح! دعنا نجهز ملفك الشخصي";
+  String get newUserVerified => "تم التحقق بنجاح";
   String get returningUserVerified => "مرحباً بعودتك! جاري تسجيل دخولك...";
   Object operator [](String key) {
     var index = key.indexOf('.');
@@ -169,10 +174,14 @@ class VerificationAuthenticationTranslation_ar
         return title;
       case 'description':
         return description;
+      case 'enterCodePlaceholder':
+        return enterCodePlaceholder;
       case 'didntReceive':
         return didntReceive;
       case 'resendCode':
         return resendCode;
+      case 'resendCodeIn':
+        return resendCodeIn;
       case 'resend':
         return resend;
       case 'codeSent':
@@ -192,7 +201,21 @@ class PersonalInfoAuthenticationTranslation_ar
   final AuthenticationTranslation_ar _parent;
   const PersonalInfoAuthenticationTranslation_ar(this._parent) : super(_parent);
   String get title => "أكمل ملفك الشخصي";
-  String get subtitle => "الرجاء إدخال معلوماتك الشخصية";
+  String get subtitle => "أضف معلوماتك لإنشاء حساب جديد";
+  String get personalPhoto => "الصورة الشخصية";
+  String get addPhoto => "إضافة صورة";
+  String get fullName => "الاسم الكامل";
+  String get fullNameRequired => "الاسم الكامل مطلوب";
+  String get email => "user name @ gmail.com";
+  String get emailPlaceholder => "أدخل عنوان البريد الإلكتروني";
+  String get emailRequired => "البريد الإلكتروني مطلوب";
+  String get emailInvalid => "الرجاء إدخال بريد إلكتروني صحيح";
+  String get phonePlaceholder => "Ex : +971 50 123 4567";
+  String get phoneRequired => "رقم الهاتف مطلوب";
+  String get phoneInvalid => "رقم الهاتف يجب أن يتكون من 10 أرقام";
+  String get country => "الدولة";
+  String get countryPlaceholder => "دولة المستخدم";
+  String get countryRequired => "الدولة مطلوبة";
   String get username => "اسم المستخدم";
   String get usernamePlaceholder => "أدخل اسم المستخدم";
   String get usernameRequired => "اسم المستخدم مطلوب";
@@ -220,6 +243,34 @@ class PersonalInfoAuthenticationTranslation_ar
         return title;
       case 'subtitle':
         return subtitle;
+      case 'personalPhoto':
+        return personalPhoto;
+      case 'addPhoto':
+        return addPhoto;
+      case 'fullName':
+        return fullName;
+      case 'fullNameRequired':
+        return fullNameRequired;
+      case 'email':
+        return email;
+      case 'emailPlaceholder':
+        return emailPlaceholder;
+      case 'emailRequired':
+        return emailRequired;
+      case 'emailInvalid':
+        return emailInvalid;
+      case 'phonePlaceholder':
+        return phonePlaceholder;
+      case 'phoneRequired':
+        return phoneRequired;
+      case 'phoneInvalid':
+        return phoneInvalid;
+      case 'country':
+        return country;
+      case 'countryPlaceholder':
+        return countryPlaceholder;
+      case 'countryRequired':
+        return countryRequired;
       case 'username':
         return username;
       case 'usernamePlaceholder':
@@ -294,15 +345,26 @@ class OnboardingAuthenticationTranslation_ar
     extends OnboardingAuthenticationTranslation {
   final AuthenticationTranslation_ar _parent;
   const OnboardingAuthenticationTranslation_ar(this._parent) : super(_parent);
-  String get slide1Title => "البطاقة المصرفية الرقمية المصممة للعائلات";
-  String get slide1Subtitle => "رقمية ومادية، آمنة وسهلة الاستخدام.";
-  String get slide2Title => "أرسل واستلم المال بلمسة واحدة";
-  String get slide2Subtitle => "يتعلم الأطفال الادخار والإنفاق وتحديد الأهداف";
-  String get slide3Title => "ساعد أطفالك على تعلم قيمة المال";
+  String get introTitle => "أفضل خدمات\nبين يديك";
+  String get introSubtitle =>
+      "تطبيق الخدمات عند الطلب يمنحك\nتجربة سريعة، سهلة، وموثوقة.";
+  String get getStarted => "ابدأ الآن";
+  String get slide1Title => "الأمان والخصوصية";
+  String get slide1Subtitle =>
+      "نضمن أعلى مستويات حماية بيانات المستخدمين، مع الحفاظ الكامل على الخصوصية لتقديم تجربة آمنة وموثوقة.";
+  String get slide2Title => "الطلب السريع والسهولة";
+  String get slide2Subtitle =>
+      "تم تصميم التطبيق لجعل طلب الخدمات سريعًا وسهلًا، مع توفير تجربة سلسة ومريحة من اختيار الخدمة حتى استلامها.";
+  String get slide3Title => "اختيار الخدمة بسهولة";
   String get slide3Subtitle =>
-      "حدد الحدود، تتبع المصروفات، ووجه العادات المسؤولة";
-  String get getStarted => "لنبدأ";
+      "واجهة بسيطة وسهلة الاستخدام تُمكّن المستخدم من اختيار الخدمة المناسبة خلال خطوات قليلة، مع تصنيفات منظمة لتصفح سريع وبدون تعقيد.";
+  String get finish => "إنهاء";
   String get skip => "تخطي";
+  String get next => "متابعة";
+  String get securityVerificationTitle => "التحقق الأمني";
+  String get securityVerificationDescription =>
+      "هذا أول تسجيل دخول لك من هذا الجهاز.\nلضمان أمان حسابك،\nيرجى التحقق من هويتك.";
+  String get startToVerify => "ابدأ التحقق";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -310,6 +372,12 @@ class OnboardingAuthenticationTranslation_ar
           as i69n.I69nMessageBundle)[key.substring(index + 1)];
     }
     switch (key) {
+      case 'introTitle':
+        return introTitle;
+      case 'introSubtitle':
+        return introSubtitle;
+      case 'getStarted':
+        return getStarted;
       case 'slide1Title':
         return slide1Title;
       case 'slide1Subtitle':
@@ -322,10 +390,18 @@ class OnboardingAuthenticationTranslation_ar
         return slide3Title;
       case 'slide3Subtitle':
         return slide3Subtitle;
-      case 'getStarted':
-        return getStarted;
+      case 'finish':
+        return finish;
       case 'skip':
         return skip;
+      case 'next':
+        return next;
+      case 'securityVerificationTitle':
+        return securityVerificationTitle;
+      case 'securityVerificationDescription':
+        return securityVerificationDescription;
+      case 'startToVerify':
+        return startToVerify;
       default:
         return super[key];
     }

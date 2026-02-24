@@ -94,6 +94,7 @@ class CommonAuthenticationTranslation implements i69n.I69nMessageBundle {
   String get continueLabel => "Continue";
   String get skip => "Skip";
   String get logout => "Logout";
+  String get goToHome => "Go to Home";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -107,6 +108,8 @@ class CommonAuthenticationTranslation implements i69n.I69nMessageBundle {
         return skip;
       case 'logout':
         return logout;
+      case 'goToHome':
+        return goToHome;
       default:
         return key;
     }
@@ -116,7 +119,7 @@ class CommonAuthenticationTranslation implements i69n.I69nMessageBundle {
 class LoginAuthenticationTranslation implements i69n.I69nMessageBundle {
   final AuthenticationTranslation _parent;
   const LoginAuthenticationTranslation(this._parent);
-  String get title => "Enter Your Phone Number for Verification";
+  String get title => "Enter Your Phone Number\nfor Verification";
   String get phoneLabel => "Phone Number";
   String get verifyButton => "Verify";
   String get signUp => "Sign up";
@@ -149,13 +152,14 @@ class VerificationAuthenticationTranslation implements i69n.I69nMessageBundle {
   const VerificationAuthenticationTranslation(this._parent);
   String get title => "Enter the Code to Continue";
   String get description =>
-      "A verification code has been sent to {userInput} via SMS.";
+      "A verification code has been sent\nto {userInput} via SMS.";
+  String get enterCodePlaceholder => "Enter Code here";
   String get didntReceive => "Didn't receive?";
   String get resendCode => "Resend Code";
+  String get resendCodeIn => "in {seconds} sec";
   String get resend => "resend";
   String get codeSent => "Code sent successfully";
-  String get newUserVerified =>
-      "Verification successful! Let's set up your profile";
+  String get newUserVerified => "Verification Successful";
   String get returningUserVerified => "Welcome back! We're logging you in...";
   Object operator [](String key) {
     var index = key.indexOf('.');
@@ -168,10 +172,14 @@ class VerificationAuthenticationTranslation implements i69n.I69nMessageBundle {
         return title;
       case 'description':
         return description;
+      case 'enterCodePlaceholder':
+        return enterCodePlaceholder;
       case 'didntReceive':
         return didntReceive;
       case 'resendCode':
         return resendCode;
+      case 'resendCodeIn':
+        return resendCodeIn;
       case 'resend':
         return resend;
       case 'codeSent':
@@ -190,8 +198,22 @@ class PersonalInfoAuthenticationTranslation implements i69n.I69nMessageBundle {
   final AuthenticationTranslation _parent;
   const PersonalInfoAuthenticationTranslation(this._parent);
   String get title => "Complete Your Profile";
-  String get subtitle => "Please fill in your personal information";
-  String get username => "Username";
+  String get subtitle => "add your information to creat new account";
+  String get personalPhoto => "Personal Photo";
+  String get addPhoto => "Add Photo";
+  String get fullName => "Full Name";
+  String get fullNameRequired => "Full name is required";
+  String get email => "user name @ gmail.com";
+  String get emailPlaceholder => "Enter your email address";
+  String get emailRequired => "Email is required";
+  String get emailInvalid => "Please enter a valid email";
+  String get phonePlaceholder => "Ex : +971 50 123 4567";
+  String get phoneRequired => "Phone number is required";
+  String get phoneInvalid => "Phone number must be 10 digits";
+  String get country => "Country";
+  String get countryPlaceholder => "User Country";
+  String get countryRequired => "Country is required";
+  String get username => "USER NAME";
   String get usernamePlaceholder => "Enter your username";
   String get usernameRequired => "Username is required";
   String get firstName => "First Name";
@@ -218,6 +240,34 @@ class PersonalInfoAuthenticationTranslation implements i69n.I69nMessageBundle {
         return title;
       case 'subtitle':
         return subtitle;
+      case 'personalPhoto':
+        return personalPhoto;
+      case 'addPhoto':
+        return addPhoto;
+      case 'fullName':
+        return fullName;
+      case 'fullNameRequired':
+        return fullNameRequired;
+      case 'email':
+        return email;
+      case 'emailPlaceholder':
+        return emailPlaceholder;
+      case 'emailRequired':
+        return emailRequired;
+      case 'emailInvalid':
+        return emailInvalid;
+      case 'phonePlaceholder':
+        return phonePlaceholder;
+      case 'phoneRequired':
+        return phoneRequired;
+      case 'phoneInvalid':
+        return phoneInvalid;
+      case 'country':
+        return country;
+      case 'countryPlaceholder':
+        return countryPlaceholder;
+      case 'countryRequired':
+        return countryRequired;
       case 'username':
         return username;
       case 'usernamePlaceholder':
@@ -260,7 +310,7 @@ class AuthEntryAuthenticationTranslation implements i69n.I69nMessageBundle {
   final AuthenticationTranslation _parent;
   const AuthEntryAuthenticationTranslation(this._parent);
   String get pinLabel => "password";
-  String get loginButton => "login";
+  String get loginButton => "Log in";
   String get sendVerificationCode => "send verification code";
   String get orLoginWith => "or login with";
   String get orContinueWith => "or continue with";
@@ -290,15 +340,26 @@ class AuthEntryAuthenticationTranslation implements i69n.I69nMessageBundle {
 class OnboardingAuthenticationTranslation implements i69n.I69nMessageBundle {
   final AuthenticationTranslation _parent;
   const OnboardingAuthenticationTranslation(this._parent);
-  String get slide1Title => "the digital debit card designed for families";
-  String get slide1Subtitle => "Digital & physical, safe and simple to use.";
-  String get slide2Title => "send and receive money with a tap";
-  String get slide2Subtitle => "Kids learn saving, spending, and goal-setting";
-  String get slide3Title => "Help your children learn the value of money";
+  String get introTitle => "Best Helping\nHands for you";
+  String get introSubtitle =>
+      "With Our On-Demand Services App,\nWe Give Better Services To You.";
+  String get getStarted => "Gets Started";
+  String get slide1Title => "Security & Privacy";
+  String get slide1Subtitle =>
+      "We ensure top-level protection of user data, maintaining full privacy to provide a safe and trusted experience.";
+  String get slide2Title => "Fast Ordering & Convenience";
+  String get slide2Subtitle =>
+      "The app is designed to make service requests quick and effortless, offering a smooth and comfortable experience from selection to delivery.";
+  String get slide3Title => "Easy Service Selection";
   String get slide3Subtitle =>
-      "Set limits, track spending, guide responsible habits";
-  String get getStarted => "Get started";
+      "A simple and intuitive interface that allows users to choose the right service in just a few steps, with well-organized categories for fast and hassle-free browsing.";
+  String get finish => "Finish";
   String get skip => "skip";
+  String get next => "Next";
+  String get securityVerificationTitle => "Security Verification";
+  String get securityVerificationDescription =>
+      "This is your first login from this device.\nTo ensure the security of your account,\nplease verify your identity.";
+  String get startToVerify => "Start to verify";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -306,6 +367,12 @@ class OnboardingAuthenticationTranslation implements i69n.I69nMessageBundle {
           as i69n.I69nMessageBundle)[key.substring(index + 1)];
     }
     switch (key) {
+      case 'introTitle':
+        return introTitle;
+      case 'introSubtitle':
+        return introSubtitle;
+      case 'getStarted':
+        return getStarted;
       case 'slide1Title':
         return slide1Title;
       case 'slide1Subtitle':
@@ -318,10 +385,18 @@ class OnboardingAuthenticationTranslation implements i69n.I69nMessageBundle {
         return slide3Title;
       case 'slide3Subtitle':
         return slide3Subtitle;
-      case 'getStarted':
-        return getStarted;
+      case 'finish':
+        return finish;
       case 'skip':
         return skip;
+      case 'next':
+        return next;
+      case 'securityVerificationTitle':
+        return securityVerificationTitle;
+      case 'securityVerificationDescription':
+        return securityVerificationDescription;
+      case 'startToVerify':
+        return startToVerify;
       default:
         return key;
     }

@@ -1,8 +1,8 @@
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:design_system/design_system.dart';
+import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:util/util.dart';
 
 /// Screen for verifying OTP codes sent via email or phone
@@ -30,10 +30,16 @@ class OTPVerificationScreen extends StatefulWidget {
 
 class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   late final ResendTimerController _resendTimer;
+  late final TextEditingController _otpController;
+  bool _isOtpValid = false;
+  bool _isSuccessDialogVisible = false;
 
   @override
   void initState() {
     super.initState();
+    _otpController = TextEditingController();
+    _otpController.addListener(_onOtpChanged);
+
     _resendTimer = ResendTimerController(
       durationSeconds: AuthenticationConfig.verificationTimerSeconds,
     );
@@ -43,8 +49,21 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
 
   @override
   void dispose() {
+    _otpController
+      ..removeListener(_onOtpChanged)
+      ..dispose();
     _resendTimer.dispose();
     super.dispose();
+  }
+
+  void _onOtpChanged() {
+    final isValid =
+        _otpController.text.trim().length == AuthenticationConfig.otpLength;
+    if (_isOtpValid != isValid) {
+      setState(() {
+        _isOtpValid = isValid;
+      });
+    }
   }
 
   /// Request a new OTP code
@@ -60,8 +79,12 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
     _resendTimer.start();
   }
 
-  /// Handle OTP input completion
-  void _handleOTPCompleted(String otp) {
+  void _handleVerify() {
+    final otp = _otpController.text.trim();
+    if (otp.length != AuthenticationConfig.otpLength) {
+      return;
+    }
+
     final verifyRequest = UnifiedVerifyOTPRequestModel(
       id: widget.verificationId,
       otp: otp,
@@ -70,17 +93,40 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
     context.read<AuthUserBloc>().add(VerifyOTP(verifyRequest));
   }
 
+  void _handleGoToHome() {
+    context.read<AuthUserBloc>().add(CompleteOtpAuthentication());
+  }
+
   @override
   Widget build(BuildContext context) {
     final tr = context.loc<AuthenticationTranslation>();
     return BlocListener<AuthUserBloc, AuthUserState>(
       listenWhen:
           (_, current) =>
-              current is AuthUserStateError &&
-              current.stateType == AuthUserErrorStateType.verifyOTP,
+              (current is AuthUserStateError &&
+                  current.stateType == AuthUserErrorStateType.verifyOTP) ||
+              (current is AuthUserStateAuthenticated &&
+                  current.context == AuthenticationContext.otpVerification),
       listener: (context, state) {
         if (state is AuthUserStateError) {
           ToastificationUtil.error(state.error.message);
+          return;
+        }
+        if (state is AuthUserStateAuthenticated &&
+            state.context == AuthenticationContext.otpVerification) {
+          if (_isSuccessDialogVisible || !mounted) return;
+          _isSuccessDialogVisible = true;
+          DialogsManager.showSuccessDialog(
+            context: context,
+            title: tr.verification.newUserVerified,
+            buttonLabel: tr.common.goToHome,
+            onPressed: () {
+              Navigator.of(context).pop();
+              _handleGoToHome();
+            },
+          ).whenComplete(() {
+            _isSuccessDialogVisible = false;
+          });
         }
       },
       child: BlocBuilder<AuthUserBloc, AuthUserState>(
@@ -95,66 +141,88 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
           final hasError =
               state is AuthUserStateError &&
               state.stateType == AuthUserErrorStateType.verifyOTP;
+          final otpErrorMessage = hasError ? (state).error.message : null;
 
           return Stack(
             children: [
               Scaffold(
                 backgroundColor: UIColor.background,
                 body: SafeArea(
-                  child: Padding(
-                    padding: EdgeInsets.all(UI.spacing.md),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const DefaultUIAppBarActions().backButton(
-                            context,
-                            onPressed: () => context.pop(),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: SingleChildScrollView(
+                          padding: UI.padding.authScrollable,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Center(
+                                child: UIIconBackground(
+                                  size: 90,
+                                  iconSize: 45,
+                                  backgroundColor: UIColor.softGreen,
+                                  child: SvgPicture.asset(
+                                    Assets.icons.message,
+                                    package: 'design_system',
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: UI.spacing.lg),
+                              Center(
+                                child: UIText.bodyMedium(
+                                  tr.verification.title,
+                                  textAlign: TextAlign.center,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(height: UI.spacing.sm),
+                              Center(child: _buildVerificationDescription(tr)),
+                              SizedBox(height: 70),
+                              PinInput(
+                                controller: _otpController,
+                                length: AuthenticationConfig.otpLength,
+                                hasError: hasError,
+                                errorText: otpErrorMessage,
+                              ),
+                            ],
                           ),
-                          SizedBox(height: UI.spacing.md),
-                          // Header
-                          UIText.h2(
-                            tr.verification.title,
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: UI.spacing.xs),
-                          UIText.bodyMedium(
-                            tr.verification.description.replaceAll(
-                              '{userInput}',
-                              widget.userInput,
-                            ),
-                            color: UIColor.textSecondary,
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: UI.spacing.xs),
-                          // Description with inline editable chip
-                          // Wrap(
-                          //   children: [
-                          //     EditableInputChip(
-                          //       value: widget.userInput,
-                          //       onEdit:
-                          //           () =>
-                          //               AuthInternalRouter.of(context).goBack(),
-                          //     ),
-                          //   ],
-                          // ),
-                          SizedBox(height: UI.spacing.lg),
-                          // OTP Input
-                          PinInput(
-                            hasError: hasError,
-                            onCompleted: _handleOTPCompleted,
-                          ),
-                          SizedBox(height: UI.spacing.xxl),
-
-                          Center(
-                            child: OTPResendSection(
-                              resendTimer: _resendTimer,
-                              onResend: _handleResendCode,
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                      Padding(
+                        padding: UI.padding.authActions,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            UIButton.primary(
+                              label: tr.login.verifyButton,
+                              expanded: true,
+                              onPressed:
+                                  (_isOtpValid && !isLoading)
+                                      ? _handleVerify
+                                      : null,
+                            ),
+                            SizedBox(height: UI.spacing.lg),
+                            if (_resendTimer.canResend)
+                              GestureDetector(
+                                onTap: _handleResendCode,
+                                child: UIText.buttonText(
+                                  tr.verification.resendCode,
+                                  color: UIColor.successBright,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              )
+                            else
+                              UIText.bodyMedium(
+                                '${tr.verification.resendCode} ${tr.verification.resendCodeIn.replaceAll('{seconds}', _resendTimer.remainingSeconds.toString())}',
+                                color: UIColor.textPlaceholder,
+                                textAlign: TextAlign.center,
+                                fontWeight: FontWeight.w500,
+                              ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -162,6 +230,38 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
             ],
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildVerificationDescription(AuthenticationTranslation tr) {
+    const token = '{userInput}';
+    final template = tr.verification.description;
+    final parts = template.split(token);
+
+    if (parts.length < 2) {
+      return UIText.bodySmall(
+        template.replaceAll(token, widget.userInput),
+        color: UIColor.textSecondary,
+        textAlign: TextAlign.center,
+      );
+    }
+
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+        style: UI.text.bodySmall.copyWith(color: UIColor.textSecondary),
+        children: [
+          TextSpan(text: parts.first),
+          TextSpan(
+            text: widget.userInput,
+            style: UI.text.bodySmall.copyWith(
+              color: UIColor.grey,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          TextSpan(text: parts.sublist(1).join(token)),
+        ],
       ),
     );
   }

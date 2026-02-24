@@ -11,9 +11,6 @@
 class FontFamily {
   FontFamily._();
 
-  /// Font family: Cairo
-  static const String cairo = 'Cairo';
-
   /// Font family: DMSans
   static const String dMSans = 'DMSans';
 

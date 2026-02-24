@@ -1,5 +1,6 @@
 import 'tokens/typography.dart';
 import 'tokens/spacing.dart';
+import 'tokens/padding.dart';
 import 'tokens/radius.dart';
 import 'tokens/shadows.dart';
 import 'tokens/sizes.dart';
@@ -42,6 +43,11 @@ class UI {
   ///
   /// Access spacing values via `UI.spacing.md`, `UI.spacing.lg`, etc.
   static const spacing = UISpacing();
+
+  /// Padding tokens
+  ///
+  /// Access common paddings via `UI.padding.authScrollable`, `UI.padding.authActions`, etc.
+  static const padding = UIPadding();
 
   /// Border radius tokens
   ///
