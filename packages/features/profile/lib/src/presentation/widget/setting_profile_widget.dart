@@ -12,12 +12,12 @@ class SettingProfileWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(UI.radius.xs),
         color: UIColor.background,
         boxShadow:UI.shadows.cardMd
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
+        padding:  EdgeInsets.fromLTRB(UI.spacing.md, UI.spacing.lg, UI.spacing.md, 0),
         child: Column(
           children: [
             ProfileSettingOptionWidget(
@@ -54,7 +54,7 @@ class SettingProfileWidget extends StatelessWidget {
                                 UIColor.backgroungSwitchUnactive,
                               )
                               : WidgetStateProperty.all(UIColor.tertiary),
-                      trackOutlineWidth: WidgetStateProperty.all(10.0),
+                      trackOutlineWidth: WidgetStateProperty.all(UI.sizes.trackOUtLined),
 
                       value: state,
                       onChanged: (value) {

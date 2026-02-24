@@ -1,14 +1,9 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
-class UIBackground extends StatefulWidget {
+class UIBackground extends StatelessWidget {
   const UIBackground({super.key, required this.content});
   final Widget content;
-  @override
-  State<UIBackground> createState() => _UIBackgroundState();
-}
-
-class _UIBackgroundState extends State<UIBackground> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +14,7 @@ class _UIBackgroundState extends State<UIBackground> {
           colors: [UIColor.softGreen, UIColor.background],
         ),
       ),
-      child: widget.content,
+      child: content,
     );
   }
 }

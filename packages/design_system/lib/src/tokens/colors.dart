@@ -51,7 +51,7 @@ class UIColor extends Color {
   static const UIColor textSecondary = neutral500;
   static const UIColor textPlaceholder = neutral400;
   static const UIColor textGray = UIColor._(0xffABABAB);
-  static const UIColor textNatral600 = UIColor._(0xff717171);  
+  static const UIColor textNatral600 = UIColor._(0xff717171);
   //#717171
 
   // Border colors
@@ -108,5 +108,10 @@ class UIColorGradient {
   static const List<Color> backgroundGradiant = [
     UIColor.softGreen,
     UIColor.background,
+  ];
+
+  static const List<Color> yelloAndPinkGradiant = [
+    UIColor.borderFocused,
+    UIColor.softYellow,
   ];
 }
