@@ -10,6 +10,7 @@ class AuthenticationPaths {
   static const String splash = '/splash';
   static const String onboarding = '/onboarding';
   static const String selectRole = '/select-role';
+  static const String signup = '/signup';
   static const String authEntry = '/auth-entry';
   static const String otpVerification = '/otp-verification';
   static const String completeProfile = '/complete-profile';
@@ -39,16 +40,15 @@ class AuthenticationRoute {
         ),
         GoRoute(
           path: AuthenticationPaths.onboarding,
-          builder: (context, state) {
-            final extra = state.extra as Map<String, dynamic>?;
-            final roleString = extra?[AuthRouteParams.userRole] as String?;
-            final userRole = UserRole.tryParse(roleString) ?? UserRole.parent;
-            return AuthEntryScreen(userRole: userRole);
-          },
+          builder: (context, state) => const OnboardingScreen(),
         ),
         GoRoute(
           path: AuthenticationPaths.login,
           builder: (context, state) => const LoginScreen(),
+        ),
+        GoRoute(
+          path: AuthenticationPaths.signup,
+          builder: (context, state) => const SignupScreen(),
         ),
         GoRoute(
           path: AuthenticationPaths.authEntry,

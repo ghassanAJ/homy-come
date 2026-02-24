@@ -47,6 +47,7 @@ export 'src/widgets/shared/keep_alive_widget.dart';
 export 'src/widgets/shared/selected_buttons_in_row.dart';
 export 'src/widgets/shared/stack_fade_grediant.dart';
 export 'src/widgets/shared/ui_filter_tab_bar.dart';
+export 'src/widgets/shared/ui_icon_background.dart';
 export 'src/widgets/shimmer/shimmer_box.dart';
 export 'src/widgets/shimmer/shimmer_card.dart';
 export 'src/widgets/text/ui_price_text.dart';

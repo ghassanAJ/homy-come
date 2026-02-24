@@ -7,6 +7,7 @@ import 'package:util/util.dart';
 class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
   final AuthRepository _authRepository;
   final SessionRepository _sessionRepository;
+  LoginResponseModel? _pendingOtpLoginResponse;
 
   AuthUserBloc(this._authRepository, this._sessionRepository)
     : super(AuthUserStateInitial()) {
@@ -20,6 +21,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
 
         SendOTP() => _sendOTP(event, emit),
         VerifyOTP() => _unifiedVerifyOTP(event, emit),
+        CompleteOtpAuthentication() => _completeOtpAuthentication(event, emit),
         UpdateProfile() => _updateUserProfile(event, emit),
 
         LoginWithPin() => _loginWithPin(event, emit),
@@ -175,11 +177,44 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
       tokens: data.tokens,
       redirectUrl: data.redirectUrl,
     );
+    _pendingOtpLoginResponse = loginResponse;
 
-    await _sessionRepository.saveSessionFromResponse(loginResponse);
+    final session = SessionModel(
+      accessToken: data.tokens!.accessToken,
+      refreshToken: data.tokens!.refreshToken,
+      user: data.user,
+    );
+
+    emit(
+      AuthUserStateAuthenticated(
+        session: session,
+        context: AuthenticationContext.otpVerification,
+      ),
+    );
+  }
+
+  Future<void> _completeOtpAuthentication(
+    CompleteOtpAuthentication event,
+    Emitter<AuthUserState> emit,
+  ) async {
+    final response = _pendingOtpLoginResponse;
+    if (response == null) {
+      emit(
+        AuthUserStateError(
+          APIException.error('No pending OTP authentication session'),
+          AuthUserErrorStateType.verifyOTP,
+        ),
+      );
+      return;
+    }
+
+    emit(AuthUserStateLoading());
+    await _sessionRepository.saveSessionFromResponse(response);
+    _pendingOtpLoginResponse = null;
+
     await _emitAuthenticatedState(
       emit,
-      AuthenticationContext.otpVerification,
+      AuthenticationContext.tokenLogin,
       AuthUserErrorStateType.verifyOTP,
     );
   }

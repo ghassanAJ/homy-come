@@ -213,7 +213,7 @@ class AppTheme {
   /// ```
   static ThemeData get light => ThemeData(
         // Use Montserrat as default font
-        fontFamily: 'DMSans',
+        fontFamily: 'Montserrat',
 
         // Color scheme
         colorScheme: _buildLightColorScheme(),

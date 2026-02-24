@@ -9,7 +9,7 @@ class UIRadius {
   double get xs => 4;
 
   /// Usage: Small elements, chips, Pin input cells
-  double get sm => 8;
+  double get sm => 6;
 
   /// Usage: Input fields, cards
   double get md => 12;
@@ -24,7 +24,7 @@ class UIRadius {
 
   double get buttonSm => md;
   double get buttonMd => lg;
-  double get button => 10; // Default button radius: 16px
+  double get button => 6; // Default button radius: 16px
 
-  double get input => md;
+  double get input => sm;
 }

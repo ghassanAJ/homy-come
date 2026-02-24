@@ -46,28 +46,10 @@ flutter:
   # Asset configuration for icons
   assets:
     - assets/icons/
+    - assets/images/
 
   # Font configuration
   fonts:
-    - family: Cairo
-      fonts:
-        - asset: assets/fonts/cairo/Cairo-ExtraLight.ttf
-          weight: 200
-        - asset: assets/fonts/cairo/Cairo-Light.ttf
-          weight: 300
-        - asset: assets/fonts/cairo/Cairo-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/cairo/Cairo-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/cairo/Cairo-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/cairo/Cairo-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/cairo/Cairo-ExtraBold.ttf
-          weight: 800
-        - asset: assets/fonts/cairo/Cairo-Black.ttf
-          weight: 900
-
     - family: Montserrat
       fonts:
         - asset: assets/fonts/Montserrat/Montserrat-ExtraLight.ttf

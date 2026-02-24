@@ -9,6 +9,8 @@
 // ignore_for_file: type=lint
 // ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
+import 'package:flutter/widgets.dart';
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -48,6 +50,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/calendar.svg
   String get calendar => 'packages/design_system/assets/icons/calendar.svg';
 
+  /// File path: assets/icons/call.svg
+  String get call => 'packages/design_system/assets/icons/call.svg';
+
   /// File path: assets/icons/camera.svg
   String get camera => 'packages/design_system/assets/icons/camera.svg';
 
@@ -57,20 +62,46 @@ class $AssetsIconsGen {
   /// File path: assets/icons/close.svg
   String get close => 'packages/design_system/assets/icons/close.svg';
 
+  /// File path: assets/icons/email.svg
+  String get email => 'packages/design_system/assets/icons/email.svg';
+
   /// File path: assets/icons/gallery.svg
   String get gallery => 'packages/design_system/assets/icons/gallery.svg';
 
   /// File path: assets/icons/google.svg
   String get google => 'packages/design_system/assets/icons/google.svg';
 
+  /// File path: assets/icons/location.svg
+  String get location => 'packages/design_system/assets/icons/location.svg';
+
+  /// File path: assets/icons/message.svg
+  String get message => 'packages/design_system/assets/icons/message.svg';
+
+  /// File path: assets/icons/phone.svg
+  String get phone => 'packages/design_system/assets/icons/phone.svg';
+
+  /// File path: assets/icons/photoCamera.svg
+  String get photoCamera =>
+      'packages/design_system/assets/icons/photoCamera.svg';
+
   /// File path: assets/icons/right.svg
   String get right => 'packages/design_system/assets/icons/right.svg';
+
+  /// File path: assets/icons/smileyXEyes.svg
+  String get smileyXEyes =>
+      'packages/design_system/assets/icons/smileyXEyes.svg';
 
   /// File path: assets/icons/star.svg
   String get star => 'packages/design_system/assets/icons/star.svg';
 
+  /// File path: assets/icons/successful.svg
+  String get successful => 'packages/design_system/assets/icons/successful.svg';
+
   /// File path: assets/icons/trash.svg
   String get trash => 'packages/design_system/assets/icons/trash.svg';
+
+  /// File path: assets/icons/user.svg
+  String get user => 'packages/design_system/assets/icons/user.svg';
 
   /// File path: assets/icons/warning.svg
   String get warning => 'packages/design_system/assets/icons/warning.svg';
@@ -88,15 +119,52 @@ class $AssetsIconsGen {
     arrowRight,
     arrowLeft,
     calendar,
+    call,
     camera,
     carema,
     close,
+    email,
     gallery,
     google,
+    location,
+    message,
+    phone,
+    photoCamera,
     right,
+    smileyXEyes,
     star,
+    successful,
     trash,
+    user,
     warning,
+  ];
+}
+
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/onboarding-1.png
+  AssetGenImage get onboarding1 =>
+      const AssetGenImage('assets/images/onboarding-1.png');
+
+  /// File path: assets/images/onboarding-2.png
+  AssetGenImage get onboarding2 =>
+      const AssetGenImage('assets/images/onboarding-2.png');
+
+  /// File path: assets/images/onboarding-3.png
+  AssetGenImage get onboarding3 =>
+      const AssetGenImage('assets/images/onboarding-3.png');
+
+  /// File path: assets/images/onboarding.png
+  AssetGenImage get onboarding =>
+      const AssetGenImage('assets/images/onboarding.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    onboarding1,
+    onboarding2,
+    onboarding3,
+    onboarding,
   ];
 }
 
@@ -106,4 +174,100 @@ class Assets {
   static const String package = 'design_system';
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
+}
+
+class AssetGenImage {
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+    this.animation,
+  });
+
+  final String _assetName;
+
+  static const String package = 'design_system';
+
+  final Size? size;
+  final Set<String> flavors;
+  final AssetGenImageAnimation? animation;
+
+  Image image({
+    Key? key,
+    AssetBundle? bundle,
+    ImageFrameBuilder? frameBuilder,
+    ImageErrorWidgetBuilder? errorBuilder,
+    String? semanticLabel,
+    bool excludeFromSemantics = false,
+    double? scale,
+    double? width,
+    double? height,
+    Color? color,
+    Animation<double>? opacity,
+    BlendMode? colorBlendMode,
+    BoxFit? fit,
+    AlignmentGeometry alignment = Alignment.center,
+    ImageRepeat repeat = ImageRepeat.noRepeat,
+    Rect? centerSlice,
+    bool matchTextDirection = false,
+    bool gaplessPlayback = true,
+    bool isAntiAlias = false,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
+    FilterQuality filterQuality = FilterQuality.medium,
+    int? cacheWidth,
+    int? cacheHeight,
+  }) {
+    return Image.asset(
+      _assetName,
+      key: key,
+      bundle: bundle,
+      frameBuilder: frameBuilder,
+      errorBuilder: errorBuilder,
+      semanticLabel: semanticLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      scale: scale,
+      width: width,
+      height: height,
+      color: color,
+      opacity: opacity,
+      colorBlendMode: colorBlendMode,
+      fit: fit,
+      alignment: alignment,
+      repeat: repeat,
+      centerSlice: centerSlice,
+      matchTextDirection: matchTextDirection,
+      gaplessPlayback: gaplessPlayback,
+      isAntiAlias: isAntiAlias,
+      package: package,
+      filterQuality: filterQuality,
+      cacheWidth: cacheWidth,
+      cacheHeight: cacheHeight,
+    );
+  }
+
+  ImageProvider provider({
+    AssetBundle? bundle,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
+  }) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
+  }
+
+  String get path => _assetName;
+
+  String get keyName => 'packages/design_system/$_assetName';
+}
+
+class AssetGenImageAnimation {
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
+
+  final bool isAnimation;
+  final Duration duration;
+  final int frames;
 }

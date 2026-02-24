@@ -59,6 +59,7 @@ export 'src/presentation/screens/auth/auth_entry_screen.dart';
 export 'src/presentation/screens/auth/complete_profile_screen.dart';
 export 'src/presentation/screens/auth/login_screen.dart';
 export 'src/presentation/screens/auth/otp_verification_screen.dart';
+export 'src/presentation/screens/auth/signup_screen.dart';
 export 'src/presentation/screens/auth/user_role_selection_screen.dart';
 export 'src/presentation/screens/main_screen.dart';
 export 'src/presentation/screens/onboarding/onboarding_screen.dart';

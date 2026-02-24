@@ -1,5 +1,7 @@
 import '../../../design_system.dart';
+import '../../../gen/assets.gen.dart';
 import 'delete_confirmation_dialog.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DialogsManager {
   static Future<T?> showAnimatedDialog<T>({
@@ -63,6 +65,69 @@ class DialogsManager {
     if (context.mounted) {
       Navigator.of(context).pop();
     }
+  }
+
+  static Future<void> showSuccessDialog({
+    required BuildContext context,
+    required String title,
+    required String buttonLabel,
+    required VoidCallback onPressed,
+    bool barrierDismissible = false,
+  }) async {
+    await showAnimatedDialog<void>(
+      context: context,
+      barrierDismissible: barrierDismissible,
+      barrierColor: UIColor.black.withValues(alpha: 0.35),
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(UI.spacing.md),
+          child: Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(UI.spacing.xl),
+            decoration: BoxDecoration(
+              color: UIColor.white,
+              borderRadius: BorderRadius.circular(UI.radius.lg),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 99,
+                  height: 99,
+                  decoration: const BoxDecoration(
+                    color: UIColor.softGreen,
+                    shape: BoxShape.circle,
+                  ),
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: 64,
+                    height: 64,
+                    child: SvgPicture.asset(
+                      Assets.icons.successful,
+                      package: 'design_system',
+                    ),
+                  ),
+                ),
+                SizedBox(height: UI.spacing.lg),
+                UIText.bodyMedium(
+                  title,
+                  textAlign: TextAlign.center,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: UIColor.textPrimary,
+                ),
+                SizedBox(height: UI.spacing.xl),
+                UIButton.primary(
+                  label: buttonLabel,
+                  expanded: true,
+                  onPressed: onPressed,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
