@@ -17,6 +17,7 @@ class UISizes {
 
   /// Small icon: 20px
   double get iconXXs => 13;
+
   /// Usage: Button icons, form field icons
   double get iconSm => 20;
 
@@ -29,7 +30,6 @@ class UISizes {
   ///
   /// Usage: Feature icons, prominent actions
   double get iconLg => 32;
-
 
   double get iconXl => 38;
   // ============================================================================
@@ -102,6 +102,22 @@ class UISizes {
   ///
   /// Usage: Bottom navigation bar height
   double get bottomNavigationBarHeight => 87;
+
+  // ============================================================================
+  // AppBar SIZES
+  // ============================================================================
+
+  double get appBarHeight => 60;
+
+
+
+
+  
+  // ============================================================================
+  // track oUtlined SIZES
+  // ============================================================================
+
+  double get trackOUtLined => 10;
 }
 
 // extension spacerCustom on UISizes{

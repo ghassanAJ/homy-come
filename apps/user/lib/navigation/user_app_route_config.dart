@@ -44,7 +44,7 @@ class UserAppRouteConfig {
               path: UserPaths.search,
               builder:
                   (context, state) =>
-                      Scaffold(body: Center(child: Text('Search'))),///[هون]
+                      Scaffold(body: Center(child: Text('Search'))),
             ),
           ],
         ),

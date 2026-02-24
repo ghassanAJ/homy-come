@@ -1,14 +1,11 @@
-
 import 'package:design_system/design_system.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:profile/profile.dart';
+import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
-class DataUserProfileWidget extends StatelessWidget {
-  const DataUserProfileWidget({
-    super.key,
-    required this.context,
-  });
+class UserProfileInfoWidget extends StatelessWidget {
+  const UserProfileInfoWidget({super.key, required this.context});
 
   final BuildContext context;
 
@@ -25,11 +22,11 @@ class DataUserProfileWidget extends StatelessWidget {
       // height: 89,
       decoration: BoxDecoration(
         boxShadow: UI.shadows.sm,
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(UI.radius.xs),
         gradient: LinearGradient(
           begin: AlignmentGeometry.topCenter,
           end: AlignmentGeometry.bottomCenter,
-          colors: [UIColor.borderFocused, UIColor.softYellow],
+          colors: UIColorGradient.yelloAndPinkGradiant,
         ),
       ),
       child: Row(
@@ -101,11 +98,7 @@ class DataUserProfileWidget extends StatelessWidget {
                   color: UIColor.grey,
                 ),
                 SizedBox(width: UI.spacing.xs),
-                SvgPicture.asset(
-                  Assets.icons.arrowRight,
-                  color: UIColor.grey,
-                  // package: "design_system",
-                ),
+                UISvg(Assets.icons.arrowRight,color:UIColor.grey)
               ],
             ),
           ),

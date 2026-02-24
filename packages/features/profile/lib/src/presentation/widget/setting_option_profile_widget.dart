@@ -26,47 +26,14 @@ class ProfileSettingOptionWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: ListTile(
-        contentPadding: EdgeInsets.only(bottom: 12.5),
-        trailing: customTrailing ?? UISvg(icon: Assets.icons.right),
+        contentPadding: EdgeInsets.only(bottom: UI.spacing.sm),
+        trailing: customTrailing ?? UISvg( Assets.icons.right),
         leading: _buildProfileIcon(
           isSvgIcon: isSvgIcon,
           imgUrl: imgUrl,
           color: color,
           colorIcon: colorIcon,
         ),
-        // isSvgIcon
-        //     ? Container(
-        //       width: 48,
-        //       height: 48,
-        //       decoration: BoxDecoration(
-        //         color: color ?? UIColor.neutral25,
-        //         shape: BoxShape.circle,
-        //       ),
-        //       padding: EdgeInsets.all(4),
-        //       child: SvgPicture.asset(
-        //         imgUrl,
-        //         colorFilter: ColorFilter.mode(
-        //           colorIcon ?? UIColor.grey,
-        //           BlendMode.srcIn,
-        //         ),
-        //       ),
-        //     )
-        //     : Avatar(
-        //       assetPath: imgUrl,
-        //       placeholderWidget: Container(
-        //         color: color,
-        //         child: Padding(
-        //           padding: EdgeInsets.all(UI.sizes.iconXXs),
-        //           child: SizedBox(
-        //             child: SvgPicture.asset(
-        //               imgUrl,
-        //               package: "design_system",
-        //               color: colorIcon,
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        //     ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -90,16 +57,16 @@ class ProfileSettingOptionWidget extends StatelessWidget {
     required String imgUrl,
     Color? color,
     Color? colorIcon,
-  }) {
+  }) {///add TODO comment: use [UIIconBackground]
     if (isSvgIcon) {
       return Container(
-        width: 48,
-        height: 48,
+        width: UI.sizes.avatarMd,
+        height: UI.sizes.avatarMd,
         decoration: BoxDecoration(
           color: color ?? UIColor.neutral25,
           shape: BoxShape.circle,
         ),
-        padding: const EdgeInsets.all(4),
+        padding:  EdgeInsets.all(UI.spacing.xxs),
         child: SvgPicture.asset(
           imgUrl,
           colorFilter: ColorFilter.mode(
@@ -131,15 +98,3 @@ class ProfileSettingOptionWidget extends StatelessWidget {
   }
 }
 
-class UISvg extends StatelessWidget {
-  const UISvg({super.key, required this.icon, this.color});
-  final String icon;
-  final UIColor? color;
-  @override
-  Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      icon,
-      colorFilter: ColorFilter.mode(color ?? UIColor.grey, BlendMode.srcIn),
-    );
-  }
-}
