@@ -1,4 +1,3 @@
-import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,6 +13,7 @@ class UserPaths {
   static const String orders = '/orders';
   static const String search = '/search';
   static const String profile = '/profile';
+  static const String serviceDetails = '/service-details';
 }
 
 /// User app route definitions.

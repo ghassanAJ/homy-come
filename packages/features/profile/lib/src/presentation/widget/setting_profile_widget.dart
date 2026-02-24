@@ -1,4 +1,6 @@
+import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
@@ -104,8 +106,15 @@ class ProfileSettingWidget extends StatelessWidget {
               descreption: 'Log out',
               imgUrl: Assets.icons.logOut,
 
-              onTap: () {
-                // log('pressed on FAQ butt/on');
+              onTap: () async {
+                final isConfirmed = await DialogsManager.showDeleteConfirmation(
+                  context,
+                  title: 'Log out',
+                  description: 'Are you sure you want to log out?',
+                );
+                if (isConfirmed) {
+                  context.read<AuthUserBloc>().add(Logout());
+                }
               },
             ),
             ProfileSettingOptionWidget(
@@ -115,8 +124,12 @@ class ProfileSettingWidget extends StatelessWidget {
               color: UIColor.backgroungAvaterRed,
               colorIcon: UIColor.iconsAvaterRed,
 
-              onTap: () {
-                // log('pressed on FAQ button');
+              onTap: () async {
+                final isConfirmed = await DialogsManager.showDeleteConfirmation(
+                  context,
+                  title: 'Delete Account',
+                  description: 'Are you sure you want to delete your account?',
+                );
               },
             ),
             // SettingOptionProfileWidget(),

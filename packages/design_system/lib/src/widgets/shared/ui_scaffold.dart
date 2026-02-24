@@ -10,6 +10,8 @@ class UIScaffold extends StatelessWidget {
     this.backgroundColor,
     this.appBarTitle,
     this.withBackgroundGradient = true,
+    this.bottomNavigationBar,
+    this.floatingActionButton,
   });
 
   final PreferredSizeWidget? appBar;
@@ -19,6 +21,8 @@ class UIScaffold extends StatelessWidget {
   final bool withBackgroundGradient;
   final Color? backgroundColor;
   final String? appBarTitle;
+  final Widget? bottomNavigationBar;
+  final Widget? floatingActionButton;
 
   @override
   Widget build(BuildContext context) {

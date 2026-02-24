@@ -1,11 +1,11 @@
-import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
-import 'package:design_system/src/widgets/shared/dashboard_navigation_scaffold.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:profile/profile.dart';
+import 'package:user/features/booking/presentation/screens/service_details_screen.dart';
+import 'package:user/features/booking/presentation/screens/service_details_step1.dart';
 import 'package:user/navigation/route.dart';
 import 'package:user/navigation/user_navigation_config.dart';
-import 'package:profile/profile.dart';
+
 /// Configuration for all app routes
 ///
 /// Provides organized route definitions grouped by feature area.
@@ -62,24 +62,11 @@ class UserAppRouteConfig {
           routes: [
             GoRoute(
               path: UserPaths.home,
-              builder:
-                  (context, state) => Scaffold(
-                    body: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('Home'),
-                          UIButton.primary(
-                            label: 'logout',
-                            onPressed: () {
-                              context.read<AuthUserBloc>().add(Logout());
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+              builder: (context, state) => const ServiceDetailsScreen(),
+            ),
+            GoRoute(
+              path: UserPaths.serviceDetails,
+              builder: (context, state) => const ServiceDetailsScreenStep1(),
             ),
           ],
         ),
@@ -101,8 +88,9 @@ class UserAppRouteConfig {
               path: UserPaths.profile,
               name: 'profile',
               builder:
-                  (context, state) =>
-                      Scaffold(body: ProfileLocalizationScope(child: ProfileScreen()),)
+                  (context, state) => Scaffold(
+                    body: ProfileLocalizationScope(child: ProfileScreen()),
+                  ),
             ),
           ],
         ),

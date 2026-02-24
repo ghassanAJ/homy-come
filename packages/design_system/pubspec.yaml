@@ -22,6 +22,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   bloc: ^9.1.0
   confetti: ^0.8.0
+  scrollable_list_tab_scroller: ^3.1.1
 
 dev_dependencies:
   flutter_test:

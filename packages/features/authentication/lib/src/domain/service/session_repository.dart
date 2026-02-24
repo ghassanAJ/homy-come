@@ -25,12 +25,10 @@ class SessionRepository {
 
   Future<void> _initialize() async {
     try {
-      final stopwatch = Stopwatch()..start();
       final user = await getUser();
 
       // If no user stored, wait for minimum splash delay then emit null
       if (user == null) {
-        await _ensureMinimumDelay(stopwatch);
         _userController.add(null);
         return;
       }
@@ -45,7 +43,6 @@ class SessionRepository {
       //         : BiometricConfig.allowLoginWhenBiometricUnavailable;
 
       // Ensure minimum splash delay before emitting result
-      await _ensureMinimumDelay(stopwatch);
 
       _userController.add(user);
     } catch (e) {
