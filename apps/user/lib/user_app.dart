@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:user/di/di_container.dart';
 import 'package:util/util.dart';
 import 'package:profile/profile.dart';
+import 'package:orders/orders.dart';
 class UserApp extends StatelessWidget {
   const UserApp({super.key});
 
@@ -27,6 +28,7 @@ class UserApp extends StatelessWidget {
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
                 ProfileLocalizationDelegate(),
+                OrdersLocalizationDelegate()
 
                 // BaseLocalization<ChildTranslation>().delegate(
                 //   ChildTranslationMap.translation,

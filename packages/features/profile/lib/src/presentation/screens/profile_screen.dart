@@ -132,10 +132,10 @@ class CustomActionAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.topCenter,
+      // alignment: Alignment.,
       margin: EdgeInsets.only(right: UI.spacing.lg),
       padding: EdgeInsets.symmetric(
-        horizontal: UI.spacing.xs,
+        // horizontal: UI.spacing.xxs,
         vertical: UI.spacing.xxs,
       ),
       // width: 50,
@@ -144,12 +144,23 @@ class CustomActionAppBarWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(UI.radius.sm),
         color: UIColor.neutral100,
       ),
-      child: Column(
-        children: [
-          if (notification != null) UISvg(Assets.icons.notification),
-          SizedBox(width: UI.spacing.sm),
-          UISvg( Assets.icons.notification),
-        ],
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // if (notification != null)
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: UI.spacing.xs),
+
+              child: UISvg(Assets.icons.notification),
+            ),
+            // SizedBox(width: UI.spacing.sm),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: UI.spacing.xs),
+              child: UISvg(Assets.icons.notification),
+            ),
+          ],
+        ),
       ),
     );
   }

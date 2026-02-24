@@ -8,6 +8,7 @@ workspace:
   - packages/utility/util
   - packages/features/authentication
   - packages/features/profile
+  - packages/features/orders
 
   - apps/user
   - apps/driver
