@@ -17,7 +17,7 @@ class WhiteCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.08),
-            blurRadius: 12,
+            blurRadius: 44,
             offset: const Offset(0, 4),
           ),
         ],

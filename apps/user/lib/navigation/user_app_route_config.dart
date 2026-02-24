@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:user/navigation/route.dart';
 import 'package:user/navigation/user_navigation_config.dart';
-
+import 'package:profile/profile.dart';
 /// Configuration for all app routes
 ///
 /// Provides organized route definitions grouped by feature area.
@@ -102,7 +102,7 @@ class UserAppRouteConfig {
               name: 'profile',
               builder:
                   (context, state) =>
-                      Scaffold(body: Center(child: Text('Profile'))),
+                      Scaffold(body: ProfileLocalizationScope(child: ProfileScreen()),)
             ),
           ],
         ),

@@ -17,3 +17,4 @@ abstract class AuthUIConstants {
   static const String invalidPhoneError = 'Please enter a valid phone number';
   static const String fieldRequiredError = 'This field is required';
 }
+// هاد الfile بحط فيه كل شي ثوابت ui auth

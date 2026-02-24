@@ -400,6 +400,7 @@ class UIButton {
     double? width,
   }) {
     return _BaseButton(
+      borderRadius: 4,
       label: label,
       onPressed: onPressed,
       styleConfig: _ButtonStyleConfig.primary,

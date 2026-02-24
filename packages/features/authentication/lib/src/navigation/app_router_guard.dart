@@ -1,7 +1,7 @@
 import 'package:authentication/authentication.dart';
 import 'package:go_router/go_router.dart';
 import 'package:user/navigation/route.dart';
-
+import 'package:profile/src/navigation/router.dart';
 class AppRouterGuard {
   static final List<String> authPaths = [
     AuthenticationPaths.onboarding,
@@ -51,7 +51,7 @@ class AppRouterGuard {
     }
 
     // 3. Unknown path (e.g. /dashboard) → Login
-    return AuthenticationPaths.login;
+    return AuthenticationPaths.login;///[هون]
   }
 
   static String _getDashboardPath(UserType? userType) {
