@@ -4,6 +4,8 @@ import 'package:profile/profile.dart';
 import 'package:user/features/booking/presentation/screens/service_details_screen.dart';
 import 'package:user/features/booking/presentation/screens/service_details_step1.dart';
 import 'package:user/features/booking/presentation/screens/service_details_step2.dart';
+import 'package:user/features/booking/presentation/screens/service_details_step3.dart';
+import 'package:user/features/booking/presentation/screens/service_details_summary_screen.dart';
 import 'package:user/navigation/route.dart';
 import 'package:user/navigation/user_navigation_config.dart';
 
@@ -25,6 +27,14 @@ class UserAppRouteConfig {
       GoRoute(
         path: UserPaths.serviceDetails2,
         builder: (context, state) => const ServiceDetailsStep2(),
+      ),
+      GoRoute(
+        path: UserPaths.serviceDetails3,
+        builder: (context, state) => const ServiceDetailsStep3(),
+      ),
+      GoRoute(
+        path: UserPaths.serviceDetailsSummary,
+        builder: (context, state) => const ServiceDetailsSummaryScreen(),
       ),
     ];
   }

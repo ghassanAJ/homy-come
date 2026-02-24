@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
+import 'package:user/navigation/route.dart';
 
 class ServiceDetailsStep2 extends StatefulWidget {
   const ServiceDetailsStep2({super.key});
@@ -123,7 +124,9 @@ class _ServiceDetailsStep2State extends State<ServiceDetailsStep2> {
                       child: UIButton.primary(
                         label: 'Next',
                         expanded: true,
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push(UserPaths.serviceDetails3);
+                        },
                       ),
                     ),
                   ],
