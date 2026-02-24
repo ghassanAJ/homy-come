@@ -1,14 +1,8 @@
-import 'dart:ui';
-
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/localization/files/ProfileTranslation.i69n.dart';
 import 'package:profile/src/presentation/widget/data_user_profile.dart';
 import 'package:profile/src/presentation/widget/more_setting_widget.dart';
-import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 import 'package:profile/src/presentation/widget/setting_profile_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -24,71 +18,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final ProfileTranslation tr = context.profileTranslation;
-    return Scaffold(
-      // backgroundColor: UIColor.babyBlue,
-      // appBar: UIAppBarVariant(),
-      body: UIBackground(
-        content: CustomScrollView(
-          slivers: [
-            UIAnimatedSliverAppBarSimple(
-              expandedHeight: UI.sizes.appBarHeight,
-              backgroundColor: Colors.transparent,
-              // collapsedTitle: UIText.bodyLarge('my profile'),
-              collapsedTitle: Row(
+    final topContentPadding =
+        MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
+    return UIScaffold(
+      appBarTitle: tr.profile.myProfile,
+
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: topContentPadding,
+            left: UI.spacing.lg,
+            right: UI.spacing.lg,
+            bottom: UI.spacing.xl,
+          ),
+          child: Column(
+            children: [
+              UserProfileInfoWidget(context: context),
+              SizedBox(height: UI.spacing.lg), //24
+
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(radius: UI.sizes.statusIcon),
-                  SizedBox(width: UI.spacing.xs),
-                  UIText.bodyLarge(
-                    context.profileTranslation.profile.myProfile,
+                  ProfileSettingWidget(
+                    isActiveNotification: isActiveNotification,
                   ),
+                  SizedBox(height: UI.spacing.md),
+                  MoreSettingWidget(),
                 ],
               ),
-              bottom: PreferredSize(
-                preferredSize: Size.fromHeight(1),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: UI.spacing.xl,
-                    top: UI.spacing.md,
-                  ),
-                  child: Divider(height: 4, color: UIColor.divider),
-                ),
-              ),
-              scrollController: ScrollController(),
-              expandedContent: Stack(
-                fit: StackFit.expand,
-                children: [CustomUIAppBarWidget(title: tr.profile.myProfile)],
-              ),
-            ),
-
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: UI.spacing.lg,
-                  vertical: UI.spacing.xl,
-                ),
-                child: Column(
-                  children: [
-                    UserProfileInfoWidget(context: context),
-                    SizedBox(height: UI.spacing.lg), //24
-
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: UI.spacing.md),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ProfileSettingWidget(
-                            isActiveNotification: isActiveNotification,
-                          ),
-                          SizedBox(height: UI.spacing.md),
-                          MoreSettingWidget(),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+              SizedBox(height: 150),
+            ],
+          ),
         ),
       ),
     );
@@ -148,7 +108,7 @@ class CustomActionAppBarWidget extends StatelessWidget {
         children: [
           if (notification != null) UISvg(Assets.icons.notification),
           SizedBox(width: UI.spacing.sm),
-          UISvg( Assets.icons.notification),
+          UISvg(Assets.icons.notification),
         ],
       ),
     );

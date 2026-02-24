@@ -30,7 +30,6 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     final tr = context.loc<AuthenticationTranslation>();
     final personalInfo = tr.personalInfo;
-    final keyboardInset = MediaQuery.of(context).viewInsets.bottom;
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
@@ -140,7 +139,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            UISvg(Assets.icons.logout),
+                            UISvg(Assets.icons.logOut),
                             SizedBox(width: UI.spacing.xs),
                             Text(
                               tr.login.joinAsGuest,

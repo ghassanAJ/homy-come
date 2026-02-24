@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:authentication/authentication.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:util/util.dart'
-    show BiometricConfig, BiometricService, MDStorage;
+import 'package:util/util.dart';
 
 @singleton
 class SessionRepository {
@@ -37,22 +36,18 @@ class SessionRepository {
       }
 
       // User exists - determine if authentication should succeed
-      final isBiometricAvailable = await _biometricService.isAvailable();
-      final shouldAuthenticate =
-          isBiometricAvailable
-              ? await _biometricService.authenticate(
-                reason: 'Verify your identity to access Maddo',
-              )
-              : BiometricConfig.allowLoginWhenBiometricUnavailable;
+      // final isBiometricAvailable = await _biometricService.isAvailable();
+      // final shouldAuthenticate =
+      //     isBiometricAvailable
+      //         ? await _biometricService.authenticate(
+      //           reason: 'Verify your identity to access Maddo',
+      //         )
+      //         : BiometricConfig.allowLoginWhenBiometricUnavailable;
 
       // Ensure minimum splash delay before emitting result
       await _ensureMinimumDelay(stopwatch);
 
-      if (shouldAuthenticate) {
-        _userController.add(user);
-      } else {
-        await clearSession();
-      }
+      _userController.add(user);
     } catch (e) {
       // If any error occurs during initialization, emit null to allow app to continue
       _userController.add(null);

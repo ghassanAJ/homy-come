@@ -1,20 +1,21 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 
 class UIBackground extends StatelessWidget {
-  const UIBackground({super.key, required this.content});
-  final Widget content;
+  const UIBackground({super.key, this.child});
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.sizeOf(context).width,
+      height: MediaQuery.sizeOf(context).height,
       decoration: BoxDecoration(
-        gradient: RadialGradient(
-          center: AlignmentGeometry.topLeft,
-          radius: 0.6,
+        gradient: const RadialGradient(
+          center: Alignment.topLeft,
+          radius: .9,
           colors: [UIColor.softGreen, UIColor.background],
         ),
       ),
-      child: content,
+      child: SafeArea(child: Offstage(offstage: false, child: child)),
     );
   }
 }

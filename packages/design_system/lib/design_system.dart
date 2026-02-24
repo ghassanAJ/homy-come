@@ -56,6 +56,7 @@ export 'src/widgets/shared/stack_fade_grediant.dart';
 export 'src/widgets/shared/ui_chips_bar.dart';
 export 'src/widgets/shared/ui_filter_tab_bar.dart';
 export 'src/widgets/shared/ui_icon_background.dart';
+export 'src/widgets/shared/ui_scaffold.dart';
 export 'src/widgets/shared/ui_svg.dart';
 export 'src/widgets/shimmer/shimmer_box.dart';
 export 'src/widgets/shimmer/shimmer_card.dart';

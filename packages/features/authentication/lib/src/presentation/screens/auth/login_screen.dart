@@ -90,6 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(height: UI.spacing.xxl),
                         _buildHeader(tr),
                         SizedBox(height: UI.spacing.xxl),
                         Directionality(
@@ -201,7 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            UISvg(Assets.icons.logout, package: PackagesName.designSystem),
+            // UISvg(Assets.icons.logout),
             Text(
               tr.login.joinAsGuest,
               style: UI.text.bodySmall.copyWith(
