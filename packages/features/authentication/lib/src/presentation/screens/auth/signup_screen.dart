@@ -1,10 +1,7 @@
 import 'package:authentication/authentication.dart';
 import 'package:authentication/src/presentation/widgets/signup/profile_picture_picker.dart';
 import 'package:design_system/design_system.dart';
-import 'package:design_system/gen/assets.gen.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:util/util.dart';
 
@@ -143,10 +140,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            SvgPicture.asset(
-                              Assets.icons.logout,
-                              package: 'design_system',
-                            ),
+                            UISvg(Assets.icons.logout),
                             SizedBox(width: UI.spacing.xs),
                             Text(
                               tr.login.joinAsGuest,
@@ -183,7 +177,7 @@ class _FieldPrefixIcon extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(width: UI.spacing.md),
-        SvgPicture.asset(iconPath, package: 'design_system'),
+        UISvg(iconPath),
         SizedBox(width: UI.spacing.md),
         Container(width: 1, height: 34, color: UIColor.softgrey),
         SizedBox(width: UI.spacing.xs),

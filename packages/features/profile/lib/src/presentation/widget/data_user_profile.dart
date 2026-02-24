@@ -1,8 +1,6 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:profile/profile.dart';
-import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
 class UserProfileInfoWidget extends StatelessWidget {
   const UserProfileInfoWidget({super.key, required this.context});
@@ -67,7 +65,7 @@ class UserProfileInfoWidget extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color: UIColor.background,
                               ),
-                              child: SvgPicture.asset(
+                              child: UISvg(
                                 Assets.icons.carema,
                                 // package: 'design_system',
                               ),
@@ -98,7 +96,7 @@ class UserProfileInfoWidget extends StatelessWidget {
                   color: UIColor.grey,
                 ),
                 SizedBox(width: UI.spacing.xs),
-                UISvg(Assets.icons.arrowRight,color:UIColor.grey)
+                UISvg(Assets.icons.arrowRight, color: UIColor.grey),
               ],
             ),
           ),
