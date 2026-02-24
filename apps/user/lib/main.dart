@@ -10,6 +10,7 @@ void main() async {
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+      await UIDesignSystemInitializer.initialize();
 
       var env = const String.fromEnvironment('ENV', defaultValue: 'dev');
       if (env.isEmpty) env = 'dev';
@@ -26,4 +27,3 @@ void main() async {
     },
   );
 }
-
