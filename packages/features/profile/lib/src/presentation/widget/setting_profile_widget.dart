@@ -2,8 +2,8 @@ import 'package:design_system/design_system.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
-class SettingProfileWidget extends StatelessWidget {
-  const SettingProfileWidget({super.key, required this.isActiveNotification});
+class ProfileSettingWidget extends StatelessWidget {
+  const ProfileSettingWidget({super.key, required this.isActiveNotification});
 
   final ValueNotifier<bool> isActiveNotification;
 
@@ -14,10 +14,15 @@ class SettingProfileWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(UI.radius.xs),
         color: UIColor.background,
-        boxShadow:UI.shadows.cardMd
+        boxShadow: UI.shadows.cardMd,
       ),
       child: Padding(
-        padding:  EdgeInsets.fromLTRB(UI.spacing.md, UI.spacing.lg, UI.spacing.md, 0),
+        padding: EdgeInsets.fromLTRB(
+          UI.spacing.md,
+          UI.spacing.lg,
+          UI.spacing.md,
+          0,
+        ),
         child: Column(
           children: [
             ProfileSettingOptionWidget(
@@ -54,7 +59,9 @@ class SettingProfileWidget extends StatelessWidget {
                                 UIColor.backgroungSwitchUnactive,
                               )
                               : WidgetStateProperty.all(UIColor.tertiary),
-                      trackOutlineWidth: WidgetStateProperty.all(UI.sizes.trackOUtLined),
+                      trackOutlineWidth: WidgetStateProperty.all(
+                        UI.sizes.trackOUtLined,
+                      ),
 
                       value: state,
                       onChanged: (value) {

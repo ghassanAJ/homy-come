@@ -76,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SettingProfileWidget(
+                          ProfileSettingWidget(
                             isActiveNotification: isActiveNotification,
                           ),
                           SizedBox(height: UI.spacing.md),
