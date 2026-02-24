@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:user/navigation/route.dart';
 
 class ServiceDetailsScreenStep1 extends StatefulWidget {
   const ServiceDetailsScreenStep1({super.key});
@@ -32,7 +33,6 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
         titleWidget: Column(
           children: [
             UIText.h3('Home Cleaning', color: UIColor.balck),
-            SizedBox(height: UI.spacing.xxs),
             UIText.bodySmall('Step 1 to 4', color: UIColor.textSecondary),
           ],
         ),
@@ -44,14 +44,6 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
           },
           child: const BackButtonAppBar(),
         ),
-        actions: [
-          UIIconBackground(
-            size: 34,
-            iconSize: UI.sizes.iconSm,
-            backgroundColor: UIColor.neutral100,
-            child: Icon(Icons.notifications_none_rounded, color: UIColor.balck),
-          ),
-        ],
       ),
       withBackgroundGradient: true,
       body: Stack(
@@ -228,7 +220,9 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                       child: UIButton.primary(
                         label: 'Next',
                         expanded: true,
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push(UserPaths.serviceDetails2);
+                        },
                       ),
                     ),
                   ],
@@ -313,14 +307,14 @@ class _ChoiceChipButton extends StatelessWidget {
           vertical: UI.spacing.xs,
         ),
         decoration: BoxDecoration(
-          color: selected ? UIColor.secondary : UIColor.background,
+          color: selected ? UIColor.babyPink : UIColor.background,
           borderRadius: BorderRadius.circular(20),
           boxShadow: selected ? UI.shadows.sm : null,
         ),
         child: UIText.bodyMedium(
           label,
-          fontWeight: FontWeight.w600,
-          color: selected ? UIColor.primary : UIColor.neutral500,
+          fontWeight: FontWeight.w700,
+          color: selected ? UIColor.pink : UIColor.neutral500,
         ),
       ),
     );

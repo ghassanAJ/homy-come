@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:user/features/booking/presentation/screens/service_details_screen.dart';
 import 'package:user/features/booking/presentation/screens/service_details_step1.dart';
+import 'package:user/features/booking/presentation/screens/service_details_step2.dart';
 import 'package:user/navigation/route.dart';
 import 'package:user/navigation/user_navigation_config.dart';
 
@@ -14,7 +15,18 @@ class UserAppRouteConfig {
   static List<RouteBase> createRoutes(
     GlobalKey<NavigatorState> shellNavigatorKey,
   ) {
-    return [_createDashboardShell(shellNavigatorKey)];
+    return [
+      _createDashboardShell(shellNavigatorKey),
+
+      GoRoute(
+        path: UserPaths.serviceDetails,
+        builder: (context, state) => const ServiceDetailsScreenStep1(),
+      ),
+      GoRoute(
+        path: UserPaths.serviceDetails2,
+        builder: (context, state) => const ServiceDetailsStep2(),
+      ),
+    ];
   }
 
   /// Dashboard shell with bottom navigation and tab routes
@@ -63,10 +75,6 @@ class UserAppRouteConfig {
             GoRoute(
               path: UserPaths.home,
               builder: (context, state) => const ServiceDetailsScreen(),
-            ),
-            GoRoute(
-              path: UserPaths.serviceDetails,
-              builder: (context, state) => const ServiceDetailsScreenStep1(),
             ),
           ],
         ),

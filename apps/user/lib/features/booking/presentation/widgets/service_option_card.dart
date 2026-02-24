@@ -9,6 +9,7 @@ class ServiceOptionCard extends StatelessWidget {
     required this.originalPrice,
     required this.discountedPrice,
     this.showAddButton = true,
+    required this.onAddButtonPressed,
   });
 
   final String title;
@@ -17,7 +18,7 @@ class ServiceOptionCard extends StatelessWidget {
   final String originalPrice;
   final String discountedPrice;
   final bool showAddButton;
-
+  final VoidCallback onAddButtonPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -89,7 +90,7 @@ class ServiceOptionCard extends StatelessWidget {
               hoverColor: UIColor.softGreen.withValues(alpha: 0.1),
               splashColor: UIColor.softGreen.withValues(alpha: 0.1),
               highlightColor: UIColor.softGreen.withValues(alpha: 0.1),
-              onPressed: () {},
+              onPressed: onAddButtonPressed,
               icon: Container(
                 padding: EdgeInsets.all(UI.spacing.xs),
                 decoration: BoxDecoration(

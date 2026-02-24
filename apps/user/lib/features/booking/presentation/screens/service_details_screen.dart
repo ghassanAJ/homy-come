@@ -2,9 +2,11 @@ import 'package:authentication/authentication.dart';
 import 'package:booking/booking.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:user/di/di_container.dart';
 import 'package:user/features/booking/presentation/cubit/service_details_cubit.dart';
 import 'package:user/features/booking/presentation/widgets/service_option_card.dart';
+import 'package:user/navigation/route.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
   const ServiceDetailsScreen({super.key});
@@ -269,6 +271,9 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
                     // ],
                     itemBuilder:
                         (context, item, index) => ServiceOptionCard(
+                          onAddButtonPressed: () {
+                            context.push(UserPaths.serviceDetails);
+                          },
                           title: item.title,
                           duration: item.duration,
                           description: item.description,
@@ -294,6 +299,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen> {
     return options
         .map(
           (option) => ServiceOptionCard(
+            onAddButtonPressed: () {},
             title: option.title,
             duration: option.durationMinutes.toString(),
             description: option.description,
