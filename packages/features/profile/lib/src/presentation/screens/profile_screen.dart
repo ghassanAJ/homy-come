@@ -146,9 +146,9 @@ class CustomActionAppBarWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          if (notification != null) UISvg(icon: Assets.icons.notification),
+          if (notification != null) UISvg(Assets.icons.notification),
           SizedBox(width: UI.spacing.sm),
-          UISvg(icon: Assets.icons.notification),
+          UISvg( Assets.icons.notification),
         ],
       ),
     );

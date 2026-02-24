@@ -27,7 +27,7 @@ class ProfileSettingOptionWidget extends StatelessWidget {
       onTap: onTap,
       child: ListTile(
         contentPadding: EdgeInsets.only(bottom: UI.spacing.sm),
-        trailing: customTrailing ?? UISvg(icon: Assets.icons.right),
+        trailing: customTrailing ?? UISvg( Assets.icons.right),
         leading: _buildProfileIcon(
           isSvgIcon: isSvgIcon,
           imgUrl: imgUrl,
