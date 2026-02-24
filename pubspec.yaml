@@ -7,6 +7,7 @@ workspace:
   - packages/utility/api_client
   - packages/utility/util
   - packages/features/authentication
+  - packages/features/profile
 
   - apps/user
   - apps/driver

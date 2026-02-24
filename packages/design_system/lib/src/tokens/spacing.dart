@@ -39,6 +39,8 @@ class UISpacing {
 
   /// Extra extra large spacing: 48px
   ///
+  ///
+  ///
   /// Usage: Page-level spacing
   double get xxl => 48;
 

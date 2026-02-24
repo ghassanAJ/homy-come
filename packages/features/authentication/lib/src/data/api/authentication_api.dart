@@ -20,7 +20,7 @@ class AuthenticationAPIEndpoints {
 @RestApi()
 abstract class AuthenticationAPI {
   @factoryMethod
-  factory AuthenticationAPI(@Named('authDio') Dio dio) = _AuthenticationAPI;
+  factory AuthenticationAPI(@Named('authDio') Dio dio) = _AuthenticationAPI;// ما فهمت
 
   @POST(AuthenticationAPIEndpoints.sendOTP)
   Future<APIResponse<SendOTPResponseModel>> sendOTP(

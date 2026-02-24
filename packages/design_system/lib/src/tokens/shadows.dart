@@ -12,8 +12,8 @@ class UIShadows {
   /// Usage: Cards, buttons
   List<BoxShadow> get sm => [
         BoxShadow(
-          color: Colors.black.withValues(alpha: 0.08),
-          offset: const Offset(0, 2),
+          color: Colors.black.withValues(alpha: 0.1),
+          offset: const Offset(0, 4),
           blurRadius: 4,
           spreadRadius: 0,
         ),
@@ -72,5 +72,14 @@ class UIShadows {
           blurRadius: 8,
           spreadRadius: 0,
         ),
+      ];
+
+
+  List<BoxShadow> get cardMd => [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 44,
+                offset: const Offset(0, 4),
+              ),
       ];
 }

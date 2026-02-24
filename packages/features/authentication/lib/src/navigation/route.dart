@@ -15,6 +15,7 @@ class AuthenticationPaths {
   static const String otpVerification = '/otp-verification';
   static const String completeProfile = '/complete-profile';
   static const String login = '/login';
+  static const String profile = '/profile_page';
 }
 
 class AuthRouteParams {

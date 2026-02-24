@@ -68,6 +68,28 @@ class UIText extends StatelessWidget {
     super.key,
   }) : style = _typography.h3;
 
+  UIText.h4(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    super.key,
+  }) : style = _typography.h4;
+
+
+  UIText.h5(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    super.key,
+  }) : style = _typography.h5;
+
+
   // ===========================================================================
   // BODY TEXT
   // ===========================================================================
@@ -142,6 +164,16 @@ class UIText extends StatelessWidget {
     super.key,
   }) : style = _typography.bodyXSmall;
 
+  UIText.headerBody(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    super.key,
+  }) : style = _typography.headerBody;
+
   // ===========================================================================
   // CAPTION
   // ===========================================================================
@@ -190,6 +222,36 @@ class UIText extends StatelessWidget {
          fontSize: fontSize,
        );
 
+
+  UIText.buttonTextsm(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    FontWeight? fontWeight,
+    double? fontSize,
+    super.key,
+  }) : style = _typography.buttonTextSm.copyWith(
+         fontWeight: fontWeight,
+         fontSize: fontSize,
+       );
+
+    UIText.buttonTextXsm(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    FontWeight? fontWeight,
+    double? fontSize,
+    super.key,
+  }) : style = _typography.buttonTextXSm.copyWith(
+         fontWeight: fontWeight,
+         fontSize: fontSize,
+       );    
   /// Button with Icon - Buttons with icons
   ///
   /// Size: 16px, Weight: 600 (SemiBold)

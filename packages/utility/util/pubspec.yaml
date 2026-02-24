@@ -31,7 +31,7 @@ dependencies:
   share_plus: ^12.0.0
   confetti: ^0.8.0
   design_system:
-  i69n: ^3.4.0
+  i69n: ^3.3.0
   nested: ^1.0.0
   flutter_localizations:
     sdk: flutter

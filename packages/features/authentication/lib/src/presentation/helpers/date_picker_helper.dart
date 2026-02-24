@@ -22,8 +22,8 @@ class DatePickerHelper {
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
               primary: UIColor.primary,
-              onPrimary: Colors.white,
-              surface: Colors.white,
+              onPrimary: UIColor.white,
+              surface: UIColor.black,
               onSurface: UIColor.background,
             ),
           ),

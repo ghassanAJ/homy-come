@@ -4,7 +4,7 @@ class UIColor extends Color {
   const UIColor._(super.value);
 
   // Primary colors
-  static const UIColor primary = UIColor._(0xFFF231F20);
+  static const UIColor primary = UIColor._(0xFFFAB4F0);
   static const UIColor softGreen = UIColor._(0xffD6F0C0);
   static const UIColor softGreen1 = UIColor._(0xffF7FFF1);
   static const UIColor softYellow = UIColor._(0xffF6E7B0);
@@ -20,13 +20,13 @@ class UIColor extends Color {
   // Status colors
   static const UIColor error = UIColor._(0xFFFF6653);
   static const UIColor success = UIColor._(0xFF32D938);
+  static const UIColor successBright = UIColor._(0xFF0FCC5D);
   static const UIColor warning = UIColor._(0xFFFFC155);
 
   // Neutral colors
   static const UIColor neutral000 = UIColor._(0xFFFFFFFF);
   static const UIColor neutral25 = UIColor._(0xffF6F7F9);
-  // static const UIColor neutral100 = UIColor._(0xFFFFFFFF);
-
+  static const UIColor neutral100 = UIColor._(0xFFF4F4F4);
   static const UIColor neutral200 = UIColor._(0xFFC4C4C4);
   static const UIColor neutral300 = UIColor._(0xFFA4A4A4);
   static const UIColor neutral400 = UIColor._(0xFFA5A2AF);
@@ -37,6 +37,11 @@ class UIColor extends Color {
   static const UIColor background = white;
   static const UIColor backgroundInactive = UIColor._(0xFFA5A2AF);
   static const UIColor backgroundResting = UIColor._(0xFFFBFAFF);
+  static const UIColor iconsAvaterRed = UIColor._(0xffff0000);
+  static const UIColor backgroungAvaterRed = UIColor._(0xff1aff0000);
+  static const UIColor backgroungSwitchUnactive = UIColor._(0xffEBEBEB);
+  static const UIColor backgroungSilverLight = UIColor._(0xff0DA1A4A7);
+  static const UIColor backgroundsilvar = UIColor._(0xff1F787880);
 
   // Surface colors
   static const UIColor surface = neutral000;
@@ -48,13 +53,16 @@ class UIColor extends Color {
   static const UIColor textPrimary = primaryDark;
   static const UIColor textSecondary = neutral600;
   static const UIColor textPlaceholder = neutral300;
+  static const UIColor textGray = UIColor._(0xffABABAB);
+  static const UIColor textNatral600 = UIColor._(0xff717171);
 
   // Border colors
   static const UIColor border = softgrey;
   static const UIColor borderFocused = primary;
   static const UIColor borderError = error;
+  static const UIColor bordarCard = UIColor._(0xFFD9D9D9);
 
-  /// Shadow color - used for drop shadows
+  /// Shadow color
   static const UIColor shadow = UIColor._(0xFF101828);
 
   static List<UIColor> get avatars => [primary, warning, tertiary];
@@ -68,7 +76,8 @@ class UIColor extends Color {
   // black
   static const UIColor black = UIColor._(0xFF000000);
 
-  static const UIColor successBright = UIColor._(0xFF0FCC5D);
+  // divider
+  static const UIColor divider = UIColor._(0xFFF5F5F5);
 }
 
 class UIPieChartColors {
@@ -78,7 +87,6 @@ class UIPieChartColors {
     UIColor.tertiary,
     UIColor.error,
     UIColor.secondary,
-
     UIColor.success,
     Color(0xff9B8FF5),
     Color(0xffFF9ECD),
@@ -93,8 +101,19 @@ class UIColorGradient {
     Color(0xffFFFAF1),
     Color(0xffF5EBFF),
   ];
+
   static const List<Color> savingInRowLabel = [
     Color(0xffFFF3DF),
     Color(0xffE3DFFF),
+  ];
+
+  static const List<Color> backgroundGradiant = [
+    UIColor.softGreen,
+    UIColor.background,
+  ];
+
+  static const List<Color> yelloAndPinkGradiant = [
+    UIColor.borderFocused,
+    UIColor.softYellow,
   ];
 }
