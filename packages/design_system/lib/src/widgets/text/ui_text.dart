@@ -31,7 +31,7 @@ class UIText extends StatelessWidget {
 
   /// Heading 1 - Page titles, main headings
   ///
-  /// Size: 32px, Weight: 700 (Bold)
+  /// Size: 30px, Weight: 700 (Bold)
   UIText.h1(
     this.data, {
     this.color,

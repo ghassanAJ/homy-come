@@ -3,10 +3,16 @@ import 'package:go_router/go_router.dart';
 import 'package:user/navigation/route.dart';
 import 'package:profile/src/navigation/router.dart';
 class AppRouterGuard {
+  static bool _isOtpPath(String path) =>
+      path == AuthenticationPaths.otpVerification ||
+      path.endsWith(AuthenticationPaths.otpVerification) ||
+      path.contains('${AuthenticationPaths.otpVerification}/');
+
   static final List<String> authPaths = [
     AuthenticationPaths.onboarding,
     AuthenticationPaths.splash,
     AuthenticationPaths.login,
+    AuthenticationPaths.signup,
     AuthenticationPaths.selectRole,
     AuthenticationPaths.authEntry,
     AuthenticationPaths.otpVerification,
@@ -28,6 +34,11 @@ class AppRouterGuard {
     }
 
     if (appState.isAuthenticated && appState.user != null) {
+      // Allow OTP screen to display success state and let user continue manually.
+      if (_isOtpPath(currentPath)) {
+        return null;
+      }
+
       // Check if profile is complete before allowing access to authenticated routes
       if (!appState.user!.hasCompletedProfile &&
           currentPath != AuthenticationPaths.completeProfile) {
@@ -42,7 +53,7 @@ class AppRouterGuard {
   static String? _handleUnauthenticatedRedirect(String currentPath) {
     // 1. Splash → Onboarding
     if (currentPath == AuthenticationPaths.splash) {
-      return AuthenticationPaths.login;
+      return AuthenticationPaths.onboarding;
     }
 
     // 2. If on any auth path, stay there (onboarding, login, select-role, etc.)
@@ -67,6 +78,10 @@ class AppRouterGuard {
     AppState appState,
   ) {
     final user = appState.user;
+
+    if (_isOtpPath(currentPath)) {
+      return null;
+    }
 
     // Redirect completed profiles from auth screens to dashboard
     if (authPaths.contains(currentPath)) {
