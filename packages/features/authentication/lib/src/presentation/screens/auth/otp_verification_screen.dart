@@ -152,32 +152,18 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                     children: [
                       Expanded(
                         child: SingleChildScrollView(
-                          padding: EdgeInsets.fromLTRB(
-                            UI.spacing.xxl2,
-                            150,
-                            UI.spacing.xxl2,
-                            UI.spacing.md,
-                          ),
+                          padding: UI.padding.authScrollable,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // SizedBox(height: UI.spacing.xxxl),
                               Center(
-                                child: Container(
-                                  width: 90,
-                                  height: 90,
-                                  decoration: const BoxDecoration(
-                                    color: UIColor.softGreen,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: SizedBox(
-                                    width: 45,
-                                    height: 45,
-                                    child: SvgPicture.asset(
-                                      Assets.icons.message,
-                                      package: 'design_system',
-                                    ),
+                                child: UIIconBackground(
+                                  size: 90,
+                                  iconSize: 45,
+                                  backgroundColor: UIColor.softGreen,
+                                  child: SvgPicture.asset(
+                                    Assets.icons.message,
+                                    package: 'design_system',
                                   ),
                                 ),
                               ),
@@ -204,12 +190,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(
-                          UI.spacing.xl,
-                          UI.spacing.md,
-                          UI.spacing.xl,
-                          UI.spacing.xxxl + UI.spacing.md,
-                        ),
+                        padding: UI.padding.authActions,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [

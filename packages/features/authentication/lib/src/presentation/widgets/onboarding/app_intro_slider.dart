@@ -86,8 +86,8 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final screenSize = mediaQuery.size;
+    final screenSize = MediaQuery.sizeOf(context);
+    final topSystemPadding = MediaQuery.paddingOf(context).top;
     final tr = context.loc<AuthenticationTranslation>();
     final pages = [
       _OnboardingData(
@@ -108,7 +108,7 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
     ];
 
     final topPadding =
-        mediaQuery.padding.top +
+        topSystemPadding +
         UI.padding.onboardingSliderTopOffset(screenHeight: screenSize.height);
     final availableHeight = screenSize.height - topPadding;
     final sliderHeight = availableHeight * 0.66;
@@ -186,7 +186,7 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
             behavior: HitTestBehavior.opaque,
             onTap: _onSkip,
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: UI.spacing.sm),
+              padding: UI.padding.verticalSm,
               child: UIText.bodyMedium(
                 tr.onboarding.skip,
                 color: UIColor.balck,

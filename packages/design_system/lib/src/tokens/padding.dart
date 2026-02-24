@@ -21,8 +21,21 @@ class UIPadding {
   /// Common horizontal medium spacing.
   EdgeInsets get horizontalMd => EdgeInsets.symmetric(horizontal: _spacing.md);
 
+  /// Common all-sides medium spacing.
+  EdgeInsets get allMd => EdgeInsets.all(_spacing.md);
+
   /// Common horizontal large spacing.
   EdgeInsets get horizontalLg => EdgeInsets.symmetric(horizontal: _spacing.lg);
+
+  /// Common vertical small spacing.
+  EdgeInsets get verticalSm => EdgeInsets.symmetric(vertical: _spacing.sm);
+
+  /// Common bottom medium spacing.
+  EdgeInsets get bottomMd => EdgeInsets.only(bottom: _spacing.md);
+
+  /// Common compact chip padding.
+  EdgeInsets get chipCompact =>
+      EdgeInsets.symmetric(horizontal: _spacing.xs, vertical: _spacing.xxs);
 
   /// Common all-sides extra large spacing.
   EdgeInsets get allXl => EdgeInsets.all(_spacing.xl);

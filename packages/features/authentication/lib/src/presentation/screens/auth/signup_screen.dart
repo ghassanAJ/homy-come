@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:authentication/authentication.dart';
+import 'package:authentication/src/presentation/widgets/signup/profile_picture_picker.dart';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
@@ -34,145 +33,138 @@ class _SignupScreenState extends State<SignupScreen> {
   Widget build(BuildContext context) {
     final tr = context.loc<AuthenticationTranslation>();
     final personalInfo = tr.personalInfo;
-    final isKeyboardVisible = MediaQuery.viewInsetsOf(context).bottom > 0;
+    final keyboardInset = MediaQuery.of(context).viewInsets.bottom;
+
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: UIColor.background,
       body: AuthEllipseBackground(
         child: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: UI.padding.authScrollable,
-                  child: FormBuilder(
-                    key: _formKey,
+          child: SingleChildScrollView(
+            padding: UI.padding.authScrollable.copyWith(bottom: 0),
+            child: FormBuilder(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  UIText.h2(tr.login.signUp),
+                  SizedBox(height: UI.spacing.xs),
+                  UIText.bodySmall(
+                    personalInfo.subtitle,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  SizedBox(height: UI.spacing.lg),
+
+                  UIText.bodySmall(
+                    personalInfo.personalPhoto,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  SizedBox(height: UI.spacing.xs),
+                  ProfilePicturePicker(onPhotoPicked: (_) {}),
+                  SizedBox(height: UI.spacing.xl),
+
+                  AppFormBuilderTextField(
+                    name: _fullNameField,
+                    label: personalInfo.fullName,
+                    placeholder: personalInfo.username,
+                    prefixIcon: _FieldPrefixIcon(iconPath: Assets.icons.user),
+                    validator: FormBuilderValidators.required(
+                      errorText: personalInfo.fullNameRequired,
+                    ),
+                  ),
+                  SizedBox(height: UI.spacing.md),
+
+                  AppFormBuilderTextField(
+                    name: AuthFormFieldNames.email,
+                    label: tr.authIdentity.emailTitle,
+                    placeholder: personalInfo.emailPlaceholder,
+                    prefixIcon: _FieldPrefixIcon(iconPath: Assets.icons.email),
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                        errorText: personalInfo.emailRequired,
+                      ),
+                      FormBuilderValidators.email(
+                        errorText: personalInfo.emailInvalid,
+                      ),
+                    ]),
+                  ),
+                  SizedBox(height: UI.spacing.md),
+
+                  AppFormBuilderTextField(
+                    name: AuthFormFieldNames.phone,
+                    label: tr.login.phoneLabel,
+                    placeholder: personalInfo.phonePlaceholder,
+                    keyboardType: TextInputType.phone,
+                    prefixIcon: _FieldPrefixIcon(iconPath: Assets.icons.call),
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                        errorText: personalInfo.phoneRequired,
+                      ),
+                      FormBuilderValidators.match(
+                        RegExp(r'^\d{10}$'),
+                        errorText: personalInfo.phoneInvalid,
+                      ),
+                    ]),
+                  ),
+                  SizedBox(height: UI.spacing.md),
+
+                  AppFormBuilderTextField(
+                    name: _countryField,
+                    label: personalInfo.country,
+                    placeholder: personalInfo.countryPlaceholder,
+                    prefixIcon: _FieldPrefixIcon(
+                      iconPath: Assets.icons.location,
+                    ),
+                    validator: FormBuilderValidators.required(
+                      errorText: personalInfo.countryRequired,
+                    ),
+                  ),
+                  SizedBox(height: UI.spacing.xxl2),
+                  Padding(
+                    padding: UI.padding.authActions,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        UIText.h2(tr.login.signUp),
-                        SizedBox(height: UI.spacing.xs),
-                        UIText.bodySmall(
-                          tr.personalInfo.subtitle,
-                          fontWeight: FontWeight.w500,
+                        UIButton.primary(
+                          label: tr.login.signUp,
+                          expanded: true,
+                          onPressed: _onSignupPressed,
                         ),
                         SizedBox(height: UI.spacing.lg),
-                        UIText.bodySmall(
-                          tr.personalInfo.personalPhoto,
-                          fontWeight: FontWeight.w500,
+                        GestureDetector(
+                          onTap: () => AuthInternalRouter.of(context).toLogin(),
+                          child: UIText.bodyMedium(
+                            tr.authEntry.loginButton,
+                            color: UIColor.successBright,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
-                        SizedBox(height: UI.spacing.xs),
-                        ProfilePicturePicker(onPhotoPicked: (_) {}),
                         SizedBox(height: UI.spacing.xl),
-
-                        AppFormBuilderTextField(
-                          name: _fullNameField,
-                          label: tr.personalInfo.fullName,
-                          placeholder: tr.personalInfo.username,
-                          prefixIcon: _FieldPrefixIcon(
-                            iconPath: Assets.icons.user,
-                          ),
-                          validator: FormBuilderValidators.required(
-                            errorText: tr.personalInfo.fullNameRequired,
-                          ),
-                        ),
-
-                        SizedBox(height: UI.spacing.md),
-                        AppFormBuilderTextField(
-                          name: AuthFormFieldNames.email,
-                          label: tr.authIdentity.emailTitle,
-                          placeholder: personalInfo.emailPlaceholder,
-                          // showClearButton: false,
-                          prefixIcon: _FieldPrefixIcon(
-                            iconPath: Assets.icons.email,
-                          ),
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(
-                              errorText: personalInfo.emailRequired,
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SvgPicture.asset(
+                              Assets.icons.logOut,
+                              package: 'design_system',
                             ),
-                            FormBuilderValidators.email(
-                              errorText: personalInfo.emailInvalid,
+                            SizedBox(width: UI.spacing.xs),
+                            Text(
+                              tr.login.joinAsGuest,
+                              style: UI.text.bodySmall.copyWith(
+                                color: UIColor.grey,
+                                decoration: TextDecoration.underline,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ]),
-                        ),
-                        SizedBox(height: UI.spacing.md),
-                        AppFormBuilderTextField(
-                          name: AuthFormFieldNames.phone,
-                          label: tr.login.phoneLabel,
-                          placeholder: personalInfo.phonePlaceholder,
-                          keyboardType: TextInputType.phone,
-                          prefixIcon: _FieldPrefixIcon(
-                            iconPath: Assets.icons.call,
-                          ),
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(
-                              errorText: personalInfo.phoneRequired,
-                            ),
-                            FormBuilderValidators.match(
-                              RegExp(r'^\d{10}$'),
-                              errorText: personalInfo.phoneInvalid,
-                            ),
-                          ]),
-                        ),
-                        SizedBox(height: UI.spacing.md),
-                        AppFormBuilderTextField(
-                          name: _countryField,
-                          label: personalInfo.country,
-                          placeholder: personalInfo.countryPlaceholder,
-                          prefixIcon: _FieldPrefixIcon(
-                            iconPath: Assets.icons.location,
-                          ),
-                          validator: FormBuilderValidators.required(
-                            errorText: personalInfo.countryRequired,
-                          ),
+                          ],
                         ),
                       ],
                     ),
                   ),
-                ),
+                ],
               ),
-              if (!isKeyboardVisible)
-                Padding(
-                  padding: UI.padding.authActions,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      UIButton.primary(
-                        label: tr.login.signUp,
-                        expanded: true,
-                        onPressed: _onSignupPressed,
-                      ),
-                      SizedBox(height: UI.spacing.lg),
-                      GestureDetector(
-                        onTap: () => AuthInternalRouter.of(context).toLogin(),
-                        child: UIText.bodyMedium(
-                          tr.authEntry.loginButton,
-                          color: UIColor.successBright,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      SizedBox(height: UI.spacing.xl),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SvgPicture.asset(
-                            Assets.icons.logOut,
-                            package: 'design_system',
-                          ),
-                          Text(
-                            tr.login.joinAsGuest,
-                            style: UI.text.bodySmall.copyWith(
-                              color: UIColor.grey,
-                              decoration: TextDecoration.underline,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-            ],
+            ),
           ),
         ),
       ),
@@ -196,100 +188,6 @@ class _FieldPrefixIcon extends StatelessWidget {
         Container(width: 1, height: 34, color: UIColor.softgrey),
         SizedBox(width: UI.spacing.xs),
       ],
-    );
-  }
-}
-
-class ProfilePicturePicker extends StatefulWidget {
-  final ValueChanged<File?> onPhotoPicked;
-
-  const ProfilePicturePicker({required this.onPhotoPicked, super.key});
-
-  @override
-  State<ProfilePicturePicker> createState() => _ProfilePicturePickerState();
-}
-
-class _ProfilePicturePickerState extends State<ProfilePicturePicker> {
-  final BaseImagePicker _imagePicker = ImagePickerStrategy();
-  File? _selectedPhoto;
-
-  Future<void> _showImageSourceSheet() async {
-    await UIImageSelectionBottomSheet.show(
-      context: context,
-      showDelete: _selectedPhoto != null,
-      onDelete: () {
-        setState(() {
-          _selectedPhoto = null;
-        });
-        widget.onPhotoPicked(null);
-        Navigator.of(context).pop();
-      },
-      onChooseFromLibrary: () async {
-        final pickedFile = await _imagePicker.pickPhotoFromGallery();
-        if (!mounted) return;
-        Navigator.of(context).pop();
-        if (pickedFile == null) return;
-        setState(() {
-          _selectedPhoto = pickedFile;
-        });
-        widget.onPhotoPicked(pickedFile);
-      },
-      onTakePhoto: () async {
-        final pickedFile = await _imagePicker.pickPhotoFromCamera();
-        if (!mounted) return;
-        Navigator.of(context).pop();
-        if (pickedFile == null) return;
-        setState(() {
-          _selectedPhoto = pickedFile;
-        });
-        widget.onPhotoPicked(pickedFile);
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final tr = context.loc<AuthenticationTranslation>();
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: _showImageSourceSheet,
-      child: Row(
-        children: [
-          Container(
-            width: 57,
-            height: 57,
-            decoration: const BoxDecoration(
-              color: UIColor.textPlaceholder,
-              shape: BoxShape.circle,
-            ),
-            alignment: Alignment.center,
-            child:
-                _selectedPhoto == null
-                    ? SizedBox(
-                      width: 33,
-                      height: 33,
-                      child: SvgPicture.asset(
-                        Assets.icons.photoCamera,
-                        package: 'design_system',
-                      ),
-                    )
-                    : ClipOval(
-                      child: Image.file(
-                        _selectedPhoto!,
-                        width: 57,
-                        height: 57,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-          ),
-          SizedBox(width: UI.spacing.xs),
-          UIText.bodySmall(
-            tr.personalInfo.addPhoto,
-            color: UIColor.neutral300,
-            fontWeight: FontWeight.w500,
-          ),
-        ],
-      ),
     );
   }
 }
