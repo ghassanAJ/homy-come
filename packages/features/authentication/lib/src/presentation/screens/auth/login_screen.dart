@@ -208,7 +208,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(Assets.icons.logOut, package: 'design_system'),
+            SvgPicture.asset(Assets.icons.logout, package: 'design_system'),
             Text(
               tr.login.joinAsGuest,
               style: UI.text.bodySmall.copyWith(

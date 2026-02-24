@@ -11,7 +11,6 @@
 class FontFamily {
   FontFamily._();
 
-
   /// Font family: DMSans
   static const String dMSans = 'DMSans';
 

@@ -48,10 +48,10 @@ class $AssetsIconsGen {
   String get arrowLeft => 'packages/design_system/assets/icons/arrow-left.svg';
 
   /// File path: assets/icons/calendar.svg
-  String get calendar => 'assets/icons/calendar.svg';
+  String get calendar => 'packages/design_system/assets/icons/calendar.svg';
 
   /// File path: assets/icons/call.svg
-  String get call => 'assets/icons/call.svg';
+  String get call => 'packages/design_system/assets/icons/call.svg';
 
   /// File path: assets/icons/camera.svg
   String get camera => 'packages/design_system/assets/icons/camera.svg';
@@ -60,43 +60,48 @@ class $AssetsIconsGen {
   String get carema => 'packages/design_system/assets/icons/carema.svg';
 
   /// File path: assets/icons/close.svg
-  String get close => 'assets/icons/close.svg';
+  String get close => 'packages/design_system/assets/icons/close.svg';
 
   /// File path: assets/icons/email.svg
-  String get email => 'assets/icons/email.svg';
+  String get email => 'packages/design_system/assets/icons/email.svg';
 
   /// File path: assets/icons/gallery.svg
   String get gallery => 'packages/design_system/assets/icons/gallery.svg';
 
   /// File path: assets/icons/google.svg
-  String get google => 'assets/icons/google.svg';
+  String get google => 'packages/design_system/assets/icons/google.svg';
 
   /// File path: assets/icons/location.svg
-  String get location => 'assets/icons/location.svg';
-
-  /// File path: assets/icons/logOut.svg
-  String get logOut => 'assets/icons/logOut.svg';
+  String get location => 'packages/design_system/assets/icons/location.svg';
 
   /// File path: assets/icons/message.svg
-  String get message => 'assets/icons/message.svg';
+  String get message => 'packages/design_system/assets/icons/message.svg';
 
   /// File path: assets/icons/phone.svg
-  String get phone => 'assets/icons/phone.svg';
+  String get phone => 'packages/design_system/assets/icons/phone.svg';
 
   /// File path: assets/icons/photoCamera.svg
-  String get photoCamera => 'assets/icons/photoCamera.svg';
+  String get photoCamera =>
+      'packages/design_system/assets/icons/photoCamera.svg';
+
+  /// File path: assets/icons/right.svg
+  String get right => 'packages/design_system/assets/icons/right.svg';
 
   /// File path: assets/icons/smileyXEyes.svg
-  String get smileyXEyes => 'assets/icons/smileyXEyes.svg';
+  String get smileyXEyes =>
+      'packages/design_system/assets/icons/smileyXEyes.svg';
+
+  /// File path: assets/icons/star.svg
+  String get star => 'packages/design_system/assets/icons/star.svg';
 
   /// File path: assets/icons/successful.svg
-  String get successful => 'assets/icons/successful.svg';
+  String get successful => 'packages/design_system/assets/icons/successful.svg';
 
   /// File path: assets/icons/trash.svg
-  String get trash => 'assets/icons/trash.svg';
+  String get trash => 'packages/design_system/assets/icons/trash.svg';
 
   /// File path: assets/icons/user.svg
-  String get user => 'assets/icons/user.svg';
+  String get user => 'packages/design_system/assets/icons/user.svg';
 
   /// File path: assets/icons/warning.svg
   String get warning => 'packages/design_system/assets/icons/warning.svg';
@@ -122,11 +127,12 @@ class $AssetsIconsGen {
     gallery,
     google,
     location,
-    logOut,
     message,
     phone,
     photoCamera,
+    right,
     smileyXEyes,
+    star,
     successful,
     trash,
     user,
@@ -181,6 +187,8 @@ class AssetGenImage {
 
   final String _assetName;
 
+  static const String package = 'design_system';
+
   final Size? size;
   final Set<String> flavors;
   final AssetGenImageAnimation? animation;
@@ -205,7 +213,8 @@ class AssetGenImage {
     bool matchTextDirection = false,
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
-    String? package,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
     FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
@@ -238,13 +247,17 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
+  ImageProvider provider({
+    AssetBundle? bundle,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
+  }) {
     return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
 
-  String get keyName => _assetName;
+  String get keyName => 'packages/design_system/$_assetName';
 }
 
 class AssetGenImageAnimation {

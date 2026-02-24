@@ -144,7 +144,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             SvgPicture.asset(
-                              Assets.icons.logOut,
+                              Assets.icons.logout,
                               package: 'design_system',
                             ),
                             SizedBox(width: UI.spacing.xs),
