@@ -1,8 +1,8 @@
 import 'package:design_system/design_system.dart';
 import 'package:orders/src/presentation/widget/content_card_status_order.dart';
 
-class CardStatusOrderWidget extends StatelessWidget {
-  const CardStatusOrderWidget({super.key});
+class OrderStatusCardContent extends StatelessWidget {
+  const OrderStatusCardContent({super.key});
 
   @override
   Widget build(BuildContext context) {

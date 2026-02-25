@@ -13,11 +13,11 @@ class ContentCardStatusOrder extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        NameAndStatusOrderwidget(),
+        OrderNameAndStatusWidget(),
         Divider(color: UIColor.bordarCard, height: 0.5),
-        InfoCleanerOfOrderwidget(),
+        OrderCleanerInfoWidget(),
         Divider(color: UIColor.bordarCard, height: 0.5),
-        DateTimeInfoOrderWidget(),
+        OrderDateTimeWidget(),
         Divider(color: UIColor.bordarCard, height: 0.5),
         CurrentOrderLocationView(),
       ],

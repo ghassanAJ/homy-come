@@ -1,12 +1,12 @@
 import 'package:design_system/design_system.dart';
 import 'package:orders/src/localization/order_localization_scope.dart';
 
-class NameAndStatusOrderwidget extends StatelessWidget {
-  const NameAndStatusOrderwidget({super.key});
+class OrderNameAndStatusWidget extends StatelessWidget {
+  const OrderNameAndStatusWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final tr =context.orderTr;
+    final tr = context.orderTr;
     return Padding(
       padding: EdgeInsets.fromLTRB(
         UI.spacing.md,
@@ -32,7 +32,10 @@ class NameAndStatusOrderwidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  UIText.bodyLarge('${tr.title.serviceType}:', color: UIColor.grey),
+                  UIText.bodyLarge(
+                    '${tr.title.serviceType}:',
+                    color: UIColor.grey,
+                  ),
                   UIText.headerBody('Cleaner'),
                 ],
               ),
@@ -49,7 +52,10 @@ class NameAndStatusOrderwidget extends StatelessWidget {
               border: Border.all(color: UIColor.babyBlue, width: 1),
               borderRadius: BorderRadius.circular(UI.radius.xl),
             ),
-            child: UIText.headerBody(tr.title.inProgess, color: UIColor.babyBlue),
+            child: UIText.headerBody(
+              tr.title.inProgess,
+              color: UIColor.babyBlue,
+            ),
           ),
         ],
       ),

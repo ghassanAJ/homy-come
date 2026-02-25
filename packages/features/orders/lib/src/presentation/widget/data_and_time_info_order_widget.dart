@@ -4,8 +4,8 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:orders/src/localization/order_localization_scope.dart';
 
-class DateTimeInfoOrderWidget extends StatelessWidget {
-  const DateTimeInfoOrderWidget({super.key});
+class OrderDateTimeWidget extends StatelessWidget {
+  const OrderDateTimeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

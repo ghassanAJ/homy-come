@@ -44,7 +44,6 @@ class CurrentOrderLocationView extends StatelessWidget {
                       SizedBox(width: UI.spacing.xs),
                       Expanded(
                         child: UIButton.primary(
-                          // leadingWidget: Center(child: UIText.buttonTextsm('Details',color: UIColor.babyBlue,)),
                           label: tr.labels.details,
                           expanded: true,
                           onPressed: () {},

@@ -45,7 +45,6 @@ class _UIchipsBarState extends State<UIchipsBar> {
                   onSelect: (value) {
                     setState(() {
                       widget.indexSelected = i + 1;
-                      log(widget.indexSelected.toString());
                     });
                   },
                 ),
