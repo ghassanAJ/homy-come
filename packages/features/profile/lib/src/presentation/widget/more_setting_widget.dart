@@ -1,5 +1,4 @@
 import 'package:design_system/design_system.dart';
-import 'package:design_system/gen/assets.gen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/navigation/router.dart';
@@ -32,7 +31,7 @@ class MoreSettingWidget extends StatelessWidget {
                 // descreption: 'FAQ',
                 onTap: () {
                   // log('pressed on FAQ button');
-                  context.go(ProfilePaths.aboutApp);
+                  context.push(ProfilePaths.aboutApp);
                 },
               ),
               ProfileSettingOptionWidget(

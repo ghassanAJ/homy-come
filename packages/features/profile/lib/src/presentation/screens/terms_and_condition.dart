@@ -1,5 +1,4 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 import 'package:profile/profile.dart';
 
 class TermsAndCondition extends StatelessWidget {
@@ -26,7 +25,7 @@ class InfoAppCommonScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: UIBackground(
-        content: CustomScrollView(
+        child: CustomScrollView(
           slivers: [
             UISliverAppBar(
               bottom: PreferredSize(

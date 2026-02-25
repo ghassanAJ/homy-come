@@ -1,5 +1,3 @@
-import 'package:flutter_svg/svg.dart';
-
 import '../../../design_system.dart';
 
 class DeleteConfirmationDialog extends StatelessWidget {
@@ -29,12 +27,7 @@ class DeleteConfirmationDialog extends StatelessWidget {
               color: UIColor.error.withOpacity(0.2),
               borderRadius: BorderRadius.circular(100),
             ),
-            child: SvgPicture.asset(
-              'assets/icons/warning.svg',
-              package: 'ui',
-              width: 22,
-              height: 22,
-            ),
+            child: UISvg(Assets.icons.warning),
           ),
           const SizedBox(height: 16),
           UIText.h3(title, textAlign: TextAlign.center),

@@ -64,7 +64,7 @@ class ButtonCubitBuilder<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<BaseButtonCubit<T>, BaseState<T>>(
+    return BlocConsumer<BaseCubit<T>, BaseState<T>>(
       buildWhen: buildWhen, // Optional rebuild control
       listenWhen: listenWhen, // Optional listener control
       builder: _builder, // Build UI based on Cubit state

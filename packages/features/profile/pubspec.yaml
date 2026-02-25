@@ -26,6 +26,7 @@ dependencies:
   i69n: ^3.3.0
   flutter_form_builder: ^10.2.0
   form_builder_validators: ^11.2.0
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:

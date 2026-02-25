@@ -3,5 +3,5 @@
 
 // }
 class PackagesName {
-  static String designSystem = "design_system";
+  static const String designSystem = "design_system";
 }

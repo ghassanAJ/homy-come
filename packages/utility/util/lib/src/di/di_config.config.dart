@@ -27,9 +27,7 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.factory<_i978.BaseButtonCubit<dynamic>>(
-      () => _i978.BaseButtonCubit<dynamic>(),
-    );
+    gh.factory<_i978.BaseCubit<dynamic>>(() => _i978.BaseCubit<dynamic>());
     gh.factory<_i978.BaseScreenCubit<dynamic>>(
       () => _i978.BaseScreenCubit<dynamic>(),
     );
