@@ -1,0 +1,14 @@
+title: 
+  serviceType: نوع الخدمة
+  inProgess: قيد التقدم 
+  scheduled: scheduled  
+  completed: مكتملة
+  date: تاريخ
+  time: وقت
+  address: عنوان
+  myOrder: طلباتي
+
+labels:
+  all: كل
+  cancel: الغاء
+  details: تفاصيل    

@@ -1,0 +1,14 @@
+title: 
+  serviceType: Service Type
+  inProgess: In progress
+  scheduled: scheduled  
+  completed: complete 
+  date: Date
+  time: Time
+  address: Address
+  myOrder: my orders
+
+labels:
+  all: All 
+  cancel: cancel
+  details: Details
