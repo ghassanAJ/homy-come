@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import
+
 import 'package:design_system/design_system.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +25,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
     final double h = MediaQuery.sizeOf(context).width;
     return Scaffold(
       body: UIBackground(
-        content: CustomScrollView(
+        child: CustomScrollView(
           slivers: [
             UISliverAppBar(
               bottom: PreferredSize(
@@ -117,7 +119,6 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                     ValueListenableBuilder<bool>(
                       valueListenable: _isFormValidNotifier,
                       builder: (context, isValid, _) {
-                        print(isValid);
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -145,6 +146,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
     );
   }
 
+  // ignore: strict_top_level_inference
   _onValid() {
     final isValid = _formKey.currentState?.isValid ?? false;
     if (_isFormValidNotifier.value != isValid) {

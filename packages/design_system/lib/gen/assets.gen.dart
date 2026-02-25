@@ -20,9 +20,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Lock.svg
   String get lock => 'packages/design_system/assets/icons/Lock.svg';
 
-  /// File path: assets/icons/Logout.svg
-  String get logout => 'packages/design_system/assets/icons/Logout.svg';
-
   /// File path: assets/icons/Notification.svg
   String get notification =>
       'packages/design_system/assets/icons/Notification.svg';
@@ -74,6 +71,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/location.svg
   String get location => 'packages/design_system/assets/icons/location.svg';
 
+  /// File path: assets/icons/log_out.svg
+  String get logOut => 'packages/design_system/assets/icons/log_out.svg';
+
   /// File path: assets/icons/message.svg
   String get message => 'packages/design_system/assets/icons/message.svg';
 
@@ -110,7 +110,6 @@ class $AssetsIconsGen {
   List<String> get values => [
     heart,
     lock,
-    logout,
     notification,
     profile,
     shieldDone,
@@ -127,6 +126,7 @@ class $AssetsIconsGen {
     gallery,
     google,
     location,
+    logOut,
     message,
     phone,
     photoCamera,

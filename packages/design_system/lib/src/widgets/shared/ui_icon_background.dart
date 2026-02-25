@@ -2,14 +2,14 @@ import 'package:flutter/widgets.dart';
 
 class UIIconBackground extends StatelessWidget {
   final Widget child;
-  final double size;
-  final double iconSize;
+  final double? size;
+  final double? iconSize;
   final Color backgroundColor;
 
   const UIIconBackground({
     required this.child,
-    required this.size,
-    required this.iconSize,
+    this.size,
+    this.iconSize,
     required this.backgroundColor,
     super.key,
   });
@@ -19,17 +19,9 @@ class UIIconBackground extends StatelessWidget {
     return Container(
       width: size,
       height: size,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        shape: BoxShape.circle,
-      ),
+      decoration: BoxDecoration(color: backgroundColor, shape: BoxShape.circle),
       alignment: Alignment.center,
-      child: SizedBox(
-        width: iconSize,
-        height: iconSize,
-        child: child,
-      ),
+      child: SizedBox(width: iconSize, height: iconSize, child: child),
     );
   }
 }
-
