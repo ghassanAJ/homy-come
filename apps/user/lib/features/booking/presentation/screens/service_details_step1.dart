@@ -26,7 +26,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
     super.dispose();
   }
 
-  Widget ___sectionTitle(String title){
+  Widget _sectionTitle(String title){
     return  UIText.h6(title, color: UIColor.balck, maxLines: 2);
   }
 
@@ -70,7 +70,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ___sectionTitle(
+                      _sectionTitle(
                         'How Many Hours do you need your professional to stay ?',
                       ),
                       SizedBox(height: UI.spacing.sm),
@@ -94,7 +94,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                         ),
                       ),
                       SizedBox(height: UI.spacing.lg),
-                      ___sectionTitle('How Many professional do you need ?'),
+                      _sectionTitle('How Many professional do you need ?'),
                       SizedBox(height: UI.spacing.sm),
                       Wrap(
                         spacing: UI.spacing.xs,
@@ -141,7 +141,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                         ],
                       ),
                       SizedBox(height: UI.spacing.lg),
-                      ___sectionTitle('Need cleaning materials?'),
+                      _sectionTitle('Need cleaning materials?'),
                       SizedBox(height: UI.spacing.sm),
                       Wrap(
                         spacing: UI.spacing.xs,
@@ -167,7 +167,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                         ],
                       ),
                       SizedBox(height: UI.spacing.lg),
-                      ___sectionTitle('Any Notes ?'),
+                      _sectionTitle('Any Notes ?'),
                       SizedBox(height: UI.spacing.sm),
                     ],
                   ),

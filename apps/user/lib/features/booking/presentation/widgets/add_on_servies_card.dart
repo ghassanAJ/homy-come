@@ -87,7 +87,6 @@ class AddonServiceCard extends StatelessWidget {
             ),
             child: Row(
               children: [
-                // UIText.h3(price, color: UIColor.balck),
                 UIPriceText(text: UIText.h3(price, color: UIColor.balck)),
                 SizedBox(width: UI.spacing.xs),
                 Text(//TODO : use UIPriceText 

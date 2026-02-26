@@ -14,7 +14,6 @@ class UIImage extends StatelessWidget {
   final double? height;
   @override
   Widget build(BuildContext context) {
-    // return urlImage.image(package: 'design_system', fit: BoxFit.contain,width:wigth,height: height );
     return Image.asset(urlImage,width: wigth,height: height,package: 'design_system',);
   }
 }
