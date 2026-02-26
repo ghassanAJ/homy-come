@@ -1,4 +1,5 @@
 import 'package:design_system/design_system.dart';
+import 'package:user/features/home/presentation/widgets/shared/base_category_item.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({
@@ -14,36 +15,24 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return BaseCategoryItem(
+      title: title,
+      subtitle: description,
+      iconPath: iconPath,
       width: 62,
-      child: Column(
-        children: [
-          UIIconBackground(
-            size: 60,
-            iconSize: 40,
-            backgroundColor: UIColor.grey.withValues(alpha: 0.05),
-            child: UISvg(iconPath),
-          ),
-          SizedBox(height: UI.spacing.xs),
-          UIText.bodySmall(
-            title,
-            textAlign: TextAlign.center,
-            color: UIColor.ink,
-            maxLines: 1,
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
-          ),
-          SizedBox(height: UI.spacing.xxs),
-          UIText.bodySmall(
-            description,
-            textAlign: TextAlign.center,
-            color: UIColor.grey,
-            maxLines: 1,
-            fontSize: 10,
-            fontWeight: FontWeight.w400,
-          ),
-        ],
-      ),
+      iconContainerSize: 60,
+      iconSize: 40,
+      iconBorderRadius: BorderRadius.circular(UI.radius.xs + UI.radius.sm),
+      itemSpacing: UI.spacing.xs,
+      textSpacing: UI.spacing.xxs,
+      titleFontSize: 12,
+      titleFontWeight: FontWeight.w500,
+      subtitleFontSize: 10,
+      subtitleFontWeight: FontWeight.w400,
+      titleMaxLines: 1,
+      subtitleMaxLines: 1,
+      textAlign: TextAlign.center,
+      textCrossAxisAlignment: CrossAxisAlignment.center,
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:user/features/home/domain/entities/home_content.dart';
+import 'package:user/features/home/domain/entities/search_content.dart';
 
 final HomeContent homeMockContent = HomeContent(
   offers: const [
@@ -112,4 +113,18 @@ final HomeContent homeMockContent = HomeContent(
       ratingStars: [true, true, true, true, false],
     ),
   ],
+);
+
+const List<String> searchPopularMock = [
+  'Home Claening',
+  'Pinter',
+  'Plumber',
+  'Electrician',
+  'Carpenter',
+  'Pinter',
+];
+
+final SearchContent searchMockContent = SearchContent(
+  popularSearch: searchPopularMock,
+  topServices: homeMockContent.categories,
 );

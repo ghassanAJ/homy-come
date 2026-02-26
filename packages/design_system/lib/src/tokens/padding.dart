@@ -126,4 +126,31 @@ class UIPadding {
   /// User home header actions container inner padding.
   EdgeInsets get userHomeHeaderActionsPadding =>
       EdgeInsets.symmetric(horizontal: _spacing.sm, vertical: _spacing.xs);
+
+  /// User search top section padding (search + popular search).
+  EdgeInsetsDirectional get userSearchTopSectionContent =>
+      EdgeInsetsDirectional.only(
+        start: _spacing.xl,
+        top: _spacing.md,
+        end: _spacing.xl,
+      );
+
+  /// User search bottom section padding (top services + apply button).
+  EdgeInsetsDirectional userSearchBottomSectionContent({
+    required double bottomInset,
+    double? endInset,
+  }) => EdgeInsetsDirectional.only(
+    start: _spacing.xl,
+    top: _spacing.lg,
+    end: endInset ?? _spacing.xl,
+    bottom: bottomInset,
+  );
+
+  /// User search field content padding.
+  EdgeInsets get userSearchFieldContent =>
+      EdgeInsets.symmetric(horizontal: _spacing.md, vertical: _spacing.sm);
+
+  /// User search chip content padding.
+  EdgeInsets get userSearchChipContent =>
+      EdgeInsets.symmetric(horizontal: _spacing.md, vertical: _spacing.xs);
 }

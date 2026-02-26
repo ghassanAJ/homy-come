@@ -1,8 +1,10 @@
 import 'package:design_system/design_system.dart';
+import 'package:go_router/go_router.dart';
 import 'package:user/features/home/domain/entities/home_content.dart';
 import 'package:user/features/home/domain/repository/home_repository.dart';
 import 'package:user/di/di_container.dart';
 import 'package:user/localization/files/userTranslation.i69n.dart';
+import 'package:user/navigation/route.dart';
 import 'package:user/features/home/presentation/widgets/home/category_item.dart';
 import 'package:user/features/home/presentation/widgets/home/home_header.dart';
 import 'package:user/features/home/presentation/widgets/home/offer_card.dart';
@@ -88,14 +90,15 @@ class UserHomeScreen extends StatelessWidget {
                           SectionHeaderWithAction(
                             title: tr.home.otherServices,
                             actionLabel: tr.home.seeAll,
-                            onActionTap: () {
-                              // TODO: Navigate to Other Services listing screen.
-                            },
+                            onActionTap:
+                                () => context.go(UserPaths.services),
                           ),
                           SizedBox(height: UI.spacing.lg),
                           SizedBox(
                             height: 278,
-                            child: _serviceOfferTiles(homeContent.serviceOffers),
+                            child: _serviceOfferTiles(
+                              homeContent.serviceOffers,
+                            ),
                           ),
                         ],
                       ),

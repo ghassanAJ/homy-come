@@ -19,6 +19,7 @@ class UserPaths {
   static const String serviceDetails2 = '/service-details2';
   static const String serviceDetails3 = '/service-details3';
   static const String serviceDetailsSummary = '/service-details-summary';
+  static const String services = '/all-services';
 }
 
 /// User app route definitions.

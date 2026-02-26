@@ -2,8 +2,14 @@ import 'package:authentication/authentication.dart';
 import 'package:go_router/go_router.dart';
 import 'package:user/navigation/route.dart';
 import 'package:profile/src/navigation/router.dart';
+
 class AppRouterGuard {
-  static final List<String> guestAllowedPaths = [UserPaths.home];
+  static final List<String> guestAllowedPaths = [
+    UserPaths.home,
+    UserPaths.search,
+    UserPaths.category,
+    UserPaths.services,
+  ];
 
   static bool _isOtpPath(String path) =>
       path == AuthenticationPaths.otpVerification ||
@@ -59,12 +65,15 @@ class AppRouterGuard {
     }
 
     // 2. If on any auth path, stay there (onboarding, login, select-role, etc.)
-    if (authPaths.contains(currentPath) || guestAllowedPaths.contains(currentPath)) {
+    if (authPaths.contains(currentPath) ||
+        guestAllowedPaths.contains(currentPath)) {
       return null;
     }
 
     // 3. Unknown path (e.g. /dashboard) → Login
-    return AuthenticationPaths.login;///[هون]
+    return AuthenticationPaths.login;
+
+    ///[هون]
   }
 
   static String _getDashboardPath(UserType? userType) {

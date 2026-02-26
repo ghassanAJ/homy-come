@@ -8,12 +8,14 @@ class DashboardNavigationScaffold extends StatelessWidget {
     required this.navigationShell,
     required this.navigationItems,
     required this.branchPaths,
+    this.hiddenNavigationPaths = const [],
   });
 
   final StatefulNavigationShell navigationShell;
 
   final List<NavigationItem> navigationItems;
   final List<String> branchPaths;
+  final List<String> hiddenNavigationPaths;
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +29,28 @@ class DashboardNavigationScaffold extends StatelessWidget {
         .toList(growable: false);
     final currentPath = GoRouterState.of(context).matchedLocation;
     final currentItemIndex = _itemIndexForPath(currentPath);
+    final shouldHideNavigation = _shouldHideNavigation(currentPath);
     return Scaffold(
       backgroundColor: UIColor.background,
       body: navigationShell,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: UiBottomNavigationBar(
-        currentIndex: currentItemIndex,
-        onTap: (index) => _onTabTapped(index),
-        items: bottomBarItems,
-      ),
+      floatingActionButtonLocation:
+          shouldHideNavigation
+              ? null
+              : FloatingActionButtonLocation.centerDocked,
+      floatingActionButton:
+          shouldHideNavigation
+              ? null
+              : UiBottomNavigationBar(
+                currentIndex: currentItemIndex,
+                onTap: (index) => _onTabTapped(index),
+                items: bottomBarItems,
+              ),
+    );
+  }
+
+  bool _shouldHideNavigation(String path) {
+    return hiddenNavigationPaths.any(
+      (hiddenPath) => path == hiddenPath || path.startsWith('$hiddenPath/'),
     );
   }
 
