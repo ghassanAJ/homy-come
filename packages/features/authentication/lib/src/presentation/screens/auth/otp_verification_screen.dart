@@ -2,7 +2,6 @@ import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:util/util.dart';
 
 /// Screen for verifying OTP codes sent via email or phone
@@ -161,10 +160,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                   size: 90,
                                   iconSize: 45,
                                   backgroundColor: UIColor.softGreen,
-                                  child: SvgPicture.asset(
-                                    Assets.icons.message,
-                                    package: 'design_system',
-                                  ),
+                                  child: UISvg(Assets.icons.message),
                                 ),
                               ),
                               SizedBox(height: UI.spacing.lg),

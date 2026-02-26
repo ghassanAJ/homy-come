@@ -1,7 +1,6 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/gen/assets.gen.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:util/util.dart';
 
 class SecurityVerificationScreen extends StatelessWidget {
@@ -33,10 +32,7 @@ class SecurityVerificationScreen extends StatelessWidget {
                   size: 90,
                   iconSize: 45,
                   backgroundColor: UIColor.babyPink,
-                  child: SvgPicture.asset(
-                    Assets.icons.smileyXEyes,
-                    package: 'design_system',
-                  ),
+                  child: UISvg(Assets.icons.smileyXEyes),
                 ),
 
                 SizedBox(height: UI.spacing.lg),

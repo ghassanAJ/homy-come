@@ -5,7 +5,6 @@ import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:util/util.dart';
 
@@ -168,10 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
             size: 90,
             iconSize: 45,
             backgroundColor: UIColor.softGreen,
-            child: SvgPicture.asset(
-              Assets.icons.phone,
-              package: 'design_system',
-            ),
+            child: UISvg(Assets.icons.phone),
           ),
           SizedBox(height: UI.spacing.lg),
           UIText.bodyMedium(
@@ -201,14 +197,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildJoinAsGuestLink(AuthenticationTranslation tr) {
     return Center(
       child: GestureDetector(
-        onTap: () {
-          // TODO: Navigate as guest (e.g. dashboard with limited access)
-          // AuthInternalRouter.of(context).goBack(); or go to dashboard
-        },
+        onTap: () => AuthInternalRouter.of(context).toUserHome(),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(Assets.icons.logout, package: 'design_system'),
+            UISvg(Assets.icons.logOut),
             Text(
               tr.login.joinAsGuest,
               style: UI.text.bodySmall.copyWith(

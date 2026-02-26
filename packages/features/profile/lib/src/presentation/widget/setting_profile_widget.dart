@@ -102,7 +102,7 @@ class ProfileSettingWidget extends StatelessWidget {
             ProfileSettingOptionWidget(
               title: context.profileTranslation.option.logout,
               descreption: 'Log out',
-              imgUrl: Assets.icons.logout,
+              imgUrl: Assets.icons.logOut,
 
               onTap: () {
                 // log('pressed on FAQ butt/on');
@@ -111,7 +111,7 @@ class ProfileSettingWidget extends StatelessWidget {
             ProfileSettingOptionWidget(
               title: context.profileTranslation.option.deleteAccount,
               descreption: 'Delete my account',
-              imgUrl: Assets.icons.logout,
+              imgUrl: Assets.icons.logOut,
               color: UIColor.backgroungAvaterRed,
               colorIcon: UIColor.iconsAvaterRed,
 

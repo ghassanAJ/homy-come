@@ -4,7 +4,6 @@ import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:util/util.dart';
 
 class ProfilePicturePicker extends StatefulWidget {
@@ -67,10 +66,7 @@ class _ProfilePicturePickerState extends State<ProfilePicturePicker> {
                 size: 57,
                 iconSize: 33,
                 backgroundColor: UIColor.textPlaceholder,
-                child: SvgPicture.asset(
-                  Assets.icons.photoCamera,
-                  package: 'design_system',
-                ),
+                child: UISvg(Assets.icons.photoCamera),
               )
               : ClipOval(
                 child: Image.file(
