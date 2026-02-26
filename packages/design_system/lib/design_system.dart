@@ -59,3 +59,6 @@ export 'gen/assets.gen.dart';
 export 'src/enums/packages_name.dart';
 export 'src/widgets/shared/ui_chips_bar.dart';
 export 'src/widgets/shared/ui_svg.dart';
+export 'src/widgets/shared/ui_iamge.dart';
+export 'src/widgets/shared/ui_network_iamge.dart';
+export 'src/widgets/shared/ui_action_button.dart';

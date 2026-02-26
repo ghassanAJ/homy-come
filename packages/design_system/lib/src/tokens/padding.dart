@@ -92,4 +92,38 @@ class UIPadding {
         start: _spacing.xxl + _spacing.xxs,
         end: _spacing.xxl2 + _spacing.xxs,
       );
+
+  /// User home screen content padding inside scroll area.
+  EdgeInsetsDirectional userHomeContent({required double bottomInset}) =>
+      EdgeInsetsDirectional.only(
+        top: _spacing.xl,
+        start: _spacing.lg,
+        bottom: bottomInset,
+      );
+
+  /// User home horizontal list item end spacing.
+  EdgeInsetsDirectional get userHomeItemEnd =>
+      EdgeInsetsDirectional.only(end: _spacing.md);
+
+  /// User home horizontal list item end spacing with extra offset.
+  EdgeInsetsDirectional get userHomeItemEndWithXxs =>
+      EdgeInsetsDirectional.only(end: _spacing.md + _spacing.xxs);
+
+  /// User home section action end spacing.
+  EdgeInsetsDirectional get userHomeSectionActionEnd =>
+      EdgeInsetsDirectional.only(end: _spacing.md);
+
+  /// User home story offer card content padding.
+  EdgeInsets get userHomeStoryOfferCardContent => EdgeInsets.all(_spacing.sm);
+
+  /// User home service offer tile content padding.
+  EdgeInsets get userHomeServiceOfferTileContent => EdgeInsets.all(_spacing.sm);
+
+  /// User home header actions container margin.
+  EdgeInsetsDirectional get userHomeHeaderActionsMargin =>
+      EdgeInsetsDirectional.only(end: _spacing.xs);
+
+  /// User home header actions container inner padding.
+  EdgeInsets get userHomeHeaderActionsPadding =>
+      EdgeInsets.symmetric(horizontal: _spacing.sm, vertical: _spacing.xs);
 }
