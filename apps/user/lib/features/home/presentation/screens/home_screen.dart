@@ -1,15 +1,15 @@
 import 'package:design_system/design_system.dart';
-import 'package:user/data/model/home_content.dart';
-import 'package:user/domain/repository/home_repository.dart';
+import 'package:user/features/home/domain/entities/home_content.dart';
+import 'package:user/features/home/domain/repository/home_repository.dart';
 import 'package:user/di/di_container.dart';
 import 'package:user/localization/files/userTranslation.i69n.dart';
-import 'package:user/presentation/widgets/home/category_item.dart';
-import 'package:user/presentation/widgets/home/home_header.dart';
-import 'package:user/presentation/widgets/home/offer_card.dart';
-import 'package:user/presentation/widgets/home/section_header.dart';
-import 'package:user/presentation/widgets/home/service_card.dart';
-import 'package:user/presentation/widgets/home/service_offer_tile.dart';
-import 'package:user/presentation/widgets/home/story_offer_card.dart';
+import 'package:user/features/home/presentation/widgets/home/category_item.dart';
+import 'package:user/features/home/presentation/widgets/home/home_header.dart';
+import 'package:user/features/home/presentation/widgets/home/offer_card.dart';
+import 'package:user/features/home/presentation/widgets/home/section_header.dart';
+import 'package:user/features/home/presentation/widgets/home/service_card.dart';
+import 'package:user/features/home/presentation/widgets/home/service_offer_tile.dart';
+import 'package:user/features/home/presentation/widgets/home/story_offer_card.dart';
 import 'package:util/util.dart';
 
 class UserHomeScreen extends StatelessWidget {

@@ -33,7 +33,6 @@ class SecurityVerificationScreen extends StatelessWidget {
                   iconSize: 45,
                   backgroundColor: UIColor.babyPink,
                   child: UISvg(Assets.icons.smileyXEyes),
-                  child: UISvg(Assets.icons.smileyXEyes),
                 ),
 
                 SizedBox(height: UI.spacing.lg),

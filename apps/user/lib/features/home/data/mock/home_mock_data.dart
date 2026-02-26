@@ -1,6 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:user/data/model/home_content.dart';
+import 'package:user/features/home/domain/entities/home_content.dart';
 
 final HomeContent homeMockContent = HomeContent(
   offers: const [

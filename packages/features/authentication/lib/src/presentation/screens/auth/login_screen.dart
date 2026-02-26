@@ -166,7 +166,6 @@ class _LoginScreenState extends State<LoginScreen> {
             iconSize: 45,
             backgroundColor: UIColor.softGreen,
             child: UISvg(Assets.icons.phone),
-            child: UISvg(Assets.icons.phone),
           ),
           SizedBox(height: UI.spacing.lg),
           UIText.bodyMedium(
