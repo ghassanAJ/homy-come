@@ -77,6 +77,14 @@ class UITypography {
     letterSpacing: 0,
   );
 
+    TextStyle get h6 => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    height: 1.4,
+    letterSpacing: 0,
+  );
+
   // ============================================================================
   // BODY TEXT
   // ============================================================================
@@ -96,6 +104,16 @@ class UITypography {
     letterSpacing: 0,
     decoration: TextDecoration.none
   );
+
+  TextStyle get bodyMediumRoboto => const TextStyle(
+    fontFamily: UIFonts.roboto,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    height: 1.5,
+    letterSpacing: 0,
+    decoration: TextDecoration.none
+  );
+
 
   TextStyle get bodyLarge => const TextStyle(
     fontFamily: _fontFamily,
@@ -151,6 +169,15 @@ class UITypography {
   /// Line height: 150% (1.5)
   ///
   /// Usage: Small body text, metadata
+  TextStyle get bodyXXSmall => const TextStyle(
+    fontFamily: UIFonts.montserrat,
+    fontSize: 12,
+    fontWeight: FontWeight.w300,
+    height: 1.5,
+    letterSpacing: 0,
+  );
+
+
   TextStyle get bodyXSmall => const TextStyle(
     fontFamily: UIFonts.montserrat,
     fontSize: 12,
@@ -306,7 +333,7 @@ class UITypography {
     letterSpacing: 0,
   );
 
-  TextStyle get black714 => const TextStyle(
+  TextStyle get bodyBold => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 14,
     fontWeight: FontWeight.w700,

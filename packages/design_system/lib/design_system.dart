@@ -64,3 +64,5 @@ export 'src/widgets/shimmer/shimmer_box.dart';
 export 'src/widgets/shimmer/shimmer_card.dart';
 export 'src/widgets/text/ui_price_text.dart';
 export 'src/widgets/text/ui_text.dart';
+export 'src/tokens/UIFonts.dart';
+export 'src/widgets/shared/UIImage.dart';

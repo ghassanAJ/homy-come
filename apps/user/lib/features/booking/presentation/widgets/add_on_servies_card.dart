@@ -1,0 +1,144 @@
+import 'package:design_system/design_system.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:user/features/booking/presentation/widgets/custom_button_with_Icon.dart';
+
+class AddonServiceCard extends StatelessWidget {
+  const AddonServiceCard({
+    required this.title,
+    required this.reviews,
+    required this.price,
+    required this.oldPrice,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String title;
+  final String reviews;
+  final String price;
+  final String oldPrice;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final wid = MediaQuery.of(context).size.width;
+    return Container(
+      width: wid * 0.5,
+      decoration: BoxDecoration(
+        color: UIColor.background,
+        borderRadius: BorderRadius.circular(UI.radius.md),
+        border: Border.all(color: UIColor.neutral100),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(UI.radius.md),
+              ),
+              child: Container(
+                // height: 147,
+                width: double.infinity,
+                color: UIColor.neutral100,
+                child: Image.network(
+                  'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    return Center(
+                      child: SizedBox(
+                        // width: 28,
+                        // height: 28,
+                        // child: CircularProgressIndicator(strokeWidth: 2,)),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+              UI.spacing.xs,
+              UI.spacing.xs,
+              UI.spacing.xs,
+              UI.spacing.xxs,
+            ),
+            child: Row(
+              children: [
+                // Icon(
+                //   Icons.star,
+                //   size: UI.sizes.iconXs,
+                //   color: UIColor.babyBlue,
+                // ),
+                UISvg(Assets.icons.starBlue, color: UIColor.babyBlue),
+                SizedBox(width: UI.spacing.xxs),
+                Expanded(
+                  child: UIText.bodyXXSmall(
+                    reviews,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    fontFamily: UIFonts.lexend,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: UI.spacing.sm),
+            child: UIText.h6(title, color: UIColor.balck, maxLines: 2),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+              UI.spacing.sm,
+              UI.spacing.xs,
+              UI.spacing.sm,
+              UI.spacing.sm,
+            ),
+            child: Row(
+              children: [
+                UIText.h3(price, color: UIColor.balck),
+                SizedBox(width: UI.spacing.xs),
+                Text(
+                  oldPrice,
+                  style: UI.text.bodyMedium.copyWith(
+                    fontFamily: UIFonts.lexend,
+                    color: UIColor.neutral300,
+                    decoration: TextDecoration.lineThrough,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: UI.sizes.avatarMd,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(
+                UI.spacing.sm,
+                0,
+                UI.spacing.sm,
+                UI.spacing.sm,
+              ),
+              child:
+                  selected
+                      ? GestureDetector(
+                        onTap: onTap,
+                        child: CustomButtonWithIcon(),
+                      )
+                      : UIButton.outlined(
+                        label: 'Add',
+                        expanded: true,
+                        backgroundColor: UIColor.babyBlue,
+                        borderColor: UIColor.babyBlue,
+                        foregroundColor: UIColor.white,
+                        onPressed: onTap,
+                      ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
