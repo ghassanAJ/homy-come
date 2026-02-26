@@ -9,7 +9,8 @@ class UIColor extends Color {
   static const UIColor softGreen1 = UIColor._(0xffF7FFF1);
   static const UIColor softYellow = UIColor._(0xffF6E7B0);
   static const UIColor babyBlue = UIColor._(0xff9ED6F9);
-  static const UIColor babyPink = UIColor._(0xFFFAB4F0);
+  static const UIColor babyPink = UIColor._(0xffFFECFC);
+  static const UIColor pink = UIColor._(0xffFAB4F0);
   static const UIColor balck = UIColor._(0xFF282828);
   static const UIColor grey = UIColor._(0xff767676);
   static const UIColor softgrey = UIColor._(0xFFECECEC);

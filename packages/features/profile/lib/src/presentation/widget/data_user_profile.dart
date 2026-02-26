@@ -1,16 +1,15 @@
+import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:profile/profile.dart';
-import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
 class UserProfileInfoWidget extends StatelessWidget {
-  const UserProfileInfoWidget({super.key, required this.context});
-
-  final BuildContext context;
+  const UserProfileInfoWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<AppCubit>().state.user;
     final ImagePicker picker = ImagePicker();
     ValueNotifier<XFile?> images = ValueNotifier(XFile(''));
     return Container(
@@ -67,7 +66,7 @@ class UserProfileInfoWidget extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color: UIColor.background,
                               ),
-                              child: SvgPicture.asset(
+                              child: UISvg(
                                 Assets.icons.carema,
                                 // package: 'design_system',
                               ),
@@ -82,8 +81,8 @@ class UserProfileInfoWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  UIText.bodySmallBold('User name'),
-                  UIText.headerBody('+999 123 456 789'),
+                  UIText.bodySmallBold(user?.fullName ?? ''),
+                  UIText.headerBody(user?.phone ?? ''),
                 ],
               ),
             ],
@@ -98,7 +97,7 @@ class UserProfileInfoWidget extends StatelessWidget {
                   color: UIColor.grey,
                 ),
                 SizedBox(width: UI.spacing.xs),
-                UISvg(Assets.icons.arrowRight,color:UIColor.grey)
+                UISvg(Assets.icons.arrowRight, color: UIColor.grey),
               ],
             ),
           ),

@@ -1,6 +1,5 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
-import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:util/util.dart';
 
@@ -115,17 +114,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
             state.context == AuthenticationContext.otpVerification) {
           if (_isSuccessDialogVisible || !mounted) return;
           _isSuccessDialogVisible = true;
-          DialogsManager.showSuccessDialog(
-            context: context,
-            title: tr.verification.newUserVerified,
-            buttonLabel: tr.common.goToHome,
-            onPressed: () {
-              Navigator.of(context).pop();
-              _handleGoToHome();
-            },
-          ).whenComplete(() {
-            _isSuccessDialogVisible = false;
-          });
+          ToastificationUtil.success(tr.verification.newUserVerified);
+          _handleGoToHome();
         }
       },
       child: BlocBuilder<AuthUserBloc, AuthUserState>(

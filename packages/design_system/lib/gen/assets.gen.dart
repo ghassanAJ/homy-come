@@ -175,6 +175,7 @@ class $AssetsIconsGen {
     google,
     location,
     logOut,
+    logOut,
     message,
     navCategory,
     navHome,

@@ -1,3 +1,5 @@
+import 'package:flutter_svg/svg.dart';
+
 import '../../../design_system.dart';
 
 class UIPriceText extends StatelessWidget {
@@ -5,7 +7,7 @@ class UIPriceText extends StatelessWidget {
     super.key,
     required this.text,
     this.currency = 'AED',
-    this.currencySize = 14,
+    this.currencySize = 12,
   });
 
   final UIText text;
@@ -43,13 +45,11 @@ class _CurrencyIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (currency) {
-      'AED' => Image.asset(
-        'assets/icons/aed.svg',
-        package: 'ui',
-        color: color,
-        width: size,
+      'AED' => SvgPicture.asset(
+        Assets.icons.aed,
         height: size,
-        fit: BoxFit.contain,
+        width: size,
+        color: color,
       ),
       _ => throw UnimplementedError('Currency icon not found for $currency'),
     };

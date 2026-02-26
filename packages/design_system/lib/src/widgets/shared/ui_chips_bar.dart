@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:design_system/design_system.dart';
 import 'package:design_system/src/widgets/shared/interaction_chips_bar_widget.dart';
 
@@ -20,20 +22,19 @@ class _UIchipsBarState extends State<UIchipsBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          if (widget.firstLabel != null)
+            SizedBox(
+              child: InteractiveChipsBar(
+                labal: widget.firstLabel!,
 
-          if(widget.firstLabel!=null)
-          SizedBox(
-            child: InteractiveChipsBar(
-              labal: widget.firstLabel!,
-
-              isSelect: widget.indexSelected == 0,
-              onSelect: (value) {
-                setState(() {
-                  widget.indexSelected = 0;
-                });
-              },
+                isSelect: widget.indexSelected == 0,
+                onSelect: (value) {
+                  setState(() {
+                    widget.indexSelected = 0;
+                  });
+                },
+              ),
             ),
-          ),
           ...List.generate(
             widget.label.length,
             (i) => Expanded(

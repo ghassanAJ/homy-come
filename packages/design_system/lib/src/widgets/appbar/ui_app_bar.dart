@@ -28,7 +28,7 @@ class _AppBarStyleConfig {
   final Color foregroundColor;
 
   static const standard = _AppBarStyleConfig(
-    backgroundColor: UIColor.surface,
+    backgroundColor: Colors.transparent,
     foregroundColor: UIColor.textPrimary,
   );
 
@@ -85,15 +85,17 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.titleWidget,
     this.leading,
     this.actions,
-    this.backgroundColor = Colors.transparent,
+    this.backgroundColor,
     this.foregroundColor,
-    this.centerTitle = false,
+    this.centerTitle = true,
     this.elevation = 0,
     this.shadows,
     this.toolbarHeight = 56.0,
     this.leadingWidth,
     this.automaticallyImplyLeading = true,
     this.middleSpacing,
+
+    this.showBottomDivider,
     this.actionsFactory = const DefaultUIAppBarActions(),
   }) : assert(
          title != null || titleWidget != null,
@@ -141,6 +143,11 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   final double? middleSpacing;
 
+  /// Whether to show a bottom divider line.
+  ///
+  /// If null, it is shown for [UIAppBarVariant.standard] and hidden otherwise.
+  final bool? showBottomDivider;
+
   /// Factory for creating AppBar action buttons.
   ///
   /// Defaults to [DefaultUIAppBarActions]. Can be overridden for testing
@@ -154,9 +161,12 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     // Get the style configuration for the variant
     final styleConfig = _AppBarStyleConfig.fromVariant(variant);
-    final effectiveBackgroundColor = backgroundColor ?? UIColor.neutral400;
+    final effectiveBackgroundColor =
+        backgroundColor ?? styleConfig.backgroundColor;
     final effectiveForegroundColor =
         foregroundColor ?? styleConfig.foregroundColor;
+    final bool shouldShowBottomDivider =
+        showBottomDivider ?? variant == UIAppBarVariant.standard;
 
     // Build the title widget
     final Widget effectiveTitle =
@@ -169,22 +179,23 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
         );
 
     return Container(
-      decoration: BoxDecoration(
-        color: effectiveBackgroundColor,
-        boxShadow: _buildBoxShadow(),
-      ),
-      child: SafeArea(
-        bottom: false,
-        child: SizedBox(
-          height: toolbarHeight,
-          child: NavigationToolbar(
-            leading: _buildLeading(context),
-            middle: effectiveTitle,
-            trailing: _buildTrailing(),
-            centerMiddle: centerTitle,
-            middleSpacing: middleSpacing ?? 0,
-          ),
-        ),
+      // decoration: BoxDecoration(
+      //   // color: effectiveBackgroundColor,
+      //   border:
+      //       shouldShowBottomDivider
+      //           ? const Border(
+      //             bottom: BorderSide(color: UIColor.divider, width: 1),
+      //           )
+      //           : null,
+      //   boxShadow: _buildBoxShadow(),
+      // ),
+      child: AppBar(
+        backgroundColor: effectiveBackgroundColor,
+        // surfaceTintColor: UIColor.primary,
+        leading: _buildLeading(context),
+        title: effectiveTitle,
+        actions: _buildTrailing() != null ? [_buildTrailing()!] : null,
+        centerTitle: centerTitle,
       ),
     );
   }

@@ -1,9 +1,6 @@
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:design_system/design_system.dart';
-import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:util/util.dart';
@@ -93,6 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(height: UI.spacing.xxl),
                         _buildHeader(tr),
                         SizedBox(height: UI.spacing.xxl),
                         Directionality(
@@ -167,6 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
             size: 90,
             iconSize: 45,
             backgroundColor: UIColor.softGreen,
+            child: UISvg(Assets.icons.phone),
             child: UISvg(Assets.icons.phone),
           ),
           SizedBox(height: UI.spacing.lg),

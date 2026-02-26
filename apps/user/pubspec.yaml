@@ -15,6 +15,7 @@ dependencies:
   util:
   api_client:
   profile:
+  orders:
 
   flutter_svg: ^2.2.0
   i69n: ^3.3.0

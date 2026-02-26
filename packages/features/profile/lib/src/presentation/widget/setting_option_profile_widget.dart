@@ -27,7 +27,10 @@ class ProfileSettingOptionWidget extends StatelessWidget {
       onTap: onTap,
       child: ListTile(
         contentPadding: EdgeInsets.only(bottom: UI.spacing.sm),
-        trailing: customTrailing ?? UISvg( Assets.icons.right),
+        trailing: Padding(
+          padding: const EdgeInsetsDirectional.only(end: 8.0),
+          child: customTrailing ?? UISvg(Assets.icons.right),
+        ),
         leading: _buildProfileIcon(
           isSvgIcon: isSvgIcon,
           imgUrl: imgUrl,
@@ -56,24 +59,14 @@ class ProfileSettingOptionWidget extends StatelessWidget {
     required bool isSvgIcon,
     required String imgUrl,
     Color? color,
-    Color? colorIcon,
-  }) {///add TODO comment: use [UIIconBackground]
+    UIColor? colorIcon,
+  }) {
     if (isSvgIcon) {
-      return Container(
-        width: UI.sizes.avatarMd,
-        height: UI.sizes.avatarMd,
-        decoration: BoxDecoration(
-          color: color ?? UIColor.neutral25,
-          shape: BoxShape.circle,
-        ),
-        padding:  EdgeInsets.all(UI.spacing.xxs),
-        child: SvgPicture.asset(
-          imgUrl,
-          colorFilter: ColorFilter.mode(
-            colorIcon ?? UIColor.grey,
-            BlendMode.srcIn,
-          ),
-        ),
+      return UIIconBackground(
+        size: UI.sizes.avatarMd,
+        iconSize: UI.sizes.avatarMd,
+        backgroundColor: color ?? Color(0xff303030),
+        child: UISvg(imgUrl, color: colorIcon ?? UIColor.grey),
       );
     }
 
@@ -97,4 +90,3 @@ class ProfileSettingOptionWidget extends StatelessWidget {
     );
   }
 }
-

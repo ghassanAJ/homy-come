@@ -5,6 +5,7 @@ class UISvg extends StatelessWidget {
   const UISvg(this.icon, {super.key, this.color});
   final String icon;
   final UIColor? color;
+  final String? package;
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(

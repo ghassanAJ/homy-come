@@ -239,7 +239,7 @@ class _PinInputState extends State<PinInput> {
     // Focused theme - active box with primary border and cursor
     final focusedPinTheme = defaultPinTheme.copyDecorationWith(
       border: Border.all(
-        color: widget.hasError ? UIColor.borderError : UIColor.success,
+        color: widget.hasError ? UIColor.borderError : UIColor.softGreen,
         width: 2,
       ),
       color: UIColor.surface,
@@ -250,7 +250,7 @@ class _PinInputState extends State<PinInput> {
       decoration: defaultPinTheme.decoration?.copyWith(
         color: UIColor.surface,
         border: Border.all(
-          color: widget.hasError ? UIColor.borderError : UIColor.success,
+          color: widget.hasError ? UIColor.borderError : UIColor.softGreen,
         ),
       ),
       textStyle: defaultPinTheme.textStyle?.copyWith(

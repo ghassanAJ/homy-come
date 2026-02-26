@@ -16,7 +16,26 @@ class UserAppRouteConfig {
   static List<RouteBase> createRoutes(
     GlobalKey<NavigatorState> shellNavigatorKey,
   ) {
-    return [_createDashboardShell(shellNavigatorKey)];
+    return [
+      _createDashboardShell(shellNavigatorKey),
+
+      GoRoute(
+        path: UserPaths.serviceDetails,
+        builder: (context, state) => const ServiceDetailsScreenStep1(),
+      ),
+      GoRoute(
+        path: UserPaths.serviceDetails2,
+        builder: (context, state) => const ServiceDetailsStep2(),
+      ),
+      GoRoute(
+        path: UserPaths.serviceDetails3,
+        builder: (context, state) => const ServiceDetailsStep3(),
+      ),
+      GoRoute(
+        path: UserPaths.serviceDetailsSummary,
+        builder: (context, state) => const ServiceDetailsSummaryScreen(),
+      ),
+    ];
   }
 
   /// Dashboard shell with bottom navigation and tab routes
@@ -104,8 +123,9 @@ class UserAppRouteConfig {
               path: UserPaths.profile,
               name: 'profile',
               builder:
-                  (context, state) =>
-                      Scaffold(body: ProfileLocalizationScope(child: ProfileScreen()),)
+                  (context, state) => Scaffold(
+                    body: ProfileLocalizationScope(child: ProfileScreen()),
+                  ),
             ),
           ],
         ),

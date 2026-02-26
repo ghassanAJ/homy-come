@@ -4,14 +4,10 @@ import 'package:injectable/injectable.dart';
 import 'package:util/src/base_cubit/base_state.dart';
 import 'package:util/src/base_usecase/base_use_case.dart';
 
-abstract class BaseCubit<T> extends Cubit<BaseState<T>> {
-  BaseCubit(super.initialState);
-}
-
 @injectable
 @singleton
-class BaseButtonCubit<T> extends Cubit<BaseState<T>> {
-  BaseButtonCubit() : super(BaseState<T>());
+class BaseCubit<T> extends Cubit<BaseState<T>> {
+  BaseCubit() : super(BaseState<T>());
 
   Future<void> execute({required BaseUseCase<T> useCase}) async {
     emit(state.loading());
