@@ -1,5 +1,6 @@
 import 'package:api_client/api_client.dart';
 import 'package:authentication/authentication.dart';
+import 'package:user/di/home_di.dart';
 import 'package:user/di/di_container.dart';
 import 'package:util/util.dart';
 
@@ -12,6 +13,7 @@ void initializeDependencies(String env) {
   initApiClient(diContainer, env);
 
   initAuth(diContainer, env);
+  initHome(diContainer, env);
 
   _configureAuthInterceptor();
   initMain(diContainer, env);
