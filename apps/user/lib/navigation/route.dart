@@ -1,6 +1,8 @@
 import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:user/localization/files/userTranslation.i69n.dart';
+import 'package:util/util.dart';
 
 /// User app route paths.
 ///
@@ -26,38 +28,38 @@ class UserRoute {
   static List<RouteBase> get routes => [
     GoRoute(
       path: UserPaths.home,
-      builder:
-          (context, state) =>
-              const _PlaceholderScreen(title: 'Home', path: UserPaths.home),
+      builder: (context, state) => _PlaceholderScreen(
+        title: context.loc<UserTranslation>().navigation.home,
+        path: UserPaths.home,
+      ),
     ),
     GoRoute(
       path: UserPaths.category,
-      builder:
-          (context, state) => const _PlaceholderScreen(
-            title: 'Category',
-            path: UserPaths.category,
-          ),
+      builder: (context, state) => _PlaceholderScreen(
+        title: context.loc<UserTranslation>().navigation.category,
+        path: UserPaths.category,
+      ),
     ),
     GoRoute(
       path: UserPaths.orders,
-      builder:
-          (context, state) =>
-              const _PlaceholderScreen(title: 'Orders', path: UserPaths.orders),
+      builder: (context, state) => _PlaceholderScreen(
+        title: context.loc<UserTranslation>().navigation.orders,
+        path: UserPaths.orders,
+      ),
     ),
     GoRoute(
       path: UserPaths.search,
-      builder:
-          (context, state) =>
-              const _PlaceholderScreen(title: 'Search', path: UserPaths.search),
+      builder: (context, state) => _PlaceholderScreen(
+        title: context.loc<UserTranslation>().navigation.search,
+        path: UserPaths.search,
+      ),
     ),
     GoRoute(
       path: UserPaths.profile,
-
-      builder:
-          (context, state) => const _PlaceholderScreen(
-            title: 'Profile',
-            path: UserPaths.profile,
-          ),
+      builder: (context, state) => _PlaceholderScreen(
+        title: context.loc<UserTranslation>().navigation.profile,
+        path: UserPaths.profile,
+      ),
     ),
   ];
 }
@@ -72,7 +74,7 @@ class _PlaceholderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: Center(child: Text('$title — $path')),
+      body: Center(child: Text('$title - $path')),
     );
   }
 }

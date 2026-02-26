@@ -44,7 +44,8 @@ class UiBottomNavigationBar extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
           unselectedLabelStyle: UI.text.bodyXSmall.copyWith(
-            color: UIColor.neutral400,
+            color: UIColor.steel,
+            fontWeight: FontWeight.w400,
           ),
           currentIndex: currentIndex,
           onTap: onTap,
@@ -65,28 +66,18 @@ class UiBottomNavigationBar extends StatelessWidget {
     return BottomNavigationBarItem(
       icon: Padding(
         padding: EdgeInsets.only(bottom: UI.spacing.xs),
-        child: Image.asset(
-          item.iconAsset,
+        child: SizedBox(
           width: UI.sizes.iconMd,
           height: UI.sizes.iconMd,
-          color: UIColor.neutral400,
-          errorBuilder:
-              (context, error, stackTrace) =>
-                  const Icon(Icons.error, color: UIColor.neutral400),
-          package: 'design_system',
+          child: UISvg(item.iconAsset, color: UIColor.steel),
         ),
       ),
       activeIcon: Padding(
         padding: EdgeInsets.only(bottom: UI.spacing.xs),
-        child: Image.asset(
-          item.iconAsset,
+        child: SizedBox(
           width: UI.sizes.iconMd,
-          errorBuilder:
-              (context, error, stackTrace) =>
-                  const Icon(Icons.error, color: UIColor.babyBlue),
-
           height: UI.sizes.iconMd,
-          color: UIColor.babyBlue,
+          child: UISvg(item.iconAsset, color: UIColor.babyBlue),
         ),
       ),
       label: item.label,

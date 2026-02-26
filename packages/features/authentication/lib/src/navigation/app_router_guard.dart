@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:user/navigation/route.dart';
 import 'package:profile/src/navigation/router.dart';
 class AppRouterGuard {
+  static final List<String> guestAllowedPaths = [UserPaths.home];
+
   static bool _isOtpPath(String path) =>
       path == AuthenticationPaths.otpVerification ||
       path.endsWith(AuthenticationPaths.otpVerification) ||
@@ -57,7 +59,7 @@ class AppRouterGuard {
     }
 
     // 2. If on any auth path, stay there (onboarding, login, select-role, etc.)
-    if (authPaths.contains(currentPath)) {
+    if (authPaths.contains(currentPath) || guestAllowedPaths.contains(currentPath)) {
       return null;
     }
 
