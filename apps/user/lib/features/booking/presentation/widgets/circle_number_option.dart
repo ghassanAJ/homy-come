@@ -1,8 +1,7 @@
-
 import 'package:design_system/design_system.dart';
 
-class CircleNumberOption extends StatelessWidget {
-  const CircleNumberOption({
+class CircleNumberOptionWidget extends StatelessWidget {
+  const CircleNumberOptionWidget({
     required this.value,
     required this.selected,
     required this.onTap,

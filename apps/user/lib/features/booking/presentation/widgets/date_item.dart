@@ -1,9 +1,7 @@
-
-
 import 'package:design_system/design_system.dart';
 
-class DateItem extends StatelessWidget {
-  const DateItem({
+class DateItemWidget extends StatelessWidget {
+  const DateItemWidget({
     required this.day,
     required this.weekDay,
     required this.selected,

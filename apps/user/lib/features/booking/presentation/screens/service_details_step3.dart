@@ -198,7 +198,7 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
                             color: UIColor.balck,
                           ),
                           SizedBox(width: UI.spacing.xs),
-                          UISvg(Assets.icons.arrowBottom,color: UIColor.black,)
+                          UISvg(Assets.icons.arrowBottom, color: UIColor.black),
                         ],
                       ),
                       SizedBox(height: UI.spacing.md),
@@ -212,7 +212,7 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
                           itemBuilder: (context, index) {
                             final day = _days[index];
                             final selected = index == _selectedDay;
-                            return DateItem(
+                            return DateItemWidget(
                               day: day.day,
                               weekDay: day.weekDay,
                               selected: selected,

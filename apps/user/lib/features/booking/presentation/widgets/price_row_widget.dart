@@ -22,6 +22,7 @@ class PriceRow extends StatelessWidget {
       ),
       child: Row(
         children: [
+          
           Expanded(
             child: UIText.bodyMedium(
               title,
@@ -29,10 +30,12 @@ class PriceRow extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
-          UIText.bodyMedium(
-            amount,
-            color: UIColor.textSecondary,
-            fontWeight: FontWeight.w600,
+          UIPriceText(
+            text: UIText.bodyMedium(
+              amount,
+              color: UIColor.textSecondary,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ],
       ),

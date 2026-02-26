@@ -1,9 +1,7 @@
-
-
 import 'package:design_system/design_system.dart';
 
-class ChoiceChipButton extends StatelessWidget {
-  const ChoiceChipButton({
+class ChoiceChipButtonWidget extends StatelessWidget {
+  const ChoiceChipButtonWidget({
     required this.label,
     required this.selected,
     required this.onTap,

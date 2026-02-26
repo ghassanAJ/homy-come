@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:user/features/booking/presentation/widgets/choice_chip_button.dart';
 import 'package:user/features/booking/presentation/widgets/circle_number_option.dart';
-import 'package:user/features/booking/presentation/widgets/section_title.dart';
 import 'package:user/features/booking/presentation/widgets/step_navigation_bar.dart';
 import 'package:user/navigation/route.dart';
 
@@ -27,6 +26,11 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
     super.dispose();
   }
 
+  Widget ___sectionTitle(String title){
+    return  UIText.h6(title, color: UIColor.balck, maxLines: 2);
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     final topContentPadding =
@@ -66,7 +70,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SectionTitle(
+                      ___sectionTitle(
                         'How Many Hours do you need your professional to stay ?',
                       ),
                       SizedBox(height: UI.spacing.sm),
@@ -77,7 +81,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                           runSpacing: UI.spacing.xs,
                           children: List.generate(
                             7,
-                            (index) => CircleNumberOption(
+                            (index) => CircleNumberOptionWidget(
                               value: index + 1,
                               selected: _selectedHours == index + 1,
                               onTap: () {
@@ -90,13 +94,13 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                         ),
                       ),
                       SizedBox(height: UI.spacing.lg),
-                      SectionTitle('How Many professional do you need ?'),
+                      ___sectionTitle('How Many professional do you need ?'),
                       SizedBox(height: UI.spacing.sm),
                       Wrap(
                         spacing: UI.spacing.xs,
                         runSpacing: UI.spacing.xs,
                         children: [
-                          ChoiceChipButton(
+                          ChoiceChipButtonWidget(
                             label: 'One Professional',
                             selected:
                                 _selectedProfessionalCount ==
@@ -107,7 +111,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                               });
                             },
                           ),
-                          ChoiceChipButton(
+                          ChoiceChipButtonWidget(
                             label: '2 to 4',
                             selected: _selectedProfessionalCount == '2 to 4',
                             onTap: () {
@@ -116,7 +120,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                               });
                             },
                           ),
-                          ChoiceChipButton(
+                          ChoiceChipButtonWidget(
                             label: '4 to 6',
                             selected: _selectedProfessionalCount == '4 to 6',
                             onTap: () {
@@ -125,7 +129,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                               });
                             },
                           ),
-                          ChoiceChipButton(
+                          ChoiceChipButtonWidget(
                             label: 'More than',
                             selected: _selectedProfessionalCount == 'More than',
                             onTap: () {
@@ -137,12 +141,12 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                         ],
                       ),
                       SizedBox(height: UI.spacing.lg),
-                      SectionTitle('Need cleaning materials?'),
+                      ___sectionTitle('Need cleaning materials?'),
                       SizedBox(height: UI.spacing.sm),
                       Wrap(
                         spacing: UI.spacing.xs,
                         children: [
-                          ChoiceChipButton(
+                          ChoiceChipButtonWidget(
                             label: 'No, i have them',
                             selected: _selectedMaterials == 'No, i have them',
                             onTap: () {
@@ -151,7 +155,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                               });
                             },
                           ),
-                          ChoiceChipButton(
+                          ChoiceChipButtonWidget(
                             label: 'yes please',
                             selected: _selectedMaterials == 'yes please',
                             onTap: () {
@@ -163,42 +167,37 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                         ],
                       ),
                       SizedBox(height: UI.spacing.lg),
-                      SectionTitle('Any Notes ?'),
+                      ___sectionTitle('Any Notes ?'),
                       SizedBox(height: UI.spacing.sm),
-                   
                     ],
                   ),
                 ),
-                   Padding(
-                     padding:  EdgeInsets.symmetric(horizontal: UI.spacing.lg),
-                     child: TextField(
-                          controller: _notesController,
-                          maxLines: 4,
-                          style: UI.text.bodyMedium.copyWith(
-                            color: UIColor.balck,
-                          ),
-                          inputFormatters: [
-                            LengthLimitingTextInputFormatter(400),
-                          ],
-                          decoration: InputDecoration(
-                            hintText: 'add your notes',
-                            hintStyle: UI.text.bodyMedium.copyWith(
-                              color: UIColor.grey,
-                            ),
-                            filled: true,
-                            fillColor: UIColor.background,
-                            contentPadding: EdgeInsets.all(UI.spacing.md),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(UI.radius.lg),
-                              borderSide: BorderSide(color: UIColor.neutral200),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(UI.radius.lg),
-                              borderSide: BorderSide(color: UIColor.primary),
-                            ),
-                          ),
-                        ),
-                   ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: UI.spacing.lg),
+                  child: TextField(
+                    controller: _notesController,
+                    maxLines: 4,
+                    style: UI.text.bodyMedium.copyWith(color: UIColor.balck),
+                    inputFormatters: [LengthLimitingTextInputFormatter(400)],
+                    decoration: InputDecoration(
+                      hintText: 'add your notes',
+                      hintStyle: UI.text.bodyMedium.copyWith(
+                        color: UIColor.grey,
+                      ),
+                      filled: true,
+                      fillColor: UIColor.background,
+                      contentPadding: EdgeInsets.all(UI.spacing.md),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(UI.radius.lg),
+                        borderSide: BorderSide(color: UIColor.neutral200),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(UI.radius.lg),
+                        borderSide: BorderSide(color: UIColor.primary),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -212,7 +211,11 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
             ),
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: StepNavigationBar(next: (){   context.push(UserPaths.serviceDetails2);},),
+              child: StepNavigationBar(
+                next: () {
+                  context.push(UserPaths.serviceDetails2);
+                },
+              ),
             ),
           ),
         ],
@@ -220,3 +223,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
     );
   }
 }
+
+
+
+

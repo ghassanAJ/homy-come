@@ -56,7 +56,7 @@ class ProviderAvatarItem extends StatelessWidget {
                         Positioned(left:2 ,
                         bottom: 2,
                           child: UIImage(
-                            Assets.images.checkMark1,
+                            Assets.images.checkMark1.path,
                             wigth: UI.sizes.iconMd,
                             height: UI.sizes.iconMd,
                           ),

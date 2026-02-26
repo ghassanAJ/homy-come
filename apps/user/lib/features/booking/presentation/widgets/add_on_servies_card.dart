@@ -21,9 +21,9 @@ class AddonServiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final wid = MediaQuery.of(context).size.width;
+    final widthScreen = MediaQuery.of(context).size.width;
     return Container(
-      width: wid * 0.5,
+      width: widthScreen * 0.5,
       decoration: BoxDecoration(
         color: UIColor.background,
         borderRadius: BorderRadius.circular(UI.radius.md),
@@ -39,20 +39,14 @@ class AddonServiceCard extends StatelessWidget {
                 top: Radius.circular(UI.radius.md),
               ),
               child: Container(
-                // height: 147,
+                //  TODO : Use UINetworkImage
                 width: double.infinity,
                 color: UIColor.neutral100,
                 child: Image.network(
                   'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
                   fit: BoxFit.cover,
                   loadingBuilder: (context, child, loadingProgress) {
-                    return Center(
-                      child: SizedBox(
-                        // width: 28,
-                        // height: 28,
-                        // child: CircularProgressIndicator(strokeWidth: 2,)),
-                      ),
-                    );
+                    return Center(child: SizedBox());
                   },
                 ),
               ),
@@ -67,11 +61,6 @@ class AddonServiceCard extends StatelessWidget {
             ),
             child: Row(
               children: [
-                // Icon(
-                //   Icons.star,
-                //   size: UI.sizes.iconXs,
-                //   color: UIColor.babyBlue,
-                // ),
                 UISvg(Assets.icons.starBlue, color: UIColor.babyBlue),
                 SizedBox(width: UI.spacing.xxs),
                 Expanded(
@@ -98,9 +87,10 @@ class AddonServiceCard extends StatelessWidget {
             ),
             child: Row(
               children: [
-                UIText.h3(price, color: UIColor.balck),
+                // UIText.h3(price, color: UIColor.balck),
+                UIPriceText(text: UIText.h3(price, color: UIColor.balck)),
                 SizedBox(width: UI.spacing.xs),
-                Text(
+                Text(//TODO : use UIPriceText 
                   oldPrice,
                   style: UI.text.bodyMedium.copyWith(
                     fontFamily: UIFonts.lexend,
@@ -124,7 +114,7 @@ class AddonServiceCard extends StatelessWidget {
                   selected
                       ? GestureDetector(
                         onTap: onTap,
-                        child: CustomButtonWithIcon(),
+                        child: CustomButtonWithIconWidget(),
                       )
                       : UIButton.outlined(
                         label: 'Add',
@@ -141,4 +131,3 @@ class AddonServiceCard extends StatelessWidget {
     );
   }
 }
-

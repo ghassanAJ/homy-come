@@ -54,8 +54,8 @@ final width = MediaQuery.of(context).size.width;
                   (contexyt, i) => AddonServiceCard(
                     reviews: '(130 Reviews)',
                     title: 'Kitchen Cleaning',
-                    price: '\$150',
-                    oldPrice: '\$180',
+                    price: '150',
+                    oldPrice: '180',
                     selected: _selectedAddons.contains('kitchen'),
                     onTap: () {
                       setState(() {
