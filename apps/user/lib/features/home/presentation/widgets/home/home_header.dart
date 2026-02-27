@@ -29,7 +29,6 @@ class HomeHeader extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         UIAppBar(
-          backgroundColor: UIColor.white,
           toolbarHeight: 60,
           automaticallyImplyLeading: false,
           leadingWidth: 84,
@@ -56,10 +55,9 @@ class HomeHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              UIText.bodyMedium(
+              UIText.bodySmall(
                 'Ahmad mohammad',
                 fontWeight: FontWeight.w700,
-                fontSize: 14,
                 color: UIColor.black,
               ),
               SizedBox(height: UI.spacing.xxs),

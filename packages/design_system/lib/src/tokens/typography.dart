@@ -159,6 +159,21 @@ class UITypography {
     letterSpacing: 0,
   );
 
+  /// Body XXSmall - Regular
+  ///
+  /// Weight: 400 (Regular)
+  /// Size: 10px
+  /// Line height: 150% (1.5)
+  ///
+  /// Usage: Extra small body text, compact metadata
+  TextStyle get bodyXXSmall => const TextStyle(
+    fontFamily: UIFonts.montserrat,
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+    height: 1.5,
+    letterSpacing: 0,
+  );
+
   TextStyle get headerBody => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 13,

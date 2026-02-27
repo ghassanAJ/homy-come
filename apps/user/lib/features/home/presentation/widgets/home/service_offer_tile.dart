@@ -63,11 +63,10 @@ class ServiceOfferTile extends StatelessWidget {
                               .toList(growable: false),
                         ),
                         SizedBox(width: UI.spacing.xs),
-                        UIText.bodySmall(
+                        UIText.bodyXSmall(
                           '($reviewsCount Reviews)',
                           color: UIColor.midnight,
                           fontWeight: FontWeight.w300,
-                          fontSize: 12,
                         ),
                       ],
                     ),

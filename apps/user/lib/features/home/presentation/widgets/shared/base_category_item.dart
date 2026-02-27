@@ -1,5 +1,4 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 
 class BaseCategoryItem extends StatelessWidget {
   const BaseCategoryItem({
@@ -12,16 +11,13 @@ class BaseCategoryItem extends StatelessWidget {
     this.iconContainerSize = 52,
     this.iconSize = 30,
     this.iconBorderRadius,
-    this.itemSpacing = 8,
-    this.textSpacing = 2,
+    this.itemSpacing,
+    this.textSpacing,
     this.textAlign = TextAlign.center,
     this.textCrossAxisAlignment = CrossAxisAlignment.center,
     this.titleFontSize = 12,
     this.titleFontWeight = FontWeight.w500,
-    this.subtitleFontSize = 10,
     this.subtitleFontWeight = FontWeight.w400,
-    this.titleMaxLines = 1,
-    this.subtitleMaxLines = 1,
     this.useBodyMediumForTitle = false,
   });
 
@@ -33,16 +29,14 @@ class BaseCategoryItem extends StatelessWidget {
   final double iconContainerSize;
   final double iconSize;
   final BorderRadius? iconBorderRadius;
-  final double itemSpacing;
-  final double textSpacing;
+  final double? itemSpacing;
+  final double? textSpacing;
   final TextAlign textAlign;
   final CrossAxisAlignment textCrossAxisAlignment;
   final double titleFontSize;
   final FontWeight titleFontWeight;
-  final double subtitleFontSize;
   final FontWeight subtitleFontWeight;
-  final int titleMaxLines;
-  final int subtitleMaxLines;
+
   final bool useBodyMediumForTitle;
 
   factory BaseCategoryItem.categoriesList({
@@ -59,13 +53,11 @@ class BaseCategoryItem extends StatelessWidget {
       axis: Axis.horizontal,
       iconContainerSize: 52,
       iconSize: 30,
-      iconBorderRadius:
-          BorderRadius.circular(UI.radius.xs + UI.radius.sm),
+      iconBorderRadius: BorderRadius.circular(UI.radius.xs + UI.radius.sm),
       itemSpacing: UI.spacing.sm,
       textSpacing: UI.spacing.xxs,
       titleFontSize: 14,
       titleFontWeight: FontWeight.w500,
-      subtitleFontSize: 10,
       subtitleFontWeight: FontWeight.w400,
       useBodyMediumForTitle: true,
       textAlign: TextAlign.start,
@@ -75,38 +67,39 @@ class BaseCategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final resolvedIconBorderRadius =
+        iconBorderRadius ?? BorderRadius.circular(UI.radius.xs + UI.radius.sm);
+    final resolvedItemSpacing = itemSpacing ?? UI.spacing.xs;
+    final resolvedTextSpacing = textSpacing ?? UI.spacing.xxs;
+
     final icon = UIIconBackground(
-      borderRadius: iconBorderRadius,
+      borderRadius: resolvedIconBorderRadius,
       size: iconContainerSize,
       iconSize: iconSize,
       backgroundColor: UIColor.grey.withValues(alpha: 0.05),
       child: UISvg(iconPath),
     );
 
-    final titleWidget = useBodyMediumForTitle
-        ? UIText.bodyMedium(
-            title,
-            textAlign: textAlign,
-            color: UIColor.ink,
-            maxLines: titleMaxLines,
-            fontSize: titleFontSize,
-            fontWeight: titleFontWeight,
-          )
-        : UIText.bodySmall(
-            title,
-            textAlign: textAlign,
-            color: UIColor.ink,
-            maxLines: titleMaxLines,
-            fontSize: titleFontSize,
-            fontWeight: titleFontWeight,
-          );
+    final titleWidget =
+        useBodyMediumForTitle
+            ? UIText.bodyXSmall(
+              title,
+              textAlign: textAlign,
+              color: UIColor.ink,
+              fontWeight: titleFontWeight,
+            )
+            : UIText.bodySmall(
+              title,
+              textAlign: textAlign,
+              color: UIColor.ink,
+              fontSize: titleFontSize,
+              fontWeight: titleFontWeight,
+            );
 
-    final subtitleWidget = UIText.bodySmall(
+    final subtitleWidget = UIText.bodyXXSmall(
       subtitle,
       textAlign: textAlign,
       color: UIColor.grey,
-      maxLines: subtitleMaxLines,
-      fontSize: subtitleFontSize,
       fontWeight: subtitleFontWeight,
     );
 
@@ -115,28 +108,29 @@ class BaseCategoryItem extends StatelessWidget {
       crossAxisAlignment: textCrossAxisAlignment,
       children: [
         titleWidget,
-        SizedBox(height: textSpacing),
+        SizedBox(height: resolvedTextSpacing),
         subtitleWidget,
       ],
     );
 
-    final item = axis == Axis.horizontal
-        ? Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              icon,
-              SizedBox(width: itemSpacing),
-              Expanded(child: textBlock),
-            ],
-          )
-        : Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              icon,
-              SizedBox(height: itemSpacing),
-              textBlock,
-            ],
-          );
+    final item =
+        axis == Axis.horizontal
+            ? Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                icon,
+                SizedBox(width: resolvedItemSpacing),
+                Expanded(child: textBlock),
+              ],
+            )
+            : Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                icon,
+                SizedBox(height: resolvedItemSpacing),
+                textBlock,
+              ],
+            );
 
     if (width == null) return item;
     return SizedBox(width: width, child: item);

@@ -53,6 +53,7 @@ export 'src/widgets/shared/gradiant_linear_progress.dart';
 export 'src/widgets/shared/keep_alive_widget.dart';
 export 'src/widgets/shared/selected_buttons_in_row.dart';
 export 'src/widgets/shared/stack_fade_grediant.dart';
+export 'src/widgets/shared/ui_ellipse_background.dart';
 export 'src/widgets/shared/ui_chips_bar.dart';
 export 'src/widgets/shared/ui_filter_tab_bar.dart';
 export 'src/widgets/shared/ui_icon_background.dart';

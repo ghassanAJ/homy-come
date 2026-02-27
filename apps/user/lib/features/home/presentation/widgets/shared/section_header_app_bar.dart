@@ -10,13 +10,11 @@ class SectionHeaderAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UIAppBar(
-      backgroundColor: UIColor.white,
       toolbarHeight: 60,
       centerTitle: true,
-      titleWidget: UIText.bodyMedium(
+      titleWidget: UIText.bodyLarge(
         title,
         fontWeight: FontWeight.w700,
-        fontSize: 18,
         color: UIColor.black,
       ),
       leadingWidth: 76,

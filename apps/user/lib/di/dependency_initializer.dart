@@ -1,7 +1,7 @@
 import 'package:api_client/api_client.dart';
 import 'package:authentication/authentication.dart';
-import 'package:user/di/home_di.dart';
 import 'package:user/di/di_container.dart';
+import 'package:user/features/home/di/di_config.dart';
 import 'package:util/util.dart';
 
 import 'di_init.dart';

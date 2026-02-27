@@ -38,10 +38,9 @@ class StoryOfferCard extends StatelessWidget {
             child: UISvg(iconPath),
           ),
           SizedBox(height: UI.spacing.xxs),
-          UIText.bodySmall(
+          UIText.bodyXXSmall(
             title,
             color: UIColor.graphite,
-            fontSize: 10,
             fontWeight: FontWeight.w500,
             maxLines: 1,
           ),
@@ -62,10 +61,9 @@ class StoryOfferCard extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               description.toUpperCase(),
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.w700,
+              style: UI.text.bodyXXSmall.copyWith(
                 color: backgroundContainer,
+                fontWeight: FontWeight.w700,
                 letterSpacing: 1.2,
               ),
             ),
@@ -75,4 +73,3 @@ class StoryOfferCard extends StatelessWidget {
     );
   }
 }
-

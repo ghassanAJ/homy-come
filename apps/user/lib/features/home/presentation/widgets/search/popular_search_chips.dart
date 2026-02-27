@@ -26,7 +26,7 @@ class PopularSearchChips extends StatelessWidget {
               padding: UI.padding.userSearchChipContent,
               decoration: BoxDecoration(
                 color: UIColor.white,
-                borderRadius: BorderRadius.circular(100),
+                borderRadius: BorderRadius.circular(UI.radius.full),
                 border: Border.all(
                   color:
                       item == selectedPopular
@@ -43,7 +43,6 @@ class PopularSearchChips extends StatelessWidget {
                 ],
               ),
               child: UIText.bodyMedium(
-                fontSize: 17,
                 item,
                 color: item == selectedPopular ? UIColor.primary : UIColor.grey,
                 fontWeight:
