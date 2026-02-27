@@ -17,6 +17,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Heart.svg
   String get heart => 'packages/design_system/assets/icons/Heart.svg';
 
+  /// File path: assets/icons/Info.svg
+  String get info => 'packages/design_system/assets/icons/Info.svg';
+
   /// File path: assets/icons/Lock.svg
   String get lock => 'packages/design_system/assets/icons/Lock.svg';
 
@@ -43,6 +46,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/arrow-left.svg
   String get arrowLeft => 'packages/design_system/assets/icons/arrow-left.svg';
+
+  /// File path: assets/icons/arrowBottom.svg
+  String get arrowBottom =>
+      'packages/design_system/assets/icons/arrowBottom.svg';
 
   /// File path: assets/icons/calendar.svg
   String get calendar => 'packages/design_system/assets/icons/calendar.svg';
@@ -135,6 +142,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/star.svg
   String get star => 'packages/design_system/assets/icons/star.svg';
 
+  /// File path: assets/icons/starBlue.svg
+  String get starBlue => 'packages/design_system/assets/icons/starBlue.svg';
+
   /// File path: assets/icons/successful.svg
   String get successful => 'packages/design_system/assets/icons/successful.svg';
 
@@ -154,6 +164,7 @@ class $AssetsIconsGen {
   /// List of all assets
   List<String> get values => [
     heart,
+    info,
     lock,
     notification,
     profile,
@@ -162,6 +173,7 @@ class $AssetsIconsGen {
     apple,
     arrowRight,
     arrowLeft,
+    arrowBottom,
     calendar,
     call,
     camera,
@@ -191,6 +203,7 @@ class $AssetsIconsGen {
     shiftingService,
     smileyXEyes,
     star,
+    starBlue,
     successful,
     trash,
     user,

@@ -1,3 +1,4 @@
+import 'package:design_system/src/tokens/UIFonts.dart';
 import 'package:flutter/material.dart';
 
 import '../../tokens/colors.dart';
@@ -88,6 +89,24 @@ class UIText extends StatelessWidget {
     super.key,
   }) : style = _typography.h5;
 
+
+
+ UIText.h6(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    FontWeight? fontWeight,
+    double? fontSize,
+    
+    super.key,
+  }) : style = _typography.h6.copyWith(
+         fontWeight: fontWeight,
+         fontSize: fontSize,
+       );
+
   // ===========================================================================
   // BODY TEXT
   // ===========================================================================
@@ -104,11 +123,30 @@ class UIText extends StatelessWidget {
     this.softWrap,
     FontWeight? fontWeight,
     double? fontSize,
+    String? fontFamily,
+    super.key,
+  }) : style = _typography.bodyMedium.copyWith(
+         fontWeight: fontWeight,
+         fontSize: fontSize,
+         fontFamily: fontFamily
+       );
+
+
+  UIText.bodyMediumRoboto(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    FontWeight? fontWeight,
+    double? fontSize,
     super.key,
   }) : style = _typography.bodyMedium.copyWith(
          fontWeight: fontWeight,
          fontSize: fontSize,
        );
+
   UIText.bodyLarge(
     this.data, {
     this.color,
@@ -137,6 +175,25 @@ class UIText extends StatelessWidget {
          fontWeight: fontWeight,
          fontSize: fontSize,
        );
+
+  UIText.bodyXXSmall(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    FontWeight? fontWeight,
+    double? fontSize,
+    String? fontFamily,
+    super.key,
+  }) : style = _typography.bodyXXSmall.copyWith(
+         fontWeight: fontWeight,
+         fontSize: fontSize,
+         fontFamily: fontFamily
+       );
+
+
 
   UIText.bodySmallBold(
     this.data, {
@@ -278,6 +335,17 @@ class UIText extends StatelessWidget {
     this.softWrap,
     super.key,
   }) : style = _typography.buttonWithIcon;
+
+
+    UIText.bodyBold(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    super.key,
+  }) : style = _typography.bodyBold;
 
   // ===========================================================================
   // INPUT FIELD TEXT
