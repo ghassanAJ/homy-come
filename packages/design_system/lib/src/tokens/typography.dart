@@ -169,15 +169,6 @@ class UITypography {
   /// Line height: 150% (1.5)
   ///
   /// Usage: Small body text, metadata
-  TextStyle get bodyXXSmall => const TextStyle(
-    fontFamily: UIFonts.montserrat,
-    fontSize: 12,
-    fontWeight: FontWeight.w300,
-    height: 1.5,
-    letterSpacing: 0,
-  );
-
-
   TextStyle get bodyXSmall => const TextStyle(
     fontFamily: UIFonts.montserrat,
     fontSize: 12,

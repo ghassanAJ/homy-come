@@ -89,9 +89,7 @@ class UIText extends StatelessWidget {
     super.key,
   }) : style = _typography.h5;
 
-
-
- UIText.h6(
+  UIText.h6(
     this.data, {
     this.color,
     this.textAlign,
@@ -100,7 +98,7 @@ class UIText extends StatelessWidget {
     this.softWrap,
     FontWeight? fontWeight,
     double? fontSize,
-    
+
     super.key,
   }) : style = _typography.h6.copyWith(
          fontWeight: fontWeight,
@@ -128,9 +126,8 @@ class UIText extends StatelessWidget {
   }) : style = _typography.bodyMedium.copyWith(
          fontWeight: fontWeight,
          fontSize: fontSize,
-         fontFamily: fontFamily
+         fontFamily: fontFamily,
        );
-
 
   UIText.bodyMediumRoboto(
     this.data, {
@@ -176,23 +173,6 @@ class UIText extends StatelessWidget {
          fontSize: fontSize,
        );
 
-  UIText.bodyXXSmall(
-    this.data, {
-    this.color,
-    this.textAlign,
-    this.maxLines,
-    this.overflow,
-    this.softWrap,
-    FontWeight? fontWeight,
-    double? fontSize,
-    String? fontFamily,
-    super.key,
-  }) : style = _typography.bodyXXSmall.copyWith(
-         fontWeight: fontWeight,
-         fontSize: fontSize,
-         fontFamily: fontFamily
-       );
-
 
 
   UIText.bodySmallBold(
@@ -232,8 +212,12 @@ class UIText extends StatelessWidget {
     this.overflow,
     this.softWrap,
     FontWeight? fontWeight,
+    String? fontFamily,
     super.key,
-  }) : style = _typography.bodyXXSmall.copyWith(fontWeight: fontWeight);
+  }) : style = _typography.bodyXXSmall.copyWith(
+         fontWeight: fontWeight,
+         fontFamily: fontFamily,
+       );
 
   UIText.headerBody(
     this.data, {
@@ -336,8 +320,7 @@ class UIText extends StatelessWidget {
     super.key,
   }) : style = _typography.buttonWithIcon;
 
-
-    UIText.bodyBold(
+  UIText.bodyBold(
     this.data, {
     this.color,
     this.textAlign,
