@@ -27,6 +27,7 @@ class UIColor extends Color {
   // Neutral colors
   static const UIColor neutral000 = UIColor._(0xFFFFFFFF);
   static const UIColor neutral25 = UIColor._(0xffF6F7F9);
+   static const UIColor neutral50 = UIColor._(0xffE3E3E3);
   static const UIColor neutral100 = UIColor._(0xFFF4F4F4);
   static const UIColor neutral200 = UIColor._(0xFFC4C4C4);
   static const UIColor neutral300 = UIColor._(0xFFA4A4A4);
@@ -56,6 +57,7 @@ class UIColor extends Color {
   static const UIColor textPlaceholder = neutral300;
   static const UIColor textGray = UIColor._(0xffABABAB);
   static const UIColor textNatral600 = UIColor._(0xff717171);
+  static const UIColor textSliverLight = UIColor._(0xffDAD8DB);
 
   // Border colors
   static const UIColor border = softgrey;

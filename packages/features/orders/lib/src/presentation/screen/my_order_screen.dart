@@ -14,7 +14,7 @@ class MyOrderScreen extends StatelessWidget {
     final tr = context.orderTr;
     return Scaffold(
       body: UIBackground(
-        content: CustomScrollView(
+        child: CustomScrollView(
           slivers: [
             OrderAppBar(),
             SliverToBoxAdapter(child: SizedBox(height: UI.spacing.md)),

@@ -10,6 +10,30 @@ class UIShadows {
   /// Small shadow - subtle elevation
   ///
   /// Usage: Cards, buttons
+  /// 
+     List<BoxShadow> get xxs => [
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.06),
+          offset: const Offset(0, -1),
+          blurRadius: 4,
+          spreadRadius: 0,
+        ),
+      ];
+
+
+
+
+   List<BoxShadow> get xs => [
+        BoxShadow(
+          color: Colors.black.withValues(alpha: 0.06),
+          offset: const Offset(0, 2),
+          blurRadius: 16,
+          spreadRadius: 0,
+        ),
+      ];
+
+
+
   List<BoxShadow> get sm => [
         BoxShadow(
           color: Colors.black.withValues(alpha: 0.1),

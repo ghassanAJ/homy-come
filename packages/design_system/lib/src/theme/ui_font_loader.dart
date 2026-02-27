@@ -83,6 +83,19 @@ class UIFontLoader {
         'DMSans-Black.ttf',
       ],
     },
+    'Lexend': {
+      'basePath': 'Lexend',
+      'variants': [
+        'Lexend-ExtraLight.ttf',
+        'Lexend-Light.ttf',
+        'Lexend-Regular.ttf',
+        'Lexend-Medium.ttf',
+        'Lexend-SemiBold.ttf',
+        'Lexend-Bold.ttf',
+        'Lexend-ExtraBold.ttf',
+        'Lexend-Black.ttf',
+      ],
+    },
     // 'IconsaxPlusBold': {
     //   'packagePath': 'packages/iconsax_plus/fonts',
     //   'variants': ['IconsaxPlusBold.ttf'],

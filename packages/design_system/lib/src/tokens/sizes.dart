@@ -92,7 +92,7 @@ class UISizes {
   ///
   /// Usage: Prominent avatars in profiles, headers, detail views
   double get avatarLg => 64;
-
+  double get avatarxL => 94;
   /// Avatar border width for selected state: 3px
   ///
   /// Usage: Border width when avatar is in selected state
@@ -102,7 +102,7 @@ class UISizes {
   ///
   /// Usage: Bottom navigation bar height
   double get bottomNavigationBarHeight => 87;
-
+  double get bottomPadding => 130;
   // ============================================================================
   // AppBar SIZES
   // ============================================================================
@@ -118,6 +118,18 @@ class UISizes {
   // ============================================================================
 
   double get trackOUtLined => 10;
+
+
+
+  
+  // ============================================================================
+  // TimeShotChip  SIZES
+  // ============================================================================
+
+  double get timeShotChipW => 110;
+
+
+
 }
 
 // extension spacerCustom on UISizes{
