@@ -53,14 +53,17 @@ class ProviderAvatarItem extends StatelessWidget {
                         ),
                       ),
                       if (selected)
-                        Positioned(left:2 ,
-                        bottom: 2,
-                          child: UIImage(
-                            Assets.images.checkMark1.path,
-                            wigth: UI.sizes.iconMd,
-                            height: UI.sizes.iconMd,
-                          ),
-                        ),
+                      SizedBox(
+ 
+                      ),
+                        // Positioned(left:2 ,
+                        // bottom: 2,
+                        //   child: UIImage(
+                        //     Assets.images.checkMark1.path,
+                        //     wigth: UI.sizes.iconMd,
+                        //     height: UI.sizes.iconMd,
+                        //   ),
+                        // ),
                     ],
                   ),
                 ),

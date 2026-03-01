@@ -54,13 +54,12 @@ class UIPadding {
   double get onboardingActionsBottomInset => _spacing.xl;
 
   /// Onboarding slider footer/actions padding.
-  EdgeInsetsDirectional get onboardingActions =>
-      EdgeInsetsDirectional.fromSTEB(
-        _spacing.xxl,
-        0,
-        _spacing.lg,
-        onboardingActionsBottomInset,
-      );
+  EdgeInsetsDirectional get onboardingActions => EdgeInsetsDirectional.fromSTEB(
+    _spacing.xxl,
+    0,
+    _spacing.lg,
+    onboardingActionsBottomInset,
+  );
 
   /// Onboarding bottom inset only (used when horizontal inset is managed by parent).
   EdgeInsetsDirectional get onboardingActionsBottomOnly =>
@@ -92,4 +91,73 @@ class UIPadding {
         start: _spacing.xxl + _spacing.xxs,
         end: _spacing.xxl2 + _spacing.xxs,
       );
+
+  /// User home screen content padding inside scroll area.
+  EdgeInsetsDirectional userHomeContent({required double bottomInset}) =>
+      EdgeInsetsDirectional.only(
+        top: _spacing.xl,
+        start: _spacing.lg,
+        bottom: bottomInset,
+      );
+
+  /// User home horizontal list item end spacing.
+  EdgeInsetsDirectional get userHomeItemEnd =>
+      EdgeInsetsDirectional.only(end: _spacing.md);
+
+  /// User home horizontal list item end spacing with extra offset.
+  EdgeInsetsDirectional get userHomeItemEndWithXxs =>
+      EdgeInsetsDirectional.only(end: _spacing.md + _spacing.xxs);
+
+  /// User home section action end spacing.
+  EdgeInsetsDirectional get userHomeSectionActionEnd =>
+      EdgeInsetsDirectional.only(end: _spacing.md);
+
+  /// User home story offer card content padding.
+  EdgeInsets get userHomeStoryOfferCardContent => EdgeInsets.all(_spacing.sm);
+
+  /// User home service offer tile content padding.
+  EdgeInsets get userHomeServiceOfferTileContent => EdgeInsets.all(_spacing.sm);
+
+  /// User home header actions container margin.
+  EdgeInsetsDirectional get userHomeHeaderActionsMargin =>
+      EdgeInsetsDirectional.only(end: _spacing.xs);
+
+  /// User home header actions container inner padding.
+  EdgeInsets get userHomeHeaderActionsPadding =>
+      EdgeInsets.symmetric(horizontal: _spacing.sm, vertical: _spacing.xs);
+
+  /// User search top section padding (search + popular search).
+  EdgeInsetsDirectional get userSearchTopSectionContent =>
+      EdgeInsetsDirectional.only(
+        start: _spacing.xl,
+        top: _spacing.md,
+        end: _spacing.xl,
+      );
+
+  /// User search bottom section padding (top services + apply button).
+  EdgeInsetsDirectional userSearchBottomSectionContent({
+    required double bottomInset,
+    double? endInset,
+  }) => EdgeInsetsDirectional.only(
+    start: _spacing.xl,
+    top: _spacing.lg,
+    end: endInset ?? _spacing.xl,
+    bottom: bottomInset,
+  );
+
+  /// User search field content padding.
+  EdgeInsets get userSearchFieldContent =>
+      EdgeInsets.symmetric(horizontal: _spacing.md, vertical: _spacing.sm);
+
+  /// User search chip content padding.
+  EdgeInsets get userSearchChipContent =>
+      EdgeInsets.symmetric(horizontal: _spacing.md, vertical: _spacing.xs);
+
+  /// Notifications screen scroll content padding.
+  EdgeInsetsDirectional get notificationsContent => EdgeInsetsDirectional.only(
+    start: _spacing.lg + _spacing.xxs,
+    end: _spacing.lg,
+    top: _spacing.xs,
+    bottom: _spacing.xl,
+  );
 }

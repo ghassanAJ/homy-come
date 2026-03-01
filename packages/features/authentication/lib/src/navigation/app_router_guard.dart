@@ -3,6 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:user/navigation/route.dart';
 import 'package:profile/src/navigation/router.dart';
 class AppRouterGuard {
+  static final List<String> guestAllowedPaths = [
+    UserPaths.home,
+    UserPaths.search,
+    UserPaths.category,
+    UserPaths.services,
+    UserPaths.notifications,
+  ];
+
   static bool _isOtpPath(String path) =>
       path == AuthenticationPaths.otpVerification ||
       path.endsWith(AuthenticationPaths.otpVerification) ||

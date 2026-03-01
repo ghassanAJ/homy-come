@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notifications/notifications.dart';
 import 'package:profile/profile.dart';
 import 'package:user/features/booking/presentation/screens/service_details_screen.dart';
 import 'package:user/features/booking/presentation/screens/service_details_step1.dart';
@@ -8,6 +9,7 @@ import 'package:user/features/booking/presentation/screens/service_details_step3
 import 'package:user/features/booking/presentation/screens/service_details_summary_screen.dart';
 import 'package:user/navigation/route.dart';
 import 'package:user/navigation/user_navigation_config.dart';
+import 'package:util/util.dart';
 
 /// Configuration for all app routes
 ///
@@ -46,9 +48,29 @@ class UserAppRouteConfig {
   ) {
     return StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
-        return DashboardNavigationScaffold(
-          navigationShell: navigationShell,
-          navigationItems: UserNavigationConfig.items,
+        return UserLocalizationScope(
+          child: Builder(
+            builder: (context) {
+              final tr = context.loc<UserTranslation>();
+              return DashboardNavigationScaffold(
+                navigationShell: navigationShell,
+                navigationItems: UserNavigationConfig.items(tr),
+                branchPaths: const [
+                  UserPaths.home,
+                  UserPaths.search,
+                  UserPaths.orders,
+                  UserPaths.category,
+                  UserPaths.profile,
+                ],
+                hiddenNavigationPaths: const [
+                  UserPaths.search,
+                  UserPaths.category,
+                  UserPaths.services,
+                  UserPaths.notifications,
+                ],
+              );
+            },
+          ),
         );
 
         // return DashboardNavigationScaffold(navigationShell: navigationShell);
@@ -63,10 +85,16 @@ class UserAppRouteConfig {
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: UserPaths.search,
-              builder:
-                  (context, state) =>
-                      Scaffold(body: Center(child: Text('Search'))),
+              path: UserPaths.home,
+              builder: (context, state) => const UserHomeScreen(),
+            ),
+            GoRoute(
+              path: UserPaths.services,
+              builder: (context, state) => const ServicesScreen(),
+            ),
+            GoRoute(
+              path: UserPaths.notifications,
+              builder: (context, state) => const NotificationsScreen(),
             ),
           ],
         ),
@@ -83,8 +111,15 @@ class UserAppRouteConfig {
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: UserPaths.home,
-              builder: (context, state) => const ServiceDetailsScreen(),
+              path: UserPaths.orders,
+              builder:
+                  (context, state) => Scaffold(
+                    body: Center(
+                      child: Text(
+                        context.loc<UserTranslation>().navigation.orders,
+                      ),
+                    ),
+                  ),
             ),
           ],
         ),

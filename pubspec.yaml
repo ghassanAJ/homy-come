@@ -10,6 +10,7 @@ workspace:
   - packages/features/booking
   - packages/features/profile
   - packages/features/orders
+  - packages/features/notifications
 
   - apps/user
   - apps/driver

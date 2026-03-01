@@ -13,6 +13,7 @@ class UserPaths {
   static const String orders = '/orders';
   static const String search = '/search';
   static const String profile = '/profile';
+  static const String notifications = '/notifications';
   static const String serviceDetails = '/service-details';
   static const String serviceDetails2 = '/service-details2';
   static const String serviceDetails3 = '/service-details3';
@@ -30,35 +31,40 @@ class UserRoute {
     GoRoute(
       path: UserPaths.home,
       builder:
-          (context, state) =>
-              const _PlaceholderScreen(title: 'Home', path: UserPaths.home),
+          (context, state) => _PlaceholderScreen(
+            title: context.loc<UserTranslation>().navigation.home,
+            path: UserPaths.home,
+          ),
     ),
     GoRoute(
       path: UserPaths.category,
       builder:
-          (context, state) => const _PlaceholderScreen(
-            title: 'Category',
+          (context, state) => _PlaceholderScreen(
+            title: context.loc<UserTranslation>().navigation.category,
             path: UserPaths.category,
           ),
     ),
     GoRoute(
       path: UserPaths.orders,
       builder:
-          (context, state) =>
-              const _PlaceholderScreen(title: 'Orders', path: UserPaths.orders),
+          (context, state) => _PlaceholderScreen(
+            title: context.loc<UserTranslation>().navigation.orders,
+            path: UserPaths.orders,
+          ),
     ),
     GoRoute(
       path: UserPaths.search,
       builder:
-          (context, state) =>
-              const _PlaceholderScreen(title: 'Search', path: UserPaths.search),
+          (context, state) => _PlaceholderScreen(
+            title: context.loc<UserTranslation>().navigation.search,
+            path: UserPaths.search,
+          ),
     ),
     GoRoute(
       path: UserPaths.profile,
-
       builder:
-          (context, state) => const _PlaceholderScreen(
-            title: 'Profile',
+          (context, state) => _PlaceholderScreen(
+            title: context.loc<UserTranslation>().navigation.profile,
             path: UserPaths.profile,
           ),
     ),
