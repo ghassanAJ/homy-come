@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:orders/src/localization/order_localization_scope.dart';
 
 class OrderDateTimeWidget extends StatelessWidget {
-  const OrderDateTimeWidget({super.key});
-
+  const OrderDateTimeWidget({super.key, required this.date, required this.time});
+  final String date;
+  final String time;
   @override
   Widget build(BuildContext context) {
     final tr = context.orderTr;
@@ -24,7 +25,7 @@ class OrderDateTimeWidget extends StatelessWidget {
               children: [
                 UIText.bodyXSmall(tr.title.date, color: UIColor.grey),
                 SizedBox(height: UI.spacing.xs),
-                UIText.bodySmall('27 tue, Des'),
+                UIText.bodySmall(date),
               ],
             ),
           ),
@@ -41,7 +42,7 @@ class OrderDateTimeWidget extends StatelessWidget {
               children: [
                 UIText.bodyXSmall(tr.title.time, color: UIColor.grey),
                 SizedBox(height: UI.spacing.xs),
-                UIText.bodySmall('10:30 AM'),
+                UIText.bodySmall(time),
               ],
             ),
           ),

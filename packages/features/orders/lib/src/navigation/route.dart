@@ -16,7 +16,7 @@ class OrderRoute {
       path: OrderPaths.myOrderscreen,
       builder:
           (context, state) =>
-              const OrderLocalizationScope(child: MyOrderScreen()),
+              OrderLocalizationScope(child: MyOrderScreen()),
     ),
 
   ];

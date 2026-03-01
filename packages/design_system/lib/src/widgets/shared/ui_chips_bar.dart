@@ -4,10 +4,16 @@ import 'package:design_system/design_system.dart';
 import 'package:design_system/src/widgets/shared/interaction_chips_bar_widget.dart';
 
 class UIchipsBar extends StatefulWidget {
-  UIchipsBar({super.key, required this.label, this.firstLabel});
+  UIchipsBar({
+    super.key,
+    required this.label,
+    this.firstLabel,
+    required this.onSelect,
+  });
   int? indexSelected = 0;
   final List<String> label;
   final String? firstLabel;
+  final ValueChanged onSelect;
   @override
   State<UIchipsBar> createState() => _UIchipsBarState();
 }
@@ -16,7 +22,7 @@ class _UIchipsBarState extends State<UIchipsBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: UI.spacing.lg, vertical: 2),
+      padding: EdgeInsets.symmetric(horizontal: UI.spacing.md, vertical: 2),
       height: UI.spacing.xl,
       color: UIColor.backgroundsilvar,
       child: Row(
@@ -31,6 +37,7 @@ class _UIchipsBarState extends State<UIchipsBar> {
                 onSelect: (value) {
                   setState(() {
                     widget.indexSelected = 0;
+                    widget.onSelect(0);
                   });
                 },
               ),
@@ -45,6 +52,7 @@ class _UIchipsBarState extends State<UIchipsBar> {
                   onSelect: (value) {
                     setState(() {
                       widget.indexSelected = i + 1;
+                      widget.onSelect(i + 1);
                     });
                   },
                 ),

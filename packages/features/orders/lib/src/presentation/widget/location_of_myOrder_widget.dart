@@ -1,12 +1,13 @@
 import 'package:design_system/design_system.dart';
+import 'package:orders/src/data/models/res/booking_model_response.dart';
 import 'package:orders/src/localization/order_localization_scope.dart';
 
 class CurrentOrderLocationView extends StatelessWidget {
-  const CurrentOrderLocationView({super.key});
-
+  const CurrentOrderLocationView({super.key, required this.location});
+  final String location;
   @override
   Widget build(BuildContext context) {
-    final tr =context.orderTr;
+    final tr = context.orderTr;
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: UI.spacing.lg,
@@ -22,7 +23,8 @@ class CurrentOrderLocationView extends StatelessWidget {
                 UIText.bodyXSmall(tr.title.address, color: UIColor.grey),
                 SizedBox(height: UI.spacing.xs),
                 UIText.bodySmall(
-                  'UEA Location name , details locations , street name 12357',
+                  location,
+                  // 'UEA Location name , details locations , street name 12357',
                   overflow: TextOverflow.clip,
                 ),
                 SizedBox(height: UI.spacing.md),
