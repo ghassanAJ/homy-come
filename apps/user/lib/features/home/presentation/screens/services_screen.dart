@@ -1,5 +1,4 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 import 'package:user/di/di_container.dart';
 import 'package:user/features/home/domain/entities/home_content.dart';
 import 'package:user/features/home/domain/repository/home_api_repository.dart';
@@ -36,6 +35,14 @@ class _ServicesScreenState extends State<ServicesScreen> {
 
     return Scaffold(
       backgroundColor: UIColor.background,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: EdgeInsetsDirectional.symmetric(horizontal: UI.spacing.xl),
+        child: SizedBox(
+          width: MediaQuery.sizeOf(context).width,
+          child: UIButton.primary(label: 'Apply', expanded: true),
+        ),
+      ),
       body: UIEllipseBackground(
         child: Column(
           children: [
@@ -43,64 +50,52 @@ class _ServicesScreenState extends State<ServicesScreen> {
             SizedBox(height: UI.spacing.xs),
             Divider(height: 1, thickness: 1, color: UIColor.neutral100),
             Expanded(
-              child: Stack(
+              child: ListView(
+                padding: UI.padding
+                    .userSearchBottomSectionContent(
+                      bottomInset: 110 + bottomSafeArea,
+                    )
+                    .copyWith(top: UI.spacing.md),
                 children: [
-                  ListView(
-                    padding: UI.padding
-                        .userSearchBottomSectionContent(
-                          bottomInset: 110 + bottomSafeArea,
-                        )
-                        .copyWith(top: UI.spacing.md),
-                    children: [
-                      CategoriesSearchField(controller: _searchController),
-                      SizedBox(height: UI.spacing.lg),
-                      SizedBox(
-                        height: 40,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder:
-                              (_, index) => _CategoryChip(
-                                title: categories[index],
-                                isSelected:
-                                    _selectedCategory == categories[index],
-                                onTap:
-                                    () => setState(
-                                      () =>
-                                          _selectedCategory = categories[index],
-                                    ),
-                              ),
-                          separatorBuilder:
-                              (_, __) => SizedBox(width: UI.spacing.sm),
-                          itemCount: categories.length,
-                        ),
-                      ),
-                      SizedBox(height: UI.spacing.md),
-                      ...services.asMap().entries.map(
-                        (entry) => Padding(
-                          padding: EdgeInsetsDirectional.only(
-                            bottom:
-                                entry.key == services.length - 1
-                                    ? 0
-                                    : UI.spacing.lg,
+                  CategoriesSearchField(controller: _searchController),
+                  SizedBox(height: UI.spacing.lg),
+                  SizedBox(
+                    height: 40,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder:
+                          (_, index) => UIChipWidget(
+                            title: categories[index],
+                            isSelected: _selectedCategory == categories[index],
+                            onTap:
+                                () => setState(
+                                  () => _selectedCategory = categories[index],
+                                ),
                           ),
-                          child: ServiceOfferTile(
-                            imageUrl: entry.value.imageUrl,
-                            title: entry.value.title,
-                            price: entry.value.price,
-                            oldPrice: entry.value.oldPrice,
-                            reviewsCount: entry.value.reviewsCount,
-                            ratingStars: entry.value.ratingStars,
-                            width: double.infinity,
-                          ),
-                        ),
-                      ),
-                    ],
+                      separatorBuilder:
+                          (_, index) => SizedBox(width: UI.spacing.sm),
+                      itemCount: categories.length,
+                    ),
                   ),
-                  PositionedDirectional(
-                    start: UI.spacing.xl,
-                    end: UI.spacing.xl,
-                    bottom: UI.spacing.lg + bottomSafeArea,
-                    child: UIButton.primary(label: 'Apply', expanded: true),
+                  SizedBox(height: UI.spacing.md),
+                  ...services.asMap().entries.map(
+                    (entry) => Padding(
+                      padding: EdgeInsetsDirectional.only(
+                        bottom:
+                            entry.key == services.length - 1
+                                ? 0
+                                : UI.spacing.lg,
+                      ),
+                      child: ServiceOfferTile(
+                        imageUrl: entry.value.imageUrl,
+                        title: entry.value.title,
+                        price: entry.value.price,
+                        oldPrice: entry.value.oldPrice,
+                        reviewsCount: entry.value.reviewsCount,
+                        ratingStars: entry.value.ratingStars,
+                        width: double.infinity,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -118,44 +113,6 @@ class _ServicesScreenState extends State<ServicesScreen> {
     return List<HomeServiceOfferItem>.generate(
       6,
       (index) => data[index % data.length],
-    );
-  }
-}
-
-class _CategoryChip extends StatelessWidget {
-  const _CategoryChip({
-    required this.title,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  final String title;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: UI.padding.userSearchChipContent,
-        decoration: BoxDecoration(
-          color: UIColor.white,
-          borderRadius: BorderRadius.circular(UI.radius.full),
-          border: Border.all(
-            color:
-                isSelected
-                    ? UIColor.neutral100.withValues(alpha: 0.3)
-                    : UIColor.neutral100.withValues(alpha: 0.9),
-            width: 1,
-          ),
-        ),
-        child: UIText.bodyMedium(
-          title,
-          color: isSelected ? UIColor.primary : UIColor.grey,
-          fontWeight: isSelected ? FontWeight.w700 : FontWeight.w400,
-        ),
-      ),
     );
   }
 }

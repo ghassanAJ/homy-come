@@ -1,15 +1,10 @@
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
 import 'package:user/di/di_container.dart';
-import 'package:user/features/home/domain/entities/home_content.dart';
 import 'package:user/features/home/domain/repository/home_api_repository.dart';
+import 'package:user/features/home/presentation/widgets/home/home_content_lists.dart';
 import 'package:user/features/home/presentation/widgets/home/home_header.dart';
-import 'package:user/features/home/presentation/widgets/home/offer_card.dart';
 import 'package:user/features/home/presentation/widgets/home/section_header.dart';
-import 'package:user/features/home/presentation/widgets/home/service_card.dart';
-import 'package:user/features/home/presentation/widgets/home/service_offer_tile.dart';
-import 'package:user/features/home/presentation/widgets/home/story_offer_card.dart';
-import 'package:user/features/home/presentation/widgets/shared/base_category_item.dart';
 import 'package:user/localization/files/userTranslation.i69n.dart';
 import 'package:user/navigation/route.dart';
 import 'package:util/util.dart';
@@ -39,7 +34,8 @@ class UserHomeScreen extends StatelessWidget {
                       Padding(
                         padding: UI.padding.userHomeContent(
                           bottomInset:
-                              UI.sizes.bottomNavigationBarHeight + UI.spacing.lg,
+                              UI.sizes.bottomNavigationBarHeight +
+                              UI.spacing.lg,
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,18 +44,18 @@ class UserHomeScreen extends StatelessWidget {
                             SizedBox(height: UI.spacing.sm),
                             SizedBox(
                               height: 138,
-                              child: _offersList(homeContent.offers),
+                              child: HomeOffersList(items: homeContent.offers),
                             ),
                             SizedBox(height: UI.spacing.xl),
                             SectionTitle(title: tr.home.category),
                             SizedBox(height: UI.spacing.md),
-                            _categoriesRow(homeContent.categories),
+                            HomeCategoriesRow(items: homeContent.categories),
                             SizedBox(height: UI.spacing.xxl2),
                             SectionTitle(title: tr.home.storiesOffers),
                             SizedBox(height: UI.spacing.sm),
                             SizedBox(
                               height: 145,
-                              child: _storyCards(homeContent.stories),
+                              child: HomeStoryCards(items: homeContent.stories),
                             ),
                             SizedBox(height: UI.spacing.lg),
                             SectionHeaderWithAction(
@@ -70,7 +66,9 @@ class UserHomeScreen extends StatelessWidget {
                             SizedBox(height: UI.spacing.sm),
                             SizedBox(
                               height: 160,
-                              child: _serviceCards(homeContent.generalServices),
+                              child: HomeServiceCards(
+                                items: homeContent.generalServices,
+                              ),
                             ),
                             SizedBox(height: UI.spacing.xl),
                             SectionHeaderWithAction(
@@ -81,7 +79,9 @@ class UserHomeScreen extends StatelessWidget {
                             SizedBox(height: UI.spacing.sm),
                             SizedBox(
                               height: 160,
-                              child: _serviceCards(homeContent.plumberServices),
+                              child: HomeServiceCards(
+                                items: homeContent.plumberServices,
+                              ),
                             ),
                             SizedBox(height: UI.spacing.xl),
                             SectionHeaderWithAction(
@@ -92,7 +92,9 @@ class UserHomeScreen extends StatelessWidget {
                             SizedBox(height: UI.spacing.lg),
                             SizedBox(
                               height: 278,
-                              child: _serviceOfferTiles(homeContent.serviceOffers),
+                              child: HomeServiceOfferTiles(
+                                items: homeContent.serviceOffers,
+                              ),
                             ),
                           ],
                         ),
@@ -105,99 +107,6 @@ class UserHomeScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _offersList(List<HomeOfferItem> items) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        final item = items[index];
-        return Padding(
-          padding: UI.padding.userHomeItemEnd,
-          child: OfferCard(
-            image: item.image,
-            package: item.package,
-            aspectRatio: item.aspectRatio,
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _categoriesRow(List<HomeCategoryItem> items) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          for (final item in items)
-            Padding(
-              padding: UI.padding.userHomeItemEndWithXxs,
-              child: BaseCategoryItem(
-                title: item.title,
-                subtitle: item.description,
-                iconPath: item.iconPath,
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-
-  Widget _storyCards(List<HomeStoryItem> items) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        final item = items[index];
-        return Padding(
-          padding: UI.padding.userHomeItemEndWithXxs,
-          child: StoryOfferCard(
-            title: item.title,
-            discount: item.discount,
-            description: item.description,
-            background: item.background,
-            backgroundContainer: item.backgroundContainer,
-            iconPath: item.iconPath,
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _serviceCards(List<HomeServiceItem> items) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        final item = items[index];
-        return Padding(
-          padding: UI.padding.userHomeItemEndWithXxs,
-          child: ServiceCard(title: item.title, imageUrl: item.imageUrl),
-        );
-      },
-    );
-  }
-
-  Widget _serviceOfferTiles(List<HomeServiceOfferItem> items) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        final item = items[index];
-        return Padding(
-          padding: UI.padding.userHomeItemEndWithXxs,
-          child: ServiceOfferTile(
-            imageUrl: item.imageUrl,
-            title: item.title,
-            price: item.price,
-            oldPrice: item.oldPrice,
-            reviewsCount: item.reviewsCount,
-            ratingStars: item.ratingStars,
-          ),
-        );
-      },
     );
   }
 }
