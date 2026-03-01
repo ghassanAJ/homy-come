@@ -167,13 +167,13 @@ class UIText extends StatelessWidget {
     this.softWrap,
     FontWeight? fontWeight,
     double? fontSize,
+    String? fontFamily,
     super.key,
   }) : style = _typography.bodySmall.copyWith(
          fontWeight: fontWeight,
          fontSize: fontSize,
+         fontFamily: fontFamily,
        );
-
-
 
   UIText.bodySmallBold(
     this.data, {
@@ -198,8 +198,13 @@ class UIText extends StatelessWidget {
     this.overflow,
     this.softWrap,
     FontWeight? fontWeight,
+    String? fontFamily,
+
     super.key,
-  }) : style = _typography.bodyXSmall.copyWith(fontWeight: fontWeight);
+  }) : style = _typography.bodyXSmall.copyWith(
+         fontWeight: fontWeight,
+         fontFamily: fontFamily,
+       );
 
   /// Body XXSmall - Extra small body text, compact metadata
   ///
