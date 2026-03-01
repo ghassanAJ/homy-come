@@ -169,18 +169,24 @@ class UITypography {
   /// Line height: 150% (1.5)
   ///
   /// Usage: Small body text, metadata
-  TextStyle get bodyXXSmall => const TextStyle(
+  TextStyle get bodyXSmall => const TextStyle(
     fontFamily: UIFonts.montserrat,
     fontSize: 12,
-    fontWeight: FontWeight.w300,
+    fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0,
   );
 
-
-  TextStyle get bodyXSmall => const TextStyle(
+  /// Body XXSmall - Regular
+  ///
+  /// Weight: 400 (Regular)
+  /// Size: 10px
+  /// Line height: 150% (1.5)
+  ///
+  /// Usage: Extra small body text, compact metadata
+  TextStyle get bodyXXSmall => const TextStyle(
     fontFamily: UIFonts.montserrat,
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0,

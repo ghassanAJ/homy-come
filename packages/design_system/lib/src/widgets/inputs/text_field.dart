@@ -102,6 +102,13 @@ class AppTextField extends StatefulWidget {
   /// Hint text
   final String? hintText;
 
+  final bool isFlat;
+
+  final Color? backgroundColor;
+  final BorderRadius? borderRadius;
+  final bool hideBorder;
+  final bool hideShadow;
+
   final EdgeInsets? contentPadding;
   final BoxConstraints? prefixIconConstraints;
   final BoxConstraints? suffixIconConstraints;
@@ -140,6 +147,11 @@ class AppTextField extends StatefulWidget {
     this.prefixIconConstraints,
     this.suffixIconConstraints,
     this.validator,
+    this.isFlat = false,
+    this.backgroundColor,
+    this.borderRadius,
+    this.hideBorder = false,
+    this.hideShadow = false,
   });
 
   @override
@@ -270,7 +282,7 @@ class _AppTextFieldState extends State<AppTextField> {
                 color: UIColor.textPlaceholder,
               ),
               filled: true,
-              fillColor: UIColor.surface,
+              fillColor: widget.isFlat ? UIColor.neutral100 : UIColor.surface,
               contentPadding:
                   widget.contentPadding ??
                   EdgeInsets.symmetric(
@@ -280,10 +292,13 @@ class _AppTextFieldState extends State<AppTextField> {
                             : UI.spacing.inputHorizontal,
                     vertical: UI.spacing.inputVertical,
                   ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(UI.radius.input),
-                borderSide: BorderSide(color: _getBorderColor()),
-              ),
+              border:
+                  widget.isFlat
+                      ? InputBorder.none
+                      : OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(UI.radius.input),
+                        borderSide: BorderSide(color: _getBorderColor()),
+                      ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(UI.radius.input),
                 borderSide: BorderSide(color: _getBorderColor()),

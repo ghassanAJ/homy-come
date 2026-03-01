@@ -1,12 +1,18 @@
-import 'package:design_system/design_system.dart';
+import 'package:design_system/src/widgets/shared/dashboard_navigation_scaffold.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:notifications/notifications.dart';
 import 'package:profile/profile.dart';
-import 'package:user/features/booking/presentation/screens/service_details_screen.dart';
 import 'package:user/features/booking/presentation/screens/service_details_step1.dart';
 import 'package:user/features/booking/presentation/screens/service_details_step2.dart';
 import 'package:user/features/booking/presentation/screens/service_details_step3.dart';
 import 'package:user/features/booking/presentation/screens/service_details_summary_screen.dart';
+import 'package:user/features/home/presentation/screens/services_screen.dart';
+import 'package:user/features/home/presentation/screens/categories_screen.dart';
+import 'package:user/features/home/presentation/screens/home_screen.dart';
+import 'package:user/features/home/presentation/screens/search_screen.dart';
+import 'package:user/localization/files/userTranslation.i69n.dart';
+import 'package:user/localization/user_localization_scope.dart';
 import 'package:user/navigation/route.dart';
 import 'package:user/navigation/user_navigation_config.dart';
 import 'package:util/util.dart';
@@ -77,11 +83,6 @@ class UserAppRouteConfig {
       },
 
       branches: [
-        // Home tab
-        // StatefulShellBranch(routes: [...DashboardRoute.routes]),
-        // Tasks tab
-        // StatefulShellBranch(routes: [TaskRoute.router]),
-        // Invest tab
         StatefulShellBranch(
           routes: [
             GoRoute(
@@ -101,10 +102,8 @@ class UserAppRouteConfig {
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: UserPaths.orders,
-              builder:
-                  (context, state) =>
-                      Scaffold(body: Center(child: Text('Orders'))),
+              path: UserPaths.search,
+              builder: (context, state) => const SearchScreen(),
             ),
           ],
         ),
@@ -127,9 +126,7 @@ class UserAppRouteConfig {
           routes: [
             GoRoute(
               path: UserPaths.category,
-              builder:
-                  (context, state) =>
-                      Scaffold(body: Center(child: Text('Category'))),
+              builder: (context, state) => const CategoriesScreen(),
             ),
           ],
         ),

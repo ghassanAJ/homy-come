@@ -22,6 +22,10 @@ class UIRadius {
   /// Usage: Modal dialogs, bottom sheets , some chips ..etc
   double get xl => 20;
 
+  /// Fully rounded (pill / circular)
+  /// Usage: Chips, tags, circular buttons
+  double get full => 100;
+
   double get buttonSm => md;
   double get buttonMd => lg;
   double get button => 6; // Default button radius: 16px

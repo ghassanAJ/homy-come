@@ -18,14 +18,8 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final resolvedProfileImageUrl = context.select<AuthUserBloc, String?>((
-      bloc,
-    ) {
-      return bloc.state.maybeWhen(
-        authenticated: (session, authContext) => session.user?.profilePicture,
-        orElse: () => profileImageUrl,
-      );
-    });
+    final user = context.read<AppCubit>().state.user;
+    final resolvedProfileImageUrl = user?.profilePicture ?? profileImageUrl;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -45,7 +39,7 @@ class HomeHeader extends StatelessWidget {
                 height: 48,
                 fit: BoxFit.cover,
                 placeholder: UINetworkIamge(
-                  imageUrl: 'https://i.ibb.co/G3kLK02x/user.png',
+                  imageUrl: profileImageUrl ?? '',
                   width: 48,
                   height: 48,
                   fit: BoxFit.cover,
@@ -58,7 +52,7 @@ class HomeHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               UIText.bodySmall(
-                'Ahmad mohammad',
+                user?.fullName ?? '',
                 fontWeight: FontWeight.w700,
                 color: UIColor.black,
               ),
@@ -69,7 +63,7 @@ class HomeHeader extends StatelessWidget {
                   SizedBox(width: UI.spacing.xxs),
                   Flexible(
                     child: UIText.bodySmall(
-                      'UAE, Locations name ,add...',
+                      user?.address?.toString() ?? '',
                       color: UIColor.neutral400,
                       maxLines: 1,
                     ),
@@ -90,20 +84,16 @@ class HomeHeader extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   GestureDetector(
-                    onTap:
-                        onSearchTap ??
-                        () {
-                          context.go(UserPaths.search);
-                        },
+                    onTap: onSearchTap ?? () {
+                      context.go(UserPaths.search);
+                    },
                     child: UIIamge(assetPath: Assets.images.search.path),
                   ),
                   SizedBox(width: UI.spacing.sm),
                   GestureDetector(
-                    onTap:
-                        onNotificationTap ??
-                        () {
-                          context.go(UserPaths.notifications);
-                        },
+                    onTap: onNotificationTap ?? () {
+                      // TODO: Navigate to notifications screen when route is ready.
+                    },
                     child: UIIamge(assetPath: Assets.images.notification.path),
                   ),
                 ],
