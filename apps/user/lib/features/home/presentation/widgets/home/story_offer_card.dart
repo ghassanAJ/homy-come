@@ -38,11 +38,18 @@ class StoryOfferCard extends StatelessWidget {
             child: UISvg(iconPath),
           ),
           SizedBox(height: UI.spacing.xxs),
-          UIText.bodyXXSmall(
+          Text(
             title,
-            color: UIColor.graphite,
-            fontWeight: FontWeight.w500,
+            textAlign: TextAlign.center,
             maxLines: 1,
+            style: UI.text.bodyXXSmall.copyWith(
+              color: UIColor.graphite,
+              fontWeight: FontWeight.w500,
+              fontSize: 10,
+              height: 18 / 10,
+              letterSpacing: -0.4,
+              fontFamily: 'Montserrat',
+            ),
           ),
           UIText.bodyMedium(
             discount,
@@ -52,19 +59,19 @@ class StoryOfferCard extends StatelessWidget {
           ),
           SizedBox(height: UI.spacing.xs),
           Container(
-            width: 89,
-            height: 28,
             decoration: BoxDecoration(
               color: UIColor.white.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(UI.radius.md - UI.radius.xs),
             ),
             alignment: Alignment.center,
-            child: Text(
-              description.toUpperCase(),
-              style: UI.text.bodyXXSmall.copyWith(
-                color: backgroundContainer,
-                fontWeight: FontWeight.w700,
-                letterSpacing: 1.2,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+              child: Text(
+                description.toUpperCase(),
+                style: UI.text.bodyXXSmall.copyWith(
+                  color: backgroundContainer,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
           ),

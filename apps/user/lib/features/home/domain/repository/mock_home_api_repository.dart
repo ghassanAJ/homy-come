@@ -45,7 +45,7 @@ final HomeContent homeMockContent = HomeContent(
   ],
   stories: [
     HomeStoryItem(
-      title: 'Plumbing',
+      title: 'Painting Service',
       discount: 'Save 30%',
       description: 'ORDER NOW',
       background: Color(0xFFA8D4F8),
@@ -53,7 +53,7 @@ final HomeContent homeMockContent = HomeContent(
       iconPath: Assets.icons.paintingService,
     ),
     HomeStoryItem(
-      title: 'Electrician',
+      title: 'Shifting Service',
       discount: '20% Off',
       description: 'ORDER NOW',
       background: Color(0xFFC9E9B6),
@@ -61,7 +61,7 @@ final HomeContent homeMockContent = HomeContent(
       iconPath: Assets.icons.shiftingService,
     ),
     HomeStoryItem(
-      title: 'Painting',
+      title: 'Vehicle Service',
       discount: 'Save 30%',
       description: 'ORDER NOW',
       background: Color(0xFFF3B7D1),

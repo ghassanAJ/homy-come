@@ -54,13 +54,12 @@ class UIPadding {
   double get onboardingActionsBottomInset => _spacing.xl;
 
   /// Onboarding slider footer/actions padding.
-  EdgeInsetsDirectional get onboardingActions =>
-      EdgeInsetsDirectional.fromSTEB(
-        _spacing.xxl,
-        0,
-        _spacing.lg,
-        onboardingActionsBottomInset,
-      );
+  EdgeInsetsDirectional get onboardingActions => EdgeInsetsDirectional.fromSTEB(
+    _spacing.xxl,
+    0,
+    _spacing.lg,
+    onboardingActionsBottomInset,
+  );
 
   /// Onboarding bottom inset only (used when horizontal inset is managed by parent).
   EdgeInsetsDirectional get onboardingActionsBottomOnly =>
@@ -152,5 +151,22 @@ class UIPadding {
 
   /// User search chip content padding.
   EdgeInsets get userSearchChipContent =>
-      EdgeInsets.symmetric(horizontal: _spacing.md, vertical: _spacing.xs);
+      EdgeInsets.symmetric(horizontal: _spacing.sm, vertical: _spacing.xs);
+
+  /// User home horizontal list item spacing
+  /// - First item has start spacing
+  /// - All items have end spacing
+  EdgeInsetsDirectional userHomeItemStartAndEnd({required bool isFirst}) =>
+      EdgeInsetsDirectional.only(
+        start: isFirst ? _spacing.md : 0,
+        end: _spacing.md,
+      );
+
+  /// User home screen vertical padding (top + bottom only).
+  EdgeInsetsDirectional userHomeContentVertical({
+    required double bottomInset,
+  }) => EdgeInsetsDirectional.only(top: _spacing.xl, bottom: bottomInset);
+
+  EdgeInsetsDirectional get startLg =>
+      EdgeInsetsDirectional.only(start: _spacing.lg);
 }

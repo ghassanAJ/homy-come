@@ -15,7 +15,7 @@ class HomeServiceCards extends StatelessWidget {
       itemBuilder: (context, index) {
         final item = items[index];
         return Padding(
-          padding: UI.padding.userHomeItemEndWithXxs,
+          padding: UI.padding.userHomeItemStartAndEnd(isFirst: index == 0),
           child: ServiceCard(title: item.title, imageUrl: item.imageUrl),
         );
       },

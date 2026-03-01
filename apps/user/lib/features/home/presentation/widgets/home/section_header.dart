@@ -36,7 +36,7 @@ class SectionHeaderWithAction extends StatelessWidget {
         GestureDetector(
           onTap: onActionTap,
           child: Padding(
-            padding: UI.padding.userHomeSectionActionEnd,
+            padding: UI.padding.userHomeItemStartAndEnd(isFirst: true,),
             child: UIText.bodySmall(
               actionLabel,
               color: UIColor.babyBlue,

@@ -13,13 +13,13 @@ class HomeCategoriesRow extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          for (final item in items)
+          for (var index = 0; index < items.length; index++)
             Padding(
-              padding: UI.padding.userHomeItemEndWithXxs,
+              padding: UI.padding.userHomeItemStartAndEnd(isFirst: index == 0),
               child: BaseCategoryItem(
-                title: item.title,
-                subtitle: item.description,
-                iconPath: item.iconPath,
+                title: items[index].title,
+                subtitle: items[index].description,
+                iconPath: items[index].iconPath,
               ),
             ),
         ],

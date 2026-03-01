@@ -47,10 +47,17 @@ class PopularSearchChips extends StatelessWidget {
               ),
             ],
           ),
-          child: UIText.bodyMedium(
+          child: Text(
             item,
-            color: isSelected ? UIColor.primary : UIColor.grey,
-            fontWeight: isSelected ? FontWeight.w700 : FontWeight.w400,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            style: UI.text.bodyMedium.copyWith(
+              color: isSelected ? UIColor.primary : UIColor.grey,
+              fontWeight: isSelected ? FontWeight.w700 : FontWeight.w400,
+              fontSize: 17,
+              height: 20 / 17,
+              letterSpacing: -0.23,
+            ),
           ),
         ),
       );

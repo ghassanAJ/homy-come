@@ -15,7 +15,7 @@ class HomeStoryCards extends StatelessWidget {
       itemBuilder: (context, index) {
         final item = items[index];
         return Padding(
-          padding: UI.padding.userHomeItemEndWithXxs,
+          padding: UI.padding.userHomeItemStartAndEnd(isFirst: index == 0),
           child: StoryOfferCard(
             title: item.title,
             discount: item.discount,

@@ -15,7 +15,7 @@ class HomeOffersList extends StatelessWidget {
       itemBuilder: (context, index) {
         final item = items[index];
         return Padding(
-          padding: UI.padding.userHomeItemEnd,
+          padding: UI.padding.userHomeItemStartAndEnd(isFirst: index == 0),
           child: OfferCard(
             image: item.image,
             package: item.package,
