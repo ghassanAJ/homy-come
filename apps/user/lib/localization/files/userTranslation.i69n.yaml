@@ -1,0 +1,14 @@
+home:
+  offersNews: Offers & News
+  category: Category
+  storiesOffers: Stories & Offers
+  generalCleaning: General Cleaning
+  plumberServices: Plumber Services
+  otherServices: Other Services
+  seeAll: See All
+navigation:
+  search: Search
+  orders: Orders
+  home: Home
+  category: Category
+  profile: Profile

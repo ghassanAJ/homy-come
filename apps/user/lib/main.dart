@@ -12,8 +12,8 @@ void main() async {
       WidgetsFlutterBinding.ensureInitialized();
       await UIDesignSystemInitializer.initialize();
 
-      var env = const String.fromEnvironment('ENV', defaultValue: 'dev');
-      if (env.isEmpty) env = 'dev';
+      var env = const String.fromEnvironment('ENV', defaultValue: 'mock');
+      if (env.isEmpty) env = 'mock';
 
       initializeDependencies(env);
 

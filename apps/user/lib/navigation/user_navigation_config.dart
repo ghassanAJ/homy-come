@@ -1,3 +1,5 @@
+import 'package:design_system/gen/assets.gen.dart';
+import 'package:user/localization/files/userTranslation.i69n.dart';
 import 'package:user/navigation/route.dart';
 
 /// Navigation item configuration
@@ -6,27 +8,31 @@ typedef NavigationItem = ({String path, String label, String iconAsset});
 /// Configuration for bottom navigation bar
 class UserNavigationConfig {
   /// Navigation items for the bottom navigation bar
-  static final List<NavigationItem> items = [
+  static List<NavigationItem> items(UserTranslation tr) => [
     (
       path: UserPaths.search,
-      label: 'Search',
-      iconAsset: 'assets/icons/search.svg',
+      label: tr.navigation.search,
+      iconAsset: Assets.icons.navSearch,
     ),
     (
       path: UserPaths.orders,
-      label: 'Orders',
-      iconAsset: 'assets/icons/orders.svg',
+      label: tr.navigation.orders,
+      iconAsset: Assets.icons.navOrders,
     ),
-    (path: UserPaths.home, label: 'Home', iconAsset: 'assets/icons/home.svg'),
+    (
+      path: UserPaths.home,
+      label: tr.navigation.home,
+      iconAsset: Assets.icons.navHome,
+    ),
     (
       path: UserPaths.category,
-      label: 'Category',
-      iconAsset: 'assets/icons/category.svg',
+      label: tr.navigation.category,
+      iconAsset: Assets.icons.navCategory,
     ),
     (
       path: UserPaths.profile,
-      label: 'Profile',
-      iconAsset: 'assets/icons/person.svg',
+      label: tr.navigation.profile,
+      iconAsset: Assets.icons.navProfile,
     ),
   ];
 }

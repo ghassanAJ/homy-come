@@ -1,6 +1,7 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
+import 'package:user/navigation/route.dart';
 
 class AuthInternalRouter {
   final BuildContext context;
@@ -51,6 +52,10 @@ class AuthInternalRouter {
 
   void toCompleteProfile() {
     context.pushReplacement(AuthenticationPaths.completeProfile);
+  }
+
+  void toUserHome() {
+    context.go(UserPaths.home);
   }
 
   static AuthInternalRouter of(BuildContext context) {

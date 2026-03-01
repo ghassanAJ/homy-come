@@ -34,6 +34,8 @@ class UIColor extends Color {
   static const UIColor neutral400 = UIColor._(0xFFA5A2AF);
   static const UIColor neutral500 = UIColor._(0xFF5F5972);
   static const UIColor neutral600 = UIColor._(0xFF6F7485);
+  static const UIColor neutral700 = UIColor._(0xFF49454F);
+  static const UIColor neutral900 = UIColor._(0xFF1D1B20);
 
   // Background colors
   static const UIColor background = white;
@@ -76,8 +78,18 @@ class UIColor extends Color {
   // white
   static const UIColor white = UIColor._(0xFFFFFFFF);
 
-  // black
+  // black scale (dark → light)
   static const UIColor black = UIColor._(0xFF000000);
+  static const UIColor midnight = UIColor._(0xFF13171B);
+  static const UIColor ink = UIColor._(0xFF1B1D21);
+  static const UIColor charcoal = UIColor._(0xFF303030);
+  static const UIColor graphite = UIColor._(0xFF424242);
+  static const UIColor steel = UIColor._(0xFF5E5F60);
+
+  // vivid colors
+  static const UIColor vividBlue = UIColor._(0xFF2299DD);
+  static const UIColor vividGreen = UIColor._(0xFF4FBF67);
+  static const UIColor vividPink = UIColor._(0xFFFF7C9B);
 
   // divider
   static const UIColor divider = UIColor._(0xFFF5F5F5);
