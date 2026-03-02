@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:notifications/src/data/model/res/notification_item_model.dart';
 import 'package:notifications/src/presentation/widgets/notification_card.dart';
+import 'package:util/util.dart';
 
 class NotificationSection {
   const NotificationSection({required this.label, required this.items});
@@ -22,9 +23,7 @@ class NotificationSectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.only(
-        bottom: isLast ? 0 : UI.spacing.lg + UI.spacing.xxs,
-      ),
+      padding: UI.padding.notificationsSectionSpacing(isLast: isLast),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,15 +34,18 @@ class NotificationSectionView extends StatelessWidget {
             fontFamily: 'Roboto',
           ),
           SizedBox(height: UI.spacing.xs),
-          for (int i = 0; i < section.items.length; i++)
-            Padding(
-              padding: EdgeInsetsDirectional.only(
-                bottom: i == section.items.length - 1 ? 0 : UI.spacing.sm,
-              ),
-              child: NotificationCard(item: section.items[i]),
-            ),
+          ..._buildNotificationItems(section.items),
         ],
       ),
     );
+  }
+
+  List<Widget> _buildNotificationItems(List<NotificationItemModel> items) {
+    return ListWidgetBuilder.mapWithIsLast(items, (item, _, isLastItem) {
+      return Padding(
+        padding: UI.padding.notificationsItemSpacing(isLast: isLastItem),
+        child: NotificationCard(item: item),
+      );
+    });
   }
 }

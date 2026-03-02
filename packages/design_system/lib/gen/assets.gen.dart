@@ -88,8 +88,8 @@ class $AssetsIconsGen {
   /// File path: assets/icons/location.svg
   String get location => 'packages/design_system/assets/icons/location.svg';
 
-  /// File path: assets/icons/logOut.svg
-  String get logOut => 'packages/design_system/assets/icons/logOut.svg';
+  /// File path: assets/icons/log_out.svg
+  String get logOut => 'packages/design_system/assets/icons/log_out.svg';
 
   /// File path: assets/icons/message.svg
   String get message => 'packages/design_system/assets/icons/message.svg';
@@ -187,7 +187,6 @@ class $AssetsIconsGen {
     google,
     location,
     logOut,
-    logOut,
     message,
     navCategory,
     navHome,
@@ -214,6 +213,10 @@ class $AssetsIconsGen {
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/check-mark 1.png
+  AssetGenImage get checkMark1 =>
+      const AssetGenImage('assets/images/check-mark 1.png');
 
   /// File path: assets/images/location.png
   AssetGenImage get location =>
@@ -244,6 +247,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    checkMark1,
     location,
     notification,
     onboarding1,

@@ -1,7 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:notifications/src/data/model/res/notification_item_model.dart';
 import 'package:notifications/src/domain/repository/notifications_repository.dart';
 import 'package:util/util.dart';
 
+@Injectable(as: NotificationsRepository, env: ['mock'])
 class MockNotificationsRepository implements NotificationsRepository {
   @override
   Future<Result<List<NotificationItemModel>, APIException>>

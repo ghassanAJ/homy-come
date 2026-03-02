@@ -27,6 +27,10 @@ class UserAppRouteConfig {
   ) {
     return [
       _createDashboardShell(shellNavigatorKey),
+      GoRoute(
+        path: UserPaths.notifications,
+        builder: (context, state) => const NotificationsScreen(),
+      ),
 
       GoRoute(
         path: UserPaths.serviceDetails,
@@ -72,7 +76,6 @@ class UserAppRouteConfig {
                   UserPaths.search,
                   UserPaths.category,
                   UserPaths.services,
-                  UserPaths.notifications,
                 ],
               );
             },
@@ -92,10 +95,6 @@ class UserAppRouteConfig {
             GoRoute(
               path: UserPaths.services,
               builder: (context, state) => const ServicesScreen(),
-            ),
-            GoRoute(
-              path: UserPaths.notifications,
-              builder: (context, state) => const NotificationsScreen(),
             ),
           ],
         ),

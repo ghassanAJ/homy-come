@@ -4,9 +4,10 @@ import 'package:get_it/get_it.dart';
 import 'package:notifications/src/data/model/res/notification_item_model.dart';
 import 'package:notifications/src/domain/repository/notifications_repository.dart';
 import 'package:notifications/src/presentation/cubit/notifications_cubit.dart';
-import 'package:notifications/src/presentation/cubit/notifications_state.dart';
 import 'package:notifications/src/presentation/widgets/notification_section.dart';
 import 'package:notifications/src/presentation/widgets/notifications_header_app_bar.dart';
+import 'package:notifications/src/presentation/widgets/notifications_loading_shimmer.dart';
+import 'package:util/src/base_cubit/base_state.dart';
 import 'package:util/util.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -15,9 +16,10 @@ class NotificationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) =>
-          NotificationsCubit(GetIt.I<NotificationsRepository>())
-            ..fetchNotifications(),
+      create:
+          (_) =>
+              NotificationsCubit(GetIt.I<NotificationsRepository>())
+                ..fetchNotifications(),
       child: const _NotificationsScreenContent(),
     );
   }
@@ -28,88 +30,61 @@ class _NotificationsScreenContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: UIColor.background,
-      body: UIEllipseBackground(
-        child: Column(
-          children: [
-            const NotificationsHeaderAppBar(title: 'Notifications'),
-            SizedBox(height: UI.spacing.xs),
-            Divider(height: 1, thickness: 1, color: UIColor.neutral100),
-            Expanded(
-              child: BlocBuilder<NotificationsCubit, NotificationsState>(
-                builder: (context, state) {
-                  if (state.isLoading) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-
-                  if (state.error != null) {
-                    return _buildErrorWidget(context, state.error);
-                  }
-
-                  final notifications = state.notifications;
-                  if (notifications.isEmpty) {
-                    return Center(
-                      child: UIText.bodyMedium('No notifications yet'),
-                    );
-                  }
-
-                  final sortedNotifications = [...notifications]
-                    ..sort((a, b) {
-                      final aDate =
-                          a.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0);
-                      final bDate =
-                          b.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0);
-                      return bDate.compareTo(aDate);
-                    });
-
-                  final grouped = DateGroupingHelper.groupByDate(
-                    sortedNotifications,
-                  );
-                  final sections = _buildSections(grouped);
-
-                  return RefreshIndicator(
-                    onRefresh: () async {
-                      await context
-                          .read<NotificationsCubit>()
-                          .fetchNotifications();
-                    },
-                    child: SingleChildScrollView(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      padding: UI.padding.notificationsContent,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          for (int i = 0; i < sections.length; i++)
-                            NotificationSectionView(
-                              section: sections[i],
-                              isLast: i == sections.length - 1,
-                            ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildErrorWidget(BuildContext context, APIException? error) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return UIScaffold(
+      withBackgroundGradient: true,
+      body: Column(
         children: [
-          UIText.bodyMedium(error?.message ?? 'Something went wrong'),
-          SizedBox(height: UI.spacing.md),
-          UIButton.primary(
-            onPressed: () {
-              context.read<NotificationsCubit>().fetchNotifications();
-            },
-            label: 'Retry',
+          const NotificationsHeaderAppBar(title: 'Notifications'),
+          SizedBox(height: UI.spacing.xs),
+          Divider(height: 1, thickness: 1, color: UIColor.neutral100),
+          Expanded(
+            child: BlocBuilder<
+              NotificationsCubit,
+              BaseState<List<NotificationItemModel>>
+            >(
+              builder: (context, state) {
+                if (state.status == BaseCubitStatus.loading) {
+                  return const NotificationsLoadingShimmer();
+                }
+
+                final notifications =
+                    state.data ?? const <NotificationItemModel>[];
+                if (notifications.isEmpty) {
+                  return Center(
+                    child: UIText.bodyMedium('No notifications yet'),
+                  );
+                }
+
+                final sortedNotifications = [...notifications]..sort((a, b) {
+                  final aDate =
+                      a.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+                  final bDate =
+                      b.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+                  return bDate.compareTo(aDate);
+                });
+
+                final grouped = DateGroupingHelper.groupByDate(
+                  sortedNotifications,
+                );
+                final sections = _buildSections(grouped);
+
+                return RefreshIndicator(
+                  onRefresh: () async {
+                    await context.read<NotificationsCubit>().fetchNotifications(
+                      refresh: true,
+                    );
+                  },
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    padding: UI.padding.notificationsContent,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: _buildSectionItems(sections),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -141,5 +116,11 @@ class _NotificationsScreenContent extends StatelessWidget {
     }
 
     return sections;
+  }
+
+  List<Widget> _buildSectionItems(List<NotificationSection> sections) {
+    return ListWidgetBuilder.mapWithIsLast(sections, (section, _, isLastItem) {
+      return NotificationSectionView(section: section, isLast: isLastItem);
+    });
   }
 }

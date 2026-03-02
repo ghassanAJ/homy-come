@@ -1,53 +1,45 @@
+// ignore_for_file: invalid_annotation_target
+
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:util/util.dart';
 
-class NotificationItemModel implements DateGroupable {
-  const NotificationItemModel({
-    this.id,
-    required this.title,
-    required this.description,
-    required this.timeAgo,
-    this.createdAt,
-    this.isHighlighted = false,
-  });
+part 'notification_item_model.freezed.dart';
+part 'notification_item_model.g.dart';
 
-  final String? id;
-  final String title;
-  final String description;
-  final String timeAgo;
-  final DateTime? createdAt;
-  final bool isHighlighted;
+@freezed
+abstract class NotificationItemModel
+    with _$NotificationItemModel
+    implements DateGroupable {
+  const NotificationItemModel._();
 
-  factory NotificationItemModel.fromJson(Map<String, dynamic> json) {
-    return NotificationItemModel(
-      id: json['id']?.toString(),
-      title: json['title'] as String? ?? '',
-      description: json['description'] as String? ?? '',
-      timeAgo: json['time_ago'] as String? ?? '',
-      createdAt: _parseDate(json['created_at']),
-      isHighlighted: json['is_highlighted'] as bool? ?? false,
-    );
-  }
+  const factory NotificationItemModel({
+    String? id,
+    required String title,
+    required String description,
+    @JsonKey(name: 'time_ago') required String timeAgo,
+    @JsonKey(
+      name: 'created_at',
+      fromJson: _createdAtFromJson,
+      toJson: _createdAtToJson,
+    )
+    DateTime? createdAt,
+    @JsonKey(name: 'is_highlighted') @Default(false) bool isHighlighted,
+  }) = _NotificationItemModel;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'title': title,
-      'description': description,
-      'time_ago': timeAgo,
-      'created_at': createdAt?.toUtc().toIso8601String(),
-      'is_highlighted': isHighlighted,
-    };
-  }
+  factory NotificationItemModel.fromJson(Map<String, dynamic> json) =>
+      _$NotificationItemModelFromJson(json);
 
   @override
   DateTime? get groupingDate => createdAt;
-
-  static DateTime? _parseDate(Object? value) {
-    if (value is DateTime) return value.toLocal();
-    if (value is String) return DateTime.tryParse(value)?.toLocal();
-    if (value is int) {
-      return DateTime.fromMillisecondsSinceEpoch(value).toLocal();
-    }
-    return null;
-  }
 }
+
+DateTime? _createdAtFromJson(Object? value) {
+  if (value is DateTime) return value.toLocal();
+  if (value is String) return DateTime.tryParse(value)?.toLocal();
+  if (value is int) {
+    return DateTime.fromMillisecondsSinceEpoch(value).toLocal();
+  }
+  return null;
+}
+
+String? _createdAtToJson(DateTime? value) => value?.toUtc().toIso8601String();

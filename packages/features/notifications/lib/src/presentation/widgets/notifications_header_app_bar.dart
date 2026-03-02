@@ -2,14 +2,9 @@ import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
 
 class NotificationsHeaderAppBar extends StatelessWidget {
-  const NotificationsHeaderAppBar({
-    required this.title,
-    this.fallbackPath = '/home',
-    super.key,
-  });
+  const NotificationsHeaderAppBar({required this.title, super.key});
 
   final String title;
-  final String fallbackPath;
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +20,7 @@ class NotificationsHeaderAppBar extends StatelessWidget {
       leading: Align(
         alignment: Alignment.centerLeft,
         child: GestureDetector(
-          onTap: () {
-            if (context.canPop()) {
-              context.pop();
-              return;
-            }
-            context.go(fallbackPath);
-          },
+          onTap: () => context.pop(),
           child: UIIconBackground(
             size: 30,
             backgroundColor: UIColor.neutral100,

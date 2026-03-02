@@ -1,28 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:notifications/src/data/api/notifications_api.dart';
-import 'package:notifications/src/domain/repository/mock_notifications_repository.dart';
-import 'package:notifications/src/domain/repository/notifications_repository.dart';
+import 'package:injectable/injectable.dart';
 
-void initNotifications(GetIt getIt, String env) {
-  if (!getIt.isRegistered<NotificationsAPI>()) {
-    getIt.registerFactory<NotificationsAPI>(
-      () => NotificationsAPI(getIt<Dio>()),
-    );
-  }
+import 'di_config.config.dart';
 
-  if (getIt.isRegistered<NotificationsRepository>()) {
-    getIt.unregister<NotificationsRepository>();
-  }
-
-  if (env == 'mock') {
-    getIt.registerFactory<NotificationsRepository>(
-      () => MockNotificationsRepository(),
-    );
-    return;
-  }
-
-  getIt.registerFactory<NotificationsRepository>(
-    () => NotificationsRepositoryImpl(getIt<NotificationsAPI>()),
-  );
-}
+@InjectableInit(asExtension: true)
+void initNotifications(GetIt getIt, String env) => getIt.init(environment: env);
