@@ -1,0 +1,1 @@
+enum FilterOrder { all,completed, scheduled, in_progress }

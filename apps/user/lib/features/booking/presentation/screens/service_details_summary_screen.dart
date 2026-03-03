@@ -2,8 +2,8 @@ import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
 
 class ServiceDetailsSummaryScreen extends StatelessWidget {
-  const ServiceDetailsSummaryScreen({super.key});
-
+  const ServiceDetailsSummaryScreen({super.key, required this.id});
+  final int id;
   @override
   Widget build(BuildContext context) {
     final topContentPadding =
@@ -108,7 +108,10 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
                                     color: UIColor.neutral500,
                                   ),
                                   SizedBox(height: UI.spacing.xxs),
-                                  UIText.bodyMedium('27 tue, Des', color: UIColor.balck),
+                                  UIText.bodyMedium(
+                                    '27 tue, Des',
+                                    color: UIColor.balck,
+                                  ),
                                 ],
                               ),
                             ),
@@ -129,7 +132,10 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
                                     color: UIColor.neutral500,
                                   ),
                                   SizedBox(height: UI.spacing.xxs),
-                                  UIText.bodyMedium('10:30 AM', color: UIColor.balck),
+                                  UIText.bodyMedium(
+                                    '10:30 AM',
+                                    color: UIColor.balck,
+                                  ),
                                 ],
                               ),
                             ),
@@ -142,7 +148,10 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            UIText.bodySmall('Address', color: UIColor.neutral500),
+                            UIText.bodySmall(
+                              'Address',
+                              color: UIColor.neutral500,
+                            ),
                             SizedBox(height: UI.spacing.xxs),
                             UIText.bodyMedium(
                               'UEA Location name , details locations , street name 12357',

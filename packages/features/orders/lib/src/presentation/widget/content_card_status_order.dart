@@ -21,7 +21,7 @@ class ContentCardStatusOrder extends StatelessWidget {
         Divider(color: UIColor.bordarCard, height: 0.5),
         OrderDateTimeWidget(date: item.date, time: item.time),
         Divider(color: UIColor.bordarCard, height: 0.5),
-        CurrentOrderLocationView(location: item.address),
+        CurrentOrderLocationView(location: item.address, item: item,),
       ],
     );
   }

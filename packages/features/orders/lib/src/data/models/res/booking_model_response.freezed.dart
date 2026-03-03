@@ -582,4 +582,312 @@ as String?,
 
 }
 
+
+/// @nodoc
+mixin _$BookingDetailseModelResponse {
+
+ int get id;@JsonKey(name: 'service_type') String get serviceType; String get status; ProviderModel get provider; String get date; String get time; String get address; int get workingHour; int get servicesCharge; int get deepCleaning;
+/// Create a copy of BookingDetailseModelResponse
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$BookingDetailseModelResponseCopyWith<BookingDetailseModelResponse> get copyWith => _$BookingDetailseModelResponseCopyWithImpl<BookingDetailseModelResponse>(this as BookingDetailseModelResponse, _$identity);
+
+  /// Serializes this BookingDetailseModelResponse to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BookingDetailseModelResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.serviceType, serviceType) || other.serviceType == serviceType)&&(identical(other.status, status) || other.status == status)&&(identical(other.provider, provider) || other.provider == provider)&&(identical(other.date, date) || other.date == date)&&(identical(other.time, time) || other.time == time)&&(identical(other.address, address) || other.address == address)&&(identical(other.workingHour, workingHour) || other.workingHour == workingHour)&&(identical(other.servicesCharge, servicesCharge) || other.servicesCharge == servicesCharge)&&(identical(other.deepCleaning, deepCleaning) || other.deepCleaning == deepCleaning));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,serviceType,status,provider,date,time,address,workingHour,servicesCharge,deepCleaning);
+
+@override
+String toString() {
+  return 'BookingDetailseModelResponse(id: $id, serviceType: $serviceType, status: $status, provider: $provider, date: $date, time: $time, address: $address, workingHour: $workingHour, servicesCharge: $servicesCharge, deepCleaning: $deepCleaning)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $BookingDetailseModelResponseCopyWith<$Res>  {
+  factory $BookingDetailseModelResponseCopyWith(BookingDetailseModelResponse value, $Res Function(BookingDetailseModelResponse) _then) = _$BookingDetailseModelResponseCopyWithImpl;
+@useResult
+$Res call({
+ int id,@JsonKey(name: 'service_type') String serviceType, String status, ProviderModel provider, String date, String time, String address, int workingHour, int servicesCharge, int deepCleaning
+});
+
+
+$ProviderModelCopyWith<$Res> get provider;
+
+}
+/// @nodoc
+class _$BookingDetailseModelResponseCopyWithImpl<$Res>
+    implements $BookingDetailseModelResponseCopyWith<$Res> {
+  _$BookingDetailseModelResponseCopyWithImpl(this._self, this._then);
+
+  final BookingDetailseModelResponse _self;
+  final $Res Function(BookingDetailseModelResponse) _then;
+
+/// Create a copy of BookingDetailseModelResponse
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? serviceType = null,Object? status = null,Object? provider = null,Object? date = null,Object? time = null,Object? address = null,Object? workingHour = null,Object? servicesCharge = null,Object? deepCleaning = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,serviceType: null == serviceType ? _self.serviceType : serviceType // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,provider: null == provider ? _self.provider : provider // ignore: cast_nullable_to_non_nullable
+as ProviderModel,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String,time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String,workingHour: null == workingHour ? _self.workingHour : workingHour // ignore: cast_nullable_to_non_nullable
+as int,servicesCharge: null == servicesCharge ? _self.servicesCharge : servicesCharge // ignore: cast_nullable_to_non_nullable
+as int,deepCleaning: null == deepCleaning ? _self.deepCleaning : deepCleaning // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+/// Create a copy of BookingDetailseModelResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProviderModelCopyWith<$Res> get provider {
+  
+  return $ProviderModelCopyWith<$Res>(_self.provider, (value) {
+    return _then(_self.copyWith(provider: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [BookingDetailseModelResponse].
+extension BookingDetailseModelResponsePatterns on BookingDetailseModelResponse {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _BookingDetailseModelResponse value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _BookingDetailseModelResponse() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _BookingDetailseModelResponse value)  $default,){
+final _that = this;
+switch (_that) {
+case _BookingDetailseModelResponse():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _BookingDetailseModelResponse value)?  $default,){
+final _that = this;
+switch (_that) {
+case _BookingDetailseModelResponse() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'service_type')  String serviceType,  String status,  ProviderModel provider,  String date,  String time,  String address,  int workingHour,  int servicesCharge,  int deepCleaning)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _BookingDetailseModelResponse() when $default != null:
+return $default(_that.id,_that.serviceType,_that.status,_that.provider,_that.date,_that.time,_that.address,_that.workingHour,_that.servicesCharge,_that.deepCleaning);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'service_type')  String serviceType,  String status,  ProviderModel provider,  String date,  String time,  String address,  int workingHour,  int servicesCharge,  int deepCleaning)  $default,) {final _that = this;
+switch (_that) {
+case _BookingDetailseModelResponse():
+return $default(_that.id,_that.serviceType,_that.status,_that.provider,_that.date,_that.time,_that.address,_that.workingHour,_that.servicesCharge,_that.deepCleaning);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'service_type')  String serviceType,  String status,  ProviderModel provider,  String date,  String time,  String address,  int workingHour,  int servicesCharge,  int deepCleaning)?  $default,) {final _that = this;
+switch (_that) {
+case _BookingDetailseModelResponse() when $default != null:
+return $default(_that.id,_that.serviceType,_that.status,_that.provider,_that.date,_that.time,_that.address,_that.workingHour,_that.servicesCharge,_that.deepCleaning);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _BookingDetailseModelResponse implements BookingDetailseModelResponse {
+  const _BookingDetailseModelResponse({required this.id, @JsonKey(name: 'service_type') required this.serviceType, required this.status, required this.provider, required this.date, required this.time, required this.address, required this.workingHour, required this.servicesCharge, required this.deepCleaning});
+  factory _BookingDetailseModelResponse.fromJson(Map<String, dynamic> json) => _$BookingDetailseModelResponseFromJson(json);
+
+@override final  int id;
+@override@JsonKey(name: 'service_type') final  String serviceType;
+@override final  String status;
+@override final  ProviderModel provider;
+@override final  String date;
+@override final  String time;
+@override final  String address;
+@override final  int workingHour;
+@override final  int servicesCharge;
+@override final  int deepCleaning;
+
+/// Create a copy of BookingDetailseModelResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$BookingDetailseModelResponseCopyWith<_BookingDetailseModelResponse> get copyWith => __$BookingDetailseModelResponseCopyWithImpl<_BookingDetailseModelResponse>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$BookingDetailseModelResponseToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BookingDetailseModelResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.serviceType, serviceType) || other.serviceType == serviceType)&&(identical(other.status, status) || other.status == status)&&(identical(other.provider, provider) || other.provider == provider)&&(identical(other.date, date) || other.date == date)&&(identical(other.time, time) || other.time == time)&&(identical(other.address, address) || other.address == address)&&(identical(other.workingHour, workingHour) || other.workingHour == workingHour)&&(identical(other.servicesCharge, servicesCharge) || other.servicesCharge == servicesCharge)&&(identical(other.deepCleaning, deepCleaning) || other.deepCleaning == deepCleaning));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,serviceType,status,provider,date,time,address,workingHour,servicesCharge,deepCleaning);
+
+@override
+String toString() {
+  return 'BookingDetailseModelResponse(id: $id, serviceType: $serviceType, status: $status, provider: $provider, date: $date, time: $time, address: $address, workingHour: $workingHour, servicesCharge: $servicesCharge, deepCleaning: $deepCleaning)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$BookingDetailseModelResponseCopyWith<$Res> implements $BookingDetailseModelResponseCopyWith<$Res> {
+  factory _$BookingDetailseModelResponseCopyWith(_BookingDetailseModelResponse value, $Res Function(_BookingDetailseModelResponse) _then) = __$BookingDetailseModelResponseCopyWithImpl;
+@override @useResult
+$Res call({
+ int id,@JsonKey(name: 'service_type') String serviceType, String status, ProviderModel provider, String date, String time, String address, int workingHour, int servicesCharge, int deepCleaning
+});
+
+
+@override $ProviderModelCopyWith<$Res> get provider;
+
+}
+/// @nodoc
+class __$BookingDetailseModelResponseCopyWithImpl<$Res>
+    implements _$BookingDetailseModelResponseCopyWith<$Res> {
+  __$BookingDetailseModelResponseCopyWithImpl(this._self, this._then);
+
+  final _BookingDetailseModelResponse _self;
+  final $Res Function(_BookingDetailseModelResponse) _then;
+
+/// Create a copy of BookingDetailseModelResponse
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? serviceType = null,Object? status = null,Object? provider = null,Object? date = null,Object? time = null,Object? address = null,Object? workingHour = null,Object? servicesCharge = null,Object? deepCleaning = null,}) {
+  return _then(_BookingDetailseModelResponse(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,serviceType: null == serviceType ? _self.serviceType : serviceType // ignore: cast_nullable_to_non_nullable
+as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String,provider: null == provider ? _self.provider : provider // ignore: cast_nullable_to_non_nullable
+as ProviderModel,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String,time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String,workingHour: null == workingHour ? _self.workingHour : workingHour // ignore: cast_nullable_to_non_nullable
+as int,servicesCharge: null == servicesCharge ? _self.servicesCharge : servicesCharge // ignore: cast_nullable_to_non_nullable
+as int,deepCleaning: null == deepCleaning ? _self.deepCleaning : deepCleaning // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+/// Create a copy of BookingDetailseModelResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ProviderModelCopyWith<$Res> get provider {
+  
+  return $ProviderModelCopyWith<$Res>(_self.provider, (value) {
+    return _then(_self.copyWith(provider: value));
+  });
+}
+}
+
 // dart format on

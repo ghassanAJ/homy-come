@@ -31,3 +31,23 @@ abstract class ProviderModel with _$ProviderModel {
   factory ProviderModel.fromJson(Map<String, dynamic> json) =>
       _$ProviderModelFromJson(json);
 }
+
+@freezed
+abstract class BookingDetailseModelResponse
+    with _$BookingDetailseModelResponse {
+  const factory BookingDetailseModelResponse({
+    required int id,
+    @JsonKey(name: 'service_type') required String serviceType,
+    required String status,
+    required ProviderModel provider,
+    required String date,
+    required String time,
+    required String address,
+    required int workingHour,
+    required int servicesCharge,
+    required int deepCleaning,
+  }) = _BookingDetailseModelResponse;
+
+  factory BookingDetailseModelResponse.fromJson(Map<String, dynamic> json) =>
+      _$BookingDetailseModelResponseFromJson(json);
+}

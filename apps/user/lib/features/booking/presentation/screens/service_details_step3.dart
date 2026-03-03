@@ -292,7 +292,7 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
                         label: 'Next',
                         expanded: true,
                         onPressed: () {
-                          context.push(UserPaths.serviceDetailsSummary);
+                          context.push(UserPaths.serviceDetailsSummarywithid());
                         },
                       ),
                     ),
