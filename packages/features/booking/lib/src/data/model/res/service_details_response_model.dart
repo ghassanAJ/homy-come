@@ -1,3 +1,4 @@
+import 'package:booking/booking.dart';
 import 'package:booking/src/data/model/res/service_category_model.dart';
 import 'package:booking/src/data/model/res/service_option_model.dart';
 import 'package:booking/src/data/model/res/service_section_model.dart';
@@ -18,4 +19,17 @@ abstract class ServiceDetailsResponseModel with _$ServiceDetailsResponseModel {
 
   factory ServiceDetailsResponseModel.fromJson(Map<String, dynamic> json) =>
       _$ServiceDetailsResponseModelFromJson(json);
+}
+
+@freezed
+abstract class ServicePreviewResponseModel with _$ServicePreviewResponseModel {
+  const factory ServicePreviewResponseModel({
+    required String id,
+    required InfoModel info,
+    required int rating,
+    required int reviewsCount,
+  }) = _ServicePreviewResponseModel;
+
+  factory ServicePreviewResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$ServicePreviewResponseModelFromJson(json);
 }

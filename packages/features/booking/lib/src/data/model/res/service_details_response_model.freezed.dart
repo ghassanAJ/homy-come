@@ -322,4 +322,294 @@ $ServiceOptionModelCopyWith<$Res>? get featuredOption {
 }
 }
 
+
+/// @nodoc
+mixin _$ServicePreviewResponseModel {
+
+ String get id; InfoModel get info; int get rating; int get reviewsCount;
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ServicePreviewResponseModelCopyWith<ServicePreviewResponseModel> get copyWith => _$ServicePreviewResponseModelCopyWithImpl<ServicePreviewResponseModel>(this as ServicePreviewResponseModel, _$identity);
+
+  /// Serializes this ServicePreviewResponseModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServicePreviewResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.info, info) || other.info == info)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,info,rating,reviewsCount);
+
+@override
+String toString() {
+  return 'ServicePreviewResponseModel(id: $id, info: $info, rating: $rating, reviewsCount: $reviewsCount)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ServicePreviewResponseModelCopyWith<$Res>  {
+  factory $ServicePreviewResponseModelCopyWith(ServicePreviewResponseModel value, $Res Function(ServicePreviewResponseModel) _then) = _$ServicePreviewResponseModelCopyWithImpl;
+@useResult
+$Res call({
+ String id, InfoModel info, int rating, int reviewsCount
+});
+
+
+$InfoModelCopyWith<$Res> get info;
+
+}
+/// @nodoc
+class _$ServicePreviewResponseModelCopyWithImpl<$Res>
+    implements $ServicePreviewResponseModelCopyWith<$Res> {
+  _$ServicePreviewResponseModelCopyWithImpl(this._self, this._then);
+
+  final ServicePreviewResponseModel _self;
+  final $Res Function(ServicePreviewResponseModel) _then;
+
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? info = null,Object? rating = null,Object? reviewsCount = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,info: null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
+as InfoModel,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as int,reviewsCount: null == reviewsCount ? _self.reviewsCount : reviewsCount // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$InfoModelCopyWith<$Res> get info {
+  
+  return $InfoModelCopyWith<$Res>(_self.info, (value) {
+    return _then(_self.copyWith(info: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [ServicePreviewResponseModel].
+extension ServicePreviewResponseModelPatterns on ServicePreviewResponseModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ServicePreviewResponseModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ServicePreviewResponseModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ServicePreviewResponseModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  InfoModel info,  int rating,  int reviewsCount)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel() when $default != null:
+return $default(_that.id,_that.info,_that.rating,_that.reviewsCount);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  InfoModel info,  int rating,  int reviewsCount)  $default,) {final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel():
+return $default(_that.id,_that.info,_that.rating,_that.reviewsCount);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  InfoModel info,  int rating,  int reviewsCount)?  $default,) {final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel() when $default != null:
+return $default(_that.id,_that.info,_that.rating,_that.reviewsCount);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _ServicePreviewResponseModel implements ServicePreviewResponseModel {
+  const _ServicePreviewResponseModel({required this.id, required this.info, required this.rating, required this.reviewsCount});
+  factory _ServicePreviewResponseModel.fromJson(Map<String, dynamic> json) => _$ServicePreviewResponseModelFromJson(json);
+
+@override final  String id;
+@override final  InfoModel info;
+@override final  int rating;
+@override final  int reviewsCount;
+
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ServicePreviewResponseModelCopyWith<_ServicePreviewResponseModel> get copyWith => __$ServicePreviewResponseModelCopyWithImpl<_ServicePreviewResponseModel>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ServicePreviewResponseModelToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServicePreviewResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.info, info) || other.info == info)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,info,rating,reviewsCount);
+
+@override
+String toString() {
+  return 'ServicePreviewResponseModel(id: $id, info: $info, rating: $rating, reviewsCount: $reviewsCount)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ServicePreviewResponseModelCopyWith<$Res> implements $ServicePreviewResponseModelCopyWith<$Res> {
+  factory _$ServicePreviewResponseModelCopyWith(_ServicePreviewResponseModel value, $Res Function(_ServicePreviewResponseModel) _then) = __$ServicePreviewResponseModelCopyWithImpl;
+@override @useResult
+$Res call({
+ String id, InfoModel info, int rating, int reviewsCount
+});
+
+
+@override $InfoModelCopyWith<$Res> get info;
+
+}
+/// @nodoc
+class __$ServicePreviewResponseModelCopyWithImpl<$Res>
+    implements _$ServicePreviewResponseModelCopyWith<$Res> {
+  __$ServicePreviewResponseModelCopyWithImpl(this._self, this._then);
+
+  final _ServicePreviewResponseModel _self;
+  final $Res Function(_ServicePreviewResponseModel) _then;
+
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? info = null,Object? rating = null,Object? reviewsCount = null,}) {
+  return _then(_ServicePreviewResponseModel(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,info: null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
+as InfoModel,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as int,reviewsCount: null == reviewsCount ? _self.reviewsCount : reviewsCount // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$InfoModelCopyWith<$Res> get info {
+  
+  return $InfoModelCopyWith<$Res>(_self.info, (value) {
+    return _then(_self.copyWith(info: value));
+  });
+}
+}
+
 // dart format on

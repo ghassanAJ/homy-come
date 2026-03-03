@@ -17,9 +17,9 @@ import 'package:user/features/home/domain/repository/home_api_repository.dart'
 import 'package:user/features/home/domain/repository/mock_home_api_repository.dart'
     as _i1042;
 
-const String _mock = 'mock';
 const String _prod = 'prod';
 const String _dev = 'dev';
+const String _mock = 'mock';
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -28,7 +28,10 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.factory<_i931.HomeAPI>(() => _i931.HomeAPI());
+    gh.factory<_i931.HomeAPI>(
+      () => _i931.HomeAPIImpl(),
+      registerFor: {_prod, _dev},
+    );
     gh.factory<_i345.HomeRepository>(
       () => _i1042.MockHomeRepository(),
       registerFor: {_mock},

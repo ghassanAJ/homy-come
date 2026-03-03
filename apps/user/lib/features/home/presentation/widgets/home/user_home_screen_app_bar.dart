@@ -42,8 +42,8 @@ class HomeScreenAppBar extends SliverAppBar {
               Flexible(
                 child: UIText.bodySmall(
                   user?.address?.toString() ?? 'no address selected',
-                  color: UIColor.neutral400,
                   maxLines: 1,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ],

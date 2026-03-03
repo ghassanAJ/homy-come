@@ -21,9 +21,21 @@ class MockBookingRepository implements BookingRepository {
         id: request.serviceId,
         title: 'Home Deep Cleaning',
         categories: const [
-          ServiceCategoryModel(id: '1', name: 'Home Cleaning'),
-          ServiceCategoryModel(id: '2', name: 'Furniture Cleaning'),
-          ServiceCategoryModel(id: '3', name: 'Home Deep Cleaning'),
+          ServiceCategoryModel(
+            id: '1',
+            name: 'Home Cleaning',
+            servicesCount: 10,
+          ),
+          ServiceCategoryModel(
+            id: '2',
+            name: 'Furniture Cleaning',
+            servicesCount: 10,
+          ),
+          ServiceCategoryModel(
+            id: '3',
+            name: 'Home Deep Cleaning',
+            servicesCount: 10,
+          ),
         ],
         featuredOption: const ServiceOptionModel(
           id: 'featured-1',

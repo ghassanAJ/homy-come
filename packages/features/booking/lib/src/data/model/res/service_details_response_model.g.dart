@@ -38,3 +38,21 @@ Map<String, dynamic> _$ServiceDetailsResponseModelToJson(
   'featured_option': instance.featuredOption,
   'sections': instance.sections,
 };
+
+_ServicePreviewResponseModel _$ServicePreviewResponseModelFromJson(
+  Map<String, dynamic> json,
+) => _ServicePreviewResponseModel(
+  id: json['id'] as String,
+  info: InfoModel.fromJson(json['info'] as Map<String, dynamic>),
+  rating: (json['rating'] as num).toInt(),
+  reviewsCount: (json['reviewsCount'] as num).toInt(),
+);
+
+Map<String, dynamic> _$ServicePreviewResponseModelToJson(
+  _ServicePreviewResponseModel instance,
+) => <String, dynamic>{
+  'id': instance.id,
+  'info': instance.info,
+  'rating': instance.rating,
+  'reviewsCount': instance.reviewsCount,
+};

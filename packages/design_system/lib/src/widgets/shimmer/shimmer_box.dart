@@ -21,16 +21,17 @@ class ShimmerBox extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      decoration: shape == BoxShape.circle
-          ? BoxDecoration(
-              color: color ?? UIColor.backgroundInactive,
-              shape: BoxShape.circle,
-            )
-          : BoxDecoration(
-              color: color ?? UIColor.backgroundInactive,
+      decoration:
+          shape == BoxShape.circle
+              ? BoxDecoration(
+                color: color ?? UIColor.border,
+                shape: BoxShape.circle,
+              )
+              : BoxDecoration(
+                color: color ?? UIColor.border,
 
-              borderRadius: BorderRadius.circular(radius),
-            ),
+                borderRadius: BorderRadius.circular(radius),
+              ),
     );
   }
 }

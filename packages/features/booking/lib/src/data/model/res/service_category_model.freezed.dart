@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ServiceCategoryModel {
 
- String get id; String get name;@JsonKey(name: 'image_url') String? get imageUrl;
+ String get id; String get name; int get servicesCount;@JsonKey(name: 'image_url') String? get imageUrl; List<ServicePreviewResponseModel> get servicePreviews;
 /// Create a copy of ServiceCategoryModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ServiceCategoryModelCopyWith<ServiceCategoryModel> get copyWith => _$ServiceCat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServiceCategoryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServiceCategoryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.servicesCount, servicesCount) || other.servicesCount == servicesCount)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other.servicePreviews, servicePreviews));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,imageUrl);
+int get hashCode => Object.hash(runtimeType,id,name,servicesCount,imageUrl,const DeepCollectionEquality().hash(servicePreviews));
 
 @override
 String toString() {
-  return 'ServiceCategoryModel(id: $id, name: $name, imageUrl: $imageUrl)';
+  return 'ServiceCategoryModel(id: $id, name: $name, servicesCount: $servicesCount, imageUrl: $imageUrl, servicePreviews: $servicePreviews)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ServiceCategoryModelCopyWith<$Res>  {
   factory $ServiceCategoryModelCopyWith(ServiceCategoryModel value, $Res Function(ServiceCategoryModel) _then) = _$ServiceCategoryModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String name,@JsonKey(name: 'image_url') String? imageUrl
+ String id, String name, int servicesCount,@JsonKey(name: 'image_url') String? imageUrl, List<ServicePreviewResponseModel> servicePreviews
 });
 
 
@@ -65,12 +65,14 @@ class _$ServiceCategoryModelCopyWithImpl<$Res>
 
 /// Create a copy of ServiceCategoryModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? imageUrl = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? servicesCount = null,Object? imageUrl = freezed,Object? servicePreviews = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,
+as String,servicesCount: null == servicesCount ? _self.servicesCount : servicesCount // ignore: cast_nullable_to_non_nullable
+as int,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,servicePreviews: null == servicePreviews ? _self.servicePreviews : servicePreviews // ignore: cast_nullable_to_non_nullable
+as List<ServicePreviewResponseModel>,
   ));
 }
 
@@ -155,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name, @JsonKey(name: 'image_url')  String? imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  int servicesCount, @JsonKey(name: 'image_url')  String? imageUrl,  List<ServicePreviewResponseModel> servicePreviews)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ServiceCategoryModel() when $default != null:
-return $default(_that.id,_that.name,_that.imageUrl);case _:
+return $default(_that.id,_that.name,_that.servicesCount,_that.imageUrl,_that.servicePreviews);case _:
   return orElse();
 
 }
@@ -176,10 +178,10 @@ return $default(_that.id,_that.name,_that.imageUrl);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name, @JsonKey(name: 'image_url')  String? imageUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  int servicesCount, @JsonKey(name: 'image_url')  String? imageUrl,  List<ServicePreviewResponseModel> servicePreviews)  $default,) {final _that = this;
 switch (_that) {
 case _ServiceCategoryModel():
-return $default(_that.id,_that.name,_that.imageUrl);case _:
+return $default(_that.id,_that.name,_that.servicesCount,_that.imageUrl,_that.servicePreviews);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -196,10 +198,10 @@ return $default(_that.id,_that.name,_that.imageUrl);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name, @JsonKey(name: 'image_url')  String? imageUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  int servicesCount, @JsonKey(name: 'image_url')  String? imageUrl,  List<ServicePreviewResponseModel> servicePreviews)?  $default,) {final _that = this;
 switch (_that) {
 case _ServiceCategoryModel() when $default != null:
-return $default(_that.id,_that.name,_that.imageUrl);case _:
+return $default(_that.id,_that.name,_that.servicesCount,_that.imageUrl,_that.servicePreviews);case _:
   return null;
 
 }
@@ -211,12 +213,20 @@ return $default(_that.id,_that.name,_that.imageUrl);case _:
 @JsonSerializable()
 
 class _ServiceCategoryModel implements ServiceCategoryModel {
-  const _ServiceCategoryModel({required this.id, required this.name, @JsonKey(name: 'image_url') this.imageUrl});
+  const _ServiceCategoryModel({required this.id, required this.name, required this.servicesCount, @JsonKey(name: 'image_url') this.imageUrl, final  List<ServicePreviewResponseModel> servicePreviews = const []}): _servicePreviews = servicePreviews;
   factory _ServiceCategoryModel.fromJson(Map<String, dynamic> json) => _$ServiceCategoryModelFromJson(json);
 
 @override final  String id;
 @override final  String name;
+@override final  int servicesCount;
 @override@JsonKey(name: 'image_url') final  String? imageUrl;
+ final  List<ServicePreviewResponseModel> _servicePreviews;
+@override@JsonKey() List<ServicePreviewResponseModel> get servicePreviews {
+  if (_servicePreviews is EqualUnmodifiableListView) return _servicePreviews;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_servicePreviews);
+}
+
 
 /// Create a copy of ServiceCategoryModel
 /// with the given fields replaced by the non-null parameter values.
@@ -231,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServiceCategoryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServiceCategoryModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.servicesCount, servicesCount) || other.servicesCount == servicesCount)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other._servicePreviews, _servicePreviews));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,imageUrl);
+int get hashCode => Object.hash(runtimeType,id,name,servicesCount,imageUrl,const DeepCollectionEquality().hash(_servicePreviews));
 
 @override
 String toString() {
-  return 'ServiceCategoryModel(id: $id, name: $name, imageUrl: $imageUrl)';
+  return 'ServiceCategoryModel(id: $id, name: $name, servicesCount: $servicesCount, imageUrl: $imageUrl, servicePreviews: $servicePreviews)';
 }
 
 
@@ -251,7 +261,7 @@ abstract mixin class _$ServiceCategoryModelCopyWith<$Res> implements $ServiceCat
   factory _$ServiceCategoryModelCopyWith(_ServiceCategoryModel value, $Res Function(_ServiceCategoryModel) _then) = __$ServiceCategoryModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name,@JsonKey(name: 'image_url') String? imageUrl
+ String id, String name, int servicesCount,@JsonKey(name: 'image_url') String? imageUrl, List<ServicePreviewResponseModel> servicePreviews
 });
 
 
@@ -268,12 +278,14 @@ class __$ServiceCategoryModelCopyWithImpl<$Res>
 
 /// Create a copy of ServiceCategoryModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? imageUrl = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? servicesCount = null,Object? imageUrl = freezed,Object? servicePreviews = null,}) {
   return _then(_ServiceCategoryModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,
+as String,servicesCount: null == servicesCount ? _self.servicesCount : servicesCount // ignore: cast_nullable_to_non_nullable
+as int,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,servicePreviews: null == servicePreviews ? _self._servicePreviews : servicePreviews // ignore: cast_nullable_to_non_nullable
+as List<ServicePreviewResponseModel>,
   ));
 }
 
