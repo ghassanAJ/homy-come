@@ -92,7 +92,7 @@ class HomeHeader extends StatelessWidget {
                   SizedBox(width: UI.spacing.sm),
                   GestureDetector(
                     onTap: onNotificationTap ?? () {
-                      // TODO: Navigate to notifications screen when route is ready.
+                          context.push(UserPaths.notifications);
                     },
                     child: UIIamge(assetPath: Assets.images.notification.path),
                   ),

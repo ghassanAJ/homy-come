@@ -15,6 +15,7 @@ class UserPaths {
   static const String orders = '/orders';
   static const String search = '/search';
   static const String profile = '/profile';
+  static const String notifications = '/notifications';
   static const String serviceDetails = '/service-details';
   static const String serviceDetails2 = '/service-details2';
   static const String serviceDetails3 = '/service-details3';
@@ -32,38 +33,43 @@ class UserRoute {
   static List<RouteBase> get routes => [
     GoRoute(
       path: UserPaths.home,
-      builder: (context, state) => _PlaceholderScreen(
-        title: context.loc<UserTranslation>().navigation.home,
-        path: UserPaths.home,
-      ),
+      builder:
+          (context, state) => _PlaceholderScreen(
+            title: context.loc<UserTranslation>().navigation.home,
+            path: UserPaths.home,
+          ),
     ),
     GoRoute(
       path: UserPaths.category,
-      builder: (context, state) => _PlaceholderScreen(
-        title: context.loc<UserTranslation>().navigation.category,
-        path: UserPaths.category,
-      ),
+      builder:
+          (context, state) => _PlaceholderScreen(
+            title: context.loc<UserTranslation>().navigation.category,
+            path: UserPaths.category,
+          ),
     ),
     GoRoute(
       path: UserPaths.orders,
-      builder: (context, state) => _PlaceholderScreen(
-        title: context.loc<UserTranslation>().navigation.orders,
-        path: UserPaths.orders,
-      ),
+      builder:
+          (context, state) => _PlaceholderScreen(
+            title: context.loc<UserTranslation>().navigation.orders,
+            path: UserPaths.orders,
+          ),
     ),
     GoRoute(
       path: UserPaths.search,
-      builder: (context, state) => _PlaceholderScreen(
-        title: context.loc<UserTranslation>().navigation.search,
-        path: UserPaths.search,
-      ),
+      builder:
+          (context, state) => _PlaceholderScreen(
+            title: context.loc<UserTranslation>().navigation.search,
+            path: UserPaths.search,
+          ),
     ),
     GoRoute(
       path: UserPaths.profile,
-      builder: (context, state) => _PlaceholderScreen(
-        title: context.loc<UserTranslation>().navigation.profile,
-        path: UserPaths.profile,
-      ),
+      builder:
+          (context, state) => _PlaceholderScreen(
+            title: context.loc<UserTranslation>().navigation.profile,
+            path: UserPaths.profile,
+          ),
     ),
   ];
 }

@@ -15,7 +15,7 @@ class CustomButtonWithIconWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          UIImage(Assets.images.checkMark1.path, wigth: null, height: null),
+          // UIImage(Assets.images.checkMark1.path, wigth: null, height: null),
           SizedBox(width: UI.spacing.xs),
           UIText.bodyMedium(
             'Added Service',

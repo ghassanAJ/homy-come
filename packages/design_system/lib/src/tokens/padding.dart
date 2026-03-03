@@ -169,4 +169,34 @@ class UIPadding {
 
   EdgeInsetsDirectional get startLg =>
       EdgeInsetsDirectional.only(start: _spacing.lg);
+
+  /// Notifications screen scroll content padding.
+  EdgeInsetsDirectional get notificationsContent => EdgeInsetsDirectional.only(
+    start: _spacing.lg + _spacing.xxs,
+    end: _spacing.lg,
+    top: _spacing.xs,
+    bottom: _spacing.xl,
+  );
+
+  /// Notifications section spacing.
+  EdgeInsetsDirectional notificationsSectionSpacing({required bool isLast}) =>
+      EdgeInsetsDirectional.only(bottom: isLast ? 0 : _spacing.lg + _spacing.xxs);
+
+  /// Notifications item spacing.
+  EdgeInsetsDirectional notificationsItemSpacing({required bool isLast}) =>
+      EdgeInsetsDirectional.only(bottom: isLast ? 0 : _spacing.sm);
+
+  /// Notifications card content padding.
+  EdgeInsetsDirectional get notificationsCardContent =>
+      EdgeInsetsDirectional.symmetric(
+        horizontal: _spacing.md,
+        vertical: _spacing.xs,
+      );
+
+  /// Notifications shimmer card content padding.
+  EdgeInsetsDirectional get notificationsShimmerCardContent =>
+      EdgeInsetsDirectional.symmetric(
+        horizontal: _spacing.md,
+        vertical: _spacing.md,
+      );
 }

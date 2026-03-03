@@ -20,6 +20,9 @@ class FontFamily {
   /// Font family: Montserrat
   static const String montserrat = 'Montserrat';
 
+  /// Font family: Poppins
+  static const String poppins = 'Poppins';
+
   /// Font family: Roboto
   static const String roboto = 'Roboto';
 }

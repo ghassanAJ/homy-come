@@ -1,6 +1,7 @@
 import 'package:design_system/src/widgets/shared/dashboard_navigation_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notifications/notifications.dart';
 import 'package:profile/profile.dart';
 import 'package:user/features/booking/presentation/screens/service_details_step1.dart';
 import 'package:user/features/booking/presentation/screens/service_details_step2.dart';
@@ -15,6 +16,7 @@ import 'package:user/localization/user_localization_scope.dart';
 import 'package:user/navigation/route.dart';
 import 'package:user/navigation/user_navigation_config.dart';
 import 'package:util/util.dart';
+
 /// Configuration for all app routes
 ///
 /// Provides organized route definitions grouped by feature area.
@@ -25,6 +27,10 @@ class UserAppRouteConfig {
   ) {
     return [
       _createDashboardShell(shellNavigatorKey),
+      GoRoute(
+        path: UserPaths.notifications,
+        builder: (context, state) => const NotificationsScreen(),
+      ),
 
       GoRoute(
         path: UserPaths.serviceDetails,
@@ -104,12 +110,14 @@ class UserAppRouteConfig {
           routes: [
             GoRoute(
               path: UserPaths.orders,
-              builder: (context, state) => Scaffold(
-                body: Center(
-                  child:
-                      Text(context.loc<UserTranslation>().navigation.orders),
-                ),
-              ),
+              builder:
+                  (context, state) => Scaffold(
+                    body: Center(
+                      child: Text(
+                        context.loc<UserTranslation>().navigation.orders,
+                      ),
+                    ),
+                  ),
             ),
           ],
         ),

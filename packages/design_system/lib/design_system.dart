@@ -13,6 +13,7 @@ export 'src/theme/theme_data.dart';
 export 'src/theme/ui_design_system_initializer.dart';
 export 'src/theme/ui_theme.dart';
 export 'src/tokens/colors.dart';
+export 'src/tokens/UIFonts.dart';
 export 'src/tokens/shadows.dart';
 export 'src/ui.dart';
 export 'src/widgets/appbar/ui_animated_sliver_app_bar.dart';

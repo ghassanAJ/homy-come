@@ -32,10 +32,13 @@ class UIColor extends Color {
   static const UIColor neutral200 = UIColor._(0xFFC4C4C4);
   static const UIColor neutral300 = UIColor._(0xFFA4A4A4);
   static const UIColor neutral400 = UIColor._(0xFFA5A2AF);
+  static const UIColor neutral450 = UIColor._(0xFF898989);
   static const UIColor neutral500 = UIColor._(0xFF5F5972);
   static const UIColor neutral600 = UIColor._(0xFF6F7485);
   static const UIColor neutral700 = UIColor._(0xFF49454F);
+  static const UIColor neutral850 = UIColor._(0xFF231F20);
   static const UIColor neutral900 = UIColor._(0xFF1D1B20);
+  static const UIColor neutral950 = UIColor._(0xFF121212);
 
   // Background colors
   static const UIColor background = white;
