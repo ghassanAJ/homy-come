@@ -1,5 +1,5 @@
 import 'package:booking/booking.dart';
-import 'package:user/features/booking/domain/use_cases/get_service_details_use_case.dart';
+import 'package:booking/src/domain/use_cases/get_service_details_use_case.dart';
 import 'package:util/util.dart';
 
 class ServiceDetailsCubit extends BaseScreenCubit<ServiceDetailsResponseModel> {

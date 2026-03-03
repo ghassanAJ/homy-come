@@ -1,9 +1,9 @@
+import 'package:booking/src/presentation/widgets/custom_button_with_Icon.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:user/features/booking/presentation/widgets/custom_button_with_Icon.dart';
 
 class AddonServiceCard extends StatelessWidget {
   const AddonServiceCard({
+    super.key,
     required this.title,
     required this.reviews,
     required this.price,
@@ -89,7 +89,8 @@ class AddonServiceCard extends StatelessWidget {
               children: [
                 UIPriceText(text: UIText.h3(price, color: UIColor.balck)),
                 SizedBox(width: UI.spacing.xs),
-                Text(//TODO : use UIPriceText 
+                Text(
+                  //TODO : use UIPriceText
                   oldPrice,
                   style: UI.text.bodyMedium.copyWith(
                     fontFamily: UIFonts.lexend,

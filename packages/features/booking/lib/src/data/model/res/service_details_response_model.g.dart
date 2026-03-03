@@ -16,11 +16,12 @@ _ServiceDetailsResponseModel _$ServiceDetailsResponseModelFromJson(
           ?.map((e) => ServiceCategoryModel.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
-  featuredOption: json['featured_option'] == null
-      ? null
-      : ServiceOptionModel.fromJson(
-          json['featured_option'] as Map<String, dynamic>,
-        ),
+  featuredOption:
+      json['featured_option'] == null
+          ? null
+          : ServiceOptionModel.fromJson(
+            json['featured_option'] as Map<String, dynamic>,
+          ),
   sections:
       (json['sections'] as List<dynamic>?)
           ?.map((e) => ServiceSectionModel.fromJson(e as Map<String, dynamic>))

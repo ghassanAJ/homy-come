@@ -1,12 +1,12 @@
+import 'package:booking/src/presentation/widgets/cancel_lation_sheet_content.dart';
+import 'package:booking/src/presentation/widgets/date_item.dart';
+import 'package:booking/src/presentation/widgets/frequenct_change_sheet_context.dart';
+import 'package:booking/src/presentation/widgets/provider_avater_item.dart';
+import 'package:booking/src/presentation/widgets/step_navigation_bar.dart';
+import 'package:booking/src/presentation/widgets/time_slot_chip.dart';
+import 'package:booking/src/presentation/widgets/warning_section_widget.dart';
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
-import 'package:user/features/booking/presentation/widgets/cancel_lation_sheet_content.dart';
-import 'package:user/features/booking/presentation/widgets/date_item.dart';
-import 'package:user/features/booking/presentation/widgets/frequenct_change_sheet_context.dart';
-import 'package:user/features/booking/presentation/widgets/provider_avater_item.dart';
-import 'package:user/features/booking/presentation/widgets/step_navigation_bar.dart';
-import 'package:user/features/booking/presentation/widgets/time_slot_chip.dart';
-import 'package:user/features/booking/presentation/widgets/warning_section_widget.dart';
 import 'package:user/navigation/route.dart';
 
 class ServiceDetailsStep3 extends StatefulWidget {

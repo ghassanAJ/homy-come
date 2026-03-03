@@ -1,9 +1,9 @@
+import 'package:booking/src/presentation/widgets/choice_chip_button.dart';
+import 'package:booking/src/presentation/widgets/circle_number_option.dart';
+import 'package:booking/src/presentation/widgets/step_navigation_bar.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:user/features/booking/presentation/widgets/choice_chip_button.dart';
-import 'package:user/features/booking/presentation/widgets/circle_number_option.dart';
-import 'package:user/features/booking/presentation/widgets/step_navigation_bar.dart';
 import 'package:user/navigation/route.dart';
 
 class ServiceDetailsScreenStep1 extends StatefulWidget {
@@ -26,11 +26,10 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
     super.dispose();
   }
 
-  Widget _sectionTitle(String title){
-    return  UIText.h6(title, color: UIColor.balck, maxLines: 2);
+  Widget _sectionTitle(String title) {
+    return UIText.h6(title, color: UIColor.balck, maxLines: 2);
   }
 
-  
   @override
   Widget build(BuildContext context) {
     final topContentPadding =
@@ -223,7 +222,3 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
     );
   }
 }
-
-
-
-

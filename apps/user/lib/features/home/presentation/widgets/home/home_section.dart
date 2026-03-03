@@ -33,22 +33,23 @@ class HomeSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (sectionTopSpacing != null) SizedBox(height: sectionTopSpacing),
-        Padding(
-          padding: hp,
-          child:
-              _hasAction
-                  ? SectionHeaderWithAction(
-                    title: title,
-                    actionLabel: actionLabel!,
-                    onActionTap: onActionTap,
-                  )
-                  : SectionTitle(title: title),
-        ),
+        Padding(padding: hp, child: _buildHeader()),
         SizedBox(height: tb),
         child,
         if (sectionBottomSpacing != null)
           SizedBox(height: sectionBottomSpacing),
       ],
     );
+  }
+
+  Widget _buildHeader() {
+    if (_hasAction) {
+      return SectionHeaderWithAction(
+        title: title,
+        actionLabel: actionLabel!,
+        onActionTap: onActionTap,
+      );
+    }
+    return SectionTitle(title: title);
   }
 }

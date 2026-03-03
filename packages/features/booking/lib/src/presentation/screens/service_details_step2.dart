@@ -1,7 +1,7 @@
+import 'package:booking/src/presentation/widgets/add_on_servies_card.dart';
+import 'package:booking/src/presentation/widgets/step_navigation_bar.dart';
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
-import 'package:user/features/booking/presentation/widgets/add_on_servies_card.dart';
-import 'package:user/features/booking/presentation/widgets/step_navigation_bar.dart';
 import 'package:user/navigation/route.dart';
 
 class ServiceDetailsStep2 extends StatefulWidget {
@@ -18,7 +18,7 @@ class _ServiceDetailsStep2State extends State<ServiceDetailsStep2> {
   Widget build(BuildContext context) {
     final topContentPadding =
         MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
-final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.of(context).size.width;
     return UIScaffold(
       appBar: UIAppBar(
         titleWidget: Column(
@@ -41,14 +41,15 @@ final width = MediaQuery.of(context).size.width;
               UI.spacing.md,
               UI.spacing.md,
               UI.spacing.md,
-             UI.sizes.bottomNavigationBarHeight,
+              UI.sizes.bottomNavigationBarHeight,
             ),
-            child: GridView.builder(itemCount: 10,
+            child: GridView.builder(
+              itemCount: 10,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: UI.spacing.sm,
-                mainAxisSpacing:  UI.spacing.sm,
-                childAspectRatio:  3/5
+                mainAxisSpacing: UI.spacing.sm,
+                childAspectRatio: 3 / 5,
               ),
               itemBuilder:
                   (contexyt, i) => AddonServiceCard(
@@ -79,7 +80,11 @@ final width = MediaQuery.of(context).size.width;
             ),
             child: Align(
               alignment: Alignment.bottomCenter,
-              child:StepNavigationBar(next: (){   context.push(UserPaths.serviceDetails3);},)
+              child: StepNavigationBar(
+                next: () {
+                  context.push(UserPaths.serviceDetails3);
+                },
+              ),
             ),
           ),
         ],

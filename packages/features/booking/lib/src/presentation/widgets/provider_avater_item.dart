@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 
 class ProviderAvatarItem extends StatelessWidget {
   const ProviderAvatarItem({
+    super.key,
     required this.name,
     required this.rating,
     required this.selected,
@@ -44,17 +45,15 @@ class ProviderAvatarItem extends StatelessWidget {
                         height: UI.spacing.lg,
                         decoration: BoxDecoration(
                           color:
-                              selected
-                                  ? UIColor.softGreen
-                                  : UIColor.background,
+                              selected ? UIColor.softGreen : UIColor.background,
                           shape: BoxShape.circle,
                           boxShadow: UI.shadows.xxs,
-
                         ),
                       ),
                       if (selected)
-                        Positioned(left:2 ,
-                        bottom: 2,
+                        Positioned(
+                          left: 2,
+                          bottom: 2,
                           child: UIImage(
                             Assets.images.checkMark1.path,
                             wigth: UI.sizes.iconMd,

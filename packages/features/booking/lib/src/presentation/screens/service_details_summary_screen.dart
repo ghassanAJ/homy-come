@@ -1,8 +1,7 @@
+import 'package:booking/src/presentation/widgets/price_row_widget.dart';
+import 'package:booking/src/presentation/widgets/warning_section_widget.dart';
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
-import 'package:user/features/booking/presentation/screens/service_details_step3.dart';
-import 'package:user/features/booking/presentation/widgets/price_row_widget.dart';
-import 'package:user/features/booking/presentation/widgets/warning_section_widget.dart';
 
 class ServiceDetailsSummaryScreen extends StatelessWidget {
   const ServiceDetailsSummaryScreen({super.key});
@@ -190,16 +189,12 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
                       PriceRow(title: 'Service Charge', amount: '0'),
                       PriceRow(title: 'Deep Cleaning', amount: '20'),
                       PriceRow(title: 'Fee', amount: '0.3'),
-                      PriceRow(
-                        title: 'Total',
-                        amount: '30.3',
-                        isTotal: true,
-                      ),
+                      PriceRow(title: 'Total', amount: '30.3', isTotal: true),
                       SizedBox(height: UI.spacing.sm),
                     ],
                   ),
                 ),
-           WaringSectionWidget()
+                WaringSectionWidget(),
               ],
             ),
           ),

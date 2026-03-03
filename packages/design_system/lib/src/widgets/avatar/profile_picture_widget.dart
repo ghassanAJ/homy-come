@@ -76,24 +76,12 @@
 //   }
 // }
 
-
-
 import 'dart:io';
 
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
-
-import '../../tokens/colors.dart';
-import '../../ui.dart';
 
 /// Available avatar sizes following the design system.
-enum ProfilePictureSize {
-  xs,
-  sm,
-  md,
-  lg,
-  xl,
-}
+enum ProfilePictureSize { xs, sm, md, lg, xl }
 
 /// Size configuration mapped to design tokens.
 class _ProfilePictureSizeConfig {
@@ -121,7 +109,7 @@ class _ProfilePictureSizeConfig {
 class ProfilePictureWidget extends StatelessWidget {
   const ProfilePictureWidget({
     super.key,
-    this.imageUrl,
+    this.imageUrl, //TODO make this required
     this.initials,
     this.size = ProfilePictureSize.md,
     this.showBorder = false,
@@ -162,8 +150,7 @@ class ProfilePictureWidget extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: backgroundColor ?? UIColor.neutral200,
-        border:_buildBorder(showBorder)
-            
+        border: _buildBorder(showBorder),
       ),
       clipBehavior: Clip.antiAlias,
       child: ClipRRect(
@@ -176,22 +163,14 @@ class ProfilePictureWidget extends StatelessWidget {
       onTap: onTap,
       child: Stack(
         clipBehavior: Clip.none,
-        children: [
-          avatar,
-          if (isOnline) _buildOnlineIndicator(dimension),
-        ],
+        children: [avatar, if (isOnline) _buildOnlineIndicator(dimension)],
       ),
     );
   }
 
-BoxBorder? _buildBorder(bool showBorder){
-  return showBorder
-                ? Border.all(
-                  color: UIColor.surface,
-                  width: 2,
-                )
-                : null;
-}
+  BoxBorder? _buildBorder(bool showBorder) {
+    return showBorder ? Border.all(color: UIColor.surface, width: 2) : null;
+  }
 
   Widget _buildContent(BuildContext context) {
     if (imageUrl != null && imageUrl!.isNotEmpty) {
@@ -215,9 +194,7 @@ BoxBorder? _buildBorder(bool showBorder){
   }
 
   Widget _buildFallback() {
-    return Center(
-      child: UIText.bodySmall('')
-    );
+    return Center(child: UIText.bodySmall(''));
   }
 
   Widget _buildOnlineIndicator(double size) {
@@ -230,10 +207,7 @@ BoxBorder? _buildBorder(bool showBorder){
         decoration: BoxDecoration(
           color: UIColor.success,
           shape: BoxShape.circle,
-          border: Border.all(
-            color: UIColor.surface,
-            width: 2,
-          ),
+          border: Border.all(color: UIColor.surface, width: 2),
         ),
       ),
     );
