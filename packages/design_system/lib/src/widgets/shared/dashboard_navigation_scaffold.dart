@@ -7,11 +7,15 @@ class DashboardNavigationScaffold extends StatelessWidget {
     super.key,
     required this.navigationShell,
     required this.navigationItems,
+    required this.branchPaths,
+    this.hiddenNavigationPaths = const [],
   });
 
   final StatefulNavigationShell navigationShell;
 
   final List<NavigationItem> navigationItems;
+  final List<String> branchPaths;
+  final List<String> hiddenNavigationPaths;
 
   @override
   Widget build(BuildContext context) {
@@ -23,24 +27,66 @@ class DashboardNavigationScaffold extends StatelessWidget {
           ),
         )
         .toList(growable: false);
+    final currentPath = GoRouterState.of(context).matchedLocation;
+    final currentItemIndex = _itemIndexForPath(currentPath);
+    final shouldHideNavigation = _shouldHideNavigation(currentPath);
     return Scaffold(
       backgroundColor: UIColor.background,
       body: navigationShell,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: UiBottomNavigationBar(
-        currentIndex: navigationShell.currentIndex,
-        onTap: (index) => _onTabTapped(index),
-        items: bottomBarItems,
-      ),
+      floatingActionButtonLocation:
+          shouldHideNavigation
+              ? null
+              : FloatingActionButtonLocation.centerDocked,
+      floatingActionButton:
+          shouldHideNavigation
+              ? null
+              : UiBottomNavigationBar(
+                currentIndex: currentItemIndex,
+                onTap: (index) => _onTabTapped(index),
+                items: bottomBarItems,
+              ),
     );
   }
 
-  void _onTabTapped(int index) async {
+  bool _shouldHideNavigation(String path) {
+    return hiddenNavigationPaths.any(
+      (hiddenPath) => path == hiddenPath || path.startsWith('$hiddenPath/'),
+    );
+  }
+
+  int _itemIndexForPath(String path) {
+    final index = navigationItems.indexWhere(
+      (item) => path == item.path || path.startsWith('${item.path}/'),
+    );
+    if (index != -1) return index;
+
+    final currentBranchPath =
+        (navigationShell.currentIndex >= 0 &&
+                navigationShell.currentIndex < branchPaths.length)
+            ? branchPaths[navigationShell.currentIndex]
+            : null;
+    if (currentBranchPath == null) return 0;
+
+    final fallback = navigationItems.indexWhere(
+      (item) => item.path == currentBranchPath,
+    );
+    return fallback == -1 ? 0 : fallback;
+  }
+
+  int _branchIndexForItemIndex(int itemIndex) {
+    if (itemIndex < 0 || itemIndex >= navigationItems.length) return 0;
+    final itemPath = navigationItems[itemIndex].path;
+    final branchIndex = branchPaths.indexOf(itemPath);
+    return branchIndex == -1 ? itemIndex : branchIndex;
+  }
+
+  void _onTabTapped(int index) {
+    final branchIndex = _branchIndexForItemIndex(index);
     // Use goBranch to navigate while preserving state
     // initialLocation: true returns to the initial route of the branch
     navigationShell.goBranch(
-      index,
-      initialLocation: index == navigationShell.currentIndex,
+      branchIndex,
+      initialLocation: branchIndex == navigationShell.currentIndex,
     );
   }
 }

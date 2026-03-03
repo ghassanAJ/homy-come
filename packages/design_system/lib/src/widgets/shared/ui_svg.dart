@@ -10,8 +10,8 @@ class UISvg extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       icon,
-      package: package,
-      colorFilter: ColorFilter.mode(color ?? UIColor.grey, BlendMode.srcIn),
+      colorFilter:
+          color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
     );
   }
 }

@@ -7,20 +7,28 @@ import 'package:util/util.dart';
 
 import 'di_init.dart';
 
+bool _dependenciesInitialized = false;
+
 void initializeDependencies(String env) {
+  if (_dependenciesInitialized) {
+    return;
+  }
+
   diContainer.registerSingleton<String>(env, instanceName: 'env');
 
   initBaseCubit(diContainer, env);
   initApiClient(diContainer, env);
-  initOrder(diContainer, env);
+  initNotifications(diContainer, env);
+
   initAuth(diContainer, env);
-  initBooking(diContainer, env);
 
   _configureAuthInterceptor();
   initMain(diContainer, env);
   diContainer.registerSingleton<CustomRouter>(
     CustomRouter(AppRouter.createUserRouter(diContainer.get<AppCubit>())),
   );
+
+  _dependenciesInitialized = true;
 
   // initAuthentication(diContainer, env);
 }

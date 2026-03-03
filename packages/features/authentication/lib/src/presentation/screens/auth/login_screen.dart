@@ -195,14 +195,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildJoinAsGuestLink(AuthenticationTranslation tr) {
     return Center(
       child: GestureDetector(
-        onTap: () {
-          // TODO: Navigate as guest (e.g. dashboard with limited access)
-          // AuthInternalRouter.of(context).goBack(); or go to dashboard
-        },
+        onTap: () => AuthInternalRouter.of(context).toUserHome(),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // UISvg(Assets.icons.logout),
+            UISvg(Assets.icons.logOut),
             Text(
               tr.login.joinAsGuest,
               style: UI.text.bodySmall.copyWith(

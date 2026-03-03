@@ -237,7 +237,7 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
     if (effectiveLeading == null) return null;
 
     return Padding(
-      padding: EdgeInsets.only(left: UI.spacing.md),
+      padding: EdgeInsetsDirectional.only(start: UI.spacing.md),
       child: effectiveLeading,
     );
   }
@@ -247,7 +247,7 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
     if (actions == null || actions!.isEmpty) return null;
 
     return Padding(
-      padding: EdgeInsets.only(right: UI.spacing.md),
+      padding: EdgeInsetsDirectional.only(end: UI.spacing.md),
       child: Row(mainAxisSize: MainAxisSize.min, children: actions!),
     );
   }

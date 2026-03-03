@@ -1,5 +1,6 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
+import 'package:design_system/gen/assets.gen.dart';
 import 'package:util/util.dart';
 
 class SecurityVerificationScreen extends StatelessWidget {

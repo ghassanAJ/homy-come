@@ -17,6 +17,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Heart.svg
   String get heart => 'packages/design_system/assets/icons/Heart.svg';
 
+  /// File path: assets/icons/Info.svg
+  String get info => 'packages/design_system/assets/icons/Info.svg';
+
   /// File path: assets/icons/Lock.svg
   String get lock => 'packages/design_system/assets/icons/Lock.svg';
 
@@ -44,6 +47,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/arrow-left.svg
   String get arrowLeft => 'packages/design_system/assets/icons/arrow-left.svg';
 
+  /// File path: assets/icons/arrowBottom.svg
+  String get arrowBottom =>
+      'packages/design_system/assets/icons/arrowBottom.svg';
+
   /// File path: assets/icons/calendar.svg
   String get calendar => 'packages/design_system/assets/icons/calendar.svg';
 
@@ -56,8 +63,18 @@ class $AssetsIconsGen {
   /// File path: assets/icons/carema.svg
   String get carema => 'packages/design_system/assets/icons/carema.svg';
 
+  /// File path: assets/icons/carpenter.svg
+  String get carpenter => 'packages/design_system/assets/icons/carpenter.svg';
+
+  /// File path: assets/icons/cleaner.svg
+  String get cleaner => 'packages/design_system/assets/icons/cleaner.svg';
+
   /// File path: assets/icons/close.svg
   String get close => 'packages/design_system/assets/icons/close.svg';
+
+  /// File path: assets/icons/electrician.svg
+  String get electrician =>
+      'packages/design_system/assets/icons/electrician.svg';
 
   /// File path: assets/icons/email.svg
   String get email => 'packages/design_system/assets/icons/email.svg';
@@ -77,6 +94,30 @@ class $AssetsIconsGen {
   /// File path: assets/icons/message.svg
   String get message => 'packages/design_system/assets/icons/message.svg';
 
+  /// File path: assets/icons/nav_category.svg
+  String get navCategory =>
+      'packages/design_system/assets/icons/nav_category.svg';
+
+  /// File path: assets/icons/nav_home.svg
+  String get navHome => 'packages/design_system/assets/icons/nav_home.svg';
+
+  /// File path: assets/icons/nav_orders.svg
+  String get navOrders => 'packages/design_system/assets/icons/nav_orders.svg';
+
+  /// File path: assets/icons/nav_profile.svg
+  String get navProfile =>
+      'packages/design_system/assets/icons/nav_profile.svg';
+
+  /// File path: assets/icons/nav_search.svg
+  String get navSearch => 'packages/design_system/assets/icons/nav_search.svg';
+
+  /// File path: assets/icons/painter.svg
+  String get painter => 'packages/design_system/assets/icons/painter.svg';
+
+  /// File path: assets/icons/paintingService.svg
+  String get paintingService =>
+      'packages/design_system/assets/icons/paintingService.svg';
+
   /// File path: assets/icons/phone.svg
   String get phone => 'packages/design_system/assets/icons/phone.svg';
 
@@ -84,8 +125,15 @@ class $AssetsIconsGen {
   String get photoCamera =>
       'packages/design_system/assets/icons/photoCamera.svg';
 
+  /// File path: assets/icons/plumber.svg
+  String get plumber => 'packages/design_system/assets/icons/plumber.svg';
+
   /// File path: assets/icons/right.svg
   String get right => 'packages/design_system/assets/icons/right.svg';
+
+  /// File path: assets/icons/shiftingService.svg
+  String get shiftingService =>
+      'packages/design_system/assets/icons/shiftingService.svg';
 
   /// File path: assets/icons/smileyXEyes.svg
   String get smileyXEyes =>
@@ -93,6 +141,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/star.svg
   String get star => 'packages/design_system/assets/icons/star.svg';
+
+  /// File path: assets/icons/starBlue.svg
+  String get starBlue => 'packages/design_system/assets/icons/starBlue.svg';
 
   /// File path: assets/icons/successful.svg
   String get successful => 'packages/design_system/assets/icons/successful.svg';
@@ -103,12 +154,17 @@ class $AssetsIconsGen {
   /// File path: assets/icons/user.svg
   String get user => 'packages/design_system/assets/icons/user.svg';
 
+  /// File path: assets/icons/vehicleService.svg
+  String get vehicleService =>
+      'packages/design_system/assets/icons/vehicleService.svg';
+
   /// File path: assets/icons/warning.svg
   String get warning => 'packages/design_system/assets/icons/warning.svg';
 
   /// List of all assets
   List<String> get values => [
     heart,
+    info,
     lock,
     notification,
     profile,
@@ -117,31 +173,58 @@ class $AssetsIconsGen {
     apple,
     arrowRight,
     arrowLeft,
+    arrowBottom,
     calendar,
     call,
     camera,
     carema,
+    carpenter,
+    cleaner,
     close,
+    electrician,
     email,
     gallery,
     google,
     location,
     logOut,
     message,
+    navCategory,
+    navHome,
+    navOrders,
+    navProfile,
+    navSearch,
+    painter,
+    paintingService,
     phone,
     photoCamera,
+    plumber,
     right,
+    shiftingService,
     smileyXEyes,
     star,
+    starBlue,
     successful,
     trash,
     user,
+    vehicleService,
     warning,
   ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/check-mark 1.png
+  AssetGenImage get checkMark1 =>
+      const AssetGenImage('assets/images/check-mark 1.png');
+
+  /// File path: assets/images/location.png
+  AssetGenImage get location =>
+      const AssetGenImage('assets/images/location.png');
+
+  /// File path: assets/images/notification.png
+  AssetGenImage get notification =>
+      const AssetGenImage('assets/images/notification.png');
 
   /// File path: assets/images/onboarding-1.png
   AssetGenImage get onboarding1 =>
@@ -159,12 +242,19 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding =>
       const AssetGenImage('assets/images/onboarding.png');
 
+  /// File path: assets/images/search.png
+  AssetGenImage get search => const AssetGenImage('assets/images/search.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
+    checkMark1,
+    location,
+    notification,
     onboarding1,
     onboarding2,
     onboarding3,
     onboarding,
+    search,
   ];
 }
 

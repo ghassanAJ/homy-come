@@ -1,7 +1,6 @@
 import '../../../design_system.dart';
 import '../../../gen/assets.gen.dart';
 import 'delete_confirmation_dialog.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class DialogsManager {
   static Future<T?> showAnimatedDialog<T>({
@@ -102,10 +101,7 @@ class DialogsManager {
                   child: SizedBox(
                     width: 64,
                     height: 64,
-                    child: SvgPicture.asset(
-                      Assets.icons.successful,
-                      package: 'design_system',
-                    ),
+                    child: UISvg(Assets.icons.successful),
                   ),
                 ),
                 SizedBox(height: UI.spacing.lg),

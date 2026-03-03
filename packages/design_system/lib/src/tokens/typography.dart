@@ -77,6 +77,14 @@ class UITypography {
     letterSpacing: 0,
   );
 
+    TextStyle get h6 => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    height: 1.4,
+    letterSpacing: 0,
+  );
+
   // ============================================================================
   // BODY TEXT
   // ============================================================================
@@ -97,6 +105,16 @@ class UITypography {
     decoration: TextDecoration.none
   );
 
+  TextStyle get bodyMediumRoboto => const TextStyle(
+    fontFamily: UIFontFamily.roboto,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    height: 1.5,
+    letterSpacing: 0,
+    decoration: TextDecoration.none
+  );
+
+
   TextStyle get bodyLarge => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 18,
@@ -113,7 +131,7 @@ class UITypography {
   ///
   /// Usage: Secondary text, field labels, supporting content
   TextStyle get bodySmall => const TextStyle(
-    fontFamily: UIFonts.montserrat,
+    fontFamily: UIFontFamily.montserrat,
     fontSize: 14,
     fontWeight: FontWeight.w400,
     height: 1.43,
@@ -152,8 +170,23 @@ class UITypography {
   ///
   /// Usage: Small body text, metadata
   TextStyle get bodyXSmall => const TextStyle(
-    fontFamily: UIFonts.montserrat,
+    fontFamily: UIFontFamily.montserrat,
     fontSize: 12,
+    fontWeight: FontWeight.w400,
+    height: 1.5,
+    letterSpacing: 0,
+  );
+
+  /// Body XXSmall - Regular
+  ///
+  /// Weight: 400 (Regular)
+  /// Size: 10px
+  /// Line height: 150% (1.5)
+  ///
+  /// Usage: Extra small body text, compact metadata
+  TextStyle get bodyXXSmall => const TextStyle(
+    fontFamily: UIFontFamily.montserrat,
+    fontSize: 10,
     fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0,
@@ -306,7 +339,7 @@ class UITypography {
     letterSpacing: 0,
   );
 
-  TextStyle get black714 => const TextStyle(
+  TextStyle get bodyBold => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 14,
     fontWeight: FontWeight.w700,

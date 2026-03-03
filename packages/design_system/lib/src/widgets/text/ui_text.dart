@@ -1,3 +1,4 @@
+import 'package:design_system/src/tokens/UIFonts.dart';
 import 'package:flutter/material.dart';
 
 import '../../tokens/colors.dart';
@@ -78,7 +79,6 @@ class UIText extends StatelessWidget {
     super.key,
   }) : style = _typography.h4;
 
-
   UIText.h5(
     this.data, {
     this.color,
@@ -89,6 +89,21 @@ class UIText extends StatelessWidget {
     super.key,
   }) : style = _typography.h5;
 
+  UIText.h6(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    FontWeight? fontWeight,
+    double? fontSize,
+
+    super.key,
+  }) : style = _typography.h6.copyWith(
+         fontWeight: fontWeight,
+         fontSize: fontSize,
+       );
 
   // ===========================================================================
   // BODY TEXT
@@ -106,11 +121,29 @@ class UIText extends StatelessWidget {
     this.softWrap,
     FontWeight? fontWeight,
     double? fontSize,
+    String? fontFamily,
+    super.key,
+  }) : style = _typography.bodyMedium.copyWith(
+         fontWeight: fontWeight,
+         fontSize: fontSize,
+         fontFamily: fontFamily,
+       );
+
+  UIText.bodyMediumRoboto(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    FontWeight? fontWeight,
+    double? fontSize,
     super.key,
   }) : style = _typography.bodyMedium.copyWith(
          fontWeight: fontWeight,
          fontSize: fontSize,
        );
+
   UIText.bodyLarge(
     this.data, {
     this.color,
@@ -118,8 +151,9 @@ class UIText extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.softWrap,
+    FontWeight? fontWeight,
     super.key,
-  }) : style = _typography.bodyLarge;
+  }) : style = _typography.bodyLarge.copyWith(fontWeight: fontWeight);
 
   /// Body Small - Secondary text, field labels, supporting content
   ///
@@ -133,10 +167,12 @@ class UIText extends StatelessWidget {
     this.softWrap,
     FontWeight? fontWeight,
     double? fontSize,
+    String? fontFamily,
     super.key,
   }) : style = _typography.bodySmall.copyWith(
          fontWeight: fontWeight,
          fontSize: fontSize,
+         fontFamily: fontFamily,
        );
 
   UIText.bodySmallBold(
@@ -161,8 +197,32 @@ class UIText extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.softWrap,
+    FontWeight? fontWeight,
+    String? fontFamily,
+
     super.key,
-  }) : style = _typography.bodyXSmall;
+  }) : style = _typography.bodyXSmall.copyWith(
+         fontWeight: fontWeight,
+         fontFamily: fontFamily,
+       );
+
+  /// Body XXSmall - Extra small body text, compact metadata
+  ///
+  /// Size: 10px, Weight: 400 (Regular)
+  UIText.bodyXXSmall(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    FontWeight? fontWeight,
+    String? fontFamily,
+    super.key,
+  }) : style = _typography.bodyXXSmall.copyWith(
+         fontWeight: fontWeight,
+         fontFamily: fontFamily,
+       );
 
   UIText.headerBody(
     this.data, {
@@ -222,7 +282,6 @@ class UIText extends StatelessWidget {
          fontSize: fontSize,
        );
 
-
   UIText.buttonTextsm(
     this.data, {
     this.color,
@@ -238,7 +297,7 @@ class UIText extends StatelessWidget {
          fontSize: fontSize,
        );
 
-    UIText.buttonTextXsm(
+  UIText.buttonTextXsm(
     this.data, {
     this.color,
     this.textAlign,
@@ -251,7 +310,8 @@ class UIText extends StatelessWidget {
   }) : style = _typography.buttonTextXSm.copyWith(
          fontWeight: fontWeight,
          fontSize: fontSize,
-       );    
+       );
+
   /// Button with Icon - Buttons with icons
   ///
   /// Size: 16px, Weight: 600 (SemiBold)
@@ -264,6 +324,16 @@ class UIText extends StatelessWidget {
     this.softWrap,
     super.key,
   }) : style = _typography.buttonWithIcon;
+
+  UIText.bodyBold(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    super.key,
+  }) : style = _typography.bodyBold;
 
   // ===========================================================================
   // INPUT FIELD TEXT

@@ -1,5 +1,12 @@
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
+import 'package:user/features/booking/presentation/widgets/cancel_lation_sheet_content.dart';
+import 'package:user/features/booking/presentation/widgets/date_item.dart';
+import 'package:user/features/booking/presentation/widgets/frequenct_change_sheet_context.dart';
+import 'package:user/features/booking/presentation/widgets/provider_avater_item.dart';
+import 'package:user/features/booking/presentation/widgets/step_navigation_bar.dart';
+import 'package:user/features/booking/presentation/widgets/time_slot_chip.dart';
+import 'package:user/features/booking/presentation/widgets/warning_section_widget.dart';
 import 'package:user/navigation/route.dart';
 
 class ServiceDetailsStep3 extends StatefulWidget {
@@ -45,7 +52,7 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
       maxHeightFactor: 0.75,
       backgroundColor: UIColor.neutral100,
       contentPadding: EdgeInsets.zero,
-      content: const _FrequencyChangeSheetContent(),
+      content: const FrequencyChangeSheetContent(),
     );
   }
 
@@ -56,7 +63,7 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
       maxHeightFactor: 0.75,
       backgroundColor: UIColor.neutral100,
       contentPadding: EdgeInsets.zero,
-      content: const _CancellationSheetContent(),
+      content: const CancellationSheetContent(),
     );
   }
 
@@ -69,8 +76,8 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
       appBar: UIAppBar(
         titleWidget: Column(
           children: [
-            UIText.h3('Date & time', color: UIColor.balck),
-            UIText.bodySmall('Step 3 to 4', color: UIColor.textSecondary),
+            UIText.h4('Date & time', color: UIColor.balck),
+            UIText.bodyMedium('Step 3 to 4', color: UIColor.textSecondary),
           ],
         ),
         leading: GestureDetector(
@@ -84,168 +91,172 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(
-              UI.spacing.md,
-              topContentPadding,
-              UI.spacing.md,
-              145,
-            ),
+            padding: EdgeInsets.fromLTRB(0, 0, 0, UI.sizes.bottomPadding),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 120,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _providers.length,
-                    separatorBuilder: (_, __) => SizedBox(width: UI.spacing.md),
-                    itemBuilder: (context, index) {
-                      final provider = _providers[index];
-                      final selected = index == _selectedProvider;
-                      return _ProviderAvatarItem(
-                        name: provider.name,
-                        rating: provider.rating,
-                        selected: selected,
-                        onTap: () {
-                          setState(() {
-                            _selectedProvider = index;
-                          });
-                        },
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: UI.spacing.sm),
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(UI.spacing.md),
-                  decoration: BoxDecoration(
-                    color: UIColor.pink.withValues(alpha: .15),
-                    borderRadius: BorderRadius.circular(UI.radius.md),
-                    border: Border.all(
-                      color: UIColor.primary.withValues(alpha: .35),
-                    ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    UI.spacing.md,
+                    topContentPadding,
+                    UI.spacing.md,
+                    0,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: UIText.h3('Frequency', color: UIColor.balck),
-                          ),
-                          GestureDetector(
-                            onTap: _showFrequencyBottomSheet,
-                            child: UIText.bodyMedium(
-                              'Change',
-                              color: UIColor.babyBlue,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
+                      SizedBox(
+                        height: 145,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: _providers.length,
+                          separatorBuilder:
+                              (_, __) => SizedBox(width: UI.spacing.md),
+                          itemBuilder: (context, index) {
+                            final provider = _providers[index];
+                            final selected = index == _selectedProvider;
+                            return ProviderAvatarItem(
+                              name: provider.name,
+                              rating: provider.rating,
+                              selected: selected,
+                              onTap: () {
+                                setState(() {
+                                  _selectedProvider = index;
+                                });
+                              },
+                            );
+                          },
+                        ),
                       ),
                       SizedBox(height: UI.spacing.sm),
                       Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: UI.spacing.md,
-                          vertical: UI.spacing.xs,
-                        ),
+                        width: double.infinity,
+                        padding: EdgeInsets.all(UI.spacing.md),
                         decoration: BoxDecoration(
-                          color: UIColor.pink,
-                          borderRadius: BorderRadius.circular(12),
+                          color: UIColor.pink.withValues(alpha: .15),
+                          borderRadius: BorderRadius.circular(UI.radius.md),
+                          border: Border.all(
+                            color: UIColor.primary.withValues(alpha: .35),
+                          ),
                         ),
-                        child: UIText.bodyMedium(
-                          'Repeats Bi-week',
-                          color: UIColor.background,
-                          fontWeight: FontWeight.w700,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: UIText.h6(
+                                    'Frequency',
+                                    color: UIColor.balck,
+                                  ),
+                                ),
+                                GestureDetector(
+                                  onTap: _showFrequencyBottomSheet,
+                                  child: Text(
+                                    'Change',
+                                    style: UI.text.bodyMedium.copyWith(
+                                      color: UIColor.babyBlue,
+                                      fontWeight: FontWeight.w500,
+                                      decoration: TextDecoration.underline,
+                                      decorationColor: UIColor.babyBlue,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: UI.spacing.sm),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: UI.spacing.md,
+                                vertical: UI.spacing.xs,
+                              ),
+                              decoration: BoxDecoration(
+                                color: UIColor.pink,
+                                borderRadius: BorderRadius.circular(
+                                  UI.radius.md,
+                                ),
+                              ),
+                              child: UIText.bodyMedium(
+                                'Repeats Bi-week',
+                                color: UIColor.background,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+                      SizedBox(height: UI.spacing.lg),
+                      UIText.h6(
+                        'Select date & time please',
+                        color: UIColor.balck,
+                      ),
+                      SizedBox(height: UI.spacing.sm),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          UIText.bodyMedium(
+                            'September 2025',
+                            color: UIColor.balck,
+                          ),
+                          SizedBox(width: UI.spacing.xs),
+                          UISvg(Assets.icons.arrowBottom, color: UIColor.black),
+                        ],
+                      ),
+                      SizedBox(height: UI.spacing.md),
+                      SizedBox(
+                        height: UI.sizes.avatarxL,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: _days.length,
+                          separatorBuilder:
+                              (_, __) => SizedBox(width: UI.spacing.xs),
+                          itemBuilder: (context, index) {
+                            final day = _days[index];
+                            final selected = index == _selectedDay;
+                            return DateItemWidget(
+                              day: day.day,
+                              weekDay: day.weekDay,
+                              selected: selected,
+                              onTap: () {
+                                setState(() {
+                                  _selectedDay = index;
+                                });
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(height: UI.spacing.md),
+                      UIText.h6(
+                        'Choose a time from the available options.',
+                        fontSize: 14,
+                        color: UIColor.balck,
+                      ),
+                      SizedBox(height: UI.spacing.sm),
+                      Wrap(
+                        spacing: UI.spacing.xs,
+                        runSpacing: UI.spacing.sm,
+                        children: List.generate(_times.length, (index) {
+                          final selected = index == _selectedTime;
+                          return TimeSlotChip(
+                            label: _times[index],
+                            selected: selected,
+                            enabled: index == 0,
+                            onTap: () {
+                              if (index != 0) return;
+                              setState(() {
+                                _selectedTime = index;
+                              });
+                            },
+                          );
+                        }),
+                      ),
+                      SizedBox(height: UI.spacing.lg),
                     ],
                   ),
                 ),
-                SizedBox(height: UI.spacing.lg),
-                UIText.h3('Select date & time please', color: UIColor.balck),
-                SizedBox(height: UI.spacing.sm),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    UIText.h3('September 2025', color: UIColor.balck),
-                    SizedBox(width: UI.spacing.xs),
-                    Icon(Icons.keyboard_arrow_down, color: UIColor.balck),
-                  ],
-                ),
-                SizedBox(height: UI.spacing.md),
-                SizedBox(
-                  height: 92,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _days.length,
-                    separatorBuilder: (_, __) => SizedBox(width: UI.spacing.xs),
-                    itemBuilder: (context, index) {
-                      final day = _days[index];
-                      final selected = index == _selectedDay;
-                      return _DateItem(
-                        day: day.day,
-                        weekDay: day.weekDay,
-                        selected: selected,
-                        onTap: () {
-                          setState(() {
-                            _selectedDay = index;
-                          });
-                        },
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: UI.spacing.md),
-                UIText.h3(
-                  'Choose a time from the available options.',
-                  color: UIColor.balck,
-                ),
-                SizedBox(height: UI.spacing.sm),
-                Wrap(
-                  spacing: UI.spacing.xs,
-                  runSpacing: UI.spacing.xs,
-                  children: List.generate(_times.length, (index) {
-                    final selected = index == _selectedTime;
-                    return _TimeSlotChip(
-                      label: _times[index],
-                      selected: selected,
-                      enabled: index == 0,
-                      onTap: () {
-                        if (index != 0) return;
-                        setState(() {
-                          _selectedTime = index;
-                        });
-                      },
-                    );
-                  }),
-                ),
-                SizedBox(height: UI.spacing.lg),
                 GestureDetector(
                   onTap: _showCancellationBottomSheet,
-                  child: Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(UI.spacing.md),
-                    color: UIColor.neutral100,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.info_outline_rounded,
-                          size: UI.sizes.iconSm,
-                          color: UIColor.neutral500,
-                        ),
-                        SizedBox(width: UI.spacing.xs),
-                        Expanded(
-                          child: UIText.bodyMedium(
-                            'You can cancel your order for free if the cancellation is made 6 hours before the scheduled start time of the booking.',
-                            color: UIColor.neutral500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: WaringSectionWidget(),
                 ),
               ],
             ),
@@ -302,198 +313,6 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _FrequencyChangeSheetContent extends StatelessWidget {
-  const _FrequencyChangeSheetContent();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 520,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: UIColor.neutral100,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(UI.radius.xl)),
-      ),
-    );
-  }
-}
-
-class _CancellationSheetContent extends StatelessWidget {
-  const _CancellationSheetContent();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 520,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: UIColor.neutral100,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(UI.radius.xl)),
-      ),
-    );
-  }
-}
-
-class _ProviderAvatarItem extends StatelessWidget {
-  const _ProviderAvatarItem({
-    required this.name,
-    required this.rating,
-    required this.selected,
-    required this.onTap,
-  });
-
-  final String name;
-  final String rating;
-  final bool selected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: SizedBox(
-        width: 94,
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: 72,
-                  width: 72,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: UIColor.pink.withValues(alpha: .35),
-                  ),
-                  child: Icon(Icons.person, color: UIColor.neutral500),
-                ),
-                Positioned(
-                  right: 2,
-                  bottom: 2,
-                  child: Container(
-                    width: 16,
-                    height: 16,
-                    decoration: BoxDecoration(
-                      color:
-                          selected ? UIColor.successBright : UIColor.background,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: UIColor.background, width: 2),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: UI.spacing.xxs),
-            UIText.bodySmall(
-              name,
-              color: UIColor.balck,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.star, size: 12, color: UIColor.warning),
-                SizedBox(width: 2),
-                UIText.bodySmall(rating, color: UIColor.warning),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _DateItem extends StatelessWidget {
-  const _DateItem({
-    required this.day,
-    required this.weekDay,
-    required this.selected,
-    required this.onTap,
-  });
-
-  final String day;
-  final String weekDay;
-  final bool selected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: SizedBox(
-        width: 56,
-        child: Column(
-          children: [
-            Container(
-              width: 56,
-              height: 56,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: selected ? UIColor.softGreen : UIColor.background,
-                border: Border.all(
-                  color: selected ? UIColor.softGreen : UIColor.neutral200,
-                ),
-              ),
-              alignment: Alignment.center,
-              child: UIText.h3(
-                day,
-                color: selected ? UIColor.background : UIColor.balck,
-              ),
-            ),
-            SizedBox(height: UI.spacing.xxs),
-            UIText.bodyMedium(weekDay, color: UIColor.balck),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _TimeSlotChip extends StatelessWidget {
-  const _TimeSlotChip({
-    required this.label,
-    required this.selected,
-    required this.enabled,
-    required this.onTap,
-  });
-
-  final String label;
-  final bool selected;
-  final bool enabled;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: enabled ? onTap : null,
-      child: Container(
-        width: 110,
-        padding: EdgeInsets.symmetric(vertical: UI.spacing.xs),
-        decoration: BoxDecoration(
-          color:
-              selected
-                  ? UIColor.pink.withValues(alpha: .22)
-                  : UIColor.background,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-            color:
-                selected
-                    ? UIColor.primary.withValues(alpha: .5)
-                    : UIColor.neutral200,
-          ),
-        ),
-        alignment: Alignment.center,
-        child: UIText.bodyMedium(
-          label,
-          color: enabled ? UIColor.neutral500 : UIColor.neutral300,
-          fontWeight: FontWeight.w600,
-        ),
       ),
     );
   }

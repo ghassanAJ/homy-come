@@ -83,6 +83,32 @@ class UIFontLoader {
         'DMSans-Black.ttf',
       ],
     },
+    'Lexend': {
+      'basePath': 'Lexend',
+      'variants': [
+        'Lexend-ExtraLight.ttf',
+        'Lexend-Light.ttf',
+        'Lexend-Regular.ttf',
+        'Lexend-Medium.ttf',
+        'Lexend-SemiBold.ttf',
+        'Lexend-Bold.ttf',
+        'Lexend-ExtraBold.ttf',
+        'Lexend-Black.ttf',
+      ],
+    },
+    'Poppins': {
+      'basePath': 'Poppins',
+      'variants': [
+        'Poppins-ExtraLight.ttf',
+        'Poppins-Light.ttf',
+        'Poppins-Regular.ttf',
+        'Poppins-Medium.ttf',
+        'Poppins-SemiBold.ttf',
+        'Poppins-Bold.ttf',
+        'Poppins-ExtraBold.ttf',
+        'Poppins-Black.ttf',
+      ],
+    },
     // 'IconsaxPlusBold': {
     //   'packagePath': 'packages/iconsax_plus/fonts',
     //   'variants': ['IconsaxPlusBold.ttf'],

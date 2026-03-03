@@ -26,6 +26,12 @@ class ProviderAppRouteConfig {
         return DashboardNavigationScaffold(
           navigationShell: navigationShell,
           navigationItems: ProviderNavigationConfig.items,
+          branchPaths: const [
+            ProviderPaths.home,
+            ProviderPaths.services,
+            ProviderPaths.bookings,
+            ProviderPaths.profile,
+          ],
         );
       },
       branches: [
