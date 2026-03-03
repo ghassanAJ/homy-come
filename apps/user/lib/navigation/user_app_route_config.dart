@@ -2,8 +2,8 @@ import 'package:booking/booking.dart';
 import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:user/features/home/presentation/screens/categories_screen.dart';
-import 'package:user/features/home/presentation/screens/search_screen.dart';
 import 'package:user/features/home/presentation/screens/services_screen.dart';
+import 'package:user/features/home/presentation/screens/stories_screen.dart';
 import 'package:user/features/home/presentation/screens/user_home_screen.dart';
 import 'package:user/localization/files/userTranslation.i69n.dart';
 import 'package:user/localization/user_localization_scope.dart';
@@ -38,6 +38,21 @@ class UserAppRouteConfig {
         path: UserPaths.serviceDetailsSummary,
         builder: (context, state) => const ServiceDetailsSummaryScreen(),
       ),
+      GoRoute(
+        path: UserPaths.storiesScreen,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          final pageIndex = data['pageIndex'] as int;
+          final storyItems = data['storyItems'] as List<StoryPageData>;
+          return StoriesScreen(pageIndex: pageIndex, pages: storyItems);
+        },
+      ),
+      GoRoute(
+        path: UserPaths.search,
+        builder:
+            (context, state) =>
+                const UIScaffold(body: Center(child: Text('Search'))),
+      ),
     ];
   }
 
@@ -55,18 +70,6 @@ class UserAppRouteConfig {
               return DashboardNavigationScaffold(
                 navigationShell: navigationShell,
                 navigationItems: UserNavigationConfig.items(tr),
-                branchPaths: const [
-                  UserPaths.home,
-                  UserPaths.search,
-                  UserPaths.orders,
-                  UserPaths.category,
-                  UserPaths.profile,
-                ],
-                hiddenNavigationPaths: const [
-                  UserPaths.search,
-                  UserPaths.category,
-                  UserPaths.services,
-                ],
               );
             },
           ),
@@ -76,26 +79,6 @@ class UserAppRouteConfig {
       },
 
       branches: [
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: UserPaths.home,
-              builder: (context, state) => const UserHomeScreen(),
-            ),
-            GoRoute(
-              path: UserPaths.services,
-              builder: (context, state) => const ServicesScreen(),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: UserPaths.search,
-              builder: (context, state) => const SearchScreen(),
-            ),
-          ],
-        ),
         StatefulShellBranch(
           routes: [
             GoRoute(
@@ -111,6 +94,19 @@ class UserAppRouteConfig {
             ),
           ],
         ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: UserPaths.home,
+              builder: (context, state) => const UserHomeScreen(),
+            ),
+            GoRoute(
+              path: UserPaths.services,
+              builder: (context, state) => const ServicesScreen(),
+            ),
+          ],
+        ),
+
         StatefulShellBranch(
           routes: [
             GoRoute(

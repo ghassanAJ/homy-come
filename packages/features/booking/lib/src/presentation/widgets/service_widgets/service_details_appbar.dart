@@ -125,12 +125,6 @@ class ServiceDetailsAppBar extends SliverAppBar {
         WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
           onCollapsed(collapsedHight != top);
         });
-        // log('collapsed: $collapsed');
-        // log('currentHeight: $currentHeight');
-        // log('minHeight: $minHeight');
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          onCollapsed(collapsedHight != top);
-        });
 
         return FlexibleSpaceBar(
           collapseMode: CollapseMode.pin,

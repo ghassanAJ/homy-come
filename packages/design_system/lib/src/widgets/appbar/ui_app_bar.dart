@@ -94,7 +94,7 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingWidth,
     this.automaticallyImplyLeading = true,
     this.middleSpacing,
-
+    this.withBackButton = true,
     this.showBottomDivider,
     this.actionsFactory = const DefaultUIAppBarActions(),
   }) : assert(
@@ -107,6 +107,7 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   /// The title text to display in the AppBar.
   final String? title;
+  final bool withBackButton;
 
   /// A custom widget to display as the title instead of [title].
   final Widget? titleWidget;
@@ -236,10 +237,12 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     if (effectiveLeading == null) return null;
 
-    return Padding(
-      padding: EdgeInsetsDirectional.only(start: UI.spacing.md),
-      child: effectiveLeading,
-    );
+    return withBackButton
+        ? Padding(
+          padding: EdgeInsetsDirectional.only(start: UI.spacing.md),
+          child: effectiveLeading,
+        )
+        : null;
   }
 
   /// Builds the trailing actions row.

@@ -29,16 +29,18 @@ class HomeSection extends StatelessWidget {
     final hp = horizontalPadding ?? UI.padding.startLg;
     final tb = titleBottomSpacing ?? UI.spacing.sm;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (sectionTopSpacing != null) SizedBox(height: sectionTopSpacing),
-        Padding(padding: hp, child: _buildHeader()),
-        SizedBox(height: tb),
-        child,
-        if (sectionBottomSpacing != null)
-          SizedBox(height: sectionBottomSpacing),
-      ],
+    return SliverToBoxAdapter(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (sectionTopSpacing != null) SizedBox(height: sectionTopSpacing),
+          Padding(padding: hp, child: _buildHeader()),
+          SizedBox(height: tb),
+          child,
+          if (sectionBottomSpacing != null)
+            SizedBox(height: sectionBottomSpacing),
+        ],
+      ),
     );
   }
 

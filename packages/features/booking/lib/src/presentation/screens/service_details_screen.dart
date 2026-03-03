@@ -14,13 +14,14 @@ class ServiceDetailsScreen extends StatefulWidget {
 
 class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
     with SingleTickerProviderStateMixin {
-  bool isCollapsed = false;
   late AutoScrollController scrollController;
   late TabController tabController;
 
+  bool isCollapsed = false;
   final double expandedHeight = 300.0;
-  final PageData data = ExampleData.data;
   final double collapsedHeight = kToolbarHeight;
+
+  final PageData data = ExampleData.data;
 
   final listViewKey = RectGetter.createGlobalKey();
   Map<int, dynamic> itemKeys = {};
@@ -155,3 +156,92 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
         .then((value) => pauseRectGetterIndex = false);
   }
 }
+
+
+
+// class UserHomeAppBar extends StatelessWidget {
+//   const UserHomeAppBar({
+//     super.key,
+//     required this.constraints,
+//     required this.scrollController,
+//   });
+
+//   final BoxConstraints constraints;
+//   final ScrollController scrollController;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final currentUser = diContainer.get<AppCubit>().state.user;
+//     final tabBarHeight = _getTabBarHeight(context);
+
+//     return SliverAppBar(
+//       backgroundColor: UIColor.white,
+//       elevation: 0,
+//       clipBehavior: Clip.none,
+//       floating: false,
+//       snap: false,
+//       pinned: true,
+//       expandedHeight: UI.sizes.appBarHeight, // AppBar height + tab bar height
+//       // title: AnimatedBuilder(
+//       //   animation: scrollController,
+//       //   builder: (context, child) {
+//       //     // Calculate collapse ratio (0 = expanded, 1 = collapsed)
+//       //     final scrollOffset =
+//       //         scrollController.hasClients ? scrollController.offset : 0.0;
+//       //     final collapseRatio = (scrollOffset / tabBarHeight).clamp(0.0, 1.0);
+
+//       //     return _buildAnimatedCollapsedTitle(
+//       //       context,
+//       //       currentUser,
+//       //       collapseRatio,
+//       //     );
+//       //   },
+//       // ),
+//       flexibleSpace: FlexibleSpaceBar(
+//         background: SafeArea(
+//           child: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             mainAxisAlignment: MainAxisAlignment.end,
+//             children: [
+//               // const SizedBox(height: 56), // AppBar height
+//               HomeHeader(),
+//               // Row(
+//               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               //   children: [
+//               //     Padding(
+//               //       padding: const EdgeInsetsDirectional.only(start: 32),
+//               //       child: Align(
+//               //         alignment: Alignment.centerLeft,
+//               //         child: UIText.h3(
+//               //           "Hi ${currentUser?.firstName ?? ''}",
+//               //           color: UIColor.primaryDark,
+//               //         ),
+//               //       ),
+//               //     ),
+//               //     Padding(
+//               //       padding: const EdgeInsetsDirectional.only(end: 16),
+//               //       child: IconButton(
+//               //         padding: EdgeInsets.zero,
+//               //         icon: UISvg(Assets.icons.notification),
+//               //         onPressed: () {},
+//               //       ),
+//               //     ),
+//               //     //  const SizedBox(width: 12),
+//               //   ],
+//               // ),
+//               // Expanded(child: ChildrenTabBar()),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+  
+
+//   double _getTabBarHeight(BuildContext context) {
+//     return constraints.maxWidth > 500
+//         ? MediaQuery.sizeOf(context).height * 0.35
+//         : MediaQuery.sizeOf(context).height * 0.08;
+//   }
+// }

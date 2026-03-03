@@ -28,33 +28,24 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         diContainer.get<HomeRepository>().getHomeContent().categories;
     final bottomSafeArea = MediaQuery.of(context).padding.bottom;
 
-    return Scaffold(
-      backgroundColor: UIColor.background,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: EdgeInsetsDirectional.symmetric(horizontal: UI.spacing.xl),
-        child: SizedBox(
-          width: MediaQuery.sizeOf(context).width,
-          child: UIButton.primary(label: 'Apply', expanded: true),
-        ),
-      ),
-      body: UIEllipseBackground(
-        child: Column(
-          children: [
-            SectionHeaderAppBar(
-              title: context.loc<UserTranslation>().navigation.category,
+    return UIScaffold(
+      withBackgroundGradient: false,
+      withBackButton: false,
+      body: Column(
+        children: [
+          SectionHeaderAppBar(
+            title: context.loc<UserTranslation>().navigation.category,
+          ),
+          SizedBox(height: UI.spacing.xs),
+          Divider(height: 1, thickness: 1, color: UIColor.neutral100),
+          Expanded(
+            child: CategoriesScrollViewContent(
+              searchController: _searchController,
+              categories: categories,
+              bottomSafeArea: bottomSafeArea,
             ),
-            SizedBox(height: UI.spacing.xs),
-            Divider(height: 1, thickness: 1, color: UIColor.neutral100),
-            Expanded(
-              child: CategoriesScrollViewContent(
-                searchController: _searchController,
-                categories: categories,
-                bottomSafeArea: bottomSafeArea,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

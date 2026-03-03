@@ -27,7 +27,19 @@ class UINetworkIamge extends StatelessWidget {
       width: width,
       height: height,
       fit: fit,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+        return Center(child: _loadingBuilder());
+      },
       errorBuilder: (_, __, ___) => placeholder ?? _placeholder(),
+    );
+  }
+
+  Widget _loadingBuilder() {
+    return Container(
+      color: UIColor.neutral100,
+      alignment: Alignment.center,
+      width: double.infinity,
     );
   }
 
