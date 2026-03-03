@@ -55,13 +55,9 @@ class _NotificationsScreenContent extends StatelessWidget {
                   );
                 }
 
-                final sortedNotifications = [...notifications]..sort((a, b) {
-                  final aDate =
-                      a.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0);
-                  final bDate =
-                      b.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0);
-                  return bDate.compareTo(aDate);
-                });
+                final sortedNotifications = _sortNotificationsByDateDesc(
+                  notifications,
+                );
 
                 final grouped = DateGroupingHelper.groupByDate(
                   sortedNotifications,
@@ -89,6 +85,16 @@ class _NotificationsScreenContent extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<NotificationItemModel> _sortNotificationsByDateDesc(
+    List<NotificationItemModel> notifications,
+  ) {
+    return [...notifications]..sort((a, b) {
+      final aDate = a.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+      final bDate = b.createdAt ?? DateTime.fromMillisecondsSinceEpoch(0);
+      return bDate.compareTo(aDate);
+    });
   }
 
   List<NotificationSection> _buildSections(

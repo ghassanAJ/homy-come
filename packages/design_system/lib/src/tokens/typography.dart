@@ -106,7 +106,7 @@ class UITypography {
   );
 
   TextStyle get bodyMediumRoboto => const TextStyle(
-    fontFamily: UIFonts.roboto,
+    fontFamily: UIFontFamily.roboto,
     fontSize: 16,
     fontWeight: FontWeight.w400,
     height: 1.5,
@@ -131,7 +131,7 @@ class UITypography {
   ///
   /// Usage: Secondary text, field labels, supporting content
   TextStyle get bodySmall => const TextStyle(
-    fontFamily: UIFonts.montserrat,
+    fontFamily: UIFontFamily.montserrat,
     fontSize: 14,
     fontWeight: FontWeight.w400,
     height: 1.43,
@@ -170,7 +170,7 @@ class UITypography {
   ///
   /// Usage: Small body text, metadata
   TextStyle get bodyXSmall => const TextStyle(
-    fontFamily: UIFonts.montserrat,
+    fontFamily: UIFontFamily.montserrat,
     fontSize: 12,
     fontWeight: FontWeight.w400,
     height: 1.5,
@@ -185,7 +185,7 @@ class UITypography {
   ///
   /// Usage: Extra small body text, compact metadata
   TextStyle get bodyXXSmall => const TextStyle(
-    fontFamily: UIFonts.montserrat,
+    fontFamily: UIFontFamily.montserrat,
     fontSize: 10,
     fontWeight: FontWeight.w400,
     height: 1.5,

@@ -31,7 +31,7 @@ class NotificationSectionView extends StatelessWidget {
             section.label,
             color: UIColor.neutral300,
             fontWeight: FontWeight.w500,
-            fontFamily: 'Roboto',
+            fontFamily: UIFontFamily.roboto,
           ),
           SizedBox(height: UI.spacing.xs),
           ..._buildNotificationItems(section.items),

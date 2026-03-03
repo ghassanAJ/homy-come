@@ -34,12 +34,9 @@ abstract class NotificationItemModel
 }
 
 DateTime? _createdAtFromJson(Object? value) {
-  if (value is DateTime) return value.toLocal();
-  if (value is String) return DateTime.tryParse(value)?.toLocal();
-  if (value is int) {
-    return DateTime.fromMillisecondsSinceEpoch(value).toLocal();
-  }
-  return null;
+  return DateTimaUtil.createdAtFromJson(value);
 }
 
-String? _createdAtToJson(DateTime? value) => value?.toUtc().toIso8601String();
+String? _createdAtToJson(DateTime? value) {
+  return DateTimaUtil.createdAtToJson(value);
+}
