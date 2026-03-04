@@ -2,9 +2,9 @@ import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/navigation/router.dart';
-import 'package:profile/src/presentation/widget/driver/driver_profile_header_card.dart';
+import 'package:profile/src/presentation/widget/shared/header_card.dart';
 import 'package:profile/src/presentation/widget/driver/driver_profile_performance_card.dart';
-import 'package:profile/src/presentation/widget/driver/driver_profile_settings_row.dart';
+import 'package:profile/src/presentation/widget/shared/settings_row.dart';
 
 class DriverProfileScreen extends StatefulWidget {
   const DriverProfileScreen({super.key});
@@ -40,7 +40,7 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ProfileHeaderCard(),
+                  HeaderCard(),
                   SizedBox(height: UI.spacing.sm),
                   PerformanceCard(),
                   SizedBox(height: UI.spacing.sm),

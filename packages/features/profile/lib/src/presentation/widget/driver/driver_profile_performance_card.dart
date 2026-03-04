@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:profile/src/data/model/res/driver_performance_metric_model.dart';
 import 'package:profile/src/data/model/res/driver_performance_model.dart';
-import 'package:profile/src/domain/repository/driver_performance_repository.dart';
+import 'package:profile/src/domain/repository/profile_repository.dart';
 import 'package:profile/src/localization/profile_localization_scope.dart';
-import 'package:profile/src/presentation/cubit/driver_performance_cubit.dart';
+import 'package:profile/src/presentation/cubit/profile_cubit.dart';
 import 'package:profile/src/presentation/widget/driver/driver_profile_background_circle_painter.dart';
 import 'package:profile/src/presentation/widget/driver/driver_profile_performance_legend_item.dart';
 import 'package:util/util.dart'
@@ -14,17 +14,17 @@ import 'package:util/util.dart'
 class PerformanceCard extends StatefulWidget {
   const PerformanceCard({super.key, this.performanceRepository});
 
-  final DriverPerformanceRepository? performanceRepository;
+  final ProfileRepository? performanceRepository;
 
   @override
   State<PerformanceCard> createState() => _PerformanceCardState();
 }
 
 class _PerformanceCardState extends State<PerformanceCard> {
-  late final DriverPerformanceRepository _repository =
-      widget.performanceRepository ?? GetIt.I<DriverPerformanceRepository>();
-  late final DriverPerformanceCubit _cubit =
-      DriverPerformanceCubit(_repository)..fetchDriverPerformance();
+  late final ProfileRepository _repository =
+      widget.performanceRepository ?? GetIt.I<ProfileRepository>();
+  late final ProfileCubit _cubit =
+      ProfileCubit(_repository)..fetchDriverPerformance();
 
   @override
   void dispose() {
@@ -36,7 +36,7 @@ class _PerformanceCardState extends State<PerformanceCard> {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: _cubit,
-      child: BlocBuilder<DriverPerformanceCubit, BaseState<DriverPerformanceModel>>(
+      child: BlocBuilder<ProfileCubit, BaseState<DriverPerformanceModel>>(
         builder: (context, state) {
           final performance = state.data ?? DriverPerformanceModel.empty;
           final metrics = performance.metrics;

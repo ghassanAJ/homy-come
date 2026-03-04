@@ -1,11 +1,11 @@
 import 'package:injectable/injectable.dart';
 import 'package:profile/src/data/model/res/driver_performance_metric_model.dart';
 import 'package:profile/src/data/model/res/driver_performance_model.dart';
-import 'package:profile/src/domain/repository/driver_performance_repository.dart';
+import 'package:profile/src/domain/repository/profile_repository.dart';
 import 'package:util/util.dart';
 
-@Injectable(as: DriverPerformanceRepository, env: ['mock'])
-class MockDriverPerformanceRepository implements DriverPerformanceRepository {
+@Injectable(as: ProfileRepository, env: ['mock'])
+class MockProfileRepository implements ProfileRepository {
   @override
   Future<Result<DriverPerformanceModel, APIException>>
   fetchDriverPerformance() async {

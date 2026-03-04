@@ -4,18 +4,18 @@ import 'package:injectable/injectable.dart';
 import 'package:profile/src/data/model/res/driver_performance_model.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'driver_performance_api.g.dart';
+part 'profile_api.g.dart';
 
-class DriverPerformanceAPIEndpoints {
+class ProfileAPIEndpoints {
   static const String performance = '/api/v1/driver/profile/performance';
 }
 
 @injectable
 @RestApi()
-abstract class DriverPerformanceAPI {
+abstract class ProfileAPI {
   @factoryMethod
-  factory DriverPerformanceAPI(Dio dio) = _DriverPerformanceAPI;
+  factory ProfileAPI(Dio dio) = _ProfileAPI;
 
-  @GET(DriverPerformanceAPIEndpoints.performance)
+  @GET(ProfileAPIEndpoints.performance)
   Future<APIResponse<DriverPerformanceModel>> getDriverPerformance();
 }

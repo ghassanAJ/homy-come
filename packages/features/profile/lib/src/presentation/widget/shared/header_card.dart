@@ -3,8 +3,8 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:profile/profile.dart';
 
-class ProfileHeaderCard extends StatelessWidget {
-  const ProfileHeaderCard({super.key});
+class HeaderCard extends StatelessWidget {
+  const HeaderCard({super.key});
 
   @override
   Widget build(BuildContext context) {

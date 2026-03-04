@@ -2,7 +2,7 @@ import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/navigation/router.dart';
-import 'package:profile/src/presentation/widget/driver/driver_profile_settings_row.dart';
+import 'package:profile/src/presentation/widget/shared/settings_row.dart';
 
 class SettingsCard extends StatelessWidget {
   const SettingsCard({

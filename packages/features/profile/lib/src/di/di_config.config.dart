@@ -12,11 +12,10 @@
 import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:profile/src/data/api/driver_performance_api.dart' as _i1023;
-import 'package:profile/src/domain/repository/driver_performance_repository.dart'
-    as _i152;
-import 'package:profile/src/domain/repository/mock_driver_performance_repository.dart'
-    as _i109;
+import 'package:profile/src/data/api/profile_api.dart' as _i468;
+import 'package:profile/src/domain/repository/mock_profile_repository.dart'
+    as _i758;
+import 'package:profile/src/domain/repository/profile_repository.dart' as _i50;
 
 const String _mock = 'mock';
 const String _prod = 'prod';
@@ -29,17 +28,13 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
-    gh.factory<_i1023.DriverPerformanceAPI>(
-      () => _i1023.DriverPerformanceAPI(gh<_i361.Dio>()),
-    );
-    gh.factory<_i152.DriverPerformanceRepository>(
-      () => _i109.MockDriverPerformanceRepository(),
+    gh.factory<_i468.ProfileAPI>(() => _i468.ProfileAPI(gh<_i361.Dio>()));
+    gh.factory<_i50.ProfileRepository>(
+      () => _i758.MockProfileRepository(),
       registerFor: {_mock},
     );
-    gh.factory<_i152.DriverPerformanceRepository>(
-      () => _i152.DriverPerformanceRepositoryImpl(
-        gh<_i1023.DriverPerformanceAPI>(),
-      ),
+    gh.factory<_i50.ProfileRepository>(
+      () => _i50.ProfileRepositoryImpl(gh<_i468.ProfileAPI>()),
       registerFor: {_prod, _dev},
     );
     return this;

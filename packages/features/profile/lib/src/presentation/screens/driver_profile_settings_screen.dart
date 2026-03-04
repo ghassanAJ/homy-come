@@ -3,7 +3,7 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
-import 'package:profile/src/presentation/widget/driver/driver_profile_settings_card.dart';
+import 'package:profile/src/presentation/widget/shared/settings_card.dart';
 
 class DriverProfileSettingsScreen extends StatelessWidget {
   const DriverProfileSettingsScreen({super.key});
