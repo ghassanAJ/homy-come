@@ -5,7 +5,7 @@ class UIBackground extends StatelessWidget {
     super.key,
     this.child,
     this.showTopLeftEllipse = true,
-    this.showBottomRightEllipse = true,
+    this.showBottomRightEllipse = false,
   });
 
   final Widget? child;

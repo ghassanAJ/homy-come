@@ -7,4 +7,5 @@ class UIFontFamily {
   static const String lexend = 'Lexend';
   static const String poppins = 'Poppins';
   static const String cairo = 'Cairo';
+  static const String sFPro = 'SFPro';
 }

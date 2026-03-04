@@ -1,6 +1,7 @@
 import 'package:api_client/api_client.dart';
 import 'package:authentication/authentication.dart';
 import 'package:notifications/notifications.dart';
+import 'package:profile/profile.dart';
 import 'package:user/di/di_container.dart';
 import 'package:util/util.dart';
 
@@ -18,6 +19,7 @@ void initializeDependencies(String env) {
   initBaseCubit(diContainer, env);
   initApiClient(diContainer, env);
   initNotifications(diContainer, env);
+  initProfile(diContainer, env);
 
   initAuth(diContainer, env);
 

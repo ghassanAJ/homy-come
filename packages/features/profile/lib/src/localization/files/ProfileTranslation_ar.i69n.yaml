@@ -16,6 +16,21 @@ option:
   deleteAccount: حذف الحساب
   savedBeneficiary: Saved Beneficiary
   location: موقعي
+  Job: سجل المهام
+  appNotifications: إشعارات التطبيق
+  DeleteMyAccount: حذف حسابي
+
+driverProfile:
+  settings: الإعدادات
+  trackPerformance: تتبع أداءك
+  orders: الطلبات
+  completed: المكتمل
+  canceledOrder: الطلبات الملغاة
+  punctuality: الالتزام بالمواعيد
+  customerSatisfaction: رضا العملاء
+  logoutConfirmDescription: هل أنت متأكد أنك تريد تسجيل الخروج؟
+  deleteAccountConfirmDescription: هل أنت متأكد أنك تريد حذف حسابك؟
+  language: اللغة
 
 Labels:
   email: حساب

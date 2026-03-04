@@ -37,6 +37,8 @@ class ProfileTranslation implements i69n.I69nMessageBundle {
   const ProfileTranslation();
   ProfileProfileTranslation get profile => ProfileProfileTranslation(this);
   OptionProfileTranslation get option => OptionProfileTranslation(this);
+  DriverProfileProfileTranslation get driverProfile =>
+      DriverProfileProfileTranslation(this);
   LabelsProfileTranslation get Labels => LabelsProfileTranslation(this);
   PlaceHolderProfileTranslation get placeHolder =>
       PlaceHolderProfileTranslation(this);
@@ -53,6 +55,8 @@ class ProfileTranslation implements i69n.I69nMessageBundle {
         return profile;
       case 'option':
         return option;
+      case 'driverProfile':
+        return driverProfile;
       case 'Labels':
         return Labels;
       case 'placeHolder':
@@ -108,6 +112,9 @@ class OptionProfileTranslation implements i69n.I69nMessageBundle {
   String get deleteAccount => "Delete Account";
   String get savedBeneficiary => "Saved Beneficiary";
   String get location => "My Location";
+  String get Job => "Job history";
+  String get appNotifications => "App Notifications";
+  String get DeleteMyAccount => "Delete my account";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -133,6 +140,59 @@ class OptionProfileTranslation implements i69n.I69nMessageBundle {
         return savedBeneficiary;
       case 'location':
         return location;
+      case 'Job':
+        return Job;
+      case 'appNotifications':
+        return appNotifications;
+      case 'DeleteMyAccount':
+        return DeleteMyAccount;
+      default:
+        return key;
+    }
+  }
+}
+
+class DriverProfileProfileTranslation implements i69n.I69nMessageBundle {
+  final ProfileTranslation _parent;
+  const DriverProfileProfileTranslation(this._parent);
+  String get settings => "Settings";
+  String get trackPerformance => "Track your performance";
+  String get orders => "Orders";
+  String get completed => "Completed";
+  String get canceledOrder => "Canceled Order";
+  String get punctuality => "Punctuality";
+  String get customerSatisfaction => "Customer satisfaction";
+  String get logoutConfirmDescription => "Are you sure you want to log out?";
+  String get deleteAccountConfirmDescription =>
+      "Are you sure you want to delete your account?";
+  String get language => "Language";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'settings':
+        return settings;
+      case 'trackPerformance':
+        return trackPerformance;
+      case 'orders':
+        return orders;
+      case 'completed':
+        return completed;
+      case 'canceledOrder':
+        return canceledOrder;
+      case 'punctuality':
+        return punctuality;
+      case 'customerSatisfaction':
+        return customerSatisfaction;
+      case 'logoutConfirmDescription':
+        return logoutConfirmDescription;
+      case 'deleteAccountConfirmDescription':
+        return deleteAccountConfirmDescription;
+      case 'language':
+        return language;
       default:
         return key;
     }

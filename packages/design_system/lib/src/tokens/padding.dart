@@ -180,7 +180,9 @@ class UIPadding {
 
   /// Notifications section spacing.
   EdgeInsetsDirectional notificationsSectionSpacing({required bool isLast}) =>
-      EdgeInsetsDirectional.only(bottom: isLast ? 0 : _spacing.lg + _spacing.xxs);
+      EdgeInsetsDirectional.only(
+        bottom: isLast ? 0 : _spacing.lg + _spacing.xxs,
+      );
 
   /// Notifications item spacing.
   EdgeInsetsDirectional notificationsItemSpacing({required bool isLast}) =>
@@ -199,4 +201,36 @@ class UIPadding {
         horizontal: _spacing.md,
         vertical: _spacing.md,
       );
+
+  /// Driver profile screen top content padding.
+  EdgeInsets driverProfileContent({required double topInset}) =>
+      EdgeInsets.fromLTRB(_spacing.sm, topInset, _spacing.sm, 0);
+
+  /// Driver profile settings screen content padding.
+  EdgeInsets driverProfileSettingsContent({required double topInset}) =>
+      EdgeInsets.fromLTRB(_spacing.sm, topInset, _spacing.sm, _spacing.lg);
+
+  /// Driver profile "Settings" card content padding.
+  EdgeInsets get driverProfileSettingsCardContent =>
+      EdgeInsets.symmetric(vertical: _spacing.md);
+
+  /// Driver profile header card content padding.
+  EdgeInsets get driverProfileHeaderContent =>
+      EdgeInsets.symmetric(horizontal: _spacing.xl, vertical: _spacing.md);
+
+  /// Driver profile edit button vertical padding.
+  EdgeInsets get driverProfileHeaderEditButtonContent =>
+      EdgeInsets.symmetric(vertical: _spacing.xs);
+
+  /// Driver profile performance card content padding.
+  EdgeInsets get driverProfilePerformanceCardContent =>
+      EdgeInsets.all(_spacing.lg);
+
+  /// Driver profile performance legend horizontal padding.
+  EdgeInsets get driverProfilePerformanceLegendHorizontal =>
+      EdgeInsets.symmetric(horizontal: _spacing.lg);
+
+  /// Driver profile settings row horizontal padding.
+  EdgeInsets get driverProfileSettingsRowContent =>
+      EdgeInsets.symmetric(horizontal: _spacing.xl);
 }
