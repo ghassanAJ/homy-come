@@ -44,29 +44,26 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                   SizedBox(height: UI.spacing.sm),
                   PerformanceCard(),
                   SizedBox(height: UI.spacing.sm),
-                  InkWell(
-                    borderRadius: BorderRadius.circular(UI.radius.md),
-                    onTap:
-                        () => context.push(ProfilePaths.driverProfileSettings),
-                    child: Container(
-                      width: double.infinity,
-                      padding: UI.padding.driverProfileSettingsCardContent,
-                      decoration: BoxDecoration(
-                        color: UIColor.background,
-                        borderRadius: BorderRadius.circular(UI.radius.md),
-                        boxShadow: UI.shadows.cardMd,
-                      ),
-                      child: SettingsRow(
-                        title:
-                            context.profileTranslation.driverProfile.settings,
-                        titleBuilder:
-                            (title, color) => UIText.bodySmall(
-                              title,
-                              color: color,
-                              fontWeight: FontWeight.w600,
-                            ),
-                        showDivider: false,
-                      ),
+                  Container(
+                    width: double.infinity,
+                    padding: UI.padding.driverProfileSettingsCardContent,
+                    decoration: BoxDecoration(
+                      color: UIColor.background,
+                      borderRadius: BorderRadius.circular(UI.radius.md),
+                      boxShadow: UI.shadows.cardMd,
+                    ),
+                    child: SettingsRow(
+                      onTap:
+                          () =>
+                              context.push(ProfilePaths.driverProfileSettings),
+                      title: context.profileTranslation.driverProfile.settings,
+                      titleBuilder:
+                          (title, color) => UIText.bodySmall(
+                            title,
+                            color: color,
+                            fontWeight: FontWeight.w600,
+                          ),
+                      showDivider: false,
                     ),
                   ),
                   SizedBox(height: UI.spacing.xl),

@@ -1,41 +1,27 @@
+// ignore_for_file: invalid_annotation_target
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'driver_performance_metric_model.freezed.dart';
+part 'driver_performance_metric_model.g.dart';
+
 enum DriverPerformanceMetricType {
   completed,
   canceledOrder,
   punctuality,
-  customerSatisfaction;
-
-  static DriverPerformanceMetricType fromValue(String? rawValue) {
-    return DriverPerformanceMetricType.values.firstWhere(
-      (type) => type.name == rawValue,
-      orElse: () => DriverPerformanceMetricType.completed,
-    );
-  }
+  customerSatisfaction,
 }
 
-class DriverPerformanceMetricModel {
-  const DriverPerformanceMetricModel({
-    required this.type,
-    required this.percentage,
-    required this.donutRatio,
-  });
+@freezed
+abstract class DriverPerformanceMetricModel with _$DriverPerformanceMetricModel {
+  const factory DriverPerformanceMetricModel({
+    @JsonKey(unknownEnumValue: DriverPerformanceMetricType.completed)
+    @Default(DriverPerformanceMetricType.completed)
+    DriverPerformanceMetricType type,
+    @Default(0) int percentage,
+    @JsonKey(name: 'donut_ratio') @Default(0) double donutRatio,
+  }) = _DriverPerformanceMetricModel;
 
-  final DriverPerformanceMetricType type;
-  final int percentage;
-  final double donutRatio;
-
-  factory DriverPerformanceMetricModel.fromJson(Map<String, dynamic> json) {
-    return DriverPerformanceMetricModel(
-      type: DriverPerformanceMetricType.fromValue(json['type'] as String?),
-      percentage: (json['percentage'] as num?)?.toInt() ?? 0,
-      donutRatio: (json['donut_ratio'] as num?)?.toDouble() ?? 0,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'type': type.name,
-      'percentage': percentage,
-      'donut_ratio': donutRatio,
-    };
-  }
+  factory DriverPerformanceMetricModel.fromJson(Map<String, dynamic> json) =>
+      _$DriverPerformanceMetricModelFromJson(json);
 }
