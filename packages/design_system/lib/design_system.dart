@@ -60,6 +60,7 @@ export 'src/widgets/shared/ui_chip_widget.dart';
 export 'src/widgets/shared/ui_filter_tab_bar.dart';
 export 'src/widgets/shared/ui_icon_background.dart';
 export 'src/widgets/shared/ui_progress_indicator.dart';
+export 'src/widgets/shared/ui_rating_stars.dart';
 export 'src/widgets/shared/ui_scaffold.dart';
 export 'src/widgets/shared/ui_scrollable_list_tabview.dart';
 export 'src/widgets/shared/ui_svg.dart';

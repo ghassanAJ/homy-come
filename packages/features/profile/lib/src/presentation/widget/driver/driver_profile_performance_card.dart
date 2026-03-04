@@ -23,8 +23,8 @@ class PerformanceCard extends StatefulWidget {
 class _PerformanceCardState extends State<PerformanceCard> {
   late final ProfileRepository _repository =
       widget.performanceRepository ?? GetIt.I<ProfileRepository>();
-  late final ProfileCubit _cubit =
-      ProfileCubit(_repository)..fetchDriverPerformance();
+  late final ProfileCubit _cubit = ProfileCubit(_repository)
+    ..fetchDriverPerformance();
 
   @override
   void dispose() {
@@ -36,9 +36,12 @@ class _PerformanceCardState extends State<PerformanceCard> {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: _cubit,
-      child: BlocBuilder<ProfileCubit, BaseState<DriverPerformanceModel>>(
+      child: BlocBuilder<ProfileCubit, BaseState<dynamic>>(
         builder: (context, state) {
-          final performance = state.data ?? DriverPerformanceModel.empty;
+          final performance =
+              state.data is DriverPerformanceModel
+                  ? state.data as DriverPerformanceModel
+                  : DriverPerformanceModel.empty;
           final metrics = performance.metrics;
           final donutSegments = metrics
               .map(
@@ -81,17 +84,20 @@ class _PerformanceCardState extends State<PerformanceCard> {
                   else
                     _buildPerformanceDonutChart(
                       ordersCount: performance.ordersCount,
-                      ordersLabel: context.profileTranslation.driverProfile.orders,
+                      ordersLabel:
+                          context.profileTranslation.driverProfile.orders,
                       donutSegments: donutSegments,
                     ),
                   SizedBox(height: UI.spacing.lg),
                   if (metrics.isNotEmpty)
                     Padding(
-                      padding: UI.padding.driverProfilePerformanceLegendHorizontal,
+                      padding:
+                          UI.padding.driverProfilePerformanceLegendHorizontal,
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           final spacing = UI.spacing.md;
-                          final itemWidth = (constraints.maxWidth - spacing) / 2;
+                          final itemWidth =
+                              (constraints.maxWidth - spacing) / 2;
 
                           return Wrap(
                             spacing: spacing,

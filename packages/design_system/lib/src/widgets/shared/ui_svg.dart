@@ -8,18 +8,22 @@ class UISvg extends StatelessWidget {
     this.color,
     this.package,
     this.matchTextDirection = false,
+    this.size,
   });
 
   final String icon;
   final UIColor? color;
   final String? package;
   final bool matchTextDirection;
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       icon,
       package: package,
+      width: size,
+      height: size,
       matchTextDirection: matchTextDirection,
       colorFilter:
           color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,

@@ -1,14 +1,25 @@
-import 'package:profile/src/data/model/res/driver_performance_model.dart';
 import 'package:profile/src/domain/repository/profile_repository.dart';
 import 'package:util/util.dart';
 
-class GetProfileUseCase extends BaseUseCase<DriverPerformanceModel> {
-  GetProfileUseCase(this._repository);
+enum ProfileFetchType { driverProfile, providerProfile }
+
+class GetProfileUseCase extends BaseUseCase<dynamic> {
+  GetProfileUseCase.driverPerformance(this._repository)
+    : _fetchType = ProfileFetchType.driverProfile;
+
+  GetProfileUseCase.providerRatingAndReviews(this._repository)
+    : _fetchType = ProfileFetchType.providerProfile;
 
   final ProfileRepository _repository;
+  final ProfileFetchType _fetchType;
 
   @override
-  Future<Result<DriverPerformanceModel, APIException>> call() {
-    return _repository.fetchDriverPerformance();
+  Future<Result<dynamic, APIException>> call() {
+    return switch (_fetchType) {
+      ProfileFetchType.driverProfile =>
+        _repository.fetchDriverPerformance(),
+      ProfileFetchType.providerProfile =>
+        _repository.fetchProviderReviews(),
+    };
   }
 }

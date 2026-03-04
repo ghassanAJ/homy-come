@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/presentation/screens/about_app_screen.dart';
 import 'package:profile/src/presentation/screens/driver_language_settings_screen.dart';
-import 'package:profile/src/presentation/screens/driver_profile_settings_screen.dart';
+import 'package:profile/src/presentation/screens/profile_settings_screen.dart';
 import 'package:profile/src/presentation/screens/terms_and_condition.dart';
 
 /// Profile route paths
@@ -42,7 +42,7 @@ class ProfileRoute {
       path: ProfilePaths.driverProfileSettings,
       builder:
           (context, state) => const ProfileLocalizationScope(
-            child: DriverProfileSettingsScreen(),
+            child: ProfileSettingsScreen(),
           ),
     ),
     GoRoute(

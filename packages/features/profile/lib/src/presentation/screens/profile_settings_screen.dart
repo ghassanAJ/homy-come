@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/presentation/widget/shared/settings_card.dart';
 
-class DriverProfileSettingsScreen extends StatelessWidget {
-  const DriverProfileSettingsScreen({super.key});
+class ProfileSettingsScreen extends StatelessWidget {
+  const ProfileSettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

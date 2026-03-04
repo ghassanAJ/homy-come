@@ -1,10 +1,10 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
-import 'package:design_system/src/widgets/shared/dashboard_navigation_scaffold.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homy_provider/navigation/provider_navigation_config.dart';
 import 'package:homy_provider/navigation/route.dart';
+import 'package:profile/profile.dart';
 
 /// Configuration for provider app routes.
 ///
@@ -86,8 +86,9 @@ class ProviderAppRouteConfig {
               path: ProviderPaths.profile,
               name: 'profile',
               builder:
-                  (context, state) =>
-                      Scaffold(body: Center(child: Text('Profile'))),
+                  (context, state) => const ProfileLocalizationScope(
+                    child: ProviderProfileScreen(),
+                  ),
             ),
           ],
         ),
