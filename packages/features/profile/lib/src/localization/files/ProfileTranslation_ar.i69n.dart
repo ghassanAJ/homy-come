@@ -39,6 +39,8 @@ class ProfileTranslation_ar extends ProfileTranslation {
   ProfileProfileTranslation_ar get profile =>
       ProfileProfileTranslation_ar(this);
   OptionProfileTranslation_ar get option => OptionProfileTranslation_ar(this);
+  DriverProfileProfileTranslation_ar get driverProfile =>
+      DriverProfileProfileTranslation_ar(this);
   LabelsProfileTranslation_ar get Labels => LabelsProfileTranslation_ar(this);
   PlaceHolderProfileTranslation_ar get placeHolder =>
       PlaceHolderProfileTranslation_ar(this);
@@ -55,6 +57,8 @@ class ProfileTranslation_ar extends ProfileTranslation {
         return profile;
       case 'option':
         return option;
+      case 'driverProfile':
+        return driverProfile;
       case 'Labels':
         return Labels;
       case 'placeHolder':
@@ -110,6 +114,9 @@ class OptionProfileTranslation_ar extends OptionProfileTranslation {
   String get deleteAccount => "حذف الحساب";
   String get savedBeneficiary => "Saved Beneficiary";
   String get location => "موقعي";
+  String get Job => "سجل المهام";
+  String get appNotifications => "إشعارات التطبيق";
+  String get DeleteMyAccount => "حذف حسابي";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -135,6 +142,60 @@ class OptionProfileTranslation_ar extends OptionProfileTranslation {
         return savedBeneficiary;
       case 'location':
         return location;
+      case 'Job':
+        return Job;
+      case 'appNotifications':
+        return appNotifications;
+      case 'DeleteMyAccount':
+        return DeleteMyAccount;
+      default:
+        return super[key];
+    }
+  }
+}
+
+class DriverProfileProfileTranslation_ar
+    extends DriverProfileProfileTranslation {
+  final ProfileTranslation_ar _parent;
+  const DriverProfileProfileTranslation_ar(this._parent) : super(_parent);
+  String get settings => "الإعدادات";
+  String get trackPerformance => "تتبع أداءك";
+  String get orders => "الطلبات";
+  String get completed => "المكتمل";
+  String get canceledOrder => "الطلبات الملغاة";
+  String get punctuality => "الالتزام بالمواعيد";
+  String get customerSatisfaction => "رضا العملاء";
+  String get logoutConfirmDescription => "هل أنت متأكد أنك تريد تسجيل الخروج؟";
+  String get deleteAccountConfirmDescription =>
+      "هل أنت متأكد أنك تريد حذف حسابك؟";
+  String get language => "اللغة";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'settings':
+        return settings;
+      case 'trackPerformance':
+        return trackPerformance;
+      case 'orders':
+        return orders;
+      case 'completed':
+        return completed;
+      case 'canceledOrder':
+        return canceledOrder;
+      case 'punctuality':
+        return punctuality;
+      case 'customerSatisfaction':
+        return customerSatisfaction;
+      case 'logoutConfirmDescription':
+        return logoutConfirmDescription;
+      case 'deleteAccountConfirmDescription':
+        return deleteAccountConfirmDescription;
+      case 'language':
+        return language;
       default:
         return super[key];
     }

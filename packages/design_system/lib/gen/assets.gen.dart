@@ -44,8 +44,15 @@ class $AssetsIconsGen {
   String get arrowRight =>
       'packages/design_system/assets/icons/arrow right.svg';
 
+  /// File path: assets/icons/arrow-right.svg
+  String get arrowRightSvg =>
+      'packages/design_system/assets/icons/arrow-right.svg';
+
   /// File path: assets/icons/arrow-left.svg
   String get arrowLeft => 'packages/design_system/assets/icons/arrow-left.svg';
+
+  /// File path: assets/icons/arrow.svg
+  String get arrow => 'packages/design_system/assets/icons/arrow.svg';
 
   /// File path: assets/icons/arrowBottom.svg
   String get arrowBottom =>
@@ -93,6 +100,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/message.svg
   String get message => 'packages/design_system/assets/icons/message.svg';
+
+  /// File path: assets/icons/myteam.svg
+  String get myteam => 'packages/design_system/assets/icons/myteam.svg';
 
   /// File path: assets/icons/nav_category.svg
   String get navCategory =>
@@ -172,7 +182,9 @@ class $AssetsIconsGen {
     aed,
     apple,
     arrowRight,
+    arrowRightSvg,
     arrowLeft,
+    arrow,
     arrowBottom,
     calendar,
     call,
@@ -188,6 +200,7 @@ class $AssetsIconsGen {
     location,
     logOut,
     message,
+    myteam,
     navCategory,
     navHome,
     navOrders,

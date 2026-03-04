@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import '../../ui.dart';
 
 /// Enum for avatar sizes
-enum AvatarSize {
-  small,
-  medium,
-  large,
-}
+enum AvatarSize { small, medium, large, xlLarge }
 
 /// A customizable avatar widget that displays user profile images
 ///
@@ -87,9 +83,9 @@ class Avatar extends StatelessWidget {
     this.placeholderWidget,
     this.selectedBorderColor,
   }) : assert(
-          imageUrl != null || assetPath != null || placeholderWidget != null,
-          'Either imageUrl, assetPath, or placeholderWidget must be provided',
-        );
+         imageUrl != null || assetPath != null || placeholderWidget != null,
+         'Either imageUrl, assetPath, or placeholderWidget must be provided',
+       );
 
   /// Get the avatar diameter based on size
   double get _avatarSize {
@@ -100,6 +96,8 @@ class Avatar extends StatelessWidget {
         return UI.sizes.avatarMd;
       case AvatarSize.large:
         return UI.sizes.avatarLg;
+      case AvatarSize.xlLarge:
+        return UI.sizes.avatarxL;
     }
   }
 
@@ -112,6 +110,8 @@ class Avatar extends StatelessWidget {
         return UI.sizes.iconMd;
       case AvatarSize.large:
         return UI.sizes.iconLg;
+      case AvatarSize.xlLarge:
+        return UI.sizes.iconXl;
     }
   }
 
@@ -124,6 +124,8 @@ class Avatar extends StatelessWidget {
         return UI.text.bodySmall;
       case AvatarSize.large:
         return UI.text.bodyMedium;
+      case AvatarSize.xlLarge:
+        return UI.text.bodyLarge;
     }
   }
 
@@ -132,12 +134,8 @@ class Avatar extends StatelessWidget {
     final avatarWidget = _buildAvatar();
 
     // Wrap with opacity if disabled
-    Widget result = isDisabled
-        ? Opacity(
-            opacity: 0.5,
-            child: avatarWidget,
-          )
-        : avatarWidget;
+    Widget result =
+        isDisabled ? Opacity(opacity: 0.5, child: avatarWidget) : avatarWidget;
 
     // Add tap handler if provided
     if (onTap != null && !isDisabled) {
@@ -179,18 +177,14 @@ class Avatar extends StatelessWidget {
       height: _avatarSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: isSelected
-            ? Border.all(
-                color: effectiveBorderColor,
-                width: borderWidth,
-              )
-            : null,
+        border:
+            isSelected
+                ? Border.all(color: effectiveBorderColor, width: borderWidth)
+                : null,
       ),
       child: Padding(
         padding: EdgeInsets.all(isSelected ? 2 : 0),
-        child: ClipOval(
-          child: _buildAvatarContent(),
-        ),
+        child: ClipOval(child: _buildAvatarContent()),
       ),
     );
   }
