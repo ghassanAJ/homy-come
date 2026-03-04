@@ -39,15 +39,17 @@ class _UIFilterTabBarState extends State<UIFilterTabBar> {
   @override
   Widget build(BuildContext context) {
     return ColoredBox(
-      color: UIColor.white,
+      color: Colors.transparent,
       child: TabBar(
+        // splashBorderRadius: BorderRadius.circular(99),
         controller: tabController,
-        dividerColor: const Color(0xffE2E0E9),
-        indicatorColor: UIColor.primary,
-        indicatorWeight: 2,
+        dividerColor: Colors.transparent,
+        // indicatorColor: UIColor.primary,
+        // indicatorWeight: 2,
+        indicator: const BoxDecoration(),
         indicatorSize: TabBarIndicatorSize.tab,
-        labelPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+        labelPadding:  EdgeInsets.symmetric( horizontal: UI.spacing.xs,vertical: 0),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         splashFactory: NoSplash.splashFactory,
         overlayColor: WidgetStateProperty.all(Colors.transparent),
         tabs: widget.tabs

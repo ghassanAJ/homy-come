@@ -9,6 +9,7 @@ class OrderAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UISliverAppBar(
+      pinned: true,
       bottom: PreferredSize(
         preferredSize: Size.fromHeight(1),
         child: Padding(

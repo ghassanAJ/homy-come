@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:design_system/design_system.dart';
 import 'package:design_system/src/widgets/shared/interaction_chips_bar_widget.dart';
 
-class UIchipsBar extends StatefulWidget {
-  UIchipsBar({
+class UIChipsBar extends StatefulWidget {
+  UIChipsBar({
     super.key,
     required this.label,
     this.firstLabel,
@@ -15,10 +15,10 @@ class UIchipsBar extends StatefulWidget {
   final String? firstLabel;
   final ValueChanged onSelect;
   @override
-  State<UIchipsBar> createState() => _UIchipsBarState();
+  State<UIChipsBar> createState() => _UIChipsBarState();
 }
 
-class _UIchipsBarState extends State<UIchipsBar> {
+class _UIChipsBarState extends State<UIChipsBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
