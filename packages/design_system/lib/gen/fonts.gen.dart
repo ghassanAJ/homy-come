@@ -25,4 +25,7 @@ class FontFamily {
 
   /// Font family: Roboto
   static const String roboto = 'Roboto';
+
+  /// Font family: SFPro
+  static const String sFPro = 'SFPro';
 }

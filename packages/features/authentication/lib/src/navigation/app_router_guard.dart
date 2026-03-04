@@ -10,6 +10,7 @@ class AppRouterGuard {
     UserPaths.category,
     UserPaths.services,
     UserPaths.notifications,
+    UserPaths.profile,
   ];
 
   static bool _isOtpPath(String path) =>

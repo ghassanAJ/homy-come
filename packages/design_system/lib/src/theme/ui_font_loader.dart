@@ -109,6 +109,17 @@ class UIFontLoader {
         'Poppins-Black.ttf',
       ],
     },
+    'SFPro': {
+      'basePath': 'SFPro',
+      'variants': [
+        'SF-Pro-Text-Light.otf',
+        'SF-Pro-Text-Regular.otf',
+        'SF-Pro-Text-Medium.otf',
+        'SF-Pro-Text-Semibold.otf',
+        'SF-Pro-Text-Bold.otf',
+        'SF-Pro-Text-Black.otf',
+      ],
+    },
     // 'IconsaxPlusBold': {
     //   'packagePath': 'packages/iconsax_plus/fonts',
     //   'variants': ['IconsaxPlusBold.ttf'],

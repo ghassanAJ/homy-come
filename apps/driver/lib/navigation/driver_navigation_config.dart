@@ -1,3 +1,6 @@
+import 'package:design_system/gen/assets.gen.dart';
+import 'package:driver/navigation/route.dart';
+
 /// Navigation item configuration
 typedef NavigationItem = ({String path, String label, String iconAsset});
 
@@ -8,22 +11,14 @@ class DriverNavigationConfig {
     (
       path: DriverPaths.myTeam,
       label: 'My Team',
-      iconAsset: 'assets/icons/search.svg',
+      iconAsset: Assets.icons.myteam,
     ),
-    (path: DriverPaths.home, label: 'Home', iconAsset: 'assets/icons/home.svg'),
+    (path: DriverPaths.home, label: 'Home', iconAsset: Assets.icons.navHome),
 
     (
       path: DriverPaths.profile,
       label: 'Profile',
-      iconAsset: 'assets/icons/orders.svg',
+      iconAsset: Assets.icons.navProfile,
     ),
   ];
-}
-
-class DriverPaths {
-  DriverPaths._();
-
-  static const String home = '/home';
-  static const String myTeam = '/my-team';
-  static const String profile = '/profile';
 }

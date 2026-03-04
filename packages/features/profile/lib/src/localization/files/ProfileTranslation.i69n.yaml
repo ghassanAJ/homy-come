@@ -16,6 +16,22 @@ option:
   deleteAccount: Delete Account
   savedBeneficiary: Saved Beneficiary
   location: My Location
+  Job: Job history
+  appNotifications: App Notifications
+  DeleteMyAccount: Delete my account
+
+driverProfile:
+  settings: Settings
+  trackPerformance: Track your performance
+  orders: Orders
+  completed: Completed
+  canceledOrder: Canceled Order
+  punctuality: Punctuality
+  customerSatisfaction: Customer satisfaction
+  logoutConfirmDescription: Are you sure you want to log out?
+  deleteAccountConfirmDescription: Are you sure you want to delete your account?
+  language: Language
+
 
 Labels:
   email: Email
