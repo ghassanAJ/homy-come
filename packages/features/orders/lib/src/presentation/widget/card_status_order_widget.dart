@@ -1,9 +1,10 @@
 import 'package:design_system/design_system.dart';
+import 'package:orders/src/data/models/res/booking_model_response.dart';
 import 'package:orders/src/presentation/widget/content_card_status_order.dart';
 
 class OrderStatusCardContent extends StatelessWidget {
-  const OrderStatusCardContent({super.key});
-
+  const OrderStatusCardContent({super.key, required this.item});
+  final BookingModelResponse item;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +20,7 @@ class OrderStatusCardContent extends StatelessWidget {
         color: UIColor.background,
         border: Border.all(color: UIColor.bordarCard, width: 0.8),
       ),
-      child: ContentCardStatusOrder(),
+      child: ContentCardStatusOrder(item: item),
     );
   }
 }

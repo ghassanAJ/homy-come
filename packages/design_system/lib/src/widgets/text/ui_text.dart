@@ -297,7 +297,22 @@ class UIText extends StatelessWidget {
          fontSize: fontSize,
        );
 
-  UIText.buttonTextXsm(
+ UIText.titleMd(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    FontWeight? fontWeight,
+    double? fontSize,
+    super.key,
+  }) : style = _typography.titleMd.copyWith(
+         fontWeight: fontWeight,
+         fontSize: fontSize,
+       );
+
+    UIText.buttonTextXsm(
     this.data, {
     this.color,
     this.textAlign,

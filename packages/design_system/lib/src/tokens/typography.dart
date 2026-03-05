@@ -123,6 +123,14 @@ class UITypography {
     letterSpacing: 0,
   );
 
+
+ TextStyle get titleMd => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    height: 1.5,
+    letterSpacing: 0,
+  );
   /// Body Small - Regular
   ///
   /// Weight: 400 (Regular)

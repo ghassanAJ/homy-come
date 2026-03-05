@@ -5,8 +5,8 @@ import 'package:user/features/booking/presentation/widgets/price_row_widget.dart
 import 'package:user/features/booking/presentation/widgets/warning_section_widget.dart';
 
 class ServiceDetailsSummaryScreen extends StatelessWidget {
-  const ServiceDetailsSummaryScreen({super.key});
-
+  const ServiceDetailsSummaryScreen({super.key, required this.id});
+  final int id;
   @override
   Widget build(BuildContext context) {
     final topContentPadding =

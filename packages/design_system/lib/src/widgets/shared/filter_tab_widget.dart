@@ -22,25 +22,31 @@ class FilterTabWidget extends StatelessWidget {
       duration: const Duration(milliseconds: 250),
       // curve: Curves.easeOutBack,
       scale: isSelected ? 1.0 : 0.9,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          isSelected
-              ? SvgPicture.asset(
-                  iconPath,
-                  key: ValueKey(iconPath),
-                  height: 18,
-                  width: 18,
-                  color: UIColor.primary,
-                  package: package,
-                )
-              : const SizedBox.shrink(),
-          if (isSelected) const SizedBox(width: 4),
-          UIText.bodyMedium(
-            text,
-            color: isSelected ? UIColor.primary : UIColor.neutral500,
-          ),
-        ],
+      child: Container(
+              // margin: EdgeInsets.symmetric(horizontal: UI.spacing.xxs),
+        alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(
+          horizontal: UI.spacing.sm,
+          vertical: UI.spacing.xs,
+        ),
+        decoration: BoxDecoration(
+          boxShadow: UI.shadows.xs,
+          color:
+              isSelected
+                  ?  UIColor.babyBlue
+                  :  UIColor.neutral100,
+          borderRadius: BorderRadius.circular(UI.radius.sm),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+          
+            UIText.bodySmall(
+              text,
+              color: UIColor.black,
+            ),
+          ],
+        ),
       ),
     );
   }
