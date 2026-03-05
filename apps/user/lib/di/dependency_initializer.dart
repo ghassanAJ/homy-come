@@ -1,6 +1,7 @@
 import 'package:api_client/api_client.dart';
 import 'package:authentication/authentication.dart';
 import 'package:notifications/notifications.dart';
+import 'package:orders/orders.dart';
 import 'package:profile/profile.dart';
 import 'package:user/di/di_container.dart';
 import 'package:util/util.dart';
@@ -22,7 +23,7 @@ void initializeDependencies(String env) {
   initProfile(diContainer, env);
 
   initAuth(diContainer, env);
-
+  initOrder(diContainerOrder, env);
   _configureAuthInterceptor();
   initMain(diContainer, env);
   diContainer.registerSingleton<CustomRouter>(

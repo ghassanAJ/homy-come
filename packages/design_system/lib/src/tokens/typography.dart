@@ -209,7 +209,7 @@ class UITypography {
     overflow: TextOverflow.ellipsis,
   );
 
-    TextStyle get titleMd => const TextStyle(
+    TextStyle get titleSm => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 13,
     fontWeight: FontWeight.w500,

@@ -41,7 +41,7 @@ class OrderDetails extends StatelessWidget {
                 children: [
                   InfoCleanerWithNumberPhone(),
                   Divider(height: 0.1, color: UIColor.softBordarCard),
-                  OrderDateTimeWidget(),
+                  OrderDateTimeWidget(date: '', time: '',),
                   Divider(height: 0.1, color: UIColor.softBordarCard),
                   Padding(
                     padding: EdgeInsets.symmetric(

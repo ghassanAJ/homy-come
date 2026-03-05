@@ -63,7 +63,7 @@ class TodayScheduleCard extends StatelessWidget {
           UIText.bodyMedium('Address:',color: UIColor.textNatral600,),
           UIText.titleMd('125, 2nd street, California, 19288'),
           SizedBox(height: UI.spacing.sm,),
-          OrderCleanerInfoWidget(),
+          OrderCleanerInfoWidget(name: 'meya Ali', rating: 5.0,),
           SizedBox(height: UI.spacing.md,),
           DirectionAndDoneActions()
         ],

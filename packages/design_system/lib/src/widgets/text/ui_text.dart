@@ -328,7 +328,7 @@ class UIText extends StatelessWidget {
        );
 
 
-  UIText.titleMd(
+  UIText.titleSm(
     this.data, {
     this.color,
     this.textAlign,
@@ -336,7 +336,7 @@ class UIText extends StatelessWidget {
     this.overflow,
     this.softWrap,
     super.key,
-  }) : style = _typography.titleMd;
+  }) : style = _typography.titleSm;
 
   /// Button with Icon - Buttons with icons
   ///
