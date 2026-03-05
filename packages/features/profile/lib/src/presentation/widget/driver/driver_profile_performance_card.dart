@@ -1,3 +1,4 @@
+import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -23,8 +24,15 @@ class PerformanceCard extends StatefulWidget {
 class _PerformanceCardState extends State<PerformanceCard> {
   late final ProfileRepository _repository =
       widget.performanceRepository ?? GetIt.I<ProfileRepository>();
-  late final DriverPerformanceCubit _cubit = DriverPerformanceCubit(_repository)
-    ..fetchDriverPerformance();
+  late final DriverPerformanceCubit _cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    final driverId = context.read<AppCubit>().state.userId ?? '';
+    _cubit = DriverPerformanceCubit(_repository)
+      ..fetchDriverPerformance(driverId: driverId);
+  }
 
   @override
   void dispose() {

@@ -9,7 +9,7 @@ import 'package:util/util.dart';
 class MockProfileRepository implements ProfileRepository {
   @override
   Future<Result<DriverPerformanceModel, APIException>>
-  fetchDriverPerformance() async {
+  fetchDriverPerformance(String driverId) async {
     await Future.delayed(const Duration(milliseconds: 400));
 
     return success(
@@ -42,7 +42,9 @@ class MockProfileRepository implements ProfileRepository {
   }
 
   @override
-  Future<Result<List<ReviewModel>, APIException>> fetchProviderReviews() async {
+  Future<Result<List<ReviewModel>, APIException>> fetchProviderReviews(
+    String providerId,
+  ) async {
     await Future.delayed(const Duration(milliseconds: 400));
 
     return success(

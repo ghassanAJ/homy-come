@@ -8,9 +8,12 @@ class DriverPerformanceCubit extends BaseScreenCubit<DriverPerformanceModel> {
 
   final ProfileRepository _repository;
 
-  Future<void> fetchDriverPerformance({bool refresh = false}) {
+  Future<void> fetchDriverPerformance({
+    required String driverId,
+    bool refresh = false,
+  }) {
     return fetchData(
-      useCase: GetDriverPerformanceUseCase(_repository),
+      useCase: GetDriverPerformanceUseCase(_repository, driverId),
       refresh: refresh,
     );
   }

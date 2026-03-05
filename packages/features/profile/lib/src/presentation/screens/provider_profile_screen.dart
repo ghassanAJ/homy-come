@@ -1,5 +1,6 @@
 ﻿import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:authentication/authentication.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
@@ -10,7 +11,6 @@ import 'package:profile/src/presentation/cubit/provider_rating_and_reviews_cubit
 import 'package:profile/src/presentation/widget/provider/rating_and_reviews_card.dart';
 import 'package:profile/src/presentation/widget/shared/header_card.dart';
 import 'package:profile/src/presentation/widget/shared/settings_row.dart';
-import 'package:util/util.dart' show BaseCubitStatus, BaseState;
 
 class ProviderProfileScreen extends StatefulWidget {
   const ProviderProfileScreen({super.key});
@@ -49,9 +49,15 @@ class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
   ];
 
   late final ProfileRepository _repository = GetIt.I<ProfileRepository>();
-  late final ProviderRatingAndReviewsCubit _cubit =
-      ProviderRatingAndReviewsCubit(_repository)
-    ..fetchProviderRatingAndReviews();
+  late final ProviderRatingAndReviewsCubit _cubit;
+
+  @override
+  void initState() {
+    super.initState();
+    final providerId = context.read<AppCubit>().state.userId ?? '';
+    _cubit = ProviderRatingAndReviewsCubit(_repository)
+      ..fetchProviderRatingAndReviews(providerId: providerId);
+  }
 
   @override
   void dispose() {

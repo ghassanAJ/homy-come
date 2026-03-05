@@ -6,8 +6,12 @@ import 'package:profile/src/data/model/res/review_model.dart';
 import 'package:util/util.dart';
 
 abstract class ProfileRepository {
-  Future<Result<DriverPerformanceModel, APIException>> fetchDriverPerformance();
-  Future<Result<List<ReviewModel>, APIException>> fetchProviderReviews();
+  Future<Result<DriverPerformanceModel, APIException>> fetchDriverPerformance(
+    String driverId,
+  );
+  Future<Result<List<ReviewModel>, APIException>> fetchProviderReviews(
+    String providerId,
+  );
 }
 
 @Injectable(as: ProfileRepository, env: ['prod', 'dev'])
@@ -17,11 +21,12 @@ class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileAPI _profileAPI;
 
   @override
-  Future<Result<DriverPerformanceModel, APIException>>
-  fetchDriverPerformance() async =>
-      _profileAPI.getDriverPerformance().toResult();
+  Future<Result<DriverPerformanceModel, APIException>> fetchDriverPerformance(
+    String driverId,
+  ) async => _profileAPI.getDriverPerformance().toResult();
 
   @override
-  Future<Result<List<ReviewModel>, APIException>> fetchProviderReviews() async =>
-      _profileAPI.getProviderReviews().toResult();
+  Future<Result<List<ReviewModel>, APIException>> fetchProviderReviews(
+    String providerId,
+  ) async => _profileAPI.getProviderReviews().toResult();
 }

@@ -9,9 +9,12 @@ class ProviderRatingAndReviewsCubit
 
   final ProfileRepository _repository;
 
-  Future<void> fetchProviderRatingAndReviews({bool refresh = false}) {
+  Future<void> fetchProviderRatingAndReviews({
+    required String providerId,
+    bool refresh = false,
+  }) {
     return fetchData(
-      useCase: GetProviderRatingAndReviewsUseCase(_repository),
+      useCase: GetProviderRatingAndReviewsUseCase(_repository, providerId),
       refresh: refresh,
     );
   }
