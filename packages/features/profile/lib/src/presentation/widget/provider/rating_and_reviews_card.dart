@@ -1,5 +1,7 @@
 import 'package:design_system/design_system.dart';
+import 'package:go_router/go_router.dart';
 import 'package:profile/src/data/model/res/review_model.dart';
+import 'package:profile/src/navigation/router.dart';
 import 'package:profile/src/presentation/widget/provider/review_item.dart';
 
 class RatingDistributionUiModel {
@@ -14,7 +16,7 @@ class RatingDistributionUiModel {
   final double ratio;
 }
 
-class RatingAndReviewsCard extends StatefulWidget {
+class RatingAndReviewsCard extends StatelessWidget {
   const RatingAndReviewsCard({
     super.key,
     required this.ratingDistribution,
@@ -25,18 +27,9 @@ class RatingAndReviewsCard extends StatefulWidget {
   final List<ReviewModel> reviews;
 
   @override
-  State<RatingAndReviewsCard> createState() => _RatingAndReviewsCardState();
-}
-
-class _RatingAndReviewsCardState extends State<RatingAndReviewsCard> {
-  bool _showAllReviews = false;
-
-  @override
   Widget build(BuildContext context) {
     final visibleReviews =
-        _showAllReviews
-            ? widget.reviews
-            : widget.reviews.take(2).toList(growable: false);
+        reviews.take(2).toList(growable: false);
 
     return Container(
       decoration: BoxDecoration(
@@ -49,7 +42,7 @@ class _RatingAndReviewsCardState extends State<RatingAndReviewsCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ...widget.ratingDistribution.map(_buildRatingDistributionRow),
+            ...ratingDistribution.map(_buildRatingDistributionRow),
             SizedBox(height: UI.spacing.md),
             Divider(color: UIColor.neutral100, thickness: 2),
             SizedBox(height: UI.spacing.md),
@@ -60,39 +53,28 @@ class _RatingAndReviewsCardState extends State<RatingAndReviewsCard> {
                 showDivider: index < visibleReviews.length - 1,
               ),
             ),
-            if (widget.reviews.length > 2) ...[
+            if (reviews.length > 2) ...[
               SizedBox(height: UI.spacing.xs),
               Center(
                 child: InkWell(
                   borderRadius: BorderRadius.circular(UI.radius.md),
-                  onTap: () {
-                    setState(() {
-                      _showAllReviews = !_showAllReviews;
-                    });
-                  },
+                  onTap:
+                      () => context.push(
+                        ProfilePaths.providerAllReviews,
+                        extra: <String, dynamic>{
+                          ProfilePaths.reviews: reviews,
+                        },
+                      ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: UI.spacing.sm,
                       vertical: UI.spacing.xxs,
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        UIText.bodyXSmall(
-                          _showAllReviews ? 'Show less' : 'Show more',
-                          color: UIColor.successDark,
-                          fontWeight: FontWeight.w700,
-                          fontFamily: UIFontFamily.roboto,
-                        ),
-                        SizedBox(width: UI.spacing.lg),
-                        Transform.rotate(
-                          angle: _showAllReviews ? 3.14159 : 0,
-                          child: UISvg(
-                            Assets.icons.arrowBottom,
-                            color: UIColor.successDark,
-                          ),
-                        ),
-                      ],
+                    child: UIText.bodyXSmall(
+                      'Show more',
+                      color: UIColor.successDark,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: UIFontFamily.roboto,
                     ),
                   ),
                 ),
