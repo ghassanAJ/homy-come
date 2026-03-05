@@ -1,7 +1,4 @@
 import 'package:booking/booking.dart';
-import 'package:booking/src/data/model/res/service_category_model.dart';
-import 'package:booking/src/data/model/res/service_option_model.dart';
-import 'package:booking/src/data/model/res/service_section_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'service_details_response_model.freezed.dart';
@@ -11,10 +8,11 @@ part 'service_details_response_model.g.dart';
 abstract class ServiceDetailsResponseModel with _$ServiceDetailsResponseModel {
   const factory ServiceDetailsResponseModel({
     required String id,
-    required String title,
-    @Default([]) List<ServiceCategoryModel> categories,
-    @JsonKey(name: 'featured_option') ServiceOptionModel? featuredOption,
-    @Default([]) List<ServiceSectionModel> sections,
+    required int rating,
+    @JsonKey(name: 'reviews_count') required int reviewsCount,
+    required InfoModel info,
+    required ServicePriceModel price,
+    @Default([]) List<AddOnCategoryModel> categories,
   }) = _ServiceDetailsResponseModel;
 
   factory ServiceDetailsResponseModel.fromJson(Map<String, dynamic> json) =>
@@ -26,8 +24,9 @@ abstract class ServicePreviewResponseModel with _$ServicePreviewResponseModel {
   const factory ServicePreviewResponseModel({
     required String id,
     required InfoModel info,
+    @JsonKey(name: 'price') required ServicePriceModel priceModel,
     required int rating,
-    required int reviewsCount,
+    @JsonKey(name: 'reviews_count') required int reviewsCount,
   }) = _ServicePreviewResponseModel;
 
   factory ServicePreviewResponseModel.fromJson(Map<String, dynamic> json) =>

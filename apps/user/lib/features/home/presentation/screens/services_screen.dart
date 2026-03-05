@@ -1,22 +1,30 @@
-import 'package:design_system/design_system.dart';
-import 'package:user/di/di_container.dart';
-import 'package:user/features/home/domain/entities/home_content.dart';
-import 'package:user/features/home/domain/repository/home_api_repository.dart';
-import 'package:user/features/home/presentation/mappers/home_response_mapper.dart';
+import 'package:booking/booking.dart';
+import 'package:go_router/go_router.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc_event.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc_state.dart';
 import 'package:user/features/home/presentation/widgets/home/service_offer_tile.dart';
 import 'package:user/features/home/presentation/widgets/shared/categories_search_field.dart';
-import 'package:user/features/home/presentation/widgets/shared/section_header_app_bar.dart';
+import 'package:user/navigation/route.dart';
 
 class ServicesScreen extends StatefulWidget {
-  const ServicesScreen({super.key});
-
+  const ServicesScreen({required this.id, super.key});
+  final int id;
   @override
   State<ServicesScreen> createState() => _ServicesScreenState();
 }
 
 class _ServicesScreenState extends State<ServicesScreen> {
   final TextEditingController _searchController = TextEditingController();
-  String _selectedCategory = 'All';
+  final String _selectedCategory = 'All';
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeBloc>().add(
+      LoadCategoryServicesEvent(widget.id.toString()),
+    );
+  }
 
   @override
   void dispose() {
@@ -27,124 +35,126 @@ class _ServicesScreenState extends State<ServicesScreen> {
   @override
   Widget build(BuildContext context) {
     final bottomSafeArea = MediaQuery.of(context).padding.bottom;
-    final homeFuture = diContainer.get<HomeRepository>().getHomeContent();
 
-    return Scaffold(
+    return UIScaffold(
       backgroundColor: UIColor.background,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: EdgeInsetsDirectional.symmetric(horizontal: UI.spacing.xl),
-        child: SizedBox(
-          width: MediaQuery.sizeOf(context).width,
-          child: UIButton.primary(label: 'Apply', expanded: true),
-        ),
-      ),
-      body: FutureBuilder(
-        future: homeFuture,
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            if (snapshot.hasError) {
-              return Center(
-                child: Text(
-                  snapshot.error.toString(),
-                  style: TextStyle(color: UIColor.error),
-                ),
-              );
-            }
-            return const Center(child: CircularProgressIndicator());
+      appBarTitle: 'All Services',
+      // appBar: SectionHeaderAppBar(title: 'All Services'),
+      body: BlocBuilder<HomeBloc, HomeBlocState>(
+        builder: (context, state) {
+          if (state.status == HomeBlocStatus.loadingServiceDetails) {
+            return const ServicesScreenShimmar();
           }
-          final result = snapshot.data!;
-          return result.fold(
-            (homeResponse) {
-              final homeContent = mapHomeResponseToContent(homeResponse);
-              final categories = <String>[
-                'All',
-                ...homeContent.categories.map((item) => item.title),
-              ];
-              final services = _buildServicesList(homeContent.serviceOffers);
-              return UIEllipseBackground(
-                child: Column(
-                  children: [
-                    const SectionHeaderAppBar(title: 'All Services'),
-                    SizedBox(height: UI.spacing.xs),
-                    Divider(height: 1, thickness: 1, color: UIColor.neutral100),
-                    Expanded(
-                      child: ListView(
-                        padding: UI.padding
-                            .userSearchBottomSectionContent(
-                              bottomInset: 110 + bottomSafeArea,
-                            )
-                            .copyWith(top: UI.spacing.md),
-                        children: [
-                          CategoriesSearchField(controller: _searchController),
-                          SizedBox(height: UI.spacing.lg),
-                          SizedBox(
-                            height: 40,
-                            child: ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder:
-                                  (_, index) => UIChipWidget(
-                                    title: categories[index],
-                                    isSelected:
-                                        _selectedCategory == categories[index],
-                                    onTap:
-                                        () => setState(
-                                          () =>
-                                              _selectedCategory =
-                                                  categories[index],
-                                        ),
-                                  ),
-                              separatorBuilder:
-                                  (_, index) => SizedBox(width: UI.spacing.sm),
-                              itemCount: categories.length,
-                            ),
-                          ),
-                          SizedBox(height: UI.spacing.md),
-                          ...services.asMap().entries.map(
-                            (entry) => Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                bottom:
-                                    entry.key == services.length - 1
-                                        ? 0
-                                        : UI.spacing.lg,
-                              ),
-                              child: ServiceOfferTile(
-                                imageUrl: entry.value.imageUrl,
-                                title: entry.value.title,
-                                price: entry.value.price,
-                                oldPrice: entry.value.oldPrice,
-                                reviewsCount: entry.value.reviewsCount,
-                                ratingStars: entry.value.ratingStars,
-                                width: double.infinity,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-            (error) => Center(
+          if (state.error != null) {
+            return Center(
               child: Text(
-                error.message,
+                state.error?.message ?? '',
                 style: TextStyle(color: UIColor.error),
               ),
-            ),
+            );
+          }
+
+          final displayedPreviews = state.categoryServices;
+
+          return ListView(
+            padding: UI.padding
+                .userSearchBottomSectionContent(
+                  bottomInset: 110 + bottomSafeArea,
+                )
+                .copyWith(top: UI.spacing.md),
+            children: [
+              CategoriesSearchField(
+                controller: _searchController,
+                placeholder: 'Hinted search text',
+              ),
+              // SizedBox(height: UI.spacing.lg),
+              // SizedBox(
+              //   height: 40,
+              //   child: ListView.separated(
+              //     scrollDirection: Axis.horizontal,
+              //     itemCount: chipLabels.length,
+              //     separatorBuilder: (_, __) => SizedBox(width: UI.spacing.sm),
+              //     itemBuilder: (_, index) {
+              //       final label = chipLabels[index];
+              //       return UIChipWidget(
+              //         title: label,
+              //         isSelected: _selectedCategory == label,
+              //         onTap: () => setState(() => _selectedCategory = label),
+              //       );
+              //     },
+              //   ),
+              // ),
+              SizedBox(height: UI.spacing.md),
+              ...displayedPreviews.asMap().entries.map(
+                (entry) => Padding(
+                  padding: EdgeInsetsDirectional.only(
+                    bottom:
+                        entry.key == displayedPreviews.length - 1
+                            ? 0
+                            : UI.spacing.lg,
+                  ),
+                  child: GestureDetector(
+                    onTap:
+                        () => context.push(
+                          UserPaths.serviceDetails,
+                          extra: {'id': entry.value.id},
+                        ),
+
+                    child: ServiceOfferTile(
+                      servicePreviewResponseModel: entry.value,
+                      width: double.infinity,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           );
         },
       ),
     );
   }
+}
 
-  List<HomeServiceOfferItem> _buildServicesList(
-    List<HomeServiceOfferItem> data,
-  ) {
-    if (data.isEmpty) return [];
-    return List<HomeServiceOfferItem>.generate(
-      6,
-      (index) => data[index % data.length],
+class ServiceDetailsScreenShimmar extends StatelessWidget {
+  const ServiceDetailsScreenShimmar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: UI.padding.allMd,
+      child: ListView(
+        children: [
+          ShimmerBox(width: 10, height: 200, radius: 10),
+          SizedBox(height: UI.spacing.md),
+          ShimmerBox(width: 10, height: 200, radius: 10),
+          SizedBox(height: UI.spacing.md),
+          ShimmerBox(width: 10, height: 200, radius: 10),
+          SizedBox(height: UI.spacing.md),
+          ShimmerBox(width: 10, height: 200, radius: 10),
+        ],
+      ),
+    );
+  }
+}
+
+class ServicesScreenShimmar extends StatelessWidget {
+  const ServicesScreenShimmar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: UI.padding.allMd,
+      child: ListView(
+        children: [
+          ShimmerBox(width: 10, height: 200, radius: 10),
+          SizedBox(height: UI.spacing.md),
+          ShimmerBox(width: 10, height: 200, radius: 10),
+          SizedBox(height: UI.spacing.md),
+          ShimmerBox(width: 10, height: 200, radius: 10),
+          SizedBox(height: UI.spacing.md),
+          ShimmerBox(width: 10, height: 200, radius: 10),
+        ],
+      ),
     );
   }
 }

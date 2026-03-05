@@ -19,6 +19,7 @@ class BaseCategoryItem extends StatelessWidget {
     this.titleFontWeight = FontWeight.w500,
     this.subtitleFontWeight = FontWeight.w400,
     this.useBodyMediumForTitle = false,
+    this.onTap,
   });
 
   final String title;
@@ -38,14 +39,16 @@ class BaseCategoryItem extends StatelessWidget {
   final FontWeight subtitleFontWeight;
 
   final bool useBodyMediumForTitle;
-
+  final VoidCallback? onTap;
   factory BaseCategoryItem.categoriesList({
     required String title,
     required String subtitle,
     required String iconPath,
     Key? key,
+    required VoidCallback? onTap,
   }) {
     return BaseCategoryItem(
+      onTap: onTap,
       key: key,
       title: title,
       subtitle: subtitle,
@@ -77,7 +80,7 @@ class BaseCategoryItem extends StatelessWidget {
       size: iconContainerSize,
       iconSize: iconSize,
       backgroundColor: UIColor.grey.withValues(alpha: 0.05),
-      child: UISvg(iconPath),
+      child: _buildSvgIcon(title),
     );
 
     final titleWidget =
@@ -132,7 +135,29 @@ class BaseCategoryItem extends StatelessWidget {
               ],
             );
 
-    if (width == null) return item;
-    return SizedBox(width: width, child: item);
+    if (width == null) return GestureDetector(onTap: onTap, child: item);
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(width: width, child: item),
+    );
+  }
+
+  Widget _buildSvgIcon(String title) {
+    switch (title) {
+      case 'Category':
+        return UISvg(Assets.icons.cleaner, size: iconSize);
+      case 'Carpenter':
+        return UISvg(Assets.icons.carpenter, size: iconSize);
+      case 'Electrician':
+        return UISvg(Assets.icons.electrician, size: iconSize);
+      case 'Plumber':
+        return UISvg(Assets.icons.plumber, size: iconSize);
+      case 'Painter':
+        return UISvg(Assets.icons.painter, size: iconSize);
+      case 'Cleaner':
+        return UISvg(Assets.icons.cleaner, size: iconSize);
+      default:
+        return UISvg(iconPath, size: iconSize);
+    }
   }
 }

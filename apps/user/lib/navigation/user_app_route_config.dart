@@ -21,10 +21,13 @@ class UserAppRouteConfig {
   ) {
     return [
       _createDashboardShell(shellNavigatorKey),
-
       GoRoute(
         path: UserPaths.serviceDetails,
-        builder: (context, state) => const ServiceDetailsScreen(),
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          final id = data['id'] as String;
+          return ServiceDetailsScreen(serviceId: int.parse(id));
+        },
       ),
       GoRoute(
         path: UserPaths.serviceDetails2,
@@ -52,6 +55,14 @@ class UserAppRouteConfig {
         builder:
             (context, state) =>
                 const UIScaffold(body: Center(child: Text('Search'))),
+      ),
+      GoRoute(
+        path: UserPaths.services,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          final id = data['id'] as int;
+          return ServicesScreen(id: id);
+        },
       ),
     ];
   }
@@ -99,10 +110,6 @@ class UserAppRouteConfig {
             GoRoute(
               path: UserPaths.home,
               builder: (context, state) => const UserHomeScreen(),
-            ),
-            GoRoute(
-              path: UserPaths.services,
-              builder: (context, state) => const ServicesScreen(),
             ),
           ],
         ),

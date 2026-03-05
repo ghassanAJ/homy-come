@@ -302,7 +302,9 @@ as List<OfferModel>,
 /// @nodoc
 mixin _$OfferModel {
 
- List<ServiceCategoryModel> get categories; List<OfferModel> get offers;@JsonKey(name: 'image_url') String? get imageUrl;@JsonKey(name: 'aspect_ratio') double? get aspectRatio;
+ List<ServiceCategoryModel> get categories; List<OfferModel> get offers;// ignore: invalid_annotation_target - freezed uses JsonKey on factory params
+@JsonKey(name: 'image_url') String? get imageUrl;// ignore: invalid_annotation_target
+@JsonKey(name: 'aspect_ratio') double? get aspectRatio;
 /// Create a copy of OfferModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -516,7 +518,9 @@ class _OfferModel implements OfferModel {
   return EqualUnmodifiableListView(_offers);
 }
 
+// ignore: invalid_annotation_target - freezed uses JsonKey on factory params
 @override@JsonKey(name: 'image_url') final  String? imageUrl;
+// ignore: invalid_annotation_target
 @override@JsonKey(name: 'aspect_ratio') final  double? aspectRatio;
 
 /// Create a copy of OfferModel

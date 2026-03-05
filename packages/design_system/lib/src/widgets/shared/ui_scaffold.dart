@@ -27,6 +27,8 @@ class UIScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final topContentPadding =
+        MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
     return Scaffold(
       appBar:
           appBarTitle != null && appBar == null
@@ -38,7 +40,15 @@ class UIScaffold extends StatelessWidget {
               : appBar,
       body:
           withBackgroundGradient
-              ? Stack(children: [const UIBackground(), body])
+              ? Stack(
+                children: [
+                  const UIBackground(),
+                  Padding(
+                    padding: EdgeInsets.only(top: topContentPadding - 20),
+                    child: body,
+                  ),
+                ],
+              )
               : body,
       backgroundColor: UIColor.background,
       extendBodyBehindAppBar: extendBodyBehindAppBar,

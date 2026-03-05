@@ -652,7 +652,7 @@ class _IconButton extends StatelessWidget {
                         package: 'design_system',
                       ),
                     )
-                    : Icon(icon!, size: UI.sizes.iconMd, color: effectiveColor),
+                    : Icon(icon!, size: UI.sizes.iconLg, color: effectiveColor),
           ),
         ),
       ),

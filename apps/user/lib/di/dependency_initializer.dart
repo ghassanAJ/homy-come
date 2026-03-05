@@ -1,5 +1,6 @@
 import 'package:api_client/api_client.dart';
 import 'package:authentication/authentication.dart';
+import 'package:booking/booking.dart';
 // import 'package:notifications/notifications.dart';
 import 'package:user/di/di_container.dart';
 import 'package:util/util.dart';
@@ -23,6 +24,7 @@ void initializeDependencies(String env) {
 
   _configureAuthInterceptor();
   initMain(diContainer, env);
+  initBooking(diContainer, env);
   diContainer.registerSingleton<CustomRouter>(
     CustomRouter(AppRouter.createUserRouter(diContainer.get<AppCubit>())),
   );

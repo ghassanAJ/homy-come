@@ -19,6 +19,7 @@ export 'src/data/model/res/service_section_model.dart';
 export 'src/di/di_config.dart';
 export 'src/domain/repository/booking_api_repository.dart';
 export 'src/domain/repository/mock_booking_api_repository.dart';
+export 'src/domain/use_cases/get_service_details_use_case.dart';
 export 'src/presentation/cubit/service_details_cubit.dart';
 export 'src/presentation/screens/service_details_screen.dart';
 export 'src/presentation/screens/service_details_screen_old.dart';

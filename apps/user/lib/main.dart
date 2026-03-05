@@ -1,6 +1,9 @@
 import 'dart:async';
 
-import 'package:design_system/design_system.dart';
+import 'package:booking/booking.dart';
+import 'package:user/di/di_container.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc_event.dart';
 import 'package:user/user_app.dart';
 
 import 'di/dependency_initializer.dart';
@@ -19,7 +22,14 @@ void main() async {
 
       // await MDDesignSystemInitializer.initialize();
 
-      runApp(const UserApp());
+      runApp(
+        BlocProvider(
+          create:
+              (context) =>
+                  diContainer.get<HomeBloc>()..add(LoadHomeContentEvent()),
+          child: const UserApp(),
+        ),
+      );
     },
     (error, stack) {
       debugPrint('Uncaught error: $error');

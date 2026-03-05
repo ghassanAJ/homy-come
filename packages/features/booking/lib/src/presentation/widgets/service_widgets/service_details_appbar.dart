@@ -5,7 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 class ServiceDetailsAppBar extends SliverAppBar {
-  final PageData data;
+  final List<AddOnCategoryModel> categories;
+  final InfoModel info;
   final BuildContext context;
   final bool isCollapsed;
   final double expandedHeightappBar;
@@ -14,12 +15,13 @@ class ServiceDetailsAppBar extends SliverAppBar {
   final TabController tabController;
   final void Function(bool isCollapsed) onCollapsed;
   final void Function(int index) onTap;
-  final String appBarTitle;
 
   const ServiceDetailsAppBar({
     super.key,
-    required this.data,
+
+    required this.info,
     required this.context,
+    required this.categories,
     required this.isCollapsed,
     required this.expandedHeightappBar,
     required this.collapsedHeightappBar,
@@ -27,7 +29,6 @@ class ServiceDetailsAppBar extends SliverAppBar {
     required this.onCollapsed,
     required this.onTap,
     required this.tabController,
-    required this.appBarTitle,
   }) : super(elevation: 4.0, pinned: true, forceElevated: true);
 
   @override
@@ -40,7 +41,7 @@ class ServiceDetailsAppBar extends SliverAppBar {
           }
         },
         backgroundColor: backgroundColor,
-        icon: Icon(Icons.arrow_back, color: UIColor.black),
+        icon: UISvg(Assets.icons.arrowLeft, size: 24),
       ),
     );
   }
@@ -76,7 +77,7 @@ class ServiceDetailsAppBar extends SliverAppBar {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           UIText.bodyMedium(
-            appBarTitle,
+            info.name,
             color: UIColor.black,
             fontWeight: FontWeight.w600,
           ),
@@ -106,7 +107,7 @@ class ServiceDetailsAppBar extends SliverAppBar {
           unselectedLabelColor: UIColor.textSecondary,
           indicatorWeight: 3.0,
           tabs:
-              data.categories.map((e) {
+              categories.map((e) {
                 return Tab(text: e.info?.name);
               }).toList(),
           onTap: onTap,
@@ -117,20 +118,29 @@ class ServiceDetailsAppBar extends SliverAppBar {
 
   @override
   Widget? get flexibleSpace {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final top = constraints.constrainHeight();
-        final collapsedHight =
-            MediaQuery.of(context).viewPadding.top + kToolbarHeight + 48;
-        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-          onCollapsed(collapsedHight != top);
-        });
+    return UIEllipseBackground(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final top = constraints.constrainHeight();
+          final collapsedHight =
+              MediaQuery.of(context).viewPadding.top + kToolbarHeight + 48;
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            onCollapsed(collapsedHight != top);
+          });
 
-        return FlexibleSpaceBar(
-          collapseMode: CollapseMode.pin,
-          background: HeaderInfoSection(data: data, context: context),
-        );
-      },
+          return FlexibleSpaceBar(
+            collapseMode: CollapseMode.pin,
+            background: HeaderInfoSection(
+              data: PageData(
+                categories: categories,
+                title: info.name,
+                backgroundUrl: info.image,
+              ),
+              context: context,
+            ),
+          );
+        },
+      ),
     );
   }
 

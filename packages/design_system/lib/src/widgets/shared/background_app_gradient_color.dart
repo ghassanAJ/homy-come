@@ -15,7 +15,7 @@ class UIBackground extends StatelessWidget {
           colors: [UIColor.softGreen, UIColor.background],
         ),
       ),
-      child: SafeArea(child: Offstage(offstage: false, child: child)),
+      child: child,
     );
   }
 }

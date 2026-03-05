@@ -4,46 +4,121 @@ import 'package:user/features/home/data/model/res/search_response_model.dart';
 
 /// Mock [HomeResponseModel] for development and testing.
 HomeResponseModel get mockHomeResponseModel => HomeResponseModel(
-      categories: _mockCategories,
-      offers: _mockOffers,
-      sliders: _mockSliders,
-    );
+  categories: _mockCategories,
+  offers: _mockOffers,
+  sliders: _mockSliders,
+);
 
 final List<ServiceCategoryModel> _mockCategories = [
-  const ServiceCategoryModel(
+  ServiceCategoryModel(
     id: '1',
     name: 'Carpenter',
     servicesCount: 20,
     imageUrl: null,
-    servicePreviews: [],
+    servicePreviews: [
+      ...List.generate(
+        8,
+        (index) => ServicePreviewResponseModel(
+          priceModel: ServicePriceModel(currentPrice: 100, newPrice: 150),
+          id: '1',
+          info: InfoModel(
+            id: '1',
+            name: 'Carpenter',
+            image: 'https://i.ibb.co/9m8XQCvr/image.png',
+          ),
+          reviewsCount: 10,
+          rating: 5,
+        ),
+      ),
+    ],
   ),
-  const ServiceCategoryModel(
+  ServiceCategoryModel(
     id: '2',
     name: 'Cleaner',
     servicesCount: 20,
     imageUrl: null,
-    servicePreviews: [],
+    servicePreviews: [
+      ...List.generate(
+        8,
+        (index) => ServicePreviewResponseModel(
+          priceModel: ServicePriceModel(currentPrice: 100, newPrice: 150),
+          id: '1',
+          info: InfoModel(
+            id: '1',
+            name: 'Cleaner',
+            image: 'https://i.ibb.co/9m8XQCvr/image.png',
+          ),
+          reviewsCount: 10,
+          rating: 5,
+        ),
+      ),
+    ],
   ),
-  const ServiceCategoryModel(
+  ServiceCategoryModel(
     id: '3',
     name: 'Painter',
     servicesCount: 20,
     imageUrl: null,
-    servicePreviews: [],
+    servicePreviews: [
+      ...List.generate(
+        8,
+        (index) => ServicePreviewResponseModel(
+          priceModel: ServicePriceModel(currentPrice: 100, newPrice: 150),
+          id: '1',
+          info: InfoModel(
+            id: '1',
+            name: 'Painter',
+            image: 'https://i.ibb.co/9m8XQCvr/image.png',
+          ),
+          reviewsCount: 10,
+          rating: 5,
+        ),
+      ),
+    ],
   ),
-  const ServiceCategoryModel(
+  ServiceCategoryModel(
     id: '4',
     name: 'Electrician',
     servicesCount: 20,
     imageUrl: null,
-    servicePreviews: [],
+    servicePreviews: [
+      ...List.generate(
+        8,
+        (index) => ServicePreviewResponseModel(
+          priceModel: ServicePriceModel(currentPrice: 100, newPrice: 150),
+          id: '1',
+          info: InfoModel(
+            id: '1',
+            name: 'Electrician',
+            image: 'https://i.ibb.co/9m8XQCvr/image.png',
+          ),
+          reviewsCount: 10,
+          rating: 5,
+        ),
+      ),
+    ],
   ),
-  const ServiceCategoryModel(
+  ServiceCategoryModel(
     id: '5',
     name: 'Plumber',
     servicesCount: 20,
     imageUrl: null,
-    servicePreviews: [],
+    servicePreviews: [
+      ...List.generate(
+        8,
+        (index) => ServicePreviewResponseModel(
+          priceModel: ServicePriceModel(currentPrice: 100, newPrice: 150),
+          id: '1',
+          info: InfoModel(
+            id: '1',
+            name: 'Plumber',
+            image: 'https://i.ibb.co/9m8XQCvr/image.png',
+          ),
+          reviewsCount: 10,
+          rating: 5,
+        ),
+      ),
+    ],
   ),
 ];
 
@@ -73,9 +148,9 @@ final List<OfferModel> _mockSliders = [
 
 /// Mock [SearchResponseModel] for development and testing.
 SearchResponseModel get mockSearchResponseModel => SearchResponseModel(
-      popularSearch: _mockPopularSearch,
-      topCategories: _mockCategories,
-    );
+  popularSearch: _mockPopularSearch,
+  topCategories: _mockCategories,
+);
 
 const List<String> _mockPopularSearch = [
   'Home Cleaning',

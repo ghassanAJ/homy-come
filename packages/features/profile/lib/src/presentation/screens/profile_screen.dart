@@ -16,18 +16,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final topContentPadding =
-        MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
     return UIScaffold(
       appBarTitle: context.profileTranslation.profile.myProfile,
 
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
-            top: topContentPadding,
+            // top: topContentPadding,
             left: UI.spacing.lg,
             right: UI.spacing.lg,
-            bottom: UI.spacing.xl,
+            // bottom: UI.spacing.xl,
           ),
           child: Column(
             children: [

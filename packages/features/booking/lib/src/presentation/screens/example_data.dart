@@ -38,6 +38,7 @@ class ExampleData {
     id: '1',
     documentId: '1',
     info: InfoModel(
+      id: '1',
       name: "Urgent",
       description: "Sale is on now.",
       image: images[0],
@@ -48,6 +49,7 @@ class ExampleData {
         documentId: '1',
         durationMinutes: 60,
         info: InfoModel(
+          id: '1',
           name: "Home Cleaning",
           description: "Description",
           image: images[index % images.length],
@@ -61,6 +63,7 @@ class ExampleData {
     id: '2',
     documentId: '2',
     info: InfoModel(
+      id: '2',
       name: "Buy 1 Get 1",
       description: "Get at least 30 minutes.",
       image: images[1],
@@ -71,6 +74,7 @@ class ExampleData {
         documentId: '2',
         durationMinutes: 60,
         info: InfoModel(
+          id: '3',
           name: "Only for you",
           description: null,
           image: images[2],
@@ -82,13 +86,19 @@ class ExampleData {
   static AddOnCategoryModel category3 = AddOnCategoryModel(
     id: '3',
     documentId: '3',
-    info: InfoModel(name: "Only for you", description: null, image: images[2]),
+    info: InfoModel(
+      id: '3',
+      name: "Only for you",
+      description: null,
+      image: images[2],
+    ),
     services: List.generate(5, (index) {
       return AddOnServiceModel(
         id: '3',
         documentId: '3',
         durationMinutes: 60,
         info: InfoModel(
+          id: '3',
           name: "Home Cleaning",
           description: "Description",
           image: images[index % images.length],
@@ -103,6 +113,7 @@ class ExampleData {
     documentId: '4',
 
     info: InfoModel(
+      id: '4',
       name: "Water Disinfection",
       description: "Sale is on now.",
       image: images[3],
@@ -113,6 +124,7 @@ class ExampleData {
         documentId: '4',
         durationMinutes: 60,
         info: InfoModel(
+          id: '4',
           name: "Home Cleaning",
           description: "Description",
           image: images[index % images.length],
@@ -125,25 +137,26 @@ class ExampleData {
 
 class PageData {
   String title;
-  String deliverTime;
-  String bannerText;
-  String backgroundUrl;
+  String? deliverTime;
+  String? bannerText;
+  String? backgroundUrl;
 
-  double rate;
-  int rateQuantity;
+  double? rate;
+  int? rateQuantity;
 
-  OptionalCard optionalCard;
+  OptionalCard? optionalCard;
   List<AddOnCategoryModel> categories;
 
   PageData({
     required this.title,
-    required this.deliverTime,
-    required this.bannerText,
-    required this.backgroundUrl,
-    required this.rate,
-    required this.rateQuantity,
-    required this.optionalCard,
     required this.categories,
+
+    this.deliverTime,
+    this.bannerText,
+    this.backgroundUrl,
+    this.rate,
+    this.rateQuantity,
+    this.optionalCard,
   });
 }
 

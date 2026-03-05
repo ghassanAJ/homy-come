@@ -8,8 +8,8 @@ part of 'info_model.dart';
 
 _ServiceInfoModel _$ServiceInfoModelFromJson(Map<String, dynamic> json) =>
     _ServiceInfoModel(
-      id: json['id'] as String?,
-      name: json['name'] as String?,
+      id: json['id'] as String,
+      name: json['name'] as String,
       description: json['description'] as String?,
       image: json['image'] as String?,
     );

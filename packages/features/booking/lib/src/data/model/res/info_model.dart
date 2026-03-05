@@ -6,8 +6,8 @@ part 'info_model.g.dart';
 @freezed
 abstract class InfoModel with _$InfoModel {
   const factory InfoModel({
-    String? id,
-    String? name,
+    required String id,
+    required String name,
     String? description,
     String? image,
   }) = _ServiceInfoModel;

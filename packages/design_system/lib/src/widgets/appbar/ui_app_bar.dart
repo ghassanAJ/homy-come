@@ -179,25 +179,13 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
           overflow: TextOverflow.ellipsis,
         );
 
-    return Container(
-      // decoration: BoxDecoration(
-      //   // color: effectiveBackgroundColor,
-      //   border:
-      //       shouldShowBottomDivider
-      //           ? const Border(
-      //             bottom: BorderSide(color: UIColor.divider, width: 1),
-      //           )
-      //           : null,
-      //   boxShadow: _buildBoxShadow(),
-      // ),
-      child: AppBar(
-        backgroundColor: effectiveBackgroundColor,
-        // surfaceTintColor: UIColor.primary,
-        leading: _buildLeading(context),
-        title: effectiveTitle,
-        actions: _buildTrailing() != null ? [_buildTrailing()!] : null,
-        centerTitle: centerTitle,
-      ),
+    return AppBar(
+      backgroundColor: effectiveBackgroundColor,
+      surfaceTintColor: UIColor.primary,
+      leading: _buildLeading(context),
+      title: effectiveTitle,
+      actions: _buildTrailing() != null ? [_buildTrailing()!] : null,
+      centerTitle: centerTitle,
     );
   }
 

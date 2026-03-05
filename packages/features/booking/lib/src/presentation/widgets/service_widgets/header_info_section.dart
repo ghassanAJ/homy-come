@@ -21,8 +21,8 @@ class HeaderInfoSection extends StatelessWidget {
           child: Stack(
             children: [
               FadeInImage.assetNetwork(
-                placeholder: 'assets/images/transparent.png',
-                image: data.backgroundUrl,
+                placeholder: Assets.images.onboarding.path,
+                image: data.backgroundUrl ?? '',
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),

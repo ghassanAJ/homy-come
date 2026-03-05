@@ -1,24 +1,16 @@
-import 'package:design_system/design_system.dart';
+import 'package:booking/booking.dart';
 
 class ServiceOfferTile extends StatelessWidget {
   const ServiceOfferTile({
     super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.price,
-    required this.oldPrice,
-    required this.reviewsCount,
-    required this.ratingStars,
+
+    required this.servicePreviewResponseModel,
     this.width = 335,
   });
 
-  final String imageUrl;
-  final String title;
-  final String price;
-  final String oldPrice;
-  final int reviewsCount;
-  final List<bool> ratingStars;
   final double width;
+
+  final ServicePreviewResponseModel servicePreviewResponseModel;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +33,10 @@ class ServiceOfferTile extends StatelessWidget {
                 child: SizedBox(
                   height: 128,
                   width: width,
-                  child: UINetworkIamge(imageUrl: imageUrl, fit: BoxFit.cover),
+                  child: UINetworkIamge(
+                    imageUrl: servicePreviewResponseModel.info.image,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Padding(
@@ -52,19 +47,18 @@ class ServiceOfferTile extends StatelessWidget {
                     Row(
                       children: [
                         Row(
-                          children: ratingStars
-                              .map(
-                                (isFilled) => Icon(
-                                  isFilled ? Icons.star : Icons.star_border,
-                                  size: 20,
-                                  color: UIColor.babyBlue,
-                                ),
-                              )
-                              .toList(growable: false),
+                          children: List.generate(
+                            servicePreviewResponseModel.rating,
+                            (index) => Icon(
+                              Icons.star,
+                              size: 20,
+                              color: UIColor.babyBlue,
+                            ),
+                          ),
                         ),
                         SizedBox(width: UI.spacing.xs),
                         UIText.bodyXSmall(
-                          '($reviewsCount Reviews)',
+                          '(${servicePreviewResponseModel.reviewsCount} Reviews)',
                           color: UIColor.midnight,
                           fontWeight: FontWeight.w300,
                         ),
@@ -73,7 +67,7 @@ class ServiceOfferTile extends StatelessWidget {
 
                     SizedBox(height: UI.spacing.xxs),
                     UIText.bodyMedium(
-                      title,
+                      servicePreviewResponseModel.info.name ?? '',
                       color: UIColor.primaryDark,
                       fontWeight: FontWeight.w700,
                     ),
@@ -81,13 +75,15 @@ class ServiceOfferTile extends StatelessWidget {
                     Row(
                       children: [
                         UIText.bodyMedium(
-                          price,
+                          servicePreviewResponseModel.priceModel.newPrice
+                              .toString(),
                           color: UIColor.midnight,
                           fontWeight: FontWeight.w300,
                         ),
                         SizedBox(width: UI.spacing.xs),
                         Text(
-                          oldPrice,
+                          servicePreviewResponseModel.priceModel.currentPrice
+                              .toString(),
                           style: UI.text.bodyMedium.copyWith(
                             color: UIColor.neutral400,
                             fontWeight: FontWeight.w300,

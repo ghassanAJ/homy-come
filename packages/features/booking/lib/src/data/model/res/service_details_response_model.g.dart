@@ -10,21 +10,13 @@ _ServiceDetailsResponseModel _$ServiceDetailsResponseModelFromJson(
   Map<String, dynamic> json,
 ) => _ServiceDetailsResponseModel(
   id: json['id'] as String,
-  title: json['title'] as String,
+  rating: (json['rating'] as num).toInt(),
+  reviewsCount: (json['reviews_count'] as num).toInt(),
+  info: InfoModel.fromJson(json['info'] as Map<String, dynamic>),
+  price: ServicePriceModel.fromJson(json['price'] as Map<String, dynamic>),
   categories:
       (json['categories'] as List<dynamic>?)
-          ?.map((e) => ServiceCategoryModel.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      const [],
-  featuredOption:
-      json['featured_option'] == null
-          ? null
-          : ServiceOptionModel.fromJson(
-            json['featured_option'] as Map<String, dynamic>,
-          ),
-  sections:
-      (json['sections'] as List<dynamic>?)
-          ?.map((e) => ServiceSectionModel.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => AddOnCategoryModel.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
 );
@@ -33,10 +25,11 @@ Map<String, dynamic> _$ServiceDetailsResponseModelToJson(
   _ServiceDetailsResponseModel instance,
 ) => <String, dynamic>{
   'id': instance.id,
-  'title': instance.title,
+  'rating': instance.rating,
+  'reviews_count': instance.reviewsCount,
+  'info': instance.info,
+  'price': instance.price,
   'categories': instance.categories,
-  'featured_option': instance.featuredOption,
-  'sections': instance.sections,
 };
 
 _ServicePreviewResponseModel _$ServicePreviewResponseModelFromJson(
@@ -44,8 +37,9 @@ _ServicePreviewResponseModel _$ServicePreviewResponseModelFromJson(
 ) => _ServicePreviewResponseModel(
   id: json['id'] as String,
   info: InfoModel.fromJson(json['info'] as Map<String, dynamic>),
+  priceModel: ServicePriceModel.fromJson(json['price'] as Map<String, dynamic>),
   rating: (json['rating'] as num).toInt(),
-  reviewsCount: (json['reviewsCount'] as num).toInt(),
+  reviewsCount: (json['reviews_count'] as num).toInt(),
 );
 
 Map<String, dynamic> _$ServicePreviewResponseModelToJson(
@@ -53,6 +47,7 @@ Map<String, dynamic> _$ServicePreviewResponseModelToJson(
 ) => <String, dynamic>{
   'id': instance.id,
   'info': instance.info,
+  'price': instance.priceModel,
   'rating': instance.rating,
-  'reviewsCount': instance.reviewsCount,
+  'reviews_count': instance.reviewsCount,
 };

@@ -63,20 +63,22 @@ class HomeScreenAppBar extends SliverAppBar {
 
   @override
   Widget? get flexibleSpace {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final top = constraints.constrainHeight();
-        final collapsedHight =
-            MediaQuery.of(context).viewPadding.top + kToolbarHeight + 50;
-        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-          onCollapsed(collapsedHight != top);
-        });
+    return UIEllipseBackground(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final top = constraints.constrainHeight();
+          final collapsedHight =
+              MediaQuery.of(context).viewPadding.top + kToolbarHeight + 50;
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            onCollapsed(collapsedHight != top);
+          });
 
-        return FlexibleSpaceBar(
-          collapseMode: CollapseMode.pin,
-          background: const HomeHeader(),
-        );
-      },
+          return FlexibleSpaceBar(
+            collapseMode: CollapseMode.pin,
+            background: const HomeHeader(),
+          );
+        },
+      ),
     );
   }
 

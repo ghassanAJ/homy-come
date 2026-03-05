@@ -4,10 +4,14 @@ import 'package:booking/src/presentation/widgets/service_option_card.dart';
 import 'package:booking/src/presentation/widgets/service_widgets/widgets.dart';
 import 'package:rect_getter/rect_getter.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc_event.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc_state.dart';
+import 'package:user/features/home/presentation/screens/services_screen.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
-  const ServiceDetailsScreen({super.key});
-
+  const ServiceDetailsScreen({required this.serviceId, super.key});
+  final int serviceId;
   @override
   _ServiceDetailsScreenState createState() => _ServiceDetailsScreenState();
 }
@@ -21,7 +25,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
   final double expandedHeight = 300.0;
   final double collapsedHeight = kToolbarHeight;
 
-  final PageData data = ExampleData.data;
+  // final PageData data = ExampleData.data;
 
   final listViewKey = RectGetter.createGlobalKey();
   Map<int, dynamic> itemKeys = {};
@@ -29,11 +33,23 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
   // prevent animate when press on tab bar
   bool pauseRectGetterIndex = false;
 
+  bool isTabControllerInitialized = false;
+
   @override
   void initState() {
-    tabController = TabController(length: data.categories.length, vsync: this);
     scrollController = AutoScrollController();
+    context.read<HomeBloc>().add(
+      LoadServiceDetailsEvent(
+        GetServiceDetailsRequestModel(serviceId: widget.serviceId.toString()),
+      ),
+    );
     super.initState();
+  }
+
+  void _initializeTabController(int length) {
+    if (isTabControllerInitialized) return;
+    tabController = TabController(length: length, vsync: this);
+    isTabControllerInitialized = true;
   }
 
   @override
@@ -41,27 +57,51 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: UIColor.white,
-      body: RectGetter(
-        key: listViewKey,
-        child: NotificationListener<ScrollNotification>(
-          onNotification: onScrollNotification,
-          child: CustomScrollView(
-            controller: scrollController,
-            slivers: [buildAppBar(), buildBody()],
-          ),
-        ),
+      body: BlocBuilder<HomeBloc, HomeBlocState>(
+        builder: (context, state) {
+          if (state.status == HomeBlocStatus.loadingServiceDetails) {
+            return const ServiceDetailsScreenShimmar();
+          }
+          if (state.error != null) {
+            return Center(child: Text(state.error?.message ?? ''));
+          }
+
+          _initializeTabController(
+            state.serviceDetails?.categories
+                    .where((category) => category.services.isNotEmpty)
+                    .length ??
+                0,
+          );
+
+          final data = state.serviceDetails;
+          return data != null
+              ? RectGetter(
+                key: listViewKey,
+                child: NotificationListener<ScrollNotification>(
+                  onNotification: onScrollNotification,
+                  child: CustomScrollView(
+                    controller: scrollController,
+                    slivers: [buildAppBar(data), buildBody(data)],
+                  ),
+                ),
+              )
+              : const SizedBox.shrink();
+        },
       ),
     );
   }
 
-  SliverAppBar buildAppBar() {
+  SliverAppBar buildAppBar(ServiceDetailsResponseModel data) {
     return ServiceDetailsAppBar(
-      data: data,
+      info: data.info,
+      categories:
+          data.categories
+              .where((category) => category.services.isNotEmpty)
+              .toList(),
       context: context,
       scrollController: scrollController,
       expandedHeightappBar: expandedHeight,
       collapsedHeightappBar: collapsedHeight,
-      appBarTitle: data.title,
       isCollapsed: isCollapsed,
       onCollapsed: onCollapsed,
       tabController: tabController,
@@ -69,21 +109,24 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
     );
   }
 
-  SliverList buildBody() {
+  SliverList buildBody(ServiceDetailsResponseModel data1) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) => buildCategoryItem(index),
-        childCount: data.categories.length,
+        (context, index) => buildCategoryItem(index, data1.categories[index]),
+        childCount:
+            data1.categories
+                .where((category) => category.services.isNotEmpty)
+                .length,
       ),
     );
   }
 
-  Widget buildCategoryItem(int index) {
+  Widget buildCategoryItem(int index, AddOnCategoryModel category1) {
     itemKeys[index] = RectGetter.createGlobalKey();
     CategorySectionData<AddOnServiceModel> category = CategorySectionData(
-      title: data.categories[index].info?.name ?? '',
-      subtitle: data.categories[index].info?.description ?? '',
-      items: data.categories[index].services,
+      title: category1.info?.name ?? '',
+      subtitle: category1.info?.description ?? '',
+      items: category1.services,
     );
     return RectGetter(
       key: itemKeys[index],

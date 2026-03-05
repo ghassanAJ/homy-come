@@ -5,11 +5,13 @@ class CategoriesSearchField extends StatelessWidget {
     required this.controller,
     this.readOnly = false,
     this.onTap,
+    this.placeholder = 'search by category',
     super.key,
   });
   final bool readOnly;
   final TextEditingController controller;
   final VoidCallback? onTap;
+  final String placeholder;
   @override
   Widget build(BuildContext context) {
     return AppTextField(
@@ -17,7 +19,7 @@ class CategoriesSearchField extends StatelessWidget {
       readOnly: readOnly,
       borderRadius: BorderRadius.circular(UI.radius.xl),
       controller: controller,
-      placeholder: 'search by category',
+      placeholder: placeholder,
       showClearButton: false,
       isFlat: true,
       contentPadding: UI.padding.userSearchFieldContent,

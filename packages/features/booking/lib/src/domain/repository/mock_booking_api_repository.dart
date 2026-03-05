@@ -15,106 +15,174 @@ class MockBookingRepository implements BookingRepository {
       return failure(APIException.error('Mock getServiceDetails failure'));
     }
 
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(milliseconds: 500));
     return success(
       ServiceDetailsResponseModel(
-        id: request.serviceId,
-        title: 'Home Deep Cleaning',
-        categories: const [
-          ServiceCategoryModel(
-            id: '1',
-            name: 'Home Cleaning',
-            servicesCount: 10,
-          ),
-          ServiceCategoryModel(
-            id: '2',
-            name: 'Furniture Cleaning',
-            servicesCount: 10,
-          ),
-          ServiceCategoryModel(
-            id: '3',
-            name: 'Home Deep Cleaning',
-            servicesCount: 10,
-          ),
-        ],
-        featuredOption: const ServiceOptionModel(
-          id: 'featured-1',
-          title: 'Door Lock install/Repair (1Look)',
-          durationMinutes: 60,
-          description:
-              'Reliable Door lock installation & repair for improved home safety & function',
-          originalPrice: 78,
-          discountedPrice: 48,
+        id: '1',
+        rating: 5,
+        reviewsCount: 10,
+        info: InfoModel(
+          id: '1',
+          name: 'Home Deep Cleaning',
+          image: 'https://i.ibb.co/9m8XQCvr/image.png',
         ),
-        sections: const [
-          ServiceSectionModel(
-            title: 'Plumbing Services',
-            options: [
-              ServiceOptionModel(
-                id: 'opt-1',
-                title: 'Door Lock install/Repair (1Look)',
+        price: ServicePriceModel(currentPrice: 100, newPrice: 150),
+        categories: const [
+          AddOnCategoryModel(
+            id: '1',
+            documentId: '1',
+            info: InfoModel(
+              id: '1',
+              name: 'Home Cleaning',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
+            services: [
+              AddOnServiceModel(
+                id: '1',
+                documentId: '1',
                 durationMinutes: 60,
-                description:
-                    'Reliable Door lock installation & repair for improved home safety & function',
-                originalPrice: 78,
-                discountedPrice: 48,
-              ),
-              ServiceOptionModel(
-                id: 'opt-2',
-                title: 'Door Lock install/Repair (1Look)',
-                durationMinutes: 60,
-                description:
-                    'Reliable Door lock installation & repair for improved home safety & function',
-                originalPrice: 78,
-                discountedPrice: 48,
+                price: ServicePriceModel(currentPrice: 100, newPrice: 150),
+                info: InfoModel(id: '1', name: 'Home Cleaning'),
               ),
             ],
           ),
-          ServiceSectionModel(
-            title: 'Cleaning Services',
-            options: [
-              ServiceOptionModel(
-                id: 'opt-3',
-                title: 'Home Cleaning',
+          AddOnCategoryModel(
+            id: '1',
+            documentId: '1',
+            info: InfoModel(
+              id: '1',
+              name: 'Home Cleaning',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
+            services: [
+              AddOnServiceModel(
+                id: '1',
+                documentId: '1',
                 durationMinutes: 60,
-                description:
-                    'Reliable Door lock installation & repair for improved home safety & function',
-                originalPrice: 78,
-                discountedPrice: 48,
-              ),
-              ServiceOptionModel(
-                id: 'opt-4',
-                title: 'Furniture Cleaning',
-                durationMinutes: 60,
-                description:
-                    'Reliable Door lock installation & repair for improved home safety & function',
-                originalPrice: 78,
-                discountedPrice: 48,
+                price: ServicePriceModel(currentPrice: 100, newPrice: 150),
+                info: InfoModel(id: '1', name: 'Home Cleaning'),
               ),
             ],
           ),
-          ServiceSectionModel(
-            title: 'Deep Cleaning Services',
-            options: [
-              ServiceOptionModel(
-                id: 'opt-5',
-                title: 'Home Deep Cleaning',
+          AddOnCategoryModel(
+            id: '1',
+            documentId: '1',
+            info: InfoModel(
+              id: '1',
+              name: 'Home Cleaning',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
+            services: [
+              AddOnServiceModel(
+                id: '1',
+                documentId: '1',
                 durationMinutes: 60,
-                description:
-                    'Reliable Door lock installation & repair for improved home safety & function',
-                originalPrice: 78,
-                discountedPrice: 48,
+                price: ServicePriceModel(currentPrice: 100, newPrice: 150),
+                info: InfoModel(id: '1', name: 'Home Cleaning'),
               ),
-              ServiceOptionModel(
-                id: 'opt-6',
-                title: 'Home Deep Cleaning',
+              AddOnServiceModel(
+                id: '1',
+                documentId: '1',
                 durationMinutes: 60,
-                description:
-                    'Reliable Door lock installation & repair for improved home safety & function',
-                originalPrice: 78,
-                discountedPrice: 48,
+                price: ServicePriceModel(currentPrice: 100, newPrice: 150),
+                info: InfoModel(id: '1', name: 'Home Cleaning'),
+              ),
+              AddOnServiceModel(
+                id: '1',
+                documentId: '1',
+                durationMinutes: 60,
+                price: ServicePriceModel(currentPrice: 100, newPrice: 150),
+                info: InfoModel(id: '1', name: 'Home Cleaning'),
+              ),
+              AddOnServiceModel(
+                id: '1',
+                documentId: '1',
+                durationMinutes: 60,
+                price: ServicePriceModel(currentPrice: 100, newPrice: 150),
+                info: InfoModel(id: '1', name: 'Home Cleaning'),
               ),
             ],
+          ),
+          AddOnCategoryModel(
+            id: '1',
+            documentId: '1',
+            info: InfoModel(
+              id: '1',
+              name: 'Home Cleaning1',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
+            services: [
+              AddOnServiceModel(
+                id: '1',
+                documentId: '1',
+                durationMinutes: 60,
+                price: ServicePriceModel(currentPrice: 100, newPrice: 150),
+                info: InfoModel(id: '1', name: 'Home Cleaning'),
+              ),
+            ],
+          ),
+          AddOnCategoryModel(
+            id: '1',
+            documentId: '1',
+            info: InfoModel(
+              id: '1',
+              name: 'Home Cleaning2',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
+            services: [
+              AddOnServiceModel(
+                id: '1',
+                documentId: '1',
+                durationMinutes: 60,
+                price: ServicePriceModel(currentPrice: 100, newPrice: 150),
+                info: InfoModel(id: '1', name: 'Home Cleaning'),
+              ),
+            ],
+          ),
+          AddOnCategoryModel(
+            id: '1',
+            documentId: '1',
+            info: InfoModel(
+              id: '1',
+              name: 'Home Cleaning3',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
+          ),
+          AddOnCategoryModel(
+            id: '1',
+            documentId: '1',
+            info: InfoModel(
+              id: '1',
+              name: 'Home Cleaning4',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
+          ),
+          AddOnCategoryModel(
+            id: '1',
+            documentId: '1',
+            info: InfoModel(
+              id: '1',
+              name: 'Home Cleaning5',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
+          ),
+          AddOnCategoryModel(
+            id: '1',
+            documentId: '1',
+            info: InfoModel(
+              id: '1',
+              name: 'Home Cleaning6',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
+          ),
+          AddOnCategoryModel(
+            id: '1',
+            documentId: '1',
+            info: InfoModel(
+              id: '1',
+              name: 'Home Cleaning7',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
           ),
         ],
       ),
