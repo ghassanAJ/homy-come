@@ -19,12 +19,9 @@ abstract class HomeResponseModel with _$HomeResponseModel {
 @freezed
 abstract class OfferModel with _$OfferModel {
   const factory OfferModel({
-    @Default([]) List<ServiceCategoryModel> categories,
-    @Default([]) List<OfferModel> offers,
-    // ignore: invalid_annotation_target - freezed uses JsonKey on factory params
     @JsonKey(name: 'image_url') String? imageUrl,
+    @JsonKey(name: 'service_id') String? serviceId,
     // ignore: invalid_annotation_target
-    @JsonKey(name: 'aspect_ratio') double? aspectRatio,
   }) = _OfferModel;
 
   factory OfferModel.fromJson(Map<String, dynamic> json) =>

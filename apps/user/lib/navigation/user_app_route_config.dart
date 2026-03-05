@@ -2,6 +2,7 @@ import 'package:booking/booking.dart';
 import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:user/features/home/presentation/screens/categories_screen.dart';
+import 'package:user/features/home/presentation/screens/search_screen.dart';
 import 'package:user/features/home/presentation/screens/services_screen.dart';
 import 'package:user/features/home/presentation/screens/stories_screen.dart';
 import 'package:user/features/home/presentation/screens/user_home_screen.dart';
@@ -52,9 +53,7 @@ class UserAppRouteConfig {
       ),
       GoRoute(
         path: UserPaths.search,
-        builder:
-            (context, state) =>
-                const UIScaffold(body: Center(child: Text('Search'))),
+        builder: (context, state) => const SearchScreen(),
       ),
       GoRoute(
         path: UserPaths.services,

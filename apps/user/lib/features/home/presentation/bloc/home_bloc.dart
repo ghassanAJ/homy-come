@@ -15,21 +15,27 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
         LoadOffersEvent() => _loadOffers(event, emit),
         LoadSearchContentEvent() => _loadSearchContent(event, emit),
         LoadServiceDetailsEvent() => _loadServiceDetails(event, emit),
-
         LoadCategoryServicesEvent() => _loadCategoryServices(event, emit),
       };
     });
   }
 
   final HomeRepository _homeRepository;
-
   final BookingRepository _bookingRepository;
+
+  final Map<String, ServiceDetailsResponseModel> _serviceDetailsCache = {};
 
   Future<void> _loadHomeContent(
     LoadHomeContentEvent event,
     Emitter<HomeBlocState> emit,
   ) async {
-    emit(state.copyWith(status: HomeBlocStatus.loadingCategories));
+    emit(
+      state.copyWith(
+        categoriesLoading: true,
+        slidersLoading: true,
+        offersLoading: true,
+      ),
+    );
     final result = await _homeRepository.getHomeContent();
     result.fold(
       (data) => emit(
@@ -37,12 +43,22 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
           categories: data.categories,
           offers: data.offers,
           sliders: data.sliders,
+          categoriesLoading: false,
+          slidersLoading: false,
+          offersLoading: false,
           status: HomeBlocStatus.success,
           error: null,
         ),
       ),
-      (error) =>
-          emit(state.copyWith(error: error, status: HomeBlocStatus.error)),
+      (error) => emit(
+        state.copyWith(
+          error: error,
+          categoriesLoading: false,
+          slidersLoading: false,
+          offersLoading: false,
+          status: HomeBlocStatus.error,
+        ),
+      ),
     );
   }
 
@@ -50,18 +66,24 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
     LoadSlidersEvent event,
     Emitter<HomeBlocState> emit,
   ) async {
-    emit(state.copyWith(status: HomeBlocStatus.loadingSliders));
+    emit(state.copyWith(slidersLoading: true));
     final result = await _homeRepository.getHomeContent();
     result.fold(
       (data) => emit(
         state.copyWith(
           sliders: data.sliders,
+          slidersLoading: false,
           status: HomeBlocStatus.success,
           error: null,
         ),
       ),
-      (error) =>
-          emit(state.copyWith(error: error, status: HomeBlocStatus.error)),
+      (error) => emit(
+        state.copyWith(
+          error: error,
+          slidersLoading: false,
+          status: HomeBlocStatus.error,
+        ),
+      ),
     );
   }
 
@@ -69,18 +91,24 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
     LoadOffersEvent event,
     Emitter<HomeBlocState> emit,
   ) async {
-    emit(state.copyWith(status: HomeBlocStatus.loadingOffers));
+    emit(state.copyWith(offersLoading: true));
     final result = await _homeRepository.getHomeContent();
     result.fold(
       (data) => emit(
         state.copyWith(
           offers: data.offers,
+          offersLoading: false,
           status: HomeBlocStatus.success,
           error: null,
         ),
       ),
-      (error) =>
-          emit(state.copyWith(error: error, status: HomeBlocStatus.error)),
+      (error) => emit(
+        state.copyWith(
+          error: error,
+          offersLoading: false,
+          status: HomeBlocStatus.error,
+        ),
+      ),
     );
   }
 
@@ -88,18 +116,24 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
     LoadSearchContentEvent event,
     Emitter<HomeBlocState> emit,
   ) async {
-    emit(state.copyWith(status: HomeBlocStatus.loadingSearchContent));
+    emit(state.copyWith(searchContentLoading: true));
     final result = await _homeRepository.getSearchContent();
     result.fold(
       (data) => emit(
         state.copyWith(
           searchContent: data,
+          searchContentLoading: false,
           status: HomeBlocStatus.success,
           error: null,
         ),
       ),
-      (error) =>
-          emit(state.copyWith(error: error, status: HomeBlocStatus.error)),
+      (error) => emit(
+        state.copyWith(
+          error: error,
+          searchContentLoading: false,
+          status: HomeBlocStatus.error,
+        ),
+      ),
     );
   }
 
@@ -107,18 +141,40 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
     LoadServiceDetailsEvent event,
     Emitter<HomeBlocState> emit,
   ) async {
-    emit(state.copyWith(status: HomeBlocStatus.loadingServiceDetails));
-    final result = await _bookingRepository.getServiceDetails(event.request);
-    result.fold(
-      (data) => emit(
+    final cached = _serviceDetailsCache[event.request.serviceId];
+    if (cached != null) {
+      emit(
         state.copyWith(
-          serviceDetails: data,
+          serviceDetails: cached,
+          serviceDetailsLoading: false,
           status: HomeBlocStatus.success,
           error: null,
         ),
+      );
+      return;
+    }
+
+    emit(state.copyWith(serviceDetailsLoading: true));
+    final result = await _bookingRepository.getServiceDetails(event.request);
+    result.fold(
+      (data) {
+        _serviceDetailsCache[event.request.serviceId] = data;
+        emit(
+          state.copyWith(
+            serviceDetails: data,
+            serviceDetailsLoading: false,
+            status: HomeBlocStatus.success,
+            error: null,
+          ),
+        );
+      },
+      (error) => emit(
+        state.copyWith(
+          error: error,
+          serviceDetailsLoading: false,
+          status: HomeBlocStatus.error,
+        ),
       ),
-      (error) =>
-          emit(state.copyWith(error: error, status: HomeBlocStatus.error)),
     );
   }
 

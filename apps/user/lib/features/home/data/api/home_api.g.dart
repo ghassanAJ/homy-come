@@ -124,12 +124,12 @@ class _HomeAPI implements HomeAPI {
   }
 
   @override
-  Future<APIResponse<OfferModel>> getOffers() async {
+  Future<APIResponse<List<OfferModel>>> getOffers() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<APIResponse<OfferModel>>(
+    final _options = _setStreamType<APIResponse<List<OfferModel>>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -140,11 +140,18 @@ class _HomeAPI implements HomeAPI {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late APIResponse<OfferModel> _value;
+    late APIResponse<List<OfferModel>> _value;
     try {
-      _value = APIResponse<OfferModel>.fromJson(
+      _value = APIResponse<List<OfferModel>>.fromJson(
         _result.data!,
-        (json) => OfferModel.fromJson(json as Map<String, dynamic>),
+        (json) =>
+            json is List<dynamic>
+                ? json
+                    .map<OfferModel>(
+                      (i) => OfferModel.fromJson(i as Map<String, dynamic>),
+                    )
+                    .toList()
+                : List.empty(),
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
@@ -154,12 +161,12 @@ class _HomeAPI implements HomeAPI {
   }
 
   @override
-  Future<APIResponse<OfferModel>> getSliders() async {
+  Future<APIResponse<List<OfferModel>>> getSliders() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<APIResponse<OfferModel>>(
+    final _options = _setStreamType<APIResponse<List<OfferModel>>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -170,11 +177,18 @@ class _HomeAPI implements HomeAPI {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late APIResponse<OfferModel> _value;
+    late APIResponse<List<OfferModel>> _value;
     try {
-      _value = APIResponse<OfferModel>.fromJson(
+      _value = APIResponse<List<OfferModel>>.fromJson(
         _result.data!,
-        (json) => OfferModel.fromJson(json as Map<String, dynamic>),
+        (json) =>
+            json is List<dynamic>
+                ? json
+                    .map<OfferModel>(
+                      (i) => OfferModel.fromJson(i as Map<String, dynamic>),
+                    )
+                    .toList()
+                : List.empty(),
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);

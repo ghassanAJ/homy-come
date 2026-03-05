@@ -5,14 +5,12 @@ class OfferCard extends StatelessWidget {
     required this.image,
     this.aspectRatio = 2 / 1,
     this.width = 272,
-    this.package,
     super.key,
   });
 
   final String image;
   final double aspectRatio;
   final double width;
-  final String? package;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +31,7 @@ class OfferCard extends StatelessWidget {
       // TODO: Replace with real image URL from API/state.
       imageUrl: image,
       fit: BoxFit.cover,
-      placeholder: UINetworkIamge(
-        imageUrl: image,
-        fit: BoxFit.cover,
-      ),
+      placeholder: UINetworkIamge(imageUrl: image, fit: BoxFit.cover),
     );
   }
 }

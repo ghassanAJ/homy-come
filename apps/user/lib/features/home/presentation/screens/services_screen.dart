@@ -42,7 +42,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
       // appBar: SectionHeaderAppBar(title: 'All Services'),
       body: BlocBuilder<HomeBloc, HomeBlocState>(
         builder: (context, state) {
-          if (state.status == HomeBlocStatus.loadingServiceDetails) {
+          if (state.serviceDetailsLoading) {
             return const ServicesScreenShimmar();
           }
           if (state.error != null) {

@@ -38,12 +38,20 @@ class MockHomeRepository implements HomeRepository {
         ),
       );
 
-  static OfferModel get _mockOffer => const OfferModel(
-    categories: [],
-    offers: [],
-    imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-    aspectRatio: 2 / 1,
-  );
+  static List<OfferModel> get _mockOffer => [
+    const OfferModel(
+      imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
+      serviceId: '1',
+    ),
+    const OfferModel(
+      imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
+      serviceId: '1',
+    ),
+    const OfferModel(
+      imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
+      serviceId: '1',
+    ),
+  ];
 
   @override
   Future<Result<HomeResponseModel, APIException>> getHomeContent() async {
@@ -64,31 +72,34 @@ class MockHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<List<ServicePreviewResponseModel>, APIException>> getCategoryServices(
-    String categoryId,
-  ) async {
+  Future<Result<List<ServicePreviewResponseModel>, APIException>>
+  getCategoryServices(String categoryId) async {
     if (failNextGetCategoryServices) {
       failNextGetCategoryServices = false;
       return failure(APIException.error('Mock getCategoryServices failure'));
     }
+    await Future.delayed(const Duration(milliseconds: 500));
     return success(_mockServicePreviews('Service'));
   }
 
   @override
-  Future<Result<OfferModel, APIException>> getOffers() async {
+  Future<Result<List<OfferModel>, APIException>> getOffers() async {
     if (failNextGetOffers) {
       failNextGetOffers = false;
       return failure(APIException.error('Mock getOffers failure'));
     }
+    await Future.delayed(const Duration(milliseconds: 500));
     return success(_mockOffer);
   }
 
   @override
-  Future<Result<OfferModel, APIException>> getSliders() async {
+  Future<Result<List<OfferModel>, APIException>> getSliders() async {
     if (failNextGetSliders) {
       failNextGetSliders = false;
       return failure(APIException.error('Mock getSliders failure'));
     }
+    await Future.delayed(const Duration(milliseconds: 500));
+
     return success(_mockOffer);
   }
 }

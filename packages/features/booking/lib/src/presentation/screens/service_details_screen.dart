@@ -59,7 +59,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
       backgroundColor: UIColor.white,
       body: BlocBuilder<HomeBloc, HomeBlocState>(
         builder: (context, state) {
-          if (state.status == HomeBlocStatus.loadingServiceDetails) {
+          if (state.serviceDetailsLoading) {
             return const ServiceDetailsScreenShimmar();
           }
           if (state.error != null) {

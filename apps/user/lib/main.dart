@@ -26,7 +26,10 @@ void main() async {
         BlocProvider(
           create:
               (context) =>
-                  diContainer.get<HomeBloc>()..add(LoadHomeContentEvent()),
+                  diContainer.get<HomeBloc>()
+                    ..add(LoadHomeContentEvent())
+                    ..add(LoadOffersEvent())
+                    ..add(LoadSlidersEvent()),
           child: const UserApp(),
         ),
       );

@@ -302,9 +302,7 @@ as List<OfferModel>,
 /// @nodoc
 mixin _$OfferModel {
 
- List<ServiceCategoryModel> get categories; List<OfferModel> get offers;// ignore: invalid_annotation_target - freezed uses JsonKey on factory params
-@JsonKey(name: 'image_url') String? get imageUrl;// ignore: invalid_annotation_target
-@JsonKey(name: 'aspect_ratio') double? get aspectRatio;
+@JsonKey(name: 'image_url') String? get imageUrl;@JsonKey(name: 'service_id') String? get serviceId;
 /// Create a copy of OfferModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -317,16 +315,16 @@ $OfferModelCopyWith<OfferModel> get copyWith => _$OfferModelCopyWithImpl<OfferMo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OfferModel&&const DeepCollectionEquality().equals(other.categories, categories)&&const DeepCollectionEquality().equals(other.offers, offers)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.aspectRatio, aspectRatio) || other.aspectRatio == aspectRatio));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OfferModel&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.serviceId, serviceId) || other.serviceId == serviceId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(categories),const DeepCollectionEquality().hash(offers),imageUrl,aspectRatio);
+int get hashCode => Object.hash(runtimeType,imageUrl,serviceId);
 
 @override
 String toString() {
-  return 'OfferModel(categories: $categories, offers: $offers, imageUrl: $imageUrl, aspectRatio: $aspectRatio)';
+  return 'OfferModel(imageUrl: $imageUrl, serviceId: $serviceId)';
 }
 
 
@@ -337,7 +335,7 @@ abstract mixin class $OfferModelCopyWith<$Res>  {
   factory $OfferModelCopyWith(OfferModel value, $Res Function(OfferModel) _then) = _$OfferModelCopyWithImpl;
 @useResult
 $Res call({
- List<ServiceCategoryModel> categories, List<OfferModel> offers,@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'aspect_ratio') double? aspectRatio
+@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'service_id') String? serviceId
 });
 
 
@@ -354,13 +352,11 @@ class _$OfferModelCopyWithImpl<$Res>
 
 /// Create a copy of OfferModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? categories = null,Object? offers = null,Object? imageUrl = freezed,Object? aspectRatio = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? imageUrl = freezed,Object? serviceId = freezed,}) {
   return _then(_self.copyWith(
-categories: null == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
-as List<ServiceCategoryModel>,offers: null == offers ? _self.offers : offers // ignore: cast_nullable_to_non_nullable
-as List<OfferModel>,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,aspectRatio: freezed == aspectRatio ? _self.aspectRatio : aspectRatio // ignore: cast_nullable_to_non_nullable
-as double?,
+imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,serviceId: freezed == serviceId ? _self.serviceId : serviceId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -445,10 +441,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<ServiceCategoryModel> categories,  List<OfferModel> offers, @JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'aspect_ratio')  double? aspectRatio)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'service_id')  String? serviceId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OfferModel() when $default != null:
-return $default(_that.categories,_that.offers,_that.imageUrl,_that.aspectRatio);case _:
+return $default(_that.imageUrl,_that.serviceId);case _:
   return orElse();
 
 }
@@ -466,10 +462,10 @@ return $default(_that.categories,_that.offers,_that.imageUrl,_that.aspectRatio);
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<ServiceCategoryModel> categories,  List<OfferModel> offers, @JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'aspect_ratio')  double? aspectRatio)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'service_id')  String? serviceId)  $default,) {final _that = this;
 switch (_that) {
 case _OfferModel():
-return $default(_that.categories,_that.offers,_that.imageUrl,_that.aspectRatio);case _:
+return $default(_that.imageUrl,_that.serviceId);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -486,10 +482,10 @@ return $default(_that.categories,_that.offers,_that.imageUrl,_that.aspectRatio);
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<ServiceCategoryModel> categories,  List<OfferModel> offers, @JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'aspect_ratio')  double? aspectRatio)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'service_id')  String? serviceId)?  $default,) {final _that = this;
 switch (_that) {
 case _OfferModel() when $default != null:
-return $default(_that.categories,_that.offers,_that.imageUrl,_that.aspectRatio);case _:
+return $default(_that.imageUrl,_that.serviceId);case _:
   return null;
 
 }
@@ -501,27 +497,11 @@ return $default(_that.categories,_that.offers,_that.imageUrl,_that.aspectRatio);
 @JsonSerializable()
 
 class _OfferModel implements OfferModel {
-  const _OfferModel({final  List<ServiceCategoryModel> categories = const [], final  List<OfferModel> offers = const [], @JsonKey(name: 'image_url') this.imageUrl, @JsonKey(name: 'aspect_ratio') this.aspectRatio}): _categories = categories,_offers = offers;
+  const _OfferModel({@JsonKey(name: 'image_url') this.imageUrl, @JsonKey(name: 'service_id') this.serviceId});
   factory _OfferModel.fromJson(Map<String, dynamic> json) => _$OfferModelFromJson(json);
 
- final  List<ServiceCategoryModel> _categories;
-@override@JsonKey() List<ServiceCategoryModel> get categories {
-  if (_categories is EqualUnmodifiableListView) return _categories;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_categories);
-}
-
- final  List<OfferModel> _offers;
-@override@JsonKey() List<OfferModel> get offers {
-  if (_offers is EqualUnmodifiableListView) return _offers;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_offers);
-}
-
-// ignore: invalid_annotation_target - freezed uses JsonKey on factory params
 @override@JsonKey(name: 'image_url') final  String? imageUrl;
-// ignore: invalid_annotation_target
-@override@JsonKey(name: 'aspect_ratio') final  double? aspectRatio;
+@override@JsonKey(name: 'service_id') final  String? serviceId;
 
 /// Create a copy of OfferModel
 /// with the given fields replaced by the non-null parameter values.
@@ -536,16 +516,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OfferModel&&const DeepCollectionEquality().equals(other._categories, _categories)&&const DeepCollectionEquality().equals(other._offers, _offers)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.aspectRatio, aspectRatio) || other.aspectRatio == aspectRatio));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OfferModel&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.serviceId, serviceId) || other.serviceId == serviceId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_categories),const DeepCollectionEquality().hash(_offers),imageUrl,aspectRatio);
+int get hashCode => Object.hash(runtimeType,imageUrl,serviceId);
 
 @override
 String toString() {
-  return 'OfferModel(categories: $categories, offers: $offers, imageUrl: $imageUrl, aspectRatio: $aspectRatio)';
+  return 'OfferModel(imageUrl: $imageUrl, serviceId: $serviceId)';
 }
 
 
@@ -556,7 +536,7 @@ abstract mixin class _$OfferModelCopyWith<$Res> implements $OfferModelCopyWith<$
   factory _$OfferModelCopyWith(_OfferModel value, $Res Function(_OfferModel) _then) = __$OfferModelCopyWithImpl;
 @override @useResult
 $Res call({
- List<ServiceCategoryModel> categories, List<OfferModel> offers,@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'aspect_ratio') double? aspectRatio
+@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'service_id') String? serviceId
 });
 
 
@@ -573,13 +553,11 @@ class __$OfferModelCopyWithImpl<$Res>
 
 /// Create a copy of OfferModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? categories = null,Object? offers = null,Object? imageUrl = freezed,Object? aspectRatio = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? imageUrl = freezed,Object? serviceId = freezed,}) {
   return _then(_OfferModel(
-categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
-as List<ServiceCategoryModel>,offers: null == offers ? _self._offers : offers // ignore: cast_nullable_to_non_nullable
-as List<OfferModel>,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,aspectRatio: freezed == aspectRatio ? _self.aspectRatio : aspectRatio // ignore: cast_nullable_to_non_nullable
-as double?,
+imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,serviceId: freezed == serviceId ? _self.serviceId : serviceId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

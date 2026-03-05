@@ -124,25 +124,19 @@ final List<ServiceCategoryModel> _mockCategories = [
 
 final List<OfferModel> _mockOffers = [
   const OfferModel(
-    categories: [],
-    offers: [],
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-    aspectRatio: 2 / 1,
+    serviceId: '1',
   ),
   const OfferModel(
-    categories: [],
-    offers: [],
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-    aspectRatio: 2 / 1,
+    serviceId: '1',
   ),
 ];
 
 final List<OfferModel> _mockSliders = [
   const OfferModel(
-    categories: [],
-    offers: [],
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-    aspectRatio: 2 / 1,
+    serviceId: '1',
   ),
 ];
 

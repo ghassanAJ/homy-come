@@ -1,6 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
-import 'package:user/features/home/domain/entities/home_content.dart';
+import 'package:user/features/home/data/model/res/home_response_model.dart';
 import 'package:user/features/home/presentation/screens/stories_screen.dart';
 import 'package:user/features/home/presentation/widgets/home/story_offer_card.dart';
 import 'package:user/navigation/route.dart';
@@ -8,7 +8,7 @@ import 'package:user/navigation/route.dart';
 class HomeStoryCards extends StatelessWidget {
   const HomeStoryCards({required this.items, super.key});
 
-  final List<HomeStoryItem> items;
+  final List<OfferModel> items;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +32,8 @@ class HomeStoryCards extends StatelessWidget {
                               stories:
                                   items
                                       .map(
-                                        (item) => StoryOfferCard(
-                                          title: item.title,
-                                          discount: item.discount,
-                                          description: item.description,
-                                          background: item.background,
-                                          backgroundContainer:
-                                              item.backgroundContainer,
-                                          iconPath: item.iconPath,
+                                        (item) => UINetworkIamge(
+                                          imageUrl: item.imageUrl ?? '',
                                         ),
                                       )
                                       .toList(),
@@ -50,12 +44,12 @@ class HomeStoryCards extends StatelessWidget {
               );
             },
             child: StoryOfferCard(
-              title: item.title,
-              discount: item.discount,
-              description: item.description,
-              background: item.background,
-              backgroundContainer: item.backgroundContainer,
-              iconPath: item.iconPath,
+              title: item.imageUrl ?? '',
+              discount: item.serviceId ?? '',
+              description: item.serviceId ?? '',
+              background: UIColor.background,
+              backgroundContainer: UIColor.background,
+              iconPath: Assets.icons.navCategory,
             ),
           ),
         );

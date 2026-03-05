@@ -16,10 +16,8 @@ HomeContent mapHomeResponseToContent(HomeResponseModel model) {
   );
 }
 
-HomeOfferItem _offerToItem(OfferModel offer) => HomeOfferItem(
-      image: offer.imageUrl ?? '',
-      aspectRatio: offer.aspectRatio ?? 2 / 1,
-    );
+HomeOfferItem _offerToItem(OfferModel offer) =>
+    HomeOfferItem(image: offer.imageUrl ?? '', aspectRatio: 2 / 1);
 
 HomeCategoryItem _categoryToItem(ServiceCategoryModel category) {
   final iconPath = _categoryIconPath(category.name);

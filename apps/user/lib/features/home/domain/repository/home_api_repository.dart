@@ -8,12 +8,11 @@ import 'package:util/util.dart';
 
 abstract class HomeRepository {
   Future<Result<HomeResponseModel, APIException>> getHomeContent();
-  Future<Result<OfferModel, APIException>> getOffers();
-  Future<Result<OfferModel, APIException>> getSliders();
+  Future<Result<List<OfferModel>, APIException>> getOffers();
+  Future<Result<List<OfferModel>, APIException>> getSliders();
   Future<Result<SearchResponseModel, APIException>> getSearchContent();
-  Future<Result<List<ServicePreviewResponseModel>, APIException>> getCategoryServices(
-    String categoryId,
-  );
+  Future<Result<List<ServicePreviewResponseModel>, APIException>>
+  getCategoryServices(String categoryId);
 }
 
 @Injectable(as: HomeRepository, env: ['prod', 'dev'])
@@ -31,15 +30,15 @@ class HomeRepositoryImpl implements HomeRepository {
       _homeAPI.getSearchContent().toResult();
 
   @override
-  Future<Result<List<ServicePreviewResponseModel>, APIException>> getCategoryServices(
-    String categoryId,
-  ) => _homeAPI.getCategoryServices(categoryId).toResult();
+  Future<Result<List<ServicePreviewResponseModel>, APIException>>
+  getCategoryServices(String categoryId) =>
+      _homeAPI.getCategoryServices(categoryId).toResult();
 
   @override
-  Future<Result<OfferModel, APIException>> getOffers() =>
+  Future<Result<List<OfferModel>, APIException>> getOffers() =>
       _homeAPI.getOffers().toResult();
 
   @override
-  Future<Result<OfferModel, APIException>> getSliders() =>
+  Future<Result<List<OfferModel>, APIException>> getSliders() =>
       _homeAPI.getSliders().toResult();
 }

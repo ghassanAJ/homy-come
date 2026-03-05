@@ -11,7 +11,8 @@ part 'home_api.g.dart';
 class HomeAPIEndpoints {
   static const String getHomeContent = '/api/v1/home';
   static const String getSearchContent = '/api/v1/home/search';
-  static const String getCategoryServices = '/api/v1/categories/{categoryId}/services';
+  static const String getCategoryServices =
+      '/api/v1/categories/{categoryId}/services';
   static const String getOffers = '/api/v1/offers';
   static const String getSliders = '/api/v1/sliders';
 }
@@ -34,8 +35,8 @@ abstract class HomeAPI {
   );
 
   @GET(HomeAPIEndpoints.getOffers)
-  Future<APIResponse<OfferModel>> getOffers();
+  Future<APIResponse<List<OfferModel>>> getOffers();
 
   @GET(HomeAPIEndpoints.getSliders)
-  Future<APIResponse<OfferModel>> getSliders();
+  Future<APIResponse<List<OfferModel>>> getSliders();
 }

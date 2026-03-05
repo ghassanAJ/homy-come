@@ -35,24 +35,12 @@ Map<String, dynamic> _$HomeResponseModelToJson(_HomeResponseModel instance) =>
     };
 
 _OfferModel _$OfferModelFromJson(Map<String, dynamic> json) => _OfferModel(
-  categories:
-      (json['categories'] as List<dynamic>?)
-          ?.map((e) => ServiceCategoryModel.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      const [],
-  offers:
-      (json['offers'] as List<dynamic>?)
-          ?.map((e) => OfferModel.fromJson(e as Map<String, dynamic>))
-          .toList() ??
-      const [],
   imageUrl: json['image_url'] as String?,
-  aspectRatio: (json['aspect_ratio'] as num?)?.toDouble(),
+  serviceId: json['service_id'] as String?,
 );
 
 Map<String, dynamic> _$OfferModelToJson(_OfferModel instance) =>
     <String, dynamic>{
-      'categories': instance.categories,
-      'offers': instance.offers,
       'image_url': instance.imageUrl,
-      'aspect_ratio': instance.aspectRatio,
+      'service_id': instance.serviceId,
     };

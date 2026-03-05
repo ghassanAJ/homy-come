@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:user/features/home/presentation/screens/search_screen.dart';
 import 'package:user/localization/files/userTranslation.i69n.dart';
 import 'package:util/util.dart';
 
@@ -58,11 +59,7 @@ class UserRoute {
     ),
     GoRoute(
       path: UserPaths.search,
-      builder:
-          (context, state) => _PlaceholderScreen(
-            title: context.loc<UserTranslation>().navigation.search,
-            path: UserPaths.search,
-          ),
+      builder: (context, state) => const SearchScreen(),
     ),
     GoRoute(
       path: UserPaths.profile,

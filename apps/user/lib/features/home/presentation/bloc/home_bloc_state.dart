@@ -10,6 +10,11 @@ part 'home_bloc_state.freezed.dart';
 abstract class HomeBlocState with _$HomeBlocState {
   const factory HomeBlocState.initial({
     @Default(HomeBlocStatus.initial) HomeBlocStatus status,
+    @Default(false) bool categoriesLoading,
+    @Default(false) bool slidersLoading,
+    @Default(false) bool offersLoading,
+    @Default(false) bool searchContentLoading,
+    @Default(false) bool serviceDetailsLoading,
     @Default([]) List<ServiceCategoryModel> categories,
     @Default([]) List<ServicePreviewResponseModel> categoryServices,
     @Default([]) List<OfferModel> offers,
@@ -20,16 +25,4 @@ abstract class HomeBlocState with _$HomeBlocState {
   }) = _HomeBlocState;
 }
 
-enum HomeBlocErrorType { loadHomeContent, loadSearchContent }
-
-enum HomeBlocStatus {
-  initial,
-  loadingCategories,
-  loadingStories,
-  loadingOffers,
-  loadingServiceDetails,
-  loadingSearchContent,
-  loadingSliders,
-  success,
-  error,
-}
+enum HomeBlocStatus { initial, success, error }
