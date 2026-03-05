@@ -2,7 +2,6 @@
 
 import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
-import 'package:profile/src/data/model/res/review_model.dart';
 import 'package:profile/src/presentation/screens/about_app_screen.dart';
 import 'package:profile/src/presentation/screens/driver_language_settings_screen.dart';
 import 'package:profile/src/presentation/screens/profile_settings_screen.dart';
@@ -18,9 +17,7 @@ class ProfilePaths {
   static const String driverProfileSettings = '/driver-profile-settings';
   static const String driverLanguageSettings = '/driver-language-settings';
   static const String providerAllReviews = '/provider-all-reviews';
-  static const String reviews = 'reviews';
 }
-
 
 class ProfileRoute {
   static List<RouteBase> get routes => [
@@ -59,16 +56,10 @@ class ProfileRoute {
     ),
     GoRoute(
       path: ProfilePaths.providerAllReviews,
-      builder: (context, state) {
-        final extra = state.extra as Map<String, dynamic>? ?? {};
-        final reviews = extra[ProfilePaths.reviews];
-        final parsedReviews =
-            reviews is List<ReviewModel> ? reviews : const <ReviewModel>[];
-
-        return ProfileLocalizationScope(
-          child: ProviderAllReviewsScreen(reviews: parsedReviews),
-        );
-      },
+      builder:
+          (context, state) => const ProfileLocalizationScope(
+            child: ProviderAllReviewsScreen(),
+          ),
     ),
   ];
 }

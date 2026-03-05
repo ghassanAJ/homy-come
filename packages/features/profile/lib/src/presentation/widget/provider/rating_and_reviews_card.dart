@@ -58,13 +58,7 @@ class RatingAndReviewsCard extends StatelessWidget {
               Center(
                 child: InkWell(
                   borderRadius: BorderRadius.circular(UI.radius.md),
-                  onTap:
-                      () => context.push(
-                        ProfilePaths.providerAllReviews,
-                        extra: <String, dynamic>{
-                          ProfilePaths.reviews: reviews,
-                        },
-                      ),
+                  onTap: () => context.push(ProfilePaths.providerAllReviews),
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: UI.spacing.sm,
