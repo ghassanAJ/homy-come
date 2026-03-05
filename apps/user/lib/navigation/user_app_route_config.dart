@@ -45,8 +45,11 @@ class UserAppRouteConfig {
         builder: (context, state) => const ServiceDetailsStep3(),
       ),
       GoRoute(
-        path: UserPaths.serviceDetailsSummary,
-        builder: (context, state) => const ServiceDetailsSummaryScreen(),
+        path: UserPaths.serviceDetailsSummarywithid(),
+        builder: (context, state) {
+          final id = int.parse(state.pathParameters['id']!);
+        return  ServiceDetailsSummaryScreen(id:id);
+        },
       ),
     ];
   }

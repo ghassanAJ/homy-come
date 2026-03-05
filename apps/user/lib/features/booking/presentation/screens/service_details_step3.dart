@@ -271,10 +271,44 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
             ),
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: StepNavigationBar(
-                next: () {
-                  context.push(UserPaths.serviceDetailsSummary);
-                },
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(UI.spacing.md),
+                decoration: BoxDecoration(
+                  color: UIColor.background,
+                  borderRadius: BorderRadius.circular(UI.radius.lg),
+                  boxShadow: UI.shadows.cardMd,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Total 78.00 AED',
+                            style: UI.text.bodyMedium.copyWith(
+                              color: UIColor.neutral300,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                          ),
+                          UIText.h4('48.00AED', color: UIColor.balck),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 128,
+                      child: UIButton.primary(
+                        label: 'Next',
+                        expanded: true,
+                        onPressed: () {
+                          context.push(UserPaths.serviceDetailsSummarywithid());
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
