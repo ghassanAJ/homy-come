@@ -312,6 +312,17 @@ class UIText extends StatelessWidget {
          fontSize: fontSize,
        );
 
+
+  UIText.titleMd(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    super.key,
+  }) : style = _typography.titleMd;
+
   /// Button with Icon - Buttons with icons
   ///
   /// Size: 16px, Weight: 600 (SemiBold)

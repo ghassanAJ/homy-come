@@ -41,11 +41,11 @@ class $AssetsIconsGen {
   String get apple => 'packages/design_system/assets/icons/apple.svg';
 
   /// File path: assets/icons/arrow right.svg
-  String get arrowRight =>
+  String get arrowRightSvg =>
       'packages/design_system/assets/icons/arrow right.svg';
 
   /// File path: assets/icons/arrow-right.svg
-  String get arrowRightSvg =>
+  String get arrowRightSvg_ =>
       'packages/design_system/assets/icons/arrow-right.svg';
 
   /// File path: assets/icons/arrow-left.svg
@@ -181,8 +181,8 @@ class $AssetsIconsGen {
     shieldDone,
     aed,
     apple,
-    arrowRight,
     arrowRightSvg,
+    arrowRightSvg_,
     arrowLeft,
     arrow,
     arrowBottom,
@@ -255,6 +255,10 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding =>
       const AssetGenImage('assets/images/onboarding.png');
 
+  /// File path: assets/images/phone-call (2) 1.png
+  AssetGenImage get phoneCall21 =>
+      const AssetGenImage('assets/images/phone-call (2) 1.png');
+
   /// File path: assets/images/search.png
   AssetGenImage get search => const AssetGenImage('assets/images/search.png');
 
@@ -267,6 +271,7 @@ class $AssetsImagesGen {
     onboarding2,
     onboarding3,
     onboarding,
+    phoneCall21,
     search,
   ];
 }

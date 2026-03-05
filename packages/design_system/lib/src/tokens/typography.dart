@@ -200,6 +200,15 @@ class UITypography {
     letterSpacing: 0,
     overflow: TextOverflow.ellipsis,
   );
+
+    TextStyle get titleMd => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 13,
+    fontWeight: FontWeight.w500,
+    height: 1.43,
+    letterSpacing: 0,
+    overflow: TextOverflow.ellipsis,
+  );
   // ============================================================================
   // CAPTION
   // ============================================================================
@@ -246,7 +255,7 @@ class UITypography {
   /// Usage: Primary buttons, secondary buttons, action buttons
   TextStyle get buttonText => const TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: FontWeight.w600,
     height: 1.5,
     letterSpacing: 0,

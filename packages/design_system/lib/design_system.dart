@@ -77,3 +77,4 @@ export 'src/widgets/shared/ui_svg.dart';
 export 'src/widgets/shared/ui_iamge.dart';
 export 'src/widgets/shared/ui_network_iamge.dart';
 export 'src/widgets/shared/ui_action_button.dart';
+export 'src/widgets/shared/locatoin_with_map_widget.dart';

@@ -7,8 +7,12 @@ title:
   time: Time
   address: Address
   myOrder: my orders
+  orderDetails: Order Details
+  serviceDetails: Service Details
 
 labels:
   all: All 
   cancel: cancel
   details: Details
+  done: Mark done
+  getDirection: Get Direction

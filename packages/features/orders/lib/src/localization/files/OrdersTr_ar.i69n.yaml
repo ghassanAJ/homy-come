@@ -7,8 +7,14 @@ title:
   time: وقت
   address: عنوان
   myOrder: طلباتي
+  orderDetails: تفاصيل الطلب
+  serviceDetails: Service Details
+  todaySchadule: جدول اليوم
+  
 
 labels:
   all: كل
   cancel: الغاء
   details: تفاصيل    
+  done: Mark done
+  getDirection: Get Direction  
