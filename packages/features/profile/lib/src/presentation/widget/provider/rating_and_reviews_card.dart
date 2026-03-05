@@ -56,10 +56,7 @@ class _RatingAndReviewsCardState extends State<RatingAndReviewsCard> {
             ...List.generate(
               visibleReviews.length,
               (index) => ReviewItem(
-                name: visibleReviews[index].name,
-                timeAgo: visibleReviews[index].timeAgo,
-                comment: visibleReviews[index].comment,
-                rating: visibleReviews[index].rating,
+                review: visibleReviews[index],
                 showDivider: index < visibleReviews.length - 1,
               ),
             ),

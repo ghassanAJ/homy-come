@@ -5,7 +5,7 @@ import 'package:profile/src/data/model/res/driver_performance_metric_model.dart'
 import 'package:profile/src/data/model/res/driver_performance_model.dart';
 import 'package:profile/src/domain/repository/profile_repository.dart';
 import 'package:profile/src/localization/profile_localization_scope.dart';
-import 'package:profile/src/presentation/cubit/profile_cubit.dart';
+import 'package:profile/src/presentation/cubit/driver_performance_cubit.dart';
 import 'package:profile/src/presentation/widget/driver/driver_profile_background_circle_painter.dart';
 import 'package:profile/src/presentation/widget/driver/driver_profile_performance_legend_item.dart';
 import 'package:util/util.dart'
@@ -23,7 +23,7 @@ class PerformanceCard extends StatefulWidget {
 class _PerformanceCardState extends State<PerformanceCard> {
   late final ProfileRepository _repository =
       widget.performanceRepository ?? GetIt.I<ProfileRepository>();
-  late final ProfileCubit _cubit = ProfileCubit(_repository)
+  late final DriverPerformanceCubit _cubit = DriverPerformanceCubit(_repository)
     ..fetchDriverPerformance();
 
   @override
@@ -36,12 +36,12 @@ class _PerformanceCardState extends State<PerformanceCard> {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: _cubit,
-      child: BlocBuilder<ProfileCubit, BaseState<dynamic>>(
+      child: BlocBuilder<
+        DriverPerformanceCubit,
+        BaseState<DriverPerformanceModel>
+      >(
         builder: (context, state) {
-          final performance =
-              state.data is DriverPerformanceModel
-                  ? state.data as DriverPerformanceModel
-                  : DriverPerformanceModel.empty;
+          final performance = state.data ?? DriverPerformanceModel.empty;
           final metrics = performance.metrics;
           final donutSegments = metrics
               .map(

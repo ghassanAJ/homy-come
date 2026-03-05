@@ -1,19 +1,14 @@
 import 'package:design_system/design_system.dart';
+import 'package:profile/src/data/model/res/review_model.dart';
 
 class ReviewItem extends StatelessWidget {
   const ReviewItem({
     super.key,
-    required this.name,
-    required this.timeAgo,
-    required this.comment,
-    required this.rating,
+    required this.review,
     required this.showDivider,
   });
 
-  final String name;
-  final String timeAgo;
-  final String comment;
-  final double rating;
+  final ReviewModel review;
   final bool showDivider;
 
   @override
@@ -37,14 +32,14 @@ class ReviewItem extends StatelessWidget {
                       children: [
                         Expanded(
                           child: UIText.bodySmall(
-                            name,
+                            review.name,
                             color: UIColor.black,
                             fontWeight: FontWeight.w700,
                             fontFamily: UIFontFamily.sFPro,
                           ),
                         ),
                         UIText.bodySmall(
-                          timeAgo,
+                          review.timeAgo,
                           color: UIColor.neutral300,
                           fontWeight: FontWeight.w300,
                           fontFamily: UIFontFamily.roboto,
@@ -54,10 +49,13 @@ class ReviewItem extends StatelessWidget {
                     SizedBox(height: UI.spacing.xxs),
                     Row(
                       children: [
-                        UIRatingStars(rating: rating, color: UIColor.orange),
+                        UIRatingStars(
+                          rating: review.rating,
+                          color: UIColor.orange,
+                        ),
                         SizedBox(width: UI.spacing.xs),
                         UIText.bodySmall(
-                          rating.toStringAsFixed(1),
+                          review.rating.toStringAsFixed(1),
                           color: UIColor.neutral975,
                           fontWeight: FontWeight.w700,
                           fontFamily: UIFontFamily.roboto,
@@ -71,7 +69,7 @@ class ReviewItem extends StatelessWidget {
           ),
           SizedBox(height: UI.spacing.xs),
           UIText.bodyXSmall(
-            comment,
+            review.comment,
             color: UIColor.neutral480,
             fontFamily: UIFontFamily.roboto,
           ),

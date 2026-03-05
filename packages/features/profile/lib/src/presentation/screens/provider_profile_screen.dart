@@ -1,4 +1,4 @@
-import 'package:design_system/design_system.dart';
+﻿import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -6,7 +6,7 @@ import 'package:profile/profile.dart';
 import 'package:profile/src/data/model/res/review_model.dart';
 import 'package:profile/src/domain/repository/profile_repository.dart';
 import 'package:profile/src/navigation/router.dart';
-import 'package:profile/src/presentation/cubit/profile_cubit.dart';
+import 'package:profile/src/presentation/cubit/provider_rating_and_reviews_cubit.dart';
 import 'package:profile/src/presentation/widget/provider/rating_and_reviews_card.dart';
 import 'package:profile/src/presentation/widget/shared/header_card.dart';
 import 'package:profile/src/presentation/widget/shared/settings_row.dart';
@@ -49,7 +49,8 @@ class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
   ];
 
   late final ProfileRepository _repository = GetIt.I<ProfileRepository>();
-  late final ProfileCubit _cubit = ProfileCubit(_repository)
+  late final ProviderRatingAndReviewsCubit _cubit =
+      ProviderRatingAndReviewsCubit(_repository)
     ..fetchProviderRatingAndReviews();
 
   @override
@@ -67,12 +68,12 @@ class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
       appBar: UIAppBar(title: context.profileTranslation.profile.myProfile),
       body: BlocProvider.value(
         value: _cubit,
-        child: BlocBuilder<ProfileCubit, BaseState<dynamic>>(
+        child: BlocBuilder<
+          ProviderRatingAndReviewsCubit,
+          BaseState<List<ReviewModel>>
+        >(
           builder: (context, state) {
-            final reviews =
-                state.data is List<ReviewModel>
-                    ? state.data as List<ReviewModel>
-                    : const <ReviewModel>[];
+            final reviews = state.data ?? const <ReviewModel>[];
             final ratingDistribution = _buildRatingDistributionForView();
             final isInitialLoading =
                 state.status == BaseCubitStatus.initial ||
