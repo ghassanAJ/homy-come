@@ -66,8 +66,9 @@ class UIText extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.softWrap,
+      String? fontFamily,
     super.key,
-  }) : style = _typography.h3;
+  }) : style = _typography.h3.copyWith(fontFamily:fontFamily );
 
   UIText.h4(
     this.data, {

@@ -38,6 +38,7 @@ class DialogsManager {
     required String description,
     String? confirmButtonLabel,
     String? cancelButtonLabel,
+    UIColor? iconColor,
   }) async {
     return await showAnimatedDialog<bool>(
           context: context,
@@ -45,6 +46,7 @@ class DialogsManager {
             confirmButtonLabel: confirmButtonLabel,
             cancelButtonLabel: cancelButtonLabel,
             title: title,
+            iconColor: iconColor,
             description: description,
           ),
         ) ??

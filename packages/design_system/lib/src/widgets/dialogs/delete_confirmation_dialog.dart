@@ -6,12 +6,13 @@ class DeleteConfirmationDialog extends StatelessWidget {
     required this.title,
     required this.description,
     this.confirmButtonLabel = 'Confirm',
-    this.cancelButtonLabel = 'Cancel',
+    this.cancelButtonLabel = 'Cancel', this.iconColor,
   });
   final String title;
   final String description;
   final String? confirmButtonLabel;
   final String? cancelButtonLabel;
+  final UIColor? iconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class DeleteConfirmationDialog extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: UIColor.error.withOpacity(0.2),
+              color:iconColor ?? UIColor.error.withOpacity(0.2),
               borderRadius: BorderRadius.circular(100),
             ),
             child: UISvg(Assets.icons.warning),

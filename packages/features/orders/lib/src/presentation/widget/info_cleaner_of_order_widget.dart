@@ -10,7 +10,7 @@ class OrderCleanerInfoWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         //OrderCleanerInfoWidget
-        horizontal: UI.spacing.md,
+        // horizontal: UI.spacing.md,
         vertical: UI.spacing.sm,
       ),
 

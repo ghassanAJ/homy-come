@@ -1,8 +1,9 @@
 import 'package:design_system/design_system.dart';
 
 class LocationWithMapWidget extends StatelessWidget {
-  const LocationWithMapWidget({super.key});
-
+  const LocationWithMapWidget({super.key, required this.address});
+  final String address;
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -11,7 +12,7 @@ class LocationWithMapWidget extends StatelessWidget {
         UIText.bodyXSmall('Address', color: UIColor.grey),
         SizedBox(height: UI.spacing.xxs),
         UIText.bodySmall(
-          'UEA Location name , details locations , street name 12357',
+          address,
           color: UIColor.black,
           overflow: TextOverflow.clip,
         ),

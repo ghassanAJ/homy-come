@@ -8,13 +8,15 @@ title:
   address: عنوان
   myOrder: طلباتي
   orderDetails: تفاصيل الطلب
-  serviceDetails: Service Details
+  serviceDetails: تفاصيل الخدمة
   todaySchadule: جدول اليوم
-  
+markDone: إكمال المهمة
+descraptionWarning: هل أنت متأكد من إكمال هذه المهمة؟
+yes: نعم
 
 labels:
   all: كل
   cancel: الغاء
   details: تفاصيل    
-  done: Mark done
-  getDirection: Get Direction  
+  done: مكتمل
+  getDirection: الاتجاه 

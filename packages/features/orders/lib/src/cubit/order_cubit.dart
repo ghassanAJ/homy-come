@@ -4,17 +4,19 @@ import 'package:injectable/injectable.dart';
 import 'package:orders/orders.dart';
 import 'package:orders/src/cubit/order_state.dart';
 import 'package:orders/src/data/models/res/booking_model_response.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:orders/src/domain/useCase/cancel_order_use_case.dart';
 import 'package:orders/src/domain/useCase/get_details_booking_use_case.dart';
+import 'package:orders/src/domain/useCase/get_order_details_by_Id_use_case.dart';
 import 'package:orders/src/domain/useCase/get_order_details_use_case.dart';
+import 'package:orders/src/domain/useCase/get_today_schedule_use_case.dart';
 import 'package:orders/src/enum/filter_order_enum.dart';
 import 'package:util/util.dart';
 import 'package:util/src/base_cubit/base_state.dart';
 
 @injectable
 class OrderCubit extends BaseScreenCubit<OrderState> {
- 
+  OrderCubit();
+
   Future<void> getOrders(FilterOrder filter) async {
     emit(state.copyWith(status: BaseCubitStatus.loading));
     final result =
@@ -117,5 +119,72 @@ class OrderCubit extends BaseScreenCubit<OrderState> {
         },
       );
     }
+  }
+
+  void getTodayScheduleOrders() async {
+    // تأكد أن data ليست null قبل التعديل عليها
+    final currentData = state.data ?? const OrderState();
+
+    emit(
+      state.copyWith(
+        data: currentData.copyWith(
+          isLoadingTodayScheduleOrder: true,
+          fetchTodayScheduleError: null,
+        ),
+      ),
+    );
+    var result = await diContainerOrder<GetTodayScheduleUseCase>()();
+    result.fold(
+      (data) {
+        log(data.length.toString());
+        emit(
+          state.copyWith(
+            data: (state.data ?? const OrderState()).copyWith(
+              todaySchaduleOrder: data,
+              isLoadingTodayScheduleOrder: false,
+              fetchTodayScheduleError: null,
+            ),
+          ),
+        );
+      },
+      (error) {
+        emit(
+          state.copyWith(
+            data: (state.data ?? const OrderState()).copyWith(
+              fetchTodayScheduleError: error.message,
+              isLoadingTodayScheduleOrder: false,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void getOrderDetailsById(int id) async {
+      final currentData = state.data ?? const OrderState();
+    emit(state.copyWith(data: currentData.copyWith(isLoadingOrderDetailsById: true)));
+    var result = await diContainerOrder<GetOrderDetailsByIdUseCase>(param1: id)();
+    result.fold(
+      (data) {
+        emit(
+          state.copyWith(
+            data: currentData.copyWith(
+              orderDetailsById: data,
+              isLoadingOrderDetailsById: false,
+            ),
+          ),
+        );
+      },
+      (error) {
+        emit(
+          state.copyWith(
+            data: currentData.copyWith(
+              fetchOrderDetailsError: error.message,
+              isLoadingOrderDetailsById: false,
+            ),
+          ),
+        );
+      },
+    );
   }
 }

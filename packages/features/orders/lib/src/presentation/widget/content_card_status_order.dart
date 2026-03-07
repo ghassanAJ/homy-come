@@ -17,7 +17,8 @@ class ContentCardStatusOrder extends StatelessWidget {
       children: [
         OrderNameAndStatusWidget(name: item.serviceType, status: item.status ),
         Divider(color: UIColor.bordarCard, height: 0.5),
-        OrderCleanerInfoWidget(name: item.provider.name, rating: item.provider.rating),
+        Padding(padding: EdgeInsets.symmetric( horizontal: UI.spacing.md,),
+          child: OrderCleanerInfoWidget(name: item.provider.name, rating: item.provider.rating)),
         Divider(color: UIColor.bordarCard, height: 0.5),
         OrderDateTimeWidget(date: item.date, time: item.time),
         Divider(color: UIColor.bordarCard, height: 0.5),

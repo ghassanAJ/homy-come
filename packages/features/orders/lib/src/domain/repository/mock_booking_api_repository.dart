@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 import 'package:orders/src/data/models/res/booking_model_response.dart';
+import 'package:orders/src/data/models/res/today_schadule_model_response.dart';
 import 'package:orders/src/domain/repository/booking_api_repository.dart';
 import 'package:orders/src/domain/useCase/get_order_details_use_case.dart';
 import 'package:orders/src/enum/filter_order_enum.dart';
@@ -12,6 +13,27 @@ class MockBookingApiRepository implements OrdersRepository {
   bool failNextGetMyOrderData = false;
   bool failDetailsOrderData = false;
   bool canceltedOrderData = false;
+  bool failTodayScheduleData = false;
+  List<TodaySchaduleModelResponse> allSchedule = [
+      TodaySchaduleModelResponse(
+        id: 1,
+        time: '12:12',
+        address: 'kafarsousah, damascus ,syria',
+        cleanerInfo:ProviderModel(id: 5, name: 'ghassan', rating: 5.0),
+      ),
+            TodaySchaduleModelResponse(
+        id: 2,
+        time: '07:30',
+        address: '125,2nd Street, California ,19288',
+        cleanerInfo:ProviderModel(id: 5, name: 'maya Ali', rating: 5.0),
+      ),
+            TodaySchaduleModelResponse(
+        id: 3,
+        time: '11:30',
+        address: '125,2nd Street, California ,19288',
+        cleanerInfo:ProviderModel(id: 5, name: 'kamel', rating: 5.0),
+      ),
+  ];
   List<BookingModelResponse> all = [
     BookingModelResponse(
       id: 101,
@@ -100,4 +122,32 @@ class MockBookingApiRepository implements OrdersRepository {
     await Future.delayed(const Duration(seconds: 1));
     return success(true);
   }
+
+  @override
+  Future<Result<List<TodaySchaduleModelResponse>, APIException>>
+  getTodayScheduleData() async {
+    if (canceltedOrderData) {
+      failTodayScheduleData = false;
+      return failure(APIException.error('Mock getServiceDetails failure'));
+    }
+    await Future.delayed(const Duration(seconds: 3));
+    return success(
+    allSchedule
+    );
+  }
+
+  @override
+  Future<Result<TodaySchaduleModelResponse, APIException>>
+  getOrderDetailsById(int id) async {
+    if (canceltedOrderData) {
+      failTodayScheduleData = false;
+      return failure(APIException.error('Mock getServiceDetails failure'));
+    }
+    await Future.delayed(const Duration(seconds: 3));
+   var index= allSchedule.indexWhere((item)=>item.id==id);
+    return success(
+    allSchedule[index]
+    );
+  }
+
 }
