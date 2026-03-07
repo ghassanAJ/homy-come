@@ -13,7 +13,7 @@ void main() async {
       await UIDesignSystemInitializer.initialize();
 
       var env = const String.fromEnvironment('ENV', defaultValue: 'mock');
-      if (env.isEmpty) env = 'mock';
+      if (env.isEmpty) env = 'dev';
 
       initializeDependencies(env);
       // await MDDesignSystemInitializer.initialize();
