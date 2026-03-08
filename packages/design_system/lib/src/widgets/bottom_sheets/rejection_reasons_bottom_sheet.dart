@@ -41,7 +41,7 @@ class _ReasonsRejectionBottomSheetState
           ),
         ),
         child: SingleChildScrollView(
-          child: Column(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               // Drag handle
@@ -61,7 +61,7 @@ class _ReasonsRejectionBottomSheetState
                   vertical: 12,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     UIText.bodyMedium(
                       widget.title,
@@ -155,35 +155,16 @@ class _ReasonsRejectionBottomSheetState
                     const SizedBox(width: 12),
                     // Send button
                     Expanded(
-                      child: Container(
-                        height: 48,
-                        decoration: BoxDecoration(
-                          color: UIColor.primary,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: TextButton(
-                          onPressed:
-                              _canSend()
-                                  ? () {
-                                    final reason =
-                                        _selectedReason == 'Other'
-                                            ? _customReasonController.text
-                                                .trim()
-                                            : _selectedReason;
-                                    Navigator.of(context).pop(reason);
-                                  }
-                                  : null,
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: UIText.bodyMedium(
-                            'Send',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
+                      child: UIButton.primary(label: 'send',onPressed:   _canSend()
+                                    ? () {
+                                      final reason =
+                                          _selectedReason == 'Other'
+                                              ? _customReasonController.text
+                                                  .trim()
+                                              : _selectedReason;
+                                      Navigator.of(context).pop(reason);
+                                    }
+                                    : null, expanded: true),
                     ),
                   ],
                 ),

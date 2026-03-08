@@ -16,11 +16,16 @@ class UserPaths {
   static const String orders = '/orders';
   static const String search = '/search';
   static const String profile = '/profile';
+  static const String notifications = '/notifications';
   static const String serviceDetails = '/service-details';
   static const String serviceDetails2 = '/service-details2';
   static const String serviceDetails3 = '/service-details3';
-  static const String serviceDetailsSummary = '/service-details-summary';
-  static const String services = '/all-services';
+  static const String services = '/services';
+  static String serviceDetailsSummarywithid({int? id}) =>
+      id == null
+          ? '/service-details-summary/:id'
+          : '/service-details-summary/$id';
+  // static const String serviceDetailsSummary = '/service-details-summary/:id';
   static const String storiesScreen = '/stories-screen';
 }
 

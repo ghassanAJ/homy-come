@@ -118,28 +118,29 @@ class BaseCategoryItem extends StatelessWidget {
 
     final item =
         axis == Axis.horizontal
-            ? Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                icon,
-                SizedBox(width: resolvedItemSpacing),
-                Expanded(child: textBlock),
-              ],
+            ? GestureDetector(
+              onTap: onTap,
+              child: Row(
+                children: [
+                  icon,
+                  SizedBox(width: resolvedItemSpacing),
+                  Expanded(child: textBlock),
+                ],
+              ),
             )
-            : Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                icon,
-                SizedBox(height: resolvedItemSpacing),
-                textBlock,
-              ],
+            : GestureDetector(
+              onTap: onTap,
+              child: Column(
+                children: [
+                  icon,
+                  SizedBox(height: resolvedItemSpacing),
+                  textBlock,
+                ],
+              ),
             );
 
     if (width == null) return GestureDetector(onTap: onTap, child: item);
-    return GestureDetector(
-      onTap: onTap,
-      child: SizedBox(width: width, child: item),
-    );
+    return SizedBox(width: width, child: item);
   }
 
   Widget _buildSvgIcon(String title) {

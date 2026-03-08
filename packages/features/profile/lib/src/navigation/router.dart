@@ -1,12 +1,10 @@
-import 'package:authentication/authentication.dart';
-
 // import 'package:authentication/src/presentation/screens/onboarding/splash_screen.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/presentation/screens/about_app_screen.dart';
-import 'package:profile/src/presentation/screens/help_and_support_screen.dart';
-import 'package:profile/src/presentation/screens/profile_screen.dart';
+import 'package:profile/src/presentation/screens/driver_language_settings_screen.dart';
+import 'package:profile/src/presentation/screens/driver_profile_settings_screen.dart';
 import 'package:profile/src/presentation/screens/terms_and_condition.dart';
 
 /// Profile route paths
@@ -15,6 +13,8 @@ class ProfilePaths {
   static const String myOrder = '/my_order_screen';
   static const String termsAndCondition = '/term_and_condition_screen';
   static const String aboutApp = '/about_app_screen';
+  static const String driverProfileSettings = '/driver-profile-settings';
+  static const String driverLanguageSettings = '/driver-language-settings';
 }
 
 class ProfileRoute {
@@ -37,6 +37,20 @@ class ProfileRoute {
     GoRoute(
       path: ProfilePaths.aboutApp,
       builder: (context, state) => AboutUsScreen(),
+    ),
+    GoRoute(
+      path: ProfilePaths.driverProfileSettings,
+      builder:
+          (context, state) => const ProfileLocalizationScope(
+            child: DriverProfileSettingsScreen(),
+          ),
+    ),
+    GoRoute(
+      path: ProfilePaths.driverLanguageSettings,
+      builder:
+          (context, state) => const ProfileLocalizationScope(
+            child: DriverLanguageSettingsScreen(),
+          ),
     ),
   ];
 }

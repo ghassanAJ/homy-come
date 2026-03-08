@@ -16,3 +16,4 @@ class ServiceDetailsCubit extends BaseScreenCubit<ServiceDetailsResponseModel> {
     );
   }
 }
+ 

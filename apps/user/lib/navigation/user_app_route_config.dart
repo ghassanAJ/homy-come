@@ -1,5 +1,7 @@
 import 'package:booking/booking.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notifications/notifications.dart';
+import 'package:orders/orders.dart';
 import 'package:profile/profile.dart';
 import 'package:user/features/home/presentation/screens/categories_screen.dart';
 import 'package:user/features/home/presentation/screens/search_screen.dart';
@@ -23,6 +25,10 @@ class UserAppRouteConfig {
     return [
       _createDashboardShell(shellNavigatorKey),
       GoRoute(
+        path: UserPaths.notifications,
+        builder: (context, state) => const NotificationsScreen(),
+      ),
+      GoRoute(
         path: UserPaths.serviceDetails,
         builder: (context, state) {
           final data = state.extra as Map<String, dynamic>;
@@ -39,8 +45,11 @@ class UserAppRouteConfig {
         builder: (context, state) => const ServiceDetailsStep3(),
       ),
       GoRoute(
-        path: UserPaths.serviceDetailsSummary,
-        builder: (context, state) => const ServiceDetailsSummaryScreen(),
+        path: UserPaths.serviceDetailsSummarywithid(),
+        builder: (context, state) {
+          final id = int.parse(state.pathParameters['id']!);
+          return ServiceDetailsSummaryScreen(id: id);
+        },
       ),
       GoRoute(
         path: UserPaths.storiesScreen,
@@ -94,13 +103,8 @@ class UserAppRouteConfig {
             GoRoute(
               path: UserPaths.orders,
               builder:
-                  (context, state) => Scaffold(
-                    body: Center(
-                      child: Text(
-                        context.loc<UserTranslation>().navigation.orders,
-                      ),
-                    ),
-                  ),
+                  (context, state) =>
+                      OrderLocalizationScope(child: MyOrderScreen()),
             ),
           ],
         ),

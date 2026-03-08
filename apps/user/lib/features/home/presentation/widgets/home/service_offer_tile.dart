@@ -1,4 +1,6 @@
 import 'package:booking/booking.dart';
+import 'package:go_router/go_router.dart';
+import 'package:user/navigation/route.dart';
 
 class ServiceOfferTile extends StatelessWidget {
   const ServiceOfferTile({
@@ -33,7 +35,7 @@ class ServiceOfferTile extends StatelessWidget {
                 child: SizedBox(
                   height: 128,
                   width: width,
-                  child: UINetworkIamge(
+                  child: UINetworkImage(
                     imageUrl: servicePreviewResponseModel.info.image,
                     fit: BoxFit.cover,
                   ),
@@ -66,32 +68,22 @@ class ServiceOfferTile extends StatelessWidget {
                     ),
 
                     SizedBox(height: UI.spacing.xxs),
-                    UIText.bodyMedium(
+                    UIText.bodySmall(
                       servicePreviewResponseModel.info.name ?? '',
                       color: UIColor.primaryDark,
                       fontWeight: FontWeight.w700,
                     ),
                     SizedBox(height: UI.spacing.xxs),
-                    Row(
-                      children: [
-                        UIText.bodyMedium(
-                          servicePreviewResponseModel.priceModel.newPrice
-                              .toString(),
-                          color: UIColor.midnight,
-                          fontWeight: FontWeight.w300,
-                        ),
-                        SizedBox(width: UI.spacing.xs),
-                        Text(
+                    UIPriceText(
+                      oldPrice:
                           servicePreviewResponseModel.priceModel.currentPrice
                               .toString(),
-                          style: UI.text.bodyMedium.copyWith(
-                            color: UIColor.neutral400,
-                            fontWeight: FontWeight.w300,
-                            decoration: TextDecoration.lineThrough,
-                            decorationColor: UIColor.neutral400,
-                          ),
-                        ),
-                      ],
+                      text: UIText.bodySmall(
+                        servicePreviewResponseModel.priceModel.newPrice
+                            .toString(),
+                        color: UIColor.midnight,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ],
                 ),
@@ -103,10 +95,16 @@ class ServiceOfferTile extends StatelessWidget {
             bottom: UI.spacing.xs,
             end: UI.spacing.sm,
             child: UIActionButton(
-              label: 'Add',
-              onTap: () {},
-              width: 67,
-              height: 40,
+              label: 'Book now',
+              onTap: () {
+                context.push(
+                  UserPaths.serviceDetails,
+                  extra: {'id': servicePreviewResponseModel.id},
+                );
+              },
+              padding: EdgeInsets.symmetric(horizontal: UI.spacing.md),
+              // width: 67,
+              height: 36,
               fontWeight: FontWeight.w300,
             ),
           ),

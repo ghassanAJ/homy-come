@@ -55,17 +55,17 @@ class UITypography {
   /// Usage: Subsection titles, card headers
   TextStyle get h3 => const TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 20,
-    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
     height: 1.4,
     letterSpacing: 0,
   );
 
   TextStyle get h4 => const TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: FontWeight.w700,
-    height: 1.4,
+    height: 1.7,
     letterSpacing: 0,
   );
 
@@ -77,7 +77,7 @@ class UITypography {
     letterSpacing: 0,
   );
 
-    TextStyle get h6 => const TextStyle(
+  TextStyle get h6 => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 16,
     fontWeight: FontWeight.w700,
@@ -102,23 +102,30 @@ class UITypography {
     fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0,
-    decoration: TextDecoration.none
+    decoration: TextDecoration.none,
   );
 
   TextStyle get bodyMediumRoboto => const TextStyle(
-    fontFamily: UIFonts.roboto,
+    fontFamily: UIFontFamily.roboto,
     fontSize: 16,
     fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0,
-    decoration: TextDecoration.none
+    decoration: TextDecoration.none,
   );
-
 
   TextStyle get bodyLarge => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 18,
     fontWeight: FontWeight.w400,
+    height: 1.5,
+    letterSpacing: 0,
+  );
+
+  TextStyle get titleMd => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
     height: 1.5,
     letterSpacing: 0,
   );
@@ -131,7 +138,7 @@ class UITypography {
   ///
   /// Usage: Secondary text, field labels, supporting content
   TextStyle get bodySmall => const TextStyle(
-    fontFamily: UIFonts.montserrat,
+    fontFamily: UIFontFamily.montserrat,
     fontSize: 14,
     fontWeight: FontWeight.w400,
     height: 1.43,
@@ -170,7 +177,7 @@ class UITypography {
   ///
   /// Usage: Small body text, metadata
   TextStyle get bodyXSmall => const TextStyle(
-    fontFamily: UIFonts.montserrat,
+    fontFamily: UIFontFamily.montserrat,
     fontSize: 12,
     fontWeight: FontWeight.w400,
     height: 1.5,
@@ -185,7 +192,7 @@ class UITypography {
   ///
   /// Usage: Extra small body text, compact metadata
   TextStyle get bodyXXSmall => const TextStyle(
-    fontFamily: UIFonts.montserrat,
+    fontFamily: UIFontFamily.montserrat,
     fontSize: 10,
     fontWeight: FontWeight.w400,
     height: 1.5,
@@ -194,8 +201,8 @@ class UITypography {
 
   TextStyle get headerBody => const TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 13,
-    fontWeight: FontWeight.w500,
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
     height: 1.43,
     letterSpacing: 0,
     overflow: TextOverflow.ellipsis,
@@ -295,7 +302,7 @@ class UITypography {
   /// Usage: Text input field placeholders
   TextStyle get inputPlaceholder => const TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0,
@@ -351,9 +358,10 @@ class UITypography {
   // ============================================================================
 
   /// Alias for field labels (same as bodySmall)
-  TextStyle get fieldLabel => bodySmallBold.fontWeight == FontWeight.w600
-      ? bodySmallBold
-      : bodySmall.copyWith(fontWeight: FontWeight.w600);
+  TextStyle get fieldLabel =>
+      bodySmallBold.fontWeight == FontWeight.w600
+          ? bodySmallBold
+          : bodySmall.copyWith(fontWeight: FontWeight.w600);
 }
 
 class UITextScale {

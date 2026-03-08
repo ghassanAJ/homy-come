@@ -26,11 +26,11 @@ class ServiceCard extends StatelessWidget {
               child: SizedBox(
                 height: 128,
                 width: double.infinity,
-                child: UINetworkIamge(
+                child: UINetworkImage(
                   // TODO: Replace with real profile image URL from API/state.
                   imageUrl: imageUrl,
                   fit: BoxFit.cover,
-                  placeholder: UINetworkIamge(
+                  placeholder: UINetworkImage(
                     imageUrl: imageUrl,
                     fit: BoxFit.cover,
                   ),

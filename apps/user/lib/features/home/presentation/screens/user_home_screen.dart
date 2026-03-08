@@ -29,7 +29,6 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             controller: controller,
             slivers: [
               HomeScreenAppBar(
-                key: ValueKey(isCollapsed),
                 appBarTitle: 'Home',
                 isCollapsed: isCollapsed,
                 expandedHeightappBar: expandedHeight,

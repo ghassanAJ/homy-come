@@ -33,7 +33,6 @@ class UIScaffold extends StatelessWidget {
       appBar:
           appBarTitle != null && appBar == null
               ? UIAppBar(
-                withBackButton: false,
                 title: appBarTitle,
                 backgroundColor: Colors.transparent,
               )
@@ -53,6 +52,7 @@ class UIScaffold extends StatelessWidget {
       backgroundColor: UIColor.background,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       extendBody: extendBody,
+      bottomNavigationBar: bottomNavigationBar,
     );
   }
 }

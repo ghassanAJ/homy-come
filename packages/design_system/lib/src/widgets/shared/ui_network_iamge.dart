@@ -1,7 +1,7 @@
 import 'package:design_system/design_system.dart';
 
-class UINetworkIamge extends StatelessWidget {
-  const UINetworkIamge({
+class UINetworkImage extends StatelessWidget {
+  const UINetworkImage({
     required this.imageUrl,
     super.key,
     this.width,

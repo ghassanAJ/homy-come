@@ -1,4 +1,3 @@
-import 'package:design_system/src/tokens/UIFonts.dart';
 import 'package:flutter/material.dart';
 
 import '../../tokens/colors.dart';
@@ -183,9 +182,11 @@ class UIText extends StatelessWidget {
     this.overflow,
     this.softWrap,
     FontWeight? fontWeight,
-    double? fontSize,
     super.key,
-  }) : style = _typography.bodySmallBold;
+  }) : style = _typography.bodySmallBold.copyWith(
+         fontWeight: fontWeight,
+         color: color,
+       );
 
   /// Body XSmall - Small body text, metadata
   ///
@@ -293,6 +294,21 @@ class UIText extends StatelessWidget {
     double? fontSize,
     super.key,
   }) : style = _typography.buttonTextSm.copyWith(
+         fontWeight: fontWeight,
+         fontSize: fontSize,
+       );
+
+  UIText.titleMd(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    FontWeight? fontWeight,
+    double? fontSize,
+    super.key,
+  }) : style = _typography.titleMd.copyWith(
          fontWeight: fontWeight,
          fontSize: fontSize,
        );

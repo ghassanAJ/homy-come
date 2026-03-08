@@ -174,7 +174,7 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
         titleWidget ??
         Text(
           title!,
-          style: UI.text.h3.copyWith(color: effectiveForegroundColor),
+          style: UI.text.h4.copyWith(color: effectiveForegroundColor),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         );

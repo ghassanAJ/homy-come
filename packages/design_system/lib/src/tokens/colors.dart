@@ -9,6 +9,7 @@ class UIColor extends Color {
   static const UIColor softGreen1 = UIColor._(0xffF7FFF1);
   static const UIColor softYellow = UIColor._(0xffF6E7B0);
   static const UIColor babyBlue = UIColor._(0xff9ED6F9);
+  static const UIColor softBlue = UIColor._(0xFFF3F6FF);
   static const UIColor babyPink = UIColor._(0xffFFECFC);
   static const UIColor pink = UIColor._(0xffFAB4F0);
   static const UIColor balck = UIColor._(0xFF282828);
@@ -19,7 +20,9 @@ class UIColor extends Color {
   static const UIColor tertiary = UIColor._(0xFF6ADBDA);
 
   // Status colors
+  static const UIColor errorLight = UIColor._(0xFFFC5151);
   static const UIColor error = UIColor._(0xFFFF6653);
+  static const UIColor errorDark = UIColor._(0xFFC01515);
   static const UIColor success = UIColor._(0xFF32D938);
   static const UIColor successBright = UIColor._(0xFF0FCC5D);
   static const UIColor warning = UIColor._(0xFFFFC155);
@@ -27,15 +30,22 @@ class UIColor extends Color {
   // Neutral colors
   static const UIColor neutral000 = UIColor._(0xFFFFFFFF);
   static const UIColor neutral25 = UIColor._(0xffF6F7F9);
-   static const UIColor neutral50 = UIColor._(0xffE3E3E3);
+  static const UIColor neutral50 = UIColor._(0xffE3E3E3);
   static const UIColor neutral100 = UIColor._(0xFFF4F4F4);
+  static const UIColor neutral150 = UIColor._(0xFFCECECE);
   static const UIColor neutral200 = UIColor._(0xFFC4C4C4);
   static const UIColor neutral300 = UIColor._(0xFFA4A4A4);
   static const UIColor neutral400 = UIColor._(0xFFA5A2AF);
+  static const UIColor neutral450 = UIColor._(0xFF898989);
+  static const UIColor neutral475 = UIColor._(0xFF6D6D6D);
   static const UIColor neutral500 = UIColor._(0xFF5F5972);
   static const UIColor neutral600 = UIColor._(0xFF6F7485);
   static const UIColor neutral700 = UIColor._(0xFF49454F);
+  static const UIColor neutral800 = UIColor._(0xFF212633);
+  static const UIColor neutral850 = UIColor._(0xFF231F20);
   static const UIColor neutral900 = UIColor._(0xFF1D1B20);
+  static const UIColor neutral950 = UIColor._(0xFF121212);
+  static const UIColor neutral975 = UIColor._(0xFF0B0B0B);
 
   // Background colors
   static const UIColor background = white;

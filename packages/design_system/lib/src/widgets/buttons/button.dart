@@ -639,17 +639,20 @@ class _IconButton extends StatelessWidget {
           child: Center(
             child:
                 svgAsset != null
-                    ? SizedBox(
-                      width: UI.sizes.iconSm,
-                      height: UI.sizes.iconSm,
-                      child: SvgPicture.asset(
-                        svgAsset!,
-                        fit: BoxFit.contain,
-                        colorFilter: ColorFilter.mode(
-                          effectiveColor,
-                          BlendMode.srcIn,
+                    ? UIIconBackground(
+                      backgroundColor: UIColor.neutral100,
+                      width: 28,
+                      height: 28,
+                      child: SizedBox(
+                        child: SvgPicture.asset(
+                          svgAsset!,
+                          fit: BoxFit.contain,
+                          colorFilter: ColorFilter.mode(
+                            effectiveColor,
+                            BlendMode.srcIn,
+                          ),
+                          package: 'design_system',
                         ),
-                        package: 'design_system',
                       ),
                     )
                     : Icon(icon!, size: UI.sizes.iconLg, color: effectiveColor),

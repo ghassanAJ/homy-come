@@ -45,11 +45,11 @@ class MockHomeRepository implements HomeRepository {
     ),
     const OfferModel(
       imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-      serviceId: '1',
+      serviceId: '2',
     ),
     const OfferModel(
       imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-      serviceId: '1',
+      serviceId: '3',
     ),
   ];
 

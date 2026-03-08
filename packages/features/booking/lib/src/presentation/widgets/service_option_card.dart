@@ -1,5 +1,4 @@
 import 'package:booking/booking.dart';
-import 'package:design_system/design_system.dart';
 
 class AddOnCard extends StatelessWidget {
   const AddOnCard({
@@ -29,10 +28,9 @@ class AddOnCard extends StatelessWidget {
                 width: 74,
                 height: 74,
                 color: UIColor.neutral100,
-                child: Icon(
-                  Icons.handyman_outlined,
-                  color: UIColor.neutral500,
-                  size: UI.sizes.iconMd,
+                child: UINetworkImage(
+                  imageUrl: data.info.image ?? '',
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -41,7 +39,7 @@ class AddOnCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  UIText.bodyMedium(
+                  UIText.bodySmall(
                     data.info.name ?? '',
                     fontWeight: FontWeight.w700,
                     color: UIColor.balck,
@@ -61,14 +59,14 @@ class AddOnCard extends StatelessWidget {
                   SizedBox(height: UI.spacing.xxs),
                   Row(
                     children: [
-                      Text(
-                        data.price.currentPrice.toString() ?? '',
-                        style: UI.text.bodySmall.copyWith(
+                      UIPriceText(
+                        isOldPrice: true,
+                        text: UIText.bodySmallBold(
+                          data.price.currentPrice.toString() ?? '',
                           color: UIColor.textGray,
-                          decoration: TextDecoration.lineThrough,
                         ),
                       ),
-                      SizedBox(width: UI.spacing.xs),
+                      SizedBox(width: UI.spacing.xxs),
                       UIPriceText(
                         text: UIText.bodySmallBold(
                           data.price.newPrice.toString() ?? '',

@@ -25,7 +25,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
     return UIScaffold(
       appBarTitle: 'Categories',
-
       withBackButton: false,
       body: BlocSelector<HomeBloc, HomeBlocState, List<ServiceCategoryModel>>(
         selector: (state) => state.categories,

@@ -67,17 +67,17 @@ class UiBottomNavigationBar extends StatelessWidget {
       icon: Padding(
         padding: EdgeInsets.symmetric(vertical: UI.spacing.xs),
         child: SizedBox(
-          width: UI.sizes.iconMd,
-          height: UI.sizes.iconMd,
-          child: UISvg(item.iconAsset, color: UIColor.steel),
+          // width: UI.sizes.iconMd,
+          // height: UI.sizes.iconMd,
+          child: UISvg(item.iconAsset, color: UIColor.steel, size: 20),
         ),
       ),
       activeIcon: Padding(
         padding: EdgeInsets.only(bottom: UI.spacing.xs),
         child: SizedBox(
-          width: UI.sizes.iconMd,
-          height: UI.sizes.iconMd,
-          child: UISvg(item.iconAsset, color: UIColor.babyBlue),
+          // width: UI.sizes.iconMd,
+          // height: UI.sizes.iconMd,
+          child: UISvg(item.iconAsset, color: UIColor.babyBlue, size: 20),
         ),
       ),
       label: item.label,

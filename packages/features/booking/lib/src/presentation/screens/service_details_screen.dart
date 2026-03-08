@@ -17,12 +17,12 @@ class ServiceDetailsScreen extends StatefulWidget {
 }
 
 class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AutoScrollController scrollController;
   late TabController tabController;
 
   bool isCollapsed = false;
-  final double expandedHeight = 300.0;
+  final double expandedHeight = 290.0;
   final double collapsedHeight = kToolbarHeight;
 
   // final PageData data = ExampleData.data;
@@ -38,6 +38,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
   @override
   void initState() {
     scrollController = AutoScrollController();
+    tabController = TabController(length: 0, vsync: this);
     context.read<HomeBloc>().add(
       LoadServiceDetailsEvent(
         GetServiceDetailsRequestModel(serviceId: widget.serviceId.toString()),
@@ -47,7 +48,8 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
   }
 
   void _initializeTabController(int length) {
-    if (isTabControllerInitialized) return;
+    if (isTabControllerInitialized || length == 0) return;
+    tabController.dispose();
     tabController = TabController(length: length, vsync: this);
     isTabControllerInitialized = true;
   }
@@ -56,7 +58,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: UIColor.white,
+      backgroundColor: UIColor.background,
       body: BlocBuilder<HomeBloc, HomeBlocState>(
         builder: (context, state) {
           if (state.serviceDetailsLoading) {
@@ -74,7 +76,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
           );
 
           final data = state.serviceDetails;
-          return data != null
+          return data != null && isTabControllerInitialized
               ? RectGetter(
                 key: listViewKey,
                 child: NotificationListener<ScrollNotification>(
@@ -91,14 +93,13 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
     );
   }
 
-  SliverAppBar buildAppBar(ServiceDetailsResponseModel data) {
+  Widget buildAppBar(ServiceDetailsResponseModel data) {
     return ServiceDetailsAppBar(
       info: data.info,
       categories:
           data.categories
               .where((category) => category.services.isNotEmpty)
               .toList(),
-      context: context,
       scrollController: scrollController,
       expandedHeightappBar: expandedHeight,
       collapsedHeightappBar: collapsedHeight,
@@ -106,17 +107,18 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
       onCollapsed: onCollapsed,
       tabController: tabController,
       onTap: (index) => animateAndScrollTo(index),
+      rating: data.rating,
+      reviewsCount: data.reviewsCount,
     );
   }
 
   SliverList buildBody(ServiceDetailsResponseModel data1) {
+    final filteredCategories =
+        data1.categories.where((c) => c.services.isNotEmpty).toList();
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) => buildCategoryItem(index, data1.categories[index]),
-        childCount:
-            data1.categories
-                .where((category) => category.services.isNotEmpty)
-                .length,
+        (context, index) => buildCategoryItem(index, filteredCategories[index]),
+        childCount: filteredCategories.length,
       ),
     );
   }
@@ -199,92 +201,3 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
         .then((value) => pauseRectGetterIndex = false);
   }
 }
-
-
-
-// class UserHomeAppBar extends StatelessWidget {
-//   const UserHomeAppBar({
-//     super.key,
-//     required this.constraints,
-//     required this.scrollController,
-//   });
-
-//   final BoxConstraints constraints;
-//   final ScrollController scrollController;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final currentUser = diContainer.get<AppCubit>().state.user;
-//     final tabBarHeight = _getTabBarHeight(context);
-
-//     return SliverAppBar(
-//       backgroundColor: UIColor.white,
-//       elevation: 0,
-//       clipBehavior: Clip.none,
-//       floating: false,
-//       snap: false,
-//       pinned: true,
-//       expandedHeight: UI.sizes.appBarHeight, // AppBar height + tab bar height
-//       // title: AnimatedBuilder(
-//       //   animation: scrollController,
-//       //   builder: (context, child) {
-//       //     // Calculate collapse ratio (0 = expanded, 1 = collapsed)
-//       //     final scrollOffset =
-//       //         scrollController.hasClients ? scrollController.offset : 0.0;
-//       //     final collapseRatio = (scrollOffset / tabBarHeight).clamp(0.0, 1.0);
-
-//       //     return _buildAnimatedCollapsedTitle(
-//       //       context,
-//       //       currentUser,
-//       //       collapseRatio,
-//       //     );
-//       //   },
-//       // ),
-//       flexibleSpace: FlexibleSpaceBar(
-//         background: SafeArea(
-//           child: Column(
-//             mainAxisSize: MainAxisSize.min,
-//             mainAxisAlignment: MainAxisAlignment.end,
-//             children: [
-//               // const SizedBox(height: 56), // AppBar height
-//               HomeHeader(),
-//               // Row(
-//               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               //   children: [
-//               //     Padding(
-//               //       padding: const EdgeInsetsDirectional.only(start: 32),
-//               //       child: Align(
-//               //         alignment: Alignment.centerLeft,
-//               //         child: UIText.h3(
-//               //           "Hi ${currentUser?.firstName ?? ''}",
-//               //           color: UIColor.primaryDark,
-//               //         ),
-//               //       ),
-//               //     ),
-//               //     Padding(
-//               //       padding: const EdgeInsetsDirectional.only(end: 16),
-//               //       child: IconButton(
-//               //         padding: EdgeInsets.zero,
-//               //         icon: UISvg(Assets.icons.notification),
-//               //         onPressed: () {},
-//               //       ),
-//               //     ),
-//               //     //  const SizedBox(width: 12),
-//               //   ],
-//               // ),
-//               // Expanded(child: ChildrenTabBar()),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-  
-
-//   double _getTabBarHeight(BuildContext context) {
-//     return constraints.maxWidth > 500
-//         ? MediaQuery.sizeOf(context).height * 0.35
-//         : MediaQuery.sizeOf(context).height * 0.08;
-//   }
-// }

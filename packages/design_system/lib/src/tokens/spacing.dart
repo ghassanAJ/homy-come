@@ -61,7 +61,7 @@ class UISpacing {
   /// Button vertical padding: 16px
   ///
   /// Usage: Vertical padding inside primary/secondary buttons without icons
-  double get buttonVertical => 9;
+  double get buttonVertical => 5;
 
   /// Button with icon vertical padding: 12px
   ///

@@ -1,5 +1,4 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class BackButtonAppBar extends StatelessWidget {
   const BackButtonAppBar({super.key});
@@ -15,10 +14,11 @@ class BackButtonAppBar extends StatelessWidget {
         shape: BoxShape.circle,
         color: UIColor.neutral100,
       ),
-      child: SvgPicture.asset(
+      child: UISvg(
         Assets.icons.arrowLeft,
+        color: UIColor.black,
+        matchTextDirection: true,
         // package: "design_system",
-        colorFilter: ColorFilter.mode(UIColor.black, BlendMode.srcIn),
       ),
     );
   }

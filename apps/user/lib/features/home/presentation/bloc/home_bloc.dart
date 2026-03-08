@@ -4,6 +4,8 @@ import 'package:user/features/home/domain/repository/home_api_repository.dart';
 import 'package:user/features/home/presentation/bloc/home_bloc_event.dart';
 import 'package:user/features/home/presentation/bloc/home_bloc_state.dart';
 
+const cacheAvailable = false;
+
 @lazySingleton
 class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
   HomeBloc(this._homeRepository, this._bookingRepository)
@@ -158,7 +160,9 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
     final result = await _bookingRepository.getServiceDetails(event.request);
     result.fold(
       (data) {
-        _serviceDetailsCache[event.request.serviceId] = data;
+        if (cacheAvailable) {
+          _serviceDetailsCache[event.request.serviceId] = data;
+        }
         emit(
           state.copyWith(
             serviceDetails: data,

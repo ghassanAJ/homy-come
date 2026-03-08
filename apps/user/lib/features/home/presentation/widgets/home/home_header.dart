@@ -28,10 +28,10 @@ class HomeHeader extends StatelessWidget {
         children: [
           SizedBox(width: UI.spacing.md),
 
-          ProfilePictureWidget(
-            imageUrl: resolvedProfileImageUrl,
-            size: ProfilePictureSize.md,
-          ),
+          // ProfilePictureWidget(
+          //   imageUrl: resolvedProfileImageUrl,
+          //   size: ProfilePictureSize.md,
+          // ),
           SizedBox(width: UI.spacing.xs),
           Expanded(
             child: Column(
@@ -39,7 +39,7 @@ class HomeHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UIText.bodySmall(
-                  user?.fullName ?? '',
+                  'Hi, ${user?.fullName}' ?? '',
                   fontWeight: FontWeight.w700,
                   color: UIColor.black,
                 ),
@@ -54,6 +54,14 @@ class HomeHeader extends StatelessWidget {
                         user?.address?.toString() ?? 'no address selected',
                         color: UIColor.neutral400,
                         maxLines: 1,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        size: 16,
+                        color: UIColor.neutral400,
                       ),
                     ),
                   ],
@@ -77,7 +85,7 @@ class HomeHeader extends StatelessWidget {
                       () {
                         context.push(UserPaths.search);
                       },
-                  child: UISvg(Assets.icons.navSearch, size: 24),
+                  child: UISvg(Assets.icons.navSearch, size: 20),
                 ),
                 SizedBox(width: UI.spacing.sm),
                 GestureDetector(
@@ -86,7 +94,7 @@ class HomeHeader extends StatelessWidget {
                       () {
                         // TODO: Navigate to notifications screen when route is ready.
                       },
-                  child: UISvg(Assets.icons.notification, size: 24),
+                  child: UISvg(Assets.icons.notification, size: 20),
                 ),
               ],
             ),

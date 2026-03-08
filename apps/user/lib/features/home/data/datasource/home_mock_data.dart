@@ -24,7 +24,7 @@ final List<ServiceCategoryModel> _mockCategories = [
           info: InfoModel(
             id: '1',
             name: 'Carpenter',
-            image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            image: 'https://i.ibb.co/vCPn6j6p/Home-Cleaning.jpg',
           ),
           reviewsCount: 10,
           rating: 5,
@@ -46,7 +46,7 @@ final List<ServiceCategoryModel> _mockCategories = [
           info: InfoModel(
             id: '1',
             name: 'Cleaner',
-            image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            image: 'https://i.ibb.co/ynSmvwph/Furniture-Cleaning.jpg',
           ),
           reviewsCount: 10,
           rating: 5,
@@ -68,7 +68,7 @@ final List<ServiceCategoryModel> _mockCategories = [
           info: InfoModel(
             id: '1',
             name: 'Painter',
-            image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            image: 'https://i.ibb.co/Q7LbN1HF/Complete-Kitchen-Cleaning.png',
           ),
           reviewsCount: 10,
           rating: 5,
@@ -90,7 +90,7 @@ final List<ServiceCategoryModel> _mockCategories = [
           info: InfoModel(
             id: '1',
             name: 'Electrician',
-            image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            image: 'https://i.ibb.co/YFcNnFFp/Home-Deep-Cleaning.jpg',
           ),
           reviewsCount: 10,
           rating: 5,
@@ -112,7 +112,7 @@ final List<ServiceCategoryModel> _mockCategories = [
           info: InfoModel(
             id: '1',
             name: 'Plumber',
-            image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            image: 'https://i.ibb.co/7tgS7hR6/Plumber-service-1.jpg',
           ),
           reviewsCount: 10,
           rating: 5,
@@ -134,6 +134,14 @@ final List<OfferModel> _mockOffers = [
 ];
 
 final List<OfferModel> _mockSliders = [
+  const OfferModel(
+    imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
+    serviceId: '1',
+  ),
+  const OfferModel(
+    imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
+    serviceId: '1',
+  ),
   const OfferModel(
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
     serviceId: '1',

@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 
 class PriceRow extends StatelessWidget {
   const PriceRow({
+    super.key,
     required this.title,
     required this.amount,
     this.isTotal = false,
@@ -22,16 +23,15 @@ class PriceRow extends StatelessWidget {
       ),
       child: Row(
         children: [
-          
           Expanded(
-            child: UIText.bodyMedium(
+            child: UIText.bodySmall(
               title,
               color: UIColor.balck,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w600,
             ),
           ),
           UIPriceText(
-            text: UIText.bodyMedium(
+            text: UIText.bodySmall(
               amount,
               color: UIColor.textSecondary,
               fontWeight: FontWeight.w600,

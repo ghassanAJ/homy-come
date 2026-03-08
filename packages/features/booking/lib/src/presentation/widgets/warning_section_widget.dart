@@ -1,21 +1,24 @@
-
 import 'package:design_system/design_system.dart';
 
 class WaringSectionWidget extends StatelessWidget {
-  const WaringSectionWidget({
-    super.key,
-  });
+  const WaringSectionWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical:  UI.spacing.sm,horizontal: UI.spacing.xl),
+      padding: EdgeInsets.symmetric(
+        vertical: UI.spacing.sm,
+        horizontal: UI.spacing.xl,
+      ),
       color: UIColor.neutral100,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-  UISvg(Assets.icons.info,color: UIColor.black,),
+          Padding(
+            padding: EdgeInsets.only(top: 2),
+            child: UISvg(Assets.icons.info, color: UIColor.black),
+          ),
           SizedBox(width: UI.spacing.xs),
           Expanded(
             child: UIText.inputPlaceholder(
@@ -28,5 +31,3 @@ class WaringSectionWidget extends StatelessWidget {
     );
   }
 }
-
-

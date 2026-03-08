@@ -24,11 +24,11 @@ class ShimmerBox extends StatelessWidget {
       decoration:
           shape == BoxShape.circle
               ? BoxDecoration(
-                color: color ?? UIColor.border,
+                color: color ?? UIColor.white,
                 shape: BoxShape.circle,
               )
               : BoxDecoration(
-                color: color ?? UIColor.border,
+                color: color ?? UIColor.white,
 
                 borderRadius: BorderRadius.circular(radius),
               ),
@@ -71,9 +71,9 @@ class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
           shaderCallback: (rect) {
             return LinearGradient(
               colors: [
-                UIColor.neutral200,
+                UIColor.neutral100,
                 UIColor.neutral25,
-                UIColor.neutral400, //TODO
+                UIColor.white.withOpacity(0.9), //TODO
               ],
               stops: const [0.2, 0.5, 0.8],
               begin: Alignment(-1 - 2 * _controller.value, 0),

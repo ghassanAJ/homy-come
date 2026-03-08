@@ -27,11 +27,11 @@ class OfferCard extends StatelessWidget {
   }
 
   Widget _buildImage() {
-    return UINetworkIamge(
+    return UINetworkImage(
       // TODO: Replace with real image URL from API/state.
       imageUrl: image,
       fit: BoxFit.cover,
-      placeholder: UINetworkIamge(imageUrl: image, fit: BoxFit.cover),
+      placeholder: UINetworkImage(imageUrl: image, fit: BoxFit.cover),
     );
   }
 }

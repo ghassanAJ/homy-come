@@ -1,9 +1,13 @@
 import 'package:design_system/design_system.dart';
-import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
 class OrderCleanerInfoWidget extends StatelessWidget {
-  const OrderCleanerInfoWidget({super.key});
-
+  const OrderCleanerInfoWidget({
+    super.key,
+    required this.name,
+    required this.rating,
+  });
+  final String name;
+  final double rating;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,13 +32,13 @@ class OrderCleanerInfoWidget extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              UIText.bodyMedium('Mera ali'),
+              UIText.bodyMedium(name),
 
               Row(
                 children: [
                   UISvg(Assets.icons.star, color: UIColor.warning),
                   SizedBox(width: UI.spacing.xxs),
-                  UIText.bodyXSmall('5.0', color: UIColor.warning),
+                  UIText.bodyXSmall('$rating', color: UIColor.warning),
                 ],
               ),
             ],

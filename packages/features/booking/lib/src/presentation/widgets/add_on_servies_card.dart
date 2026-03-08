@@ -68,7 +68,7 @@ class AddonServiceCard extends StatelessWidget {
                     reviews,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    fontFamily: UIFonts.lexend,
+                    // fontFamily: UIFonts.lexend,
                   ),
                 ),
               ],
@@ -93,7 +93,7 @@ class AddonServiceCard extends StatelessWidget {
                   //TODO : use UIPriceText
                   oldPrice,
                   style: UI.text.bodyMedium.copyWith(
-                    fontFamily: UIFonts.lexend,
+                    // fontFamily: UIFonts.lexend,
                     color: UIColor.neutral300,
                     decoration: TextDecoration.lineThrough,
                   ),

@@ -32,7 +32,7 @@ class HomeStoryCards extends StatelessWidget {
                               stories:
                                   items
                                       .map(
-                                        (item) => UINetworkIamge(
+                                        (item) => UINetworkImage(
                                           imageUrl: item.imageUrl ?? '',
                                         ),
                                       )

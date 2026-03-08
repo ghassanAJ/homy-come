@@ -139,15 +139,15 @@ class UIPadding {
     required double bottomInset,
     double? endInset,
   }) => EdgeInsetsDirectional.only(
-    start: _spacing.xl,
+    start: _spacing.lg,
     top: _spacing.lg,
-    end: endInset ?? _spacing.xl,
+    end: endInset ?? _spacing.lg,
     bottom: bottomInset,
   );
 
   /// User search field content padding.
   EdgeInsets get userSearchFieldContent =>
-      EdgeInsets.symmetric(horizontal: _spacing.md, vertical: _spacing.sm);
+      EdgeInsets.symmetric(horizontal: _spacing.md, vertical: _spacing.xxs);
 
   /// User search chip content padding.
   EdgeInsets get userSearchChipContent =>
@@ -169,4 +169,68 @@ class UIPadding {
 
   EdgeInsetsDirectional get startLg =>
       EdgeInsetsDirectional.only(start: _spacing.lg);
+
+  /// Notifications screen scroll content padding.
+  EdgeInsetsDirectional get notificationsContent => EdgeInsetsDirectional.only(
+    start: _spacing.lg + _spacing.xxs,
+    end: _spacing.lg,
+    top: _spacing.xs,
+    bottom: _spacing.xl,
+  );
+
+  /// Notifications section spacing.
+  EdgeInsetsDirectional notificationsSectionSpacing({required bool isLast}) =>
+      EdgeInsetsDirectional.only(
+        bottom: isLast ? 0 : _spacing.lg + _spacing.xxs,
+      );
+
+  /// Notifications item spacing.
+  EdgeInsetsDirectional notificationsItemSpacing({required bool isLast}) =>
+      EdgeInsetsDirectional.only(bottom: isLast ? 0 : _spacing.sm);
+
+  /// Notifications card content padding.
+  EdgeInsetsDirectional get notificationsCardContent =>
+      EdgeInsetsDirectional.symmetric(
+        horizontal: _spacing.md,
+        vertical: _spacing.xs,
+      );
+
+  /// Notifications shimmer card content padding.
+  EdgeInsetsDirectional get notificationsShimmerCardContent =>
+      EdgeInsetsDirectional.symmetric(
+        horizontal: _spacing.md,
+        vertical: _spacing.md,
+      );
+
+  /// Driver profile screen top content padding.
+  EdgeInsets driverProfileContent({required double topInset}) =>
+      EdgeInsets.fromLTRB(_spacing.sm, topInset, _spacing.sm, 0);
+
+  /// Driver profile settings screen content padding.
+  EdgeInsets driverProfileSettingsContent({required double topInset}) =>
+      EdgeInsets.fromLTRB(_spacing.sm, topInset, _spacing.sm, _spacing.lg);
+
+  /// Driver profile "Settings" card content padding.
+  EdgeInsets get driverProfileSettingsCardContent =>
+      EdgeInsets.symmetric(vertical: _spacing.md);
+
+  /// Driver profile header card content padding.
+  EdgeInsets get driverProfileHeaderContent =>
+      EdgeInsets.symmetric(horizontal: _spacing.xl, vertical: _spacing.md);
+
+  /// Driver profile edit button vertical padding.
+  EdgeInsets get driverProfileHeaderEditButtonContent =>
+      EdgeInsets.symmetric(vertical: _spacing.xs);
+
+  /// Driver profile performance card content padding.
+  EdgeInsets get driverProfilePerformanceCardContent =>
+      EdgeInsets.all(_spacing.lg);
+
+  /// Driver profile performance legend horizontal padding.
+  EdgeInsets get driverProfilePerformanceLegendHorizontal =>
+      EdgeInsets.symmetric(horizontal: _spacing.lg);
+
+  /// Driver profile settings row horizontal padding.
+  EdgeInsets get driverProfileSettingsRowContent =>
+      EdgeInsets.symmetric(horizontal: _spacing.xl);
 }

@@ -1,106 +1,93 @@
-import 'dart:developer';
-import 'package:profile/profile.dart';
+import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:orders/src/presentation/widget/card_status_order_widget.dart';
-import 'package:orders/src/localization/order_localization_scope.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:orders/src/cubit/order_cubit.dart';
+import 'package:orders/src/cubit/order_state.dart';
+import 'package:orders/src/di/di_container.dart';
+import 'package:orders/src/enum/filter_order_enum.dart';
+import 'package:orders/src/presentation/widget/order_app_bar.dart';
+import 'package:orders/src/presentation/widget/order_error_widgert.dart';
+import 'package:orders/src/presentation/widget/order_shimmer_loading.dart';
+import 'package:orders/src/presentation/widget/orders_list.dart';
 
-class MyOrderScreen extends StatelessWidget {
+class MyOrderScreen extends StatefulWidget {
   const MyOrderScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final tr = context.orderTr;
-    return Scaffold(
-      body: UIBackground(
-        child: CustomScrollView(
-          slivers: [
-            OrderAppBar(),
-            SliverToBoxAdapter(child: SizedBox(height: UI.spacing.md)),
-
-            SliverToBoxAdapter(
-              child: UIchipsBar(
-                firstLabel: tr.labels.all,
-                label: [
-                  tr.title.inProgess,
-                  tr.title.scheduled,
-                  tr.title.completed,
-                ],
-              ),
-            ),
-            SliverToBoxAdapter(child: SizedBox(height: UI.spacing.md)),
-            SliverPadding(
-              padding: EdgeInsets.symmetric(
-                horizontal: UI.spacing.lg,
-                vertical: UI.spacing.md,
-              ),
-              sliver: SliverList.separated(
-                itemBuilder: (context, i) => OrderStatusCardContent(),
-                separatorBuilder:
-                    (context, _) => SizedBox(height: UI.spacing.md),
-                itemCount: 4,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  State<MyOrderScreen> createState() => _MyOrderScreenState();
 }
 
-class OrderAppBar extends StatelessWidget {
-  const OrderAppBar({
-    super.key,
-  });
+class _MyOrderScreenState extends State<MyOrderScreen>
+    with SingleTickerProviderStateMixin {
+  late final OrderCubit _orderCubit;
+  late final ScrollController _scrollController;
+
+  late TabController _tabController;
+  @override
+  void initState() {
+    super.initState();
+    _orderCubit = diContainerOrder<OrderCubit>();
+    _tabController = TabController(length: 3, vsync: this);
+    _scrollController = ScrollController();
+    _tabController.addListener(() {
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return UISliverAppBar(
-      bottom: PreferredSize(
-        preferredSize: Size.fromHeight(1),
-        child: Padding(
-          padding: EdgeInsets.only(
-            left: UI.spacing.xl,
-            top: UI.spacing.md,
-          ),
-          child: Column(
-            children: [Divider(height: 4, color: UIColor.divider)],
-          ),
-        ),
-      ),
-      variant: UISliverAppBarVariant.transparent,
-      leading: SizedBox(
-        width: 24,
-        height: 24,
-        child: Padding(
-          padding: const EdgeInsets.all(4),
-          child: BackButtonAppBar(),
-        ),
-      ),
-      centerTitle: true,
-      titleWidget: UIText.h4(context.orderTr.title.myOrder),
-    
-      actions: [
-        GestureDetector(
-          onTap: () {},
-          child: Container(
-            alignment: Alignment.topCenter,
-            margin: EdgeInsets.only(right: UI.spacing.lg),
-            padding: EdgeInsets.symmetric(
-              horizontal: UI.spacing.sm,
-              vertical: UI.spacing.xxs,
+    return BlocProvider(
+      create: (context) => _orderCubit..getOrders(FilterOrder.all),
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            body: UIBackground(
+              child: RefreshIndicator(
+                color: UIColor.babyBlue,
+                onRefresh: () async => _orderCubit.getOrders(FilterOrder.all),
+                child: NestedScrollView(
+                  controller: _scrollController,
+                  headerSliverBuilder:
+                      (context, innerBoxIsScrolled) => [
+                        OrderAppBar(scrollController: _tabController),
+                      ],
+                  body: BlocBuilder<OrderCubit, BaseState<OrderState>>(
+                    builder: (context, state) {
+                      if (state.status == BaseCubitStatus.loading) {
+                        return Center(child: OrdersShimmerLoadingWidget());
+                      }
+
+                      if (state.status == BaseCubitStatus.error) {
+                        return OrdersErrorWidget(
+                          message: state.error!.message,
+                          onTap: () async {
+                            _orderCubit.getOrders(FilterOrder.all);
+                          },
+                        );
+                      }
+                      return TabBarView(
+                        controller: _tabController,
+                        children: [
+                          OrderList(orders: state.data?.inProcessOrder ?? []),
+                          OrderList(orders: state.data?.schaduledOrder ?? []),
+                          OrderList(orders: state.data?.completedOrder ?? []),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
             ),
-            // width: 50,
-            height: UI.sizes.iconLg,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(UI.radius.sm),
-              color: UIColor.neutral100,
-            ),
-            child:UISvg(Assets.icons.notification,color: UIColor.black,)
-          ),
-        ),
-      ],
+          );
+        },
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    _scrollController.dispose();
+    super.dispose();
   }
 }
