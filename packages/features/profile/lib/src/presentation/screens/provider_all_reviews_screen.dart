@@ -20,10 +20,7 @@ class ProviderAllReviewsScreen extends StatelessWidget {
     return UIScaffold(
       appBar: UIAppBar(
         title: context.profileTranslation.reviews.title,
-        leading: GestureDetector(
-          onTap: ProfileInternalRouter.of(context).goBack,
-          child: const BackButtonAppBar(),
-        ),
+        leading: const BackButtonAppBar(),
       ),
       body: BlocProvider(
         create:
