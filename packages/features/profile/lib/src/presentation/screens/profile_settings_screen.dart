@@ -14,7 +14,6 @@ class ProfileSettingsScreen extends StatelessWidget {
     return UIScaffold(
       appBar: UIAppBar(
         title: context.profileTranslation.driverProfile.settings,
-        leading: const BackButtonAppBar(),
       ),
       body: SingleChildScrollView(
         padding: UI.padding.driverProfileSettingsContent(

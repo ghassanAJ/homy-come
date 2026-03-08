@@ -6,7 +6,7 @@ import 'package:profile/src/presentation/screens/about_app_screen.dart';
 import 'package:profile/src/presentation/screens/driver_language_settings_screen.dart';
 import 'package:profile/src/presentation/screens/profile_settings_screen.dart';
 import 'package:profile/src/presentation/screens/provider_all_reviews_screen.dart';
-import 'package:profile/src/presentation/screens/terms_and_condition.dart';
+import 'package:profile/src/presentation/screens/terms_and_condition_screen.dart';
 
 /// Profile route paths
 class ProfilePaths {

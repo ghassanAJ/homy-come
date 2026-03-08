@@ -20,7 +20,6 @@ class ProviderAllReviewsScreen extends StatelessWidget {
     return UIScaffold(
       appBar: UIAppBar(
         title: context.profileTranslation.reviews.title,
-        leading: const BackButtonAppBar(),
       ),
       body: BlocProvider(
         create:

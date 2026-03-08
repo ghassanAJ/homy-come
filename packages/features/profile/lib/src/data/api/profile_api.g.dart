@@ -20,6 +20,66 @@ class _ProfileAPI implements ProfileAPI {
   final ParseErrorLogger? errorLogger;
 
   @override
+  Future<APIResponse<AboutAppModel>> getAboutApp() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<APIResponse<AboutAppModel>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/api/v1/about-us',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late APIResponse<AboutAppModel> _value;
+    try {
+      _value = APIResponse<AboutAppModel>.fromJson(
+        _result.data!,
+        (json) => AboutAppModel.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<APIResponse<TermsAndConditionModel>> getTermsAndCondition() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<APIResponse<TermsAndConditionModel>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/api/v1/terms-and-conditions',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late APIResponse<TermsAndConditionModel> _value;
+    try {
+      _value = APIResponse<TermsAndConditionModel>.fromJson(
+        _result.data!,
+        (json) => TermsAndConditionModel.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<APIResponse<DriverPerformanceModel>> getDriverPerformance() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

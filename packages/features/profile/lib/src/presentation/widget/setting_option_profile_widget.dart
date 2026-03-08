@@ -26,10 +26,12 @@ class ProfileSettingOptionWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: ListTile(
-        contentPadding: EdgeInsets.only(bottom: UI.spacing.sm),
+        contentPadding: UI.padding.profileSettingOptionContentPadding,
         trailing: Padding(
-          padding: const EdgeInsetsDirectional.only(end: 8.0),
-          child: customTrailing ?? UISvg(Assets.icons.right),
+          padding: UI.padding.profileSettingOptionTrailingEnd,
+          child:
+              customTrailing ??
+              UISvg(Assets.icons.right, matchTextDirection: true),
         ),
         leading: _buildProfileIcon(
           isSvgIcon: isSvgIcon,
@@ -40,7 +42,7 @@ class ProfileSettingOptionWidget extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            UIText.headerBody(title),
+            UIText.headerBody(title, fontFamily: UIFontFamily.dmSans),
             SizedBox(height: UI.spacing.xxs),
             if (descreption != null)
               UIText.bodyXSmall(
@@ -48,6 +50,7 @@ class ProfileSettingOptionWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 color: UIColor.textGray,
+                fontFamily: UIFontFamily.dmSans,
               ),
           ],
         ),
@@ -65,7 +68,7 @@ class ProfileSettingOptionWidget extends StatelessWidget {
       return UIIconBackground(
         size: UI.sizes.avatarMd,
         iconSize: UI.sizes.avatarMd,
-        backgroundColor: color ?? Color(0xff303030),
+        backgroundColor: color ?? UIColor.charcoal,
         child: UISvg(imgUrl, color: colorIcon ?? UIColor.grey),
       );
     }
@@ -75,12 +78,12 @@ class ProfileSettingOptionWidget extends StatelessWidget {
       placeholderWidget: Container(
         color: color,
         child: Padding(
-          padding: EdgeInsets.all(UI.sizes.iconXXs),
+          padding: UI.padding.profileSettingOptionIconContent,
           child: SizedBox(
             child: SvgPicture.asset(
               imgUrl,
               colorFilter: ColorFilter.mode(
-                colorIcon ?? UIColor.grey,
+                colorIcon ?? UIColor.charcoal,
                 BlendMode.srcIn,
               ),
             ),

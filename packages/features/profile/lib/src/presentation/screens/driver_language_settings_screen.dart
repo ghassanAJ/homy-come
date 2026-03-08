@@ -1,6 +1,5 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/presentation/widget/shared/settings_row.dart';
 import 'package:util/util.dart';
@@ -17,9 +16,7 @@ class DriverLanguageSettingsScreen extends StatelessWidget {
       appBar: UIAppBar(
         title: context.profileTranslation.driverProfile.language,
         leading: GestureDetector(
-          onTap: () {
-            if (context.canPop()) context.pop();
-          },
+          onTap: ProfileInternalRouter.of(context).goBack,
           child: const BackButtonAppBar(),
         ),
       ),
@@ -70,6 +67,6 @@ class DriverLanguageSettingsScreen extends StatelessWidget {
 
   void _selectLanguage(BuildContext context, Locale locale) {
     context.read<LocalizationCubit>().setLocale(locale);
-    (context).pop();
+    ProfileInternalRouter.of(context).goBack();
   }
 }

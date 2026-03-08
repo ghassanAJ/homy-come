@@ -1,9 +1,9 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:profile/src/data/model/res/driver_performance_metric_model.dart';
 import 'package:profile/src/data/model/res/driver_performance_model.dart';
+import 'package:profile/src/di/di_container.dart';
 import 'package:profile/src/domain/repository/profile_repository.dart';
 import 'package:profile/src/localization/profile_localization_scope.dart';
 import 'package:profile/src/presentation/cubit/driver_performance_cubit.dart';
@@ -12,38 +12,25 @@ import 'package:profile/src/presentation/widget/driver/driver_profile_performanc
 import 'package:util/util.dart'
     show BaseCubitStatus, BaseState, DonutChartPainter, DonutSegment;
 
-class PerformanceCard extends StatefulWidget {
+class PerformanceCard extends StatelessWidget {
   const PerformanceCard({super.key, this.performanceRepository});
 
   final ProfileRepository? performanceRepository;
 
   @override
-  State<PerformanceCard> createState() => _PerformanceCardState();
-}
-
-class _PerformanceCardState extends State<PerformanceCard> {
-  late final ProfileRepository _repository =
-      widget.performanceRepository ?? GetIt.I<ProfileRepository>();
-  late final DriverPerformanceCubit _cubit;
-
-  @override
-  void initState() {
-    super.initState();
-    final driverId = context.read<AppCubit>().state.userId ?? '';
-    _cubit = DriverPerformanceCubit(_repository)
-      ..fetchDriverPerformance(driverId: driverId);
-  }
-
-  @override
-  void dispose() {
-    _cubit.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: _cubit,
+    final driverId = context.read<AppCubit>().state.userId ?? '';
+
+  return BlocProvider(
+      create: (_) {
+        final repositoryOverride = performanceRepository;
+        final cubit =
+            repositoryOverride == null
+                ? diContainer<DriverPerformanceCubit>()
+                : DriverPerformanceCubit(repositoryOverride);
+
+        return cubit..fetchDriverPerformance(driverId: driverId);
+      },
       child: BlocBuilder<
         DriverPerformanceCubit,
         BaseState<DriverPerformanceModel>
@@ -64,13 +51,8 @@ class _PerformanceCardState extends State<PerformanceCard> {
               state.status == BaseCubitStatus.initial ||
               state.status == BaseCubitStatus.loading;
 
-          return Container(
+          return UICardContainer(
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: UIColor.background,
-              borderRadius: BorderRadius.circular(UI.radius.md),
-              boxShadow: UI.shadows.cardMd,
-            ),
             child: Padding(
               padding: UI.padding.driverProfilePerformanceCardContent,
               child: Column(
