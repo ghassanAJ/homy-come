@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homy_provider/navigation/provider_navigation_config.dart';
 import 'package:homy_provider/navigation/route.dart';
+import 'package:homy_provider/presentation/screens/provider_home_screen.dart';
 
 /// Configuration for provider app routes.
 ///
@@ -27,7 +28,7 @@ class ProviderAppRouteConfig {
           navigationShell: navigationShell,
           navigationItems: ProviderNavigationConfig.items,
           branchPaths: const [
-            ProviderPaths.home,
+            ProviderPaths.homeProvider,
             ProviderPaths.services,
             ProviderPaths.bookings,
             ProviderPaths.profile,
@@ -38,25 +39,9 @@ class ProviderAppRouteConfig {
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: ProviderPaths.home,
+              path: ProviderPaths.homeProvider,
               builder:
-                  (context, state) => Scaffold(
-                    body: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('Home'),
-                          UIButton.primary(
-                            label: 'logout',
-                            onPressed: () {
-                              context.read<AuthUserBloc>().add(Logout());
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  (context, state) => ProviderHomeScreen()
             ),
           ],
         ),

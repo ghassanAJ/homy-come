@@ -17,10 +17,11 @@ class UserPaths {
   static const String profile = '/profile';
   static const String notifications = '/notifications';
   static const String serviceDetails = '/service-details';
+  static const String services = '/service';
   static const String serviceDetails2 = '/service-details2';
   static const String serviceDetails3 = '/service-details3';
   static String  serviceDetailsSummarywithid({int? id})=>id==null?'/service-details-summary/:id':'/service-details-summary/$id';
-  // static const String serviceDetailsSummary = '/service-details-summary/:id';
+
 }
 
 /// User app route definitions.

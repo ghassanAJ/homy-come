@@ -24,9 +24,11 @@ class UIColor extends Color {
   static const UIColor error = UIColor._(0xFFFF6653);
   static const UIColor errorDark = UIColor._(0xFFC01515);
   static const UIColor success = UIColor._(0xFF32D938);
-  static const UIColor successBright = UIColor._(0xFF0FCC5D);
-  static const UIColor warning = UIColor._(0xFFFFC155);
-
+  static const UIColor successBright = UIColor._(0xFF0FCC5D); //#81C04B  #C8FF99
+  static const UIColor successlight = UIColor._(0xFF81C04B);
+    static const UIColor greenPaleBar = UIColor._(0xFFC8FF99);
+  static const UIColor warning = UIColor._(0xFFFFC155); //  #
+  static const UIColor yellowPale = UIColor._(0xFFFCBC04);
   // Neutral colors
   static const UIColor neutral000 = UIColor._(0xFFFFFFFF);
   static const UIColor neutral25 = UIColor._(0xffF6F7F9);
