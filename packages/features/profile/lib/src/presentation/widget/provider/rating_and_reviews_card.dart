@@ -1,7 +1,6 @@
 import 'package:design_system/design_system.dart';
-import 'package:go_router/go_router.dart';
+import 'package:profile/profile.dart';
 import 'package:profile/src/data/model/res/review_model.dart';
-import 'package:profile/src/navigation/router.dart';
 import 'package:profile/src/presentation/widget/provider/review_item.dart';
 
 class RatingDistributionUiModel {
@@ -58,14 +57,11 @@ class RatingAndReviewsCard extends StatelessWidget {
               Center(
                 child: InkWell(
                   borderRadius: BorderRadius.circular(UI.radius.md),
-                  onTap: () => context.push(ProfilePaths.providerAllReviews),
+                  onTap: ProfileInternalRouter.of(context).toProviderAllReviews,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: UI.spacing.sm,
-                      vertical: UI.spacing.xxs,
-                    ),
+                    padding: UI.padding.profileRatingAndReviewsShowMoreContent,
                     child: UIText.bodyXSmall(
-                      'Show more',
+                      context.profileTranslation.reviews.showMore,
                       color: UIColor.successDark,
                       fontWeight: FontWeight.w700,
                       fontFamily: UIFontFamily.roboto,
@@ -82,7 +78,7 @@ class RatingAndReviewsCard extends StatelessWidget {
 
   Widget _buildRatingDistributionRow(RatingDistributionUiModel item) {
     return Padding(
-      padding: EdgeInsets.only(bottom: UI.spacing.md),
+      padding: UI.padding.profileRatingAndReviewsRowSpacing,
       child: Row(
         children: [
           SizedBox(

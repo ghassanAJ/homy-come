@@ -42,6 +42,7 @@ class ProfileTranslation implements i69n.I69nMessageBundle {
   LabelsProfileTranslation get Labels => LabelsProfileTranslation(this);
   PlaceHolderProfileTranslation get placeHolder =>
       PlaceHolderProfileTranslation(this);
+  ReviewsProfileTranslation get reviews => ReviewsProfileTranslation(this);
   TermsAndPrivacyProfileTranslation get termsAndPrivacy =>
       TermsAndPrivacyProfileTranslation(this);
   Object operator [](String key) {
@@ -61,6 +62,8 @@ class ProfileTranslation implements i69n.I69nMessageBundle {
         return Labels;
       case 'placeHolder':
         return placeHolder;
+      case 'reviews':
+        return reviews;
       case 'termsAndPrivacy':
         return termsAndPrivacy;
       default:
@@ -112,9 +115,9 @@ class OptionProfileTranslation implements i69n.I69nMessageBundle {
   String get deleteAccount => "Delete Account";
   String get savedBeneficiary => "Saved Beneficiary";
   String get location => "My Location";
-  String get Job => "Job history";
+  String get job => "Job history";
   String get appNotifications => "App Notifications";
-  String get DeleteMyAccount => "Delete my account";
+  String get deleteMyAccount => "Delete my account";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -140,12 +143,12 @@ class OptionProfileTranslation implements i69n.I69nMessageBundle {
         return savedBeneficiary;
       case 'location':
         return location;
-      case 'Job':
-        return Job;
+      case 'job':
+        return job;
       case 'appNotifications':
         return appNotifications;
-      case 'DeleteMyAccount':
-        return DeleteMyAccount;
+      case 'deleteMyAccount':
+        return deleteMyAccount;
       default:
         return key;
     }
@@ -225,7 +228,7 @@ class PlaceHolderProfileTranslation implements i69n.I69nMessageBundle {
   final ProfileTranslation _parent;
   const PlaceHolderProfileTranslation(this._parent);
   String get email => "write your email";
-  String get note => "write your Note";
+  String get note => "write your note";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -243,12 +246,52 @@ class PlaceHolderProfileTranslation implements i69n.I69nMessageBundle {
   }
 }
 
+class ReviewsProfileTranslation implements i69n.I69nMessageBundle {
+  final ProfileTranslation _parent;
+  const ReviewsProfileTranslation(this._parent);
+  String get title => "Reviews";
+  String get empty => "No reviews yet";
+  String get showMore => "Show more";
+  String get excellent => "Excellent";
+  String get good => "Good";
+  String get average => "Average";
+  String get belowAverage => "Below Average";
+  String get poor => "Poor";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'title':
+        return title;
+      case 'empty':
+        return empty;
+      case 'showMore':
+        return showMore;
+      case 'excellent':
+        return excellent;
+      case 'good':
+        return good;
+      case 'average':
+        return average;
+      case 'belowAverage':
+        return belowAverage;
+      case 'poor':
+        return poor;
+      default:
+        return key;
+    }
+  }
+}
+
 class TermsAndPrivacyProfileTranslation implements i69n.I69nMessageBundle {
   final ProfileTranslation _parent;
   const TermsAndPrivacyProfileTranslation(this._parent);
   String get termsOfUse => "Terms of use";
   String get and => "And";
-  String get privacyPolicy => "privacy Policy";
+  String get privacyPolicy => "Privacy Policy";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {

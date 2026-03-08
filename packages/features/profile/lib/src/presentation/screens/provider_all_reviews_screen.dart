@@ -1,79 +1,46 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
+import 'package:profile/profile.dart';
 import 'package:profile/src/data/model/res/review_model.dart';
-import 'package:profile/src/domain/repository/profile_repository.dart';
+import 'package:profile/src/di/di_container.dart';
 import 'package:profile/src/presentation/cubit/provider_rating_and_reviews_cubit.dart';
 import 'package:profile/src/presentation/widget/provider/review_item.dart';
-import 'package:profile/src/presentation/widget/provider/review_item_shimmer.dart';
+import 'package:profile/src/presentation/widget/provider/reviews_shimmer.dart';
 
-class ProviderAllReviewsScreen extends StatefulWidget {
+class ProviderAllReviewsScreen extends StatelessWidget {
   const ProviderAllReviewsScreen({super.key});
 
   @override
-  State<ProviderAllReviewsScreen> createState() => _ProviderAllReviewsScreenState();
-}
-
-class _ProviderAllReviewsScreenState extends State<ProviderAllReviewsScreen> {
-  late final ProfileRepository _repository = GetIt.I<ProfileRepository>();
-  late final ProviderRatingAndReviewsCubit _cubit;
-
-  @override
-  void initState() {
-    super.initState();
-    final providerId = context.read<AppCubit>().state.userId ?? '';
-    _cubit = ProviderRatingAndReviewsCubit(_repository)
-      ..fetchProviderRatingAndReviews(providerId: providerId);
-  }
-
-  @override
-  void dispose() {
-    _cubit.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final providerId = context.read<AppCubit>().state.userId ?? '';
     final topContentPadding =
         MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
 
     return UIScaffold(
       appBar: UIAppBar(
-        title: 'Reviews',
+        title: context.profileTranslation.reviews.title,
         leading: GestureDetector(
-          onTap: () {
-            if (context.canPop()) context.pop();
-          },
+          onTap: ProfileInternalRouter.of(context).goBack,
           child: const BackButtonAppBar(),
         ),
       ),
-      body: BlocProvider.value(
-        value: _cubit,
-        child: BlocBuilder<ProviderRatingAndReviewsCubit, BaseState<List<ReviewModel>>>(
+      body: BlocProvider(
+        create:
+            (_) => diContainer<ProviderRatingAndReviewsCubit>()
+              ..fetchProviderRatingAndReviews(providerId: providerId),
+        child: BlocBuilder<
+          ProviderRatingAndReviewsCubit,
+          BaseState<List<ReviewModel>>
+        >(
           builder: (context, state) {
             final reviews = state.data ?? const <ReviewModel>[];
             final isInitialLoading =
                 state.status == BaseCubitStatus.initial ||
                 state.status == BaseCubitStatus.loading;
 
-            if (isInitialLoading && reviews.isEmpty) {
-              return Shimmer(
-                child: ListView.builder(
-                  padding: EdgeInsets.only(
-                    top: topContentPadding,
-                    left: UI.spacing.lg,
-                    right: UI.spacing.lg,
-                  ),
-                  itemCount: 4,
-                  itemBuilder: (context, index) {
-                    return ReviewItemShimmer(
-                      showDivider: index < 3,
-                    );
-                  },
-                ),
-              );
+            if (isInitialLoading) {
+              return ReviewsShimmer(topInset: topContentPadding);
             }
 
             if (reviews.isEmpty) {
@@ -83,7 +50,7 @@ class _ProviderAllReviewsScreenState extends State<ProviderAllReviewsScreen> {
                 ),
                 child: Center(
                   child: UIText.bodySmall(
-                    'No reviews yet',
+                    context.profileTranslation.reviews.empty,
                     color: UIColor.neutral480,
                     fontFamily: UIFontFamily.roboto,
                   ),
@@ -92,10 +59,8 @@ class _ProviderAllReviewsScreenState extends State<ProviderAllReviewsScreen> {
             }
 
             return ListView.builder(
-              padding: EdgeInsets.only(
-                top: topContentPadding,
-                left: UI.spacing.lg,
-                right: UI.spacing.lg,
+              padding: UI.padding.profileAllReviewsContent(
+                topInset: topContentPadding,
               ),
               itemCount: reviews.length,
               itemBuilder: (context, index) {

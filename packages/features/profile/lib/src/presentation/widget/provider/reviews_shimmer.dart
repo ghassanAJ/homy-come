@@ -1,5 +1,24 @@
 import 'package:design_system/design_system.dart';
 
+class ReviewsShimmer extends StatelessWidget {
+  const ReviewsShimmer({super.key, required this.topInset});
+
+  final double topInset;
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer(
+      child: ListView.builder(
+        padding: UI.padding.profileAllReviewsContent(topInset: topInset),
+        itemCount: 4,
+        itemBuilder: (context, index) {
+          return ReviewItemShimmer(showDivider: index < 3);
+        },
+      ),
+    );
+  }
+}
+
 class ReviewItemShimmer extends StatelessWidget {
   const ReviewItemShimmer({super.key, required this.showDivider});
 

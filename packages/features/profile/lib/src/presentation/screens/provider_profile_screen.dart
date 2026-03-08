@@ -1,86 +1,37 @@
-﻿import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:authentication/authentication.dart';
-import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
+import 'package:design_system/design_system.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/data/model/res/review_model.dart';
-import 'package:profile/src/domain/repository/profile_repository.dart';
-import 'package:profile/src/navigation/router.dart';
+import 'package:profile/src/di/di_container.dart';
 import 'package:profile/src/presentation/cubit/provider_rating_and_reviews_cubit.dart';
 import 'package:profile/src/presentation/widget/provider/rating_and_reviews_card.dart';
+import 'package:profile/src/presentation/widget/provider/rating_and_reviews_card_shimmer.dart';
 import 'package:profile/src/presentation/widget/shared/header_card.dart';
-import 'package:profile/src/presentation/widget/shared/settings_row.dart';
+import 'package:profile/src/presentation/widget/shared/settings_section.dart';
 
-class ProviderProfileScreen extends StatefulWidget {
+class ProviderProfileScreen extends StatelessWidget {
   const ProviderProfileScreen({super.key});
 
   @override
-  State<ProviderProfileScreen> createState() => _ProviderProfileScreenState();
-}
-
-class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
-  static const List<_RatingDistributionUiConfig> _ratingDistributionUiConfig = [
-    _RatingDistributionUiConfig(
-      label: 'Excellent',
-      color: UIColor.successDark,
-      ratio: 0.88,
-    ),
-    _RatingDistributionUiConfig(
-      label: 'Good',
-      color: UIColor.aqua,
-      ratio: 0.65,
-    ),
-    _RatingDistributionUiConfig(
-      label: 'Average',
-      color: UIColor.orange,
-      ratio: 0.42,
-    ),
-    _RatingDistributionUiConfig(
-      label: 'Below Average',
-      color: UIColor.warningStrong,
-      ratio: 0.30,
-    ),
-    _RatingDistributionUiConfig(
-      label: 'Poor',
-      color: UIColor.errorStrong,
-      ratio: 0.06,
-    ),
-  ];
-
-  late final ProfileRepository _repository = GetIt.I<ProfileRepository>();
-  late final ProviderRatingAndReviewsCubit _cubit;
-
-  @override
-  void initState() {
-    super.initState();
-    final providerId = context.read<AppCubit>().state.userId ?? '';
-    _cubit = ProviderRatingAndReviewsCubit(_repository)
-      ..fetchProviderRatingAndReviews(providerId: providerId);
-  }
-
-  @override
-  void dispose() {
-    _cubit.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final providerId = context.read<AppCubit>().state.userId ?? '';
     final topContentPadding =
         MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
 
     return UIScaffold(
       appBar: UIAppBar(title: context.profileTranslation.profile.myProfile),
-      body: BlocProvider.value(
-        value: _cubit,
+      body: BlocProvider(
+        create:
+            (_) => diContainer<ProviderRatingAndReviewsCubit>()
+              ..fetchProviderRatingAndReviews(providerId: providerId),
         child: BlocBuilder<
           ProviderRatingAndReviewsCubit,
           BaseState<List<ReviewModel>>
         >(
           builder: (context, state) {
             final reviews = state.data ?? const <ReviewModel>[];
-            final ratingDistribution = _buildRatingDistributionForView();
+            final ratingDistribution = _buildRatingDistributionForView(context);
             final isInitialLoading =
                 state.status == BaseCubitStatus.initial ||
                 state.status == BaseCubitStatus.loading;
@@ -96,38 +47,20 @@ class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
                     const HeaderCard(showRating: true, rating: 5.0),
                     SizedBox(height: UI.spacing.sm),
                     if (isInitialLoading && reviews.isEmpty)
-                      _buildLoadingCard()
+                      const RatingAndReviewsCardShimmer()
                     else
                       RatingAndReviewsCard(
                         ratingDistribution: ratingDistribution,
                         reviews: reviews,
                       ),
                     SizedBox(height: UI.spacing.sm),
-                    Container(
-                      width: double.infinity,
-                      padding: UI.padding.driverProfileSettingsCardContent,
-                      decoration: BoxDecoration(
-                        color: UIColor.background,
-                        borderRadius: BorderRadius.circular(UI.radius.md),
-                        boxShadow: UI.shadows.cardMd,
-                      ),
-                      child: SettingsRow(
-                        onTap:
-                            () => context.push(
-                              ProfilePaths.driverProfileSettings,
-                            ),
-                        title:
-                            context.profileTranslation.driverProfile.settings,
-                        titleBuilder:
-                            (title, color) => UIText.bodySmall(
-                              title,
-                              color: color,
-                              fontWeight: FontWeight.w600,
-                            ),
-                        showDivider: false,
-                      ),
+                    SettingsSection(
+                      onTap:
+                          ProfileInternalRouter.of(
+                            context,
+                          ).toDriverProfileSettings,
+                      title: context.profileTranslation.driverProfile.settings,
                     ),
-                    SizedBox(height: UI.sizes.bottomNavigationBarHeight),
                   ],
                 ),
               ),
@@ -138,40 +71,37 @@ class _ProviderProfileScreenState extends State<ProviderProfileScreen> {
     );
   }
 
-  Widget _buildLoadingCard() {
-    return Container(
-      width: double.infinity,
-      height: 220,
-      decoration: BoxDecoration(
-        color: UIColor.background,
-        borderRadius: BorderRadius.circular(UI.radius.md),
-        boxShadow: UI.shadows.cardMd,
+  List<RatingDistributionUiModel> _buildRatingDistributionForView(
+    BuildContext context,
+  ) {
+    final reviewsTranslation = context.profileTranslation.reviews;
+
+    return [
+      RatingDistributionUiModel(
+        label: reviewsTranslation.excellent,
+        color: UIColor.successDark,
+        ratio: 0.88,
       ),
-      child: const Center(child: CircularProgressIndicator(strokeWidth: 2)),
-    );
+      RatingDistributionUiModel(
+        label: reviewsTranslation.good,
+        color: UIColor.aqua,
+        ratio: 0.65,
+      ),
+      RatingDistributionUiModel(
+        label: reviewsTranslation.average,
+        color: UIColor.orange,
+        ratio: 0.42,
+      ),
+      RatingDistributionUiModel(
+        label: reviewsTranslation.belowAverage,
+        color: UIColor.warningStrong,
+        ratio: 0.30,
+      ),
+      RatingDistributionUiModel(
+        label: reviewsTranslation.poor,
+        color: UIColor.errorStrong,
+        ratio: 0.06,
+      ),
+    ];
   }
-
-  List<RatingDistributionUiModel> _buildRatingDistributionForView() {
-    return _ratingDistributionUiConfig
-        .map(
-          (config) => RatingDistributionUiModel(
-            label: config.label,
-            color: config.color,
-            ratio: config.ratio.clamp(0.0, 1.0).toDouble(),
-          ),
-        )
-        .toList(growable: false);
-  }
-}
-
-class _RatingDistributionUiConfig {
-  const _RatingDistributionUiConfig({
-    required this.label,
-    required this.color,
-    required this.ratio,
-  });
-
-  final String label;
-  final UIColor color;
-  final double ratio;
 }

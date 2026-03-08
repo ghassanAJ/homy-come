@@ -44,6 +44,8 @@ class ProfileTranslation_ar extends ProfileTranslation {
   LabelsProfileTranslation_ar get Labels => LabelsProfileTranslation_ar(this);
   PlaceHolderProfileTranslation_ar get placeHolder =>
       PlaceHolderProfileTranslation_ar(this);
+  ReviewsProfileTranslation_ar get reviews =>
+      ReviewsProfileTranslation_ar(this);
   TermsAndPrivacyProfileTranslation_ar get termsAndPrivacy =>
       TermsAndPrivacyProfileTranslation_ar(this);
   Object operator [](String key) {
@@ -63,6 +65,8 @@ class ProfileTranslation_ar extends ProfileTranslation {
         return Labels;
       case 'placeHolder':
         return placeHolder;
+      case 'reviews':
+        return reviews;
       case 'termsAndPrivacy':
         return termsAndPrivacy;
       default:
@@ -112,11 +116,11 @@ class OptionProfileTranslation_ar extends OptionProfileTranslation {
   String get notification => "اشعارات";
   String get logout => "تسجيل خروج";
   String get deleteAccount => "حذف الحساب";
-  String get savedBeneficiary => "Saved Beneficiary";
+  String get savedBeneficiary => "المستفيد المحفوظ";
   String get location => "موقعي";
-  String get Job => "سجل المهام";
+  String get job => "سجل المهام";
   String get appNotifications => "إشعارات التطبيق";
-  String get DeleteMyAccount => "حذف حسابي";
+  String get deleteMyAccount => "حذف حسابي";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -142,12 +146,12 @@ class OptionProfileTranslation_ar extends OptionProfileTranslation {
         return savedBeneficiary;
       case 'location':
         return location;
-      case 'Job':
-        return Job;
+      case 'job':
+        return job;
       case 'appNotifications':
         return appNotifications;
-      case 'DeleteMyAccount':
-        return DeleteMyAccount;
+      case 'deleteMyAccount':
+        return deleteMyAccount;
       default:
         return super[key];
     }
@@ -240,6 +244,46 @@ class PlaceHolderProfileTranslation_ar extends PlaceHolderProfileTranslation {
         return email;
       case 'note':
         return note;
+      default:
+        return super[key];
+    }
+  }
+}
+
+class ReviewsProfileTranslation_ar extends ReviewsProfileTranslation {
+  final ProfileTranslation_ar _parent;
+  const ReviewsProfileTranslation_ar(this._parent) : super(_parent);
+  String get title => "التقييمات";
+  String get empty => "لا توجد تقييمات بعد";
+  String get showMore => "عرض المزيد";
+  String get excellent => "ممتاز";
+  String get good => "جيد";
+  String get average => "متوسط";
+  String get belowAverage => "أقل من المتوسط";
+  String get poor => "ضعيف";
+  Object operator [](String key) {
+    var index = key.indexOf('.');
+    if (index > 0) {
+      return (this[key.substring(0, index)]
+          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+    }
+    switch (key) {
+      case 'title':
+        return title;
+      case 'empty':
+        return empty;
+      case 'showMore':
+        return showMore;
+      case 'excellent':
+        return excellent;
+      case 'good':
+        return good;
+      case 'average':
+        return average;
+      case 'belowAverage':
+        return belowAverage;
+      case 'poor':
+        return poor;
       default:
         return super[key];
     }

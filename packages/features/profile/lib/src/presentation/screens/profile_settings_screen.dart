@@ -1,8 +1,6 @@
-import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
+import 'package:profile/src/presentation/actions/profile_actions.dart';
 import 'package:profile/src/presentation/widget/shared/settings_card.dart';
 
 class ProfileSettingsScreen extends StatelessWidget {
@@ -17,9 +15,7 @@ class ProfileSettingsScreen extends StatelessWidget {
       appBar: UIAppBar(
         title: context.profileTranslation.driverProfile.settings,
         leading: GestureDetector(
-          onTap: () {
-            if (context.canPop()) context.pop();
-          },
+          onTap: ProfileInternalRouter.of(context).goBack,
           child: const BackButtonAppBar(),
         ),
       ),
@@ -27,19 +23,10 @@ class ProfileSettingsScreen extends StatelessWidget {
         padding: UI.padding.driverProfileSettingsContent(
           topInset: topContentPadding,
         ),
-        child: SettingsCard(onLogout: () => _onLogoutPressed(context)),
+        child: SettingsCard(
+          onLogout: () => ProfileActions.onLogoutPressed(context),
+        ),
       ),
     );
-  }
-
-  Future<void> _onLogoutPressed(BuildContext context) async {
-    final isConfirmed = await DialogsManager.showDeleteConfirmation(
-      context,
-      title: context.profileTranslation.option.logout,
-      description:
-          context.profileTranslation.driverProfile.logoutConfirmDescription,
-    );
-    if (!context.mounted || !isConfirmed) return;
-    context.read<AuthUserBloc>().add(Logout());
   }
 }
