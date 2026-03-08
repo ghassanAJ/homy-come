@@ -113,15 +113,20 @@ class _TodayScheduleScreenState extends State<TodayScheduleScreen> {
           vertical: UI.spacing.xl,
           horizontal: UI.spacing.lg,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            UIText.h4(context.orderTr.title.todaySchadule),
-            UIText.bodySmall('24 pickups'),
-          ],
+        child: BlocBuilder<OrderCubit, BaseState<OrderState>>(
+          builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                UIText.h4(context.orderTr.title.todaySchadule),
+                UIText.bodySmall(
+                  '${state.data?.todaySchaduleOrder.length ?? 0} pickups',
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 }
-

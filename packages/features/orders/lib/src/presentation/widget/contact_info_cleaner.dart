@@ -1,28 +1,16 @@
-
 import 'package:design_system/design_system.dart';
+import 'package:util/src/contect_manager/content_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactInfoCleaner extends StatelessWidget {
-  const ContactInfoCleaner({
-    super.key,
-    required this.name,
-    required this.rate,
-  });
+  const ContactInfoCleaner({super.key, required this.name, required this.rate, required this.phoneNUmber});
   final String name;
   final double rate;
+  final String phoneNUmber;
   Future<void> contactUser(String phone) async {
-    final String whatsappNumber = phone.replaceAll(RegExp(r'[^0-9]'), '');
-  final Uri callUri = Uri.parse('tel:$phone');
-    final Uri whatsappUri = Uri.parse("https://wa.me/$whatsappNumber");
-
-    if (!await launchUrl(whatsappUri, mode: LaunchMode.externalApplication)) {
-      throw Exception('Could not launch WhatsApp');
-    }    else if (await canLaunchUrl(callUri)) {
-      await launchUrl(callUri, mode: LaunchMode.externalApplication);
-    }
+    ContentManager.contactByWhatsApp(phone);
+    ContentManager.contactByPhone(phone);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +57,10 @@ class ContactInfoCleaner extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       // _contactUser('+963991212193');
-                      contactUser('963991212193');
+                      contactUser(phoneNUmber);
                     },
                     child: Text(
-                      '+999 123 456 789',
+                      '+$phoneNUmber',
                       style: UI.text.bodySmall.copyWith(
                         decoration: TextDecoration.underline,
                         color: UIColor.successBright,

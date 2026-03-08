@@ -10,6 +10,7 @@ abstract class TodaySchaduleModelResponse with _$TodaySchaduleModelResponse {
   factory TodaySchaduleModelResponse({
     required int id,
     required String time,
+    required String date,
     required String address,
     required ProviderModel cleanerInfo,
   }) = _TodaySchaduleModelResponse;

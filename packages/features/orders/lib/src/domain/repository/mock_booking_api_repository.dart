@@ -19,19 +19,19 @@ class MockBookingApiRepository implements OrdersRepository {
         id: 1,
         time: '12:12',
         address: 'kafarsousah, damascus ,syria',
-        cleanerInfo:ProviderModel(id: 5, name: 'ghassan', rating: 5.0),
+        cleanerInfo:ProviderModel(id: 5, name: 'ghassan', rating: 5.0, numberPhone: '963991212193'), date: '27 tue, Des',
       ),
             TodaySchaduleModelResponse(
         id: 2,
         time: '07:30',
         address: '125,2nd Street, California ,19288',
-        cleanerInfo:ProviderModel(id: 5, name: 'maya Ali', rating: 5.0),
+        cleanerInfo:ProviderModel(id: 5, name: 'maya Ali', rating: 5.0, numberPhone: '963991212193'), date: '27 tue, Des',
       ),
             TodaySchaduleModelResponse(
         id: 3,
         time: '11:30',
         address: '125,2nd Street, California ,19288',
-        cleanerInfo:ProviderModel(id: 5, name: 'kamel', rating: 5.0),
+        cleanerInfo:ProviderModel(id: 5, name: 'kamel', rating: 5.0, numberPhone: '963991212193'), date: '27 tue, Des',
       ),
   ];
   List<BookingModelResponse> all = [
@@ -39,7 +39,7 @@ class MockBookingApiRepository implements OrdersRepository {
       id: 101,
       serviceType: 'Deep cleaning',
       status: 'scheduled',
-      provider: ProviderModel(id: 5, name: 'kamel', rating: 0.5),
+      provider: ProviderModel(id: 5, name: 'kamel', rating: 0.5, numberPhone: '963991212193'),
       date: '27 tue, Des',
       time: '44:30 AM',
       address: 'kafarsousah ,damascus ,syria',
@@ -48,7 +48,7 @@ class MockBookingApiRepository implements OrdersRepository {
       id: 102,
       serviceType: 'Cleaner',
       status: 'in_progress',
-      provider: ProviderModel(id: 5, name: 'ghassan', rating: 5.0),
+      provider: ProviderModel(id: 5, name: 'ghassan', rating: 5.0, numberPhone: '963991212193'),
       date: '27 tue, Des',
       time: '11:30 AM',
       address: 'kafarsousah ,damascus ,syria',
@@ -57,7 +57,7 @@ class MockBookingApiRepository implements OrdersRepository {
       id: 103,
       serviceType: 'completed',
       status: 'in_progress',
-      provider: ProviderModel(id: 5, name: 'ghassan', rating: 5.0),
+      provider: ProviderModel(id: 5, name: 'ghassan', rating: 5.0, numberPhone: '963991212193'),
       date: '27 tue, Des',
       time: '11:30 AM',
       address: 'kafarsousah ,damascus ,syria',
@@ -72,7 +72,7 @@ class MockBookingApiRepository implements OrdersRepository {
       return failure(APIException.error('Mock getServiceDetails failure'));
     }
 
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(milliseconds: 500));
     switch (status) {
       case FilterOrder.all:
         return success(all);
@@ -100,7 +100,7 @@ class MockBookingApiRepository implements OrdersRepository {
         id: 103,
         serviceType: 'completed',
         status: 'in_progress',
-        provider: ProviderModel(id: 5, name: 'ghassan', rating: 5.0),
+        provider: ProviderModel(id: 5, name: 'ghassan', rating: 5.0, numberPhone: '963991212193'),
         date: '27 tue, Des',
         time: '11:30 AM',
         address: 'kafarsousah ,damascus ,syria',
@@ -130,7 +130,7 @@ class MockBookingApiRepository implements OrdersRepository {
       failTodayScheduleData = false;
       return failure(APIException.error('Mock getServiceDetails failure'));
     }
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(milliseconds: 500));
     return success(
     allSchedule
     );
@@ -143,7 +143,7 @@ class MockBookingApiRepository implements OrdersRepository {
       failTodayScheduleData = false;
       return failure(APIException.error('Mock getServiceDetails failure'));
     }
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(milliseconds: 500));
    var index= allSchedule.indexWhere((item)=>item.id==id);
     return success(
     allSchedule[index]

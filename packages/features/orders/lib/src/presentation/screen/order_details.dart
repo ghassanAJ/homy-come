@@ -10,6 +10,7 @@ import 'package:orders/src/presentation/screen/today_schedule_screen.dart';
 import 'package:orders/src/presentation/widget/contact_info_cleaner.dart';
 import 'package:orders/src/presentation/widget/data_and_time_info_order_widget.dart';
 import 'package:orders/src/presentation/widget/direction_and_done_action.dart';
+import 'package:orders/src/presentation/widget/no_order_found_widget.dart';
 import 'package:orders/src/presentation/widget/order_error_widgert.dart';
 import 'package:orders/src/presentation/widget/order_status_widget.dart';
 import 'package:orders/src/presentation/widget/shimmer_schedule_card.dart';
@@ -52,6 +53,7 @@ class OrderDetails extends StatelessWidget {
                   SizedBox(height: UI.spacing.sm),
                   BlocBuilder<OrderCubit, BaseState<OrderState>>(
                     builder: (context, state) {
+                      final data = state.data ?? OrderState();
                       if (state.data?.isLoadingOrderDetailsById == true) {
                         return ShimmerScheduleOrderCard();
                       } else if (state.data?.fetchOrderDetailsError != null) {
@@ -60,6 +62,9 @@ class OrderDetails extends StatelessWidget {
                               state.data?.fetchTodayScheduleError ?? 'error',
                           onTap: () {},
                         );
+                      }
+                      if (data.orderDetailsById == null) {
+                        return NoOrderFoundWidget();
                       }
                       return Container(
                         padding: EdgeInsets.all(UI.spacing.xxs),
@@ -72,13 +77,7 @@ class OrderDetails extends StatelessWidget {
                         child: Column(
                           children: [
                             ContactInfoCleaner(
-                              name:
-                                  state
-                                      .data
-                                      ?.orderDetailsById
-                                      ?.cleanerInfo
-                                      .name ??
-                                  'Maya Ali',
+                              name: data.orderDetailsById!.cleanerInfo.name,
                               rate:
                                   state
                                       .data
@@ -86,10 +85,11 @@ class OrderDetails extends StatelessWidget {
                                       ?.cleanerInfo
                                       .rating ??
                                   0.5,
+                                  phoneNUmber: data.orderDetailsById!.cleanerInfo.numberPhone,
                             ),
                             Divider(height: 0.1, color: UIColor.softBordarCard),
                             OrderDateTimeWidget(
-                              date: '27,dec 2024',
+                              date: data.orderDetailsById!.date,
                               time: state.data?.orderDetailsById?.time ?? '',
                             ),
                             Divider(height: 0.1, color: UIColor.softBordarCard),

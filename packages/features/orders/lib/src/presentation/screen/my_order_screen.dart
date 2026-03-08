@@ -33,7 +33,7 @@ class _MyOrderScreenState extends State<MyOrderScreen>
   void initState() {
     super.initState();
     _orderCubit = diContainerOrder<OrderCubit>();
-    // _orderCubit = OrderCubit(  getDetailsOrderUseCase:diContainerOrder.get<GetDetailsBookingUseCase >() , cancelOrderUseCase: diContainerOrder.get<CancelOrderUseCase >(), getOrderUseCase: diContainerOrder<GetOrderDetailsUseCase >());
+
     _tabController = TabController(length: 3, vsync: this);
 
     _tabController.addListener(() {

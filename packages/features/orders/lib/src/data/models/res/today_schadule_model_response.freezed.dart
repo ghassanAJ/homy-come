@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TodaySchaduleModelResponse {
 
- int get id; String get time; String get address; ProviderModel get cleanerInfo;
+ int get id; String get time; String get date; String get address; ProviderModel get cleanerInfo;
 /// Create a copy of TodaySchaduleModelResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $TodaySchaduleModelResponseCopyWith<TodaySchaduleModelResponse> get copyWith => 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TodaySchaduleModelResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.time, time) || other.time == time)&&(identical(other.address, address) || other.address == address)&&(identical(other.cleanerInfo, cleanerInfo) || other.cleanerInfo == cleanerInfo));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TodaySchaduleModelResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.time, time) || other.time == time)&&(identical(other.date, date) || other.date == date)&&(identical(other.address, address) || other.address == address)&&(identical(other.cleanerInfo, cleanerInfo) || other.cleanerInfo == cleanerInfo));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,time,address,cleanerInfo);
+int get hashCode => Object.hash(runtimeType,id,time,date,address,cleanerInfo);
 
 @override
 String toString() {
-  return 'TodaySchaduleModelResponse(id: $id, time: $time, address: $address, cleanerInfo: $cleanerInfo)';
+  return 'TodaySchaduleModelResponse(id: $id, time: $time, date: $date, address: $address, cleanerInfo: $cleanerInfo)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $TodaySchaduleModelResponseCopyWith<$Res>  {
   factory $TodaySchaduleModelResponseCopyWith(TodaySchaduleModelResponse value, $Res Function(TodaySchaduleModelResponse) _then) = _$TodaySchaduleModelResponseCopyWithImpl;
 @useResult
 $Res call({
- int id, String time, String address, ProviderModel cleanerInfo
+ int id, String time, String date, String address, ProviderModel cleanerInfo
 });
 
 
@@ -65,10 +65,11 @@ class _$TodaySchaduleModelResponseCopyWithImpl<$Res>
 
 /// Create a copy of TodaySchaduleModelResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? time = null,Object? address = null,Object? cleanerInfo = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? time = null,Object? date = null,Object? address = null,Object? cleanerInfo = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as String,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String,cleanerInfo: null == cleanerInfo ? _self.cleanerInfo : cleanerInfo // ignore: cast_nullable_to_non_nullable
 as ProviderModel,
@@ -165,10 +166,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String time,  String address,  ProviderModel cleanerInfo)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String time,  String date,  String address,  ProviderModel cleanerInfo)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TodaySchaduleModelResponse() when $default != null:
-return $default(_that.id,_that.time,_that.address,_that.cleanerInfo);case _:
+return $default(_that.id,_that.time,_that.date,_that.address,_that.cleanerInfo);case _:
   return orElse();
 
 }
@@ -186,10 +187,10 @@ return $default(_that.id,_that.time,_that.address,_that.cleanerInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String time,  String address,  ProviderModel cleanerInfo)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String time,  String date,  String address,  ProviderModel cleanerInfo)  $default,) {final _that = this;
 switch (_that) {
 case _TodaySchaduleModelResponse():
-return $default(_that.id,_that.time,_that.address,_that.cleanerInfo);case _:
+return $default(_that.id,_that.time,_that.date,_that.address,_that.cleanerInfo);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -206,10 +207,10 @@ return $default(_that.id,_that.time,_that.address,_that.cleanerInfo);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String time,  String address,  ProviderModel cleanerInfo)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String time,  String date,  String address,  ProviderModel cleanerInfo)?  $default,) {final _that = this;
 switch (_that) {
 case _TodaySchaduleModelResponse() when $default != null:
-return $default(_that.id,_that.time,_that.address,_that.cleanerInfo);case _:
+return $default(_that.id,_that.time,_that.date,_that.address,_that.cleanerInfo);case _:
   return null;
 
 }
@@ -221,11 +222,12 @@ return $default(_that.id,_that.time,_that.address,_that.cleanerInfo);case _:
 @JsonSerializable()
 
 class _TodaySchaduleModelResponse implements TodaySchaduleModelResponse {
-   _TodaySchaduleModelResponse({required this.id, required this.time, required this.address, required this.cleanerInfo});
+   _TodaySchaduleModelResponse({required this.id, required this.time, required this.date, required this.address, required this.cleanerInfo});
   factory _TodaySchaduleModelResponse.fromJson(Map<String, dynamic> json) => _$TodaySchaduleModelResponseFromJson(json);
 
 @override final  int id;
 @override final  String time;
+@override final  String date;
 @override final  String address;
 @override final  ProviderModel cleanerInfo;
 
@@ -242,16 +244,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TodaySchaduleModelResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.time, time) || other.time == time)&&(identical(other.address, address) || other.address == address)&&(identical(other.cleanerInfo, cleanerInfo) || other.cleanerInfo == cleanerInfo));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TodaySchaduleModelResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.time, time) || other.time == time)&&(identical(other.date, date) || other.date == date)&&(identical(other.address, address) || other.address == address)&&(identical(other.cleanerInfo, cleanerInfo) || other.cleanerInfo == cleanerInfo));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,time,address,cleanerInfo);
+int get hashCode => Object.hash(runtimeType,id,time,date,address,cleanerInfo);
 
 @override
 String toString() {
-  return 'TodaySchaduleModelResponse(id: $id, time: $time, address: $address, cleanerInfo: $cleanerInfo)';
+  return 'TodaySchaduleModelResponse(id: $id, time: $time, date: $date, address: $address, cleanerInfo: $cleanerInfo)';
 }
 
 
@@ -262,7 +264,7 @@ abstract mixin class _$TodaySchaduleModelResponseCopyWith<$Res> implements $Toda
   factory _$TodaySchaduleModelResponseCopyWith(_TodaySchaduleModelResponse value, $Res Function(_TodaySchaduleModelResponse) _then) = __$TodaySchaduleModelResponseCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String time, String address, ProviderModel cleanerInfo
+ int id, String time, String date, String address, ProviderModel cleanerInfo
 });
 
 
@@ -279,10 +281,11 @@ class __$TodaySchaduleModelResponseCopyWithImpl<$Res>
 
 /// Create a copy of TodaySchaduleModelResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? time = null,Object? address = null,Object? cleanerInfo = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? time = null,Object? date = null,Object? address = null,Object? cleanerInfo = null,}) {
   return _then(_TodaySchaduleModelResponse(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as String,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String,cleanerInfo: null == cleanerInfo ? _self.cleanerInfo : cleanerInfo // ignore: cast_nullable_to_non_nullable
 as ProviderModel,

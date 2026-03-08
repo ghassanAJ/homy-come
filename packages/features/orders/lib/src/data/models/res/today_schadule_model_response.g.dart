@@ -11,6 +11,7 @@ _TodaySchaduleModelResponse _$TodaySchaduleModelResponseFromJson(
 ) => _TodaySchaduleModelResponse(
   id: (json['id'] as num).toInt(),
   time: json['time'] as String,
+  date: json['date'] as String,
   address: json['address'] as String,
   cleanerInfo: ProviderModel.fromJson(
     json['cleanerInfo'] as Map<String, dynamic>,
@@ -22,6 +23,7 @@ Map<String, dynamic> _$TodaySchaduleModelResponseToJson(
 ) => <String, dynamic>{
   'id': instance.id,
   'time': instance.time,
+  'date': instance.date,
   'address': instance.address,
   'cleanerInfo': instance.cleanerInfo,
 };

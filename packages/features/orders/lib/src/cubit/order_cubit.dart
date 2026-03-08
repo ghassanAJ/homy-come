@@ -15,7 +15,7 @@ import 'package:util/src/base_cubit/base_state.dart';
 
 @injectable
 class OrderCubit extends BaseScreenCubit<OrderState> {
-  OrderCubit();
+  OrderCubit();//TODO : make cubit depend on useCases 
 
   Future<void> getOrders(FilterOrder filter) async {
     emit(state.copyWith(status: BaseCubitStatus.loading));
@@ -122,7 +122,7 @@ class OrderCubit extends BaseScreenCubit<OrderState> {
   }
 
   void getTodayScheduleOrders() async {
-    // تأكد أن data ليست null قبل التعديل عليها
+
     final currentData = state.data ?? const OrderState();
 
     emit(
