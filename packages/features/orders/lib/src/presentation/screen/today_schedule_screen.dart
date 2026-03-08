@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -55,23 +56,23 @@ class _TodayScheduleScreenState extends State<TodayScheduleScreen> {
                       UI.spacing.md,
                       0,
                     ),
-                    sliver: BlocBuilder<OrderCubit, BaseState<OrderState>>(
+                    sliver: BlocSelector<
+                      OrderCubit,
+                      BaseState<OrderState>,
+                      TodayScheduleViewState
+                    >(
                       builder: (context, state) {
-                        var data = state.data ?? OrderState();
-                        List<TodaySchaduleModelResponse> allData =
-                            data.todaySchaduleOrder;
-                        log('${allData.length}.....');
-                        if (state.data?.isLoadingTodayScheduleOrder == true) {
+                        // var data = state ?? OrderState();
+                        List<TodaySchaduleModelResponse> allData = state.orders;
+
+                        if (state.isLoading == true) {
                           return SliverToBoxAdapter(
                             child: ShimmerScheduleOrderCard(),
                           );
-                        } else if (state.data?.fetchTodayScheduleError !=
-                            null) {
+                        } else if (state.error != null) {
                           return SliverToBoxAdapter(
                             child: OrdersErrorWidget(
-                              message:
-                                  state.data?.fetchTodayScheduleError ??
-                                  'error',
+                              message: state.error ?? 'error',
                               onTap: () {},
                             ),
                           );
@@ -94,6 +95,14 @@ class _TodayScheduleScreenState extends State<TodayScheduleScreen> {
                           itemCount: allData.length,
                         );
                       },
+                      selector: (state) {
+                        var data = state.data ?? OrderState();
+                        return TodayScheduleViewState(
+                          orders: data.todaySchaduleOrder,
+                          isLoading: data.isLoadingTodayScheduleOrder,
+                          error: data.fetchTodayScheduleError,
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -113,20 +122,38 @@ class _TodayScheduleScreenState extends State<TodayScheduleScreen> {
           vertical: UI.spacing.xl,
           horizontal: UI.spacing.lg,
         ),
-        child: BlocBuilder<OrderCubit, BaseState<OrderState>>(
+        child: BlocSelector<
+          OrderCubit,
+          BaseState<OrderState>,
+          List<TodaySchaduleModelResponse>
+        >(
           builder: (context, state) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UIText.h4(context.orderTr.title.todaySchadule),
-                UIText.bodySmall(
-                  '${state.data?.todaySchaduleOrder.length ?? 0} pickups',
-                ),
+                UIText.bodySmall('${state.length} pickups'),
               ],
             );
           },
+          selector: (state) => (state.data ?? OrderState()).todaySchaduleOrder,
         ),
       ),
     );
   }
+}
+
+class TodayScheduleViewState extends Equatable {
+  final List<TodaySchaduleModelResponse> orders;
+  final bool isLoading;
+  final String? error;
+
+  const TodayScheduleViewState({
+    this.orders = const [],
+    this.isLoading = false,
+    this.error,
+  });
+
+  @override
+  List<Object?> get props => [orders, isLoading, error];
 }
