@@ -1,5 +1,6 @@
 import '../../../design_system.dart';
 import '../../../gen/assets.gen.dart';
+import '../../localization/design_system_localization_delegate.dart';
 import 'delete_confirmation_dialog.dart';
 
 class DialogsManager {
@@ -41,11 +42,17 @@ class DialogsManager {
   }) async {
     return await showAnimatedDialog<bool>(
           context: context,
-          child: DeleteConfirmationDialog(
-            confirmButtonLabel: confirmButtonLabel,
-            cancelButtonLabel: cancelButtonLabel,
-            title: title,
-            description: description,
+          child: Localizations.override(
+            context: context,
+            delegates: const [
+              DesignSystemLocalizationDelegate(),
+            ],
+            child: DeleteConfirmationDialog(
+              confirmButtonLabel: confirmButtonLabel,
+              cancelButtonLabel: cancelButtonLabel,
+              title: title,
+              description: description,
+            ),
           ),
         ) ??
         false;

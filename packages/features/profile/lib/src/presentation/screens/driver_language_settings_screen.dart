@@ -15,10 +15,6 @@ class DriverLanguageSettingsScreen extends StatelessWidget {
     return UIScaffold(
       appBar: UIAppBar(
         title: context.profileTranslation.driverProfile.language,
-        leading: GestureDetector(
-          onTap: ProfileInternalRouter.of(context).goBack,
-          child: const BackButtonAppBar(),
-        ),
       ),
       body: BlocBuilder<LocalizationCubit, Locale>(
         builder: (context, currentLocale) {

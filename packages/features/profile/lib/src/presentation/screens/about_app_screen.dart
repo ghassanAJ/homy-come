@@ -18,10 +18,6 @@ class AboutUsScreen extends StatelessWidget {
     return UIScaffold(
       appBar: UIAppBar(
         title: context.profileTranslation.option.about,
-        leading: GestureDetector(
-          onTap: ProfileInternalRouter.of(context).goBack,
-          child: const BackButtonAppBar(),
-        ),
       ),
       body: BlocProvider(
         create: (_) => diContainer<AboutAppCubit>()..fetchAboutApp(),

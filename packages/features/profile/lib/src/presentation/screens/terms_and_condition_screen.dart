@@ -18,10 +18,6 @@ class TermsAndCondition extends StatelessWidget {
     return UIScaffold(
       appBar: UIAppBar(
         title: context.profileTranslation.profile.term,
-        leading: GestureDetector(
-          onTap: ProfileInternalRouter.of(context).goBack,
-          child: const BackButtonAppBar(),
-        ),
       ),
       body: BlocProvider(
         create:
