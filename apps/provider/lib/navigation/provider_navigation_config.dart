@@ -1,3 +1,4 @@
+import 'package:design_system/gen/assets.gen.dart';
 import 'package:homy_provider/navigation/route.dart';
 
 /// Navigation item configuration for bottom bar
@@ -8,24 +9,16 @@ class ProviderNavigationConfig {
   /// Navigation items for the bottom navigation bar
   static final List<NavigationItem> items = [
     (
-      path: ProviderPaths.home,
-      label: 'Home',
-      iconAsset: 'assets/icons/home.svg',
+      path: ProviderPaths.myTeam,
+      label: 'My Team',
+      iconAsset: Assets.icons.myteam,
     ),
-    (
-      path: ProviderPaths.services,
-      label: 'Services',
-      iconAsset: 'assets/icons/services.svg',
-    ),
-    (
-      path: ProviderPaths.bookings,
-      label: 'Bookings',
-      iconAsset: 'assets/icons/bookings.svg',
-    ),
+    (path: ProviderPaths.home, label: 'Home', iconAsset: Assets.icons.navHome),
+
     (
       path: ProviderPaths.profile,
       label: 'Profile',
-      iconAsset: 'assets/icons/person.svg',
+      iconAsset: Assets.icons.navProfile,
     ),
   ];
 }

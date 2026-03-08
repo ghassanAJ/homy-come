@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/presentation/screens/about_app_screen.dart';
 import 'package:profile/src/presentation/screens/driver_language_settings_screen.dart';
-import 'package:profile/src/presentation/screens/driver_profile_settings_screen.dart';
+import 'package:profile/src/presentation/screens/profile_settings_screen.dart';
+import 'package:profile/src/presentation/screens/provider_all_reviews_screen.dart';
 import 'package:profile/src/presentation/screens/terms_and_condition.dart';
 
 /// Profile route paths
@@ -15,6 +16,7 @@ class ProfilePaths {
   static const String aboutApp = '/about_app_screen';
   static const String driverProfileSettings = '/driver-profile-settings';
   static const String driverLanguageSettings = '/driver-language-settings';
+  static const String providerAllReviews = '/provider-all-reviews';
 }
 
 class ProfileRoute {
@@ -42,7 +44,7 @@ class ProfileRoute {
       path: ProfilePaths.driverProfileSettings,
       builder:
           (context, state) => const ProfileLocalizationScope(
-            child: DriverProfileSettingsScreen(),
+            child: ProfileSettingsScreen(),
           ),
     ),
     GoRoute(
@@ -50,6 +52,13 @@ class ProfileRoute {
       builder:
           (context, state) => const ProfileLocalizationScope(
             child: DriverLanguageSettingsScreen(),
+          ),
+    ),
+    GoRoute(
+      path: ProfilePaths.providerAllReviews,
+      builder:
+          (context, state) => const ProfileLocalizationScope(
+            child: ProviderAllReviewsScreen(),
           ),
     ),
   ];

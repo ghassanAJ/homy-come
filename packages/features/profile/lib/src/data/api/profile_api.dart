@@ -2,12 +2,16 @@ import 'package:api_client/api_client.dart';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:injectable/injectable.dart';
 import 'package:profile/src/data/model/res/driver_performance_model.dart';
+import 'package:profile/src/data/model/res/review_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'profile_api.g.dart';
 
 class ProfileAPIEndpoints {
   static const String performance = '/api/v1/driver/profile/performance';
+  static const String providerRatingDistribution =
+      '/api/v1/provider/profile/rating-distribution';
+  static const String providerReviews = '/api/v1/provider/profile/reviews';
 }
 
 @injectable
@@ -18,4 +22,7 @@ abstract class ProfileAPI {
 
   @GET(ProfileAPIEndpoints.performance)
   Future<APIResponse<DriverPerformanceModel>> getDriverPerformance();
+
+  @GET(ProfileAPIEndpoints.providerReviews)
+  Future<APIResponse<List<ReviewModel>>> getProviderReviews();
 }

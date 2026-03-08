@@ -155,6 +155,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/starBlue.svg
   String get starBlue => 'packages/design_system/assets/icons/starBlue.svg';
 
+  /// File path: assets/icons/starOutline.svg
+  String get starOutline =>
+      'packages/design_system/assets/icons/starOutline.svg';
+
   /// File path: assets/icons/successful.svg
   String get successful => 'packages/design_system/assets/icons/successful.svg';
 
@@ -216,6 +220,7 @@ class $AssetsIconsGen {
     smileyXEyes,
     star,
     starBlue,
+    starOutline,
     successful,
     trash,
     user,
