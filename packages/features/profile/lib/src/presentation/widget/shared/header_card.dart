@@ -13,13 +13,8 @@ class HeaderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = context.read<AppCubit>().state.user;
 
-    return Container(
+    return UICardContainer(
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: UIColor.background,
-        borderRadius: BorderRadius.circular(UI.radius.md),
-        boxShadow: UI.shadows.cardMd,
-      ),
       child: Padding(
         padding: UI.padding.driverProfileHeaderContent,
         child: Column(

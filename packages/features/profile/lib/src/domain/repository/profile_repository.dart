@@ -1,11 +1,15 @@
 import 'package:api_client/api_client.dart';
 import 'package:injectable/injectable.dart';
 import 'package:profile/src/data/api/profile_api.dart';
+import 'package:profile/src/data/model/res/about_app_model.dart';
 import 'package:profile/src/data/model/res/driver_performance_model.dart';
 import 'package:profile/src/data/model/res/review_model.dart';
+import 'package:profile/src/data/model/res/terms_and_condition_model.dart';
 import 'package:util/util.dart';
 
 abstract class ProfileRepository {
+  Future<Result<AboutAppModel, APIException>> fetchAboutApp();
+  Future<Result<TermsAndConditionModel, APIException>> fetchTermsAndCondition();
   Future<Result<DriverPerformanceModel, APIException>> fetchDriverPerformance(
     String driverId,
   );
@@ -19,6 +23,14 @@ class ProfileRepositoryImpl implements ProfileRepository {
   ProfileRepositoryImpl(this._profileAPI);
 
   final ProfileAPI _profileAPI;
+
+  @override
+  Future<Result<AboutAppModel, APIException>> fetchAboutApp() async =>
+      _profileAPI.getAboutApp().toResult();
+
+  @override
+  Future<Result<TermsAndConditionModel, APIException>>
+  fetchTermsAndCondition() async => _profileAPI.getTermsAndCondition().toResult();
 
   @override
   Future<Result<DriverPerformanceModel, APIException>> fetchDriverPerformance(

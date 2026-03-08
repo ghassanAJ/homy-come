@@ -1,8 +1,10 @@
+import 'package:injectable/injectable.dart';
 import 'package:profile/src/data/model/res/driver_performance_model.dart';
 import 'package:profile/src/domain/repository/profile_repository.dart';
 import 'package:profile/src/domain/use_cases/get_driver_performance_use_case.dart';
 import 'package:util/util.dart';
 
+@injectable
 class DriverPerformanceCubit extends BaseScreenCubit<DriverPerformanceModel> {
   DriverPerformanceCubit(this._repository);
 
