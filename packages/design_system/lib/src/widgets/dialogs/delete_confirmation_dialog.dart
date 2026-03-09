@@ -1,12 +1,14 @@
 import '../../../design_system.dart';
+import '../../localization/files/DesignSystemTranslation.i69n.dart';
 
 class DeleteConfirmationDialog extends StatelessWidget {
   const DeleteConfirmationDialog({
     super.key,
     required this.title,
     required this.description,
-    this.confirmButtonLabel = 'Confirm',
-    this.cancelButtonLabel = 'Cancel', this.iconColor,
+    this.confirmButtonLabel,
+    this.cancelButtonLabel,
+    this.iconColor
   });
   final String title;
   final String description;
@@ -16,6 +18,15 @@ class DeleteConfirmationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final translation = Localizations.of<DesignSystemTranslation>(
+      context,
+      DesignSystemTranslation,
+    );
+    final confirmLabel =
+        confirmButtonLabel ?? translation?.dialog.confirm ?? 'Confirm';
+    final cancelLabel =
+        cancelButtonLabel ?? translation?.dialog.cancel ?? 'Cancel';
+
     return AlertDialog(
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -46,7 +57,7 @@ class DeleteConfirmationDialog extends StatelessWidget {
               ),
               onPressed: () => Navigator.of(context).pop(true),
               child: UIText.bodyMedium(
-                confirmButtonLabel ?? 'confirm',
+                confirmLabel,
                 color: UIColor.error,
               ),
             ),
@@ -63,7 +74,7 @@ class DeleteConfirmationDialog extends StatelessWidget {
               ),
               onPressed: () => Navigator.of(context).pop(false),
               child: UIText.bodyMedium(
-                cancelButtonLabel ?? 'cancel',
+                cancelLabel,
                 color: UIColor.primaryDark,
               ),
             ),

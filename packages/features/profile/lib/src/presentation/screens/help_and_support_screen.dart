@@ -31,10 +31,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
               bottom: PreferredSize(
                 preferredSize: Size.fromHeight(1),
                 child: Padding(
-                  padding: EdgeInsets.only(
-                    left: UI.spacing.xl,
-                    top: UI.spacing.md,
-                  ),
+                  padding: UI.padding.profileSupportAppBarDivider,
                   child: Divider(height: 4, color: UIColor.divider),
                 ),
               ),
@@ -45,12 +42,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(
-                  UI.spacing.lg,
-                  UI.spacing.md,
-                  UI.spacing.md,
-                  0,
-                ),
+                padding: UI.padding.profileSupportContent,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -61,7 +53,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                     ),
                     SizedBox(height: UI.spacing.lg),
                     Container(
-                      padding: EdgeInsets.all(UI.spacing.md),
+                      padding: UI.padding.allMd,
                       width: double.infinity,
                       height: h * 0.3,
                       decoration: BoxDecoration(
@@ -75,7 +67,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
                         expands: true,
                         textAlignVertical: TextAlignVertical.top,
                         decoration: InputDecoration(
-                          hintText: 'write your note',
+                          hintText: context.profileTranslation.placeHolder.note,
                           hintStyle: UI.text.inputPlaceholder.copyWith(
                             color: UIColor.textPlaceholder,
                           ),

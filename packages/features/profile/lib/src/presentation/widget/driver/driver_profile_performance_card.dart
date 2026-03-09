@@ -1,42 +1,40 @@
+import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:profile/src/data/model/res/driver_performance_metric_model.dart';
 import 'package:profile/src/data/model/res/driver_performance_model.dart';
+import 'package:profile/src/di/di_container.dart';
 import 'package:profile/src/domain/repository/profile_repository.dart';
 import 'package:profile/src/localization/profile_localization_scope.dart';
-import 'package:profile/src/presentation/cubit/profile_cubit.dart';
+import 'package:profile/src/presentation/cubit/driver_performance_cubit.dart';
 import 'package:profile/src/presentation/widget/driver/driver_profile_background_circle_painter.dart';
 import 'package:profile/src/presentation/widget/driver/driver_profile_performance_legend_item.dart';
 import 'package:util/util.dart'
     show BaseCubitStatus, BaseState, DonutChartPainter, DonutSegment;
 
-class PerformanceCard extends StatefulWidget {
+class PerformanceCard extends StatelessWidget {
   const PerformanceCard({super.key, this.performanceRepository});
 
   final ProfileRepository? performanceRepository;
 
   @override
-  State<PerformanceCard> createState() => _PerformanceCardState();
-}
-
-class _PerformanceCardState extends State<PerformanceCard> {
-  late final ProfileRepository _repository =
-      widget.performanceRepository ?? GetIt.I<ProfileRepository>();
-  late final ProfileCubit _cubit =
-      ProfileCubit(_repository)..fetchDriverPerformance();
-
-  @override
-  void dispose() {
-    _cubit.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: _cubit,
-      child: BlocBuilder<ProfileCubit, BaseState<DriverPerformanceModel>>(
+    final driverId = context.read<AppCubit>().state.userId ?? '';
+
+  return BlocProvider(
+      create: (_) {
+        final repositoryOverride = performanceRepository;
+        final cubit =
+            repositoryOverride == null
+                ? diContainer<DriverPerformanceCubit>()
+                : DriverPerformanceCubit(repositoryOverride);
+
+        return cubit..fetchDriverPerformance(driverId: driverId);
+      },
+      child: BlocBuilder<
+        DriverPerformanceCubit,
+        BaseState<DriverPerformanceModel>
+      >(
         builder: (context, state) {
           final performance = state.data ?? DriverPerformanceModel.empty;
           final metrics = performance.metrics;
@@ -53,13 +51,8 @@ class _PerformanceCardState extends State<PerformanceCard> {
               state.status == BaseCubitStatus.initial ||
               state.status == BaseCubitStatus.loading;
 
-          return Container(
+          return UICardContainer(
             width: double.infinity,
-            decoration: BoxDecoration(
-              color: UIColor.background,
-              borderRadius: BorderRadius.circular(UI.radius.md),
-              boxShadow: UI.shadows.cardMd,
-            ),
             child: Padding(
               padding: UI.padding.driverProfilePerformanceCardContent,
               child: Column(
@@ -81,17 +74,20 @@ class _PerformanceCardState extends State<PerformanceCard> {
                   else
                     _buildPerformanceDonutChart(
                       ordersCount: performance.ordersCount,
-                      ordersLabel: context.profileTranslation.driverProfile.orders,
+                      ordersLabel:
+                          context.profileTranslation.driverProfile.orders,
                       donutSegments: donutSegments,
                     ),
                   SizedBox(height: UI.spacing.lg),
                   if (metrics.isNotEmpty)
                     Padding(
-                      padding: UI.padding.driverProfilePerformanceLegendHorizontal,
+                      padding:
+                          UI.padding.driverProfilePerformanceLegendHorizontal,
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           final spacing = UI.spacing.md;
-                          final itemWidth = (constraints.maxWidth - spacing) / 2;
+                          final itemWidth =
+                              (constraints.maxWidth - spacing) / 2;
 
                           return Wrap(
                             spacing: spacing,

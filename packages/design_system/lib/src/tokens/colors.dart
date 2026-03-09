@@ -18,6 +18,12 @@ class UIColor extends Color {
   static const UIColor primaryDark = UIColor._(0xFF2B2148);
   static const UIColor secondary = UIColor._(0xFFE3DAFF);
   static const UIColor tertiary = UIColor._(0xFF6ADBDA);
+  static const UIColor softOrange = UIColor._(0xFFEBB376);
+  static const UIColor orange = UIColor._(0xFFFFAC50);
+  static const UIColor successDark = UIColor._(0xFF218A23);
+  static const UIColor aqua = UIColor._(0xFF2BD8CB);
+  static const UIColor warningStrong = UIColor._(0xFFFF9A2A);
+  static const UIColor errorStrong = UIColor._(0xFFFF2A2D);
 
   // Status colors
   static const UIColor errorLight = UIColor._(0xFFFC5151);
@@ -38,6 +44,8 @@ class UIColor extends Color {
   static const UIColor neutral400 = UIColor._(0xFFA5A2AF);
   static const UIColor neutral450 = UIColor._(0xFF898989);
   static const UIColor neutral475 = UIColor._(0xFF6D6D6D);
+  static const UIColor neutral480 = UIColor._(0xFF666666);
+  static const UIColor neutral490 = UIColor._(0xFF555555);
   static const UIColor neutral500 = UIColor._(0xFF5F5972);
   static const UIColor neutral600 = UIColor._(0xFF6F7485);
   static const UIColor neutral700 = UIColor._(0xFF49454F);

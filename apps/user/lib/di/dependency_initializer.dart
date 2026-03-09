@@ -16,6 +16,7 @@ void initializeDependencies(String env) {
   }
 
   diContainer.registerSingleton<String>(env, instanceName: 'env');
+  diContainer.registerSingleton<LocalizationCubit>(LocalizationCubit());
 
   initBaseCubit(diContainer, env);
   initApiClient(diContainer, env);
