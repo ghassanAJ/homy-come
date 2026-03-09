@@ -16,8 +16,9 @@ class UIColor extends Color {
   static const UIColor grey = UIColor._(0xff767676);
   static const UIColor softgrey = UIColor._(0xFFECECEC);
   static const UIColor primaryDark = UIColor._(0xFF2B2148);
-  static const UIColor secondary = UIColor._(0xFFE3DAFF);
+  static const UIColor secondary = UIColor._(0xFFE3DAFF);//#006ED366
   static const UIColor tertiary = UIColor._(0xFF6ADBDA);
+  static const UIColor bluepal = UIColor._(0xFF006ED3);
 
   // Status colors
   static const UIColor errorLight = UIColor._(0xFFFC5151);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:homy_provider/presentation/screens/provider_home_screen.dart';
+import 'package:homy_provider/features/home/presentation/screens/provider_home_screen.dart';
+import 'package:homy_provider/localization/provider_localization_scope.dart';
 
 /// Provider app route paths.
 class ProviderPaths {
@@ -54,7 +55,7 @@ class ProviderRoute {
     ),
    GoRoute(
       path: ProviderPaths.homeProvider,
-      builder: (context, state) =>ProviderHomeScreen()
+      builder: (context, state) =>ProviderLocalizationScope(child: ProviderHomeScreen())
     ),
   ];
 }

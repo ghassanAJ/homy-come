@@ -38,7 +38,7 @@ class EarningsChart extends StatelessWidget {
                         const months = ['Feb','Mar','April','May','Jun','Jul','Aug'];
                         return Padding(
                           padding: const EdgeInsets.only(top: 8),
-                          child: UIText.bodyXXSmall( months[value.toInt()])
+                          child: UIText.bodyXXSmall( months[value.toInt()],fontFamily: UIFontFamily.almarai,)
                         );
                       },
                     ),
@@ -79,22 +79,19 @@ class EarningsChart extends StatelessWidget {
     return BarChartGroupData(
       groupVertically: true,
       x: d[0].toInt(),
-        // barsSpace: 0, 
       barRods: [
-        // البار الخلفي (فاتح - الكامل)
         BarChartRodData(
           toY: 100,
           width: 35,
           borderRadius: BorderRadius.circular(6),
           color: UIColor.greenPaleBar,
         ),
-        // البار الأمامي (غامق - المكتمل) مع حواف مختلفة
         BarChartRodData(
           toY: d[1].toDouble(),
           width: 35,
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(6),   // ← غيّر هون
-            topRight: Radius.circular(6),  // ← وهون
+            topLeft: Radius.circular(6),  
+            topRight: Radius.circular(6),  
             bottomLeft: Radius.circular(6),
             bottomRight: Radius.circular(6),
           ),
@@ -105,38 +102,4 @@ class EarningsChart extends StatelessWidget {
   }).toList();
 }
 
-  // List<BarChartGroupData> _buildBarGroups() {
-  //   // [month index, light (total height), dark (filled amount)]
-  //   final data = [
-  //     [0, 80.0, 55.0],
-  //     [1, 90.0, 70.0],
-  //     [2, 40.0, 30.0],
-  //     [3, 85.0, 60.0],
-  //     [4, 95.0, 10.0],
-  //     [5, 70.0, 50.0],
-  //     [6, 60.0, 45.0],
-  //   ];
-
-  //   return data.map((d) {
-  //     return BarChartGroupData(
-  //       x: d[0].toInt(),
-  //       barRods: [
-  //         BarChartRodData(
-  //           toY: 100,           // الطول الكلي للبار (اللون الفاتح)
-  //           width:35 ,
-  //           borderRadius: BorderRadius.circular(6),
-  //           color: const Color(0xFFB8E6B8), // أخضر فاتح (الخلفية)
-  //           rodStackItems: [
-  //             BarChartRodStackItem(  
-  //               0,
-  //               d[2].toDouble(),            // الجزء المكتمل
-  //               const Color(0xFF4CAF50),
-  //                // أخضر غامق
-  //             ),
-  //           ],
-  //         ),
-  //       ],
-  //     );
-  //   }).toList();
-  // }
 }

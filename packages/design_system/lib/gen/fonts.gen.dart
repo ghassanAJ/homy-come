@@ -11,6 +11,9 @@
 class FontFamily {
   FontFamily._();
 
+  /// Font family: Almarai
+  static const String almarai = 'Almarai';
+
   /// Font family: DMSans
   static const String dMSans = 'DMSans';
 

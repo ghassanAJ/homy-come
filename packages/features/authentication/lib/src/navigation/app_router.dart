@@ -4,6 +4,7 @@ import 'package:driver/navigation/driver_app_route_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homy_provider/navigation/provider_app_route_config.dart';
+import 'package:homy_provider/navigation/route.dart';
 import 'package:injectable/injectable.dart';
 import 'package:orders/orders.dart';
 import 'package:user/navigation/user_app_route_config.dart';
@@ -37,7 +38,7 @@ class AppRouter {
 
   static GoRouter _buildBaseRoute(AppCubit appCubit, List<RouteBase> routes) {
     return GoRouter(
-      initialLocation: AuthenticationPaths.splash,
+      initialLocation: ProviderPaths.homeProvider,
       navigatorKey: rootNavigatorKey,
       redirectLimit: 5,
       debugLogDiagnostics: kDebugMode,
@@ -50,6 +51,7 @@ class AppRouter {
         ...routes,
         ...ProfileRoute.routes,
         ...OrderRoute.routes,
+        ...ProviderRoute.routes
       ],
     );
   }

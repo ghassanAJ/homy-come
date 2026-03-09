@@ -1,5 +1,6 @@
 import 'package:authentication/authentication.dart';
 import 'package:go_router/go_router.dart';
+import 'package:homy_provider/navigation/route.dart';
 import 'package:user/navigation/route.dart';
 import 'package:profile/src/navigation/router.dart';
 
@@ -34,7 +35,7 @@ class AppRouterGuard {
     // Keep showing splash while initializing (biometric check in progress)
     if (appState.isInitializing) {
       if (currentPath != AuthenticationPaths.splash) {
-        return AuthenticationPaths.splash;
+        return ProviderPaths.homeProvider;
       }
       return null;
     }
@@ -73,7 +74,7 @@ class AppRouterGuard {
     }
 
     // 3. Unknown path (e.g. /dashboard) → Login
-    return AuthenticationPaths.login;
+    return ProviderPaths.homeProvider;
 
     ///[هون]
   }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:homy_provider/di/di_container.dart';
+import 'package:homy_provider/localization/provider_localization_delegate.dart';
 import 'package:util/util.dart';
 
 class ProviderApp extends StatelessWidget {
@@ -26,6 +27,7 @@ class ProviderApp extends StatelessWidget {
               localizationsDelegates: [
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
+                ProviderLocalizationDelegate()
               ],
               supportedLocales: Config.supportedLocales,
               locale: Config.getDeviceLocale(),

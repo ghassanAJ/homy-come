@@ -354,6 +354,16 @@ class UITypography {
     height: 1.33,
     letterSpacing: 0,
   );
+
+  TextStyle get labelCircleProgress => const TextStyle(
+    fontFamily: _fontFamily,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    height: 1.33,
+    letterSpacing: 0,
+  );
+
+
   // ============================================================================
   // ALIASES (for convenience)
   // ============================================================================
