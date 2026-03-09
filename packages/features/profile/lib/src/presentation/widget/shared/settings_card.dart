@@ -1,7 +1,6 @@
 import 'package:design_system/design_system.dart';
-import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
-import 'package:profile/src/navigation/router.dart';
+import 'package:profile/src/helper/profile_language_label_extension.dart';
 import 'package:profile/src/presentation/widget/shared/settings_row.dart';
 
 class SettingsCard extends StatelessWidget {
@@ -14,14 +13,14 @@ class SettingsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currentLanguage = _currentLanguageLabel(context);
+    final currentLanguage = context.currentProfileLanguageLabel;
 
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(color: UIColor.background),
       child: Column(
         children: [
-          SettingsRow(title: context.profileTranslation.option.Job),
+          SettingsRow(title: context.profileTranslation.option.job),
           SettingsRow(
             title: context.profileTranslation.driverProfile.language,
             trailing: Row(
@@ -40,9 +39,7 @@ class SettingsCard extends StatelessWidget {
                 ),
               ],
             ),
-            onTap: () {
-              context.push(ProfilePaths.driverLanguageSettings);
-            },
+            onTap: ProfileInternalRouter.of(context).toDriverLanguageSettings,
           ),
           SettingsRow(
             title: context.profileTranslation.termsAndPrivacy.privacyPolicy,
@@ -58,11 +55,5 @@ class SettingsCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  String _currentLanguageLabel(BuildContext context) {
-    final locale = Localizations.localeOf(context);
-    if (locale.languageCode == 'ar') return 'العربية';
-    return 'English';
   }
 }

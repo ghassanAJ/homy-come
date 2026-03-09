@@ -4,19 +4,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:profile/profile.dart';
 
 class HeaderCard extends StatelessWidget {
-  const HeaderCard({super.key});
+  const HeaderCard({super.key, this.showRating = false, this.rating = 5.0});
+
+  final bool showRating;
+  final double rating;
 
   @override
   Widget build(BuildContext context) {
     final user = context.read<AppCubit>().state.user;
 
-    return Container(
+    return UICardContainer(
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: UIColor.background,
-        borderRadius: BorderRadius.circular(UI.radius.md),
-        boxShadow: UI.shadows.cardMd,
-      ),
       child: Padding(
         padding: UI.padding.driverProfileHeaderContent,
         child: Column(
@@ -40,6 +38,23 @@ class HeaderCard extends StatelessWidget {
               fontWeight: FontWeight.w700,
               color: UIColor.neutral975,
             ),
+            if (showRating)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(width: UI.spacing.xs),
+                  UISvg(
+                    Assets.icons.starOutline,
+                    color: UIColor.orange,
+                    size: UI.spacing.sm,
+                  ),
+                  SizedBox(width: UI.spacing.xxs),
+                  UIText.bodyXSmall(
+                    rating.toStringAsFixed(1),
+                    color: UIColor.softOrange,
+                  ),
+                ],
+              ),
             SizedBox(height: UI.spacing.xxs),
             UIText.bodySmall(user?.phone ?? '', color: UIColor.neutral975),
             SizedBox(height: UI.spacing.md),
