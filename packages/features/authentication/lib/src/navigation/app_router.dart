@@ -38,7 +38,7 @@ class AppRouter {
 
   static GoRouter _buildBaseRoute(AppCubit appCubit, List<RouteBase> routes) {
     return GoRouter(
-      initialLocation: ProviderPaths.homeProvider,
+      initialLocation: AuthenticationPaths.splash,
       navigatorKey: rootNavigatorKey,
       redirectLimit: 5,
       debugLogDiagnostics: kDebugMode,
@@ -51,7 +51,7 @@ class AppRouter {
         ...routes,
         ...ProfileRoute.routes,
         ...OrderRoute.routes,
-        ...ProviderRoute.routes
+        ...ProviderRoute.routes,
       ],
     );
   }

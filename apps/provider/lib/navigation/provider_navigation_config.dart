@@ -8,7 +8,7 @@ class ProviderNavigationConfig {
   /// Navigation items for the bottom navigation bar
   static final List<NavigationItem> items = [
     (
-      path: ProviderPaths.home,
+      path: ProviderPaths.homeProvider,
       label: 'Home',
       iconAsset: 'assets/icons/home.svg',
     ),

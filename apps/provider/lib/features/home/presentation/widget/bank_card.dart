@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:homy_provider/localization/files/providerTr.i69n.dart';
+import 'package:util/util.dart';
 
 class BankCard extends StatelessWidget {
   const BankCard({super.key});
@@ -9,6 +11,7 @@ class BankCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.sizeOf(context).height;
+    final tr = context.loc<ProviderTr>();
     return Container(
       width: double.infinity,
       height: heightScreen * 0.18,
@@ -56,34 +59,46 @@ class BankCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          UIText.h4('Finacial', color: UIColor.background,fontSize: 20,),
+                          UIText.h4(
+                            tr.title.finacial,
+                            color: UIColor.background,
+                            fontSize: 20,
+                          ),
                           SizedBox(height: UI.spacing.sm),
                           UIText.h4('220,304 AED'),
                         ],
                       ),
                       Padding(
-                        padding:  EdgeInsets.only(right: parentWidth*0.1),
-                        child: Stack(alignment: Alignment.center,
+                        padding: EdgeInsets.only(right: parentWidth * 0.1),
+                        child: Stack(
+                          alignment: Alignment.center,
                           children: [
                             SizedBox(
                               width: parentWidth * 0.3,
                               height: parentWidth * 0.3,
-                            
+
                               child: Transform.rotate(
-                                angle: pi/2,
+                                angle: pi / 2,
                                 child: CircularProgressIndicator(
                                   value: 0.75,
                                   color: UIColor.background,
-                                  
+
                                   strokeWidth: 12,
-                                  backgroundColor: UIColor.bluepal.withAlpha(102),
+                                  backgroundColor: UIColor.bluepal.withAlpha(
+                                    102,
+                                  ),
                                   strokeCap: StrokeCap.round,
                                 ),
                               ),
                             ),
-                            UIText.labelCircleProgerss('75%',color: UIColor.background, fontFamily: UIFontFamily.almarai,)
+                            UIText.labelCircleProgerss(
+                              '75%',
+                              color: UIColor.background,
+                              fontFamily: UIFontFamily.almarai,
+                            ),
                           ],
                         ),
                       ),

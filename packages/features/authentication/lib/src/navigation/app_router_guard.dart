@@ -35,7 +35,7 @@ class AppRouterGuard {
     // Keep showing splash while initializing (biometric check in progress)
     if (appState.isInitializing) {
       if (currentPath != AuthenticationPaths.splash) {
-        return ProviderPaths.homeProvider;
+        return AuthenticationPaths.splash;
       }
       return null;
     }
@@ -74,7 +74,7 @@ class AppRouterGuard {
     }
 
     // 3. Unknown path (e.g. /dashboard) → Login
-    return ProviderPaths.homeProvider;
+    return AuthenticationPaths.login;
 
     ///[هون]
   }

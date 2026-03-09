@@ -23,7 +23,7 @@ class ProviderRoute {
     GoRoute(
       path: ProviderPaths.home,
       builder: (context, state) =>
-          const _PlaceholderScreen(title: 'Home', path: ProviderPaths.home),
+          const _PlaceholderScreen(title: 'Home', path: ProviderPaths.homeProvider),
     ),
     GoRoute(
       path: ProviderPaths.services,
