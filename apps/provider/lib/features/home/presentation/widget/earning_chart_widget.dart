@@ -5,8 +5,8 @@ import 'package:homy_provider/localization/files/providerTr.i69n.dart';
 import 'package:util/util.dart';
 
 class EarningsChart extends StatelessWidget {
-  const EarningsChart({super.key});
-
+  EarningsChart({super.key});
+  var months = ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
   @override
   Widget build(BuildContext context) {
     final tr = context.loc<ProviderTr>();
@@ -37,15 +37,6 @@ class EarningsChart extends StatelessWidget {
                     sideTitles: SideTitles(
                       showTitles: true,
                       getTitlesWidget: (value, meta) {
-                        const months = [
-                          'Feb',
-                          'Mar',
-                          'April',
-                          'May',
-                          'Jun',
-                          'Jul',
-                          'Aug',
-                        ];
                         return Padding(
                           padding: EdgeInsets.only(top: UI.spacing.xs),
                           child: UIText.bodyXXSmall(
@@ -56,19 +47,24 @@ class EarningsChart extends StatelessWidget {
                       },
                     ),
                   ),
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
+                  leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false),
                   ),
-                  topTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
+                  topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false),
                   ),
-                  rightTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
+                  rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false),
                   ),
                 ),
                 gridData: FlGridData(show: false),
                 borderData: FlBorderData(show: false),
-                barGroups: _buildBarGroups(),
+                barGroups: _buildBarGroups([
+                  [0, 55],
+                  [1, 70],
+                  [2, 30],
+                  [3, 60],
+                  [4, 20],
+                  [5, 50],
+                  [6, 45],
+                ]),
               ),
             ),
           ),
@@ -77,17 +73,7 @@ class EarningsChart extends StatelessWidget {
     );
   }
 
-  List<BarChartGroupData> _buildBarGroups() {
-    final data = [
-      [0, 55],
-      [1, 70],
-      [2, 30],
-      [3, 60],
-      [4, 20],
-      [5, 50],
-      [6, 45],
-    ];
-
+  List<BarChartGroupData> _buildBarGroups(List data) {
     return data.map((d) {
       return BarChartGroupData(
         groupVertically: true,
@@ -95,19 +81,14 @@ class EarningsChart extends StatelessWidget {
         barRods: [
           BarChartRodData(
             toY: 100,
-            width: 35,
+            width: UI.spacing.xl,
             borderRadius: BorderRadius.circular(6),
             color: UIColor.greenPaleBar,
           ),
           BarChartRodData(
             toY: d[1].toDouble(),
-            width: 35,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(6),
-              topRight: Radius.circular(6),
-              bottomLeft: Radius.circular(6),
-              bottomRight: Radius.circular(6),
-            ),
+            width: UI.spacing.xl,
+            borderRadius: BorderRadius.circular(6),
             color: UIColor.successlight,
           ),
         ],

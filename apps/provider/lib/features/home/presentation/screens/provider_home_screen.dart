@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:homy_provider/features/home/presentation/widget/bank_card.dart';
+import 'package:homy_provider/features/home/presentation/widget/bank_transfers_card.dart';
 import 'package:homy_provider/features/home/presentation/widget/earning_chart_widget.dart';
 import 'package:homy_provider/localization/files/providerTr.i69n.dart';
 import 'package:util/util.dart';
@@ -31,7 +32,6 @@ class ProviderHomeScreen extends StatelessWidget {
                   BankCard(),
                   SizedBox(height: UI.spacing.md),
                   EarningsChart(),
-
                   SizedBox(height: UI.spacing.lg),
                   UIText.h4(tr.title.bankTransfers),
                 ],
@@ -57,51 +57,6 @@ class ProviderHomeScreen extends StatelessWidget {
       ),
       withBackgroundGradient: true,
       appBar: UIAppBar(titleWidget: UIText.h4('Home Provider')),//TODO : delete app bar
-    );
-  }
-}
-
-class BankTransfersCardWidget extends StatelessWidget {
-  const BankTransfersCardWidget({super.key});
-  UIColor _getColroStatusBankTransfers(StatusBankTransfers status) {
-    switch (status) {
-      case StatusBankTransfers.success:
-        return UIColor.successlight;
-      case StatusBankTransfers.inprogress:
-        return UIColor.yellowPale;
-      case StatusBankTransfers.upcoming:
-        return UIColor.grey;
-    }
-  }
-
-  
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: UI.spacing.sm,
-        vertical: UI.spacing.md,
-      ),
-      width: 153,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1.5, color: UIColor.neutral475.withAlpha(50)),
-        borderRadius: BorderRadius.circular(UI.radius.md),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          UIText.h4('220,304 \$'),
-          SizedBox(height: UI.spacing.xs),
-          UIText.bodySmall('25-31 Aug', color: UIColor.grey),
-          SizedBox(height: UI.spacing.md),
-          UIText.bodyBold(
-            StatusBankTransfers.success.name,
-            fontFamily: UIFontFamily.almarai,
-            color: _getColroStatusBankTransfers(StatusBankTransfers.success),
-          ),
-        ],
-      ),
     );
   }
 }

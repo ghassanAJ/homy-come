@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:design_system/design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:homy_provider/features/home/presentation/widget/finacial_progress_indecator_widget.dart';
 import 'package:homy_provider/localization/files/providerTr.i69n.dart';
 import 'package:util/util.dart';
 
@@ -71,37 +72,7 @@ class BankCard extends StatelessWidget {
                           UIText.h4('220,304 AED'),
                         ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: parentWidth * 0.1),
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            SizedBox(
-                              width: parentWidth * 0.3,
-                              height: parentWidth * 0.3,
-
-                              child: Transform.rotate(
-                                angle: pi / 2,
-                                child: CircularProgressIndicator(
-                                  value: 0.75,
-                                  color: UIColor.background,
-
-                                  strokeWidth: 12,
-                                  backgroundColor: UIColor.bluepal.withAlpha(
-                                    102,
-                                  ),
-                                  strokeCap: StrokeCap.round,
-                                ),
-                              ),
-                            ),
-                            UIText.labelCircleProgerss(
-                              '75%',
-                              color: UIColor.background,
-                              fontFamily: UIFontFamily.almarai,
-                            ),
-                          ],
-                        ),
-                      ),
+                      FinancialProgressIndicator(parentWidth: parentWidth),
                     ],
                   ),
                 ),
