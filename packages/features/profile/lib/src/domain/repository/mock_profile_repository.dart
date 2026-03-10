@@ -2,6 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:profile/src/data/model/res/about_app_model.dart';
 import 'package:profile/src/data/model/res/driver_performance_metric_model.dart';
 import 'package:profile/src/data/model/res/driver_performance_model.dart';
+import 'package:profile/src/data/model/res/myTeam_member_model.dart';
 import 'package:profile/src/data/model/res/review_model.dart';
 import 'package:profile/src/data/model/res/terms_and_condition_model.dart';
 import 'package:profile/src/domain/repository/profile_repository.dart';
@@ -20,13 +21,12 @@ class MockProfileRepository implements ProfileRepository {
       'Ad Minim Veniam, Quis Nostrud Exercitation Ullamco Laboris Nisi Ut '
       'Aliquip Ex Ea Commodo Consequat.';
 
+  bool failFetchMyteamData = false;
   @override
   Future<Result<AboutAppModel, APIException>> fetchAboutApp() async {
     await Future.delayed(const Duration(milliseconds: 400));
 
-    return success(
-      const AboutAppModel(description: _aboutAppDescription),
-    );
+    return success(const AboutAppModel(description: _aboutAppDescription));
   }
 
   @override
@@ -35,15 +35,14 @@ class MockProfileRepository implements ProfileRepository {
     await Future.delayed(const Duration(milliseconds: 400));
 
     return success(
-      const TermsAndConditionModel(
-        description: _termsAndConditionDescription,
-      ),
+      const TermsAndConditionModel(description: _termsAndConditionDescription),
     );
   }
 
   @override
-  Future<Result<DriverPerformanceModel, APIException>>
-  fetchDriverPerformance(String driverId) async {
+  Future<Result<DriverPerformanceModel, APIException>> fetchDriverPerformance(
+    String driverId,
+  ) async {
     await Future.delayed(const Duration(milliseconds: 400));
 
     return success(
@@ -81,29 +80,68 @@ class MockProfileRepository implements ProfileRepository {
   ) async {
     await Future.delayed(const Duration(milliseconds: 400));
 
-    return success(
-      const [
-        ReviewModel(
-          name: 'Joan Perkins',
-          timeAgo: '1 days ago',
-          comment:
-              'I love the work. She works in a calm and gentle manner, with a perfect result. I am excited to work again!',
-          rating: 5.0,
-        ),
-        ReviewModel(
-          name: 'Joan Perkins',
-          timeAgo: '4 days ago',
-          comment:
-              'I love the work. She works in a calm and gentle manner, with a perfect result. I am excited to work again!',
-          rating: 3.0,
-        ),
-        ReviewModel(
-          name: 'Joan Perkins',
-          timeAgo: '1 month',
-          comment: 'OMG!! that\'s so amazing',
-          rating: 4.0,
-        ),
-      ],
-    );
+    return success(const [
+      ReviewModel(
+        name: 'Joan Perkins',
+        timeAgo: '1 days ago',
+        comment:
+            'I love the work. She works in a calm and gentle manner, with a perfect result. I am excited to work again!',
+        rating: 5.0,
+      ),
+      ReviewModel(
+        name: 'Joan Perkins',
+        timeAgo: '4 days ago',
+        comment:
+            'I love the work. She works in a calm and gentle manner, with a perfect result. I am excited to work again!',
+        rating: 3.0,
+      ),
+      ReviewModel(
+        name: 'Joan Perkins',
+        timeAgo: '1 month',
+        comment: 'OMG!! that\'s so amazing',
+        rating: 4.0,
+      ),
+    ]);
+  }
+
+  @override
+  Future<Result<List<MyteamMemberModel>, APIException>> fetchMyTeam() async {
+    if (failFetchMyteamData) {
+      failFetchMyteamData = false;
+      return Future.error(APIException.error('error mock data'));
+    }
+    await Future.delayed(const Duration(milliseconds: 500));
+    return success([
+      MyteamMemberModel(
+        id: 1,
+        nameMember: 'ghassan',
+        phone: '963123456789',
+        status: 'working',
+      ),
+      MyteamMemberModel(
+        id: 2,
+        nameMember: 'hala gh',
+        phone: '963123456789',
+        status: 'working',
+      ),
+      MyteamMemberModel(
+        id: 3,
+        nameMember: 'bushra',
+        phone: '963123456789',
+        status: 'working',
+      ),
+      MyteamMemberModel(
+        id: 4,
+        nameMember: 'meya  ali',
+        phone: '963123456789',
+        status: 'working',
+      ),
+      MyteamMemberModel(
+        id: 1,
+        nameMember: 'Samia mohammad ghhhghghghghghg',
+        phone: '963123456789',
+        status: 'working',
+      ),
+    ]);
   }
 }
