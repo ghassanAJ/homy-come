@@ -41,11 +41,11 @@ class $AssetsIconsGen {
   String get apple => 'packages/design_system/assets/icons/apple.svg';
 
   /// File path: assets/icons/arrow right.svg
-  String get arrowRight =>
+  String get arrowRightSvg =>
       'packages/design_system/assets/icons/arrow right.svg';
 
   /// File path: assets/icons/arrow-right.svg
-  String get arrowRightSvg =>
+  String get arrowRightSvg_ =>
       'packages/design_system/assets/icons/arrow-right.svg';
 
   /// File path: assets/icons/arrow-left.svg
@@ -72,6 +72,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/carpenter.svg
   String get carpenter => 'packages/design_system/assets/icons/carpenter.svg';
+
+  /// File path: assets/icons/chat.svg
+  String get chat => 'packages/design_system/assets/icons/chat.svg';
 
   /// File path: assets/icons/cleaner.svg
   String get cleaner => 'packages/design_system/assets/icons/cleaner.svg';
@@ -185,8 +188,8 @@ class $AssetsIconsGen {
     shieldDone,
     aed,
     apple,
-    arrowRight,
     arrowRightSvg,
+    arrowRightSvg_,
     arrowLeft,
     arrow,
     arrowBottom,
@@ -195,6 +198,7 @@ class $AssetsIconsGen {
     camera,
     carema,
     carpenter,
+    chat,
     cleaner,
     close,
     electrician,
