@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AddOnCategoryModel {
 
- String get id; String get documentId; List<AddOnServiceModel> get services; InfoModel? get info;
+ int get id; String get documentId;@JsonKey(name: 'add_on') List<AddOnServiceModel> get services; InfoModel? get info;
 /// Create a copy of AddOnCategoryModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $AddOnCategoryModelCopyWith<$Res>  {
   factory $AddOnCategoryModelCopyWith(AddOnCategoryModel value, $Res Function(AddOnCategoryModel) _then) = _$AddOnCategoryModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String documentId, List<AddOnServiceModel> services, InfoModel? info
+ int id, String documentId,@JsonKey(name: 'add_on') List<AddOnServiceModel> services, InfoModel? info
 });
 
 
@@ -68,7 +68,7 @@ class _$AddOnCategoryModelCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? documentId = null,Object? services = null,Object? info = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
+as int,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
 as String,services: null == services ? _self.services : services // ignore: cast_nullable_to_non_nullable
 as List<AddOnServiceModel>,info: freezed == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
 as InfoModel?,
@@ -168,7 +168,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String documentId,  List<AddOnServiceModel> services,  InfoModel? info)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String documentId, @JsonKey(name: 'add_on')  List<AddOnServiceModel> services,  InfoModel? info)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AddOnCategoryModel() when $default != null:
 return $default(_that.id,_that.documentId,_that.services,_that.info);case _:
@@ -189,7 +189,7 @@ return $default(_that.id,_that.documentId,_that.services,_that.info);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String documentId,  List<AddOnServiceModel> services,  InfoModel? info)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String documentId, @JsonKey(name: 'add_on')  List<AddOnServiceModel> services,  InfoModel? info)  $default,) {final _that = this;
 switch (_that) {
 case _AddOnCategoryModel():
 return $default(_that.id,_that.documentId,_that.services,_that.info);case _:
@@ -209,7 +209,7 @@ return $default(_that.id,_that.documentId,_that.services,_that.info);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String documentId,  List<AddOnServiceModel> services,  InfoModel? info)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String documentId, @JsonKey(name: 'add_on')  List<AddOnServiceModel> services,  InfoModel? info)?  $default,) {final _that = this;
 switch (_that) {
 case _AddOnCategoryModel() when $default != null:
 return $default(_that.id,_that.documentId,_that.services,_that.info);case _:
@@ -224,13 +224,13 @@ return $default(_that.id,_that.documentId,_that.services,_that.info);case _:
 @JsonSerializable()
 
 class _AddOnCategoryModel implements AddOnCategoryModel {
-  const _AddOnCategoryModel({required this.id, required this.documentId, final  List<AddOnServiceModel> services = const [], this.info}): _services = services;
+  const _AddOnCategoryModel({required this.id, required this.documentId, @JsonKey(name: 'add_on') final  List<AddOnServiceModel> services = const [], this.info}): _services = services;
   factory _AddOnCategoryModel.fromJson(Map<String, dynamic> json) => _$AddOnCategoryModelFromJson(json);
 
-@override final  String id;
+@override final  int id;
 @override final  String documentId;
  final  List<AddOnServiceModel> _services;
-@override@JsonKey() List<AddOnServiceModel> get services {
+@override@JsonKey(name: 'add_on') List<AddOnServiceModel> get services {
   if (_services is EqualUnmodifiableListView) return _services;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_services);
@@ -271,7 +271,7 @@ abstract mixin class _$AddOnCategoryModelCopyWith<$Res> implements $AddOnCategor
   factory _$AddOnCategoryModelCopyWith(_AddOnCategoryModel value, $Res Function(_AddOnCategoryModel) _then) = __$AddOnCategoryModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String documentId, List<AddOnServiceModel> services, InfoModel? info
+ int id, String documentId,@JsonKey(name: 'add_on') List<AddOnServiceModel> services, InfoModel? info
 });
 
 
@@ -291,7 +291,7 @@ class __$AddOnCategoryModelCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? documentId = null,Object? services = null,Object? info = freezed,}) {
   return _then(_AddOnCategoryModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
+as int,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
 as String,services: null == services ? _self._services : services // ignore: cast_nullable_to_non_nullable
 as List<AddOnServiceModel>,info: freezed == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
 as InfoModel?,

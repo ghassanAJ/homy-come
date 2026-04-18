@@ -8,7 +8,7 @@ part of 'service_option_model.dart';
 
 _ServiceOptionModel _$ServiceOptionModelFromJson(Map<String, dynamic> json) =>
     _ServiceOptionModel(
-      id: json['id'] as String,
+      id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       durationMinutes: (json['duration_minutes'] as num).toInt(),
       description: json['description'] as String,

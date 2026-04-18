@@ -7,6 +7,10 @@ abstract class BookingRepository {
   Future<Result<ServiceDetailsResponseModel, APIException>> getServiceDetails(
     GetServiceDetailsRequestModel request,
   );
+
+  Future<Result<CreateBookingResponseModel, APIException>> createBooking(
+    CreateBookingRequestModel request,
+  );
 }
 
 @Injectable(as: BookingRepository, env: ['prod', 'dev'])
@@ -25,5 +29,12 @@ class BookingRepositoryImpl implements BookingRepository {
           queryParameters: request.toQueryParameters(),
         )
         .toResult();
+  }
+
+  @override
+  Future<Result<CreateBookingResponseModel, APIException>> createBooking(
+    CreateBookingRequestModel request,
+  ) {
+    return _bookingAPI.createBooking(request).toResult();
   }
 }

@@ -9,7 +9,7 @@ part of 'service_document_model.dart';
 _ServiceDocumentModel _$ServiceDocumentModelFromJson(
   Map<String, dynamic> json,
 ) => _ServiceDocumentModel(
-  id: json['id'] as String,
+  id: (json['id'] as num).toInt(),
   documentId: json['documentId'] as String,
   durationMinutes: (json['duration_minutes'] as num).toInt(),
   info: InfoModel.fromJson(json['info'] as Map<String, dynamic>),

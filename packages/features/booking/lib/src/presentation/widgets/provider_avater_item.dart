@@ -13,7 +13,6 @@ class ProviderAvatarItem extends StatelessWidget {
   final String rating;
   final bool selected;
   final VoidCallback onTap;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -23,6 +22,7 @@ class ProviderAvatarItem extends StatelessWidget {
         child: Column(
           children: [
             Stack(
+              clipBehavior: Clip.none,
               alignment: Alignment.bottomRight,
               children: [
                 Container(
@@ -32,6 +32,7 @@ class ProviderAvatarItem extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: UIColor.neutral100,
                   ),
+                  // child: UINetworkImage(imageUrl: ''),
                 ),
                 Positioned(
                   // right: 2,
@@ -41,8 +42,8 @@ class ProviderAvatarItem extends StatelessWidget {
                     alignment: Alignment.topRight,
                     children: [
                       Container(
-                        width: UI.spacing.lg,
-                        height: UI.spacing.lg,
+                        width: UI.spacing.md,
+                        height: UI.spacing.md,
                         decoration: BoxDecoration(
                           color:
                               selected ? UIColor.softGreen : UIColor.background,
@@ -50,15 +51,17 @@ class ProviderAvatarItem extends StatelessWidget {
                           boxShadow: UI.shadows.xxs,
                         ),
                       ),
-                      if (selected) SizedBox(),
-                      // Positioned(left:2 ,
-                      // bottom: 2,
-                      //   child: UIImage(
-                      //     Assets.images.checkMark1.path,
-                      //     wigth: UI.sizes.iconMd,
-                      //     height: UI.sizes.iconMd,
-                      //   ),
-                      // ),
+
+                      if (selected)
+                        Positioned(
+                          // left: 2,
+                          // bottom: 2,
+                          child: UIImage(
+                            Assets.images.checkMark1.path,
+                            wigth: UI.sizes.iconMd,
+                            height: UI.sizes.iconMd,
+                          ),
+                        ),
                     ],
                   ),
                 ),

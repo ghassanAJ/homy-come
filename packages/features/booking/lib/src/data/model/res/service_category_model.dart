@@ -7,11 +7,11 @@ part 'service_category_model.g.dart';
 @freezed
 abstract class ServiceCategoryModel with _$ServiceCategoryModel {
   const factory ServiceCategoryModel({
-    required String id,
-    required String name,
-    required int servicesCount,
-    @JsonKey(name: 'image_url') String? imageUrl,
-    @Default([]) List<ServicePreviewResponseModel> servicePreviews,
+    required int id,
+    required String documentId,
+    required InfoModel info,
+    @Default(0) int servicesCount,
+    @Default([]) List<ServicePreviewResponseModel> services,
   }) = _ServiceCategoryModel;
 
   factory ServiceCategoryModel.fromJson(Map<String, dynamic> json) =>

@@ -118,14 +118,16 @@ class _ServiceDetailsAppBarState extends State<ServiceDetailsAppBar> {
         ),
       ),
       actions: [
-        Padding(
-          padding: const EdgeInsetsDirectional.only(end: 8.0),
-          child: UIIconButton(
-            backgroundColor: iconBgColor,
-            onPressed: () {},
-            icon: Icon(Icons.share_outlined, color: UIColor.black),
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsetsDirectional.only(end: 8.0),
+        //   child: UIIconButton(
+        //     backgroundColor: iconBgColor,
+        //     onPressed: () {
+
+        //     },
+        //     icon: Icon(Icons.share_outlined, color: UIColor.black),
+        //   ),
+        // ),
       ],
       centerTitle: false,
       title: Opacity(

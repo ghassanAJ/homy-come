@@ -22,7 +22,7 @@ InfoModel _$InfoModelFromJson(
 /// @nodoc
 mixin _$InfoModel {
 
- String get id; String get name; String? get description; String? get image;
+ int get id; String get name; String? get description; String? get image;
 /// Create a copy of InfoModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -55,7 +55,7 @@ abstract mixin class $InfoModelCopyWith<$Res>  {
   factory $InfoModelCopyWith(InfoModel value, $Res Function(InfoModel) _then) = _$InfoModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String? description, String? image
+ int id, String name, String? description, String? image
 });
 
 
@@ -75,7 +75,7 @@ class _$InfoModelCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? description = freezed,Object? image = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -163,7 +163,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? description,  String? image)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String? description,  String? image)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ServiceInfoModel() when $default != null:
 return $default(_that.id,_that.name,_that.description,_that.image);case _:
@@ -184,7 +184,7 @@ return $default(_that.id,_that.name,_that.description,_that.image);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? description,  String? image)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String? description,  String? image)  $default,) {final _that = this;
 switch (_that) {
 case _ServiceInfoModel():
 return $default(_that.id,_that.name,_that.description,_that.image);case _:
@@ -204,7 +204,7 @@ return $default(_that.id,_that.name,_that.description,_that.image);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? description,  String? image)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String? description,  String? image)?  $default,) {final _that = this;
 switch (_that) {
 case _ServiceInfoModel() when $default != null:
 return $default(_that.id,_that.name,_that.description,_that.image);case _:
@@ -222,7 +222,7 @@ class _ServiceInfoModel implements InfoModel {
   const _ServiceInfoModel({required this.id, required this.name, this.description, this.image});
   factory _ServiceInfoModel.fromJson(Map<String, dynamic> json) => _$ServiceInfoModelFromJson(json);
 
-@override final  String id;
+@override final  int id;
 @override final  String name;
 @override final  String? description;
 @override final  String? image;
@@ -260,7 +260,7 @@ abstract mixin class _$ServiceInfoModelCopyWith<$Res> implements $InfoModelCopyW
   factory _$ServiceInfoModelCopyWith(_ServiceInfoModel value, $Res Function(_ServiceInfoModel) _then) = __$ServiceInfoModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String? description, String? image
+ int id, String name, String? description, String? image
 });
 
 
@@ -280,7 +280,7 @@ class __$ServiceInfoModelCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? description = freezed,Object? image = freezed,}) {
   return _then(_ServiceInfoModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String?,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
 as String?,

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ServicePriceModel {
 
- String? get id;@JsonKey(name: 'current_price') num? get currentPrice;@JsonKey(name: 'new_price') num? get newPrice; String? get currency;
+ int get id;@JsonKey(name: 'current_price') num? get currentPrice;@JsonKey(name: 'new_price') num? get newPrice; String get currency;
 /// Create a copy of ServicePriceModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ServicePriceModelCopyWith<$Res>  {
   factory $ServicePriceModelCopyWith(ServicePriceModel value, $Res Function(ServicePriceModel) _then) = _$ServicePriceModelCopyWithImpl;
 @useResult
 $Res call({
- String? id,@JsonKey(name: 'current_price') num? currentPrice,@JsonKey(name: 'new_price') num? newPrice, String? currency
+ int id,@JsonKey(name: 'current_price') num? currentPrice,@JsonKey(name: 'new_price') num? newPrice, String currency
 });
 
 
@@ -65,13 +65,13 @@ class _$ServicePriceModelCopyWithImpl<$Res>
 
 /// Create a copy of ServicePriceModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? currentPrice = freezed,Object? newPrice = freezed,Object? currency = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? currentPrice = freezed,Object? newPrice = freezed,Object? currency = null,}) {
   return _then(_self.copyWith(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,currentPrice: freezed == currentPrice ? _self.currentPrice : currentPrice // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,currentPrice: freezed == currentPrice ? _self.currentPrice : currentPrice // ignore: cast_nullable_to_non_nullable
 as num?,newPrice: freezed == newPrice ? _self.newPrice : newPrice // ignore: cast_nullable_to_non_nullable
-as num?,currency: freezed == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
-as String?,
+as num?,currency: null == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -156,7 +156,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id, @JsonKey(name: 'current_price')  num? currentPrice, @JsonKey(name: 'new_price')  num? newPrice,  String? currency)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'current_price')  num? currentPrice, @JsonKey(name: 'new_price')  num? newPrice,  String currency)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ServicePriceModel() when $default != null:
 return $default(_that.id,_that.currentPrice,_that.newPrice,_that.currency);case _:
@@ -177,7 +177,7 @@ return $default(_that.id,_that.currentPrice,_that.newPrice,_that.currency);case 
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id, @JsonKey(name: 'current_price')  num? currentPrice, @JsonKey(name: 'new_price')  num? newPrice,  String? currency)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'current_price')  num? currentPrice, @JsonKey(name: 'new_price')  num? newPrice,  String currency)  $default,) {final _that = this;
 switch (_that) {
 case _ServicePriceModel():
 return $default(_that.id,_that.currentPrice,_that.newPrice,_that.currency);case _:
@@ -197,7 +197,7 @@ return $default(_that.id,_that.currentPrice,_that.newPrice,_that.currency);case 
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id, @JsonKey(name: 'current_price')  num? currentPrice, @JsonKey(name: 'new_price')  num? newPrice,  String? currency)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'current_price')  num? currentPrice, @JsonKey(name: 'new_price')  num? newPrice,  String currency)?  $default,) {final _that = this;
 switch (_that) {
 case _ServicePriceModel() when $default != null:
 return $default(_that.id,_that.currentPrice,_that.newPrice,_that.currency);case _:
@@ -212,13 +212,13 @@ return $default(_that.id,_that.currentPrice,_that.newPrice,_that.currency);case 
 @JsonSerializable()
 
 class _ServicePriceModel implements ServicePriceModel {
-  const _ServicePriceModel({this.id, @JsonKey(name: 'current_price') this.currentPrice, @JsonKey(name: 'new_price') this.newPrice, this.currency});
+  const _ServicePriceModel({required this.id, @JsonKey(name: 'current_price') this.currentPrice, @JsonKey(name: 'new_price') this.newPrice, required this.currency});
   factory _ServicePriceModel.fromJson(Map<String, dynamic> json) => _$ServicePriceModelFromJson(json);
 
-@override final  String? id;
+@override final  int id;
 @override@JsonKey(name: 'current_price') final  num? currentPrice;
 @override@JsonKey(name: 'new_price') final  num? newPrice;
-@override final  String? currency;
+@override final  String currency;
 
 /// Create a copy of ServicePriceModel
 /// with the given fields replaced by the non-null parameter values.
@@ -253,7 +253,7 @@ abstract mixin class _$ServicePriceModelCopyWith<$Res> implements $ServicePriceM
   factory _$ServicePriceModelCopyWith(_ServicePriceModel value, $Res Function(_ServicePriceModel) _then) = __$ServicePriceModelCopyWithImpl;
 @override @useResult
 $Res call({
- String? id,@JsonKey(name: 'current_price') num? currentPrice,@JsonKey(name: 'new_price') num? newPrice, String? currency
+ int id,@JsonKey(name: 'current_price') num? currentPrice,@JsonKey(name: 'new_price') num? newPrice, String currency
 });
 
 
@@ -270,13 +270,13 @@ class __$ServicePriceModelCopyWithImpl<$Res>
 
 /// Create a copy of ServicePriceModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? currentPrice = freezed,Object? newPrice = freezed,Object? currency = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? currentPrice = freezed,Object? newPrice = freezed,Object? currency = null,}) {
   return _then(_ServicePriceModel(
-id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,currentPrice: freezed == currentPrice ? _self.currentPrice : currentPrice // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,currentPrice: freezed == currentPrice ? _self.currentPrice : currentPrice // ignore: cast_nullable_to_non_nullable
 as num?,newPrice: freezed == newPrice ? _self.newPrice : newPrice // ignore: cast_nullable_to_non_nullable
-as num?,currency: freezed == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
-as String?,
+as num?,currency: null == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

@@ -8,10 +8,10 @@ part of 'addon_category_model.dart';
 
 _AddOnCategoryModel _$AddOnCategoryModelFromJson(Map<String, dynamic> json) =>
     _AddOnCategoryModel(
-      id: json['id'] as String,
+      id: (json['id'] as num).toInt(),
       documentId: json['documentId'] as String,
       services:
-          (json['services'] as List<dynamic>?)
+          (json['add_on'] as List<dynamic>?)
               ?.map(
                 (e) => AddOnServiceModel.fromJson(e as Map<String, dynamic>),
               )
@@ -27,6 +27,6 @@ Map<String, dynamic> _$AddOnCategoryModelToJson(_AddOnCategoryModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'documentId': instance.documentId,
-      'services': instance.services,
+      'add_on': instance.services,
       'info': instance.info,
     };

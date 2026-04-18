@@ -35,101 +35,121 @@ class ExampleData {
   );
 
   static AddOnCategoryModel category1 = AddOnCategoryModel(
-    id: '1',
+    id: 1,
     documentId: '1',
     info: InfoModel(
-      id: '1',
+      id: 1,
       name: "Urgent",
       description: "Sale is on now.",
       image: images[0],
     ),
     services: List.generate(5, (index) {
       return AddOnServiceModel(
-        id: '1',
+        id: 1,
         documentId: '1',
         durationMinutes: 60,
         info: InfoModel(
-          id: '1',
+          id: 1,
           name: "Home Cleaning",
           description: "Description",
           image: images[index % images.length],
         ),
-        price: ServicePriceModel(currentPrice: 1.33, newPrice: 1.90),
+        price: ServicePriceModel(
+          currentPrice: 1.33,
+          newPrice: 1.90,
+          currency: 'AED',
+          id: 1,
+        ),
       );
     }),
   );
 
   static AddOnCategoryModel category2 = AddOnCategoryModel(
-    id: '2',
+    id: 2,
     documentId: '2',
     info: InfoModel(
-      id: '2',
+      id: 2,
       name: "Buy 1 Get 1",
       description: "Get at least 30 minutes.",
       image: images[1],
     ),
     services: List.generate(3, (index) {
       return AddOnServiceModel(
-        id: '2',
+        id: 2,
         documentId: '2',
         durationMinutes: 60,
         info: InfoModel(
-          id: '3',
+          id: 3,
           name: "Only for you",
           description: null,
           image: images[2],
         ),
-        price: ServicePriceModel(currentPrice: 1.33, newPrice: 1.90),
+        price: ServicePriceModel(
+          currentPrice: 1.33,
+          newPrice: 1.90,
+          currency: 'AED',
+          id: 2,
+        ),
       );
     }),
   );
   static AddOnCategoryModel category3 = AddOnCategoryModel(
-    id: '3',
+    id: 3,
     documentId: '3',
     info: InfoModel(
-      id: '3',
+      id: 3,
       name: "Only for you",
       description: null,
       image: images[2],
     ),
     services: List.generate(5, (index) {
       return AddOnServiceModel(
-        id: '3',
+        id: 3,
         documentId: '3',
         durationMinutes: 60,
         info: InfoModel(
-          id: '3',
+          id: 3,
           name: "Home Cleaning",
           description: "Description",
           image: images[index % images.length],
         ),
-        price: ServicePriceModel(currentPrice: 1.33, newPrice: 1.90),
+        price: ServicePriceModel(
+          currentPrice: 1.33,
+          newPrice: 1.90,
+          currency: 'AED',
+          id: 3,
+        ),
       );
     }),
   );
 
   static AddOnCategoryModel category4 = AddOnCategoryModel(
-    id: '4',
+    id: 4,
     documentId: '4',
 
     info: InfoModel(
-      id: '4',
+      id: 4,
       name: "Water Disinfection",
       description: "Sale is on now.",
       image: images[3],
     ),
     services: List.generate(5, (index) {
       return AddOnServiceModel(
-        id: '4',
+        id: 4,
         documentId: '4',
         durationMinutes: 60,
         info: InfoModel(
-          id: '4',
+          id: 4,
           name: "Home Cleaning",
           description: "Description",
           image: images[index % images.length],
         ),
-        price: ServicePriceModel(currentPrice: 1.33, newPrice: 1.90),
+        price: ServicePriceModel(
+          currentPrice: 1.33,
+          newPrice: 1.90,
+          currency: 'AED',
+          id: 4,
+        ),
       );
     }),
   );

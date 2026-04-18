@@ -1,12 +1,28 @@
-import 'package:design_system/design_system.dart';
-import 'package:go_router/go_router.dart';
-import 'package:user/navigation/route.dart';
+import 'package:booking/booking.dart';
 
 class StepNavigationBar extends StatelessWidget {
   const StepNavigationBar({super.key, required this.next});
-  final Function next;
+
+  final VoidCallback next;
+
   @override
   Widget build(BuildContext context) {
+    final total = context
+        .watch<BookingWizardBloc>()
+        .state
+        .selectedAddOns
+        .map((addOn) {
+          return addOn.price.newPrice ?? 0.0;
+        })
+        .reduce((a, b) => a + b);
+    final currentTotal = context
+        .watch<BookingWizardBloc>()
+        .state
+        .selectedAddOns
+        .map((addOn) {
+          return addOn.price.currentPrice ?? 0.0;
+        })
+        .reduce((a, b) => a + b);
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(UI.spacing.md),
@@ -22,28 +38,43 @@ class StepNavigationBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  'Total 78.00 AED',
-                  style: UI.text.bodyMedium.copyWith(
-                    color: UIColor.textSliverLight,
-                    decoration: TextDecoration.lineThrough,
-                    decorationColor: UIColor.textSliverLight,
+                Row(
+                  children: [
+                    UIText.h6(
+                      'Total ',
+                      color: UIColor.textSliverLight,
+                      // textAlign: TextAlign.right,
+                      // style: UI.text.bodyMedium.copyWith(
+                      //
+                      //   decoration: TextDecoration.lineThrough,
+                      //   decorationColor: UIColor.textSliverLight,
+                      // ),
+                    ),
+                    UIPriceText(
+                      isOldPrice: true,
+                      text: UIText.h6(
+                        total.toStringAsFixed(2),
+                        color: UIColor.textSliverLight,
+                        textAlign: TextAlign.right,
+                        // style: UI.text.bodyMedium.copyWith(
+                        //
+                        //   decoration: TextDecoration.lineThrough,
+                        //   decorationColor: UIColor.textSliverLight,
+                        // ),
+                      ),
+                    ),
+                  ],
+                ),
+                UIPriceText(
+                  text: UIText.h6(
+                    currentTotal.toStringAsFixed(2),
+                    color: UIColor.balck,
                   ),
                 ),
-                UIText.h6('48.00AED', color: UIColor.balck),
               ],
             ),
           ),
-          SizedBox(
-            // width: 128,
-            child: UIButton.primary(
-              label: 'Next',
-              // expanded: true,
-              onPressed: () {
-                next();
-              },
-            ),
-          ),
+          UIButton.primary(label: 'Next', onPressed: next),
         ],
       ),
     );

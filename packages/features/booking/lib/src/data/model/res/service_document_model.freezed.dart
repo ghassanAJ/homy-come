@@ -22,7 +22,7 @@ AddOnServiceModel _$AddOnServiceModelFromJson(
 /// @nodoc
 mixin _$AddOnServiceModel {
 
- String get id; String get documentId;@JsonKey(name: 'duration_minutes') int get durationMinutes; InfoModel get info; ServicePriceModel get price; List<ServiceDetailsModel> get details;
+ int get id; String get documentId;@JsonKey(name: 'duration_minutes') int get durationMinutes; InfoModel get info; ServicePriceModel get price; List<ServiceDetailsModel> get details;
 /// Create a copy of AddOnServiceModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -55,7 +55,7 @@ abstract mixin class $AddOnServiceModelCopyWith<$Res>  {
   factory $AddOnServiceModelCopyWith(AddOnServiceModel value, $Res Function(AddOnServiceModel) _then) = _$AddOnServiceModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String documentId,@JsonKey(name: 'duration_minutes') int durationMinutes, InfoModel info, ServicePriceModel price, List<ServiceDetailsModel> details
+ int id, String documentId,@JsonKey(name: 'duration_minutes') int durationMinutes, InfoModel info, ServicePriceModel price, List<ServiceDetailsModel> details
 });
 
 
@@ -75,7 +75,7 @@ class _$AddOnServiceModelCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? documentId = null,Object? durationMinutes = null,Object? info = null,Object? price = null,Object? details = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
+as int,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
 as String,durationMinutes: null == durationMinutes ? _self.durationMinutes : durationMinutes // ignore: cast_nullable_to_non_nullable
 as int,info: null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
 as InfoModel,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
@@ -183,7 +183,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String documentId, @JsonKey(name: 'duration_minutes')  int durationMinutes,  InfoModel info,  ServicePriceModel price,  List<ServiceDetailsModel> details)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String documentId, @JsonKey(name: 'duration_minutes')  int durationMinutes,  InfoModel info,  ServicePriceModel price,  List<ServiceDetailsModel> details)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ServiceDocumentModel() when $default != null:
 return $default(_that.id,_that.documentId,_that.durationMinutes,_that.info,_that.price,_that.details);case _:
@@ -204,7 +204,7 @@ return $default(_that.id,_that.documentId,_that.durationMinutes,_that.info,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String documentId, @JsonKey(name: 'duration_minutes')  int durationMinutes,  InfoModel info,  ServicePriceModel price,  List<ServiceDetailsModel> details)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String documentId, @JsonKey(name: 'duration_minutes')  int durationMinutes,  InfoModel info,  ServicePriceModel price,  List<ServiceDetailsModel> details)  $default,) {final _that = this;
 switch (_that) {
 case _ServiceDocumentModel():
 return $default(_that.id,_that.documentId,_that.durationMinutes,_that.info,_that.price,_that.details);case _:
@@ -224,7 +224,7 @@ return $default(_that.id,_that.documentId,_that.durationMinutes,_that.info,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String documentId, @JsonKey(name: 'duration_minutes')  int durationMinutes,  InfoModel info,  ServicePriceModel price,  List<ServiceDetailsModel> details)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String documentId, @JsonKey(name: 'duration_minutes')  int durationMinutes,  InfoModel info,  ServicePriceModel price,  List<ServiceDetailsModel> details)?  $default,) {final _that = this;
 switch (_that) {
 case _ServiceDocumentModel() when $default != null:
 return $default(_that.id,_that.documentId,_that.durationMinutes,_that.info,_that.price,_that.details);case _:
@@ -242,7 +242,7 @@ class _ServiceDocumentModel implements AddOnServiceModel {
   const _ServiceDocumentModel({required this.id, required this.documentId, @JsonKey(name: 'duration_minutes') required this.durationMinutes, required this.info, required this.price, final  List<ServiceDetailsModel> details = const []}): _details = details;
   factory _ServiceDocumentModel.fromJson(Map<String, dynamic> json) => _$ServiceDocumentModelFromJson(json);
 
-@override final  String id;
+@override final  int id;
 @override final  String documentId;
 @override@JsonKey(name: 'duration_minutes') final  int durationMinutes;
 @override final  InfoModel info;
@@ -288,7 +288,7 @@ abstract mixin class _$ServiceDocumentModelCopyWith<$Res> implements $AddOnServi
   factory _$ServiceDocumentModelCopyWith(_ServiceDocumentModel value, $Res Function(_ServiceDocumentModel) _then) = __$ServiceDocumentModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String documentId,@JsonKey(name: 'duration_minutes') int durationMinutes, InfoModel info, ServicePriceModel price, List<ServiceDetailsModel> details
+ int id, String documentId,@JsonKey(name: 'duration_minutes') int durationMinutes, InfoModel info, ServicePriceModel price, List<ServiceDetailsModel> details
 });
 
 
@@ -308,7 +308,7 @@ class __$ServiceDocumentModelCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? documentId = null,Object? durationMinutes = null,Object? info = null,Object? price = null,Object? details = null,}) {
   return _then(_ServiceDocumentModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
+as int,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
 as String,durationMinutes: null == durationMinutes ? _self.durationMinutes : durationMinutes // ignore: cast_nullable_to_non_nullable
 as int,info: null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
 as InfoModel,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable

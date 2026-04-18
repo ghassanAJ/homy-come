@@ -7,7 +7,7 @@ part 'service_detail_item_model.g.dart';
 @freezed
 abstract class ServiceDetailsModel with _$ServiceDetailsModel {
   const factory ServiceDetailsModel({
-    String? id,
+    int? id,
     String? title,
     @Default([]) List<DetailPointModel> points,
   }) = _ServiceDetailItemModel;

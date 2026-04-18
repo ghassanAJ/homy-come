@@ -5,6 +5,7 @@ import 'package:util/util.dart';
 @Injectable(as: BookingRepository, env: ['mock'])
 class MockBookingRepository implements BookingRepository {
   bool failNextGetServiceDetails = false;
+  bool failNextCreateBooking = false;
 
   @override
   Future<Result<ServiceDetailsResponseModel, APIException>> getServiceDetails(
@@ -17,6 +18,35 @@ class MockBookingRepository implements BookingRepository {
 
     await Future.delayed(const Duration(milliseconds: 500));
     return success(_mockServiceDetails);
+  }
+
+  @override
+  Future<Result<CreateBookingResponseModel, APIException>> createBooking(
+    CreateBookingRequestModel request,
+  ) async {
+    if (failNextCreateBooking) {
+      failNextCreateBooking = false;
+      return failure(APIException.error('Mock createBooking failure'));
+    }
+
+    await Future.delayed(const Duration(milliseconds: 500));
+    return success(
+      CreateBookingResponseModel(
+        scheduledAt: request.scheduledAt,
+        durationMinutes: request.durationMinutes,
+        finalPrice: request.finalPrice,
+        commissionAmount: request.commissionAmount,
+        providerEarning: request.providerEarning,
+        status: 'draft',
+        service: request.service,
+        addOns: request.addOns,
+        customer: request.customer,
+        address: request.address,
+        providers: request.providers,
+        needCleaningMaterials: request.needCleaningMaterials,
+        specificInstructions: request.specificInstructions,
+      ),
+    );
   }
 }
 
@@ -42,11 +72,22 @@ AddOnServiceModel _service({
   required double newPrice,
   int durationMinutes = 60,
 }) => AddOnServiceModel(
-  id: id,
+  id: int.tryParse(id) ?? 0,
   documentId: id,
   durationMinutes: durationMinutes,
-  info: InfoModel(id: id, name: name, image: image),
-  price: ServicePriceModel(currentPrice: currentPrice, newPrice: newPrice),
+  info: InfoModel(
+    id: int.parse(id),
+    name: name,
+    image: image,
+    description:
+        'Reliable Door lock installation & repair for improved home safety & function ',
+  ),
+  price: ServicePriceModel(
+    currentPrice: currentPrice,
+    newPrice: newPrice,
+    currency: 'AED',
+    id: int.parse(id),
+  ),
 );
 
 // ---------------------------------------------------------------------------
@@ -54,48 +95,50 @@ AddOnServiceModel _service({
 // ---------------------------------------------------------------------------
 final ServiceDetailsResponseModel _mockServiceDetails =
     ServiceDetailsResponseModel(
-      id: 'home-deep-cleaning',
+      id: int.parse('1'),
       rating: 5,
       reviewsCount: 331,
       info: InfoModel(
-        id: 'home-deep-cleaning',
+        id: 2,
         name: 'Home Deep Cleaning',
         description:
             'Professional deep cleaning for every corner of your home.',
         image: _imgDeepCleaning,
       ),
       price: ServicePriceModel(
+        id: 1,
         currentPrice: 89,
         newPrice: 120,
         currency: 'USD',
       ),
-      categories: [
+      addonCategories: [
         // ── 1. Standard Cleaning ───────────────────────────────────────────
         AddOnCategoryModel(
-          id: 'cat-1',
+          id: 1,
           documentId: 'cat-1',
           info: const InfoModel(
-            id: 'cat-1',
+            id: 1,
             name: 'Standard Cleaning',
             description: 'Everyday essentials to keep your home fresh.',
           ),
           services: [
             _service(
-              id: 's-1-1',
+              id: '1',
               name: 'Living Room Clean',
+
               image: _imgHomeCleaning,
               currentPrice: 25,
               newPrice: 35,
             ),
             _service(
-              id: 's-1-2',
+              id: '2',
               name: 'Bedroom Clean',
               image: _imgHomeCleaning,
               currentPrice: 20,
               newPrice: 28,
             ),
             _service(
-              id: 's-1-3',
+              id: '3',
               name: 'Bathroom Scrub',
               image: _imgDeepCleaning,
               currentPrice: 18,
@@ -107,16 +150,16 @@ final ServiceDetailsResponseModel _mockServiceDetails =
 
         // ── 2. Kitchen Cleaning ────────────────────────────────────────────
         AddOnCategoryModel(
-          id: 'cat-2',
-          documentId: 'cat-2',
+          id: 2,
+          documentId: '2',
           info: const InfoModel(
-            id: 'cat-2',
+            id: 2,
             name: 'Kitchen Cleaning',
             description: 'Degreasing, cabinet wipe-down, and appliance clean.',
           ),
           services: [
             _service(
-              id: 's-2-1',
+              id: '4',
               name: 'Full Kitchen Clean',
               image: _imgKitchenCleaning,
               currentPrice: 45,
@@ -124,7 +167,7 @@ final ServiceDetailsResponseModel _mockServiceDetails =
               durationMinutes: 90,
             ),
             _service(
-              id: 's-2-2',
+              id: '5',
               name: 'Oven & Hob Deep Clean',
               image: _imgKitchenCleaning,
               currentPrice: 30,
@@ -132,7 +175,7 @@ final ServiceDetailsResponseModel _mockServiceDetails =
               durationMinutes: 75,
             ),
             _service(
-              id: 's-2-3',
+              id: '6',
               name: 'Refrigerator Clean',
               image: _imgKitchenCleaning,
               currentPrice: 20,
@@ -140,7 +183,7 @@ final ServiceDetailsResponseModel _mockServiceDetails =
               durationMinutes: 45,
             ),
             _service(
-              id: 's-2-4',
+              id: '7',
               name: 'Cabinet & Pantry Wipe',
               image: _imgKitchenCleaning,
               currentPrice: 15,
@@ -152,16 +195,16 @@ final ServiceDetailsResponseModel _mockServiceDetails =
 
         // ── 3. Furniture Cleaning ──────────────────────────────────────────
         AddOnCategoryModel(
-          id: 'cat-3',
-          documentId: 'cat-3',
+          id: 3,
+          documentId: '3',
           info: const InfoModel(
-            id: 'cat-3',
+            id: 3,
             name: 'Furniture Cleaning',
             description: 'Sofa, mattress, and upholstery deep treatment.',
           ),
           services: [
             _service(
-              id: 's-3-1',
+              id: '8',
               name: 'Sofa Steam Clean',
               image: _imgFurnitureCleaning,
               currentPrice: 55,
@@ -169,7 +212,7 @@ final ServiceDetailsResponseModel _mockServiceDetails =
               durationMinutes: 120,
             ),
             _service(
-              id: 's-3-2',
+              id: '9',
               name: 'Mattress Sanitisation',
               image: _imgFurnitureCleaning,
               currentPrice: 40,
@@ -177,7 +220,7 @@ final ServiceDetailsResponseModel _mockServiceDetails =
               durationMinutes: 90,
             ),
             _service(
-              id: 's-3-3',
+              id: '10',
               name: 'Chair & Ottoman Clean',
               image: _imgFurnitureCleaning,
               currentPrice: 25,
@@ -189,16 +232,16 @@ final ServiceDetailsResponseModel _mockServiceDetails =
 
         // ── 4. Window & Glass ──────────────────────────────────────────────
         AddOnCategoryModel(
-          id: 'cat-4',
-          documentId: 'cat-4',
+          id: 4,
+          documentId: '4',
           info: const InfoModel(
-            id: 'cat-4',
+            id: 4,
             name: 'Window & Glass',
             description: 'Streak-free interior and exterior window cleaning.',
           ),
           services: [
             _service(
-              id: 's-4-1',
+              id: '11',
               name: 'Interior Windows (per room)',
               image: _imgHomeCleaning,
               currentPrice: 12,
@@ -206,7 +249,7 @@ final ServiceDetailsResponseModel _mockServiceDetails =
               durationMinutes: 30,
             ),
             _service(
-              id: 's-4-2',
+              id: '12',
               name: 'Exterior Windows',
               image: _imgHomeCleaning,
               currentPrice: 20,
@@ -214,7 +257,7 @@ final ServiceDetailsResponseModel _mockServiceDetails =
               durationMinutes: 45,
             ),
             _service(
-              id: 's-4-3',
+              id: '13',
               name: 'Glass Doors & Mirrors',
               image: _imgHomeCleaning,
               currentPrice: 10,
@@ -226,16 +269,16 @@ final ServiceDetailsResponseModel _mockServiceDetails =
 
         // ── 5. Plumbing Add-ons ────────────────────────────────────────────
         AddOnCategoryModel(
-          id: 'cat-5',
-          documentId: 'cat-5',
+          id: 5,
+          documentId: '5',
           info: const InfoModel(
-            id: 'cat-5',
+            id: 5,
             name: 'Plumbing Add-ons',
             description: 'Drain unclogging and fixture maintenance.',
           ),
           services: [
             _service(
-              id: 's-5-1',
+              id: '14',
               name: 'Drain Unclogging',
               image: _imgPlumber,
               currentPrice: 35,
@@ -243,7 +286,7 @@ final ServiceDetailsResponseModel _mockServiceDetails =
               durationMinutes: 45,
             ),
             _service(
-              id: 's-5-2',
+              id: '15',
               name: 'Tap & Faucet Service',
               image: _imgPlumber,
               currentPrice: 25,

@@ -22,7 +22,7 @@ ServiceDetailsModel _$ServiceDetailsModelFromJson(
 /// @nodoc
 mixin _$ServiceDetailsModel {
 
- String? get id; String? get title; List<DetailPointModel> get points;
+ int? get id; String? get title; List<DetailPointModel> get points;
 /// Create a copy of ServiceDetailsModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -55,7 +55,7 @@ abstract mixin class $ServiceDetailsModelCopyWith<$Res>  {
   factory $ServiceDetailsModelCopyWith(ServiceDetailsModel value, $Res Function(ServiceDetailsModel) _then) = _$ServiceDetailsModelCopyWithImpl;
 @useResult
 $Res call({
- String? id, String? title, List<DetailPointModel> points
+ int? id, String? title, List<DetailPointModel> points
 });
 
 
@@ -75,7 +75,7 @@ class _$ServiceDetailsModelCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? title = freezed,Object? points = null,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as int?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String?,points: null == points ? _self.points : points // ignore: cast_nullable_to_non_nullable
 as List<DetailPointModel>,
   ));
@@ -162,7 +162,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String? title,  List<DetailPointModel> points)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? title,  List<DetailPointModel> points)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ServiceDetailItemModel() when $default != null:
 return $default(_that.id,_that.title,_that.points);case _:
@@ -183,7 +183,7 @@ return $default(_that.id,_that.title,_that.points);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String? title,  List<DetailPointModel> points)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? title,  List<DetailPointModel> points)  $default,) {final _that = this;
 switch (_that) {
 case _ServiceDetailItemModel():
 return $default(_that.id,_that.title,_that.points);case _:
@@ -203,7 +203,7 @@ return $default(_that.id,_that.title,_that.points);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String? title,  List<DetailPointModel> points)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? title,  List<DetailPointModel> points)?  $default,) {final _that = this;
 switch (_that) {
 case _ServiceDetailItemModel() when $default != null:
 return $default(_that.id,_that.title,_that.points);case _:
@@ -221,7 +221,7 @@ class _ServiceDetailItemModel implements ServiceDetailsModel {
   const _ServiceDetailItemModel({this.id, this.title, final  List<DetailPointModel> points = const []}): _points = points;
   factory _ServiceDetailItemModel.fromJson(Map<String, dynamic> json) => _$ServiceDetailItemModelFromJson(json);
 
-@override final  String? id;
+@override final  int? id;
 @override final  String? title;
  final  List<DetailPointModel> _points;
 @override@JsonKey() List<DetailPointModel> get points {
@@ -264,7 +264,7 @@ abstract mixin class _$ServiceDetailItemModelCopyWith<$Res> implements $ServiceD
   factory _$ServiceDetailItemModelCopyWith(_ServiceDetailItemModel value, $Res Function(_ServiceDetailItemModel) _then) = __$ServiceDetailItemModelCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String? title, List<DetailPointModel> points
+ int? id, String? title, List<DetailPointModel> points
 });
 
 
@@ -284,7 +284,7 @@ class __$ServiceDetailItemModelCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? title = freezed,Object? points = null,}) {
   return _then(_ServiceDetailItemModel(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as int?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String?,points: null == points ? _self._points : points // ignore: cast_nullable_to_non_nullable
 as List<DetailPointModel>,
   ));

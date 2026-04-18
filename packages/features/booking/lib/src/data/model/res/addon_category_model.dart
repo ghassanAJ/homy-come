@@ -7,9 +7,9 @@ part 'addon_category_model.g.dart';
 @freezed
 abstract class AddOnCategoryModel with _$AddOnCategoryModel {
   const factory AddOnCategoryModel({
-    required String id,
+    required int id,
     required String documentId,
-    @Default([]) List<AddOnServiceModel> services,
+    @JsonKey(name: 'add_on') @Default([]) List<AddOnServiceModel> services,
     InfoModel? info,
   }) = _AddOnCategoryModel;
 

@@ -1,17 +1,20 @@
+import 'dart:developer';
+
 import 'package:booking/booking.dart';
+import 'package:booking/src/presentation/screens/base_booking_step.dart';
 import 'package:booking/src/presentation/screens/example_data.dart';
 import 'package:booking/src/presentation/widgets/service_option_card.dart';
 import 'package:booking/src/presentation/widgets/service_widgets/widgets.dart';
+import 'package:booking/src/presentation/widgets/step_navigation_bar.dart';
 import 'package:rect_getter/rect_getter.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-import 'package:user/features/home/presentation/bloc/home_bloc.dart';
-import 'package:user/features/home/presentation/bloc/home_bloc_event.dart';
-import 'package:user/features/home/presentation/bloc/home_bloc_state.dart';
 import 'package:user/features/home/presentation/screens/services_screen.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
   const ServiceDetailsScreen({required this.serviceId, super.key});
-  final int serviceId;
+
+  final String serviceId;
+
   @override
   _ServiceDetailsScreenState createState() => _ServiceDetailsScreenState();
 }
@@ -25,26 +28,20 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
   final double expandedHeight = 290.0;
   final double collapsedHeight = kToolbarHeight;
 
-  // final PageData data = ExampleData.data;
-
   final listViewKey = RectGetter.createGlobalKey();
   Map<int, dynamic> itemKeys = {};
 
-  // prevent animate when press on tab bar
   bool pauseRectGetterIndex = false;
-
   bool isTabControllerInitialized = false;
 
   @override
   void initState() {
+    super.initState();
     scrollController = AutoScrollController();
     tabController = TabController(length: 0, vsync: this);
-    context.read<HomeBloc>().add(
-      LoadServiceDetailsEvent(
-        GetServiceDetailsRequestModel(serviceId: widget.serviceId.toString()),
-      ),
+    context.read<BookingWizardBloc>().add(
+      LoadServiceDetails(serviceId: widget.serviceId),
     );
-    super.initState();
   }
 
   void _initializeTabController(int length) {
@@ -59,31 +56,91 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: UIColor.background,
-      body: BlocBuilder<HomeBloc, HomeBlocState>(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: BlocBuilder<BookingWizardBloc, BookingWizardState>(
+        // buildWhen:
+        //     (prev, curr) =>
+        //         prev.serviceDetailsLoading != curr.serviceDetailsLoading ||
+        //         prev.serviceDetails != curr.serviceDetails,
+        builder: (context, state) {
+          log('selectedAddOnIds: ${state.selectedAddOns}');
+          if (state.serviceDetailsLoading ||
+              state.serviceDetails == null ||
+              state.selectedAddOns.isEmpty) {
+            return const SizedBox.shrink();
+          }
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: StepNavigationBar(
+              next: () {
+                context.read<BookingWizardBloc>().add(const ProceedToStep1());
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder:
+                        (_) => BlocProvider.value(
+                          value: context.read<BookingWizardBloc>(),
+                          child: const BaseBookingStep(), //TODO
+                        ),
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      ),
+      body: BlocConsumer<BookingWizardBloc, BookingWizardState>(
+        listenWhen:
+            (prev, curr) =>
+                curr.currentStep == BookingWizardStep.hoursStep &&
+                prev.currentStep != BookingWizardStep.hoursStep,
+        listener: (context, state) {
+          // Navigator.of(context).push(
+          //   MaterialPageRoute<void>(
+          //     builder:
+          //         (_) => BlocProvider.value(
+          //           value: context.read<BookingWizardBloc>(),
+          //           child: const ServiceDetailsScreenStep1(),
+          //         ),
+          //   ),
+          // );
+        },
+        // buildWhen:
+        //     (prev, curr) =>
+        //         curr.serviceDetailsLoading != prev.serviceDetailsLoading ||
+        //         curr.serviceDetails != prev.serviceDetails ||
+        //         curr.serviceDetailsError != prev.serviceDetailsError ||
+        //         curr.selectedAddOnIds != prev.selectedAddOnIds,
         builder: (context, state) {
           if (state.serviceDetailsLoading) {
             return const ServiceDetailsScreenShimmar();
           }
-          if (state.error != null) {
-            return Center(child: Text(state.error?.message ?? ''));
+
+          if (state.serviceDetailsError != null) {
+            return Center(
+              child: Text(state.serviceDetailsError?.message ?? ''),
+            );
           }
 
           _initializeTabController(
-            state.serviceDetails?.categories
-                    .where((category) => category.services.isNotEmpty)
+            state.serviceDetails?.addonCategories
+                    .where((c) => c.services.isNotEmpty)
                     .length ??
                 0,
           );
 
           final data = state.serviceDetails;
-          return data != null && isTabControllerInitialized
+          return data != null
               ? RectGetter(
                 key: listViewKey,
                 child: NotificationListener<ScrollNotification>(
                   onNotification: onScrollNotification,
                   child: CustomScrollView(
                     controller: scrollController,
-                    slivers: [buildAppBar(data), buildBody(data)],
+                    slivers: [
+                      buildAppBar(data),
+                      buildBody(data, state),
+                      SliverToBoxAdapter(child: SizedBox(height: 180)),
+                    ],
                   ),
                 ),
               )
@@ -97,7 +154,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
     return ServiceDetailsAppBar(
       info: data.info,
       categories:
-          data.categories
+          data.addonCategories
               .where((category) => category.services.isNotEmpty)
               .toList(),
       scrollController: scrollController,
@@ -106,29 +163,37 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
       isCollapsed: isCollapsed,
       onCollapsed: onCollapsed,
       tabController: tabController,
-      onTap: (index) => animateAndScrollTo(index),
-      rating: data.rating,
-      reviewsCount: data.reviewsCount,
+      onTap: animateAndScrollTo,
+      rating: data.rating ?? 0,
+      reviewsCount: data.reviewsCount ?? 0,
     );
   }
 
-  SliverList buildBody(ServiceDetailsResponseModel data1) {
+  SliverList buildBody(
+    ServiceDetailsResponseModel data,
+    BookingWizardState state,
+  ) {
     final filteredCategories =
-        data1.categories.where((c) => c.services.isNotEmpty).toList();
+        data.addonCategories.where((c) => c.services.isNotEmpty).toList();
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (context, index) => buildCategoryItem(index, filteredCategories[index]),
+        (context, index) =>
+            buildCategoryItem(index, filteredCategories[index], state),
         childCount: filteredCategories.length,
       ),
     );
   }
 
-  Widget buildCategoryItem(int index, AddOnCategoryModel category1) {
+  Widget buildCategoryItem(
+    int index,
+    AddOnCategoryModel category,
+    BookingWizardState state,
+  ) {
     itemKeys[index] = RectGetter.createGlobalKey();
-    CategorySectionData<AddOnServiceModel> category = CategorySectionData(
-      title: category1.info?.name ?? '',
-      subtitle: category1.info?.description ?? '',
-      items: category1.services,
+    final categoryData = CategorySectionData<AddOnServiceModel>(
+      title: category.info?.name ?? '',
+      subtitle: category.info?.description ?? '',
+      items: category.services,
     );
     return RectGetter(
       key: itemKeys[index],
@@ -137,10 +202,18 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
         index: index,
         controller: scrollController,
         child: CategorySection<AddOnServiceModel>(
-          category: category,
+          category: categoryData,
           itemBuilder:
-              (context, item, index) =>
-                  AddOnCard(data: item, onAddButtonPressed: () {}),
+              (context, item, index) => AddOnCard(
+                data: item,
+                selected: state.selectedAddOns.contains(item),
+                onAddButtonPressed: () {
+                  log(item.id.toString());
+                  context.read<BookingWizardBloc>().add(
+                    ToggleAddOnFromServiceDetails(addOnId: item),
+                  );
+                },
+              ),
         ),
       ),
     );
@@ -181,6 +254,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
         visibleItems.isNotEmpty &&
         visibleItems.length <= 2 &&
         visibleItems.last == lastTabIndex;
+
     if (reachLastTabIndex) {
       tabController.animateTo(lastTabIndex);
     } else if (visibleItems.isNotEmpty) {
@@ -198,6 +272,6 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
     tabController.animateTo(index);
     scrollController
         .scrollToIndex(index, preferPosition: AutoScrollPosition.begin)
-        .then((value) => pauseRectGetterIndex = false);
+        .then((_) => pauseRectGetterIndex = false);
   }
 }

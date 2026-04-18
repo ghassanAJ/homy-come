@@ -9,13 +9,13 @@ part of 'service_details_response_model.dart';
 _ServiceDetailsResponseModel _$ServiceDetailsResponseModelFromJson(
   Map<String, dynamic> json,
 ) => _ServiceDetailsResponseModel(
-  id: json['id'] as String,
-  rating: (json['rating'] as num).toInt(),
-  reviewsCount: (json['reviews_count'] as num).toInt(),
+  id: (json['id'] as num).toInt(),
+  rating: (json['rating'] as num?)?.toInt(),
+  reviewsCount: (json['reviews_count'] as num?)?.toInt(),
   info: InfoModel.fromJson(json['info'] as Map<String, dynamic>),
   price: ServicePriceModel.fromJson(json['price'] as Map<String, dynamic>),
-  categories:
-      (json['categories'] as List<dynamic>?)
+  addonCategories:
+      (json['add_on_categories'] as List<dynamic>?)
           ?.map((e) => AddOnCategoryModel.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
@@ -29,23 +29,31 @@ Map<String, dynamic> _$ServiceDetailsResponseModelToJson(
   'reviews_count': instance.reviewsCount,
   'info': instance.info,
   'price': instance.price,
-  'categories': instance.categories,
+  'add_on_categories': instance.addonCategories,
 };
 
 _ServicePreviewResponseModel _$ServicePreviewResponseModelFromJson(
   Map<String, dynamic> json,
 ) => _ServicePreviewResponseModel(
-  id: json['id'] as String,
-  info: InfoModel.fromJson(json['info'] as Map<String, dynamic>),
-  priceModel: ServicePriceModel.fromJson(json['price'] as Map<String, dynamic>),
-  rating: (json['rating'] as num).toInt(),
-  reviewsCount: (json['reviews_count'] as num).toInt(),
+  id: (json['id'] as num).toInt(),
+  documentId: json['documentId'] as String,
+  info:
+      json['info'] == null
+          ? null
+          : InfoModel.fromJson(json['info'] as Map<String, dynamic>),
+  priceModel:
+      json['price'] == null
+          ? null
+          : ServicePriceModel.fromJson(json['price'] as Map<String, dynamic>),
+  rating: (json['rating'] as num?)?.toInt(),
+  reviewsCount: (json['reviews_count'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$ServicePreviewResponseModelToJson(
   _ServicePreviewResponseModel instance,
 ) => <String, dynamic>{
   'id': instance.id,
+  'documentId': instance.documentId,
   'info': instance.info,
   'price': instance.priceModel,
   'rating': instance.rating,

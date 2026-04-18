@@ -9,7 +9,7 @@ part of 'service_detail_item_model.dart';
 _ServiceDetailItemModel _$ServiceDetailItemModelFromJson(
   Map<String, dynamic> json,
 ) => _ServiceDetailItemModel(
-  id: json['id'] as String?,
+  id: (json['id'] as num?)?.toInt(),
   title: json['title'] as String?,
   points:
       (json['points'] as List<dynamic>?)

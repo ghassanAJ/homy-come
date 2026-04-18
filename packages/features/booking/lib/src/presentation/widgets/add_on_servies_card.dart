@@ -42,12 +42,12 @@ class AddonServiceCard extends StatelessWidget {
                 //  TODO : Use UINetworkImage
                 width: double.infinity,
                 color: UIColor.neutral100,
-                child: Image.network(
-                  'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
-                  fit: BoxFit.cover,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    return Center(child: SizedBox());
-                  },
+                child: UINetworkImage(
+                  imageUrl:
+                      //      'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
+                      'https://i.ibb.co/vCPn6j6p/Home-Cleaning.jpg',
+                  fit: BoxFit.contain,
+                  // placeholder: (context, url) => Center(child: SizedBox()),
                 ),
               ),
             ),

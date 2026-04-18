@@ -8,10 +8,10 @@ part of 'service_price_model.dart';
 
 _ServicePriceModel _$ServicePriceModelFromJson(Map<String, dynamic> json) =>
     _ServicePriceModel(
-      id: json['id'] as String?,
+      id: (json['id'] as num).toInt(),
       currentPrice: json['current_price'] as num?,
       newPrice: json['new_price'] as num?,
-      currency: json['currency'] as String?,
+      currency: json['currency'] as String,
     );
 
 Map<String, dynamic> _$ServicePriceModelToJson(_ServicePriceModel instance) =>

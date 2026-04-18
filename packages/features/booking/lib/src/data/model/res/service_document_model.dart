@@ -9,7 +9,7 @@ part 'service_document_model.g.dart';
 @freezed
 abstract class AddOnServiceModel with _$AddOnServiceModel {
   const factory AddOnServiceModel({
-    required String id,
+    required int id,
     required String documentId,
     @JsonKey(name: 'duration_minutes') required int durationMinutes,
     required InfoModel info,

@@ -5,11 +5,12 @@ class AddOnCard extends StatelessWidget {
     super.key,
     required this.data,
     required this.onAddButtonPressed,
+    this.selected = false,
   });
 
   final AddOnServiceModel data;
-
   final VoidCallback onAddButtonPressed;
+  final bool selected;
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
@@ -46,7 +47,7 @@ class AddOnCard extends StatelessWidget {
                   ),
                   SizedBox(height: UI.spacing.xxs),
                   UIText.caption(
-                    data.durationMinutes.toString() ?? '',
+                    '${data.durationMinutes.toString() ?? ''} min',
                     color: UIColor.textSecondary,
                   ),
                   SizedBox(height: UI.spacing.xxs),
@@ -62,17 +63,18 @@ class AddOnCard extends StatelessWidget {
                       UIPriceText(
                         isOldPrice: true,
                         text: UIText.bodySmallBold(
-                          data.price.currentPrice.toString() ?? '',
-                          color: UIColor.textGray,
-                        ),
-                      ),
-                      SizedBox(width: UI.spacing.xxs),
-                      UIPriceText(
-                        text: UIText.bodySmallBold(
                           data.price.newPrice.toString() ?? '',
-                          color: UIColor.black,
+                          // color: UIColor.textGray,
                         ),
+                        oldPrice: data.price.newPrice.toString() ?? '',
                       ),
+                      // SizedBox(width: UI.spacing.xxs),
+                      // UIPriceText(
+                      //   text: UIText.bodySmallBold(
+                      //     data.price.currentPrice.toString() ?? '',
+                      //     color: UIColor.black,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ],
@@ -88,12 +90,12 @@ class AddOnCard extends StatelessWidget {
                 icon: Container(
                   padding: EdgeInsets.all(UI.spacing.xs),
                   decoration: BoxDecoration(
-                    color: UIColor.babyBlue,
+                    color: selected ? UIColor.softGreen : UIColor.babyBlue,
                     borderRadius: BorderRadius.circular(UI.radius.lg),
                   ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: UI.spacing.xs),
-                    child: UIText.bodySmall('Add'),
+                    child: UIText.bodySmall(selected ? 'Added' : 'Add'),
                   ),
                 ),
               ),
