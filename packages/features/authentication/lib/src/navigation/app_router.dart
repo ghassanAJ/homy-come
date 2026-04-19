@@ -4,11 +4,10 @@ import 'package:driver/navigation/driver_app_route_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homy_provider/navigation/provider_app_route_config.dart';
-import 'package:homy_provider/navigation/route.dart';
 import 'package:injectable/injectable.dart';
 import 'package:orders/orders.dart';
-import 'package:user/navigation/user_app_route_config.dart';
 import 'package:profile/src/navigation/router.dart';
+import 'package:user/navigation/user_app_route_config.dart';
 
 @lazySingleton
 class AppRouter {
@@ -51,7 +50,7 @@ class AppRouter {
         ...routes,
         ...ProfileRoute.routes,
         ...OrderRoute.routes,
-        ...ProviderRoute.routes,
+        // ...ProviderRoute.routes,
       ],
     );
   }

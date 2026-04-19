@@ -24,6 +24,22 @@ void initializeDependencies(String env) {
 }
 
 void _configureAuthInterceptor() {
-  // authInterceptor.onSessionExpired = () { ... };
-  // authInterceptor.tokenRefreshCallback = (refreshToken) async { ... };
+  final authInterceptor = diContainer.get<AuthInterceptor>();
+  final authUserBloc = diContainer.get<AuthUserBloc>();
+  final authRepository = diContainer.get<AuthRepository>();
+
+  authInterceptor.onSessionExpired = () {
+    authUserBloc.add(SessionExpired());
+  };
+
+  authInterceptor.tokenRefreshCallback = (refreshToken) async {
+    final result = await authRepository.refreshToken(refreshToken);
+    return result.fold(
+      (tokenModel) => (
+        accessToken: tokenModel.accessToken,
+        refreshToken: tokenModel.refreshToken,
+      ),
+      (_) => null,
+    );
+  };
 }

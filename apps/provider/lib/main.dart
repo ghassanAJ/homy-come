@@ -9,6 +9,7 @@ void main() async {
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+      await UIDesignSystemInitializer.initialize();
 
       final env = const String.fromEnvironment('ENV', defaultValue: 'mock');
 
