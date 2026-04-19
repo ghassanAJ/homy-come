@@ -12,8 +12,9 @@ class UIScaffold extends StatelessWidget {
     this.withBackgroundGradient = true,
     this.bottomNavigationBar,
     this.floatingActionButton,
+    this.withBackButton = true,
   });
-
+  final bool withBackButton;
   final PreferredSizeWidget? appBar;
   final Widget body;
   final bool extendBodyBehindAppBar;
@@ -26,6 +27,8 @@ class UIScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final topContentPadding =
+        MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
     return Scaffold(
       appBar:
           appBarTitle != null && appBar == null
@@ -36,11 +39,22 @@ class UIScaffold extends StatelessWidget {
               : appBar,
       body:
           withBackgroundGradient
-              ? Stack(children: [const UIBackground(), body])
+              ? Stack(
+                children: [
+                  const UIBackground(),
+                  Padding(
+                    padding: EdgeInsets.only(top: topContentPadding - 20),
+                    child: body,
+                  ),
+                ],
+              )
               : body,
       backgroundColor: UIColor.background,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       extendBody: extendBody,
+      bottomNavigationBar: bottomNavigationBar,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: floatingActionButton,
     );
   }
 }

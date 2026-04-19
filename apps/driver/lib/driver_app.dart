@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:util/util.dart';
 
+const UserRole userRole = UserRole.driver;
+
 class DriverApp extends StatelessWidget {
   const DriverApp({super.key});
 
@@ -56,7 +58,13 @@ class AppProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(value: diContainer.get<AppCubit>()),
-        BlocProvider.value(value: diContainer.get<AuthUserBloc>()),
+        BlocProvider.value(
+          value: AuthUserBloc(
+            diContainer.get<AuthRepository>(),
+            diContainer.get<SessionRepository>(),
+            userRole: userRole,
+          ),
+        ),
       ],
       child: child,
     );

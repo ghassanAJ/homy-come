@@ -54,7 +54,8 @@ class ProfileSettingWidget extends StatelessWidget {
           ),
           ProfileSettingOptionWidget(
             title: context.profileTranslation.termsAndPrivacy.privacyPolicy,
-            descreption: context.profileTranslation.termsAndPrivacy.privacyPolicy,
+            descreption:
+                context.profileTranslation.termsAndPrivacy.privacyPolicy,
             imgUrl: Assets.icons.shieldDone,
             onTap: () {
               // log('pressed on FAQ button');

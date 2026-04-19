@@ -1,34 +1,33 @@
-
-
 import 'package:design_system/design_system.dart';
 import 'package:orders/src/localization/order_localization_scope.dart';
 
 class OrderAppBar extends StatelessWidget {
-  const OrderAppBar({super.key});
-
+  const OrderAppBar({super.key, required this.scrollController});
+  final TabController scrollController;
   @override
   Widget build(BuildContext context) {
     return UISliverAppBar(
+      // toolbarHeight: 10,
+      floating: true,
+      snap: false,
       pinned: true,
+
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(1),
-        child: Padding(
-          padding: EdgeInsets.only(left: UI.spacing.xl, top: UI.spacing.md),
-          child: Column(children: [Divider(height: 4, color: UIColor.divider)]),
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: UIFilterTabBar(
+          tabs: [
+            FilterTabContent(text: 'in progress', iconPath: ''),
+            FilterTabContent(text: 'scheduled', iconPath: ''),
+            FilterTabContent(text: 'completed', iconPath: ''),
+          ],
+          package: 'my order',
+          tabController: scrollController,
         ),
       ),
       variant: UISliverAppBarVariant.transparent,
-      leading: SizedBox(
-        width: 24,
-        height: 24,
-        child: Padding(
-          padding: const EdgeInsets.all(4),
-          child: BackButtonAppBar(),
-        ),
-      ),
+
       centerTitle: true,
       titleWidget: UIText.h4(context.orderTr.title.myOrder),
-
     );
   }
 }

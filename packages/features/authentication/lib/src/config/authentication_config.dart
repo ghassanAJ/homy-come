@@ -20,26 +20,26 @@ abstract class AuthenticationConfig {
   // Auth methods per user role
   static List<AuthMethod> allowedMethodsFor(UserRole role) {
     switch (role) {
-      case UserRole.child:
+      case UserRole.user:
         return [AuthMethod.pin, AuthMethod.email, AuthMethod.phone];
-      case UserRole.parent:
+      case UserRole.driver:
         return [AuthMethod.email, AuthMethod.phone];
-      case UserRole.guest:
+      case UserRole.provider:
         return [];
     }
   }
 
   static List<AuthMethod> socialMethodsFor(UserRole role) {
     switch (role) {
-      case UserRole.parent:
+      case UserRole.user:
         return [AuthMethod.google, AuthMethod.apple];
-      case UserRole.child:
-      case UserRole.guest:
+      case UserRole.driver:
+      case UserRole.provider:
         return [];
     }
   }
 
   static AuthMethod defaultMethodFor(UserRole role) {
-    return role.isChild ? AuthMethod.pin : AuthMethod.email;
+    return role.isUser ? AuthMethod.pin : AuthMethod.email;
   }
 }

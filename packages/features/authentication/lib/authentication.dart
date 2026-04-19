@@ -19,6 +19,7 @@ export 'src/data/model/res/otp_response_model.dart';
 export 'src/data/model/res/parent_user.dart';
 export 'src/data/model/res/register_response_model.dart';
 export 'src/data/model/res/token_model.dart';
+export 'src/data/model/res/verified_user_model.dart';
 export 'src/data/model/res/user_model.dart';
 export 'src/data/model/res/user_model_base.dart';
 export 'src/data/model/res/user_type.dart';

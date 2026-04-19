@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SendOTPRequestModel {
 
- String? get phone; String? get email;@JsonKey(name: 'device_id') String get deviceId;
+ String? get phone; String? get email;@JsonKey(name: 'role_type') UserRole? get role;@JsonKey(name: 'device_id') String get deviceId;
 /// Create a copy of SendOTPRequestModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SendOTPRequestModelCopyWith<SendOTPRequestModel> get copyWith => _$SendOTPReque
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SendOTPRequestModel&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SendOTPRequestModel&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.role, role) || other.role == role)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,phone,email,deviceId);
+int get hashCode => Object.hash(runtimeType,phone,email,role,deviceId);
 
 @override
 String toString() {
-  return 'SendOTPRequestModel(phone: $phone, email: $email, deviceId: $deviceId)';
+  return 'SendOTPRequestModel(phone: $phone, email: $email, role: $role, deviceId: $deviceId)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $SendOTPRequestModelCopyWith<$Res>  {
   factory $SendOTPRequestModelCopyWith(SendOTPRequestModel value, $Res Function(SendOTPRequestModel) _then) = _$SendOTPRequestModelCopyWithImpl;
 @useResult
 $Res call({
- String? phone, String? email,@JsonKey(name: 'device_id') String deviceId
+ String? phone, String? email,@JsonKey(name: 'role_type') UserRole? role,@JsonKey(name: 'device_id') String deviceId
 });
 
 
@@ -65,11 +65,12 @@ class _$SendOTPRequestModelCopyWithImpl<$Res>
 
 /// Create a copy of SendOTPRequestModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? phone = freezed,Object? email = freezed,Object? deviceId = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? phone = freezed,Object? email = freezed,Object? role = freezed,Object? deviceId = null,}) {
   return _then(_self.copyWith(
 phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String?,deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
+as String?,role: freezed == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as UserRole?,deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -152,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? phone,  String? email, @JsonKey(name: 'device_id')  String deviceId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? phone,  String? email, @JsonKey(name: 'role_type')  UserRole? role, @JsonKey(name: 'device_id')  String deviceId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SendOTPRequestModel() when $default != null:
-return $default(_that.phone,_that.email,_that.deviceId);case _:
+return $default(_that.phone,_that.email,_that.role,_that.deviceId);case _:
   return orElse();
 
 }
@@ -173,10 +174,10 @@ return $default(_that.phone,_that.email,_that.deviceId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? phone,  String? email, @JsonKey(name: 'device_id')  String deviceId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? phone,  String? email, @JsonKey(name: 'role_type')  UserRole? role, @JsonKey(name: 'device_id')  String deviceId)  $default,) {final _that = this;
 switch (_that) {
 case _SendOTPRequestModel():
-return $default(_that.phone,_that.email,_that.deviceId);}
+return $default(_that.phone,_that.email,_that.role,_that.deviceId);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -190,10 +191,10 @@ return $default(_that.phone,_that.email,_that.deviceId);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? phone,  String? email, @JsonKey(name: 'device_id')  String deviceId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? phone,  String? email, @JsonKey(name: 'role_type')  UserRole? role, @JsonKey(name: 'device_id')  String deviceId)?  $default,) {final _that = this;
 switch (_that) {
 case _SendOTPRequestModel() when $default != null:
-return $default(_that.phone,_that.email,_that.deviceId);case _:
+return $default(_that.phone,_that.email,_that.role,_that.deviceId);case _:
   return null;
 
 }
@@ -205,11 +206,12 @@ return $default(_that.phone,_that.email,_that.deviceId);case _:
 @JsonSerializable()
 
 class _SendOTPRequestModel implements SendOTPRequestModel {
-  const _SendOTPRequestModel({this.phone, this.email, @JsonKey(name: 'device_id') required this.deviceId});
+  const _SendOTPRequestModel({this.phone, this.email, @JsonKey(name: 'role_type') this.role, @JsonKey(name: 'device_id') required this.deviceId});
   factory _SendOTPRequestModel.fromJson(Map<String, dynamic> json) => _$SendOTPRequestModelFromJson(json);
 
 @override final  String? phone;
 @override final  String? email;
+@override@JsonKey(name: 'role_type') final  UserRole? role;
 @override@JsonKey(name: 'device_id') final  String deviceId;
 
 /// Create a copy of SendOTPRequestModel
@@ -225,16 +227,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SendOTPRequestModel&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SendOTPRequestModel&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.role, role) || other.role == role)&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,phone,email,deviceId);
+int get hashCode => Object.hash(runtimeType,phone,email,role,deviceId);
 
 @override
 String toString() {
-  return 'SendOTPRequestModel(phone: $phone, email: $email, deviceId: $deviceId)';
+  return 'SendOTPRequestModel(phone: $phone, email: $email, role: $role, deviceId: $deviceId)';
 }
 
 
@@ -245,7 +247,7 @@ abstract mixin class _$SendOTPRequestModelCopyWith<$Res> implements $SendOTPRequ
   factory _$SendOTPRequestModelCopyWith(_SendOTPRequestModel value, $Res Function(_SendOTPRequestModel) _then) = __$SendOTPRequestModelCopyWithImpl;
 @override @useResult
 $Res call({
- String? phone, String? email,@JsonKey(name: 'device_id') String deviceId
+ String? phone, String? email,@JsonKey(name: 'role_type') UserRole? role,@JsonKey(name: 'device_id') String deviceId
 });
 
 
@@ -262,11 +264,12 @@ class __$SendOTPRequestModelCopyWithImpl<$Res>
 
 /// Create a copy of SendOTPRequestModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? phone = freezed,Object? email = freezed,Object? deviceId = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? phone = freezed,Object? email = freezed,Object? role = freezed,Object? deviceId = null,}) {
   return _then(_SendOTPRequestModel(
 phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
 as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
-as String?,deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
+as String?,role: freezed == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as UserRole?,deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
@@ -556,7 +559,8 @@ as String?,
 mixin _$UnifiedVerifyOTPRequestModel {
 
  String get id;// Session ID from login response
- String get otp;
+ String get otp;// 6-digit OTP code
+ String get phone;@JsonKey(name: 'role_type') UserRole? get role;
 /// Create a copy of UnifiedVerifyOTPRequestModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -569,16 +573,16 @@ $UnifiedVerifyOTPRequestModelCopyWith<UnifiedVerifyOTPRequestModel> get copyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UnifiedVerifyOTPRequestModel&&(identical(other.id, id) || other.id == id)&&(identical(other.otp, otp) || other.otp == otp));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UnifiedVerifyOTPRequestModel&&(identical(other.id, id) || other.id == id)&&(identical(other.otp, otp) || other.otp == otp)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.role, role) || other.role == role));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,otp);
+int get hashCode => Object.hash(runtimeType,id,otp,phone,role);
 
 @override
 String toString() {
-  return 'UnifiedVerifyOTPRequestModel(id: $id, otp: $otp)';
+  return 'UnifiedVerifyOTPRequestModel(id: $id, otp: $otp, phone: $phone, role: $role)';
 }
 
 
@@ -589,7 +593,7 @@ abstract mixin class $UnifiedVerifyOTPRequestModelCopyWith<$Res>  {
   factory $UnifiedVerifyOTPRequestModelCopyWith(UnifiedVerifyOTPRequestModel value, $Res Function(UnifiedVerifyOTPRequestModel) _then) = _$UnifiedVerifyOTPRequestModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String otp
+ String id, String otp, String phone,@JsonKey(name: 'role_type') UserRole? role
 });
 
 
@@ -606,11 +610,13 @@ class _$UnifiedVerifyOTPRequestModelCopyWithImpl<$Res>
 
 /// Create a copy of UnifiedVerifyOTPRequestModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? otp = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? otp = null,Object? phone = null,Object? role = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,otp: null == otp ? _self.otp : otp // ignore: cast_nullable_to_non_nullable
-as String,
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,role: freezed == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as UserRole?,
   ));
 }
 
@@ -692,10 +698,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String otp)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String otp,  String phone, @JsonKey(name: 'role_type')  UserRole? role)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UnifiedVerifyOTPRequestModel() when $default != null:
-return $default(_that.id,_that.otp);case _:
+return $default(_that.id,_that.otp,_that.phone,_that.role);case _:
   return orElse();
 
 }
@@ -713,10 +719,10 @@ return $default(_that.id,_that.otp);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String otp)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String otp,  String phone, @JsonKey(name: 'role_type')  UserRole? role)  $default,) {final _that = this;
 switch (_that) {
 case _UnifiedVerifyOTPRequestModel():
-return $default(_that.id,_that.otp);}
+return $default(_that.id,_that.otp,_that.phone,_that.role);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -730,10 +736,10 @@ return $default(_that.id,_that.otp);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String otp)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String otp,  String phone, @JsonKey(name: 'role_type')  UserRole? role)?  $default,) {final _that = this;
 switch (_that) {
 case _UnifiedVerifyOTPRequestModel() when $default != null:
-return $default(_that.id,_that.otp);case _:
+return $default(_that.id,_that.otp,_that.phone,_that.role);case _:
   return null;
 
 }
@@ -745,12 +751,15 @@ return $default(_that.id,_that.otp);case _:
 @JsonSerializable()
 
 class _UnifiedVerifyOTPRequestModel implements UnifiedVerifyOTPRequestModel {
-  const _UnifiedVerifyOTPRequestModel({required this.id, required this.otp});
+  const _UnifiedVerifyOTPRequestModel({required this.id, required this.otp, required this.phone, @JsonKey(name: 'role_type') this.role});
   factory _UnifiedVerifyOTPRequestModel.fromJson(Map<String, dynamic> json) => _$UnifiedVerifyOTPRequestModelFromJson(json);
 
 @override final  String id;
 // Session ID from login response
 @override final  String otp;
+// 6-digit OTP code
+@override final  String phone;
+@override@JsonKey(name: 'role_type') final  UserRole? role;
 
 /// Create a copy of UnifiedVerifyOTPRequestModel
 /// with the given fields replaced by the non-null parameter values.
@@ -765,16 +774,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UnifiedVerifyOTPRequestModel&&(identical(other.id, id) || other.id == id)&&(identical(other.otp, otp) || other.otp == otp));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UnifiedVerifyOTPRequestModel&&(identical(other.id, id) || other.id == id)&&(identical(other.otp, otp) || other.otp == otp)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.role, role) || other.role == role));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,otp);
+int get hashCode => Object.hash(runtimeType,id,otp,phone,role);
 
 @override
 String toString() {
-  return 'UnifiedVerifyOTPRequestModel(id: $id, otp: $otp)';
+  return 'UnifiedVerifyOTPRequestModel(id: $id, otp: $otp, phone: $phone, role: $role)';
 }
 
 
@@ -785,7 +794,7 @@ abstract mixin class _$UnifiedVerifyOTPRequestModelCopyWith<$Res> implements $Un
   factory _$UnifiedVerifyOTPRequestModelCopyWith(_UnifiedVerifyOTPRequestModel value, $Res Function(_UnifiedVerifyOTPRequestModel) _then) = __$UnifiedVerifyOTPRequestModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String otp
+ String id, String otp, String phone,@JsonKey(name: 'role_type') UserRole? role
 });
 
 
@@ -802,11 +811,13 @@ class __$UnifiedVerifyOTPRequestModelCopyWithImpl<$Res>
 
 /// Create a copy of UnifiedVerifyOTPRequestModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? otp = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? otp = null,Object? phone = null,Object? role = freezed,}) {
   return _then(_UnifiedVerifyOTPRequestModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,otp: null == otp ? _self.otp : otp // ignore: cast_nullable_to_non_nullable
-as String,
+as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,role: freezed == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as UserRole?,
   ));
 }
 

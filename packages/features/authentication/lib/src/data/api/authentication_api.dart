@@ -7,8 +7,8 @@ import 'package:retrofit/retrofit.dart';
 part 'authentication_api.g.dart';
 
 class AuthenticationAPIEndpoints {
-  static const String sendOTP = '/api/v1/login';
-  static const String verifyOTP = '/api/v1/verify-otp';
+  static const String sendOTP = '/api/phone-auth/request-otp';
+  static const String verifyOTP = '/api/phone-auth/verify-otp';
   static const String refreshToken = '/api/v1/refresh-token';
   static const String logout = '/api/v1/logout';
   static const String loginWithPin = '/api/v1/login';
@@ -20,15 +20,15 @@ class AuthenticationAPIEndpoints {
 @RestApi()
 abstract class AuthenticationAPI {
   @factoryMethod
-  factory AuthenticationAPI(@Named('authDio') Dio dio) = _AuthenticationAPI;// ما فهمت
+  factory AuthenticationAPI(@Named('authDio') Dio dio) = _AuthenticationAPI;
 
   @POST(AuthenticationAPIEndpoints.sendOTP)
   Future<APIResponse<SendOTPResponseModel>> sendOTP(
-    @Body() SendOTPRequestModel sendOTPRequestModel,
+    @Body() Map<String, dynamic> body,
   );
   @POST(AuthenticationAPIEndpoints.verifyOTP)
   Future<APIResponse<VerifyOTPResponseModel>> verifyOTP(
-    @Body() UnifiedVerifyOTPRequestModel verifyOTPRequestModel,
+    @Body() Map<String, dynamic> verifyOTPRequestModel,
   );
 
   @POST(AuthenticationAPIEndpoints.refreshToken)

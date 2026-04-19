@@ -1,11 +1,15 @@
 import 'package:authentication/authentication.dart';
-import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:booking/booking.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:user/di/di_container.dart';
-import 'package:util/util.dart';
-import 'package:profile/profile.dart';
 import 'package:orders/orders.dart';
+import 'package:profile/profile.dart';
+import 'package:user/di/di_container.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc_event.dart';
+import 'package:util/util.dart';
+
+const UserRole userRole = UserRole.user;
+
 class UserApp extends StatelessWidget {
   const UserApp({super.key});
 
@@ -33,7 +37,7 @@ class UserApp extends StatelessWidget {
                         GlobalMaterialLocalizations.delegate,
                         GlobalWidgetsLocalizations.delegate,
                         ProfileLocalizationDelegate(),
-                        OrdersLocalizationDelegate(),
+                        OrdersLocalizationDelegate(),,
 
                         // BaseLocalization<ChildTranslation>().delegate(
                         //   ChildTranslationMap.translation,
@@ -64,9 +68,23 @@ class AppProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        // BlocProvider(create: (context) => MDThemeCubit(MDThemeState(0))),
+        BlocProvider(create: (context) => diContainer.get<BookingWizardBloc>()),
+        BlocProvider(
+          create:
+              (context) =>
+                  diContainer.get<HomeBloc>()
+                    ..add(LoadHomeContentEvent())
+                    ..add(LoadOffersEvent())
+                    ..add(LoadSlidersEvent()),
+        ),
         BlocProvider.value(value: diContainer.get<AppCubit>()),
-        BlocProvider.value(value: diContainer.get<AuthUserBloc>()),
+        BlocProvider.value(
+          value: AuthUserBloc(
+            diContainer.get<AuthRepository>(),
+            diContainer.get<SessionRepository>(),
+            userRole: userRole,
+          ),
+        ),
       ],
       child: child,
     );

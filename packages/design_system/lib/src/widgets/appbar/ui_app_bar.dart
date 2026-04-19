@@ -94,19 +94,21 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leadingWidth,
     this.automaticallyImplyLeading = true,
     this.middleSpacing,
-
+    this.withBackButton = true,
     this.showBottomDivider,
     this.actionsFactory = const DefaultUIAppBarActions(),
-  }) : assert(
-         title != null || titleWidget != null,
-         'Either title or titleWidget must be provided',
-       );
+  });
+  // : assert(
+  //        title != null || titleWidget != null,
+  //        'Either title or titleWidget must be provided',
+  //      );
 
   /// The visual style variant of the AppBar.
   final UIAppBarVariant variant;
 
   /// The title text to display in the AppBar.
   final String? title;
+  final bool withBackButton;
 
   /// A custom widget to display as the title instead of [title].
   final Widget? titleWidget;
@@ -178,25 +180,13 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
           overflow: TextOverflow.ellipsis,
         );
 
-    return Container(
-      decoration: BoxDecoration(
-        // color: effectiveBackgroundColor,
-        border:
-            shouldShowBottomDivider
-                ? const Border(
-                  bottom: BorderSide(color: UIColor.divider, width: 1),
-                )
-                : null,
-        boxShadow: _buildBoxShadow(),
-      ),
-      child: AppBar(
-        backgroundColor: effectiveBackgroundColor,
-        // surfaceTintColor: UIColor.primary,
-        leading: _buildLeading(context),
-        title: effectiveTitle,
-        actions: _buildTrailing() != null ? [_buildTrailing()!] : null,
-        centerTitle: centerTitle,
-      ),
+    return AppBar(
+      backgroundColor: effectiveBackgroundColor,
+      surfaceTintColor: UIColor.primary,
+      leading: _buildLeading(context),
+      title: effectiveTitle,
+      actions: _buildTrailing() != null ? [_buildTrailing()!] : null,
+      centerTitle: centerTitle,
     );
   }
 
@@ -236,10 +226,12 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     if (effectiveLeading == null) return null;
 
-    return Padding(
-      padding: EdgeInsetsDirectional.only(start: UI.spacing.md),
-      child: effectiveLeading,
-    );
+    return withBackButton
+        ? Padding(
+          padding: EdgeInsetsDirectional.only(start: UI.spacing.md),
+          child: effectiveLeading,
+        )
+        : null;
   }
 
   /// Builds the trailing actions row.

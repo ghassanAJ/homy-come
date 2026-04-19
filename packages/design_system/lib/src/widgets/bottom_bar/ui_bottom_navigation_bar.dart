@@ -25,19 +25,19 @@ class UiBottomNavigationBar extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 37, vertical: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(UI.radius.lg),
-          topRight: Radius.circular(UI.radius.lg),
+          topLeft: Radius.circular(UI.radius.xl),
+          topRight: Radius.circular(UI.radius.xl),
         ),
         boxShadow: [
           BoxShadow(
-            color: UIColor.black.withValues(alpha: 0.04),
-            blurRadius: 10,
-            offset: const Offset(0, -4),
+            color: UIColor.black.withValues(alpha: 0.1),
+            blurRadius: 14.6,
+            offset: const Offset(0, 4),
           ),
         ],
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(UI.radius.lg)),
+        borderRadius: BorderRadius.all(Radius.circular(UI.radius.xl)),
         child: BottomNavigationBar(
           selectedLabelStyle: UI.text.bodyXSmall.copyWith(
             color: UIColor.babyBlue,
@@ -65,19 +65,19 @@ class UiBottomNavigationBar extends StatelessWidget {
   BottomNavigationBarItem _buildNavigationItem(UiBottomNavigationItem item) {
     return BottomNavigationBarItem(
       icon: Padding(
-        padding: EdgeInsets.only(bottom: UI.spacing.xs),
+        padding: EdgeInsets.symmetric(vertical: UI.spacing.xs),
         child: SizedBox(
-          width: UI.sizes.iconMd,
-          height: UI.sizes.iconMd,
-          child: UISvg(item.iconAsset, color: UIColor.steel),
+          // width: UI.sizes.iconMd,
+          // height: UI.sizes.iconMd,
+          child: UISvg(item.iconAsset, color: UIColor.steel, size: 20),
         ),
       ),
       activeIcon: Padding(
         padding: EdgeInsets.only(bottom: UI.spacing.xs),
         child: SizedBox(
-          width: UI.sizes.iconMd,
-          height: UI.sizes.iconMd,
-          child: UISvg(item.iconAsset, color: UIColor.babyBlue),
+          // width: UI.sizes.iconMd,
+          // height: UI.sizes.iconMd,
+          child: UISvg(item.iconAsset, color: UIColor.babyBlue, size: 20),
         ),
       ),
       label: item.label,

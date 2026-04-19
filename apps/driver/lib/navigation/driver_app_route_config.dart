@@ -28,11 +28,6 @@ class DriverAppRouteConfig {
         return DashboardNavigationScaffold(
           navigationShell: navigationShell,
           navigationItems: DriverNavigationConfig.items,
-          branchPaths: const [
-            DriverPaths.myTeam,
-            DriverPaths.home,
-            DriverPaths.profile,
-          ],
         );
 
         // return DashboardNavigationScaffold(navigationShell: navigationShell);

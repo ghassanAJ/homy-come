@@ -1,0 +1,214 @@
+import 'package:booking/booking.dart';
+
+class ExampleData {
+  ExampleData._internal();
+
+  static List<String> images = [
+    "https://d1sag4ddilekf6.cloudfront.net/compressed/items/6-CYXCTZAEEEECJE-CZAYA3CERF5ETJ/photo/b44c9b4be5044923b3f5b8f8f6e7e55b_1581506444759847068.jpg",
+    "https://d1sag4ddilekf6.cloudfront.net/compressed/items/6-CY21EXXWSEV2E2-CZKKV8MFGPUTMA/photo/321adfd29ded4d9eae3488848ecfbb05_1592997965388846905.jpg",
+    "https://d1sag4ddilekf6.cloudfront.net/compressed/items/6-CY4ETPUKCCCYTX-CZAYA3BKLEN2KE/photo/8d2d5939ec5a42269a0d8ec3c0a97e44_1581506429557055566.jpg",
+    "https://d1sag4ddilekf6.cloudfront.net/item/6-CY21EXXWUFW1CN-CZAYA25ZSEUJV6/photos/c3f51cd36f2344e28abae3a91b94ef9b_1581506376835073709.jpg",
+    "https://d1sag4ddilekf6.cloudfront.net/compressed/items/6-CZADR6NJMB3UL6-CZADR6UYL65GSE/photo/d4e13ca45a4747b78364dcf643095124_1580377235610503360.jpg",
+  ];
+
+  static PageData data = PageData(
+    title: "Home Cleaning",
+    deliverTime: "20 minutes",
+    bannerText:
+        "Use code HELLOPANDA to get 50% off on the first order from 4.5\$ onwards",
+    backgroundUrl:
+        "https://www.browncoffee.com.kh/uploads/ximg/item_menus/20210515062936c2531deff29845101d3f6f5691943c98.jpg",
+    rate: 4.2,
+    rateQuantity: 331,
+    optionalCard: OptionalCard(
+      title: "30% Discount",
+      subtitle: "On the entire menu.",
+    ),
+    categories: [
+      category1,
+      category2,
+      category3,
+      category4,
+      category3,
+      category4,
+    ],
+  );
+
+  static AddOnCategoryModel category1 = AddOnCategoryModel(
+    id: 1,
+    documentId: '1',
+    info: InfoModel(
+      id: 1,
+      name: "Urgent",
+      description: "Sale is on now.",
+      image: images[0],
+    ),
+    services: List.generate(5, (index) {
+      return AddOnServiceModel(
+        id: 1,
+        documentId: '1',
+        durationMinutes: 60,
+        info: InfoModel(
+          id: 1,
+          name: "Home Cleaning",
+          description: "Description",
+          image: images[index % images.length],
+        ),
+        price: ServicePriceModel(
+          currentPrice: 1.33,
+          newPrice: 1.90,
+          currency: 'AED',
+          id: 1,
+        ),
+      );
+    }),
+  );
+
+  static AddOnCategoryModel category2 = AddOnCategoryModel(
+    id: 2,
+    documentId: '2',
+    info: InfoModel(
+      id: 2,
+      name: "Buy 1 Get 1",
+      description: "Get at least 30 minutes.",
+      image: images[1],
+    ),
+    services: List.generate(3, (index) {
+      return AddOnServiceModel(
+        id: 2,
+        documentId: '2',
+        durationMinutes: 60,
+        info: InfoModel(
+          id: 3,
+          name: "Only for you",
+          description: null,
+          image: images[2],
+        ),
+        price: ServicePriceModel(
+          currentPrice: 1.33,
+          newPrice: 1.90,
+          currency: 'AED',
+          id: 2,
+        ),
+      );
+    }),
+  );
+  static AddOnCategoryModel category3 = AddOnCategoryModel(
+    id: 3,
+    documentId: '3',
+    info: InfoModel(
+      id: 3,
+      name: "Only for you",
+      description: null,
+      image: images[2],
+    ),
+    services: List.generate(5, (index) {
+      return AddOnServiceModel(
+        id: 3,
+        documentId: '3',
+        durationMinutes: 60,
+        info: InfoModel(
+          id: 3,
+          name: "Home Cleaning",
+          description: "Description",
+          image: images[index % images.length],
+        ),
+        price: ServicePriceModel(
+          currentPrice: 1.33,
+          newPrice: 1.90,
+          currency: 'AED',
+          id: 3,
+        ),
+      );
+    }),
+  );
+
+  static AddOnCategoryModel category4 = AddOnCategoryModel(
+    id: 4,
+    documentId: '4',
+
+    info: InfoModel(
+      id: 4,
+      name: "Water Disinfection",
+      description: "Sale is on now.",
+      image: images[3],
+    ),
+    services: List.generate(5, (index) {
+      return AddOnServiceModel(
+        id: 4,
+        documentId: '4',
+        durationMinutes: 60,
+        info: InfoModel(
+          id: 4,
+          name: "Home Cleaning",
+          description: "Description",
+          image: images[index % images.length],
+        ),
+        price: ServicePriceModel(
+          currentPrice: 1.33,
+          newPrice: 1.90,
+          currency: 'AED',
+          id: 4,
+        ),
+      );
+    }),
+  );
+}
+
+class PageData {
+  String title;
+  String? deliverTime;
+  String? bannerText;
+  String? backgroundUrl;
+
+  double? rate;
+  int? rateQuantity;
+
+  OptionalCard? optionalCard;
+  List<AddOnCategoryModel> categories;
+
+  PageData({
+    required this.title,
+    required this.categories,
+
+    this.deliverTime,
+    this.bannerText,
+    this.backgroundUrl,
+    this.rate,
+    this.rateQuantity,
+    this.optionalCard,
+  });
+}
+
+class OptionalCard {
+  String title;
+  String subtitle;
+  OptionalCard({required this.title, required this.subtitle});
+}
+
+class Food {
+  String name;
+  String price;
+  String comparePrice;
+  String imageUrl;
+  bool isHotSale;
+
+  Food({
+    required this.name,
+    required this.price,
+    required this.comparePrice,
+    required this.imageUrl,
+    required this.isHotSale,
+  });
+}
+
+class CategorySectionData<T> {
+  String title;
+  String subtitle;
+  List<T> items;
+  CategorySectionData({
+    required this.title,
+    required this.subtitle,
+    required this.items,
+  });
+}

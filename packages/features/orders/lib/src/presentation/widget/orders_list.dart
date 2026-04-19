@@ -1,4 +1,3 @@
-
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:orders/src/cubit/order_cubit.dart';
@@ -24,7 +23,7 @@ class OrderList extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: UI.spacing.md,
-          vertical: UI.spacing.md,
+          // vertical: UI.spacing.md,
         ),
         child: Builder(
           builder: (context) {
@@ -43,4 +42,3 @@ class OrderList extends StatelessWidget {
     );
   }
 }
-
