@@ -26,15 +26,25 @@ class ProviderAppRouteConfig {
         return DashboardNavigationScaffold(
           navigationShell: navigationShell,
           navigationItems: ProviderNavigationConfig.items,
-          branchPaths: const [
-            ProviderPaths.homeProvider,
-            ProviderPaths.services,
-            ProviderPaths.bookings,
-            ProviderPaths.profile,
-          ],
+          // branchPaths: const [
+          //   ProviderPaths.homeProvider,
+          //   ProviderPaths.services,
+          //   ProviderPaths.bookings,
+          //   ProviderPaths.profile,
+          // ],
         );
       },
       branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: ProviderPaths.myWork,
+              builder:
+                  (context, state) =>
+                      Scaffold(body: Center(child: Text('Services'))),
+            ),
+          ],
+        ),
         StatefulShellBranch(
           routes: [
             GoRoute(
@@ -45,26 +55,16 @@ class ProviderAppRouteConfig {
             ),
           ],
         ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: ProviderPaths.services,
-              builder:
-                  (context, state) =>
-                      Scaffold(body: Center(child: Text('Services'))),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: ProviderPaths.bookings,
-              builder:
-                  (context, state) =>
-                      Scaffold(body: Center(child: Text('Bookings'))),
-            ),
-          ],
-        ),
+        // StatefulShellBranch(
+        //   routes: [
+        //     GoRoute(
+        //       path: ProviderPaths.bookings,
+        //       builder:
+        //           (context, state) =>
+        //               Scaffold(body: Center(child: Text('Bookings'))),
+        //     ),
+        //   ],
+        // ),
         StatefulShellBranch(
           routes: [
             GoRoute(

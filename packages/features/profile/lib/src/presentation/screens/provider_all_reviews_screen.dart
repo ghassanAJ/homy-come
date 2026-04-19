@@ -14,17 +14,14 @@ class ProviderAllReviewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final providerId = context.read<AppCubit>().state.userId ?? '';
-    final topContentPadding =
-        MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
 
     return UIScaffold(
-      appBar: UIAppBar(
-        title: context.profileTranslation.reviews.title,
-      ),
+      appBar: UIAppBar(title: context.profileTranslation.reviews.title),
       body: BlocProvider(
         create:
-            (_) => diContainer<ProviderRatingAndReviewsCubit>()
-              ..fetchProviderRatingAndReviews(providerId: providerId),
+            (_) =>
+                diContainer<ProviderRatingAndReviewsCubit>()
+                  ..fetchProviderRatingAndReviews(providerId: providerId),
         child: BlocBuilder<
           ProviderRatingAndReviewsCubit,
           BaseState<List<ReviewModel>>
@@ -36,14 +33,12 @@ class ProviderAllReviewsScreen extends StatelessWidget {
                 state.status == BaseCubitStatus.loading;
 
             if (isInitialLoading) {
-              return ReviewsShimmer(topInset: topContentPadding);
+              return ReviewsShimmer(topInset: 12);
             }
 
             if (reviews.isEmpty) {
               return Padding(
-                padding: UI.padding.driverProfileContent(
-                  topInset: topContentPadding,
-                ),
+                padding: UI.padding.driverProfileContent(topInset: 12),
                 child: Center(
                   child: UIText.bodySmall(
                     context.profileTranslation.reviews.empty,
@@ -55,9 +50,7 @@ class ProviderAllReviewsScreen extends StatelessWidget {
             }
 
             return ListView.builder(
-              padding: UI.padding.profileAllReviewsContent(
-                topInset: topContentPadding,
-              ),
+              padding: UI.padding.profileAllReviewsContent(topInset: 12),
               itemCount: reviews.length,
               itemBuilder: (context, index) {
                 return ReviewItem(

@@ -28,7 +28,11 @@ class AppRouterGuard {
     AuthenticationPaths.otpVerification,
   ];
 
-  static String? handleRedirect(GoRouterState state, AppState appState) {
+  static String? handleRedirect(
+    GoRouterState state,
+    AppState appState,
+    String dashboardPath,
+  ) {
     final currentPath = state.matchedLocation;
 
     // Keep showing splash while initializing (biometric check in progress)
@@ -54,7 +58,7 @@ class AppRouterGuard {
           currentPath != AuthenticationPaths.completeProfile) {
         return AuthenticationPaths.completeProfile;
       }
-      return _handleAuthenticatedRedirect(currentPath, appState);
+      return _handleAuthenticatedRedirect(currentPath, appState, dashboardPath);
     }
 
     return null;
@@ -72,19 +76,19 @@ class AppRouterGuard {
       return null;
     }
 
-    // 3. Unknown path (e.g. /dashboard) → Login
     return AuthenticationPaths.login;
-
-    ///[هون]
   }
 
-  static String _getDashboardPath(String? userType) {
-    return UserPaths.home;
+  static String _getDashboardPath(String? userType, String dashboard) {
+    return dashboard;
+
+    UserPaths.home;
   }
 
   static String? _handleAuthenticatedRedirect(
     String currentPath,
     AppState appState,
+    String dashboardPath,
   ) {
     final user = appState.user;
 
@@ -94,12 +98,12 @@ class AppRouterGuard {
 
     // Redirect completed profiles from auth screens to dashboard
     if (authPaths.contains(currentPath)) {
-      return _getDashboardPath(user?.roleType);
+      return _getDashboardPath(user?.roleType, dashboardPath);
     }
 
     // Redirect completed profiles from complete profile screen to dashboard
     if (currentPath == AuthenticationPaths.completeProfile && true) {
-      return _getDashboardPath(user?.roleType);
+      return _getDashboardPath(user?.roleType, dashboardPath);
     }
     return null;
   }

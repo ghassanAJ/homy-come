@@ -8,6 +8,7 @@ class ProviderPaths {
   ProviderPaths._();
 
   static const String myTeam = '/my-team';
+  static const String myWork = '/my-work';
   static const String services = '/services';
   static const String bookings = '/bookings';
   static const String profile = '/profile';

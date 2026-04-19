@@ -9,14 +9,14 @@ class ProviderNavigationConfig {
   /// Navigation items for the bottom navigation bar
   static final List<NavigationItem> items = [
     (
-      path: ProviderPaths.myTeam,
-      label: 'My Team',
-      iconAsset: Assets.icons.myteam,
+      path: ProviderPaths.myWork,
+      label: 'My Bookings',
+      iconAsset: Assets.icons.navOrders,
     ),
     (
       path: ProviderPaths.homeProvider,
-       label: 'Home', 
-       iconAsset: Assets.icons.navHome
+      label: 'Home',
+      iconAsset: Assets.icons.navHome,
     ),
     (
       path: ProviderPaths.profile,

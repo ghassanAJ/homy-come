@@ -27,8 +27,7 @@ class RatingAndReviewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final visibleReviews =
-        reviews.take(2).toList(growable: false);
+    final visibleReviews = reviews.take(1).toList(growable: false);
 
     return Container(
       decoration: BoxDecoration(
@@ -82,7 +81,7 @@ class RatingAndReviewsCard extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: UI.spacing.xxxl+UI.spacing.xxl,
+            width: UI.spacing.xxxl + UI.spacing.xxl,
             child: UIText.bodySmall(
               item.label,
               color: UIColor.neutral480,
