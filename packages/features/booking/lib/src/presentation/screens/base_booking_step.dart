@@ -5,7 +5,6 @@ import 'package:booking/src/presentation/screens/service_details_step1.dart';
 import 'package:booking/src/presentation/widgets/booking_step_app_bar.dart';
 import 'package:booking/src/presentation/widgets/price_row_widget.dart';
 import 'package:booking/src/presentation/widgets/step_navigation_bar.dart';
-import 'package:booking/src/presentation/widgets/warning_section_widget.dart';
 
 class BaseBookingStep extends StatefulWidget {
   const BaseBookingStep({super.key});
@@ -24,33 +23,33 @@ class _BaseBookingStepState extends State<BaseBookingStep> {
 
   final _stepsOrder = const [
     BookingWizardStep.hoursStep,
-    // BookingWizardStep.popularsAddOn,
     BookingWizardStep.selectDateTimeStep,
     BookingWizardStep.summary,
-    BookingWizardStep.submitSuccess,
   ];
 
   final _stepWidgets = {
     BookingWizardStep.hoursStep: const ServiceDetailsScreenStep1(),
-    // BookingWizardStep.popularsAddOn: const ServiceDetailsStep2(),
     BookingWizardStep.selectDateTimeStep: const ServiceDetailsStep3(), // TODO
     BookingWizardStep.summary: SummaryStep(),
-    // BookingWizardStep.submitSuccess: SubmitSuccessScreen(),
   };
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BookingWizardBloc, BookingWizardState>(
-      // listenWhen: (prev, curr) => prev.currentStep != curr.currentStep,
+      listenWhen:
+          (prev, curr) =>
+              prev.currentStep != curr.currentStep ||
+              prev.isSubmitting != curr.isSubmitting,
       listener: (context, state) {
-        if (state.submitSuccess && state.isSubmitting) {
-          // Navigator.pop(context);
-          // Navigator.pop(context);
-          Navigator.pushAndRemoveUntil(
+        if (state.submitSuccess) {
+          Navigator.pop(context);
+          Navigator.pop(context);
+          Navigator.push(
             context,
             MaterialPageRoute(builder: (c) => SubmitSuccessScreen()),
-            (_) => false,
+            // (_) => false,
           );
+          context.read<BookingWizardBloc>().add(ResetWizard());
         }
         _animateToStep(state.currentStep);
       },
@@ -66,7 +65,9 @@ class _BaseBookingStepState extends State<BaseBookingStep> {
             withBackgroundGradient: true,
             appBar: BookingStepAppBar(
               step: currentStep,
-              currentStepIndex: 0,
+              currentStepIndex: currentStep.index + 2,
+              // +
+              //1, //+1 beciuase the service details screen is the first step
               stepsLength: _stepWidgets.length,
               onBack:
                   () =>
@@ -192,7 +193,9 @@ class _BaseBookingStepState extends State<BaseBookingStep> {
   }
 
   bool _handleBack(BuildContext context, BookingWizardState state) {
+    print('step is ${state.currentStep}');
     if (state.currentStep == BookingWizardStep.hoursStep) {
+      Navigator.pop(context);
       return true; // don't allow pop
     }
 
@@ -360,18 +363,31 @@ class SummaryStep extends StatelessWidget {
                 ),
                 SizedBox(height: UI.spacing.lg),
                 PriceRow(title: 'Working Hour', amount: '10'),
-                PriceRow(title: 'Service Charge', amount: '${state.total}'),
+                PriceRow(title: 'Service Charge', amount: '${getTotal(state)}'),
                 PriceRow(title: 'Deep Cleaning', amount: '20'),
-                PriceRow(title: 'Fee', amount: '0.3'),
-                PriceRow(title: 'Total', amount: '30.3', isTotal: true),
+                PriceRow(title: 'Fee', amount: '30'),
+                PriceRow(
+                  title: 'Total',
+                  amount: (getTotal(state) ?? 0 + 30.0).toString(),
+                  isTotal: true,
+                ),
                 SizedBox(height: UI.spacing.sm),
               ],
             ),
           ),
-          WaringSectionWidget(),
+          SizedBox(height: UI.spacing.sm),
+
+          CancellationSection(),
         ],
       ),
     );
+  }
+
+  num? getTotal(BookingWizardState state) {
+    return state.selectedAddOns
+        .map((addOn) => addOn.price.currentPrice)
+        .toList()
+        .reduce((a, b) => (a ?? 0) + (b ?? 0));
   }
 
   String _formatDate(DateTime? date) {

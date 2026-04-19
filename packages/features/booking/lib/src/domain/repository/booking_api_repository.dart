@@ -24,6 +24,11 @@ abstract class BookingRepository {
     required DateTime date,
     String? providerId,
   });
+
+  // Future<Result<PaymentCheckoutUrlModel,APIException >>
+  //     creatPaymentCheckoutUrlModel({
+  //   required PaymentParams params,
+  // });
 }
 
 @Injectable(as: BookingRepository, env: ['prod', 'dev'])

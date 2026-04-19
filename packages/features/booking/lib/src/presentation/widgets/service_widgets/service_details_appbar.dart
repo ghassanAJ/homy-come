@@ -141,7 +141,7 @@ class _ServiceDetailsAppBarState extends State<ServiceDetailsAppBar> {
               fontWeight: FontWeight.w600,
             ),
             UIText.caption(
-              'Step 1 of 4',
+              'Step 1 of 3',
               color: UIColor.textSecondary,
               textAlign: TextAlign.center,
             ),
@@ -203,7 +203,7 @@ class _ServiceDetailsAppBarState extends State<ServiceDetailsAppBar> {
                       children: [
                         const SizedBox(height: 16.0),
                         UIText.caption(
-                          'Step 1 to 4',
+                          'Step 1 of 3',
                           color: UIColor.textSecondary,
                           textAlign: TextAlign.center,
                         ),

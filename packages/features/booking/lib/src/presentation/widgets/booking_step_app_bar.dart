@@ -15,6 +15,13 @@ class BookingStepAppBar extends UIAppBar {
   final int currentStepIndex;
   final BookingWizardStep step;
   final int stepsLength;
+
+  int getStepNUmber(BookingWizardStep step) {
+    if (step == BookingWizardStep.hoursStep) return 2;
+    if (step == BookingWizardStep.selectDateTimeStep) return 3;
+    return 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return UIAppBar(
@@ -30,7 +37,7 @@ class BookingStepAppBar extends UIAppBar {
           ),
           if (step != BookingWizardStep.summary)
             UIText.bodyMedium(
-              'Step $currentStepIndex of $stepsLength',
+              'Step ${getStepNUmber(step)} of 3',
               color: UIColor.textSecondary,
             ),
         ],

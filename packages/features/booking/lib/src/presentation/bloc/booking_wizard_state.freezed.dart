@@ -18,7 +18,7 @@ mixin _$BookingWizardState {
  BookingWizardStep get currentStep;// ── Step 0 – Service Details ──────────────────────────────────────────────
  ServiceDetailsResponseModel? get serviceDetails; bool get serviceDetailsLoading; APIException? get serviceDetailsError;// ── Step 1 – Booking Options ──────────────────────────────────────────────
  int get durationHours; double get total; double get totalAfterDiscount;/// Raw label stored ("One Professional", "2 to 4", etc.)
- String get professionalCount; bool get needCleaningMaterials; String get notes; String? get step1ValidationError;// ── Step 2 – Add-ons ──────────────────────────────────────────────────────
+ int get professionalCount; bool get needCleaningMaterials; String get notes; String? get step1ValidationError;// ── Step 2 – Add-ons ──────────────────────────────────────────────────────
  List<AddOnServiceModel> get selectedAddOns; String? get step2ValidationError;// ── Step 3 – Date, Time & Provider ───────────────────────────────────────
  List<ProviderModel> get selectedProviders; List<ProviderModel> get availableProviders; DateTime? get scheduledAt; String? get step3ValidationError;// ── Submission ────────────────────────────────────────────────────────────
  bool get isSubmitting; bool get submitSuccess; APIException? get submitError; APIException? get slotsError; APIException? get providersError; int get selectedDayIndex; List<TimeSlotModel> get timeSlots; bool get loadingSlots; bool get loadingProviders; List<DayModel> get availableDays;
@@ -52,7 +52,7 @@ abstract mixin class $BookingWizardStateCopyWith<$Res>  {
   factory $BookingWizardStateCopyWith(BookingWizardState value, $Res Function(BookingWizardState) _then) = _$BookingWizardStateCopyWithImpl;
 @useResult
 $Res call({
- BookingWizardStep currentStep, ServiceDetailsResponseModel? serviceDetails, bool serviceDetailsLoading, APIException? serviceDetailsError, int durationHours, double total, double totalAfterDiscount, String professionalCount, bool needCleaningMaterials, String notes, String? step1ValidationError, List<AddOnServiceModel> selectedAddOns, String? step2ValidationError, List<ProviderModel> selectedProviders, List<ProviderModel> availableProviders, DateTime? scheduledAt, String? step3ValidationError, bool isSubmitting, bool submitSuccess, APIException? submitError, APIException? slotsError, APIException? providersError, int selectedDayIndex, List<TimeSlotModel> timeSlots, bool loadingSlots, bool loadingProviders, List<DayModel> availableDays
+ BookingWizardStep currentStep, ServiceDetailsResponseModel? serviceDetails, bool serviceDetailsLoading, APIException? serviceDetailsError, int durationHours, double total, double totalAfterDiscount, int professionalCount, bool needCleaningMaterials, String notes, String? step1ValidationError, List<AddOnServiceModel> selectedAddOns, String? step2ValidationError, List<ProviderModel> selectedProviders, List<ProviderModel> availableProviders, DateTime? scheduledAt, String? step3ValidationError, bool isSubmitting, bool submitSuccess, APIException? submitError, APIException? slotsError, APIException? providersError, int selectedDayIndex, List<TimeSlotModel> timeSlots, bool loadingSlots, bool loadingProviders, List<DayModel> availableDays
 });
 
 
@@ -79,7 +79,7 @@ as APIException?,durationHours: null == durationHours ? _self.durationHours : du
 as int,total: null == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
 as double,totalAfterDiscount: null == totalAfterDiscount ? _self.totalAfterDiscount : totalAfterDiscount // ignore: cast_nullable_to_non_nullable
 as double,professionalCount: null == professionalCount ? _self.professionalCount : professionalCount // ignore: cast_nullable_to_non_nullable
-as String,needCleaningMaterials: null == needCleaningMaterials ? _self.needCleaningMaterials : needCleaningMaterials // ignore: cast_nullable_to_non_nullable
+as int,needCleaningMaterials: null == needCleaningMaterials ? _self.needCleaningMaterials : needCleaningMaterials // ignore: cast_nullable_to_non_nullable
 as bool,notes: null == notes ? _self.notes : notes // ignore: cast_nullable_to_non_nullable
 as String,step1ValidationError: freezed == step1ValidationError ? _self.step1ValidationError : step1ValidationError // ignore: cast_nullable_to_non_nullable
 as String?,selectedAddOns: null == selectedAddOns ? _self.selectedAddOns : selectedAddOns // ignore: cast_nullable_to_non_nullable
@@ -195,7 +195,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( BookingWizardStep currentStep,  ServiceDetailsResponseModel? serviceDetails,  bool serviceDetailsLoading,  APIException? serviceDetailsError,  int durationHours,  double total,  double totalAfterDiscount,  String professionalCount,  bool needCleaningMaterials,  String notes,  String? step1ValidationError,  List<AddOnServiceModel> selectedAddOns,  String? step2ValidationError,  List<ProviderModel> selectedProviders,  List<ProviderModel> availableProviders,  DateTime? scheduledAt,  String? step3ValidationError,  bool isSubmitting,  bool submitSuccess,  APIException? submitError,  APIException? slotsError,  APIException? providersError,  int selectedDayIndex,  List<TimeSlotModel> timeSlots,  bool loadingSlots,  bool loadingProviders,  List<DayModel> availableDays)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( BookingWizardStep currentStep,  ServiceDetailsResponseModel? serviceDetails,  bool serviceDetailsLoading,  APIException? serviceDetailsError,  int durationHours,  double total,  double totalAfterDiscount,  int professionalCount,  bool needCleaningMaterials,  String notes,  String? step1ValidationError,  List<AddOnServiceModel> selectedAddOns,  String? step2ValidationError,  List<ProviderModel> selectedProviders,  List<ProviderModel> availableProviders,  DateTime? scheduledAt,  String? step3ValidationError,  bool isSubmitting,  bool submitSuccess,  APIException? submitError,  APIException? slotsError,  APIException? providersError,  int selectedDayIndex,  List<TimeSlotModel> timeSlots,  bool loadingSlots,  bool loadingProviders,  List<DayModel> availableDays)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BookingWizardState() when $default != null:
 return $default(_that.currentStep,_that.serviceDetails,_that.serviceDetailsLoading,_that.serviceDetailsError,_that.durationHours,_that.total,_that.totalAfterDiscount,_that.professionalCount,_that.needCleaningMaterials,_that.notes,_that.step1ValidationError,_that.selectedAddOns,_that.step2ValidationError,_that.selectedProviders,_that.availableProviders,_that.scheduledAt,_that.step3ValidationError,_that.isSubmitting,_that.submitSuccess,_that.submitError,_that.slotsError,_that.providersError,_that.selectedDayIndex,_that.timeSlots,_that.loadingSlots,_that.loadingProviders,_that.availableDays);case _:
@@ -216,7 +216,7 @@ return $default(_that.currentStep,_that.serviceDetails,_that.serviceDetailsLoadi
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( BookingWizardStep currentStep,  ServiceDetailsResponseModel? serviceDetails,  bool serviceDetailsLoading,  APIException? serviceDetailsError,  int durationHours,  double total,  double totalAfterDiscount,  String professionalCount,  bool needCleaningMaterials,  String notes,  String? step1ValidationError,  List<AddOnServiceModel> selectedAddOns,  String? step2ValidationError,  List<ProviderModel> selectedProviders,  List<ProviderModel> availableProviders,  DateTime? scheduledAt,  String? step3ValidationError,  bool isSubmitting,  bool submitSuccess,  APIException? submitError,  APIException? slotsError,  APIException? providersError,  int selectedDayIndex,  List<TimeSlotModel> timeSlots,  bool loadingSlots,  bool loadingProviders,  List<DayModel> availableDays)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( BookingWizardStep currentStep,  ServiceDetailsResponseModel? serviceDetails,  bool serviceDetailsLoading,  APIException? serviceDetailsError,  int durationHours,  double total,  double totalAfterDiscount,  int professionalCount,  bool needCleaningMaterials,  String notes,  String? step1ValidationError,  List<AddOnServiceModel> selectedAddOns,  String? step2ValidationError,  List<ProviderModel> selectedProviders,  List<ProviderModel> availableProviders,  DateTime? scheduledAt,  String? step3ValidationError,  bool isSubmitting,  bool submitSuccess,  APIException? submitError,  APIException? slotsError,  APIException? providersError,  int selectedDayIndex,  List<TimeSlotModel> timeSlots,  bool loadingSlots,  bool loadingProviders,  List<DayModel> availableDays)  $default,) {final _that = this;
 switch (_that) {
 case _BookingWizardState():
 return $default(_that.currentStep,_that.serviceDetails,_that.serviceDetailsLoading,_that.serviceDetailsError,_that.durationHours,_that.total,_that.totalAfterDiscount,_that.professionalCount,_that.needCleaningMaterials,_that.notes,_that.step1ValidationError,_that.selectedAddOns,_that.step2ValidationError,_that.selectedProviders,_that.availableProviders,_that.scheduledAt,_that.step3ValidationError,_that.isSubmitting,_that.submitSuccess,_that.submitError,_that.slotsError,_that.providersError,_that.selectedDayIndex,_that.timeSlots,_that.loadingSlots,_that.loadingProviders,_that.availableDays);case _:
@@ -236,7 +236,7 @@ return $default(_that.currentStep,_that.serviceDetails,_that.serviceDetailsLoadi
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( BookingWizardStep currentStep,  ServiceDetailsResponseModel? serviceDetails,  bool serviceDetailsLoading,  APIException? serviceDetailsError,  int durationHours,  double total,  double totalAfterDiscount,  String professionalCount,  bool needCleaningMaterials,  String notes,  String? step1ValidationError,  List<AddOnServiceModel> selectedAddOns,  String? step2ValidationError,  List<ProviderModel> selectedProviders,  List<ProviderModel> availableProviders,  DateTime? scheduledAt,  String? step3ValidationError,  bool isSubmitting,  bool submitSuccess,  APIException? submitError,  APIException? slotsError,  APIException? providersError,  int selectedDayIndex,  List<TimeSlotModel> timeSlots,  bool loadingSlots,  bool loadingProviders,  List<DayModel> availableDays)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( BookingWizardStep currentStep,  ServiceDetailsResponseModel? serviceDetails,  bool serviceDetailsLoading,  APIException? serviceDetailsError,  int durationHours,  double total,  double totalAfterDiscount,  int professionalCount,  bool needCleaningMaterials,  String notes,  String? step1ValidationError,  List<AddOnServiceModel> selectedAddOns,  String? step2ValidationError,  List<ProviderModel> selectedProviders,  List<ProviderModel> availableProviders,  DateTime? scheduledAt,  String? step3ValidationError,  bool isSubmitting,  bool submitSuccess,  APIException? submitError,  APIException? slotsError,  APIException? providersError,  int selectedDayIndex,  List<TimeSlotModel> timeSlots,  bool loadingSlots,  bool loadingProviders,  List<DayModel> availableDays)?  $default,) {final _that = this;
 switch (_that) {
 case _BookingWizardState() when $default != null:
 return $default(_that.currentStep,_that.serviceDetails,_that.serviceDetailsLoading,_that.serviceDetailsError,_that.durationHours,_that.total,_that.totalAfterDiscount,_that.professionalCount,_that.needCleaningMaterials,_that.notes,_that.step1ValidationError,_that.selectedAddOns,_that.step2ValidationError,_that.selectedProviders,_that.availableProviders,_that.scheduledAt,_that.step3ValidationError,_that.isSubmitting,_that.submitSuccess,_that.submitError,_that.slotsError,_that.providersError,_that.selectedDayIndex,_that.timeSlots,_that.loadingSlots,_that.loadingProviders,_that.availableDays);case _:
@@ -251,7 +251,7 @@ return $default(_that.currentStep,_that.serviceDetails,_that.serviceDetailsLoadi
 
 
 class _BookingWizardState extends BookingWizardState {
-  const _BookingWizardState({this.currentStep = BookingWizardStep.serviceDetails, this.serviceDetails, this.serviceDetailsLoading = false, this.serviceDetailsError, this.durationHours = 1, this.total = 0.0, this.totalAfterDiscount = 0.0, this.professionalCount = 'One Professional', this.needCleaningMaterials = false, this.notes = '', this.step1ValidationError, final  List<AddOnServiceModel> selectedAddOns = const [], this.step2ValidationError, final  List<ProviderModel> selectedProviders = const [], final  List<ProviderModel> availableProviders = const [], this.scheduledAt, this.step3ValidationError, this.isSubmitting = false, this.submitSuccess = false, this.submitError, this.slotsError, this.providersError, this.selectedDayIndex = 0, final  List<TimeSlotModel> timeSlots = const [], this.loadingSlots = false, this.loadingProviders = false, final  List<DayModel> availableDays = const []}): _selectedAddOns = selectedAddOns,_selectedProviders = selectedProviders,_availableProviders = availableProviders,_timeSlots = timeSlots,_availableDays = availableDays,super._();
+  const _BookingWizardState({this.currentStep = BookingWizardStep.serviceDetails, this.serviceDetails, this.serviceDetailsLoading = false, this.serviceDetailsError, this.durationHours = 1, this.total = 0.0, this.totalAfterDiscount = 0.0, this.professionalCount = 1, this.needCleaningMaterials = false, this.notes = '', this.step1ValidationError, final  List<AddOnServiceModel> selectedAddOns = const [], this.step2ValidationError, final  List<ProviderModel> selectedProviders = const [], final  List<ProviderModel> availableProviders = const [], this.scheduledAt, this.step3ValidationError, this.isSubmitting = false, this.submitSuccess = false, this.submitError, this.slotsError, this.providersError, this.selectedDayIndex = 0, final  List<TimeSlotModel> timeSlots = const [], this.loadingSlots = false, this.loadingProviders = false, final  List<DayModel> availableDays = const []}): _selectedAddOns = selectedAddOns,_selectedProviders = selectedProviders,_availableProviders = availableProviders,_timeSlots = timeSlots,_availableDays = availableDays,super._();
   
 
 // ── Navigation ────────────────────────────────────────────────────────────
@@ -265,7 +265,7 @@ class _BookingWizardState extends BookingWizardState {
 @override@JsonKey() final  double total;
 @override@JsonKey() final  double totalAfterDiscount;
 /// Raw label stored ("One Professional", "2 to 4", etc.)
-@override@JsonKey() final  String professionalCount;
+@override@JsonKey() final  int professionalCount;
 @override@JsonKey() final  bool needCleaningMaterials;
 @override@JsonKey() final  String notes;
 @override final  String? step1ValidationError;
@@ -351,7 +351,7 @@ abstract mixin class _$BookingWizardStateCopyWith<$Res> implements $BookingWizar
   factory _$BookingWizardStateCopyWith(_BookingWizardState value, $Res Function(_BookingWizardState) _then) = __$BookingWizardStateCopyWithImpl;
 @override @useResult
 $Res call({
- BookingWizardStep currentStep, ServiceDetailsResponseModel? serviceDetails, bool serviceDetailsLoading, APIException? serviceDetailsError, int durationHours, double total, double totalAfterDiscount, String professionalCount, bool needCleaningMaterials, String notes, String? step1ValidationError, List<AddOnServiceModel> selectedAddOns, String? step2ValidationError, List<ProviderModel> selectedProviders, List<ProviderModel> availableProviders, DateTime? scheduledAt, String? step3ValidationError, bool isSubmitting, bool submitSuccess, APIException? submitError, APIException? slotsError, APIException? providersError, int selectedDayIndex, List<TimeSlotModel> timeSlots, bool loadingSlots, bool loadingProviders, List<DayModel> availableDays
+ BookingWizardStep currentStep, ServiceDetailsResponseModel? serviceDetails, bool serviceDetailsLoading, APIException? serviceDetailsError, int durationHours, double total, double totalAfterDiscount, int professionalCount, bool needCleaningMaterials, String notes, String? step1ValidationError, List<AddOnServiceModel> selectedAddOns, String? step2ValidationError, List<ProviderModel> selectedProviders, List<ProviderModel> availableProviders, DateTime? scheduledAt, String? step3ValidationError, bool isSubmitting, bool submitSuccess, APIException? submitError, APIException? slotsError, APIException? providersError, int selectedDayIndex, List<TimeSlotModel> timeSlots, bool loadingSlots, bool loadingProviders, List<DayModel> availableDays
 });
 
 
@@ -378,7 +378,7 @@ as APIException?,durationHours: null == durationHours ? _self.durationHours : du
 as int,total: null == total ? _self.total : total // ignore: cast_nullable_to_non_nullable
 as double,totalAfterDiscount: null == totalAfterDiscount ? _self.totalAfterDiscount : totalAfterDiscount // ignore: cast_nullable_to_non_nullable
 as double,professionalCount: null == professionalCount ? _self.professionalCount : professionalCount // ignore: cast_nullable_to_non_nullable
-as String,needCleaningMaterials: null == needCleaningMaterials ? _self.needCleaningMaterials : needCleaningMaterials // ignore: cast_nullable_to_non_nullable
+as int,needCleaningMaterials: null == needCleaningMaterials ? _self.needCleaningMaterials : needCleaningMaterials // ignore: cast_nullable_to_non_nullable
 as bool,notes: null == notes ? _self.notes : notes // ignore: cast_nullable_to_non_nullable
 as String,step1ValidationError: freezed == step1ValidationError ? _self.step1ValidationError : step1ValidationError // ignore: cast_nullable_to_non_nullable
 as String?,selectedAddOns: null == selectedAddOns ? _self._selectedAddOns : selectedAddOns // ignore: cast_nullable_to_non_nullable

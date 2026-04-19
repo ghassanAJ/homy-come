@@ -32,7 +32,7 @@ final class UpdateDurationHours extends BookingWizardEvent {
 
 final class UpdateProfessionalCount extends BookingWizardEvent {
   const UpdateProfessionalCount({required this.count});
-  final String count;
+  final int count;
 }
 
 final class UpdateNeedCleaningMaterials extends BookingWizardEvent {

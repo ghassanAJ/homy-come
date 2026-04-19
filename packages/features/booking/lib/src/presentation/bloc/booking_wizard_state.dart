@@ -7,9 +7,9 @@ part 'booking_wizard_state.freezed.dart';
 enum BookingWizardStep {
   serviceDetails,
   hoursStep,
-  popularsAddOn,
   selectDateTimeStep,
   summary,
+  popularsAddOn,
   submitSuccess,
 }
 
@@ -30,7 +30,7 @@ abstract class BookingWizardState with _$BookingWizardState {
     @Default(0.0) double totalAfterDiscount,
 
     /// Raw label stored ("One Professional", "2 to 4", etc.)
-    @Default('One Professional') String professionalCount,
+    @Default(1) int professionalCount,
     @Default(false) bool needCleaningMaterials,
     @Default('') String notes,
     String? step1ValidationError,
@@ -60,8 +60,7 @@ abstract class BookingWizardState with _$BookingWizardState {
 
   const BookingWizardState._();
 
-  bool get canAdvanceFromStep1 =>
-      durationHours > 0 && professionalCount.isNotEmpty;
+  bool get canAdvanceFromStep1 => durationHours > 0 && professionalCount > 0;
 
   bool get canAdvanceFromStep2 => true; // add-ons are optional
 

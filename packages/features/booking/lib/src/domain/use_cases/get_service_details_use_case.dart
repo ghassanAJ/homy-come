@@ -1,7 +1,8 @@
 import 'package:booking/booking.dart';
 import 'package:util/util.dart';
 
-class GetServiceDetailsUseCase extends BaseUseCase<ServiceDetailsResponseModel> {
+class GetServiceDetailsUseCase
+    extends BaseUseCase<ServiceDetailsResponseModel> {
   GetServiceDetailsUseCase(this._repository, this._request);
 
   final BookingRepository _repository;

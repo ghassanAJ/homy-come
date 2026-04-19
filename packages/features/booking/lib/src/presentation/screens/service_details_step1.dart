@@ -1,5 +1,4 @@
 import 'package:booking/booking.dart';
-import 'package:booking/src/presentation/widgets/step_navigation_bar.dart';
 import 'package:flutter/services.dart';
 
 class ServiceDetailsScreenStep1 extends StatefulWidget {
@@ -55,181 +54,149 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
         // );
       },
       builder: (context, state) {
-        return Stack(
-          children: [
-            SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, UI.sizes.bottomPadding),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(
-                      UI.spacing.lg,
-                      UI.spacing.lg,
-                      UI.spacing.xxs,
-                      0,
+        return SingleChildScrollView(
+          padding: EdgeInsets.fromLTRB(0, 0, 0, UI.sizes.bottomPadding),
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                  UI.spacing.lg,
+                  UI.spacing.lg,
+                  UI.spacing.xxs,
+                  0,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _sectionTitle(
+                      'How many hours do you need your professional to stay?',
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    SizedBox(height: UI.spacing.sm),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Wrap(
+                        spacing: UI.spacing.xs,
+                        runSpacing: UI.spacing.xs,
+                        children: List.generate(
+                          6,
+                          (index) => CircleNumberOptionWidget(
+                            value: index + 1,
+                            selected: state.durationHours == index + 1,
+                            onTap:
+                                () => context.read<BookingWizardBloc>().add(
+                                  UpdateDurationHours(hours: index + 1),
+                                ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: UI.spacing.lg),
+                    _sectionTitle('How many professionals do you need?'),
+                    SizedBox(height: UI.spacing.sm),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Wrap(
+                        spacing: UI.spacing.xs,
+                        runSpacing: UI.spacing.xs,
+                        children: List.generate(
+                          4,
+                          (index) => CircleNumberOptionWidget(
+                            value: index + 1,
+                            selected: state.professionalCount == index + 1,
+                            onTap:
+                                () => context.read<BookingWizardBloc>().add(
+                                  UpdateProfessionalCount(count: index + 1),
+                                ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    // Wrap(
+                    //   spacing: UI.spacing.xs,
+                    //   runSpacing: UI.spacing.xs,
+                    //   children: [
+                    //     for (final label in const [
+                    //       'One Professional',
+                    //       '2 to 4',
+                    //       '4 to 6',
+                    //       'More than',
+                    //     ])
+                    //       ChoiceChipButtonWidget(
+                    //         label: label,
+                    //         selected: state.professionalCount == label,
+                    //         onTap:
+                    //             () => context.read<BookingWizardBloc>().add(
+                    //               UpdateProfessionalCount(count: label),
+                    //             ),
+                    //       ),
+                    //   ],
+                    // ),
+                    SizedBox(height: UI.spacing.lg),
+                    _sectionTitle('Need cleaning materials?'),
+                    SizedBox(height: UI.spacing.sm),
+                    Wrap(
+                      spacing: UI.spacing.xs,
                       children: [
-                        _sectionTitle(
-                          'How many hours do you need your professional to stay?',
-                        ),
-                        SizedBox(height: UI.spacing.sm),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Wrap(
-                            spacing: UI.spacing.xs,
-                            runSpacing: UI.spacing.xs,
-                            children: List.generate(
-                              6,
-                              (index) => CircleNumberOptionWidget(
-                                value: index + 1,
-                                selected: state.durationHours == index + 1,
-                                onTap:
-                                    () => context.read<BookingWizardBloc>().add(
-                                      UpdateDurationHours(hours: index + 1),
-                                    ),
+                        ChoiceChipButtonWidget(
+                          label: 'No, I have them',
+                          selected: !state.needCleaningMaterials,
+                          onTap:
+                              () => context.read<BookingWizardBloc>().add(
+                                const UpdateNeedCleaningMaterials(value: false),
                               ),
-                            ),
-                          ),
                         ),
-                        SizedBox(height: UI.spacing.lg),
-                        _sectionTitle('How many professionals do you need?'),
-                        SizedBox(height: UI.spacing.sm),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Wrap(
-                            spacing: UI.spacing.xs,
-                            runSpacing: UI.spacing.xs,
-                            children: List.generate(
-                              4,
-                              (index) => CircleNumberOptionWidget(
-                                value: index + 1,
-                                selected:
-                                    int.tryParse(state.professionalCount) ==
-                                    index + 1,
-                                onTap:
-                                    () => context.read<BookingWizardBloc>().add(
-                                      UpdateProfessionalCount(
-                                        count: (index + 1).toString(),
-                                      ),
-                                    ),
+                        ChoiceChipButtonWidget(
+                          label: 'Yes please',
+                          selected: state.needCleaningMaterials,
+                          onTap:
+                              () => context.read<BookingWizardBloc>().add(
+                                const UpdateNeedCleaningMaterials(value: true),
                               ),
-                            ),
-                          ),
                         ),
-                        // Wrap(
-                        //   spacing: UI.spacing.xs,
-                        //   runSpacing: UI.spacing.xs,
-                        //   children: [
-                        //     for (final label in const [
-                        //       'One Professional',
-                        //       '2 to 4',
-                        //       '4 to 6',
-                        //       'More than',
-                        //     ])
-                        //       ChoiceChipButtonWidget(
-                        //         label: label,
-                        //         selected: state.professionalCount == label,
-                        //         onTap:
-                        //             () => context.read<BookingWizardBloc>().add(
-                        //               UpdateProfessionalCount(count: label),
-                        //             ),
-                        //       ),
-                        //   ],
-                        // ),
-                        SizedBox(height: UI.spacing.lg),
-                        _sectionTitle('Need cleaning materials?'),
-                        SizedBox(height: UI.spacing.sm),
-                        Wrap(
-                          spacing: UI.spacing.xs,
-                          children: [
-                            ChoiceChipButtonWidget(
-                              label: 'No, I have them',
-                              selected: !state.needCleaningMaterials,
-                              onTap:
-                                  () => context.read<BookingWizardBloc>().add(
-                                    const UpdateNeedCleaningMaterials(
-                                      value: false,
-                                    ),
-                                  ),
-                            ),
-                            ChoiceChipButtonWidget(
-                              label: 'Yes please',
-                              selected: state.needCleaningMaterials,
-                              onTap:
-                                  () => context.read<BookingWizardBloc>().add(
-                                    const UpdateNeedCleaningMaterials(
-                                      value: true,
-                                    ),
-                                  ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: UI.spacing.lg),
-                        _sectionTitle('Any notes?'),
-                        SizedBox(height: UI.spacing.sm),
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: UI.spacing.lg),
-                    child: TextField(
-                      controller: _notesController,
-                      maxLines: 4,
-                      style: UI.text.bodyMedium.copyWith(color: UIColor.balck),
-                      inputFormatters: [LengthLimitingTextInputFormatter(400)],
-                      decoration: InputDecoration(
-                        hintText: 'Add your notes',
-                        hintStyle: UI.text.bodyMedium.copyWith(
-                          color: UIColor.grey,
-                        ),
-                        filled: true,
-                        fillColor: UIColor.background,
-                        contentPadding: EdgeInsets.all(UI.spacing.md),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(UI.radius.lg),
-                          borderSide: BorderSide(color: UIColor.neutral200),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(UI.radius.lg),
-                          borderSide: BorderSide(color: UIColor.primary),
-                        ),
-                      ),
-                    ),
-                  ),
-                  if (state.step1ValidationError != null) ...[
+                    SizedBox(height: UI.spacing.lg),
+                    _sectionTitle('Any notes?'),
                     SizedBox(height: UI.spacing.sm),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: UI.spacing.lg),
-                      child: UIText.bodySmall(
-                        state.step1ValidationError!,
-                        color: UIColor.error,
-                      ),
-                    ),
                   ],
-                ],
-              ),
-            ),
-            SafeArea(
-              top: false,
-              minimum: EdgeInsets.fromLTRB(
-                UI.spacing.lg,
-                UI.spacing.sm,
-                UI.spacing.lg,
-                UI.spacing.sm,
-              ),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: StepNavigationBar(
-                  next:
-                      () => context.read<BookingWizardBloc>().add(
-                        const ProceedToStep2(),
-                      ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: UI.spacing.lg),
+                child: TextField(
+                  controller: _notesController,
+                  maxLines: 4,
+                  style: UI.text.bodyMedium.copyWith(color: UIColor.balck),
+                  inputFormatters: [LengthLimitingTextInputFormatter(400)],
+                  decoration: InputDecoration(
+                    hintText: 'Add your notes',
+                    hintStyle: UI.text.bodyMedium.copyWith(color: UIColor.grey),
+                    filled: true,
+                    fillColor: UIColor.background,
+                    contentPadding: EdgeInsets.all(UI.spacing.md),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(UI.radius.lg),
+                      borderSide: BorderSide(color: UIColor.neutral200),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(UI.radius.lg),
+                      borderSide: BorderSide(color: UIColor.primary),
+                    ),
+                  ),
+                ),
+              ),
+              if (state.step1ValidationError != null) ...[
+                SizedBox(height: UI.spacing.sm),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: UI.spacing.lg),
+                  child: UIText.bodySmall(
+                    state.step1ValidationError!,
+                    color: UIColor.error,
+                  ),
+                ),
+              ],
+            ],
+          ),
         );
       },
     );

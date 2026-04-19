@@ -197,13 +197,13 @@ class _BaseButton extends StatelessWidget {
     if (isLoading) {
       return Center(
         child: SizedBox(
-          height: UI.sizes.loadingIndicatorSm,
-          width: UI.sizes.loadingIndicatorSm,
+          // height: UI.sizes.loadingIndicatorSm,
+          // width: UI.sizes.loadingIndicatorSm,
           child: CircularProgressIndicator.adaptive(
-            strokeWidth: UI.sizes.loadingIndicatorStroke,
-            valueColor: AlwaysStoppedAnimation<Color>(
-              customForegroundColor ?? styleConfig.foregroundColor,
-            ),
+            // strokeWidth: UI.sizes.loadingIndicatorStroke,
+            // valueColor: AlwaysStoppedAnimation<Color>(
+            //   customForegroundColor ?? styleConfig.foregroundColor,
+            // ),
           ),
         ),
       );
