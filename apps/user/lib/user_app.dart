@@ -24,34 +24,35 @@ class UserApp extends StatelessWidget {
           value: localeCubit,
           child: BlocBuilder<LocalizationCubit, Locale>(
             builder:
-                (context, locale) => LocalizationProvider<AuthenticationTranslation>(
-                  delegate: AuthLocalizationDelegate(),
-                  locale: locale,
-                  child: AuthNavigationListener(
-                    router: router,
-                    child: MaterialApp.router(
-                      debugShowCheckedModeBanner: false,
-                      title: 'Homy',
-                      // theme: MDTheme.styles.createThemeData(),
-                      localizationsDelegates: [
-                        GlobalMaterialLocalizations.delegate,
-                        GlobalWidgetsLocalizations.delegate,
-                        ProfileLocalizationDelegate(),
-                        OrdersLocalizationDelegate(),,
-
-                        // BaseLocalization<ChildTranslation>().delegate(
-                        //   ChildTranslationMap.translation,
-                        // ),
-                        // BaseLocalization<TaskTranslation>().delegate(
-                        //   TaskTranslationMap.translation,
-                        // ),
-                      ],
-                      supportedLocales: Config.supportedLocales,
+                (context, locale) =>
+                    LocalizationProvider<AuthenticationTranslation>(
+                      delegate: AuthLocalizationDelegate(),
                       locale: locale,
-                      routerConfig: router,
+                      child: AuthNavigationListener(
+                        router: router,
+                        child: MaterialApp.router(
+                          debugShowCheckedModeBanner: false,
+                          title: 'Homy',
+                          // theme: MDTheme.styles.createThemeData(),
+                          localizationsDelegates: [
+                            GlobalMaterialLocalizations.delegate,
+                            GlobalWidgetsLocalizations.delegate,
+                            ProfileLocalizationDelegate(),
+                            OrdersLocalizationDelegate(),
+
+                            // BaseLocalization<ChildTranslation>().delegate(
+                            //   ChildTranslationMap.translation,
+                            // ),
+                            // BaseLocalization<TaskTranslation>().delegate(
+                            //   TaskTranslationMap.translation,
+                            // ),
+                          ],
+                          supportedLocales: Config.supportedLocales,
+                          locale: locale,
+                          routerConfig: router,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
           ),
         ),
       ),
