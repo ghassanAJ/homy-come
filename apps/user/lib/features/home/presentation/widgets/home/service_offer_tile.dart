@@ -1,24 +1,18 @@
-import 'package:design_system/design_system.dart';
+import 'package:booking/booking.dart';
+import 'package:go_router/go_router.dart';
+import 'package:user/navigation/route.dart';
 
 class ServiceOfferTile extends StatelessWidget {
   const ServiceOfferTile({
     super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.price,
-    required this.oldPrice,
-    required this.reviewsCount,
-    required this.ratingStars,
+
+    required this.servicePreviewResponseModel,
     this.width = 335,
   });
 
-  final String imageUrl;
-  final String title;
-  final String price;
-  final String oldPrice;
-  final int reviewsCount;
-  final List<bool> ratingStars;
   final double width;
+
+  final ServicePreviewResponseModel servicePreviewResponseModel;
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +33,15 @@ class ServiceOfferTile extends StatelessWidget {
                   top: Radius.circular(UI.radius.md),
                 ),
                 child: SizedBox(
-                  height: 128,
+                  height: 160,
                   width: width,
-                  child: UINetworkIamge(imageUrl: imageUrl, fit: BoxFit.cover),
+                  child: UINetworkImage(
+                    imageUrl: servicePreviewResponseModel.info?.image ?? '',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
+
               Padding(
                 padding: UI.padding.userHomeServiceOfferTileContent,
                 child: Column(
@@ -51,20 +49,20 @@ class ServiceOfferTile extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Row(
-                          children: ratingStars
-                              .map(
-                                (isFilled) => Icon(
-                                  isFilled ? Icons.star : Icons.star_border,
-                                  size: 20,
-                                  color: UIColor.babyBlue,
-                                ),
-                              )
-                              .toList(growable: false),
-                        ),
+                        if (servicePreviewResponseModel.rating != null)
+                          Row(
+                            children: List.generate(
+                              servicePreviewResponseModel.rating!,
+                              (index) => Icon(
+                                Icons.star,
+                                size: 20,
+                                color: UIColor.babyBlue,
+                              ),
+                            ),
+                          ),
                         SizedBox(width: UI.spacing.xs),
                         UIText.bodyXSmall(
-                          '($reviewsCount Reviews)',
+                          '(${servicePreviewResponseModel.reviewsCount} Reviews)',
                           color: UIColor.midnight,
                           fontWeight: FontWeight.w300,
                         ),
@@ -72,31 +70,24 @@ class ServiceOfferTile extends StatelessWidget {
                     ),
 
                     SizedBox(height: UI.spacing.xxs),
-                    UIText.bodyMedium(
-                      title,
+                    UIText.bodySmall(
+                      servicePreviewResponseModel.info?.name ?? '',
                       color: UIColor.primaryDark,
                       fontWeight: FontWeight.w700,
                     ),
                     SizedBox(height: UI.spacing.xxs),
-                    Row(
-                      children: [
-                        UIText.bodyMedium(
-                          price,
+                    if (servicePreviewResponseModel.priceModel != null)
+                      UIPriceText(
+                        oldPrice:
+                            servicePreviewResponseModel.priceModel!.currentPrice
+                                .toString(),
+                        text: UIText.bodySmall(
+                          servicePreviewResponseModel.priceModel!.newPrice
+                              .toString(),
                           color: UIColor.midnight,
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.w400,
                         ),
-                        SizedBox(width: UI.spacing.xs),
-                        Text(
-                          oldPrice,
-                          style: UI.text.bodyMedium.copyWith(
-                            color: UIColor.neutral400,
-                            fontWeight: FontWeight.w300,
-                            decoration: TextDecoration.lineThrough,
-                            decorationColor: UIColor.neutral400,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
                   ],
                 ),
               ),
@@ -107,11 +98,17 @@ class ServiceOfferTile extends StatelessWidget {
             bottom: UI.spacing.xs,
             end: UI.spacing.sm,
             child: UIActionButton(
-              label: 'Add',
-              onTap: () {},
-              width: 67,
-              height: 40,
-              fontWeight: FontWeight.w300,
+              label: 'Book now',
+              onTap: () {
+                context.push(
+                  UserPaths.serviceDetails,
+                  extra: {'id': servicePreviewResponseModel.documentId},
+                );
+              },
+              padding: EdgeInsets.symmetric(horizontal: UI.spacing.md),
+              // width: 67,
+              height: 36,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ],

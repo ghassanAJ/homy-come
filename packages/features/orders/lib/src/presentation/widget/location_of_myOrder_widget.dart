@@ -1,14 +1,12 @@
-import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:orders/src/cubit/order_state.dart';
-import 'package:orders/src/enum/filter_order_enum.dart';
-import 'package:user/navigation/route.dart';
 import 'package:orders/src/cubit/order_cubit.dart';
+import 'package:orders/src/cubit/order_state.dart';
 import 'package:orders/src/data/models/res/booking_model_response.dart';
-import 'package:orders/src/domain/useCase/get_order_details_use_case.dart';
+import 'package:orders/src/enum/filter_order_enum.dart';
 import 'package:orders/src/localization/order_localization_scope.dart';
+import 'package:user/navigation/route.dart';
 import 'package:util/util.dart';
 
 class CurrentOrderLocationView extends StatelessWidget {
@@ -61,12 +59,8 @@ class CurrentOrderLocationView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UIText.bodyXSmall(tr.title.address, color: UIColor.grey),
-                SizedBox(height: UI.spacing.xs),
-                UIText.bodySmall(
-                  location,
-                  // 'UEA Location name , details locations , street name 12357',
-                  overflow: TextOverflow.clip,
-                ),
+                SizedBox(height: 2),
+                UIText.bodySmall(location, overflow: TextOverflow.clip),
                 SizedBox(height: UI.spacing.md),
                 SizedBox(
                   height: UI.spacing.xl,
@@ -86,7 +80,8 @@ class CurrentOrderLocationView extends StatelessWidget {
                                     data?.cancelOrderError != null)) {
                               DialogsManager.hideLoading(context);
                             }
-                            if (data?.isOrderCancelled == true&&data?.isCancelOrderLoading == false) {
+                            if (data?.isOrderCancelled == true &&
+                                data?.isCancelOrderLoading == false) {
                               ToastificationUtil.success(
                                 'Order cancelled successfully',
                               );
@@ -113,7 +108,7 @@ class CurrentOrderLocationView extends StatelessWidget {
                           label: tr.labels.details,
                           expanded: true,
                           onPressed: () {
-                            context.go(
+                            context.push(
                               UserPaths.serviceDetailsSummarywithid(
                                 id: item.id,
                               ),

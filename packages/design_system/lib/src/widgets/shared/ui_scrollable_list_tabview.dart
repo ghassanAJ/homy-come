@@ -1,12 +1,12 @@
 import 'package:design_system/design_system.dart';
 import 'package:scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart';
 
-class CategorySection<T> {
+class UICategorySection<T> {
   final String id;
   final String title;
   final List<T> items;
 
-  const CategorySection({
+  const UICategorySection({
     required this.id,
     required this.title,
     required this.items,
@@ -20,7 +20,7 @@ typedef CategoryTabBuilder =
     Widget Function(BuildContext context, String title, bool isActive);
 
 class CategoryTabSectionView<T> extends StatelessWidget {
-  final List<CategorySection<T>> sections;
+  final List<UICategorySection<T>> sections;
 
   final CategoryItemBuilder<T> itemBuilder;
   final Function(int index)? tabChanged;
@@ -82,7 +82,7 @@ class CategoryTabSectionView<T> extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionList(BuildContext context, CategorySection<T> section) {
+  Widget _buildSectionList(BuildContext context, UICategorySection<T> section) {
     return ListView.separated(
       itemCount: section.items.length,
 

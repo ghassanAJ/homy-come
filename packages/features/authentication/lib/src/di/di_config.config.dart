@@ -22,6 +22,7 @@ import 'package:authentication/src/navigation/app_router.dart' as _i859;
 import 'package:authentication/src/presentation/bloc/auth_user_bloc.dart'
     as _i37;
 import 'package:authentication/src/presentation/cubit/app_cubit.dart' as _i372;
+import 'package:design_system/design_system.dart' as _i1063;
 import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -68,6 +69,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i37.AuthUserBloc(
         gh<_i6.AuthRepository>(),
         gh<_i6.SessionRepository>(),
+        userRole: gh<_i1063.UserRole>(),
       ),
     );
     return this;

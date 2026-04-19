@@ -197,13 +197,13 @@ class _BaseButton extends StatelessWidget {
     if (isLoading) {
       return Center(
         child: SizedBox(
-          height: UI.sizes.loadingIndicatorSm,
-          width: UI.sizes.loadingIndicatorSm,
+          // height: UI.sizes.loadingIndicatorSm,
+          // width: UI.sizes.loadingIndicatorSm,
           child: CircularProgressIndicator.adaptive(
-            strokeWidth: UI.sizes.loadingIndicatorStroke,
-            valueColor: AlwaysStoppedAnimation<Color>(
-              customForegroundColor ?? styleConfig.foregroundColor,
-            ),
+            // strokeWidth: UI.sizes.loadingIndicatorStroke,
+            // valueColor: AlwaysStoppedAnimation<Color>(
+            //   customForegroundColor ?? styleConfig.foregroundColor,
+            // ),
           ),
         ),
       );
@@ -466,6 +466,7 @@ class UIButton {
     bool isLoading = false,
     bool expanded = false,
     double? width,
+    UIColor? labelColor,
   }) {
     return _BaseButton(
       label: label,
@@ -639,20 +640,23 @@ class _IconButton extends StatelessWidget {
           child: Center(
             child:
                 svgAsset != null
-                    ? SizedBox(
-                      width: UI.sizes.iconSm,
-                      height: UI.sizes.iconSm,
-                      child: SvgPicture.asset(
-                        svgAsset!,
-                        fit: BoxFit.contain,
-                        colorFilter: ColorFilter.mode(
-                          effectiveColor,
-                          BlendMode.srcIn,
+                    ? UIIconBackground(
+                      backgroundColor: UIColor.neutral100,
+                      width: 28,
+                      height: 28,
+                      child: SizedBox(
+                        child: SvgPicture.asset(
+                          svgAsset!,
+                          fit: BoxFit.contain,
+                          colorFilter: ColorFilter.mode(
+                            effectiveColor,
+                            BlendMode.srcIn,
+                          ),
+                          package: 'design_system',
                         ),
-                        package: 'design_system',
                       ),
                     )
-                    : Icon(icon!, size: UI.sizes.iconMd, color: effectiveColor),
+                    : Icon(icon!, size: UI.sizes.iconLg, color: effectiveColor),
           ),
         ),
       ),

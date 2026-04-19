@@ -65,6 +65,13 @@ class TitleOrdersTr implements i69n.I69nMessageBundle {
   String get time => "Time";
   String get address => "Address";
   String get myOrder => "my orders";
+  String get orderDetails => "Order Details";
+  String get serviceDetails => "Service Details";
+  String get todaySchadule => "Today Schedule";
+  String get markDone => "Mark as done";
+  String get descraptionWarning =>
+      "Are you sure you want to mark this task as done?";
+  String get yes => "yes";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -88,6 +95,18 @@ class TitleOrdersTr implements i69n.I69nMessageBundle {
         return address;
       case 'myOrder':
         return myOrder;
+      case 'orderDetails':
+        return orderDetails;
+      case 'serviceDetails':
+        return serviceDetails;
+      case 'todaySchadule':
+        return todaySchadule;
+      case 'markDone':
+        return markDone;
+      case 'descraptionWarning':
+        return descraptionWarning;
+      case 'yes':
+        return yes;
       default:
         return key;
     }
@@ -100,6 +119,8 @@ class LabelsOrdersTr implements i69n.I69nMessageBundle {
   String get all => "All";
   String get cancel => "cancel";
   String get details => "Details";
+  String get done => "Mark done";
+  String get getDirection => "Get Direction";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -113,6 +134,10 @@ class LabelsOrdersTr implements i69n.I69nMessageBundle {
         return cancel;
       case 'details':
         return details;
+      case 'done':
+        return done;
+      case 'getDirection':
+        return getDirection;
       default:
         return key;
     }

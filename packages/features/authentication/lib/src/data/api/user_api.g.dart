@@ -52,8 +52,8 @@ class _UserAPI implements UserAPI {
   }
 
   @override
-  Future<APIResponse<UserModel>> updateProfile(
-    String userId,
+  Future<APIResponse<VerifiedUserModel>> updateProfile(
+    int userId,
     Map<String, dynamic> body,
   ) async {
     final _extra = <String, dynamic>{};
@@ -61,7 +61,7 @@ class _UserAPI implements UserAPI {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body);
-    final _options = _setStreamType<APIResponse<UserModel>>(
+    final _options = _setStreamType<APIResponse<VerifiedUserModel>>(
       Options(method: 'PATCH', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -72,11 +72,11 @@ class _UserAPI implements UserAPI {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late APIResponse<UserModel> _value;
+    late APIResponse<VerifiedUserModel> _value;
     try {
-      _value = APIResponse<UserModel>.fromJson(
+      _value = APIResponse<VerifiedUserModel>.fromJson(
         _result.data!,
-        (json) => UserModel.fromJson(json as Map<String, dynamic>),
+        (json) => VerifiedUserModel.fromJson(json as Map<String, dynamic>),
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);

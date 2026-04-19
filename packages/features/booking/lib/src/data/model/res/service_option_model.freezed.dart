@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ServiceOptionModel {
 
- String get id; String get title;@JsonKey(name: 'duration_minutes') int get durationMinutes; String get description;@JsonKey(name: 'original_price') double get originalPrice;@JsonKey(name: 'discounted_price') double get discountedPrice; String get currency;@JsonKey(name: 'image_url') String? get imageUrl;
+ int get id; String get title;@JsonKey(name: 'duration_minutes') int get durationMinutes; String get description;@JsonKey(name: 'original_price') double get originalPrice;@JsonKey(name: 'discounted_price') double get discountedPrice; String get currency;@JsonKey(name: 'image_url') String? get imageUrl;
 /// Create a copy of ServiceOptionModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ServiceOptionModelCopyWith<$Res>  {
   factory $ServiceOptionModelCopyWith(ServiceOptionModel value, $Res Function(ServiceOptionModel) _then) = _$ServiceOptionModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String title,@JsonKey(name: 'duration_minutes') int durationMinutes, String description,@JsonKey(name: 'original_price') double originalPrice,@JsonKey(name: 'discounted_price') double discountedPrice, String currency,@JsonKey(name: 'image_url') String? imageUrl
+ int id, String title,@JsonKey(name: 'duration_minutes') int durationMinutes, String description,@JsonKey(name: 'original_price') double originalPrice,@JsonKey(name: 'discounted_price') double discountedPrice, String currency,@JsonKey(name: 'image_url') String? imageUrl
 });
 
 
@@ -68,7 +68,7 @@ class _$ServiceOptionModelCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? durationMinutes = null,Object? description = null,Object? originalPrice = null,Object? discountedPrice = null,Object? currency = null,Object? imageUrl = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,durationMinutes: null == durationMinutes ? _self.durationMinutes : durationMinutes // ignore: cast_nullable_to_non_nullable
 as int,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,originalPrice: null == originalPrice ? _self.originalPrice : originalPrice // ignore: cast_nullable_to_non_nullable
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title, @JsonKey(name: 'duration_minutes')  int durationMinutes,  String description, @JsonKey(name: 'original_price')  double originalPrice, @JsonKey(name: 'discounted_price')  double discountedPrice,  String currency, @JsonKey(name: 'image_url')  String? imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String title, @JsonKey(name: 'duration_minutes')  int durationMinutes,  String description, @JsonKey(name: 'original_price')  double originalPrice, @JsonKey(name: 'discounted_price')  double discountedPrice,  String currency, @JsonKey(name: 'image_url')  String? imageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ServiceOptionModel() when $default != null:
 return $default(_that.id,_that.title,_that.durationMinutes,_that.description,_that.originalPrice,_that.discountedPrice,_that.currency,_that.imageUrl);case _:
@@ -181,7 +181,7 @@ return $default(_that.id,_that.title,_that.durationMinutes,_that.description,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title, @JsonKey(name: 'duration_minutes')  int durationMinutes,  String description, @JsonKey(name: 'original_price')  double originalPrice, @JsonKey(name: 'discounted_price')  double discountedPrice,  String currency, @JsonKey(name: 'image_url')  String? imageUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String title, @JsonKey(name: 'duration_minutes')  int durationMinutes,  String description, @JsonKey(name: 'original_price')  double originalPrice, @JsonKey(name: 'discounted_price')  double discountedPrice,  String currency, @JsonKey(name: 'image_url')  String? imageUrl)  $default,) {final _that = this;
 switch (_that) {
 case _ServiceOptionModel():
 return $default(_that.id,_that.title,_that.durationMinutes,_that.description,_that.originalPrice,_that.discountedPrice,_that.currency,_that.imageUrl);case _:
@@ -201,7 +201,7 @@ return $default(_that.id,_that.title,_that.durationMinutes,_that.description,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title, @JsonKey(name: 'duration_minutes')  int durationMinutes,  String description, @JsonKey(name: 'original_price')  double originalPrice, @JsonKey(name: 'discounted_price')  double discountedPrice,  String currency, @JsonKey(name: 'image_url')  String? imageUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String title, @JsonKey(name: 'duration_minutes')  int durationMinutes,  String description, @JsonKey(name: 'original_price')  double originalPrice, @JsonKey(name: 'discounted_price')  double discountedPrice,  String currency, @JsonKey(name: 'image_url')  String? imageUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _ServiceOptionModel() when $default != null:
 return $default(_that.id,_that.title,_that.durationMinutes,_that.description,_that.originalPrice,_that.discountedPrice,_that.currency,_that.imageUrl);case _:
@@ -219,7 +219,7 @@ class _ServiceOptionModel implements ServiceOptionModel {
   const _ServiceOptionModel({required this.id, required this.title, @JsonKey(name: 'duration_minutes') required this.durationMinutes, required this.description, @JsonKey(name: 'original_price') required this.originalPrice, @JsonKey(name: 'discounted_price') required this.discountedPrice, this.currency = 'AED', @JsonKey(name: 'image_url') this.imageUrl});
   factory _ServiceOptionModel.fromJson(Map<String, dynamic> json) => _$ServiceOptionModelFromJson(json);
 
-@override final  String id;
+@override final  int id;
 @override final  String title;
 @override@JsonKey(name: 'duration_minutes') final  int durationMinutes;
 @override final  String description;
@@ -261,7 +261,7 @@ abstract mixin class _$ServiceOptionModelCopyWith<$Res> implements $ServiceOptio
   factory _$ServiceOptionModelCopyWith(_ServiceOptionModel value, $Res Function(_ServiceOptionModel) _then) = __$ServiceOptionModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title,@JsonKey(name: 'duration_minutes') int durationMinutes, String description,@JsonKey(name: 'original_price') double originalPrice,@JsonKey(name: 'discounted_price') double discountedPrice, String currency,@JsonKey(name: 'image_url') String? imageUrl
+ int id, String title,@JsonKey(name: 'duration_minutes') int durationMinutes, String description,@JsonKey(name: 'original_price') double originalPrice,@JsonKey(name: 'discounted_price') double discountedPrice, String currency,@JsonKey(name: 'image_url') String? imageUrl
 });
 
 
@@ -281,7 +281,7 @@ class __$ServiceOptionModelCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? durationMinutes = null,Object? description = null,Object? originalPrice = null,Object? discountedPrice = null,Object? currency = null,Object? imageUrl = freezed,}) {
   return _then(_ServiceOptionModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,durationMinutes: null == durationMinutes ? _self.durationMinutes : durationMinutes // ignore: cast_nullable_to_non_nullable
 as int,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,originalPrice: null == originalPrice ? _self.originalPrice : originalPrice // ignore: cast_nullable_to_non_nullable

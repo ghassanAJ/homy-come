@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ServiceDetailsResponseModel {
 
- String get id; String get title; List<ServiceCategoryModel> get categories;@JsonKey(name: 'featured_option') ServiceOptionModel? get featuredOption; List<ServiceSectionModel> get sections;
+ int get id; int? get rating;@JsonKey(name: 'reviews_count') int? get reviewsCount; InfoModel get info; ServicePriceModel get price;@JsonKey(name: 'add_on_categories') List<AddOnCategoryModel> get addonCategories;
 /// Create a copy of ServiceDetailsResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ServiceDetailsResponseModelCopyWith<ServiceDetailsResponseModel> get copyWith =
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServiceDetailsResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.categories, categories)&&(identical(other.featuredOption, featuredOption) || other.featuredOption == featuredOption)&&const DeepCollectionEquality().equals(other.sections, sections));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServiceDetailsResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount)&&(identical(other.info, info) || other.info == info)&&(identical(other.price, price) || other.price == price)&&const DeepCollectionEquality().equals(other.addonCategories, addonCategories));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(categories),featuredOption,const DeepCollectionEquality().hash(sections));
+int get hashCode => Object.hash(runtimeType,id,rating,reviewsCount,info,price,const DeepCollectionEquality().hash(addonCategories));
 
 @override
 String toString() {
-  return 'ServiceDetailsResponseModel(id: $id, title: $title, categories: $categories, featuredOption: $featuredOption, sections: $sections)';
+  return 'ServiceDetailsResponseModel(id: $id, rating: $rating, reviewsCount: $reviewsCount, info: $info, price: $price, addonCategories: $addonCategories)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $ServiceDetailsResponseModelCopyWith<$Res>  {
   factory $ServiceDetailsResponseModelCopyWith(ServiceDetailsResponseModel value, $Res Function(ServiceDetailsResponseModel) _then) = _$ServiceDetailsResponseModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, List<ServiceCategoryModel> categories,@JsonKey(name: 'featured_option') ServiceOptionModel? featuredOption, List<ServiceSectionModel> sections
+ int id, int? rating,@JsonKey(name: 'reviews_count') int? reviewsCount, InfoModel info, ServicePriceModel price,@JsonKey(name: 'add_on_categories') List<AddOnCategoryModel> addonCategories
 });
 
 
-$ServiceOptionModelCopyWith<$Res>? get featuredOption;
+$InfoModelCopyWith<$Res> get info;$ServicePriceModelCopyWith<$Res> get price;
 
 }
 /// @nodoc
@@ -65,27 +65,34 @@ class _$ServiceDetailsResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of ServiceDetailsResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? categories = null,Object? featuredOption = freezed,Object? sections = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? rating = freezed,Object? reviewsCount = freezed,Object? info = null,Object? price = null,Object? addonCategories = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,categories: null == categories ? _self.categories : categories // ignore: cast_nullable_to_non_nullable
-as List<ServiceCategoryModel>,featuredOption: freezed == featuredOption ? _self.featuredOption : featuredOption // ignore: cast_nullable_to_non_nullable
-as ServiceOptionModel?,sections: null == sections ? _self.sections : sections // ignore: cast_nullable_to_non_nullable
-as List<ServiceSectionModel>,
+as int,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as int?,reviewsCount: freezed == reviewsCount ? _self.reviewsCount : reviewsCount // ignore: cast_nullable_to_non_nullable
+as int?,info: null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
+as InfoModel,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as ServicePriceModel,addonCategories: null == addonCategories ? _self.addonCategories : addonCategories // ignore: cast_nullable_to_non_nullable
+as List<AddOnCategoryModel>,
   ));
 }
 /// Create a copy of ServiceDetailsResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$ServiceOptionModelCopyWith<$Res>? get featuredOption {
-    if (_self.featuredOption == null) {
-    return null;
-  }
-
-  return $ServiceOptionModelCopyWith<$Res>(_self.featuredOption!, (value) {
-    return _then(_self.copyWith(featuredOption: value));
+$InfoModelCopyWith<$Res> get info {
+  
+  return $InfoModelCopyWith<$Res>(_self.info, (value) {
+    return _then(_self.copyWith(info: value));
+  });
+}/// Create a copy of ServiceDetailsResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServicePriceModelCopyWith<$Res> get price {
+  
+  return $ServicePriceModelCopyWith<$Res>(_self.price, (value) {
+    return _then(_self.copyWith(price: value));
   });
 }
 }
@@ -169,10 +176,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  List<ServiceCategoryModel> categories, @JsonKey(name: 'featured_option')  ServiceOptionModel? featuredOption,  List<ServiceSectionModel> sections)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount,  InfoModel info,  ServicePriceModel price, @JsonKey(name: 'add_on_categories')  List<AddOnCategoryModel> addonCategories)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ServiceDetailsResponseModel() when $default != null:
-return $default(_that.id,_that.title,_that.categories,_that.featuredOption,_that.sections);case _:
+return $default(_that.id,_that.rating,_that.reviewsCount,_that.info,_that.price,_that.addonCategories);case _:
   return orElse();
 
 }
@@ -190,10 +197,10 @@ return $default(_that.id,_that.title,_that.categories,_that.featuredOption,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  List<ServiceCategoryModel> categories, @JsonKey(name: 'featured_option')  ServiceOptionModel? featuredOption,  List<ServiceSectionModel> sections)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount,  InfoModel info,  ServicePriceModel price, @JsonKey(name: 'add_on_categories')  List<AddOnCategoryModel> addonCategories)  $default,) {final _that = this;
 switch (_that) {
 case _ServiceDetailsResponseModel():
-return $default(_that.id,_that.title,_that.categories,_that.featuredOption,_that.sections);case _:
+return $default(_that.id,_that.rating,_that.reviewsCount,_that.info,_that.price,_that.addonCategories);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -210,10 +217,10 @@ return $default(_that.id,_that.title,_that.categories,_that.featuredOption,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  List<ServiceCategoryModel> categories, @JsonKey(name: 'featured_option')  ServiceOptionModel? featuredOption,  List<ServiceSectionModel> sections)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount,  InfoModel info,  ServicePriceModel price, @JsonKey(name: 'add_on_categories')  List<AddOnCategoryModel> addonCategories)?  $default,) {final _that = this;
 switch (_that) {
 case _ServiceDetailsResponseModel() when $default != null:
-return $default(_that.id,_that.title,_that.categories,_that.featuredOption,_that.sections);case _:
+return $default(_that.id,_that.rating,_that.reviewsCount,_that.info,_that.price,_that.addonCategories);case _:
   return null;
 
 }
@@ -225,24 +232,19 @@ return $default(_that.id,_that.title,_that.categories,_that.featuredOption,_that
 @JsonSerializable()
 
 class _ServiceDetailsResponseModel implements ServiceDetailsResponseModel {
-  const _ServiceDetailsResponseModel({required this.id, required this.title, final  List<ServiceCategoryModel> categories = const [], @JsonKey(name: 'featured_option') this.featuredOption, final  List<ServiceSectionModel> sections = const []}): _categories = categories,_sections = sections;
+  const _ServiceDetailsResponseModel({required this.id, required this.rating, @JsonKey(name: 'reviews_count') required this.reviewsCount, required this.info, required this.price, @JsonKey(name: 'add_on_categories') final  List<AddOnCategoryModel> addonCategories = const []}): _addonCategories = addonCategories;
   factory _ServiceDetailsResponseModel.fromJson(Map<String, dynamic> json) => _$ServiceDetailsResponseModelFromJson(json);
 
-@override final  String id;
-@override final  String title;
- final  List<ServiceCategoryModel> _categories;
-@override@JsonKey() List<ServiceCategoryModel> get categories {
-  if (_categories is EqualUnmodifiableListView) return _categories;
+@override final  int id;
+@override final  int? rating;
+@override@JsonKey(name: 'reviews_count') final  int? reviewsCount;
+@override final  InfoModel info;
+@override final  ServicePriceModel price;
+ final  List<AddOnCategoryModel> _addonCategories;
+@override@JsonKey(name: 'add_on_categories') List<AddOnCategoryModel> get addonCategories {
+  if (_addonCategories is EqualUnmodifiableListView) return _addonCategories;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_categories);
-}
-
-@override@JsonKey(name: 'featured_option') final  ServiceOptionModel? featuredOption;
- final  List<ServiceSectionModel> _sections;
-@override@JsonKey() List<ServiceSectionModel> get sections {
-  if (_sections is EqualUnmodifiableListView) return _sections;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_sections);
+  return EqualUnmodifiableListView(_addonCategories);
 }
 
 
@@ -259,16 +261,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServiceDetailsResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._categories, _categories)&&(identical(other.featuredOption, featuredOption) || other.featuredOption == featuredOption)&&const DeepCollectionEquality().equals(other._sections, _sections));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServiceDetailsResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount)&&(identical(other.info, info) || other.info == info)&&(identical(other.price, price) || other.price == price)&&const DeepCollectionEquality().equals(other._addonCategories, _addonCategories));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,const DeepCollectionEquality().hash(_categories),featuredOption,const DeepCollectionEquality().hash(_sections));
+int get hashCode => Object.hash(runtimeType,id,rating,reviewsCount,info,price,const DeepCollectionEquality().hash(_addonCategories));
 
 @override
 String toString() {
-  return 'ServiceDetailsResponseModel(id: $id, title: $title, categories: $categories, featuredOption: $featuredOption, sections: $sections)';
+  return 'ServiceDetailsResponseModel(id: $id, rating: $rating, reviewsCount: $reviewsCount, info: $info, price: $price, addonCategories: $addonCategories)';
 }
 
 
@@ -279,11 +281,11 @@ abstract mixin class _$ServiceDetailsResponseModelCopyWith<$Res> implements $Ser
   factory _$ServiceDetailsResponseModelCopyWith(_ServiceDetailsResponseModel value, $Res Function(_ServiceDetailsResponseModel) _then) = __$ServiceDetailsResponseModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, List<ServiceCategoryModel> categories,@JsonKey(name: 'featured_option') ServiceOptionModel? featuredOption, List<ServiceSectionModel> sections
+ int id, int? rating,@JsonKey(name: 'reviews_count') int? reviewsCount, InfoModel info, ServicePriceModel price,@JsonKey(name: 'add_on_categories') List<AddOnCategoryModel> addonCategories
 });
 
 
-@override $ServiceOptionModelCopyWith<$Res>? get featuredOption;
+@override $InfoModelCopyWith<$Res> get info;@override $ServicePriceModelCopyWith<$Res> get price;
 
 }
 /// @nodoc
@@ -296,14 +298,15 @@ class __$ServiceDetailsResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of ServiceDetailsResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? categories = null,Object? featuredOption = freezed,Object? sections = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? rating = freezed,Object? reviewsCount = freezed,Object? info = null,Object? price = null,Object? addonCategories = null,}) {
   return _then(_ServiceDetailsResponseModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,categories: null == categories ? _self._categories : categories // ignore: cast_nullable_to_non_nullable
-as List<ServiceCategoryModel>,featuredOption: freezed == featuredOption ? _self.featuredOption : featuredOption // ignore: cast_nullable_to_non_nullable
-as ServiceOptionModel?,sections: null == sections ? _self._sections : sections // ignore: cast_nullable_to_non_nullable
-as List<ServiceSectionModel>,
+as int,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as int?,reviewsCount: freezed == reviewsCount ? _self.reviewsCount : reviewsCount // ignore: cast_nullable_to_non_nullable
+as int?,info: null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
+as InfoModel,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as ServicePriceModel,addonCategories: null == addonCategories ? _self._addonCategories : addonCategories // ignore: cast_nullable_to_non_nullable
+as List<AddOnCategoryModel>,
   ));
 }
 
@@ -311,13 +314,345 @@ as List<ServiceSectionModel>,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$ServiceOptionModelCopyWith<$Res>? get featuredOption {
-    if (_self.featuredOption == null) {
+$InfoModelCopyWith<$Res> get info {
+  
+  return $InfoModelCopyWith<$Res>(_self.info, (value) {
+    return _then(_self.copyWith(info: value));
+  });
+}/// Create a copy of ServiceDetailsResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServicePriceModelCopyWith<$Res> get price {
+  
+  return $ServicePriceModelCopyWith<$Res>(_self.price, (value) {
+    return _then(_self.copyWith(price: value));
+  });
+}
+}
+
+
+/// @nodoc
+mixin _$ServicePreviewResponseModel {
+
+ int get id; String get documentId; InfoModel? get info;@JsonKey(name: 'price') ServicePriceModel? get priceModel; int? get rating;@JsonKey(name: 'reviews_count') int? get reviewsCount;
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ServicePreviewResponseModelCopyWith<ServicePreviewResponseModel> get copyWith => _$ServicePreviewResponseModelCopyWithImpl<ServicePreviewResponseModel>(this as ServicePreviewResponseModel, _$identity);
+
+  /// Serializes this ServicePreviewResponseModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServicePreviewResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.documentId, documentId) || other.documentId == documentId)&&(identical(other.info, info) || other.info == info)&&(identical(other.priceModel, priceModel) || other.priceModel == priceModel)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,documentId,info,priceModel,rating,reviewsCount);
+
+@override
+String toString() {
+  return 'ServicePreviewResponseModel(id: $id, documentId: $documentId, info: $info, priceModel: $priceModel, rating: $rating, reviewsCount: $reviewsCount)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ServicePreviewResponseModelCopyWith<$Res>  {
+  factory $ServicePreviewResponseModelCopyWith(ServicePreviewResponseModel value, $Res Function(ServicePreviewResponseModel) _then) = _$ServicePreviewResponseModelCopyWithImpl;
+@useResult
+$Res call({
+ int id, String documentId, InfoModel? info,@JsonKey(name: 'price') ServicePriceModel? priceModel, int? rating,@JsonKey(name: 'reviews_count') int? reviewsCount
+});
+
+
+$InfoModelCopyWith<$Res>? get info;$ServicePriceModelCopyWith<$Res>? get priceModel;
+
+}
+/// @nodoc
+class _$ServicePreviewResponseModelCopyWithImpl<$Res>
+    implements $ServicePreviewResponseModelCopyWith<$Res> {
+  _$ServicePreviewResponseModelCopyWithImpl(this._self, this._then);
+
+  final ServicePreviewResponseModel _self;
+  final $Res Function(ServicePreviewResponseModel) _then;
+
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? documentId = null,Object? info = freezed,Object? priceModel = freezed,Object? rating = freezed,Object? reviewsCount = freezed,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
+as String,info: freezed == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
+as InfoModel?,priceModel: freezed == priceModel ? _self.priceModel : priceModel // ignore: cast_nullable_to_non_nullable
+as ServicePriceModel?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as int?,reviewsCount: freezed == reviewsCount ? _self.reviewsCount : reviewsCount // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$InfoModelCopyWith<$Res>? get info {
+    if (_self.info == null) {
     return null;
   }
 
-  return $ServiceOptionModelCopyWith<$Res>(_self.featuredOption!, (value) {
-    return _then(_self.copyWith(featuredOption: value));
+  return $InfoModelCopyWith<$Res>(_self.info!, (value) {
+    return _then(_self.copyWith(info: value));
+  });
+}/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServicePriceModelCopyWith<$Res>? get priceModel {
+    if (_self.priceModel == null) {
+    return null;
+  }
+
+  return $ServicePriceModelCopyWith<$Res>(_self.priceModel!, (value) {
+    return _then(_self.copyWith(priceModel: value));
+  });
+}
+}
+
+
+/// Adds pattern-matching-related methods to [ServicePreviewResponseModel].
+extension ServicePreviewResponseModelPatterns on ServicePreviewResponseModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ServicePreviewResponseModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ServicePreviewResponseModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ServicePreviewResponseModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String documentId,  InfoModel? info, @JsonKey(name: 'price')  ServicePriceModel? priceModel,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel() when $default != null:
+return $default(_that.id,_that.documentId,_that.info,_that.priceModel,_that.rating,_that.reviewsCount);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String documentId,  InfoModel? info, @JsonKey(name: 'price')  ServicePriceModel? priceModel,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount)  $default,) {final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel():
+return $default(_that.id,_that.documentId,_that.info,_that.priceModel,_that.rating,_that.reviewsCount);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String documentId,  InfoModel? info, @JsonKey(name: 'price')  ServicePriceModel? priceModel,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount)?  $default,) {final _that = this;
+switch (_that) {
+case _ServicePreviewResponseModel() when $default != null:
+return $default(_that.id,_that.documentId,_that.info,_that.priceModel,_that.rating,_that.reviewsCount);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _ServicePreviewResponseModel implements ServicePreviewResponseModel {
+  const _ServicePreviewResponseModel({required this.id, required this.documentId, this.info, @JsonKey(name: 'price') required this.priceModel, required this.rating, @JsonKey(name: 'reviews_count') this.reviewsCount});
+  factory _ServicePreviewResponseModel.fromJson(Map<String, dynamic> json) => _$ServicePreviewResponseModelFromJson(json);
+
+@override final  int id;
+@override final  String documentId;
+@override final  InfoModel? info;
+@override@JsonKey(name: 'price') final  ServicePriceModel? priceModel;
+@override final  int? rating;
+@override@JsonKey(name: 'reviews_count') final  int? reviewsCount;
+
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ServicePreviewResponseModelCopyWith<_ServicePreviewResponseModel> get copyWith => __$ServicePreviewResponseModelCopyWithImpl<_ServicePreviewResponseModel>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ServicePreviewResponseModelToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServicePreviewResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.documentId, documentId) || other.documentId == documentId)&&(identical(other.info, info) || other.info == info)&&(identical(other.priceModel, priceModel) || other.priceModel == priceModel)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,documentId,info,priceModel,rating,reviewsCount);
+
+@override
+String toString() {
+  return 'ServicePreviewResponseModel(id: $id, documentId: $documentId, info: $info, priceModel: $priceModel, rating: $rating, reviewsCount: $reviewsCount)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ServicePreviewResponseModelCopyWith<$Res> implements $ServicePreviewResponseModelCopyWith<$Res> {
+  factory _$ServicePreviewResponseModelCopyWith(_ServicePreviewResponseModel value, $Res Function(_ServicePreviewResponseModel) _then) = __$ServicePreviewResponseModelCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, String documentId, InfoModel? info,@JsonKey(name: 'price') ServicePriceModel? priceModel, int? rating,@JsonKey(name: 'reviews_count') int? reviewsCount
+});
+
+
+@override $InfoModelCopyWith<$Res>? get info;@override $ServicePriceModelCopyWith<$Res>? get priceModel;
+
+}
+/// @nodoc
+class __$ServicePreviewResponseModelCopyWithImpl<$Res>
+    implements _$ServicePreviewResponseModelCopyWith<$Res> {
+  __$ServicePreviewResponseModelCopyWithImpl(this._self, this._then);
+
+  final _ServicePreviewResponseModel _self;
+  final $Res Function(_ServicePreviewResponseModel) _then;
+
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? documentId = null,Object? info = freezed,Object? priceModel = freezed,Object? rating = freezed,Object? reviewsCount = freezed,}) {
+  return _then(_ServicePreviewResponseModel(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
+as String,info: freezed == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
+as InfoModel?,priceModel: freezed == priceModel ? _self.priceModel : priceModel // ignore: cast_nullable_to_non_nullable
+as ServicePriceModel?,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as int?,reviewsCount: freezed == reviewsCount ? _self.reviewsCount : reviewsCount // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$InfoModelCopyWith<$Res>? get info {
+    if (_self.info == null) {
+    return null;
+  }
+
+  return $InfoModelCopyWith<$Res>(_self.info!, (value) {
+    return _then(_self.copyWith(info: value));
+  });
+}/// Create a copy of ServicePreviewResponseModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServicePriceModelCopyWith<$Res>? get priceModel {
+    if (_self.priceModel == null) {
+    return null;
+  }
+
+  return $ServicePriceModelCopyWith<$Res>(_self.priceModel!, (value) {
+    return _then(_self.copyWith(priceModel: value));
   });
 }
 }

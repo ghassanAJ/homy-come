@@ -1,24 +1,17 @@
-import 'dart:developer';
 import 'package:authentication/authentication.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:orders/orders.dart';
 import 'package:orders/src/cubit/order_cubit.dart';
 import 'package:orders/src/cubit/order_state.dart';
-import 'package:orders/src/data/models/res/booking_model_response.dart';
-import 'package:orders/src/di/di_container.dart';
 import 'package:orders/src/enum/filter_order_enum.dart';
-import 'package:orders/src/presentation/widget/no_order_found_widget.dart';
 import 'package:orders/src/presentation/widget/order_app_bar.dart';
 import 'package:orders/src/presentation/widget/order_error_widgert.dart';
 import 'package:orders/src/presentation/widget/order_shimmer_loading.dart';
 import 'package:orders/src/presentation/widget/orders_list.dart';
-import 'package:orders/src/presentation/widget/shimmer_order_card.dart';
-import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
-import 'package:orders/src/presentation/widget/card_status_order_widget.dart';
-import 'package:orders/src/localization/order_localization_scope.dart';
 
 class MyOrderScreen extends StatefulWidget {
-  MyOrderScreen({super.key});
+  const MyOrderScreen({super.key});
 
   @override
   State<MyOrderScreen> createState() => _MyOrderScreenState();
@@ -27,15 +20,16 @@ class MyOrderScreen extends StatefulWidget {
 class _MyOrderScreenState extends State<MyOrderScreen>
     with SingleTickerProviderStateMixin {
   late final OrderCubit _orderCubit;
+  late final ScrollController _scrollController;
 
   late TabController _tabController;
   @override
   void initState() {
     super.initState();
     _orderCubit = diContainerOrder<OrderCubit>();
-    // _orderCubit = OrderCubit(  getDetailsOrderUseCase:diContainerOrder.get<GetDetailsBookingUseCase >() , cancelOrderUseCase: diContainerOrder.get<CancelOrderUseCase >(), getOrderUseCase: diContainerOrder<GetOrderDetailsUseCase >());
-    _tabController = TabController(length: 3, vsync: this);
 
+    _tabController = TabController(length: 3, vsync: this);
+    _scrollController = ScrollController();
     _tabController.addListener(() {
       setState(() {});
     });
@@ -46,9 +40,9 @@ class _MyOrderScreenState extends State<MyOrderScreen>
     final tr = context.orderTr;
     final screenWidth = MediaQuery.sizeOf(context).height;
     final tabs = [
-      FilterTabContent(text: 'in progress', iconPath: ''),
-      FilterTabContent(text: 'scheduled', iconPath: ''),
-      FilterTabContent(text: 'completed', iconPath: ''),
+      FilterTabContent(text: tr.title.inProgess, iconPath: ''),
+      FilterTabContent(text: tr.title.scheduled, iconPath: ''),
+      FilterTabContent(text: tr.title.completed, iconPath: ''),
     ];
     return BlocProvider(
       create: (context) => _orderCubit..getOrders(FilterOrder.all),
@@ -58,24 +52,12 @@ class _MyOrderScreenState extends State<MyOrderScreen>
             body: UIBackground(
               child: RefreshIndicator(
                 color: UIColor.babyBlue,
-                onRefresh: () async {
-                  _orderCubit.getOrders(FilterOrder.all);
-                },
+                onRefresh: () async => _orderCubit.getOrders(FilterOrder.all),
                 child: NestedScrollView(
-                  controller: ScrollController(),
+                  controller: _scrollController,
                   headerSliverBuilder:
                       (context, innerBoxIsScrolled) => [
-                        const OrderAppBar(),
-                        SliverPersistentHeader(
-                          pinned: true,
-                          delegate: _FilterTabBarHeaderDelegate(
-                            child: UIFilterTabBar(
-                              tabs: tabs,
-                              package: 'my order',
-                              tabController: _tabController,
-                            ),
-                          ),
-                        ),
+                        OrderAppBar(scrollController: _tabController),
                       ],
                   body: BlocBuilder<OrderCubit, BaseState<OrderState>>(
                     builder: (context, state) {
@@ -87,7 +69,6 @@ class _MyOrderScreenState extends State<MyOrderScreen>
                         return OrdersErrorWidget(
                           message: state.error!.message,
                           onTap: () async {
-                            print('object');
                             _orderCubit.getOrders(FilterOrder.all);
                           },
                         );
@@ -114,32 +95,7 @@ class _MyOrderScreenState extends State<MyOrderScreen>
   @override
   void dispose() {
     _tabController.dispose();
+    _scrollController.dispose();
     super.dispose();
-  }
-}
-
-class _FilterTabBarHeaderDelegate extends SliverPersistentHeaderDelegate {
-  _FilterTabBarHeaderDelegate({required this.child});
-
-  final Widget child;
-
-  @override
-  double get minExtent => 50;
-
-  @override
-  double get maxExtent => 50;
-
-  @override
-  Widget build(
-    BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    return Material(color: Colors.transparent, child: child);
-  }
-
-  @override
-  bool shouldRebuild(covariant _FilterTabBarHeaderDelegate oldDelegate) {
-    return false;
   }
 }

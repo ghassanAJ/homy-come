@@ -1,5 +1,4 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 import 'package:orders/src/data/models/res/booking_model_response.dart';
 import 'package:orders/src/presentation/widget/data_and_time_info_order_widget.dart';
 import 'package:orders/src/presentation/widget/info_cleaner_of_order_widget.dart';
@@ -15,13 +14,19 @@ class ContentCardStatusOrder extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        OrderNameAndStatusWidget(name: item.serviceType, status: item.status ),
+        OrderNameAndStatusWidget(name: item.serviceType, status: item.status),
         Divider(color: UIColor.bordarCard, height: 0.5),
-        OrderCleanerInfoWidget(name: item.provider.name, rating: item.provider.rating),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: UI.spacing.md),
+          child: OrderCleanerInfoWidget(
+            name: item.provider.name,
+            rating: item.provider.rating,
+          ),
+        ),
         Divider(color: UIColor.bordarCard, height: 0.5),
         OrderDateTimeWidget(date: item.date, time: item.time),
         Divider(color: UIColor.bordarCard, height: 0.5),
-        CurrentOrderLocationView(location: item.address, item: item,),
+        CurrentOrderLocationView(location: item.address, item: item),
       ],
     );
   }

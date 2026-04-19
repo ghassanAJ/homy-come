@@ -19,8 +19,12 @@ import 'package:orders/src/domain/repository/mock_booking_api_repository.dart'
 import 'package:orders/src/domain/useCase/cancel_order_use_case.dart' as _i1058;
 import 'package:orders/src/domain/useCase/get_details_booking_use_case.dart'
     as _i616;
+import 'package:orders/src/domain/useCase/get_order_details_by_Id_use_case.dart'
+    as _i595;
 import 'package:orders/src/domain/useCase/get_order_details_use_case.dart'
     as _i717;
+import 'package:orders/src/domain/useCase/get_today_schedule_use_case.dart'
+    as _i760;
 import 'package:orders/src/enum/filter_order_enum.dart' as _i260;
 
 const String _mock = 'mock';
@@ -48,10 +52,19 @@ extension GetItInjectableX on _i174.GetIt {
         reason: reason,
       ),
     );
+    gh.factory<_i760.GetTodayScheduleUseCase>(
+      () => _i760.GetTodayScheduleUseCase(repo: gh<_i176.OrdersRepository>()),
+    );
     gh.factoryParam<_i717.GetOrderDetailsUseCase, _i260.FilterOrder, dynamic>(
       (status, _) => _i717.GetOrderDetailsUseCase(
         gh<_i176.OrdersRepository>(),
         status: status,
+      ),
+    );
+    gh.factoryParam<_i595.GetOrderDetailsByIdUseCase, int, dynamic>(
+      (id, _) => _i595.GetOrderDetailsByIdUseCase(
+        repo: gh<_i176.OrdersRepository>(),
+        id: id,
       ),
     );
     return this;

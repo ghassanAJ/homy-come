@@ -1,7 +1,8 @@
-import 'package:design_system/design_system.dart';
-import 'package:user/features/home/domain/entities/home_content.dart';
+import 'package:booking/booking.dart';
+import 'package:go_router/go_router.dart';
 import 'package:user/features/home/presentation/widgets/shared/base_category_item.dart';
 import 'package:user/features/home/presentation/widgets/shared/categories_search_field.dart';
+import 'package:user/navigation/route.dart';
 import 'package:util/util.dart';
 
 class CategoriesScrollViewContent extends StatelessWidget {
@@ -13,7 +14,7 @@ class CategoriesScrollViewContent extends StatelessWidget {
   });
 
   final TextEditingController searchController;
-  final List<HomeCategoryItem> categories;
+  final List<ServiceCategoryModel> categories;
   final double bottomSafeArea;
 
   @override
@@ -27,14 +28,17 @@ class CategoriesScrollViewContent extends StatelessWidget {
           children: [
             CategoriesSearchField(controller: searchController),
             SizedBox(height: UI.spacing.lg),
-            ..._buildCategoryItems(categories),
+            ..._buildCategoryItems(context, categories),
           ],
         ),
       ),
     );
   }
 
-  List<Widget> _buildCategoryItems(List<HomeCategoryItem> categories) {
+  List<Widget> _buildCategoryItems(
+    BuildContext context,
+    List<ServiceCategoryModel> categories,
+  ) {
     return ListWidgetBuilder.mapWithIsLast(categories, (
       category,
       _,
@@ -45,9 +49,14 @@ class CategoriesScrollViewContent extends StatelessWidget {
           bottom: isLastItem ? 0 : UI.spacing.lg,
         ),
         child: BaseCategoryItem.categoriesList(
-          title: category.title,
-          subtitle: category.description,
-          iconPath: category.iconPath,
+          onTap:
+              () => context.push(
+                UserPaths.services,
+                extra: {'id': category.documentId},
+              ),
+          title: category.info.name,
+          subtitle: '${category.servicesCount} services',
+          iconPath: category.info.image ?? '',
         ),
       );
     });

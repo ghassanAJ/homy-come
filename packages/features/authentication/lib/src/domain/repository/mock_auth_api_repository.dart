@@ -21,21 +21,19 @@ class MockAuthRepository implements AuthRepository {
   bool failNextLoginWithPin = false;
   bool failNextLogout = false;
 
-  static SendOTPResponseModel get _mockSendOTPResponse => SendOTPResponseModel(
-    id: 'mock-session-id',
-    message: 'Verification code sent',
-    userType: 'returning',
-  );
+  static SendOTPResponseModel get _mockSendOTPResponse =>
+      SendOTPResponseModel(message: 'Verification code sent');
 
   static VerifyOTPResponseModel get _mockVerifyOTPResponse =>
       VerifyOTPResponseModel(
-        id: 'mock-verify-id',
-        phoneVerified: true,
-        emailVerified: false,
-        message: 'Verified',
-        user: _mockUser,
-        tokens: _mockTokens,
-        redirectUrl: null,
+        jwt: 'mock-jwt',
+        user: VerifiedUserModel(
+          id: 1,
+          documentId: 'mock-document-id',
+          phone: 'mock-phone',
+          otpCode: 'mock-otp-code',
+          roleType: 'mock-role-type',
+        ),
       );
 
   static TokenModel get _mockTokens => TokenModel(
@@ -44,22 +42,19 @@ class MockAuthRepository implements AuthRepository {
     expiresIn: 3600,
   );
 
-  static ParentUser get _mockUser => ParentUser(
-    id: 'mock-user-id',
-    firstName: 'Mock',
-    lastName: 'User',
-    dob: '01/01/1990',
-    cognitoId: 'mock-cognito-id',
-    email: 'mock@example.com',
-    phone: '+971501234567',
-    profileCompleted: true,
+  static VerifiedUserModel get _mockUser => VerifiedUserModel(
+    id: 1,
+    documentId: 'mock-document-id',
+    phone: 'mock-phone',
+    otpCode: 'mock-otp-code',
+    roleType: 'mock-role-type',
   );
 
   static LoginResponseModel get _mockLoginResponse => LoginResponseModel(
     id: 'mock-id',
     message: 'Success',
     tokens: _mockTokens,
-    user: _mockUser,
+    user: null,
     redirectUrl: null,
     temporaryAccessToken: null,
   );
@@ -109,8 +104,8 @@ class MockAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<Result<UserModel, APIException>> updateUserProfile({
-    required String userId,
+  Future<Result<VerifiedUserModel, APIException>> updateUserProfile({
+    required int userId,
     required Map<String, dynamic> profileData,
   }) async {
     if (failNextUpdateUserProfile) {

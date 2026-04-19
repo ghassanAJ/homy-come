@@ -16,7 +16,6 @@ class UISvg extends StatelessWidget {
   final String? package;
   final bool matchTextDirection;
   final double? size;
-
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(

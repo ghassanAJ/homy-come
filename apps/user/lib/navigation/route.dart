@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:user/features/home/presentation/screens/search_screen.dart';
 import 'package:user/localization/files/userTranslation.i69n.dart';
 import 'package:util/util.dart';
 
@@ -20,8 +21,12 @@ class UserPaths {
   static const String serviceDetails = '/service-details';
   static const String serviceDetails2 = '/service-details2';
   static const String serviceDetails3 = '/service-details3';
-  static String  serviceDetailsSummarywithid({int? id})=>id==null?'/service-details-summary/:id':'/service-details-summary/$id';
+  static String serviceDetailsSummarywithid({int? id}) =>
+      id == null
+          ? '/service-details-summary/:id'
+          : '/service-details-summary/$id';
   // static const String serviceDetailsSummary = '/service-details-summary/:id';
+  static const String storiesScreen = '/stories-screen';
 }
 
 /// User app route definitions.
@@ -40,6 +45,7 @@ class UserRoute {
             path: UserPaths.home,
           ),
     ),
+
     GoRoute(
       path: UserPaths.category,
       builder:
@@ -58,11 +64,7 @@ class UserRoute {
     ),
     GoRoute(
       path: UserPaths.search,
-      builder:
-          (context, state) => _PlaceholderScreen(
-            title: context.loc<UserTranslation>().navigation.search,
-            path: UserPaths.search,
-          ),
+      builder: (context, state) => const SearchScreen(),
     ),
     GoRoute(
       path: UserPaths.profile,

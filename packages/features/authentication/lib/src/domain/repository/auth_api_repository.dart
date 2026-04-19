@@ -14,8 +14,8 @@ abstract class AuthRepository {
   Future<Result<LoginResponseModel, APIException>> saveProfile(
     SaveProfileRequestModel saveProfileRequestModel,
   );
-  Future<Result<UserModel, APIException>> updateUserProfile({
-    required String userId,
+  Future<Result<VerifiedUserModel, APIException>> updateUserProfile({
+    required int userId,
     required Map<String, dynamic> profileData,
   });
   Future<Result<LoginResponseModel, APIException>> loginWithPin(
@@ -34,12 +34,21 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Result<SendOTPResponseModel, APIException>> sendOTP(
     SendOTPRequestModel sendOTPRequestModel,
-  ) => _authenticationAPI.sendOTP(sendOTPRequestModel).toResult();
+  ) =>
+      _authenticationAPI.sendOTP({
+        'phone': sendOTPRequestModel.phone,
+        'role_type': sendOTPRequestModel.role?.name,
+      }).toResult();
 
   @override
   Future<Result<VerifyOTPResponseModel, APIException>> verifyOTP(
     UnifiedVerifyOTPRequestModel verifyOTPRequestModel,
-  ) => _authenticationAPI.verifyOTP(verifyOTPRequestModel).toResult();
+  ) =>
+      _authenticationAPI.verifyOTP({
+        'otp': verifyOTPRequestModel.otp,
+        'phone': verifyOTPRequestModel.phone,
+        'role_type': verifyOTPRequestModel.role?.name,
+      }).toResult();
 
   // Token management
   @override
@@ -54,8 +63,8 @@ class AuthRepositoryImpl implements AuthRepository {
   ) => _userAPI.createProfile(saveProfileRequestModel).toResult();
 
   @override
-  Future<Result<UserModel, APIException>> updateUserProfile({
-    required String userId,
+  Future<Result<VerifiedUserModel, APIException>> updateUserProfile({
+    required int userId,
     required Map<String, dynamic> profileData,
   }) => _userAPI.updateProfile(userId, profileData).toResult();
 

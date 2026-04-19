@@ -1,11 +1,14 @@
 // import 'package:design_system/design_system.dart';
 
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 import 'package:orders/src/localization/order_localization_scope.dart';
 
 class OrderDateTimeWidget extends StatelessWidget {
-  const OrderDateTimeWidget({super.key, required this.date, required this.time});
+  const OrderDateTimeWidget({
+    super.key,
+    required this.date,
+    required this.time,
+  });
   final String date;
   final String time;
   @override
@@ -24,7 +27,7 @@ class OrderDateTimeWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UIText.bodyXSmall(tr.title.date, color: UIColor.grey),
-                SizedBox(height: UI.spacing.xs),
+                SizedBox(height: 2),
                 UIText.bodySmall(date),
               ],
             ),
@@ -41,7 +44,7 @@ class OrderDateTimeWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UIText.bodyXSmall(tr.title.time, color: UIColor.grey),
-                SizedBox(height: UI.spacing.xs),
+                SizedBox(height: 2),
                 UIText.bodySmall(time),
               ],
             ),

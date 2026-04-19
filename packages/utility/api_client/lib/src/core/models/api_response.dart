@@ -16,7 +16,6 @@ sealed class APIResponse<T> {
     T Function(Object? json) fromJsonT,
   ) {
     final success = json['success'] as bool? ?? true;
-
     if (success) {
       final data = json['data'];
       if (data == null) {

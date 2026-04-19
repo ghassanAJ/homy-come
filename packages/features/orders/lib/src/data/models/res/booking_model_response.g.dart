@@ -35,6 +35,7 @@ _ProviderModel _$ProviderModelFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       rating: (json['rating'] as num).toDouble(),
+      numberPhone: json['numberPhone'] as String,
       image: json['image'] as String?,
     );
 
@@ -43,6 +44,7 @@ Map<String, dynamic> _$ProviderModelToJson(_ProviderModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'rating': instance.rating,
+      'numberPhone': instance.numberPhone,
       'image': instance.image,
     };
 

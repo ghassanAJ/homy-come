@@ -1,7 +1,7 @@
 import 'package:authentication/authentication.dart';
 import 'package:go_router/go_router.dart';
+import 'package:orders/orders.dart';
 import 'package:user/navigation/route.dart';
-import 'package:profile/src/navigation/router.dart';
 
 class AppRouterGuard {
   static final List<String> guestAllowedPaths = [
@@ -11,6 +11,7 @@ class AppRouterGuard {
     UserPaths.services,
     UserPaths.notifications,
     UserPaths.profile,
+    AuthenticationPaths.completeProfile,
   ];
 
   static bool _isOtpPath(String path) =>
@@ -50,7 +51,7 @@ class AppRouterGuard {
       }
 
       // Check if profile is complete before allowing access to authenticated routes
-      if (!appState.user!.hasCompletedProfile &&
+      if (!appState.isProfileComplete &&
           currentPath != AuthenticationPaths.completeProfile) {
         return AuthenticationPaths.completeProfile;
       }
@@ -78,12 +79,8 @@ class AppRouterGuard {
     ///[هون]
   }
 
-  static String _getDashboardPath(UserType? userType) {
-    return switch (userType) {
-      UserType.parent => UserPaths.home,
-      UserType.child => UserPaths.home,
-      null => UserPaths.home,
-    };
+  static String _getDashboardPath(String? userType) {
+    return UserPaths.home;
   }
 
   static String? _handleAuthenticatedRedirect(
@@ -98,15 +95,13 @@ class AppRouterGuard {
 
     // Redirect completed profiles from auth screens to dashboard
     if (authPaths.contains(currentPath)) {
-      return _getDashboardPath(user?.type);
+      return _getDashboardPath(user?.roleType);
     }
 
     // Redirect completed profiles from complete profile screen to dashboard
-    if (currentPath == AuthenticationPaths.completeProfile &&
-        user?.hasCompletedProfile == true) {
-      return _getDashboardPath(user?.type);
+    if (currentPath == AuthenticationPaths.completeProfile && true) {
+      return _getDashboardPath(user?.roleType);
     }
-
     return null;
   }
 }

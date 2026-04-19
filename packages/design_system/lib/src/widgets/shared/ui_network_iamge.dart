@@ -1,7 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:design_system/design_system.dart';
 
-class UINetworkIamge extends StatelessWidget {
-  const UINetworkIamge({
+class UINetworkImage extends StatelessWidget {
+  const UINetworkImage({
     required this.imageUrl,
     super.key,
     this.width,
@@ -22,12 +23,24 @@ class UINetworkIamge extends StatelessWidget {
       return placeholder ?? _placeholder();
     }
 
-    return Image.network(
-      imageUrl!,
+    return CachedNetworkImage(
+      imageUrl: imageUrl!,
       width: width,
       height: height,
       fit: fit,
-      errorBuilder: (_, __, ___) => placeholder ?? _placeholder(),
+      // progressIndicatorBuilder: (context, child, loadingProgress) {
+      //   if (loadingProgress == null) return child;
+      //   return Center(child: _loadingBuilder());
+      // },
+      errorWidget: (_, __, ___) => placeholder ?? _placeholder(),
+    );
+  }
+
+  Widget _loadingBuilder() {
+    return Container(
+      color: UIColor.neutral100,
+      alignment: Alignment.center,
+      width: double.infinity,
     );
   }
 
