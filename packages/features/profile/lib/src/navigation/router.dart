@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/presentation/screens/about_app_screen.dart';
 import 'package:profile/src/presentation/screens/driver_language_settings_screen.dart';
+import 'package:profile/src/presentation/screens/my_team_screen.dart';
 import 'package:profile/src/presentation/screens/profile_settings_screen.dart';
 import 'package:profile/src/presentation/screens/provider_all_reviews_screen.dart';
 import 'package:profile/src/presentation/screens/terms_and_condition_screen.dart';
@@ -17,6 +18,8 @@ class ProfilePaths {
   static const String driverProfileSettings = '/driver-profile-settings';
   static const String driverLanguageSettings = '/driver-language-settings';
   static const String providerAllReviews = '/provider-all-reviews';
+  static const String myTeams = '/my-team';
+
 }
 
 class ProfileRoute {
@@ -27,11 +30,11 @@ class ProfileRoute {
           (context, state) =>
               const ProfileLocalizationScope(child: ProfileScreen()),
     ),
+
     // GoRoute(
     //   path: ProfilePaths.myOrder,
     //   builder: (context, state) => MyOrderScreen(),
     // ),
-
     GoRoute(
       path: ProfilePaths.termsAndCondition,
       builder: (context, state) => TermsAndCondition(),
@@ -43,9 +46,8 @@ class ProfileRoute {
     GoRoute(
       path: ProfilePaths.driverProfileSettings,
       builder:
-          (context, state) => const ProfileLocalizationScope(
-            child: ProfileSettingsScreen(),
-          ),
+          (context, state) =>
+              const ProfileLocalizationScope(child: ProfileSettingsScreen()),
     ),
     GoRoute(
       path: ProfilePaths.driverLanguageSettings,
@@ -57,9 +59,14 @@ class ProfileRoute {
     GoRoute(
       path: ProfilePaths.providerAllReviews,
       builder:
-          (context, state) => const ProfileLocalizationScope(
-            child: ProviderAllReviewsScreen(),
-          ),
+          (context, state) =>
+              const ProfileLocalizationScope(child: ProviderAllReviewsScreen()),
+    ),
+        GoRoute(
+      path: ProfilePaths.myTeams,
+      builder:
+          (context, state) =>
+              const ProfileLocalizationScope(child: MyTeamScreen()),
     ),
   ];
 }

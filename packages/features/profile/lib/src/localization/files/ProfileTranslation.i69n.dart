@@ -80,6 +80,9 @@ class ProfileProfileTranslation implements i69n.I69nMessageBundle {
   String get editProfile => "Edit Profile";
   String get myOrder => "my order";
   String get term => "terms and condition";
+  String get myTeam => "My Team";
+  String get memberTeam => "Team Members";
+  String get working => "Working";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -97,6 +100,12 @@ class ProfileProfileTranslation implements i69n.I69nMessageBundle {
         return myOrder;
       case 'term':
         return term;
+      case 'myTeam':
+        return myTeam;
+      case 'memberTeam':
+        return memberTeam;
+      case 'working':
+        return working;
       default:
         return key;
     }

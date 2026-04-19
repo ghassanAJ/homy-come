@@ -73,6 +73,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/carpenter.svg
   String get carpenter => 'packages/design_system/assets/icons/carpenter.svg';
 
+  /// File path: assets/icons/chat.svg
+  String get chat => 'packages/design_system/assets/icons/chat.svg';
+
   /// File path: assets/icons/cleaner.svg
   String get cleaner => 'packages/design_system/assets/icons/cleaner.svg';
 
@@ -203,6 +206,7 @@ class $AssetsIconsGen {
     camera,
     carema,
     carpenter,
+    chat,
     cleaner,
     close,
     electrician,

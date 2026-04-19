@@ -100,7 +100,7 @@ class _ProfilePictureSizeConfig {
       case ProfilePictureSize.lg:
         return const _ProfilePictureSizeConfig(56);
       case ProfilePictureSize.xl:
-        return const _ProfilePictureSizeConfig(72);
+        return const _ProfilePictureSizeConfig(64);
     }
   }
 }
