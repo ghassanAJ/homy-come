@@ -2,7 +2,6 @@ import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:user/navigation/route.dart';
 import 'package:util/util.dart';
 
 class AuthNavigationListener extends StatelessWidget {
@@ -14,7 +13,7 @@ class AuthNavigationListener extends StatelessWidget {
     super.key,
     required this.child,
     required this.router,
-    this.dashboardPath = UserPaths.home,
+    required this.dashboardPath,
   });
 
   @override

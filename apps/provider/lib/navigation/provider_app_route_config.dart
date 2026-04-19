@@ -1,7 +1,7 @@
-import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:homy_provider/features/home/presentation/screens/provider_home_screen.dart';
+import 'package:homy_provider/localization/provider_localization_scope.dart';
 import 'package:homy_provider/navigation/provider_navigation_config.dart';
 import 'package:homy_provider/navigation/route.dart';
 import 'package:profile/profile.dart';
@@ -26,38 +26,19 @@ class ProviderAppRouteConfig {
         return DashboardNavigationScaffold(
           navigationShell: navigationShell,
           navigationItems: ProviderNavigationConfig.items,
+          // branchPaths: const [
+          //   ProviderPaths.homeProvider,
+          //   ProviderPaths.services,
+          //   ProviderPaths.bookings,
+          //   ProviderPaths.profile,
+          // ],
         );
       },
       branches: [
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: ProviderPaths.home,
-              builder:
-                  (context, state) => Scaffold(
-                    body: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('Home'),
-                          UIButton.primary(
-                            label: 'logout',
-                            onPressed: () {
-                              context.read<AuthUserBloc>().add(Logout());
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: ProviderPaths.services,
+              path: ProviderPaths.myWork,
               builder:
                   (context, state) =>
                       Scaffold(body: Center(child: Text('Services'))),
@@ -67,13 +48,23 @@ class ProviderAppRouteConfig {
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: ProviderPaths.bookings,
+              path: ProviderPaths.homeProvider,
               builder:
                   (context, state) =>
-                      Scaffold(body: Center(child: Text('Bookings'))),
+                      ProviderLocalizationScope(child: ProviderHomeScreen()),
             ),
           ],
         ),
+        // StatefulShellBranch(
+        //   routes: [
+        //     GoRoute(
+        //       path: ProviderPaths.bookings,
+        //       builder:
+        //           (context, state) =>
+        //               Scaffold(body: Center(child: Text('Bookings'))),
+        //     ),
+        //   ],
+        // ),
         StatefulShellBranch(
           routes: [
             GoRoute(

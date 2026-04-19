@@ -13,7 +13,7 @@ class ProviderInternalRouter {
   }
 
   void toHome() {
-    context.go(ProviderPaths.home);
+    context.go(ProviderPaths.homeProvider);
   }
 
   void toServices() {

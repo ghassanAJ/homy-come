@@ -79,8 +79,11 @@ class UIText extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.softWrap,
+    double? fontSize,
     super.key,
-  }) : style = _typography.h4;
+  }) : style = _typography.h4.copyWith(
+    fontSize: fontSize
+  );
 
   UIText.h5(
     this.data, {
@@ -367,9 +370,24 @@ class UIText extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.softWrap,
+    String? fontFamily,
     super.key,
-  }) : style = _typography.bodyBold;
+  }) : style = _typography.bodyBold.copyWith(
+fontFamily: fontFamily
+  );
 
+
+
+  UIText.labelCircleProgerss(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    String? fontFamily,
+    super.key,
+  }) : style = _typography.labelCircleProgress.copyWith(fontFamily: fontFamily);
   // ===========================================================================
   // INPUT FIELD TEXT
   // ===========================================================================

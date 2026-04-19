@@ -16,7 +16,7 @@ class UIColor extends Color {
   static const UIColor grey = UIColor._(0xff767676);
   static const UIColor softgrey = UIColor._(0xFFECECEC);
   static const UIColor primaryDark = UIColor._(0xFF2B2148);
-  static const UIColor secondary = UIColor._(0xFFE3DAFF);
+  static const UIColor secondary = UIColor._(0xFFE3DAFF); //#006ED366
   static const UIColor tertiary = UIColor._(0xFF6ADBDA);
   static const UIColor softOrange = UIColor._(0xFFEBB376);
   static const UIColor orange = UIColor._(0xFFFFAC50);
@@ -24,15 +24,18 @@ class UIColor extends Color {
   static const UIColor aqua = UIColor._(0xFF2BD8CB);
   static const UIColor warningStrong = UIColor._(0xFFFF9A2A);
   static const UIColor errorStrong = UIColor._(0xFFFF2A2D);
+  static const UIColor bluepal = UIColor._(0xFF006ED3);
 
   // Status colors
   static const UIColor errorLight = UIColor._(0xFFFC5151);
   static const UIColor error = UIColor._(0xFFFF6653);
   static const UIColor errorDark = UIColor._(0xFFC01515);
   static const UIColor success = UIColor._(0xFF32D938);
-  static const UIColor successBright = UIColor._(0xFF0FCC5D);
-  static const UIColor warning = UIColor._(0xFFFFC155);//#6EBE71
-  static const UIColor greenLight = UIColor._(0xFF6EBE71);
+  static const UIColor successBright = UIColor._(0xFF0FCC5D); //#81C04B  #C8FF99
+  static const UIColor successlight = UIColor._(0xFF81C04B);
+  static const UIColor greenPaleBar = UIColor._(0xFFC8FF99);
+  static const UIColor warning = UIColor._(0xFFFFC155); //  #
+  static const UIColor yellowPale = UIColor._(0xFFFCBC04);
   // Neutral colors
   static const UIColor neutral000 = UIColor._(0xFFFFFFFF);
   static const UIColor neutral25 = UIColor._(0xffF6F7F9);
@@ -85,6 +88,7 @@ class UIColor extends Color {
   static const UIColor borderError = error;
   static const UIColor bordarCard = UIColor._(0xFFD9D9D9);
   static const UIColor softBordarCard = UIColor._(0xFFE9F1F2);
+
   /// Shadow color
   static const UIColor shadow = UIColor._(0xFF101828);
 

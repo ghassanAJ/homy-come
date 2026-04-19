@@ -6,6 +6,7 @@ import 'package:profile/profile.dart';
 import 'package:user/di/di_container.dart';
 import 'package:user/features/home/presentation/bloc/home_bloc.dart';
 import 'package:user/features/home/presentation/bloc/home_bloc_event.dart';
+import 'package:user/navigation/route.dart';
 import 'package:util/util.dart';
 
 const UserRole userRole = UserRole.user;
@@ -29,6 +30,7 @@ class UserApp extends StatelessWidget {
                       delegate: AuthLocalizationDelegate(),
                       locale: locale,
                       child: AuthNavigationListener(
+                        dashboardPath: UserPaths.home,
                         router: router,
                         child: MaterialApp.router(
                           debugShowCheckedModeBanner: false,

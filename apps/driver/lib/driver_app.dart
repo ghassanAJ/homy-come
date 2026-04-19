@@ -1,6 +1,7 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:driver/di/di_container.dart';
+import 'package:driver/navigation/route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:util/util.dart';
@@ -26,6 +27,8 @@ class DriverApp extends StatelessWidget {
                       delegate: AuthLocalizationDelegate(),
                       locale: locale,
                       child: AuthNavigationListener(
+                        dashboardPath: DriverPaths.home,
+
                         router: router,
                         child: MaterialApp.router(
                           debugShowCheckedModeBanner: false,

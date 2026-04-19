@@ -16,15 +16,14 @@ class ProviderProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final providerId = context.read<AppCubit>().state.userId ?? '';
-    final topContentPadding =
-        MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
 
     return UIScaffold(
       appBar: UIAppBar(title: context.profileTranslation.profile.myProfile),
       body: BlocProvider(
         create:
-            (_) => diContainer<ProviderRatingAndReviewsCubit>()
-              ..fetchProviderRatingAndReviews(providerId: providerId),
+            (_) =>
+                diContainer<ProviderRatingAndReviewsCubit>()
+                  ..fetchProviderRatingAndReviews(providerId: providerId),
         child: BlocBuilder<
           ProviderRatingAndReviewsCubit,
           BaseState<List<ReviewModel>>
@@ -38,9 +37,7 @@ class ProviderProfileScreen extends StatelessWidget {
 
             return SingleChildScrollView(
               child: Padding(
-                padding: UI.padding.driverProfileContent(
-                  topInset: topContentPadding,
-                ),
+                padding: UI.padding.driverProfileContent(topInset: 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -61,6 +58,7 @@ class ProviderProfileScreen extends StatelessWidget {
                           ).toDriverProfileSettings,
                       title: context.profileTranslation.driverProfile.settings,
                     ),
+                    SizedBox(height: 120),
                   ],
                 ),
               ),

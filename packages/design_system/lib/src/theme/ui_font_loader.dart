@@ -120,6 +120,16 @@ class UIFontLoader {
         'SF-Pro-Text-Black.otf',
       ],
     },
+        'Almarai': {
+      'basePath': 'Almarai',
+      'variants': [
+        'Almarai-Light.otf',
+        'Almarai-Regular.otf',
+        'Almarai-Bold.otf',
+        'Almarai-ExtraBold.otf',
+
+      ],
+    },
     // 'IconsaxPlusBold': {
     //   'packagePath': 'packages/iconsax_plus/fonts',
     //   'variants': ['IconsaxPlusBold.ttf'],

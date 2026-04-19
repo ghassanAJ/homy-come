@@ -246,6 +246,14 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/Intersect (1).png
+  AssetGenImage get intersect1 =>
+      const AssetGenImage('assets/images/Intersect (1).png');
+
+  /// File path: assets/images/Intersect.png
+  AssetGenImage get intersect =>
+      const AssetGenImage('assets/images/Intersect.png');
+
   /// File path: assets/images/check-mark 1.png
   AssetGenImage get checkMark1 =>
       const AssetGenImage('assets/images/check-mark 1.png');
@@ -287,6 +295,8 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    intersect1,
+    intersect,
     checkMark1,
     location,
     locationImage,

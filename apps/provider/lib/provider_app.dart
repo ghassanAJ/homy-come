@@ -3,6 +3,8 @@ import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:homy_provider/di/di_container.dart';
+import 'package:homy_provider/localization/provider_localization_delegate.dart';
+import 'package:homy_provider/navigation/route.dart';
 import 'package:util/util.dart';
 
 const UserRole userRole = UserRole.provider;
@@ -21,24 +23,27 @@ class ProviderApp extends StatelessWidget {
           value: localeCubit,
           child: BlocBuilder<LocalizationCubit, Locale>(
             builder:
-                (context, locale) => LocalizationProvider<AuthenticationTranslation>(
-                  delegate: AuthLocalizationDelegate(),
-                  locale: locale,
-                  child: AuthNavigationListener(
-                    router: router,
-                    child: MaterialApp.router(
-                      debugShowCheckedModeBanner: false,
-                      title: 'Homy Provider',
-                      localizationsDelegates: [
-                        GlobalMaterialLocalizations.delegate,
-                        GlobalWidgetsLocalizations.delegate,
-                      ],
-                      supportedLocales: Config.supportedLocales,
+                (context, locale) =>
+                    LocalizationProvider<AuthenticationTranslation>(
+                      delegate: AuthLocalizationDelegate(),
                       locale: locale,
-                      routerConfig: router,
+                      child: AuthNavigationListener(
+                        dashboardPath: ProviderPaths.homeProvider,
+                        router: router,
+                        child: MaterialApp.router(
+                          debugShowCheckedModeBanner: false,
+                          title: 'YC- Provider',
+                          localizationsDelegates: [
+                            GlobalMaterialLocalizations.delegate,
+                            GlobalWidgetsLocalizations.delegate,
+                            ProviderLocalizationDelegate(),
+                          ],
+                          supportedLocales: Config.supportedLocales,
+                          locale: locale,
+                          routerConfig: router,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
           ),
         ),
       ),
