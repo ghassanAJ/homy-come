@@ -55,7 +55,7 @@ class AuthenticationRoute {
           builder: (context, state) {
             final extra = state.extra as Map<String, dynamic>?;
             final roleString = extra?[AuthRouteParams.userRole] as String?;
-            final userRole = UserRole.tryParse(roleString) ?? UserRole.parent;
+            final userRole = UserRole.tryParse(roleString) ?? UserRole.user;
             return AuthEntryScreen(userRole: userRole);
           },
         ),

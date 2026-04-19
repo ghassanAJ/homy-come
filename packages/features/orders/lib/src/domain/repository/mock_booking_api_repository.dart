@@ -4,7 +4,6 @@ import 'package:injectable/injectable.dart';
 import 'package:orders/src/data/models/res/booking_model_response.dart';
 import 'package:orders/src/data/models/res/today_schadule_model_response.dart';
 import 'package:orders/src/domain/repository/booking_api_repository.dart';
-import 'package:orders/src/domain/useCase/get_order_details_use_case.dart';
 import 'package:orders/src/enum/filter_order_enum.dart';
 import 'package:util/util.dart';
 
@@ -94,7 +93,7 @@ class MockBookingApiRepository implements OrdersRepository {
       return failure(APIException.error('Mock getServiceDetails failure'));
     }
 
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(milliseconds: 500));
     return success(
       BookingDetailseModelResponse(
         id: 103,
@@ -119,7 +118,7 @@ class MockBookingApiRepository implements OrdersRepository {
     }
     var index = all.indexWhere((node) => node.id == id);
     all[index].copyWith(status: 'cancelted');
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 500));
     return success(true);
   }
 

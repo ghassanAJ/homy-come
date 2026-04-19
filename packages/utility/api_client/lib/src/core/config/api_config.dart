@@ -17,9 +17,9 @@ class ApiConfig {
 
   /// Get configuration based on environment
   static ApiConfig getConfig(ApiEnvironment environment) {
-    final localServerBaseUrl = 'http://192.168.1.90:8080';
+    final localServerBaseUrl = 'http://localhost:1337';
     final remoteServerBaseUrl = 'http://16.16.192.16:8080';
-    final baseUrl = remoteServerBaseUrl;
+    final baseUrl = localServerBaseUrl;
     return switch (environment) {
       ApiEnvironment.dev => ApiConfig(
         baseUrl: baseUrl,

@@ -2,7 +2,7 @@ import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 
 class AppState {
-  final UserModel? user;
+  final VerifiedUserModel? user;
   final ThemeMode themeMode;
   final bool isOnline;
   final bool isInitializing;
@@ -17,15 +17,12 @@ class AppState {
   factory AppState.initial() => const AppState(isInitializing: true);
 
   bool get isAuthenticated => user != null;
-  bool get isProfileComplete => user?.hasCompletedProfile ?? false;
-  UserType? get userType => user?.type;
-  bool get isParent => user?.type == UserType.parent;
-  bool get isChild => user?.type == UserType.child;
-  String? get userId => user?.id;
-  String? get userName => user?.fullName;
+  bool get isProfileComplete => true; //  user?.hasCompletedProfile ?? false;
+  String? get userId => user?.id.toString();
+  String? get userName => user?.phone;
 
   AppState copyWith({
-    UserModel? user,
+    VerifiedUserModel? user,
     ThemeMode? themeMode,
     bool? isOnline,
     bool? isInitializing,

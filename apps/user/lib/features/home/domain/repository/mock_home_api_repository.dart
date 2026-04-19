@@ -1,141 +1,159 @@
+import 'package:booking/booking.dart';
 import 'package:injectable/injectable.dart';
-import 'package:flutter/material.dart';
-import 'package:design_system/design_system.dart';
-import 'package:user/features/home/domain/entities/home_content.dart';
-import 'package:user/features/home/domain/entities/search_content.dart';
+import 'package:user/features/home/data/datasource/home_mock_data.dart';
+import 'package:user/features/home/data/model/res/home_response_model.dart';
+import 'package:user/features/home/data/model/res/search_response_model.dart';
 import 'package:user/features/home/domain/repository/home_api_repository.dart';
+import 'package:util/util.dart';
 
-final HomeContent homeMockContent = HomeContent(
-  offers: const [
-    HomeOfferItem(
-      image: 'https://i.ibb.co/9m8XQCvr/image.png',
-      aspectRatio: 2 / 1,
-    ),
-    HomeOfferItem(
-      image: 'https://i.ibb.co/9m8XQCvr/image.png',
-      aspectRatio: 2 / 1,
-    ),
-  ],
-  categories: [
-    HomeCategoryItem(
-      title: 'Carpenter',
-      description: '20 Services',
-      iconPath: Assets.icons.carpenter,
-    ),
-    HomeCategoryItem(
-      title: 'Cleaner',
-      description: '20 Services',
-      iconPath: Assets.icons.cleaner,
-    ),
-    HomeCategoryItem(
-      title: 'Painter',
-      description: '20 Services',
-      iconPath: Assets.icons.painter,
-    ),
-    HomeCategoryItem(
-      title: 'Electrician',
-      description: '20 Services',
-      iconPath: Assets.icons.electrician,
-    ),
-    HomeCategoryItem(
-      title: 'Plumber',
-      description: '20 Services',
-      iconPath: Assets.icons.plumber,
-    ),
-  ],
-  stories: [
-    HomeStoryItem(
-      title: 'Painting Service',
-      discount: 'Save 30%',
-      description: 'ORDER NOW',
-      background: Color(0xFFA8D4F8),
-      backgroundContainer: UIColor.vividBlue,
-      iconPath: Assets.icons.paintingService,
-    ),
-    HomeStoryItem(
-      title: 'Shifting Service',
-      discount: '20% Off',
-      description: 'ORDER NOW',
-      background: Color(0xFFC9E9B6),
-      backgroundContainer: UIColor.vividGreen,
-      iconPath: Assets.icons.shiftingService,
-    ),
-    HomeStoryItem(
-      title: 'Vehicle Service',
-      discount: 'Save 30%',
-      description: 'ORDER NOW',
-      background: Color(0xFFF3B7D1),
-      backgroundContainer: UIColor.vividPink,
-      iconPath: Assets.icons.vehicleService,
-    ),
-  ],
-  generalServices: const [
-    HomeServiceItem(
-      title: 'Home Cleaning',
-      imageUrl: 'https://i.ibb.co/vCPn6j6p/Home-Cleaning.jpg',
-    ),
-    HomeServiceItem(
-      title: 'Furniture Cleaning',
-      imageUrl: 'https://i.ibb.co/ynSmvwph/Furniture-Cleaning.jpg',
-    ),
-    HomeServiceItem(
-      title: 'Home Deep Clean',
-      imageUrl: 'https://i.ibb.co/YFcNnFFp/Home-Deep-Cleaning.jpg',
-    ),
-  ],
-  plumberServices: const [
-    HomeServiceItem(
-      title: 'Plumber service',
-      imageUrl: 'https://i.ibb.co/7tgS7hR6/Plumber-service-1.jpg',
-    ),
-    HomeServiceItem(
-      title: 'Plumber service',
-      imageUrl: 'https://i.ibb.co/60qkN4rT/Plumber-service-2.jpg',
-    ),
-    HomeServiceItem(
-      title: 'Plumber service',
-      imageUrl: 'https://i.ibb.co/5hMPMkFj/Plumber-service-3.jpg',
-    ),
-  ],
-  serviceOffers: const [
-    HomeServiceOfferItem(
-      imageUrl: 'https://i.ibb.co/Q7LbN1HF/Complete-Kitchen-Cleaning.png',
-      title: 'Complete Kitchen Cleaning',
-      price: '\$150',
-      oldPrice: '\$180',
-      reviewsCount: 130,
-      ratingStars: [true, true, true, true, true],
-    ),
-    HomeServiceOfferItem(
-      imageUrl: 'https://i.ibb.co/Q7LbN1HF/Complete-Kitchen-Cleaning.png',
-      title: 'Kitchen Deep Cleaning',
-      price: '\$140',
-      oldPrice: '\$170',
-      reviewsCount: 98,
-      ratingStars: [true, true, true, true, false],
-    ),
-  ],
-);
-
-const List<String> searchPopularMock = [
-  'Home Claening',
-  'Pinter',
-  'Plumber',
-  'Electrician',
-  'Carpenter',
-  'Pinter',
-];
-
-final SearchContent searchMockContent = SearchContent(
-  popularSearch: searchPopularMock,
-  topServices: homeMockContent.categories,
-);
-
+/// Mock implementation of [HomeRepository] for testing and development.
+///
+/// Returns successful results with fake data. Set [failNextGetHomeContent],
+/// [failNextGetSearchContent], etc. to true to simulate failures on the next call.
+///
+/// Registered only when running with [ENV]=mock.
 @Injectable(as: HomeRepository, env: ['mock'])
 class MockHomeRepository implements HomeRepository {
-  @override
-  HomeContent getHomeContent() => homeMockContent;
+  MockHomeRepository();
+
+  bool failNextGetHomeContent = false;
+  bool failNextGetSearchContent = false;
+  bool failNextGetCategoryServices = false;
+  bool failNextGetOffers = false;
+  bool failNextGetSliders = false;
+
+  static ServiceCategoryModel _mockServiceCategory(String name) =>
+      ServiceCategoryModel(
+        services: List.generate(
+          8,
+          (index) => ServicePreviewResponseModel(
+            documentId: '$name-$index',
+            id: index,
+            info: InfoModel(
+              id: index,
+              name: '$name $index',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
+            priceModel: ServicePriceModel(
+              currentPrice: 100,
+              newPrice: 150,
+              currency: 'AED',
+              id: index,
+            ),
+            rating: 5,
+            reviewsCount: 10,
+          ),
+        ),
+        documentId: name,
+        id: 1,
+        info: InfoModel(
+          id: 1,
+          name: name,
+          image: 'https://i.ibb.co/9m8XQCvr/image.png',
+        ),
+        servicesCount: 8,
+      );
+
+  static List<OfferModel> get _mockOffer => [
+    const OfferModel(
+      imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
+      service: ServicePreviewResponseModel(
+        priceModel: ServicePriceModel(
+          currentPrice: 100,
+          newPrice: 150,
+          currency: 'AED',
+          id: 1,
+        ),
+        rating: 5,
+        reviewsCount: 10,
+        documentId: '1',
+        id: 1,
+        info: InfoModel(id: 1, name: 'Service 1'),
+      ),
+    ),
+    const OfferModel(
+      imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
+      service: ServicePreviewResponseModel(
+        priceModel: ServicePriceModel(
+          currentPrice: 100,
+          newPrice: 150,
+          currency: 'AED',
+          id: 2,
+        ),
+        rating: 5,
+        reviewsCount: 10,
+        documentId: '2',
+        id: 2,
+        info: InfoModel(id: 2, name: 'Service 2'),
+      ),
+    ),
+    const OfferModel(
+      imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
+      service: ServicePreviewResponseModel(
+        documentId: '3',
+        priceModel: ServicePriceModel(
+          currentPrice: 100,
+          newPrice: 150,
+          currency: 'AED',
+          id: 3,
+        ),
+        rating: 5,
+        reviewsCount: 10,
+        id: 3,
+        info: InfoModel(id: 3, name: 'Service 3'),
+      ),
+    ),
+  ];
 
   @override
-  SearchContent getSearchContent() => searchMockContent;
+  Future<Result<List<ServiceCategoryModel>, APIException>>
+  getCategories() async {
+    if (failNextGetHomeContent) {
+      failNextGetHomeContent = false;
+      return failure(APIException.error('Mock getHomeContent failure'));
+    }
+    return success(mockCategories);
+  }
+
+  @override
+  Future<Result<SearchResponseModel, APIException>> getSearchContent() async {
+    if (failNextGetSearchContent) {
+      failNextGetSearchContent = false;
+      return failure(APIException.error('Mock getSearchContent failure'));
+    }
+    return success(mockSearchResponseModel);
+  }
+
+  @override
+  Future<Result<ServiceCategoryModel, APIException>> getCategoryServices(
+    String categoryId,
+  ) async {
+    if (failNextGetCategoryServices) {
+      failNextGetCategoryServices = false;
+      return failure(APIException.error('Mock getCategoryServices failure'));
+    }
+    await Future.delayed(const Duration(milliseconds: 500));
+    return success(_mockServiceCategory('Service'));
+  }
+
+  @override
+  Future<Result<List<OfferModel>, APIException>> getOffers() async {
+    if (failNextGetOffers) {
+      failNextGetOffers = false;
+      return failure(APIException.error('Mock getOffers failure'));
+    }
+    await Future.delayed(const Duration(milliseconds: 500));
+    return success(_mockOffer);
+  }
+
+  @override
+  Future<Result<List<OfferModel>, APIException>> getSliders() async {
+    if (failNextGetSliders) {
+      failNextGetSliders = false;
+      return failure(APIException.error('Mock getSliders failure'));
+    }
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    return success(_mockOffer);
+  }
 }

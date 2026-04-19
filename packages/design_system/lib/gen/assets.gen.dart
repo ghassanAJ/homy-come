@@ -159,8 +159,16 @@ class $AssetsIconsGen {
   String get starOutline =>
       'packages/design_system/assets/icons/starOutline.svg';
 
+  /// File path: assets/icons/star_success.svg
+  String get starSuccess =>
+      'packages/design_system/assets/icons/star_success.svg';
+
   /// File path: assets/icons/successful.svg
   String get successful => 'packages/design_system/assets/icons/successful.svg';
+
+  /// File path: assets/icons/sucess_with_border.svg
+  String get sucessWithBorder =>
+      'packages/design_system/assets/icons/sucess_with_border.svg';
 
   /// File path: assets/icons/trash.svg
   String get trash => 'packages/design_system/assets/icons/trash.svg';
@@ -221,7 +229,9 @@ class $AssetsIconsGen {
     star,
     starBlue,
     starOutline,
+    starSuccess,
     successful,
+    sucessWithBorder,
     trash,
     user,
     vehicleService,
@@ -239,6 +249,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/location.png
   AssetGenImage get location =>
       const AssetGenImage('assets/images/location.png');
+
+  /// File path: assets/images/location_image.png
+  AssetGenImage get locationImage =>
+      const AssetGenImage('assets/images/location_image.png');
 
   /// File path: assets/images/notification.png
   AssetGenImage get notification =>
@@ -271,6 +285,7 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
     checkMark1,
     location,
+    locationImage,
     notification,
     onboarding1,
     onboarding2,

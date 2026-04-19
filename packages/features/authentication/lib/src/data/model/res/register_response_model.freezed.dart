@@ -15,8 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SendOTPResponseModel {
 
- String get id;// Session ID for OTP verification
- String get message;@JsonKey(name: 'user_type') String? get userType;
+ String get message;
 /// Create a copy of SendOTPResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +28,16 @@ $SendOTPResponseModelCopyWith<SendOTPResponseModel> get copyWith => _$SendOTPRes
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SendOTPResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.message, message) || other.message == message)&&(identical(other.userType, userType) || other.userType == userType));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SendOTPResponseModel&&(identical(other.message, message) || other.message == message));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,message,userType);
+int get hashCode => Object.hash(runtimeType,message);
 
 @override
 String toString() {
-  return 'SendOTPResponseModel(id: $id, message: $message, userType: $userType)';
+  return 'SendOTPResponseModel(message: $message)';
 }
 
 
@@ -49,7 +48,7 @@ abstract mixin class $SendOTPResponseModelCopyWith<$Res>  {
   factory $SendOTPResponseModelCopyWith(SendOTPResponseModel value, $Res Function(SendOTPResponseModel) _then) = _$SendOTPResponseModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String message,@JsonKey(name: 'user_type') String? userType
+ String message
 });
 
 
@@ -66,12 +65,10 @@ class _$SendOTPResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of SendOTPResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? message = null,Object? userType = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? message = null,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,userType: freezed == userType ? _self.userType : userType // ignore: cast_nullable_to_non_nullable
-as String?,
+message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -156,10 +153,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String message, @JsonKey(name: 'user_type')  String? userType)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String message)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SendOTPResponseModel() when $default != null:
-return $default(_that.id,_that.message,_that.userType);case _:
+return $default(_that.message);case _:
   return orElse();
 
 }
@@ -177,10 +174,10 @@ return $default(_that.id,_that.message,_that.userType);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String message, @JsonKey(name: 'user_type')  String? userType)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String message)  $default,) {final _that = this;
 switch (_that) {
 case _SendOTPResponseModel():
-return $default(_that.id,_that.message,_that.userType);case _:
+return $default(_that.message);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +194,10 @@ return $default(_that.id,_that.message,_that.userType);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String message, @JsonKey(name: 'user_type')  String? userType)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String message)?  $default,) {final _that = this;
 switch (_that) {
 case _SendOTPResponseModel() when $default != null:
-return $default(_that.id,_that.message,_that.userType);case _:
+return $default(_that.message);case _:
   return null;
 
 }
@@ -212,13 +209,10 @@ return $default(_that.id,_that.message,_that.userType);case _:
 @JsonSerializable()
 
 class _SendOTPResponseModel implements SendOTPResponseModel {
-  const _SendOTPResponseModel({required this.id, required this.message, @JsonKey(name: 'user_type') this.userType});
+  const _SendOTPResponseModel({required this.message});
   factory _SendOTPResponseModel.fromJson(Map<String, dynamic> json) => _$SendOTPResponseModelFromJson(json);
 
-@override final  String id;
-// Session ID for OTP verification
 @override final  String message;
-@override@JsonKey(name: 'user_type') final  String? userType;
 
 /// Create a copy of SendOTPResponseModel
 /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +227,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SendOTPResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.message, message) || other.message == message)&&(identical(other.userType, userType) || other.userType == userType));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SendOTPResponseModel&&(identical(other.message, message) || other.message == message));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,message,userType);
+int get hashCode => Object.hash(runtimeType,message);
 
 @override
 String toString() {
-  return 'SendOTPResponseModel(id: $id, message: $message, userType: $userType)';
+  return 'SendOTPResponseModel(message: $message)';
 }
 
 
@@ -253,7 +247,7 @@ abstract mixin class _$SendOTPResponseModelCopyWith<$Res> implements $SendOTPRes
   factory _$SendOTPResponseModelCopyWith(_SendOTPResponseModel value, $Res Function(_SendOTPResponseModel) _then) = __$SendOTPResponseModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String message,@JsonKey(name: 'user_type') String? userType
+ String message
 });
 
 
@@ -270,12 +264,10 @@ class __$SendOTPResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of SendOTPResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? message = null,Object? userType = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
   return _then(_SendOTPResponseModel(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,userType: freezed == userType ? _self.userType : userType // ignore: cast_nullable_to_non_nullable
-as String?,
+message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -286,9 +278,7 @@ as String?,
 /// @nodoc
 mixin _$VerifyOTPResponseModel {
 
- String get id;@JsonKey(name: 'phone_verified') bool? get phoneVerified;@JsonKey(name: 'email_verified') bool? get emailVerified; String get message; UserModel? get user;// Present when login/registration is complete
- TokenModel? get tokens;// Present when login/registration is complete
-@JsonKey(name: 'redirect_url') String? get redirectUrl;
+ String get jwt; VerifiedUserModel? get user;
 /// Create a copy of VerifyOTPResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -301,16 +291,16 @@ $VerifyOTPResponseModelCopyWith<VerifyOTPResponseModel> get copyWith => _$Verify
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifyOTPResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.phoneVerified, phoneVerified) || other.phoneVerified == phoneVerified)&&(identical(other.emailVerified, emailVerified) || other.emailVerified == emailVerified)&&(identical(other.message, message) || other.message == message)&&(identical(other.user, user) || other.user == user)&&(identical(other.tokens, tokens) || other.tokens == tokens)&&(identical(other.redirectUrl, redirectUrl) || other.redirectUrl == redirectUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifyOTPResponseModel&&(identical(other.jwt, jwt) || other.jwt == jwt)&&(identical(other.user, user) || other.user == user));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,phoneVerified,emailVerified,message,user,tokens,redirectUrl);
+int get hashCode => Object.hash(runtimeType,jwt,user);
 
 @override
 String toString() {
-  return 'VerifyOTPResponseModel(id: $id, phoneVerified: $phoneVerified, emailVerified: $emailVerified, message: $message, user: $user, tokens: $tokens, redirectUrl: $redirectUrl)';
+  return 'VerifyOTPResponseModel(jwt: $jwt, user: $user)';
 }
 
 
@@ -321,11 +311,11 @@ abstract mixin class $VerifyOTPResponseModelCopyWith<$Res>  {
   factory $VerifyOTPResponseModelCopyWith(VerifyOTPResponseModel value, $Res Function(VerifyOTPResponseModel) _then) = _$VerifyOTPResponseModelCopyWithImpl;
 @useResult
 $Res call({
- String id,@JsonKey(name: 'phone_verified') bool? phoneVerified,@JsonKey(name: 'email_verified') bool? emailVerified, String message, UserModel? user, TokenModel? tokens,@JsonKey(name: 'redirect_url') String? redirectUrl
+ String jwt, VerifiedUserModel? user
 });
 
 
-$TokenModelCopyWith<$Res>? get tokens;
+$VerifiedUserModelCopyWith<$Res>? get user;
 
 }
 /// @nodoc
@@ -338,29 +328,24 @@ class _$VerifyOTPResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of VerifyOTPResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? phoneVerified = freezed,Object? emailVerified = freezed,Object? message = null,Object? user = freezed,Object? tokens = freezed,Object? redirectUrl = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? jwt = null,Object? user = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,phoneVerified: freezed == phoneVerified ? _self.phoneVerified : phoneVerified // ignore: cast_nullable_to_non_nullable
-as bool?,emailVerified: freezed == emailVerified ? _self.emailVerified : emailVerified // ignore: cast_nullable_to_non_nullable
-as bool?,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+jwt: null == jwt ? _self.jwt : jwt // ignore: cast_nullable_to_non_nullable
 as String,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserModel?,tokens: freezed == tokens ? _self.tokens : tokens // ignore: cast_nullable_to_non_nullable
-as TokenModel?,redirectUrl: freezed == redirectUrl ? _self.redirectUrl : redirectUrl // ignore: cast_nullable_to_non_nullable
-as String?,
+as VerifiedUserModel?,
   ));
 }
 /// Create a copy of VerifyOTPResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$TokenModelCopyWith<$Res>? get tokens {
-    if (_self.tokens == null) {
+$VerifiedUserModelCopyWith<$Res>? get user {
+    if (_self.user == null) {
     return null;
   }
 
-  return $TokenModelCopyWith<$Res>(_self.tokens!, (value) {
-    return _then(_self.copyWith(tokens: value));
+  return $VerifiedUserModelCopyWith<$Res>(_self.user!, (value) {
+    return _then(_self.copyWith(user: value));
   });
 }
 }
@@ -444,10 +429,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'phone_verified')  bool? phoneVerified, @JsonKey(name: 'email_verified')  bool? emailVerified,  String message,  UserModel? user,  TokenModel? tokens, @JsonKey(name: 'redirect_url')  String? redirectUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String jwt,  VerifiedUserModel? user)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _VerifyOTPResponseModel() when $default != null:
-return $default(_that.id,_that.phoneVerified,_that.emailVerified,_that.message,_that.user,_that.tokens,_that.redirectUrl);case _:
+return $default(_that.jwt,_that.user);case _:
   return orElse();
 
 }
@@ -465,10 +450,10 @@ return $default(_that.id,_that.phoneVerified,_that.emailVerified,_that.message,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'phone_verified')  bool? phoneVerified, @JsonKey(name: 'email_verified')  bool? emailVerified,  String message,  UserModel? user,  TokenModel? tokens, @JsonKey(name: 'redirect_url')  String? redirectUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String jwt,  VerifiedUserModel? user)  $default,) {final _that = this;
 switch (_that) {
 case _VerifyOTPResponseModel():
-return $default(_that.id,_that.phoneVerified,_that.emailVerified,_that.message,_that.user,_that.tokens,_that.redirectUrl);case _:
+return $default(_that.jwt,_that.user);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -485,10 +470,10 @@ return $default(_that.id,_that.phoneVerified,_that.emailVerified,_that.message,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, @JsonKey(name: 'phone_verified')  bool? phoneVerified, @JsonKey(name: 'email_verified')  bool? emailVerified,  String message,  UserModel? user,  TokenModel? tokens, @JsonKey(name: 'redirect_url')  String? redirectUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String jwt,  VerifiedUserModel? user)?  $default,) {final _that = this;
 switch (_that) {
 case _VerifyOTPResponseModel() when $default != null:
-return $default(_that.id,_that.phoneVerified,_that.emailVerified,_that.message,_that.user,_that.tokens,_that.redirectUrl);case _:
+return $default(_that.jwt,_that.user);case _:
   return null;
 
 }
@@ -500,18 +485,11 @@ return $default(_that.id,_that.phoneVerified,_that.emailVerified,_that.message,_
 @JsonSerializable()
 
 class _VerifyOTPResponseModel implements VerifyOTPResponseModel {
-  const _VerifyOTPResponseModel({required this.id, @JsonKey(name: 'phone_verified') this.phoneVerified, @JsonKey(name: 'email_verified') this.emailVerified, required this.message, this.user, this.tokens, @JsonKey(name: 'redirect_url') this.redirectUrl});
+  const _VerifyOTPResponseModel({required this.jwt, this.user});
   factory _VerifyOTPResponseModel.fromJson(Map<String, dynamic> json) => _$VerifyOTPResponseModelFromJson(json);
 
-@override final  String id;
-@override@JsonKey(name: 'phone_verified') final  bool? phoneVerified;
-@override@JsonKey(name: 'email_verified') final  bool? emailVerified;
-@override final  String message;
-@override final  UserModel? user;
-// Present when login/registration is complete
-@override final  TokenModel? tokens;
-// Present when login/registration is complete
-@override@JsonKey(name: 'redirect_url') final  String? redirectUrl;
+@override final  String jwt;
+@override final  VerifiedUserModel? user;
 
 /// Create a copy of VerifyOTPResponseModel
 /// with the given fields replaced by the non-null parameter values.
@@ -526,16 +504,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VerifyOTPResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.phoneVerified, phoneVerified) || other.phoneVerified == phoneVerified)&&(identical(other.emailVerified, emailVerified) || other.emailVerified == emailVerified)&&(identical(other.message, message) || other.message == message)&&(identical(other.user, user) || other.user == user)&&(identical(other.tokens, tokens) || other.tokens == tokens)&&(identical(other.redirectUrl, redirectUrl) || other.redirectUrl == redirectUrl));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VerifyOTPResponseModel&&(identical(other.jwt, jwt) || other.jwt == jwt)&&(identical(other.user, user) || other.user == user));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,phoneVerified,emailVerified,message,user,tokens,redirectUrl);
+int get hashCode => Object.hash(runtimeType,jwt,user);
 
 @override
 String toString() {
-  return 'VerifyOTPResponseModel(id: $id, phoneVerified: $phoneVerified, emailVerified: $emailVerified, message: $message, user: $user, tokens: $tokens, redirectUrl: $redirectUrl)';
+  return 'VerifyOTPResponseModel(jwt: $jwt, user: $user)';
 }
 
 
@@ -546,11 +524,11 @@ abstract mixin class _$VerifyOTPResponseModelCopyWith<$Res> implements $VerifyOT
   factory _$VerifyOTPResponseModelCopyWith(_VerifyOTPResponseModel value, $Res Function(_VerifyOTPResponseModel) _then) = __$VerifyOTPResponseModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id,@JsonKey(name: 'phone_verified') bool? phoneVerified,@JsonKey(name: 'email_verified') bool? emailVerified, String message, UserModel? user, TokenModel? tokens,@JsonKey(name: 'redirect_url') String? redirectUrl
+ String jwt, VerifiedUserModel? user
 });
 
 
-@override $TokenModelCopyWith<$Res>? get tokens;
+@override $VerifiedUserModelCopyWith<$Res>? get user;
 
 }
 /// @nodoc
@@ -563,16 +541,11 @@ class __$VerifyOTPResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of VerifyOTPResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? phoneVerified = freezed,Object? emailVerified = freezed,Object? message = null,Object? user = freezed,Object? tokens = freezed,Object? redirectUrl = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? jwt = null,Object? user = freezed,}) {
   return _then(_VerifyOTPResponseModel(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,phoneVerified: freezed == phoneVerified ? _self.phoneVerified : phoneVerified // ignore: cast_nullable_to_non_nullable
-as bool?,emailVerified: freezed == emailVerified ? _self.emailVerified : emailVerified // ignore: cast_nullable_to_non_nullable
-as bool?,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+jwt: null == jwt ? _self.jwt : jwt // ignore: cast_nullable_to_non_nullable
 as String,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as UserModel?,tokens: freezed == tokens ? _self.tokens : tokens // ignore: cast_nullable_to_non_nullable
-as TokenModel?,redirectUrl: freezed == redirectUrl ? _self.redirectUrl : redirectUrl // ignore: cast_nullable_to_non_nullable
-as String?,
+as VerifiedUserModel?,
   ));
 }
 
@@ -580,13 +553,13 @@ as String?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$TokenModelCopyWith<$Res>? get tokens {
-    if (_self.tokens == null) {
+$VerifiedUserModelCopyWith<$Res>? get user {
+    if (_self.user == null) {
     return null;
   }
 
-  return $TokenModelCopyWith<$Res>(_self.tokens!, (value) {
-    return _then(_self.copyWith(tokens: value));
+  return $VerifiedUserModelCopyWith<$Res>(_self.user!, (value) {
+    return _then(_self.copyWith(user: value));
   });
 }
 }

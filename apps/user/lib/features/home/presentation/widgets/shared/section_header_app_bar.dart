@@ -1,11 +1,21 @@
 import 'package:design_system/design_system.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:user/navigation/route.dart';
 
-class SectionHeaderAppBar extends StatelessWidget {
-  const SectionHeaderAppBar({required this.title, super.key});
+class SectionHeaderAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
+  const SectionHeaderAppBar({
+    required this.title,
+    super.key,
+    this.actions,
+  });
 
   final String title;
+  final List<Widget>? actions;
+
+  @override
+  Size get preferredSize => const Size.fromHeight(60);
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +40,7 @@ class SectionHeaderAppBar extends StatelessWidget {
           ),
         ),
       ),
+      actions: actions,
     );
   }
 }

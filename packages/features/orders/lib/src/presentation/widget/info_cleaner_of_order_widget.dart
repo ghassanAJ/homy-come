@@ -1,8 +1,11 @@
 import 'package:design_system/design_system.dart';
-import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
 class OrderCleanerInfoWidget extends StatelessWidget {
-  const OrderCleanerInfoWidget({super.key, required this.name, required this.rating});
+  const OrderCleanerInfoWidget({
+    super.key,
+    required this.name,
+    required this.rating,
+  });
   final String name;
   final double rating;
   @override

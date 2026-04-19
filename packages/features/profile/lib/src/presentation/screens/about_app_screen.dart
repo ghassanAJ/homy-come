@@ -16,9 +16,7 @@ class AboutUsScreen extends StatelessWidget {
         MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
 
     return UIScaffold(
-      appBar: UIAppBar(
-        title: context.profileTranslation.option.about,
-      ),
+      appBar: UIAppBar(title: context.profileTranslation.option.about),
       body: BlocProvider(
         create: (_) => diContainer<AboutAppCubit>()..fetchAboutApp(),
         child: BlocBuilder<AboutAppCubit, BaseState<AboutAppModel>>(

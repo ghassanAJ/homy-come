@@ -55,17 +55,17 @@ class UITypography {
   /// Usage: Subsection titles, card headers
   TextStyle get h3 => const TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 20,
-    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
     height: 1.4,
     letterSpacing: 0,
   );
 
   TextStyle get h4 => const TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: FontWeight.w700,
-    height: 1.4,
+    height: 1.7,
     letterSpacing: 0,
   );
 
@@ -77,7 +77,7 @@ class UITypography {
     letterSpacing: 0,
   );
 
-    TextStyle get h6 => const TextStyle(
+  TextStyle get h6 => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 16,
     fontWeight: FontWeight.w700,
@@ -102,7 +102,7 @@ class UITypography {
     fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0,
-    decoration: TextDecoration.none
+    decoration: TextDecoration.none,
   );
 
   TextStyle get bodyMediumRoboto => const TextStyle(
@@ -111,9 +111,8 @@ class UITypography {
     fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0,
-    decoration: TextDecoration.none
+    decoration: TextDecoration.none,
   );
-
 
   TextStyle get bodyLarge => const TextStyle(
     fontFamily: _fontFamily,
@@ -123,14 +122,14 @@ class UITypography {
     letterSpacing: 0,
   );
 
-
- TextStyle get titleMd => const TextStyle(
+  TextStyle get titleMd => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 16,
     fontWeight: FontWeight.w500,
     height: 1.5,
     letterSpacing: 0,
   );
+
   /// Body Small - Regular
   ///
   /// Weight: 400 (Regular)
@@ -202,8 +201,8 @@ class UITypography {
 
   TextStyle get headerBody => const TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 13,
-    fontWeight: FontWeight.w500,
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
     height: 1.43,
     letterSpacing: 0,
     overflow: TextOverflow.ellipsis,
@@ -312,7 +311,7 @@ class UITypography {
   /// Usage: Text input field placeholders
   TextStyle get inputPlaceholder => const TextStyle(
     fontFamily: _fontFamily,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0,
@@ -368,9 +367,10 @@ class UITypography {
   // ============================================================================
 
   /// Alias for field labels (same as bodySmall)
-  TextStyle get fieldLabel => bodySmallBold.fontWeight == FontWeight.w600
-      ? bodySmallBold
-      : bodySmall.copyWith(fontWeight: FontWeight.w600);
+  TextStyle get fieldLabel =>
+      bodySmallBold.fontWeight == FontWeight.w600
+          ? bodySmallBold
+          : bodySmall.copyWith(fontWeight: FontWeight.w600);
 }
 
 class UITextScale {

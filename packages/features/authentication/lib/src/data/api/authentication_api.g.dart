@@ -21,17 +21,18 @@ class _AuthenticationAPI implements AuthenticationAPI {
 
   @override
   Future<APIResponse<SendOTPResponseModel>> sendOTP(
-    SendOTPRequestModel sendOTPRequestModel,
+    Map<String, dynamic> body,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = sendOTPRequestModel;
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
     final _options = _setStreamType<APIResponse<SendOTPResponseModel>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/login',
+            '/api/phone-auth/request-otp',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -53,17 +54,18 @@ class _AuthenticationAPI implements AuthenticationAPI {
 
   @override
   Future<APIResponse<VerifyOTPResponseModel>> verifyOTP(
-    UnifiedVerifyOTPRequestModel verifyOTPRequestModel,
+    Map<String, dynamic> verifyOTPRequestModel,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = verifyOTPRequestModel;
+    final _data = <String, dynamic>{};
+    _data.addAll(verifyOTPRequestModel);
     final _options = _setStreamType<APIResponse<VerifyOTPResponseModel>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/verify-otp',
+            '/api/phone-auth/verify-otp',
             queryParameters: queryParameters,
             data: _data,
           )

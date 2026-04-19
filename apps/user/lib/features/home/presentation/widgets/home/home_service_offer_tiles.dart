@@ -1,29 +1,21 @@
-import 'package:design_system/design_system.dart';
-import 'package:user/features/home/domain/entities/home_content.dart';
+import 'package:booking/booking.dart';
 import 'package:user/features/home/presentation/widgets/home/service_offer_tile.dart';
 
 class HomeServiceOfferTiles extends StatelessWidget {
-  const HomeServiceOfferTiles({required this.items, super.key});
+  const HomeServiceOfferTiles({required this.services, super.key});
 
-  final List<HomeServiceOfferItem> items;
+  final List<ServicePreviewResponseModel> services;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: items.length,
+      itemCount: services.length,
       itemBuilder: (context, index) {
-        final item = items[index];
+        final item = services[index];
         return Padding(
           padding: UI.padding.userHomeItemStartAndEnd(isFirst: index == 0),
-          child: ServiceOfferTile(
-            imageUrl: item.imageUrl,
-            title: item.title,
-            price: item.price,
-            oldPrice: item.oldPrice,
-            reviewsCount: item.reviewsCount,
-            ratingStars: item.ratingStars,
-          ),
+          child: ServiceOfferTile(servicePreviewResponseModel: item),
         );
       },
     );

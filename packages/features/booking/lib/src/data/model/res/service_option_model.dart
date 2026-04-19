@@ -6,7 +6,7 @@ part 'service_option_model.g.dart';
 @freezed
 abstract class ServiceOptionModel with _$ServiceOptionModel {
   const factory ServiceOptionModel({
-    required String id,
+    required int id,
     required String title,
     @JsonKey(name: 'duration_minutes') required int durationMinutes,
     required String description,

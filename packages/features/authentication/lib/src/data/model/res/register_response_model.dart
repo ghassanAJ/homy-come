@@ -1,36 +1,26 @@
-import 'package:authentication/src/data/model/res/token_model.dart';
-import 'package:authentication/src/data/model/res/user_model.dart';
+import 'package:authentication/src/data/model/res/verified_user_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'register_response_model.freezed.dart';
 part 'register_response_model.g.dart';
 
 // Response model for /api/v1/login endpoint (OTP flow)
-// Backend returns: id, message, user_type ("new" or "returning")
 @freezed
 abstract class SendOTPResponseModel with _$SendOTPResponseModel {
-  const factory SendOTPResponseModel({
-    required String id, // Session ID for OTP verification
-    required String message,
-    @JsonKey(name: 'user_type') String? userType, // "new" or "returning"
-  }) = _SendOTPResponseModel;
+  const factory SendOTPResponseModel({required String message}) =
+      _SendOTPResponseModel;
 
   factory SendOTPResponseModel.fromJson(Map<String, dynamic> json) =>
       _$SendOTPResponseModelFromJson(json);
 }
 
 // Response model for /api/v1/verify-otp endpoint
-// Backend returns: id, phone_verified, email_verified, message, user, tokens, redirect_url
+// Backend returns: jwt, user
 @freezed
 abstract class VerifyOTPResponseModel with _$VerifyOTPResponseModel {
   const factory VerifyOTPResponseModel({
-    required String id,
-    @JsonKey(name: 'phone_verified') bool? phoneVerified,
-    @JsonKey(name: 'email_verified') bool? emailVerified,
-    required String message,
-    UserModel? user, // Present when login/registration is complete
-    TokenModel? tokens, // Present when login/registration is complete
-    @JsonKey(name: 'redirect_url') String? redirectUrl,
+    required String jwt,
+    VerifiedUserModel? user,
   }) = _VerifyOTPResponseModel;
 
   factory VerifyOTPResponseModel.fromJson(Map<String, dynamic> json) =>

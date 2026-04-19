@@ -1,5 +1,4 @@
 import 'package:design_system/design_system.dart';
-import 'package:design_system/gen/assets.gen.dart';
 
 class MDOnboardingCard extends StatelessWidget {
   final String imagePath;
@@ -42,14 +41,16 @@ class MDOnboardingCard extends StatelessWidget {
           ),
         ),
         SizedBox(height: UI.spacing.md),
-        Padding(
-          padding: UI.padding.onboardingCardSubtitleHorizontal,
-          child: UIText.bodyMedium(
-            subtitle,
-            textAlign: TextAlign.center,
-            color: UIColor.textSecondary,
-            maxLines: 5,
-            overflow: TextOverflow.ellipsis,
+        Flexible(
+          child: Padding(
+            padding: UI.padding.onboardingCardSubtitleHorizontal,
+            child: UIText.bodyMedium(
+              subtitle,
+              textAlign: TextAlign.center,
+              color: UIColor.textSecondary,
+              maxLines: 5,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
       ],
