@@ -1,8 +1,11 @@
 import 'package:design_system/design_system.dart';
-import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
 class OrderCleanerInfoWidget extends StatelessWidget {
-  const OrderCleanerInfoWidget({super.key, required this.name, required this.rating});
+  const OrderCleanerInfoWidget({
+    super.key,
+    required this.name,
+    required this.rating,
+  });
   final String name;
   final double rating;
   @override
@@ -10,7 +13,7 @@ class OrderCleanerInfoWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         //OrderCleanerInfoWidget
-        horizontal: UI.spacing.md,
+        // horizontal: UI.spacing.md,
         vertical: UI.spacing.sm,
       ),
 

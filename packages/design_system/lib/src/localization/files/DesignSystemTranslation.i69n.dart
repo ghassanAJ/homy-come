@@ -35,10 +35,8 @@ String _cardinal(int count,
 
 class DesignSystemTranslation implements i69n.I69nMessageBundle {
   const DesignSystemTranslation();
-
-  DesignSystemDialogTranslation get dialog =>
-      DesignSystemDialogTranslation(this);
-
+  DialogDesignSystemTranslation get dialog =>
+      DialogDesignSystemTranslation(this);
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -54,14 +52,11 @@ class DesignSystemTranslation implements i69n.I69nMessageBundle {
   }
 }
 
-class DesignSystemDialogTranslation implements i69n.I69nMessageBundle {
+class DialogDesignSystemTranslation implements i69n.I69nMessageBundle {
   final DesignSystemTranslation _parent;
-
-  const DesignSystemDialogTranslation(this._parent);
-
+  const DialogDesignSystemTranslation(this._parent);
   String get confirm => "Confirm";
   String get cancel => "Cancel";
-
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {

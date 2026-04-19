@@ -1,6 +1,7 @@
-import 'package:design_system/design_system.dart';
-import 'package:user/di/di_container.dart';
-import 'package:user/features/home/domain/repository/home_api_repository.dart';
+import 'package:booking/booking.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc.dart';
+import 'package:user/features/home/presentation/bloc/home_bloc_state.dart';
+import 'package:user/features/home/presentation/mappers/home_response_mapper.dart';
 import 'package:user/features/home/presentation/widgets/search/search_scroll_view_content.dart';
 import 'package:user/features/home/presentation/widgets/shared/section_header_app_bar.dart';
 import 'package:user/localization/files/userTranslation.i69n.dart';
@@ -18,16 +19,6 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    final popularSearch =
-        diContainer.get<HomeRepository>().getSearchContent().popularSearch;
-    if (popularSearch.isNotEmpty) {
-      _selectedPopular = popularSearch.first;
-    }
-  }
-
-  @override
   void dispose() {
     _searchController.dispose();
     super.dispose();
@@ -35,43 +26,60 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final searchContent = diContainer.get<HomeRepository>().getSearchContent();
     final bottomSafeArea = MediaQuery.of(context).padding.bottom;
 
     return Scaffold(
       backgroundColor: UIColor.background,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: EdgeInsetsDirectional.symmetric(horizontal: UI.spacing.xl),
-        child: SizedBox(
-          width: MediaQuery.sizeOf(context).width,
-          child: UIButton.primary(label: 'Apply', expanded: true),
-        ),
-      ),
-      body: UIEllipseBackground(
-        child: Column(
-          children: [
-            SectionHeaderAppBar(
-              title: context.loc<UserTranslation>().navigation.search,
-            ),
-            SizedBox(height: UI.spacing.xs),
-            Divider(height: 1, thickness: 1, color: UIColor.neutral100),
-            Expanded(
-              child: SearchScrollViewContent(
-                searchController: _searchController,
-                searchContent: searchContent,
-                selectedPopular: _selectedPopular,
-                bottomSafeArea: bottomSafeArea,
-                onSelectedPopular: (item) {
-                  setState(() {
-                    _selectedPopular = item;
-                    _searchController.text = item;
-                  });
-                },
+
+      body: BlocBuilder<HomeBloc, HomeBlocState>(
+        builder: (context, state) {
+          if (state.searchContentLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (state.error != null) {
+            return Center(
+              child: Text(
+                state.error?.message ?? '',
+                style: TextStyle(color: UIColor.error),
               ),
+            );
+          }
+          if (state.searchContent == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          final searchContent = mapSearchResponseToContent(
+            state.searchContent!,
+          );
+          final selectedPopular =
+              _selectedPopular.isEmpty && searchContent.popularSearch.isNotEmpty
+                  ? searchContent.popularSearch.first
+                  : _selectedPopular;
+          return UIEllipseBackground(
+            child: Column(
+              children: [
+                SectionHeaderAppBar(
+                  title: context.loc<UserTranslation>().navigation.search,
+                ),
+                SizedBox(height: UI.spacing.xs),
+                Divider(height: 1, thickness: 1, color: UIColor.neutral100),
+                Expanded(
+                  child: SearchScrollViewContent(
+                    searchController: _searchController,
+                    searchContent: searchContent,
+                    selectedPopular: selectedPopular,
+                    bottomSafeArea: bottomSafeArea,
+                    onSelectedPopular: (item) {
+                      setState(() {
+                        _selectedPopular = item;
+                        _searchController.text = item;
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

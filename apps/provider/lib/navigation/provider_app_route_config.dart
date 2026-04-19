@@ -1,6 +1,4 @@
-import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homy_provider/features/home/presentation/screens/provider_home_screen.dart';
 import 'package:homy_provider/localization/provider_localization_scope.dart';
@@ -42,7 +40,8 @@ class ProviderAppRouteConfig {
             GoRoute(
               path: ProviderPaths.homeProvider,
               builder:
-                  (context, state) => ProviderLocalizationScope(child: ProviderHomeScreen())
+                  (context, state) =>
+                      ProviderLocalizationScope(child: ProviderHomeScreen()),
             ),
           ],
         ),

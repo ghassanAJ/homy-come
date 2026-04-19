@@ -139,15 +139,15 @@ class UIPadding {
     required double bottomInset,
     double? endInset,
   }) => EdgeInsetsDirectional.only(
-    start: _spacing.xl,
+    start: _spacing.lg,
     top: _spacing.lg,
-    end: endInset ?? _spacing.xl,
+    end: endInset ?? _spacing.lg,
     bottom: bottomInset,
   );
 
   /// User search field content padding.
   EdgeInsets get userSearchFieldContent =>
-      EdgeInsets.symmetric(horizontal: _spacing.md, vertical: _spacing.sm);
+      EdgeInsets.symmetric(horizontal: _spacing.md, vertical: _spacing.xxs);
 
   /// User search chip content padding.
   EdgeInsets get userSearchChipContent =>

@@ -33,6 +33,7 @@ dependencies:
   design_system:
   i69n: ^3.3.0
   nested: ^1.0.0
+  url_launcher: ^6.3.2
   flutter_localizations:
     sdk: flutter
 

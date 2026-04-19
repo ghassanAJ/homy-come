@@ -8,17 +8,12 @@ class ProfileSettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final topContentPadding =
-        MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
-
     return UIScaffold(
       appBar: UIAppBar(
         title: context.profileTranslation.driverProfile.settings,
       ),
       body: SingleChildScrollView(
-        padding: UI.padding.driverProfileSettingsContent(
-          topInset: topContentPadding,
-        ),
+        padding: UI.padding.driverProfileSettingsContent(topInset: 12),
         child: SettingsCard(
           onLogout: () => ProfileActions.onLogoutPressed(context),
         ),

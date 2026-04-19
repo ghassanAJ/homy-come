@@ -1,7 +1,6 @@
 // ignore_for_file: unused_element, unused_field, camel_case_types, annotate_overrides, prefer_single_quotes
 // GENERATED FILE, do not edit!
 import 'package:i69n/i69n.dart' as i69n;
-
 import 'DesignSystemTranslation.i69n.dart';
 
 String get _languageCode => 'ar';
@@ -37,10 +36,8 @@ String _cardinal(int count,
 
 class DesignSystemTranslation_ar extends DesignSystemTranslation {
   const DesignSystemTranslation_ar();
-
-  DesignSystemDialogTranslation_ar get dialog =>
-      DesignSystemDialogTranslation_ar(this);
-
+  DialogDesignSystemTranslation_ar get dialog =>
+      DialogDesignSystemTranslation_ar(this);
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -56,14 +53,11 @@ class DesignSystemTranslation_ar extends DesignSystemTranslation {
   }
 }
 
-class DesignSystemDialogTranslation_ar extends DesignSystemDialogTranslation {
+class DialogDesignSystemTranslation_ar extends DialogDesignSystemTranslation {
   final DesignSystemTranslation_ar _parent;
-
-  const DesignSystemDialogTranslation_ar(this._parent) : super(_parent);
-
+  const DialogDesignSystemTranslation_ar(this._parent) : super(_parent);
   String get confirm => "تأكيد";
   String get cancel => "إلغاء";
-
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {

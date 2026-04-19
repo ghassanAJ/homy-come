@@ -37,6 +37,9 @@ String _cardinal(int count,
 class OrdersTr_ar extends OrdersTr {
   const OrdersTr_ar();
   TitleOrdersTr_ar get title => TitleOrdersTr_ar(this);
+  String get markDone => "إكمال المهمة";
+  String get descraptionWarning => "هل أنت متأكد من إكمال هذه المهمة؟";
+  String get yes => "نعم";
   LabelsOrdersTr_ar get labels => LabelsOrdersTr_ar(this);
   Object operator [](String key) {
     var index = key.indexOf('.');
@@ -47,6 +50,12 @@ class OrdersTr_ar extends OrdersTr {
     switch (key) {
       case 'title':
         return title;
+      case 'markDone':
+        return markDone;
+      case 'descraptionWarning':
+        return descraptionWarning;
+      case 'yes':
+        return yes;
       case 'labels':
         return labels;
       default:
@@ -66,6 +75,9 @@ class TitleOrdersTr_ar extends TitleOrdersTr {
   String get time => "وقت";
   String get address => "عنوان";
   String get myOrder => "طلباتي";
+  String get orderDetails => "تفاصيل الطلب";
+  String get serviceDetails => "تفاصيل الخدمة";
+  String get todaySchadule => "جدول اليوم";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -89,6 +101,12 @@ class TitleOrdersTr_ar extends TitleOrdersTr {
         return address;
       case 'myOrder':
         return myOrder;
+      case 'orderDetails':
+        return orderDetails;
+      case 'serviceDetails':
+        return serviceDetails;
+      case 'todaySchadule':
+        return todaySchadule;
       default:
         return super[key];
     }
@@ -101,6 +119,8 @@ class LabelsOrdersTr_ar extends LabelsOrdersTr {
   String get all => "كل";
   String get cancel => "الغاء";
   String get details => "تفاصيل";
+  String get done => "مكتمل";
+  String get getDirection => "الاتجاه";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -114,6 +134,10 @@ class LabelsOrdersTr_ar extends LabelsOrdersTr {
         return cancel;
       case 'details':
         return details;
+      case 'done':
+        return done;
+      case 'getDirection':
+        return getDirection;
       default:
         return super[key];
     }

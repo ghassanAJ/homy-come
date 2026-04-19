@@ -83,6 +83,9 @@ class ProfileProfileTranslation_ar extends ProfileProfileTranslation {
   String get editProfile => "تعديل الملف الشخصي";
   String get myOrder => "طلباتي";
   String get term => "شروط و الاحكام";
+  String get myTeam => "فريقي";
+  String get memberTeam => "اعضاء الفريق";
+  String get working => "يعمل";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -100,6 +103,12 @@ class ProfileProfileTranslation_ar extends ProfileProfileTranslation {
         return myOrder;
       case 'term':
         return term;
+      case 'myTeam':
+        return myTeam;
+      case 'memberTeam':
+        return memberTeam;
+      case 'working':
+        return working;
       default:
         return super[key];
     }

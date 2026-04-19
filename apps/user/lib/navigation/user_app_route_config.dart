@@ -1,16 +1,13 @@
-import 'package:design_system/src/widgets/shared/dashboard_navigation_scaffold.dart';
-import 'package:flutter/material.dart';
+import 'package:booking/booking.dart';
 import 'package:go_router/go_router.dart';
 import 'package:notifications/notifications.dart';
+import 'package:orders/orders.dart';
 import 'package:profile/profile.dart';
-import 'package:user/features/booking/presentation/screens/service_details_step1.dart';
-import 'package:user/features/booking/presentation/screens/service_details_step2.dart';
-import 'package:user/features/booking/presentation/screens/service_details_step3.dart';
-import 'package:user/features/booking/presentation/screens/service_details_summary_screen.dart';
-import 'package:user/features/home/presentation/screens/services_screen.dart';
 import 'package:user/features/home/presentation/screens/categories_screen.dart';
-import 'package:user/features/home/presentation/screens/home_screen.dart';
 import 'package:user/features/home/presentation/screens/search_screen.dart';
+import 'package:user/features/home/presentation/screens/services_screen.dart';
+import 'package:user/features/home/presentation/screens/stories_screen.dart';
+import 'package:user/features/home/presentation/screens/user_home_screen.dart';
 import 'package:user/localization/files/userTranslation.i69n.dart';
 import 'package:user/localization/user_localization_scope.dart';
 import 'package:user/navigation/route.dart';
@@ -31,10 +28,13 @@ class UserAppRouteConfig {
         path: UserPaths.notifications,
         builder: (context, state) => const NotificationsScreen(),
       ),
-
       GoRoute(
         path: UserPaths.serviceDetails,
-        builder: (context, state) => const ServiceDetailsScreenStep1(),
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          final id = data['id'] as String;
+          return ServiceDetailsScreen(serviceId: id);
+        },
       ),
       GoRoute(
         path: UserPaths.serviceDetails2,
@@ -48,7 +48,28 @@ class UserAppRouteConfig {
         path: UserPaths.serviceDetailsSummarywithid(),
         builder: (context, state) {
           final id = int.parse(state.pathParameters['id']!);
-        return  ServiceDetailsSummaryScreen(id:id);
+          return ServiceDetailsSummaryScreen(id: id);
+        },
+      ),
+      GoRoute(
+        path: UserPaths.storiesScreen,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          final pageIndex = data['pageIndex'] as int;
+          final storyItems = data['storyItems'] as List<StoryPageData>;
+          return StoriesScreen(pageIndex: pageIndex, pages: storyItems);
+        },
+      ),
+      GoRoute(
+        path: UserPaths.search,
+        builder: (context, state) => const SearchScreen(),
+      ),
+      GoRoute(
+        path: UserPaths.services,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          final id = data['id'] as String;
+          return ServicesScreen(id: id);
         },
       ),
     ];
@@ -68,18 +89,6 @@ class UserAppRouteConfig {
               return DashboardNavigationScaffold(
                 navigationShell: navigationShell,
                 navigationItems: UserNavigationConfig.items(tr),
-                branchPaths: const [
-                  UserPaths.home,
-                  UserPaths.search,
-                  UserPaths.orders,
-                  UserPaths.category,
-                  UserPaths.profile,
-                ],
-                hiddenNavigationPaths: const [
-                  UserPaths.search,
-                  UserPaths.category,
-                  UserPaths.services,
-                ],
               );
             },
           ),
@@ -92,38 +101,22 @@ class UserAppRouteConfig {
         StatefulShellBranch(
           routes: [
             GoRoute(
+              path: UserPaths.orders,
+              builder:
+                  (context, state) =>
+                      OrderLocalizationScope(child: MyOrderScreen()),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
               path: UserPaths.home,
               builder: (context, state) => const UserHomeScreen(),
             ),
-            GoRoute(
-              path: UserPaths.services,
-              builder: (context, state) => const ServicesScreen(),
-            ),
           ],
         ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: UserPaths.search,
-              builder: (context, state) => const SearchScreen(),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: UserPaths.orders,
-              builder:
-                  (context, state) => Scaffold(
-                    body: Center(
-                      child: Text(
-                        context.loc<UserTranslation>().navigation.orders,
-                      ),
-                    ),
-                  ),
-            ),
-          ],
-        ),
+
         StatefulShellBranch(
           routes: [
             GoRoute(

@@ -1,3 +1,4 @@
+import 'package:design_system/design_system.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'register_request_model.freezed.dart';
@@ -10,6 +11,7 @@ sealed class SendOTPRequestModel with _$SendOTPRequestModel {
   const factory SendOTPRequestModel({
     String? phone,
     String? email,
+    @JsonKey(name: 'role_type') UserRole? role,
     @JsonKey(name: 'device_id') required String deviceId,
   }) = _SendOTPRequestModel;
 
@@ -41,6 +43,8 @@ sealed class UnifiedVerifyOTPRequestModel with _$UnifiedVerifyOTPRequestModel {
   const factory UnifiedVerifyOTPRequestModel({
     required String id, // Session ID from login response
     required String otp, // 6-digit OTP code
+    required String phone,
+    @JsonKey(name: 'role_type') UserRole? role,
   }) = _UnifiedVerifyOTPRequestModel;
 
   factory UnifiedVerifyOTPRequestModel.fromJson(Map<String, dynamic> json) =>

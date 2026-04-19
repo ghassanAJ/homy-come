@@ -8,5 +8,5 @@ class UIFontFamily {
   static const String poppins = 'Poppins';
   static const String cairo = 'Cairo';
   static const String sFPro = 'SFPro';
-    static const String almarai = 'Almarai';
+  static const String almarai = 'Almarai';
 }

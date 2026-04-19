@@ -22,8 +22,8 @@ abstract class UserAPI {
   );
 
   @PATCH(UserAPIEndpoints.updateProfile)
-  Future<APIResponse<UserModel>> updateProfile(
-    @Path('id') String userId,
+  Future<APIResponse<VerifiedUserModel>> updateProfile(
+    @Path('id') int userId,
     @Body() Map<String, dynamic> body,
   );
 }

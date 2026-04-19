@@ -5,6 +5,10 @@ profile:
   editProfile: Edit Profile
   myOrder: my order 
   term: terms and condition
+  myTeam: My Team
+  memberTeam: Team Members
+  working: Working
+  
 # ooption title
 option:
   help: Help and Support

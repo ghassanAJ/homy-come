@@ -72,9 +72,8 @@ class AuthNavigationListener extends StatelessWidget {
     AuthUserStateAuthenticated state,
   ) {
     final hasCompletedProfile =
-        state.session.user?.hasCompletedProfile ?? false;
+        true; // state.session.user?.hasCompletedProfile ?? false;
     final authContext = state.context;
-
     switch (authContext) {
       case AuthenticationContext.otpVerification:
         _navigateAfterOtpVerification(context, hasCompletedProfile);
@@ -83,7 +82,7 @@ class AuthNavigationListener extends StatelessWidget {
         _navigateAfterProfileSave(context);
 
       case AuthenticationContext.pinLogin:
-        _navigateAfterPinLogin(context);
+        _navigateAfterPinLogin(context, hasCompletedProfile);
 
       case AuthenticationContext.tokenLogin:
         _navigateAfterTokenLogin(hasCompletedProfile);
@@ -106,15 +105,15 @@ class AuthNavigationListener extends StatelessWidget {
   }
 
   void _navigateAfterProfileSave(BuildContext context) {
-    final tr = context.loc<AuthenticationTranslation>();
-    ToastificationUtil.success(tr.personalInfo.profileCompleted);
     router.go(dashboardPath);
   }
 
-  void _navigateAfterPinLogin(BuildContext context) {
-    final tr = context.loc<AuthenticationTranslation>();
-    ToastificationUtil.success(tr.verification.returningUserVerified);
-    router.go(dashboardPath);
+  void _navigateAfterPinLogin(BuildContext context, bool hasCompletedProfile) {
+    final destination =
+        hasCompletedProfile
+            ? dashboardPath
+            : AuthenticationPaths.completeProfile;
+    router.go(destination);
   }
 
   /// Token login is silent (auto-login) - no toast shown.

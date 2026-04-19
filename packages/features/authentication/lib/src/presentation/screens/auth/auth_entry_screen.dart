@@ -1,5 +1,4 @@
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/localization/files/authenticationTranslation.i69n.dart';
 import 'package:authentication/src/presentation/widgets/auth_entry/auth_entry_header.dart';
 import 'package:authentication/src/presentation/widgets/auth_entry/auth_entry_submit_button.dart';
 import 'package:authentication/src/presentation/widgets/auth_entry/auth_method_selector.dart';
@@ -137,11 +136,11 @@ class _AuthEntryScreenState extends State<AuthEntryScreen> {
                         SizedBox(height: UI.spacing.md),
                         AuthEntryHeader(
                           currentMethod: _currentMethod,
-                          isChildMode: widget.userRole.isParent,
+                          isChildMode: widget.userRole.isUser,
                         ),
                         _isPinMode
                             ? PinInput(
-                              enableAutoPaste: widget.userRole.isChild,
+                              enableAutoPaste: widget.userRole.isUser,
                               key: const ValueKey('pin_input'),
                               label: tr.authEntry.pinLabel,
                               length: AuthenticationConfig.pinLength,
@@ -173,7 +172,7 @@ class _AuthEntryScreenState extends State<AuthEntryScreen> {
                           availableMethods: _allowedMethod,
                           socialMethods: _socialMethods,
                           currentMethod: _currentMethod,
-                          isChildMode: widget.userRole.isChild,
+                          isChildMode: widget.userRole.isUser,
                           onMethodSelected: _switchMethod,
                         ),
                       ],

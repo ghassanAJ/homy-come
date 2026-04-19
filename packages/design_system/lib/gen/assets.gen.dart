@@ -73,6 +73,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/carpenter.svg
   String get carpenter => 'packages/design_system/assets/icons/carpenter.svg';
 
+  /// File path: assets/icons/chat.svg
+  String get chat => 'packages/design_system/assets/icons/chat.svg';
+
   /// File path: assets/icons/cleaner.svg
   String get cleaner => 'packages/design_system/assets/icons/cleaner.svg';
 
@@ -159,8 +162,16 @@ class $AssetsIconsGen {
   String get starOutline =>
       'packages/design_system/assets/icons/starOutline.svg';
 
+  /// File path: assets/icons/star_success.svg
+  String get starSuccess =>
+      'packages/design_system/assets/icons/star_success.svg';
+
   /// File path: assets/icons/successful.svg
   String get successful => 'packages/design_system/assets/icons/successful.svg';
+
+  /// File path: assets/icons/sucess_with_border.svg
+  String get sucessWithBorder =>
+      'packages/design_system/assets/icons/sucess_with_border.svg';
 
   /// File path: assets/icons/trash.svg
   String get trash => 'packages/design_system/assets/icons/trash.svg';
@@ -195,6 +206,7 @@ class $AssetsIconsGen {
     camera,
     carema,
     carpenter,
+    chat,
     cleaner,
     close,
     electrician,
@@ -221,7 +233,9 @@ class $AssetsIconsGen {
     star,
     starBlue,
     starOutline,
+    starSuccess,
     successful,
+    sucessWithBorder,
     trash,
     user,
     vehicleService,
@@ -248,6 +262,10 @@ class $AssetsImagesGen {
   AssetGenImage get location =>
       const AssetGenImage('assets/images/location.png');
 
+  /// File path: assets/images/location_image.png
+  AssetGenImage get locationImage =>
+      const AssetGenImage('assets/images/location_image.png');
+
   /// File path: assets/images/notification.png
   AssetGenImage get notification =>
       const AssetGenImage('assets/images/notification.png');
@@ -268,6 +286,10 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding =>
       const AssetGenImage('assets/images/onboarding.png');
 
+  /// File path: assets/images/phone-call (2) 1.png
+  AssetGenImage get phoneCall21 =>
+      const AssetGenImage('assets/images/phone-call (2) 1.png');
+
   /// File path: assets/images/search.png
   AssetGenImage get search => const AssetGenImage('assets/images/search.png');
 
@@ -277,11 +299,13 @@ class $AssetsImagesGen {
     intersect,
     checkMark1,
     location,
+    locationImage,
     notification,
     onboarding1,
     onboarding2,
     onboarding3,
     onboarding,
+    phoneCall21,
     search,
   ];
 }

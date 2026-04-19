@@ -48,7 +48,7 @@ class UISpacing {
   ///
   /// Usage: Section-level spacing or large layout separation
   double get xxxl => 60;
-  
+
   // ============================================================================
   // COMPONENT SPACING
   // ============================================================================
@@ -56,7 +56,7 @@ class UISpacing {
   /// Button horizontal padding: 10px
   ///
   /// Usage: Horizontal padding inside buttons
-  double get buttonHorizontal => 37;
+  double get buttonHorizontal => 32;
 
   /// Button vertical padding: 16px
   ///

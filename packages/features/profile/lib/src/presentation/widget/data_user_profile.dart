@@ -81,7 +81,7 @@ class UserProfileInfoWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  UIText.bodySmallBold(user?.fullName ?? ''),
+                  UIText.bodySmallBold(user?.name ?? ''),
                   UIText.headerBody(user?.phone ?? ''),
                 ],
               ),

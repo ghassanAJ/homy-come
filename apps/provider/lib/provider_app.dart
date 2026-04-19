@@ -1,12 +1,13 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:homy_provider/di/di_container.dart';
 import 'package:homy_provider/localization/provider_localization_delegate.dart';
 import 'package:homy_provider/navigation/route.dart';
 import 'package:util/util.dart';
+
+const UserRole userRole = UserRole.provider;
 
 class ProviderApp extends StatelessWidget {
   const ProviderApp({super.key});
@@ -60,7 +61,13 @@ class AppProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(value: diContainer.get<AppCubit>()),
-        BlocProvider.value(value: diContainer.get<AuthUserBloc>()),
+        BlocProvider.value(
+          value: AuthUserBloc(
+            diContainer.get<AuthRepository>(),
+            diContainer.get<SessionRepository>(),
+            userRole: userRole,
+          ),
+        ),
       ],
       child: child,
     );

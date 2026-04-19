@@ -28,10 +28,10 @@ class UIBackground extends StatelessWidget {
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      UIColor.softGreen.withValues(alpha: 0.2),
+                      UIColor.softGreen.withValues(alpha:0.8),
                       UIColor.white,
                     ],
-                    stops: const [0.0, 0.4],
+                    stops: const [0.0, 0.9],
                   ),
                 ),
               ),
@@ -61,10 +61,17 @@ class UIBackground extends StatelessWidget {
 
     final content = SafeArea(child: Offstage(offstage: false, child: child));
 
-    return SizedBox(
+    return Container(
       width: MediaQuery.sizeOf(context).width,
       height: MediaQuery.sizeOf(context).height,
-      child: Stack(children: [decorations, content]),
+      decoration: BoxDecoration(
+        gradient: const RadialGradient(
+          center: Alignment.topLeft,
+          radius: .9,
+          colors: [UIColor.softGreen, UIColor.background],
+        ),
+      ),
+      child: child,
     );
   }
 }
