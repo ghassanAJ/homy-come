@@ -74,7 +74,14 @@ class StepNavigationBar extends StatelessWidget {
               ],
             ),
           ),
-          UIButton.primary(label: 'Next', onPressed: next),
+          UIButton.primary(
+            label:
+                context.watch<BookingWizardBloc>().state.currentStep ==
+                        BookingWizardStep.summary
+                    ? 'Done'
+                    : 'Next',
+            onPressed: next,
+          ),
         ],
       ),
     );

@@ -36,7 +36,7 @@ class HeaderCard extends StatelessWidget {
             ),
             SizedBox(height: UI.spacing.sm),
             UIText.bodyLarge(
-              user?.fullName ?? '',
+              user?.name ?? '',
               fontWeight: FontWeight.w700,
               color: UIColor.neutral975,
             ),

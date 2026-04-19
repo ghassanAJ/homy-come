@@ -164,6 +164,7 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
           ],
         ),
       ),
+
       bottomNavigationBar: SummaryBottomBar(),
     );
   }

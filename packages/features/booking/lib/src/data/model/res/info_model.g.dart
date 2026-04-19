@@ -21,3 +21,19 @@ Map<String, dynamic> _$ServiceInfoModelToJson(_ServiceInfoModel instance) =>
       'description': instance.description,
       'image': instance.image,
     };
+
+_ProviderModel _$ProviderModelFromJson(Map<String, dynamic> json) =>
+    _ProviderModel(
+      id: (json['id'] as num).toInt(),
+      name: json['name'] as String,
+      rating: (json['rating'] as num).toDouble(),
+      image: json['image'] as String?,
+    );
+
+Map<String, dynamic> _$ProviderModelToJson(_ProviderModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'rating': instance.rating,
+      'image': instance.image,
+    };

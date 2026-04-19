@@ -81,7 +81,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                             spacing: UI.spacing.xs,
                             runSpacing: UI.spacing.xs,
                             children: List.generate(
-                              7,
+                              6,
                               (index) => CircleNumberOptionWidget(
                                 value: index + 1,
                                 selected: state.durationHours == index + 1,
@@ -96,26 +96,48 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                         SizedBox(height: UI.spacing.lg),
                         _sectionTitle('How many professionals do you need?'),
                         SizedBox(height: UI.spacing.sm),
-                        Wrap(
-                          spacing: UI.spacing.xs,
-                          runSpacing: UI.spacing.xs,
-                          children: [
-                            for (final label in const [
-                              'One Professional',
-                              '2 to 4',
-                              '4 to 6',
-                              'More than',
-                            ])
-                              ChoiceChipButtonWidget(
-                                label: label,
-                                selected: state.professionalCount == label,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Wrap(
+                            spacing: UI.spacing.xs,
+                            runSpacing: UI.spacing.xs,
+                            children: List.generate(
+                              4,
+                              (index) => CircleNumberOptionWidget(
+                                value: index + 1,
+                                selected:
+                                    int.tryParse(state.professionalCount) ==
+                                    index + 1,
                                 onTap:
                                     () => context.read<BookingWizardBloc>().add(
-                                      UpdateProfessionalCount(count: label),
+                                      UpdateProfessionalCount(
+                                        count: (index + 1).toString(),
+                                      ),
                                     ),
                               ),
-                          ],
+                            ),
+                          ),
                         ),
+                        // Wrap(
+                        //   spacing: UI.spacing.xs,
+                        //   runSpacing: UI.spacing.xs,
+                        //   children: [
+                        //     for (final label in const [
+                        //       'One Professional',
+                        //       '2 to 4',
+                        //       '4 to 6',
+                        //       'More than',
+                        //     ])
+                        //       ChoiceChipButtonWidget(
+                        //         label: label,
+                        //         selected: state.professionalCount == label,
+                        //         onTap:
+                        //             () => context.read<BookingWizardBloc>().add(
+                        //               UpdateProfessionalCount(count: label),
+                        //             ),
+                        //       ),
+                        //   ],
+                        // ),
                         SizedBox(height: UI.spacing.lg),
                         _sectionTitle('Need cleaning materials?'),
                         SizedBox(height: UI.spacing.sm),

@@ -20,11 +20,11 @@ HomeOfferItem _offerToItem(OfferModel offer) =>
     HomeOfferItem(image: offer.imageUrl ?? '', aspectRatio: 2 / 1);
 
 HomeCategoryItem _categoryToItem(ServiceCategoryModel category) {
-  final iconPath = _categoryIconPath(category.name);
+  final iconPath = _categoryIconPath(category.info.name);
   return HomeCategoryItem(
-    title: category.name,
+    title: category.info.name,
     description: '${category.servicesCount} Services',
-    iconPath: category.imageUrl ?? iconPath,
+    iconPath: category.info.image ?? iconPath,
   );
 }
 

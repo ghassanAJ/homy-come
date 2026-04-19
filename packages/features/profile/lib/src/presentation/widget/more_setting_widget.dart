@@ -39,7 +39,7 @@ class MoreSettingWidget extends StatelessWidget {
                 imgUrl: Assets.icons.heart,
                 colorIcon: UIColor.grey,
                 onTap: () {
-                  // log('pressed on FAQ button');
+                  context.push(ProfilePaths.aboutApp);
                 },
               ),
             ],

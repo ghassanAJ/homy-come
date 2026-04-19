@@ -3,26 +3,32 @@ import 'package:user/features/home/data/model/res/home_response_model.dart';
 import 'package:user/features/home/data/model/res/search_response_model.dart';
 
 /// Mock [HomeResponseModel] for development and testing.
-HomeResponseModel get mockHomeResponseModel => HomeResponseModel(
-  categories: _mockCategories,
-  offers: _mockOffers,
-  sliders: _mockSliders,
-);
 
-final List<ServiceCategoryModel> _mockCategories = [
+final List<ServiceCategoryModel> mockCategories = [
   ServiceCategoryModel(
-    id: '1',
-    name: 'Carpenter',
+    documentId: '1',
+    id: 1,
+    info: InfoModel(
+      id: 1,
+      name: 'Carpenter',
+      image: 'https://i.ibb.co/vCPn6j6p/Home-Cleaning.jpg',
+    ),
     servicesCount: 20,
-    imageUrl: null,
-    servicePreviews: [
+
+    services: [
       ...List.generate(
         8,
         (index) => ServicePreviewResponseModel(
-          priceModel: ServicePriceModel(currentPrice: 100, newPrice: 150),
-          id: '1',
+          documentId: '1-$index',
+          priceModel: ServicePriceModel(
+            currentPrice: 100,
+            newPrice: 150,
+            currency: 'AED',
+            id: 1,
+          ),
+          id: 1,
           info: InfoModel(
-            id: '1',
+            id: 1,
             name: 'Carpenter',
             image: 'https://i.ibb.co/vCPn6j6p/Home-Cleaning.jpg',
           ),
@@ -33,18 +39,28 @@ final List<ServiceCategoryModel> _mockCategories = [
     ],
   ),
   ServiceCategoryModel(
-    id: '2',
-    name: 'Cleaner',
+    documentId: '2',
+    id: 2,
+    info: InfoModel(
+      id: 2,
+      name: 'Cleaner',
+      image: 'https://i.ibb.co/ynSmvwph/Furniture-Cleaning.jpg',
+    ),
     servicesCount: 20,
-    imageUrl: null,
-    servicePreviews: [
+    services: [
       ...List.generate(
         8,
         (index) => ServicePreviewResponseModel(
-          priceModel: ServicePriceModel(currentPrice: 100, newPrice: 150),
-          id: '1',
+          documentId: '2-$index',
+          priceModel: ServicePriceModel(
+            currentPrice: 100,
+            newPrice: 150,
+            currency: 'AED',
+            id: 1,
+          ),
+          id: 1,
           info: InfoModel(
-            id: '1',
+            id: 1,
             name: 'Cleaner',
             image: 'https://i.ibb.co/ynSmvwph/Furniture-Cleaning.jpg',
           ),
@@ -55,18 +71,28 @@ final List<ServiceCategoryModel> _mockCategories = [
     ],
   ),
   ServiceCategoryModel(
-    id: '3',
-    name: 'Painter',
+    documentId: '3',
+    id: 3,
+    info: InfoModel(
+      id: 3,
+      name: 'Painter',
+      image: 'https://i.ibb.co/Q7LbN1HF/Complete-Kitchen-Cleaning.png',
+    ),
     servicesCount: 20,
-    imageUrl: null,
-    servicePreviews: [
+    services: [
       ...List.generate(
         8,
         (index) => ServicePreviewResponseModel(
-          priceModel: ServicePriceModel(currentPrice: 100, newPrice: 150),
-          id: '1',
+          documentId: '3-$index',
+          priceModel: ServicePriceModel(
+            currentPrice: 100,
+            newPrice: 150,
+            currency: 'AED',
+            id: 1,
+          ),
+          id: 1,
           info: InfoModel(
-            id: '1',
+            id: 1,
             name: 'Painter',
             image: 'https://i.ibb.co/Q7LbN1HF/Complete-Kitchen-Cleaning.png',
           ),
@@ -77,18 +103,28 @@ final List<ServiceCategoryModel> _mockCategories = [
     ],
   ),
   ServiceCategoryModel(
-    id: '4',
-    name: 'Electrician',
+    documentId: '4',
+    id: 4,
+    info: InfoModel(
+      id: 4,
+      name: 'Electrician',
+      image: 'https://i.ibb.co/YFcNnFFp/Home-Deep-Cleaning.jpg',
+    ),
     servicesCount: 20,
-    imageUrl: null,
-    servicePreviews: [
+    services: [
       ...List.generate(
         8,
         (index) => ServicePreviewResponseModel(
-          priceModel: ServicePriceModel(currentPrice: 100, newPrice: 150),
-          id: '1',
+          documentId: '4-$index',
+          priceModel: ServicePriceModel(
+            currentPrice: 100,
+            newPrice: 150,
+            currency: 'AED',
+            id: 1,
+          ),
+          id: 1,
           info: InfoModel(
-            id: '1',
+            id: 1,
             name: 'Electrician',
             image: 'https://i.ibb.co/YFcNnFFp/Home-Deep-Cleaning.jpg',
           ),
@@ -99,18 +135,28 @@ final List<ServiceCategoryModel> _mockCategories = [
     ],
   ),
   ServiceCategoryModel(
-    id: '5',
-    name: 'Plumber',
+    documentId: '5',
+    id: 5,
+    info: InfoModel(
+      id: 5,
+      name: 'Plumber',
+      image: 'https://i.ibb.co/7tgS7hR6/Plumber-service-1.jpg',
+    ),
     servicesCount: 20,
-    imageUrl: null,
-    servicePreviews: [
+    services: [
       ...List.generate(
         8,
         (index) => ServicePreviewResponseModel(
-          priceModel: ServicePriceModel(currentPrice: 100, newPrice: 150),
-          id: '1',
+          documentId: '5-$index',
+          priceModel: ServicePriceModel(
+            currentPrice: 100,
+            newPrice: 150,
+            currency: 'AED',
+            id: 1,
+          ),
+          id: 1,
           info: InfoModel(
-            id: '1',
+            id: 1,
             name: 'Plumber',
             image: 'https://i.ibb.co/7tgS7hR6/Plumber-service-1.jpg',
           ),
@@ -125,33 +171,94 @@ final List<ServiceCategoryModel> _mockCategories = [
 final List<OfferModel> _mockOffers = [
   const OfferModel(
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-    serviceId: '1',
+    service: ServicePreviewResponseModel(
+      rating: 5,
+      reviewsCount: 10,
+      id: 1,
+      info: InfoModel(id: 1, name: 'Service 1'),
+      documentId: '1',
+      priceModel: ServicePriceModel(
+        currentPrice: 100,
+        newPrice: 150,
+        currency: 'AED',
+        id: 1,
+      ),
+    ),
   ),
   const OfferModel(
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-    serviceId: '1',
+    service: ServicePreviewResponseModel(
+      rating: 5,
+      reviewsCount: 10,
+      id: 1,
+      info: InfoModel(id: 1, name: 'Service 1'),
+      documentId: '1',
+      priceModel: ServicePriceModel(
+        currentPrice: 100,
+        newPrice: 150,
+        currency: 'AED',
+        id: 1,
+      ),
+    ),
   ),
 ];
 
 final List<OfferModel> _mockSliders = [
   const OfferModel(
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-    serviceId: '1',
+
+    service: ServicePreviewResponseModel(
+      documentId: '1',
+      rating: 5,
+      reviewsCount: 10,
+      id: 1,
+      info: InfoModel(id: 1, name: 'Service 1'),
+      priceModel: ServicePriceModel(
+        currentPrice: 100,
+        newPrice: 150,
+        currency: 'AED',
+        id: 1,
+      ),
+    ),
   ),
   const OfferModel(
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-    serviceId: '1',
+    service: ServicePreviewResponseModel(
+      rating: 5,
+      reviewsCount: 10,
+      id: 1,
+      info: InfoModel(id: 1, name: 'Service 1'),
+      documentId: '1',
+      priceModel: ServicePriceModel(
+        currentPrice: 100,
+        newPrice: 150,
+        currency: 'AED',
+        id: 1,
+      ),
+    ),
   ),
   const OfferModel(
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-    serviceId: '1',
+    service: ServicePreviewResponseModel(
+      rating: 5,
+      reviewsCount: 10,
+      id: 1,
+      info: InfoModel(id: 1, name: 'Service 1'),
+      documentId: '1',
+      priceModel: ServicePriceModel(
+        currentPrice: 100,
+        newPrice: 150,
+        currency: 'AED',
+        id: 1,
+      ),
+    ),
   ),
 ];
 
 /// Mock [SearchResponseModel] for development and testing.
 SearchResponseModel get mockSearchResponseModel => SearchResponseModel(
   popularSearch: _mockPopularSearch,
-  topCategories: _mockCategories,
+  topCategories: mockCategories,
 );
 
 const List<String> _mockPopularSearch = [

@@ -67,7 +67,19 @@ final class ProceedToStep3 extends BookingWizardEvent {
 
 final class SelectProvider extends BookingWizardEvent {
   const SelectProvider({required this.providerId});
-  final String providerId;
+  final ProviderModel providerId;
+}
+
+class LoadProviders extends BookingWizardEvent {
+  final String serviceId;
+
+  LoadProviders({required this.serviceId});
+}
+
+class LoadAvailableDays extends BookingWizardEvent {
+  final String serviceId;
+
+  LoadAvailableDays({required this.serviceId});
 }
 
 final class SelectScheduledAt extends BookingWizardEvent {
@@ -78,6 +90,19 @@ final class SelectScheduledAt extends BookingWizardEvent {
 /// Validates step 3 and navigates to the summary screen.
 final class ProceedToSummary extends BookingWizardEvent {
   const ProceedToSummary();
+}
+
+class SelectDay extends BookingWizardEvent {
+  final int index;
+
+  SelectDay(this.index);
+}
+
+class LoadTimeSlots extends BookingWizardEvent {
+  final DateTime date;
+  final String serviceId;
+
+  LoadTimeSlots({required this.date, required this.serviceId});
 }
 
 // ── Submission ────────────────────────────────────────────────────────────────

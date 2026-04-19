@@ -19,7 +19,6 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.read<AppCubit>().state.user;
-    final resolvedProfileImageUrl = user?.profilePicture ?? profileImageUrl;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -39,7 +38,7 @@ class HomeHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UIText.bodySmall(
-                  'Hi, ${user?.fullName}' ?? '',
+                  'Hi, ${user?.phone}' ?? '',
                   fontWeight: FontWeight.w700,
                   color: UIColor.black,
                 ),
@@ -51,7 +50,7 @@ class HomeHeader extends StatelessWidget {
                     SizedBox(width: UI.spacing.xxs),
                     Flexible(
                       child: UIText.bodySmall(
-                        user?.address?.toString() ?? 'no address selected',
+                        user?.phone ?? 'no phone selected',
                         color: UIColor.neutral400,
                         maxLines: 1,
                       ),

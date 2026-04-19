@@ -33,14 +33,15 @@ class ServiceOfferTile extends StatelessWidget {
                   top: Radius.circular(UI.radius.md),
                 ),
                 child: SizedBox(
-                  height: 128,
+                  height: 160,
                   width: width,
                   child: UINetworkImage(
-                    imageUrl: servicePreviewResponseModel.info.image,
+                    imageUrl: servicePreviewResponseModel.info?.image ?? '',
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
+
               Padding(
                 padding: UI.padding.userHomeServiceOfferTileContent,
                 child: Column(
@@ -48,16 +49,17 @@ class ServiceOfferTile extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Row(
-                          children: List.generate(
-                            servicePreviewResponseModel.rating,
-                            (index) => Icon(
-                              Icons.star,
-                              size: 20,
-                              color: UIColor.babyBlue,
+                        if (servicePreviewResponseModel.rating != null)
+                          Row(
+                            children: List.generate(
+                              servicePreviewResponseModel.rating!,
+                              (index) => Icon(
+                                Icons.star,
+                                size: 20,
+                                color: UIColor.babyBlue,
+                              ),
                             ),
                           ),
-                        ),
                         SizedBox(width: UI.spacing.xs),
                         UIText.bodyXSmall(
                           '(${servicePreviewResponseModel.reviewsCount} Reviews)',
@@ -69,22 +71,23 @@ class ServiceOfferTile extends StatelessWidget {
 
                     SizedBox(height: UI.spacing.xxs),
                     UIText.bodySmall(
-                      servicePreviewResponseModel.info.name ?? '',
+                      servicePreviewResponseModel.info?.name ?? '',
                       color: UIColor.primaryDark,
                       fontWeight: FontWeight.w700,
                     ),
                     SizedBox(height: UI.spacing.xxs),
-                    UIPriceText(
-                      oldPrice:
-                          servicePreviewResponseModel.priceModel.currentPrice
+                    if (servicePreviewResponseModel.priceModel != null)
+                      UIPriceText(
+                        oldPrice:
+                            servicePreviewResponseModel.priceModel!.currentPrice
+                                .toString(),
+                        text: UIText.bodySmall(
+                          servicePreviewResponseModel.priceModel!.newPrice
                               .toString(),
-                      text: UIText.bodySmall(
-                        servicePreviewResponseModel.priceModel.newPrice
-                            .toString(),
-                        color: UIColor.midnight,
-                        fontWeight: FontWeight.w400,
+                          color: UIColor.midnight,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
@@ -99,13 +102,13 @@ class ServiceOfferTile extends StatelessWidget {
               onTap: () {
                 context.push(
                   UserPaths.serviceDetails,
-                  extra: {'id': servicePreviewResponseModel.id},
+                  extra: {'id': servicePreviewResponseModel.documentId},
                 );
               },
               padding: EdgeInsets.symmetric(horizontal: UI.spacing.md),
               // width: 67,
               height: 36,
-              fontWeight: FontWeight.w300,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ],

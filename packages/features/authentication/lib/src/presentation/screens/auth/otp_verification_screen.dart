@@ -77,6 +77,11 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
     _resendTimer.start();
   }
 
+  /// Handle OTP input completion
+  void _handleOTPCompleted(String otp) {
+    _handleVerify();
+  }
+
   void _handleVerify() {
     final otp = _otpController.text.trim();
     if (otp.length != AuthenticationConfig.otpLength) {
@@ -86,6 +91,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
     final verifyRequest = UnifiedVerifyOTPRequestModel(
       id: widget.verificationId,
       otp: otp,
+      phone: widget.userInput,
     );
 
     context.read<AuthUserBloc>().add(VerifyOTP(verifyRequest));
@@ -170,6 +176,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                 length: AuthenticationConfig.otpLength,
                                 hasError: hasError,
                                 errorText: otpErrorMessage,
+                                onCompleted: _handleOTPCompleted,
                               ),
                             ],
                           ),

@@ -7,12 +7,13 @@ import 'package:user/features/home/data/model/res/search_response_model.dart';
 import 'package:util/util.dart';
 
 abstract class HomeRepository {
-  Future<Result<HomeResponseModel, APIException>> getHomeContent();
+  Future<Result<List<ServiceCategoryModel>, APIException>> getCategories();
   Future<Result<List<OfferModel>, APIException>> getOffers();
   Future<Result<List<OfferModel>, APIException>> getSliders();
   Future<Result<SearchResponseModel, APIException>> getSearchContent();
-  Future<Result<List<ServicePreviewResponseModel>, APIException>>
-  getCategoryServices(String categoryId);
+  Future<Result<ServiceCategoryModel, APIException>> getCategoryServices(
+    String categoryId,
+  );
 }
 
 @Injectable(as: HomeRepository, env: ['prod', 'dev'])
@@ -22,17 +23,17 @@ class HomeRepositoryImpl implements HomeRepository {
   final HomeAPI _homeAPI;
 
   @override
-  Future<Result<HomeResponseModel, APIException>> getHomeContent() =>
-      _homeAPI.getHomeContent().toResult();
+  Future<Result<List<ServiceCategoryModel>, APIException>> getCategories() =>
+      _homeAPI.getCategories().toResult();
 
   @override
   Future<Result<SearchResponseModel, APIException>> getSearchContent() =>
       _homeAPI.getSearchContent().toResult();
 
   @override
-  Future<Result<List<ServicePreviewResponseModel>, APIException>>
-  getCategoryServices(String categoryId) =>
-      _homeAPI.getCategoryServices(categoryId).toResult();
+  Future<Result<ServiceCategoryModel, APIException>> getCategoryServices(
+    String categoryId,
+  ) => _homeAPI.getCategoryServices(categoryId).toResult();
 
   @override
   Future<Result<List<OfferModel>, APIException>> getOffers() =>

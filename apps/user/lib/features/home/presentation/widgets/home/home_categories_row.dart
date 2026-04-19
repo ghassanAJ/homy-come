@@ -21,9 +21,9 @@ class HomeCategoriesRow extends StatelessWidget {
               padding: UI.padding.userHomeItemStartAndEnd(isFirst: index == 0),
               child: BaseCategoryItem(
                 onTap: () => _handleCategoryTap(context, items[index]),
-                title: items[index].name,
+                title: items[index].info.name,
                 subtitle: '${items[index].servicesCount} services',
-                iconPath: items[index].imageUrl ?? '',
+                iconPath: items[index].info.image ?? '',
               ),
             ),
         ],
@@ -32,7 +32,7 @@ class HomeCategoriesRow extends StatelessWidget {
   }
 
   void _handleCategoryTap(BuildContext context, ServiceCategoryModel category) {
-    final id = int.parse(category.id);
+    final id = category.documentId;
     log('id: $id');
     final shellContext = StatefulNavigationShell.of(context).context;
     context.push(UserPaths.services, extra: {'id': id});

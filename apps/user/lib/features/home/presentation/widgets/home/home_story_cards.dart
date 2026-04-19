@@ -45,8 +45,8 @@ class HomeStoryCards extends StatelessWidget {
             },
             child: StoryOfferCard(
               title: item.imageUrl ?? '',
-              discount: item.serviceId ?? '',
-              description: item.serviceId ?? '',
+              discount: item.service?.documentId ?? '',
+              description: item.service?.info?.name ?? '',
               background: UIColor.background,
               backgroundContainer: UIColor.background,
               iconPath: Assets.icons.navCategory,

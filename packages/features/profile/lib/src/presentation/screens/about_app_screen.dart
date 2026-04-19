@@ -19,7 +19,7 @@ class AboutUsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(
           UI.spacing.lg,
-          topContentPadding,
+          12,
           UI.spacing.lg,
           UI.spacing.lg,
         ),

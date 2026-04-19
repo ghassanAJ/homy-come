@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:booking/booking.dart';
 import 'package:go_router/go_router.dart';
 import 'package:user/features/home/presentation/bloc/home_bloc.dart';
@@ -9,7 +11,7 @@ import 'package:user/navigation/route.dart';
 
 class ServicesScreen extends StatefulWidget {
   const ServicesScreen({required this.id, super.key});
-  final int id;
+  final String id;
   @override
   State<ServicesScreen> createState() => _ServicesScreenState();
 }
@@ -54,7 +56,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
           }
 
           final displayedPreviews = state.categoryServices;
-
+          log('displayedPreviews: ${displayedPreviews.length}');
           return ListView(
             padding: UI.padding
                 .userSearchBottomSectionContent(
@@ -96,7 +98,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     onTap:
                         () => context.push(
                           UserPaths.serviceDetails,
-                          extra: {'id': entry.value.id},
+                          extra: {'id': entry.value.documentId},
                         ),
 
                     child: ServiceOfferTile(

@@ -36,11 +36,16 @@ Map<String, dynamic> _$HomeResponseModelToJson(_HomeResponseModel instance) =>
 
 _OfferModel _$OfferModelFromJson(Map<String, dynamic> json) => _OfferModel(
   imageUrl: json['image_url'] as String?,
-  serviceId: json['service_id'] as String?,
+  service:
+      json['service'] == null
+          ? null
+          : ServicePreviewResponseModel.fromJson(
+            json['service'] as Map<String, dynamic>,
+          ),
 );
 
 Map<String, dynamic> _$OfferModelToJson(_OfferModel instance) =>
     <String, dynamic>{
       'image_url': instance.imageUrl,
-      'service_id': instance.serviceId,
+      'service': instance.service,
     };

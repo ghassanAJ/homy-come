@@ -10,8 +10,8 @@ class HomeServicesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeBlocState>(
-      buildWhen:
-          (previous, current) => previous.categories != current.categories,
+      // buildWhen:
+      //     (previous, current) => previous.categories != current.categories,
       builder: (context, state) {
         final categories = state.categories;
         if (categories.isEmpty) {
@@ -26,15 +26,14 @@ class HomeServicesSection extends StatelessWidget {
           slivers: List.generate(
             categories.length,
             (index) =>
-                state.categories[index].servicePreviews.isNotEmpty
+                state.categories[index].services.isNotEmpty
                     ? HomeSection(
-                      title: categories[index].name,
+                      title: categories[index].info.name,
                       sectionBottomSpacing: UI.spacing.xl,
                       child: SizedBox(
                         height: 158,
                         child: HomeServiceCards(
-                          servicePreviews:
-                              state.categories[index].servicePreviews,
+                          servicePreviews: state.categories[index].services,
                         ),
                       ),
                     )

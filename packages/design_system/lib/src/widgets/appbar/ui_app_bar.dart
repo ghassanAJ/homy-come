@@ -97,10 +97,11 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.withBackButton = true,
     this.showBottomDivider,
     this.actionsFactory = const DefaultUIAppBarActions(),
-  }) : assert(
-         title != null || titleWidget != null,
-         'Either title or titleWidget must be provided',
-       );
+  });
+  // : assert(
+  //        title != null || titleWidget != null,
+  //        'Either title or titleWidget must be provided',
+  //      );
 
   /// The visual style variant of the AppBar.
   final UIAppBarVariant variant;

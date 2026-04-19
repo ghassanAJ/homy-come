@@ -290,4 +290,276 @@ as String?,
 
 }
 
+
+/// @nodoc
+mixin _$ProviderModel {
+
+ int get id; String get name; double get rating; String? get image;
+/// Create a copy of ProviderModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ProviderModelCopyWith<ProviderModel> get copyWith => _$ProviderModelCopyWithImpl<ProviderModel>(this as ProviderModel, _$identity);
+
+  /// Serializes this ProviderModel to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProviderModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.image, image) || other.image == image));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,rating,image);
+
+@override
+String toString() {
+  return 'ProviderModel(id: $id, name: $name, rating: $rating, image: $image)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ProviderModelCopyWith<$Res>  {
+  factory $ProviderModelCopyWith(ProviderModel value, $Res Function(ProviderModel) _then) = _$ProviderModelCopyWithImpl;
+@useResult
+$Res call({
+ int id, String name, double rating, String? image
+});
+
+
+
+
+}
+/// @nodoc
+class _$ProviderModelCopyWithImpl<$Res>
+    implements $ProviderModelCopyWith<$Res> {
+  _$ProviderModelCopyWithImpl(this._self, this._then);
+
+  final ProviderModel _self;
+  final $Res Function(ProviderModel) _then;
+
+/// Create a copy of ProviderModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? rating = null,Object? image = freezed,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as double,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [ProviderModel].
+extension ProviderModelPatterns on ProviderModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ProviderModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ProviderModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ProviderModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _ProviderModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ProviderModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ProviderModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  double rating,  String? image)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ProviderModel() when $default != null:
+return $default(_that.id,_that.name,_that.rating,_that.image);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  double rating,  String? image)  $default,) {final _that = this;
+switch (_that) {
+case _ProviderModel():
+return $default(_that.id,_that.name,_that.rating,_that.image);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  double rating,  String? image)?  $default,) {final _that = this;
+switch (_that) {
+case _ProviderModel() when $default != null:
+return $default(_that.id,_that.name,_that.rating,_that.image);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _ProviderModel implements ProviderModel {
+  const _ProviderModel({required this.id, required this.name, required this.rating, this.image});
+  factory _ProviderModel.fromJson(Map<String, dynamic> json) => _$ProviderModelFromJson(json);
+
+@override final  int id;
+@override final  String name;
+@override final  double rating;
+@override final  String? image;
+
+/// Create a copy of ProviderModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ProviderModelCopyWith<_ProviderModel> get copyWith => __$ProviderModelCopyWithImpl<_ProviderModel>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ProviderModelToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProviderModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.image, image) || other.image == image));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,name,rating,image);
+
+@override
+String toString() {
+  return 'ProviderModel(id: $id, name: $name, rating: $rating, image: $image)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ProviderModelCopyWith<$Res> implements $ProviderModelCopyWith<$Res> {
+  factory _$ProviderModelCopyWith(_ProviderModel value, $Res Function(_ProviderModel) _then) = __$ProviderModelCopyWithImpl;
+@override @useResult
+$Res call({
+ int id, String name, double rating, String? image
+});
+
+
+
+
+}
+/// @nodoc
+class __$ProviderModelCopyWithImpl<$Res>
+    implements _$ProviderModelCopyWith<$Res> {
+  __$ProviderModelCopyWithImpl(this._self, this._then);
+
+  final _ProviderModel _self;
+  final $Res Function(_ProviderModel) _then;
+
+/// Create a copy of ProviderModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? rating = null,Object? image = freezed,}) {
+  return _then(_ProviderModel(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
+as double,image: freezed == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
 // dart format on

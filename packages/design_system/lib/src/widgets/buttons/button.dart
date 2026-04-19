@@ -466,6 +466,7 @@ class UIButton {
     bool isLoading = false,
     bool expanded = false,
     double? width,
+    UIColor? labelColor,
   }) {
     return _BaseButton(
       label: label,

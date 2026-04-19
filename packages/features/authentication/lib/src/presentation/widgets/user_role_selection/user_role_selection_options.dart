@@ -21,25 +21,25 @@ class UserRoleSelectionOptions extends StatelessWidget {
     return Column(
       children: [
         UserRoleOption(
-          label: 'parent',
-          isSelected: selectedRole == UserRole.parent,
-          onTap: () => onRoleChanged(UserRole.parent),
+          label: 'user',
+          isSelected: selectedRole == UserRole.user,
+          onTap: () => onRoleChanged(UserRole.user),
         ),
 
         const SizedBox(height: 12),
 
         UserRoleOption(
-          label: 'translations.userRole.imTheChild',
-          isSelected: selectedRole == UserRole.child,
-          onTap: () => onRoleChanged(UserRole.child),
+          label: 'driver',
+          isSelected: selectedRole == UserRole.driver,
+          onTap: () => onRoleChanged(UserRole.driver),
         ),
 
         const SizedBox(height: 12),
 
         UserRoleOption(
-          label: ' translations.userRole.imAGuest',
-          isSelected: selectedRole == UserRole.guest,
-          onTap: () => onRoleChanged(UserRole.guest),
+          label: 'provider',
+          isSelected: selectedRole == UserRole.provider,
+          onTap: () => onRoleChanged(UserRole.provider),
         ),
 
         const SizedBox(height: 24),
@@ -48,7 +48,7 @@ class UserRoleSelectionOptions extends StatelessWidget {
         UIButton.primary(
           label: 'translations.userRole.continueButton',
           onPressed: () {
-            if (selectedRole.isGuest) {
+            if (selectedRole.isProvider) {
               ToastificationUtil.error(
                 ' translations.userRole.guestModeNotSupported',
               );

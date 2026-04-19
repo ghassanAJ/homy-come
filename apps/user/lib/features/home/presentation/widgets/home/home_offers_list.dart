@@ -22,7 +22,7 @@ class HomeOffersList extends StatelessWidget {
             onTap:
                 () => context.push(
                   UserPaths.serviceDetails,
-                  extra: {'id': item.serviceId},
+                  extra: {'id': item.service?.documentId},
                 ),
             child: OfferCard(image: item.imageUrl ?? '', aspectRatio: 2 / 1),
           ),

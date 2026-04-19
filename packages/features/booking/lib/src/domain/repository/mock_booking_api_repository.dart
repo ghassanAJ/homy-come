@@ -21,6 +21,109 @@ class MockBookingRepository implements BookingRepository {
   }
 
   @override
+  Future<Result<List<TimeSlotModel>, APIException>> getTimeSlots({
+    required String serviceId,
+    required DateTime date,
+    String? providerId,
+  }) async {
+    await Future.delayed(const Duration(milliseconds: 400));
+
+    // simulate dynamic slots per day
+    final slots = List.generate(8, (index) {
+      final hour = 9 + index;
+
+      final dateTime = DateTime(date.year, date.month, date.day, hour);
+
+      return TimeSlotModel(
+        dateTime: dateTime,
+        label: _formatHour(hour),
+        available: index % 3 != 0, // some disabled slots
+      );
+    });
+
+    return success(slots);
+  }
+
+  String _formatHour(int hour) {
+    final suffix = hour >= 12 ? 'PM' : 'AM';
+    final displayHour = hour > 12 ? hour - 12 : hour;
+    return '$displayHour:00 $suffix';
+  }
+  // ───────────────────────────────────────────────────────────
+
+  @override
+  Future<Result<List<ProviderModel>, APIException>> getProviders(
+    String serviceId,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 400));
+
+    return success(_mockProviders);
+  }
+
+  final List<DayModel> _mockDays = List.generate(7, (index) {
+    final date = DateTime.now().add(Duration(days: index));
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+    return DayModel(
+      day: date.day.toString(),
+      weekDay: days[date.weekday - 1],
+      date: date,
+    );
+  });
+
+  // String weekDay(int weekday) {
+  //   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  //   return days[weekday - 1];
+  // }
+
+  @override
+  Future<Result<List<DayModel>, APIException>> getAvailableDays(
+    String serviceId,
+  ) async {
+    await Future.delayed(const Duration(milliseconds: 400));
+
+    return success(_mockDays);
+  }
+
+  final List<ProviderModel> _mockProviders = [
+    ProviderModel(
+      id: 1,
+      name: 'Mera Ali',
+      rating: 5.0,
+      image:
+          'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
+    ),
+    ProviderModel(
+      id: 2,
+      name: 'Samia Mohammed',
+      rating: 4.9,
+      image:
+          'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
+    ),
+    ProviderModel(
+      id: 3,
+      name: 'Judi Ahmad',
+      rating: 4.8,
+      image:
+          'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
+    ),
+    ProviderModel(
+      id: 4,
+      name: 'Salma Ali',
+      rating: 4.1,
+      image:
+          'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
+    ),
+    ProviderModel(
+      id: 5,
+      name: 'Tala Tala',
+      rating: 3.2,
+      image:
+          'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
+    ),
+  ];
+
+  @override
   Future<Result<CreateBookingResponseModel, APIException>> createBooking(
     CreateBookingRequestModel request,
   ) async {

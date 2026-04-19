@@ -33,7 +33,7 @@ class UserAppRouteConfig {
         builder: (context, state) {
           final data = state.extra as Map<String, dynamic>;
           final id = data['id'] as String;
-          return ServiceDetailsScreen(serviceId: int.parse(id));
+          return ServiceDetailsScreen(serviceId: id);
         },
       ),
       GoRoute(
@@ -68,7 +68,7 @@ class UserAppRouteConfig {
         path: UserPaths.services,
         builder: (context, state) {
           final data = state.extra as Map<String, dynamic>;
-          final id = data['id'] as int;
+          final id = data['id'] as String;
           return ServicesScreen(id: id);
         },
       ),

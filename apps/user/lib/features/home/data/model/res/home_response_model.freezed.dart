@@ -302,7 +302,7 @@ as List<OfferModel>,
 /// @nodoc
 mixin _$OfferModel {
 
-@JsonKey(name: 'image_url') String? get imageUrl;@JsonKey(name: 'service_id') String? get serviceId;
+@JsonKey(name: 'image_url') String? get imageUrl;@JsonKey(name: 'service') ServicePreviewResponseModel? get service;
 /// Create a copy of OfferModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -315,16 +315,16 @@ $OfferModelCopyWith<OfferModel> get copyWith => _$OfferModelCopyWithImpl<OfferMo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OfferModel&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.serviceId, serviceId) || other.serviceId == serviceId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OfferModel&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.service, service) || other.service == service));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,imageUrl,serviceId);
+int get hashCode => Object.hash(runtimeType,imageUrl,service);
 
 @override
 String toString() {
-  return 'OfferModel(imageUrl: $imageUrl, serviceId: $serviceId)';
+  return 'OfferModel(imageUrl: $imageUrl, service: $service)';
 }
 
 
@@ -335,11 +335,11 @@ abstract mixin class $OfferModelCopyWith<$Res>  {
   factory $OfferModelCopyWith(OfferModel value, $Res Function(OfferModel) _then) = _$OfferModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'service_id') String? serviceId
+@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'service') ServicePreviewResponseModel? service
 });
 
 
-
+$ServicePreviewResponseModelCopyWith<$Res>? get service;
 
 }
 /// @nodoc
@@ -352,14 +352,26 @@ class _$OfferModelCopyWithImpl<$Res>
 
 /// Create a copy of OfferModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? imageUrl = freezed,Object? serviceId = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? imageUrl = freezed,Object? service = freezed,}) {
   return _then(_self.copyWith(
 imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,serviceId: freezed == serviceId ? _self.serviceId : serviceId // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,service: freezed == service ? _self.service : service // ignore: cast_nullable_to_non_nullable
+as ServicePreviewResponseModel?,
   ));
 }
+/// Create a copy of OfferModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServicePreviewResponseModelCopyWith<$Res>? get service {
+    if (_self.service == null) {
+    return null;
+  }
 
+  return $ServicePreviewResponseModelCopyWith<$Res>(_self.service!, (value) {
+    return _then(_self.copyWith(service: value));
+  });
+}
 }
 
 
@@ -441,10 +453,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'service_id')  String? serviceId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'service')  ServicePreviewResponseModel? service)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OfferModel() when $default != null:
-return $default(_that.imageUrl,_that.serviceId);case _:
+return $default(_that.imageUrl,_that.service);case _:
   return orElse();
 
 }
@@ -462,10 +474,10 @@ return $default(_that.imageUrl,_that.serviceId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'service_id')  String? serviceId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'service')  ServicePreviewResponseModel? service)  $default,) {final _that = this;
 switch (_that) {
 case _OfferModel():
-return $default(_that.imageUrl,_that.serviceId);case _:
+return $default(_that.imageUrl,_that.service);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -482,10 +494,10 @@ return $default(_that.imageUrl,_that.serviceId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'service_id')  String? serviceId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'image_url')  String? imageUrl, @JsonKey(name: 'service')  ServicePreviewResponseModel? service)?  $default,) {final _that = this;
 switch (_that) {
 case _OfferModel() when $default != null:
-return $default(_that.imageUrl,_that.serviceId);case _:
+return $default(_that.imageUrl,_that.service);case _:
   return null;
 
 }
@@ -497,11 +509,11 @@ return $default(_that.imageUrl,_that.serviceId);case _:
 @JsonSerializable()
 
 class _OfferModel implements OfferModel {
-  const _OfferModel({@JsonKey(name: 'image_url') this.imageUrl, @JsonKey(name: 'service_id') this.serviceId});
+  const _OfferModel({@JsonKey(name: 'image_url') this.imageUrl, @JsonKey(name: 'service') this.service});
   factory _OfferModel.fromJson(Map<String, dynamic> json) => _$OfferModelFromJson(json);
 
 @override@JsonKey(name: 'image_url') final  String? imageUrl;
-@override@JsonKey(name: 'service_id') final  String? serviceId;
+@override@JsonKey(name: 'service') final  ServicePreviewResponseModel? service;
 
 /// Create a copy of OfferModel
 /// with the given fields replaced by the non-null parameter values.
@@ -516,16 +528,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OfferModel&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.serviceId, serviceId) || other.serviceId == serviceId));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OfferModel&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.service, service) || other.service == service));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,imageUrl,serviceId);
+int get hashCode => Object.hash(runtimeType,imageUrl,service);
 
 @override
 String toString() {
-  return 'OfferModel(imageUrl: $imageUrl, serviceId: $serviceId)';
+  return 'OfferModel(imageUrl: $imageUrl, service: $service)';
 }
 
 
@@ -536,11 +548,11 @@ abstract mixin class _$OfferModelCopyWith<$Res> implements $OfferModelCopyWith<$
   factory _$OfferModelCopyWith(_OfferModel value, $Res Function(_OfferModel) _then) = __$OfferModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'service_id') String? serviceId
+@JsonKey(name: 'image_url') String? imageUrl,@JsonKey(name: 'service') ServicePreviewResponseModel? service
 });
 
 
-
+@override $ServicePreviewResponseModelCopyWith<$Res>? get service;
 
 }
 /// @nodoc
@@ -553,15 +565,27 @@ class __$OfferModelCopyWithImpl<$Res>
 
 /// Create a copy of OfferModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? imageUrl = freezed,Object? serviceId = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? imageUrl = freezed,Object? service = freezed,}) {
   return _then(_OfferModel(
 imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String?,serviceId: freezed == serviceId ? _self.serviceId : serviceId // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,service: freezed == service ? _self.service : service // ignore: cast_nullable_to_non_nullable
+as ServicePreviewResponseModel?,
   ));
 }
 
+/// Create a copy of OfferModel
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ServicePreviewResponseModelCopyWith<$Res>? get service {
+    if (_self.service == null) {
+    return null;
+  }
 
+  return $ServicePreviewResponseModelCopyWith<$Res>(_self.service!, (value) {
+    return _then(_self.copyWith(service: value));
+  });
+}
 }
 
 // dart format on

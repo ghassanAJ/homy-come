@@ -25,7 +25,7 @@ void initializeDependencies(String env) {
   initOrder(diContainer, env);
   initAuth(diContainer, env);
 
-  _configureAuthInterceptor();
+  //_configureAuthInterceptor(); //TODO
   initMain(diContainer, env);
   initBooking(diContainer, env);
   diContainer.registerSingleton<CustomRouter>(

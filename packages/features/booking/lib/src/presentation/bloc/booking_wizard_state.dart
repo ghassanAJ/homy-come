@@ -10,6 +10,7 @@ enum BookingWizardStep {
   popularsAddOn,
   selectDateTimeStep,
   summary,
+  submitSuccess,
 }
 
 @freezed
@@ -39,7 +40,8 @@ abstract class BookingWizardState with _$BookingWizardState {
     String? step2ValidationError,
 
     // ── Step 3 – Date, Time & Provider ───────────────────────────────────────
-    @Default([]) List<String> selectedProviderIds,
+    @Default([]) List<ProviderModel> selectedProviders,
+    @Default([]) List<ProviderModel> availableProviders,
     DateTime? scheduledAt,
     String? step3ValidationError,
 
@@ -47,6 +49,13 @@ abstract class BookingWizardState with _$BookingWizardState {
     @Default(false) bool isSubmitting,
     @Default(false) bool submitSuccess,
     APIException? submitError,
+    APIException? slotsError,
+    APIException? providersError,
+    @Default(0) int selectedDayIndex,
+    @Default([]) List<TimeSlotModel> timeSlots,
+    @Default(false) bool loadingSlots,
+    @Default(false) bool loadingProviders,
+    @Default([]) List<DayModel> availableDays,
   }) = _BookingWizardState;
 
   const BookingWizardState._();
@@ -57,5 +66,5 @@ abstract class BookingWizardState with _$BookingWizardState {
   bool get canAdvanceFromStep2 => true; // add-ons are optional
 
   bool get canAdvanceFromStep3 =>
-      selectedProviderIds.isNotEmpty && scheduledAt != null;
+      selectedProviders.isNotEmpty && scheduledAt != null;
 }

@@ -52,11 +52,11 @@ class CategoriesScrollViewContent extends StatelessWidget {
           onTap:
               () => context.push(
                 UserPaths.services,
-                extra: {'id': int.parse(category.id)},
+                extra: {'id': category.documentId},
               ),
-          title: category.name,
+          title: category.info.name,
           subtitle: '${category.servicesCount} services',
-          iconPath: category.imageUrl ?? '',
+          iconPath: category.info.image ?? '',
         ),
       );
     });

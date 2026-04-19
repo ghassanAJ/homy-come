@@ -20,27 +20,36 @@ class _HomeAPI implements HomeAPI {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<APIResponse<HomeResponseModel>> getHomeContent() async {
+  Future<APIResponse<List<ServiceCategoryModel>>> getCategories() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<APIResponse<HomeResponseModel>>(
+    final _options = _setStreamType<APIResponse<List<ServiceCategoryModel>>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/home',
+            '/api/categories',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late APIResponse<HomeResponseModel> _value;
+    late APIResponse<List<ServiceCategoryModel>> _value;
     try {
-      _value = APIResponse<HomeResponseModel>.fromJson(
+      _value = APIResponse<List<ServiceCategoryModel>>.fromJson(
         _result.data!,
-        (json) => HomeResponseModel.fromJson(json as Map<String, dynamic>),
+        (json) =>
+            json is List<dynamic>
+                ? json
+                    .map<ServiceCategoryModel>(
+                      (i) => ServiceCategoryModel.fromJson(
+                        i as Map<String, dynamic>,
+                      ),
+                    )
+                    .toList()
+                : List.empty(),
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
@@ -80,41 +89,29 @@ class _HomeAPI implements HomeAPI {
   }
 
   @override
-  Future<APIResponse<List<ServicePreviewResponseModel>>> getCategoryServices(
+  Future<APIResponse<ServiceCategoryModel>> getCategoryServices(
     String categoryId,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options =
-        _setStreamType<APIResponse<List<ServicePreviewResponseModel>>>(
-          Options(method: 'GET', headers: _headers, extra: _extra)
-              .compose(
-                _dio.options,
-                '/api/v1/categories/${categoryId}/services',
-                queryParameters: queryParameters,
-                data: _data,
-              )
-              .copyWith(
-                baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl),
-              ),
-        );
+    final _options = _setStreamType<APIResponse<ServiceCategoryModel>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/api/categories/${categoryId}',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late APIResponse<List<ServicePreviewResponseModel>> _value;
+    late APIResponse<ServiceCategoryModel> _value;
     try {
-      _value = APIResponse<List<ServicePreviewResponseModel>>.fromJson(
+      _value = APIResponse<ServiceCategoryModel>.fromJson(
         _result.data!,
-        (json) =>
-            json is List<dynamic>
-                ? json
-                    .map<ServicePreviewResponseModel>(
-                      (i) => ServicePreviewResponseModel.fromJson(
-                        i as Map<String, dynamic>,
-                      ),
-                    )
-                    .toList()
-                : List.empty(),
+        (json) => ServiceCategoryModel.fromJson(json as Map<String, dynamic>),
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
@@ -133,7 +130,7 @@ class _HomeAPI implements HomeAPI {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/offers',
+            '/api/offers?populate=*',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -170,7 +167,7 @@ class _HomeAPI implements HomeAPI {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/sliders',
+            '/api/sliders?populate=*',
             queryParameters: queryParameters,
             data: _data,
           )

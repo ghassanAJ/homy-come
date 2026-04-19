@@ -7,11 +7,13 @@ class BookingStepAppBar extends UIAppBar {
     required this.onBack,
     required this.currentStepIndex,
     required this.stepsLength,
+    required this.step,
   });
   @override
   final String title;
   final Function() onBack;
   final int currentStepIndex;
+  final BookingWizardStep step;
   final int stepsLength;
   @override
   Widget build(BuildContext context) {
@@ -19,17 +21,18 @@ class BookingStepAppBar extends UIAppBar {
       titleWidget: Column(
         children: [
           Text(
-            title,
+            step == BookingWizardStep.summary ? 'Summary' : title,
             style: UI.text.h4.copyWith(
               fontWeight: FontWeight.bold,
               fontSize: 18,
               color: UIColor.balck,
             ),
           ),
-          UIText.bodyMedium(
-            'Step $currentStepIndex of $stepsLength',
-            color: UIColor.textSecondary,
-          ),
+          if (step != BookingWizardStep.summary)
+            UIText.bodyMedium(
+              'Step $currentStepIndex of $stepsLength',
+              color: UIColor.textSecondary,
+            ),
         ],
       ),
       leading: GestureDetector(

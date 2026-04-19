@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 
 class DateItemWidget extends StatelessWidget {
   const DateItemWidget({
+    super.key,
     required this.day,
     required this.weekDay,
     required this.selected,
@@ -26,15 +27,16 @@ class DateItemWidget extends StatelessWidget {
               height: UI.sizes.avatarLg,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: selected ? UIColor.softGreen : UIColor.background,
+                color: selected ? UIColor.babyPink : UIColor.background,
                 border: Border.all(
-                  color: selected ? UIColor.softGreen : UIColor.softgrey,
+                  color: selected ? UIColor.pink : UIColor.softgrey,
                 ),
               ),
               alignment: Alignment.center,
               child: UIText.h3(
                 day,
-                color: selected ? UIColor.background : UIColor.balck,
+                color: selected ? UIColor.black : UIColor.balck,
+                fontWeight: selected ? FontWeight.w600 : null,
               ),
             ),
             SizedBox(height: UI.spacing.xxs),

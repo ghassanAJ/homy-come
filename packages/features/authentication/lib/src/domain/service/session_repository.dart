@@ -13,11 +13,11 @@ class SessionRepository {
 
   static const String userKey = 'md_user';
 
-  final _userController = BehaviorSubject<UserModel?>();
+  final _userController = BehaviorSubject<VerifiedUserModel?>();
 
-  Stream<UserModel?> get userStream => _userController.stream;
+  Stream<VerifiedUserModel?> get userStream => _userController.stream;
 
-  UserModel? get currentUser => _userController.valueOrNull;
+  VerifiedUserModel? get currentUser => _userController.valueOrNull;
 
   SessionRepository(this._tokenStorage, this._storage, this._biometricService) {
     _initialize();
@@ -77,20 +77,20 @@ class SessionRepository {
 
   Future<void> clearTokens() => _tokenStorage.clearTokens();
 
-  Future<UserModel?> getUser() async {
+  Future<VerifiedUserModel?> getUser() async {
     final userString = await _storage.read(userKey);
     if (userString == null || userString.isEmpty) {
       return null;
     }
     try {
       final userJson = jsonDecode(userString);
-      return UserModelFactory.fromJson(userJson);
+      return VerifiedUserModel.fromJson(userJson);
     } catch (_) {
       return null;
     }
   }
 
-  Future<void> updateUser(UserModel user) async {
+  Future<void> updateUser(VerifiedUserModel user) async {
     final userString = jsonEncode(user.toJson());
     await _storage.write(userKey, userString);
     _userController.add(user);
@@ -118,15 +118,14 @@ class SessionRepository {
     );
   }
 
-  Future<void> saveSessionFromResponse(LoginResponseModel response) async {
-    if (response.tokens != null) {
-      await _tokenStorage.saveTokens(
-        accessToken: response.tokens!.accessToken,
-        refreshToken: response.tokens!.refreshToken,
-      );
-    }
+  Future<void> saveSessionFromResponse(VerifyOTPResponseModel response) async {
+    await _tokenStorage.saveTokens(
+      accessToken: response.jwt,
+      refreshToken: response.jwt,
+    );
 
     if (response.user != null) {
+      print('response.user: ${response.user?.toJson()}');
       await updateUser(response.user!);
     }
   }

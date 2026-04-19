@@ -2,6 +2,7 @@ import 'package:design_system/design_system.dart';
 
 class CircleNumberOptionWidget extends StatelessWidget {
   const CircleNumberOptionWidget({
+    super.key,
     required this.value,
     required this.selected,
     required this.onTap,
@@ -13,27 +14,26 @@ class CircleNumberOptionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        width: UI.sizes.avatarMd,
-        height: UI.sizes.avatarMd,
+        width: 60,
+        height: 60,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: selected ? UIColor.softGreen : UIColor.background,
+          color: selected ? UIColor.babyPink : UIColor.background,
           border: Border.all(
-            color: selected ? UIColor.softGreen : UIColor.neutral200,
+            color: selected ? UIColor.pink : UIColor.neutral200,
             width: 1,
           ),
         ),
         alignment: Alignment.center,
         child: UIText.bodyMedium(
           '$value',
-          fontWeight: FontWeight.w600,
-          color: selected ? UIColor.background : UIColor.balck,
+          fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+          color: selected ? UIColor.pink : UIColor.balck,
+          fontSize: selected ? 20 : null,
         ),
       ),
     );

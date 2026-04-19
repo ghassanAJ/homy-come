@@ -22,44 +22,97 @@ class MockHomeRepository implements HomeRepository {
   bool failNextGetOffers = false;
   bool failNextGetSliders = false;
 
-  static List<ServicePreviewResponseModel> _mockServicePreviews(String name) =>
-      List.generate(
-        8,
-        (index) => ServicePreviewResponseModel(
-          id: '$index',
-          info: InfoModel(
-            id: '$index',
-            name: '$name $index',
-            image: 'https://i.ibb.co/9m8XQCvr/image.png',
+  static ServiceCategoryModel _mockServiceCategory(String name) =>
+      ServiceCategoryModel(
+        services: List.generate(
+          8,
+          (index) => ServicePreviewResponseModel(
+            documentId: '$name-$index',
+            id: index,
+            info: InfoModel(
+              id: index,
+              name: '$name $index',
+              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+            ),
+            priceModel: ServicePriceModel(
+              currentPrice: 100,
+              newPrice: 150,
+              currency: 'AED',
+              id: index,
+            ),
+            rating: 5,
+            reviewsCount: 10,
           ),
-          priceModel: ServicePriceModel(currentPrice: 100, newPrice: 150),
-          rating: 5,
-          reviewsCount: 10,
         ),
+        documentId: name,
+        id: 1,
+        info: InfoModel(
+          id: 1,
+          name: name,
+          image: 'https://i.ibb.co/9m8XQCvr/image.png',
+        ),
+        servicesCount: 8,
       );
 
   static List<OfferModel> get _mockOffer => [
     const OfferModel(
       imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-      serviceId: '1',
+      service: ServicePreviewResponseModel(
+        priceModel: ServicePriceModel(
+          currentPrice: 100,
+          newPrice: 150,
+          currency: 'AED',
+          id: 1,
+        ),
+        rating: 5,
+        reviewsCount: 10,
+        documentId: '1',
+        id: 1,
+        info: InfoModel(id: 1, name: 'Service 1'),
+      ),
     ),
     const OfferModel(
       imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-      serviceId: '2',
+      service: ServicePreviewResponseModel(
+        priceModel: ServicePriceModel(
+          currentPrice: 100,
+          newPrice: 150,
+          currency: 'AED',
+          id: 2,
+        ),
+        rating: 5,
+        reviewsCount: 10,
+        documentId: '2',
+        id: 2,
+        info: InfoModel(id: 2, name: 'Service 2'),
+      ),
     ),
     const OfferModel(
       imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
-      serviceId: '3',
+      service: ServicePreviewResponseModel(
+        documentId: '3',
+        priceModel: ServicePriceModel(
+          currentPrice: 100,
+          newPrice: 150,
+          currency: 'AED',
+          id: 3,
+        ),
+        rating: 5,
+        reviewsCount: 10,
+        id: 3,
+        info: InfoModel(id: 3, name: 'Service 3'),
+      ),
     ),
   ];
 
   @override
-  Future<Result<HomeResponseModel, APIException>> getHomeContent() async {
+  Future<Result<List<ServiceCategoryModel>, APIException>>
+  getCategories() async {
     if (failNextGetHomeContent) {
       failNextGetHomeContent = false;
       return failure(APIException.error('Mock getHomeContent failure'));
     }
-    return success(mockHomeResponseModel);
+    return success(mockCategories);
   }
 
   @override
@@ -72,14 +125,15 @@ class MockHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<List<ServicePreviewResponseModel>, APIException>>
-  getCategoryServices(String categoryId) async {
+  Future<Result<ServiceCategoryModel, APIException>> getCategoryServices(
+    String categoryId,
+  ) async {
     if (failNextGetCategoryServices) {
       failNextGetCategoryServices = false;
       return failure(APIException.error('Mock getCategoryServices failure'));
     }
     await Future.delayed(const Duration(milliseconds: 500));
-    return success(_mockServicePreviews('Service'));
+    return success(_mockServiceCategory('Service'));
   }
 
   @override

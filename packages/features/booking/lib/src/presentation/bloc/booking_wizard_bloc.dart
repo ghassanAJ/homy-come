@@ -17,10 +17,14 @@ class BookingWizardBloc extends Bloc<BookingWizardEvent, BookingWizardState> {
     on<ToggleAddOn>(_onToggleAddOn);
     on<ProceedToStep3>(_onProceedToStep3);
     on<SelectProvider>(_onSelectProvider);
-    on<SelectScheduledAt>(_onSelectScheduledAt);
     on<ProceedToSummary>(_onProceedToSummary);
     on<SubmitBooking>(_onSubmitBooking);
     on<ResetWizard>(_onResetWizard);
+    on<LoadProviders>(_onLoadProviders);
+    on<LoadAvailableDays>(_onLoadAvailableDays);
+    on<SelectDay>(_onSelectDay);
+    on<LoadTimeSlots>(_onLoadTimeSlots);
+    on<SelectScheduledAt>(_onSelectScheduledAt);
   }
 
   final BookingRepository _repository;
@@ -165,7 +169,7 @@ class BookingWizardBloc extends Bloc<BookingWizardEvent, BookingWizardState> {
   ) {
     emit(
       state.copyWith(
-        selectedProviderIds: [event.providerId],
+        selectedProviders: [event.providerId],
         step3ValidationError: null,
       ),
     );
@@ -233,7 +237,8 @@ class BookingWizardBloc extends Bloc<BookingWizardEvent, BookingWizardState> {
         longitude: event.addressLongitude,
         name: event.addressName,
       ),
-      providers: state.selectedProviderIds,
+      providers:
+          state.selectedProviders.map((pro) => pro.id.toString()).toList(),
       needCleaningMaterials: state.needCleaningMaterials,
       specificInstructions: state.notes.isEmpty ? null : state.notes,
     );
@@ -246,6 +251,89 @@ class BookingWizardBloc extends Bloc<BookingWizardEvent, BookingWizardState> {
     );
   }
 
+  Future<void> _onLoadProviders(
+    LoadProviders event,
+    Emitter<BookingWizardState> emit,
+  ) async {
+    emit(state.copyWith(loadingProviders: true, providersError: null));
+
+    final result =
+        await GetProvidersUseCase(_repository, event.serviceId).call();
+
+    result.fold(
+      (data) => emit(
+        state.copyWith(loadingProviders: false, availableProviders: data),
+      ),
+      (error) =>
+          emit(state.copyWith(loadingProviders: false, providersError: error)),
+    );
+  }
+
+  Future<void> _onLoadAvailableDays(
+    LoadAvailableDays event,
+    Emitter<BookingWizardState> emit,
+  ) async {
+    final result =
+        await GetAvailableDaysUseCase(_repository, event.serviceId).call();
+
+    result.fold(
+      (days) {
+        emit(state.copyWith(availableDays: days, selectedDayIndex: 0));
+
+        if (days.isNotEmpty) {
+          add(LoadTimeSlots(date: days.first.date, serviceId: '')); //TODO
+        }
+      },
+      (error) {
+        emit(state.copyWith(slotsError: error));
+      },
+    );
+  }
+
+  Future<void> _onLoadTimeSlots(
+    LoadTimeSlots event,
+    Emitter<BookingWizardState> emit,
+  ) async {
+    emit(state.copyWith(loadingSlots: true, slotsError: null));
+
+    final result =
+        await GetTimeSlotsUseCase(
+          _repository,
+          event.serviceId,
+          event.date,
+        ).call();
+
+    result.fold(
+      (slots) {
+        emit(state.copyWith(loadingSlots: false, timeSlots: slots));
+      },
+      (error) {
+        emit(state.copyWith(loadingSlots: false, slotsError: error));
+      },
+    );
+  }
+
+  Future<void> _onSelectDay(
+    SelectDay event,
+    Emitter<BookingWizardState> emit,
+  ) async {
+    if (event.index == state.selectedDayIndex) return;
+
+    final selectedDay = state.availableDays[event.index];
+
+    emit(
+      state.copyWith(
+        selectedDayIndex: event.index,
+
+        // 🔥 Reset dependent state
+        scheduledAt: null,
+        timeSlots: [],
+        slotsError: null,
+      ),
+    );
+
+    add(LoadTimeSlots(date: selectedDay.date, serviceId: '')); //TODO
+  }
   // ── Reset ────────────────────────────────────────────────────────────────────
 
   void _onResetWizard(ResetWizard event, Emitter<BookingWizardState> emit) =>

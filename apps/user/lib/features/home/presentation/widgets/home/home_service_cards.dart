@@ -21,10 +21,10 @@ class HomeServiceCards extends StatelessWidget {
             onTap:
                 () => context.push(
                   UserPaths.serviceDetails,
-                  extra: {'id': item.id},
+                  extra: {'id': item.documentId},
                 ),
-            title: item.info.name ?? '',
-            imageUrl: item.info.image,
+            title: item.info?.name ?? '',
+            imageUrl: item.info?.image ?? '',
           ),
         );
       },

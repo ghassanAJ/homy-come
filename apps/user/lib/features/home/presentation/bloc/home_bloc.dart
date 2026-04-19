@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:booking/booking.dart';
 import 'package:injectable/injectable.dart';
 import 'package:user/features/home/domain/repository/home_api_repository.dart';
@@ -12,7 +14,7 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
     : super(const HomeBlocState.initial()) {
     on<HomeBlocEvent>((event, emit) async {
       await switch (event) {
-        LoadHomeContentEvent() => _loadHomeContent(event, emit),
+        LoadHomeContentEvent() => _loadCategories(event, emit),
         LoadSlidersEvent() => _loadSliders(event, emit),
         LoadOffersEvent() => _loadOffers(event, emit),
         LoadSearchContentEvent() => _loadSearchContent(event, emit),
@@ -27,7 +29,7 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
 
   final Map<String, ServiceDetailsResponseModel> _serviceDetailsCache = {};
 
-  Future<void> _loadHomeContent(
+  Future<void> _loadCategories(
     LoadHomeContentEvent event,
     Emitter<HomeBlocState> emit,
   ) async {
@@ -38,13 +40,11 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
         offersLoading: true,
       ),
     );
-    final result = await _homeRepository.getHomeContent();
+    final result = await _homeRepository.getCategories();
     result.fold(
       (data) => emit(
         state.copyWith(
-          categories: data.categories,
-          offers: data.offers,
-          sliders: data.sliders,
+          categories: data,
           categoriesLoading: false,
           slidersLoading: false,
           offersLoading: false,
@@ -69,11 +69,11 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
     Emitter<HomeBlocState> emit,
   ) async {
     emit(state.copyWith(slidersLoading: true));
-    final result = await _homeRepository.getHomeContent();
+    final result = await _homeRepository.getSliders();
     result.fold(
       (data) => emit(
         state.copyWith(
-          sliders: data.sliders,
+          sliders: data,
           slidersLoading: false,
           status: HomeBlocStatus.success,
           error: null,
@@ -94,11 +94,11 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
     Emitter<HomeBlocState> emit,
   ) async {
     emit(state.copyWith(offersLoading: true));
-    final result = await _homeRepository.getHomeContent();
+    final result = await _homeRepository.getOffers();
     result.fold(
       (data) => emit(
         state.copyWith(
-          offers: data.offers,
+          offers: data,
           offersLoading: false,
           status: HomeBlocStatus.success,
           error: null,
@@ -186,16 +186,22 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
     LoadCategoryServicesEvent event,
     Emitter<HomeBlocState> emit,
   ) async {
-    final List<ServicePreviewResponseModel> currentServices =
-        List.from(state.categories)
-            .firstWhere((category) => category.id == event.categoryId)
-            .servicePreviews;
-    emit(state.copyWith(categoryServices: currentServices));
+    // List<ServicePreviewResponseModel> currentServices = [];
+    // if (state.categories.isNotEmpty) {
+    //   currentServices =
+    //       List.from(state.categories ?? [])
+    //           .firstWhere((category) => category.id == event.categoryId)
+    //           .servicePreviews;
+    // }
+
+    // emit(state.copyWith(categoryServices: currentServices));
+    // emit(state.copyWith(categoryServices: currentServices));
     final result = await _homeRepository.getCategoryServices(event.categoryId);
+    log('result: ${result.fold((data) => data, (error) => error)}');
     result.fold(
       (data) => emit(
         state.copyWith(
-          categoryServices: [...currentServices, ...data],
+          categoryServices: [...data.services],
           status: HomeBlocStatus.success,
           error: null,
         ),

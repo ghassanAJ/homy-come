@@ -53,6 +53,8 @@ class UIScaffold extends StatelessWidget {
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       extendBody: extendBody,
       bottomNavigationBar: bottomNavigationBar,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: floatingActionButton,
     );
   }
 }

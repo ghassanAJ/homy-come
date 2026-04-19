@@ -139,7 +139,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
                     slivers: [
                       buildAppBar(data),
                       buildBody(data, state),
-                      SliverToBoxAdapter(child: SizedBox(height: 180)),
+                      SliverToBoxAdapter(child: SizedBox(height: 18)),
                     ],
                   ),
                 ),

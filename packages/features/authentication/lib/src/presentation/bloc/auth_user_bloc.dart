@@ -1,4 +1,5 @@
 import 'package:authentication/authentication.dart';
+import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:util/util.dart';
@@ -7,10 +8,15 @@ import 'package:util/util.dart';
 class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
   final AuthRepository _authRepository;
   final SessionRepository _sessionRepository;
-  LoginResponseModel? _pendingOtpLoginResponse;
+  VerifyOTPResponseModel? _pendingOtpLoginResponse;
+  final UserRole _userRole;
 
-  AuthUserBloc(this._authRepository, this._sessionRepository)
-    : super(AuthUserStateInitial()) {
+  AuthUserBloc(
+    this._authRepository,
+    this._sessionRepository, {
+    UserRole? userRole,
+  }) : _userRole = userRole ?? UserRole.user,
+       super(AuthUserStateInitial()) {
     on<AuthUserEvent>((event, emit) async {
       await switch (event) {
         AutoLogin() => _loginWithToken(event, emit),
@@ -131,13 +137,14 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
   Future<void> _sendOTP(SendOTP event, Emitter<AuthUserState> emit) async {
     emit(AuthUserStateLoading());
 
-    final response = await _authRepository.sendOTP(event.request);
+    final response = await _authRepository.sendOTP(
+      event.request.copyWith(role: _userRole),
+    );
     emit(
       response.fold(
         (data) => AuthUserStateOTPSent(
-          sessionId: data.id,
+          sessionId: '',
           identifier: event.request.phone ?? event.request.email ?? '',
-          userType: data.userType, // Capture "new" or "returning" from backend
         ),
         (error) => AuthUserStateError(error, AuthUserErrorStateType.sendOTP),
       ),
@@ -149,7 +156,9 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
     Emitter<AuthUserState> emit,
   ) async {
     emit(AuthUserStateLoading());
-    final response = await _authRepository.verifyOTP(event.request);
+    final response = await _authRepository.verifyOTP(
+      event.request.copyWith(role: _userRole, phone: event.request.phone ?? ''),
+    );
 
     await response.fold(
       (data) async => _handleVerifyOTPSuccess(data, emit),
@@ -159,29 +168,21 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
   }
 
   Future<void> _handleVerifyOTPSuccess(
-    dynamic data,
+    VerifyOTPResponseModel data,
     Emitter<AuthUserState> emit,
   ) async {
-    if (data.user == null || data.tokens == null) {
-      emit(
-        AuthUserStateError(
-          APIException.error('Unexpected response from server'),
-          AuthUserErrorStateType.verifyOTP,
-        ),
-      );
-      return;
-    }
-
-    final loginResponse = LoginResponseModel(
-      user: data.user,
-      tokens: data.tokens,
-      redirectUrl: data.redirectUrl,
+    final tokens = TokenModel(
+      accessToken: data.jwt,
+      refreshToken: data.jwt,
+      expiresIn: 0,
     );
+
+    final loginResponse = data;
     _pendingOtpLoginResponse = loginResponse;
 
     final session = SessionModel(
-      accessToken: data.tokens!.accessToken,
-      refreshToken: data.tokens!.refreshToken,
+      accessToken: data.jwt,
+      refreshToken: data.jwt,
       user: data.user,
     );
 
@@ -214,7 +215,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
 
     await _emitAuthenticatedState(
       emit,
-      AuthenticationContext.tokenLogin,
+      AuthenticationContext.pinLogin,
       AuthUserErrorStateType.verifyOTP,
     );
   }
@@ -270,7 +271,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
           return;
         }
 
-        await _sessionRepository.saveSessionFromResponse(loginResponse);
+        // await _sessionRepository.saveSessionFromResponse(loginResponse);//TODO
         await _emitAuthenticatedState(
           emit,
           AuthenticationContext.pinLogin,

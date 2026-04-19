@@ -10,6 +10,7 @@ _SendOTPRequestModel _$SendOTPRequestModelFromJson(Map<String, dynamic> json) =>
     _SendOTPRequestModel(
       phone: json['phone'] as String?,
       email: json['email'] as String?,
+      role: $enumDecodeNullable(_$UserRoleEnumMap, json['role_type']),
       deviceId: json['device_id'] as String,
     );
 
@@ -18,7 +19,14 @@ Map<String, dynamic> _$SendOTPRequestModelToJson(
 ) => <String, dynamic>{
   'phone': instance.phone,
   'email': instance.email,
+  'role_type': _$UserRoleEnumMap[instance.role],
   'device_id': instance.deviceId,
+};
+
+const _$UserRoleEnumMap = {
+  UserRole.user: 'user',
+  UserRole.driver: 'driver',
+  UserRole.provider: 'provider',
 };
 
 _ProfileDataModel _$ProfileDataModelFromJson(Map<String, dynamic> json) =>
@@ -48,11 +56,18 @@ _UnifiedVerifyOTPRequestModel _$UnifiedVerifyOTPRequestModelFromJson(
 ) => _UnifiedVerifyOTPRequestModel(
   id: json['id'] as String,
   otp: json['otp'] as String,
+  phone: json['phone'] as String,
+  role: $enumDecodeNullable(_$UserRoleEnumMap, json['role_type']),
 );
 
 Map<String, dynamic> _$UnifiedVerifyOTPRequestModelToJson(
   _UnifiedVerifyOTPRequestModel instance,
-) => <String, dynamic>{'id': instance.id, 'otp': instance.otp};
+) => <String, dynamic>{
+  'id': instance.id,
+  'otp': instance.otp,
+  'phone': instance.phone,
+  'role_type': _$UserRoleEnumMap[instance.role],
+};
 
 _SaveProfileRequestModel _$SaveProfileRequestModelFromJson(
   Map<String, dynamic> json,
