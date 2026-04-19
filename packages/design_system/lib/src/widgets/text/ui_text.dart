@@ -233,8 +233,13 @@ class UIText extends StatelessWidget {
     this.maxLines,
     this.overflow,
     this.softWrap,
+    FontWeight? fontWeight,
+    String? fontFamily,
     super.key,
-  }) : style = _typography.headerBody;
+  }) : style = _typography.headerBody.copyWith(
+         fontWeight: fontWeight,
+         fontFamily: fontFamily,
+       );
 
   // ===========================================================================
   // CAPTION

@@ -14,11 +14,11 @@ option:
   notification: اشعارات
   logout: تسجيل خروج
   deleteAccount: حذف الحساب
-  savedBeneficiary: Saved Beneficiary
+  savedBeneficiary: المستفيد المحفوظ
   location: موقعي
-  Job: سجل المهام
+  job: سجل المهام
   appNotifications: إشعارات التطبيق
-  DeleteMyAccount: حذف حسابي
+  deleteMyAccount: حذف حسابي
 
 driverProfile:
   settings: الإعدادات
@@ -39,6 +39,16 @@ Labels:
 placeHolder: 
   email: ادخل حسابك
   note:  اكتب ملاحظاتك
+
+reviews:
+  title: التقييمات
+  empty: لا توجد تقييمات بعد
+  showMore: عرض المزيد
+  excellent: ممتاز
+  good: جيد
+  average: متوسط
+  belowAverage: أقل من المتوسط
+  poor: ضعيف
   
 # Terms and Privacy
 termsAndPrivacy:

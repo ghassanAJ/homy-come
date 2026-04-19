@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:design_system/design_system.dart';
 
 import 'spacing.dart';
 
@@ -204,7 +204,12 @@ class UIPadding {
 
   /// Driver profile screen top content padding.
   EdgeInsets driverProfileContent({required double topInset}) =>
-      EdgeInsets.fromLTRB(_spacing.sm, topInset, _spacing.sm, 0);
+      EdgeInsets.fromLTRB(
+        _spacing.sm,
+        topInset,
+        _spacing.sm,
+        UI.sizes.bottomNavigationBarHeight,
+      );
 
   /// Driver profile settings screen content padding.
   EdgeInsets driverProfileSettingsContent({required double topInset}) =>
@@ -233,4 +238,52 @@ class UIPadding {
   /// Driver profile settings row horizontal padding.
   EdgeInsets get driverProfileSettingsRowContent =>
       EdgeInsets.symmetric(horizontal: _spacing.xl);
+
+  /// Profile static info screen content padding.
+  EdgeInsets profileInfoScreenContent({required double topInset}) =>
+      EdgeInsets.fromLTRB(_spacing.lg, topInset, _spacing.md, _spacing.lg);
+
+  /// Profile help/support sliver app bar divider padding.
+  EdgeInsets get profileSupportAppBarDivider =>
+      EdgeInsets.only(left: _spacing.xl, top: _spacing.md);
+
+  /// Profile help/support body content padding.
+  EdgeInsets get profileSupportContent =>
+      EdgeInsets.fromLTRB(_spacing.lg, _spacing.md, _spacing.md, 0);
+
+  /// Profile settings/more card content padding.
+  EdgeInsets get profileOptionsCardContent =>
+      EdgeInsets.symmetric(horizontal: _spacing.lg, vertical: _spacing.md);
+
+  /// User profile info card content padding.
+  EdgeInsets get profileUserInfoContent =>
+      EdgeInsets.symmetric(horizontal: _spacing.md, vertical: _spacing.sm);
+
+  /// User profile info camera badge content padding.
+  EdgeInsets get profileUserInfoCameraBadgeContent =>
+      EdgeInsets.all(_spacing.xxs);
+
+  /// Profile setting option tile bottom spacing.
+  EdgeInsets get profileSettingOptionContentPadding =>
+      EdgeInsets.only(bottom: _spacing.sm);
+
+  /// Profile setting option trailing end padding.
+  EdgeInsetsDirectional get profileSettingOptionTrailingEnd =>
+      EdgeInsetsDirectional.only(end: _spacing.xs);
+
+  /// Profile setting option icon content padding.
+  EdgeInsets get profileSettingOptionIconContent =>
+      EdgeInsets.all(UI.sizes.iconXXs);
+
+  /// Rating and reviews "show more" action padding.
+  EdgeInsets get profileRatingAndReviewsShowMoreContent =>
+      EdgeInsets.symmetric(horizontal: _spacing.sm, vertical: _spacing.xxs);
+
+  /// Rating and reviews row spacing.
+  EdgeInsets get profileRatingAndReviewsRowSpacing =>
+      EdgeInsets.only(bottom: _spacing.md);
+
+  /// Provider all reviews list content padding.
+  EdgeInsets profileAllReviewsContent({required double topInset}) =>
+      EdgeInsets.only(top: topInset, left: _spacing.lg, right: _spacing.lg);
 }

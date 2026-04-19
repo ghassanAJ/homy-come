@@ -16,35 +16,42 @@ class UserApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final router = diContainer.get<CustomRouter>().router;
+    final localeCubit = diContainer.get<LocalizationCubit>();
 
-    return LocalizationProvider<AuthenticationTranslation>(
-      delegate: AuthLocalizationDelegate(),
-      locale: Config.getDeviceLocale(),
-      child: MDToastificationWrapper(
-        child: AppProviders(
-          child: AuthNavigationListener(
-            router: router,
-            child: MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              title: 'Homy',
-              // theme: MDTheme.styles.createThemeData(),
-              localizationsDelegates: [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                ProfileLocalizationDelegate(),
-                OrdersLocalizationDelegate(),
+    return MDToastificationWrapper(
+      child: AppProviders(
+        child: BlocProvider.value(
+          value: localeCubit,
+          child: BlocBuilder<LocalizationCubit, Locale>(
+            builder:
+                (context, locale) => LocalizationProvider<AuthenticationTranslation>(
+                  delegate: AuthLocalizationDelegate(),
+                  locale: locale,
+                  child: AuthNavigationListener(
+                    router: router,
+                    child: MaterialApp.router(
+                      debugShowCheckedModeBanner: false,
+                      title: 'Homy',
+                      // theme: MDTheme.styles.createThemeData(),
+                      localizationsDelegates: [
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                        ProfileLocalizationDelegate(),
+                        OrdersLocalizationDelegate(),,
 
-                // BaseLocalization<ChildTranslation>().delegate(
-                //   ChildTranslationMap.translation,
-                // ),
-                // BaseLocalization<TaskTranslation>().delegate(
-                //   TaskTranslationMap.translation,
-                // ),
-              ],
-              supportedLocales: Config.supportedLocales,
-              locale: Config.getDeviceLocale(),
-              routerConfig: diContainer.get<CustomRouter>().router,
-            ),
+                        // BaseLocalization<ChildTranslation>().delegate(
+                        //   ChildTranslationMap.translation,
+                        // ),
+                        // BaseLocalization<TaskTranslation>().delegate(
+                        //   TaskTranslationMap.translation,
+                        // ),
+                      ],
+                      supportedLocales: Config.supportedLocales,
+                      locale: locale,
+                      routerConfig: router,
+                    ),
+                  ),
+                ),
           ),
         ),
       ),

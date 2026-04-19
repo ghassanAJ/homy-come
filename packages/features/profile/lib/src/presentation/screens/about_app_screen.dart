@@ -1,12 +1,14 @@
 import 'package:design_system/design_system.dart';
-import 'package:profile/src/localization/profile_localization_scope.dart';
-// import 'package:profile/profile.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:profile/profile.dart';
+import 'package:profile/src/data/model/res/about_app_model.dart';
+import 'package:profile/src/di/di_container.dart';
+import 'package:profile/src/presentation/cubit/about_app_cubit.dart';
+import 'package:profile/src/presentation/widget/shared/about_app_shimmer.dart';
+import 'package:util/util.dart' show BaseCubitStatus, BaseState;
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
-
-  static const String _aboutPlaceholder =
-      'Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Tempor Incididunt Ut Labore Et Dolore Magna Aliqua. Ut Enim Ad Minim Veniam, Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip Ex Ea Commodo Consequat.';
 
   @override
   Widget build(BuildContext context) {
@@ -14,34 +16,30 @@ class AboutUsScreen extends StatelessWidget {
         MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
 
     return UIScaffold(
-      appBarTitle: context.profileTranslation.option.about,
+      appBar: UIAppBar(title: context.profileTranslation.option.about),
+      body: BlocProvider(
+        create: (_) => diContainer<AboutAppCubit>()..fetchAboutApp(),
+        child: BlocBuilder<AboutAppCubit, BaseState<AboutAppModel>>(
+          builder: (context, state) {
+            final aboutApp = state.data ?? const AboutAppModel();
+            final isInitialLoading =
+                state.status == BaseCubitStatus.initial ||
+                state.status == BaseCubitStatus.loading;
 
-      body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(
-          UI.spacing.lg,
-          12,
-          UI.spacing.lg,
-          UI.spacing.lg,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            UIText.bodyLarge(_aboutPlaceholder, color: UIColor.textSecondary),
-            SizedBox(height: UI.spacing.md),
-            UIText.bodyLarge(_aboutPlaceholder, color: UIColor.textSecondary),
-            SizedBox(height: UI.spacing.md),
-            UIText.bodyLarge(_aboutPlaceholder, color: UIColor.textSecondary),
-            SizedBox(height: UI.spacing.md),
-            UIText.bodyLarge(_aboutPlaceholder, color: UIColor.textSecondary),
-            SizedBox(height: UI.spacing.md),
-            UIText.bodyLarge(_aboutPlaceholder, color: UIColor.textSecondary),
-            SizedBox(height: UI.spacing.md),
-            UIText.bodyLarge(_aboutPlaceholder, color: UIColor.textSecondary),
-            SizedBox(height: UI.spacing.md),
-            UIText.bodyLarge(_aboutPlaceholder, color: UIColor.textSecondary),
-            SizedBox(height: UI.spacing.md),
-            UIText.bodyLarge(_aboutPlaceholder, color: UIColor.textSecondary),
-          ],
+            return SingleChildScrollView(
+              padding: UI.padding.profileInfoScreenContent(
+                topInset: topContentPadding,
+              ),
+              child:
+                  isInitialLoading && aboutApp == const AboutAppModel()
+                      ? const Shimmer(child: AboutAppShimmer())
+                      : UIText.bodyMedium(
+                        aboutApp.description,
+                        color: UIColor.textNatral600,
+                        fontWeight: FontWeight.w500,
+                      ),
+            );
+          },
         ),
       ),
     );

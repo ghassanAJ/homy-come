@@ -13,25 +13,32 @@ class ProviderApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final router = diContainer.get<CustomRouter>().router;
+    final localeCubit = diContainer.get<LocalizationCubit>();
 
-    return LocalizationProvider<AuthenticationTranslation>(
-      delegate: AuthLocalizationDelegate(),
-      locale: Config.getDeviceLocale(),
-      child: MDToastificationWrapper(
-        child: AppProviders(
-          child: AuthNavigationListener(
-            router: router,
-            child: MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              title: 'Homy Provider',
-              localizationsDelegates: [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-              ],
-              supportedLocales: Config.supportedLocales,
-              locale: Config.getDeviceLocale(),
-              routerConfig: router,
-            ),
+    return MDToastificationWrapper(
+      child: AppProviders(
+        child: BlocProvider.value(
+          value: localeCubit,
+          child: BlocBuilder<LocalizationCubit, Locale>(
+            builder:
+                (context, locale) => LocalizationProvider<AuthenticationTranslation>(
+                  delegate: AuthLocalizationDelegate(),
+                  locale: locale,
+                  child: AuthNavigationListener(
+                    router: router,
+                    child: MaterialApp.router(
+                      debugShowCheckedModeBanner: false,
+                      title: 'Homy Provider',
+                      localizationsDelegates: [
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                      ],
+                      supportedLocales: Config.supportedLocales,
+                      locale: locale,
+                      routerConfig: router,
+                    ),
+                  ),
+                ),
           ),
         ),
       ),

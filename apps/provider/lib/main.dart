@@ -10,7 +10,7 @@ void main() async {
     () async {
       WidgetsFlutterBinding.ensureInitialized();
 
-      final env = const String.fromEnvironment('ENV', defaultValue: 'dev');
+      final env = const String.fromEnvironment('ENV', defaultValue: 'mock');
 
       initializeDependencies(env);
 

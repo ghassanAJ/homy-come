@@ -1,140 +1,99 @@
-import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:profile/profile.dart';
+import 'package:profile/src/helper/profile_language_label_extension.dart';
+import 'package:profile/src/presentation/actions/profile_actions.dart';
 import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
 class ProfileSettingWidget extends StatelessWidget {
-  const ProfileSettingWidget({super.key, required this.isActiveNotification});
-
-  final ValueNotifier<bool> isActiveNotification;
+  const ProfileSettingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(UI.radius.xs),
-        color: UIColor.background,
-        boxShadow: UI.shadows.cardMd,
-      ),
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(
-          UI.spacing.md,
-          UI.spacing.lg,
-          UI.spacing.md,
-          0,
-        ),
-        child: Column(
-          children: [
-            ProfileSettingOptionWidget(
-              title: context.profileTranslation.option.location,
-              descreption: 'my location I selected UEA',
-              imgUrl: Assets.icons.profile,
-              onTap: () {
-                // log('pressed on FAQ button');
-              },
+    final currentLanguage = context.currentProfileLanguageLabel;
+
+    return UICardContainer(
+      padding: UI.padding.profileOptionsCardContent,
+      child: Column(
+        children: [
+          ProfileSettingOptionWidget(
+            title: context.profileTranslation.option.location,
+            descreption: 'my location I selected UEA',
+            imgUrl: Assets.icons.profile,
+            onTap: () {
+              // log('pressed on FAQ button');
+            },
+          ),
+          ProfileSettingOptionWidget(
+            title: context.profileTranslation.driverProfile.language,
+            imgUrl: Assets.icons.profile,
+            customTrailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                UIText.bodySmall(
+                  currentLanguage,
+                  color: UIColor.textGray,
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(width: UI.spacing.xs),
+                UISvg(
+                  Assets.icons.arrowRightSvg,
+                  color: UIColor.textGray,
+                  matchTextDirection: true,
+                ),
+              ],
             ),
-
-            // ProfileSettingOptionWidget(
-            //   title: context.profileTranslation.option.savedBeneficiary,
-            //   descreption: 'Manage your saved account',
-            //   imgUrl: Assets.icons.profile,
-            //   onTap: () {
-            //     // log('pressed on FAQ button');
-            //   },
-            // ),
-            // ProfileSettingOptionWidget(
-            //   title: context.profileTranslation.option.notification,
-            //   descreption: 'app notifications',
-            //   imgUrl: Assets.icons.lock,
-            //   customTrailing: ValueListenableBuilder(
-            //     valueListenable: isActiveNotification,
-            //     builder:
-            //         (context, state, Widget? child) => UISwitch(
-            //           inactiveThumbColor: UIColor.backgroundInactive,
-            //           inactiveTrackColor: UIColor.backgroungSwitchUnactive,
-            //           scale: 0.7,
-            //           trackOutlineColor:
-            //               !isActiveNotification.value
-            //                   ? WidgetStateProperty.all(
-            //                     UIColor.backgroungSwitchUnactive,
-            //                   )
-            //                   : WidgetStateProperty.all(UIColor.tertiary),
-            //           trackOutlineWidth: WidgetStateProperty.all(
-            //             UI.sizes.trackOUtLined,
-            //           ),
-
-            //           value: state,
-            //           onChanged: (value) {
-            //             isActiveNotification.value = value;
-            //           },
-            //         ),
-            //   ),
-            // ),
-            ProfileSettingOptionWidget(
-              title: 'Privacy Policy',
-              descreption: 'Privacy Policy',
-              imgUrl: Assets.icons.shieldDone,
-
-              onTap: () {
-                // log('pressed on FAQ button');
-              },
-            ),
-
-            // ProfileSettingOptionWidget(
-            //   title: context.profileTranslation.option.faq,
-            //   descreption: 'FAQ',
-            //   imgUrl: Assets.icons.shieldDone,
-
-            //   onTap: () {
-            //     // log('pressed on FAQ button');
-            //   },
-            // ),
-            ProfileSettingOptionWidget(
-              title: context.profileTranslation.option.contact,
-              descreption: 'Contact Us',
-              imgUrl: Assets.icons.shieldDone,
-
-              onTap: () {
-                // log('pressed on FAQ button');
-              },
-            ),
-
-            ProfileSettingOptionWidget(
-              title: context.profileTranslation.option.logout,
-              descreption: 'Log out',
-              imgUrl: Assets.icons.logOut,
-
-              onTap: () async {
-                final isConfirmed = await DialogsManager.showDeleteConfirmation(
-                  context,
-                  title: 'Log out',
-                  description: 'Are you sure you want to log out?',
-                );
-                if (isConfirmed) {
-                  context.read<AuthUserBloc>().add(Logout());
-                }
-              },
-            ),
-            ProfileSettingOptionWidget(
-              title: context.profileTranslation.option.deleteAccount,
-              descreption: 'Delete my account',
-              imgUrl: Assets.icons.logOut,
-              color: UIColor.backgroungAvaterRed,
-              colorIcon: UIColor.iconsAvaterRed,
-
-              onTap: () async {
-                final isConfirmed = await DialogsManager.showDeleteConfirmation(
-                  context,
-                  title: 'Delete Account',
-                  description: 'Are you sure you want to delete your account?',
-                );
-              },
-            ),
-            // SettingOptionProfileWidget(),
-          ],
-        ),
+            onTap: ProfileInternalRouter.of(context).toDriverLanguageSettings,
+          ),
+          ProfileSettingOptionWidget(
+            title: context.profileTranslation.option.savedBeneficiary,
+            descreption: 'Manage your saved account',
+            imgUrl: Assets.icons.profile,
+            onTap: () {
+              // log('pressed on FAQ button');
+            },
+          ),
+          ProfileSettingOptionWidget(
+            title: context.profileTranslation.termsAndPrivacy.privacyPolicy,
+            descreption:
+                context.profileTranslation.termsAndPrivacy.privacyPolicy,
+            imgUrl: Assets.icons.shieldDone,
+            onTap: () {
+              // log('pressed on FAQ button');
+            },
+          ),
+          // ProfileSettingOptionWidget(
+          //   title: context.profileTranslation.option.faq,
+          //   descreption: 'FAQ',
+          //   imgUrl: Assets.icons.shieldDone,
+          //   onTap: () {
+          //     // log('pressed on FAQ button');
+          //   },
+          // ),
+          ProfileSettingOptionWidget(
+            title: context.profileTranslation.option.contact,
+            descreption: 'Contact Us',
+            imgUrl: Assets.icons.shieldDone,
+            onTap: () {
+              // log('pressed on FAQ button');
+            },
+          ),
+          ProfileSettingOptionWidget(
+            title: context.profileTranslation.option.logout,
+            descreption: 'Log out',
+            imgUrl: Assets.icons.logOut,
+            colorIcon: UIColor.errorDark,
+            color: UIColor.backgroungAvaterRed,
+            onTap: () => ProfileActions.onLogoutPressed(context),
+          ),
+          // ProfileSettingOptionWidget(
+          //   title: context.profileTranslation.option.deleteAccount,
+          //   descreption: context.profileTranslation.option.DeleteMyAccount,
+          //   imgUrl: Assets.icons.logOut,
+          //   color: UIColor.backgroungAvaterRed,
+          //   colorIcon: UIColor.iconsAvaterRed,
+          //   onTap: () => ProfileActions.onDeleteAccountPressed(context),
+          // ),
+        ],
       ),
     );
   }

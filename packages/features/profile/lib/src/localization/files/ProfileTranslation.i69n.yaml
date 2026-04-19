@@ -16,9 +16,9 @@ option:
   deleteAccount: Delete Account
   savedBeneficiary: Saved Beneficiary
   location: My Location
-  Job: Job history
+  job: Job history
   appNotifications: App Notifications
-  DeleteMyAccount: Delete my account
+  deleteMyAccount: Delete my account
 
 driverProfile:
   settings: Settings
@@ -39,11 +39,21 @@ Labels:
 
 placeHolder: 
   email: write your email
-  note:  write your Note
+  note: write your note
+
+reviews:
+  title: Reviews
+  empty: No reviews yet
+  showMore: Show more
+  excellent: Excellent
+  good: Good
+  average: Average
+  belowAverage: Below Average
+  poor: Poor
       
 
 # Terms and Privacy
 termsAndPrivacy:
   termsOfUse: Terms of use
   and: And
-  privacyPolicy: privacy Policy
+  privacyPolicy: Privacy Policy

@@ -12,6 +12,9 @@ dependencies:
     sdk: flutter
   scroll_to_index: ^2.0.0
   rect_getter: ^1.0.0
+
+  flutter_localizations:
+    sdk: flutter
   authentication:
   design_system:
   util:

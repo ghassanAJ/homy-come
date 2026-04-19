@@ -1,8 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:profile/profile.dart';
-import 'package:profile/src/presentation/widget/data_user_profile.dart';
-import 'package:profile/src/presentation/widget/more_setting_widget.dart';
 import 'package:profile/src/presentation/widget/setting_profile_widget.dart';
+import 'package:profile/src/presentation/widget/shared/header_card.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -18,31 +17,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return UIScaffold(
       appBarTitle: context.profileTranslation.profile.myProfile,
-
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(
-            // top: topContentPadding,
-            left: UI.spacing.lg,
-            right: UI.spacing.lg,
-            // bottom: UI.spacing.xl,
-          ),
+          padding: UI.padding.driverProfileContent(topInset: 19), //CHECK
           child: Column(
             children: [
-              UserProfileInfoWidget(),
-              SizedBox(height: UI.spacing.lg), //24
-
+              HeaderCard(),
+              SizedBox(height: UI.spacing.sm),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ProfileSettingWidget(
-                    isActiveNotification: isActiveNotification,
-                  ),
-                  SizedBox(height: UI.spacing.md),
-                  MoreSettingWidget(),
+                  ProfileSettingWidget(),
+                  // SizedBox(height: UI.spacing.md),
+                  // MoreSettingWidget(),
                 ],
               ),
-              SizedBox(height: 150),
             ],
           ),
         ),

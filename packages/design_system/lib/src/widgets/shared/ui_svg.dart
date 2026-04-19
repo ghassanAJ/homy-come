@@ -21,11 +21,11 @@ class UISvg extends StatelessWidget {
     return SvgPicture.asset(
       icon,
       package: package,
+      width: size,
+      height: size,
       matchTextDirection: matchTextDirection,
       colorFilter:
           color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
-      width: size,
-      height: size,
     );
   }
 }
