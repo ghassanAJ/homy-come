@@ -274,6 +274,10 @@ class $AssetsImagesGen {
   AssetGenImage get onboarding =>
       const AssetGenImage('assets/images/onboarding.png');
 
+  /// File path: assets/images/phone-call (2) 1.png
+  AssetGenImage get phoneCall21 =>
+      const AssetGenImage('assets/images/phone-call (2) 1.png');
+
   /// File path: assets/images/search.png
   AssetGenImage get search => const AssetGenImage('assets/images/search.png');
 
@@ -287,6 +291,7 @@ class $AssetsImagesGen {
     onboarding2,
     onboarding3,
     onboarding,
+    phoneCall21,
     search,
   ];
 }

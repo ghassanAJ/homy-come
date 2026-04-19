@@ -25,6 +25,7 @@ abstract class ProviderModel with _$ProviderModel {
     required int id,
     required String name,
     required double rating,
+    required String numberPhone,
     String? image,
   }) = _ProviderModel;
 

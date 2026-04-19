@@ -66,8 +66,11 @@ class UIText extends StatelessWidget {
     this.overflow,
     this.softWrap,
     FontWeight? fontWeight,
+    String? fontFamily,
     super.key,
-  }) : style = _typography.h3.copyWith(fontWeight: fontWeight);
+  }) : style = _typography.h3
+           .copyWith(fontFamily: fontFamily)
+           .copyWith(fontWeight: fontWeight);
 
   UIText.h4(
     this.data, {
@@ -333,6 +336,16 @@ class UIText extends StatelessWidget {
          fontWeight: fontWeight,
          fontSize: fontSize,
        );
+
+  UIText.titleSm(
+    this.data, {
+    this.color,
+    this.textAlign,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
+    super.key,
+  }) : style = _typography.titleSm;
 
   /// Button with Icon - Buttons with icons
   ///

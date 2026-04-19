@@ -1,6 +1,7 @@
 // base_cubit.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:orders/src/cubit/order_state.dart';
 import 'package:util/src/base_cubit/base_state.dart';
 import 'package:util/src/base_usecase/base_use_case.dart';
 

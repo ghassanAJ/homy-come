@@ -27,6 +27,7 @@ class _MyOrderScreenState extends State<MyOrderScreen>
   void initState() {
     super.initState();
     _orderCubit = diContainerOrder<OrderCubit>();
+
     _tabController = TabController(length: 3, vsync: this);
     _scrollController = ScrollController();
     _tabController.addListener(() {
@@ -36,6 +37,13 @@ class _MyOrderScreenState extends State<MyOrderScreen>
 
   @override
   Widget build(BuildContext context) {
+    final tr = context.orderTr;
+    final screenWidth = MediaQuery.sizeOf(context).height;
+    final tabs = [
+      FilterTabContent(text: tr.title.inProgess, iconPath: ''),
+      FilterTabContent(text: tr.title.scheduled, iconPath: ''),
+      FilterTabContent(text: tr.title.completed, iconPath: ''),
+    ];
     return BlocProvider(
       create: (context) => _orderCubit..getOrders(FilterOrder.all),
       child: Builder(

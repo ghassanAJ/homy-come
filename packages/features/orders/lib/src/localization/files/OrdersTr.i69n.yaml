@@ -7,8 +7,16 @@ title:
   time: Time
   address: Address
   myOrder: my orders
-
+  orderDetails: Order Details
+  serviceDetails: Service Details
+  todaySchadule: Today Schedule
+  markDone: Mark as done
+  descraptionWarning: Are you sure you want to mark this task as done?
+  yes: yes
+  
 labels:
   all: All 
   cancel: cancel
   details: Details
+  done: Mark done
+  getDirection: Get Direction

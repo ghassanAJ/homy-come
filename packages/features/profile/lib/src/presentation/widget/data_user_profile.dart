@@ -97,7 +97,7 @@ class UserProfileInfoWidget extends StatelessWidget {
                   color: UIColor.grey,
                 ),
                 SizedBox(width: UI.spacing.xs),
-                UISvg(Assets.icons.arrowRightSvg_, color: UIColor.grey),
+                UISvg(Assets.icons.arrowRight, color: UIColor.grey),
               ],
             ),
           ),

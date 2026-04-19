@@ -9,8 +9,20 @@
 //   const ContentCardStatusOrder({super.key, required this.item});
 //   final BookingModelResponse item;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return ;
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        OrderNameAndStatusWidget(name: item.serviceType, status: item.status ),
+        Divider(color: UIColor.bordarCard, height: 0.5),
+        Padding(padding: EdgeInsets.symmetric( horizontal: UI.spacing.md,),
+          child: OrderCleanerInfoWidget(name: item.provider.name, rating: item.provider.rating)),
+        Divider(color: UIColor.bordarCard, height: 0.5),
+        OrderDateTimeWidget(date: item.date, time: item.time),
+        Divider(color: UIColor.bordarCard, height: 0.5),
+        CurrentOrderLocationView(location: item.address, item: item,),
+      ],
+    );
+  }
+}

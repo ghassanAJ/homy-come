@@ -54,6 +54,7 @@ export 'src/widgets/shared/confetti_widget.dart';
 export 'src/widgets/shared/dashboard_navigation_scaffold.dart';
 export 'src/widgets/shared/gradiant_linear_progress.dart';
 export 'src/widgets/shared/keep_alive_widget.dart';
+export 'src/widgets/shared/locatoin_with_map_widget.dart';
 export 'src/widgets/shared/selected_buttons_in_row.dart';
 export 'src/widgets/shared/stack_fade_grediant.dart';
 export 'src/widgets/shared/ui_action_button.dart';

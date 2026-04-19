@@ -28,10 +28,10 @@ class UIBackground extends StatelessWidget {
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
                     colors: [
-                      UIColor.softGreen.withValues(alpha: 0.2),
+                      UIColor.softGreen.withValues(alpha:0.8),
                       UIColor.white,
                     ],
-                    stops: const [0.0, 0.4],
+                    stops: const [0.0, 0.9],
                   ),
                 ),
               ),

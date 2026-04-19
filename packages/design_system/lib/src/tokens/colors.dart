@@ -84,7 +84,7 @@ class UIColor extends Color {
   static const UIColor borderFocused = primary;
   static const UIColor borderError = error;
   static const UIColor bordarCard = UIColor._(0xFFD9D9D9);
-
+  static const UIColor softBordarCard = UIColor._(0xFFE9F1F2);
   /// Shadow color
   static const UIColor shadow = UIColor._(0xFF101828);
 
