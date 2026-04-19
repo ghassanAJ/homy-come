@@ -1,9 +1,9 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:orders/orders.dart';
 import 'package:orders/src/cubit/order_cubit.dart';
 import 'package:orders/src/cubit/order_state.dart';
-import 'package:orders/src/di/di_container.dart';
 import 'package:orders/src/enum/filter_order_enum.dart';
 import 'package:orders/src/presentation/widget/order_app_bar.dart';
 import 'package:orders/src/presentation/widget/order_error_widgert.dart';

@@ -1,7 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:profile/profile.dart';
-import 'package:profile/src/presentation/widget/shared/header_card.dart';
 import 'package:profile/src/presentation/widget/driver/driver_profile_performance_card.dart';
+import 'package:profile/src/presentation/widget/shared/header_card.dart';
 import 'package:profile/src/presentation/widget/shared/settings_row.dart';
 
 class DriverProfileScreen extends StatefulWidget {
@@ -14,19 +14,17 @@ class DriverProfileScreen extends StatefulWidget {
 class _DriverProfileScreenState extends State<DriverProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    final topContentPadding =
-        MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
-
     return UIScaffold(
-      appBar: UIAppBar(title: context.profileTranslation.profile.myProfile),
+      appBar: UIAppBar(
+        automaticallyImplyLeading: false,
+        title: context.profileTranslation.profile.myProfile,
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: UI.padding.driverProfileContent(
-                topInset: topContentPadding,
-              ),
+              padding: UI.padding.driverProfileContent(topInset: 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -52,6 +50,7 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                       showDivider: false,
                     ),
                   ),
+                  SizedBox(height: 200),
                 ],
               ),
             ),

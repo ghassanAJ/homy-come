@@ -32,13 +32,13 @@ class HeaderCard extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: UI.spacing.sm),
+            // SizedBox(height: UI.spacing.sm),
             UIText.bodyLarge(
               user?.name ?? '',
               fontWeight: FontWeight.w700,
               color: UIColor.neutral975,
             ),
-            if (showRating)
+            if (showRating) ...[
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -55,7 +55,8 @@ class HeaderCard extends StatelessWidget {
                   ),
                 ],
               ),
-            SizedBox(height: UI.spacing.xxs),
+              SizedBox(height: UI.spacing.xxs),
+            ],
             UIText.bodySmall(user?.phone ?? '', color: UIColor.neutral975),
             SizedBox(height: UI.spacing.md),
             Container(
