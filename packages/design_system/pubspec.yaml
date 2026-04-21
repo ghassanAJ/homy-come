@@ -26,6 +26,8 @@ dependencies:
   confetti: ^0.8.0
   scrollable_list_tab_scroller: ^3.1.1
   user:
+  google_maps_flutter: ^2.17.0
+  geolocator: ^14.0.2
 
 dev_dependencies:
   flutter_test:

@@ -50,7 +50,7 @@ class TodayScheduleCard extends StatelessWidget {
             image: item.cleanerInfo.image ?? '',
           ),
           SizedBox(height: UI.spacing.xxs),
-          DirectionAndDoneActions(),
+          DirectionAndDoneActions(address: item.address),
         ],
       ),
     );

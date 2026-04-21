@@ -109,7 +109,16 @@ class OrderDetails extends StatelessWidget {
                       horizontal: UI.spacing.md,
                       vertical: 24,
                     ),
-                    child: DirectionAndDoneActions(),
+                    child: DirectionAndDoneActions(
+                      address:
+                          context
+                              .read<OrderCubit>()
+                              .state
+                              .data
+                              ?.orderDetailsById
+                              ?.address ??
+                          '',
+                    ),
                   ),
                 ],
               ),

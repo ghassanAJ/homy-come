@@ -40,6 +40,11 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     gh.lazySingleton<_i859.AppRouter>(() => _i859.AppRouter());
+    gh.factory<_i6.AuthRepository>(
+      () => _i601.MockAuthRepository(),
+      registerFor: {_mock},
+    );
+    gh.factory<_i420.UserAPI>(() => _i420.UserAPI(gh<_i361.Dio>()));
     gh.singleton<_i86.SessionRepository>(
       () => _i86.SessionRepository(
         gh<_i6.TokenStorage>(),
@@ -47,16 +52,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i609.BiometricService>(),
       ),
     );
-    gh.factory<_i6.AuthRepository>(
-      () => _i601.MockAuthRepository(),
-      registerFor: {_mock},
-    );
-    gh.factory<_i420.UserAPI>(() => _i420.UserAPI(gh<_i361.Dio>()));
-    gh.factory<_i28.AuthenticationAPI>(
-      () => _i28.AuthenticationAPI(gh<_i361.Dio>(instanceName: 'authDio')),
-    );
     gh.singleton<_i372.AppCubit>(
       () => _i372.AppCubit(gh<_i6.SessionRepository>()),
+    );
+    gh.factory<_i28.AuthenticationAPI>(
+      () => _i28.AuthenticationAPI(gh<_i361.Dio>(instanceName: 'authDio')),
     );
     gh.factory<_i744.AuthRepository>(
       () => _i744.AuthRepositoryImpl(

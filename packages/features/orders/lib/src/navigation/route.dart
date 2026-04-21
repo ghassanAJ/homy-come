@@ -4,6 +4,7 @@ import 'package:orders/src/localization/order_localization_scope.dart';
 import 'package:orders/src/presentation/screen/my_order_screen.dart';
 import 'package:orders/src/presentation/screen/order_details.dart';
 import 'package:orders/src/presentation/screen/today_schedule_screen.dart';
+import 'package:user/features/home/presentation/screens/location_directions.dart';
 
 /// Profile route paths
 class OrderPaths {
@@ -33,6 +34,13 @@ class OrderRoute {
           (context, state) => OrderLocalizationScope(
             child: UIScaffold(body: Container(), withBackgroundGradient: true),
           ),
+    ),
+    GoRoute(
+      path: OrderPaths.getDiraction,
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>? ?? {};
+        return LocationDirectionsScreen(address: extra['address'] as String);
+      },
     ),
     GoRoute(
       path: OrderPaths.orderDetailswithid(),

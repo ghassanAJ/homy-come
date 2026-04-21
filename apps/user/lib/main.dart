@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:booking/booking.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:user/user_app.dart';
 
@@ -12,6 +13,8 @@ void main() async {
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
+      await dotenv.load();
+
       SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(
           statusBarColor: Colors.black, // background color

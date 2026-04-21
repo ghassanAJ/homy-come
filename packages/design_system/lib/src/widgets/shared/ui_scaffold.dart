@@ -12,6 +12,7 @@ class UIScaffold extends StatelessWidget {
     this.withBackgroundGradient = true,
     this.bottomNavigationBar,
     this.floatingActionButton,
+    this.bottomSheet,
     this.withBackButton = true,
   });
   final bool withBackButton;
@@ -24,12 +25,14 @@ class UIScaffold extends StatelessWidget {
   final String? appBarTitle;
   final Widget? bottomNavigationBar;
   final Widget? floatingActionButton;
+  final Widget? bottomSheet;
 
   @override
   Widget build(BuildContext context) {
     final topContentPadding =
         MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
     return Scaffold(
+      bottomSheet: bottomSheet,
       appBar:
           appBarTitle != null && appBar == null
               ? UIAppBar(

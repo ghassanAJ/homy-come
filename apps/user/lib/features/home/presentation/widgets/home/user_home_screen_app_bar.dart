@@ -1,7 +1,11 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:authentication/authentication.dart';
 import 'package:booking/booking.dart';
 import 'package:design_system/design_system.dart';
+import 'package:go_router/go_router.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:user/di/di_container.dart';
+import 'package:user/features/home/presentation/screens/set_location_screen.dart';
 import 'package:user/features/home/presentation/widgets/home/home_header.dart';
 import 'package:user/features/home/presentation/widgets/shared/categories_search_field.dart';
 
@@ -103,27 +107,34 @@ class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  UISvg(Assets.icons.location, size: 16),
-                                  SizedBox(width: UI.spacing.xxs),
-                                  Flexible(
-                                    child: UIText.bodySmall(
-                                      user?.address?.toString() ??
-                                          'no address selected',
-                                      maxLines: 1,
-                                      fontWeight: FontWeight.w600,
+                              GestureDetector(
+                                onTap: () async {
+                                  await LocationSetterUtil.pushToSetLocationScreen(
+                                    context,
+                                  );
+                                },
+                                child: Row(
+                                  children: [
+                                    UISvg(Assets.icons.location, size: 16),
+                                    SizedBox(width: UI.spacing.xxs),
+                                    Flexible(
+                                      child: UIText.bodySmall(
+                                        user?.address?.toString() ??
+                                            'no address selected',
+                                        maxLines: 1,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Icon(
-                                      Icons.keyboard_arrow_down_rounded,
-                                      size: 16,
-                                      color: UIColor.neutral400,
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                        size: 16,
+                                        color: UIColor.neutral400,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                               SizedBox(height: UI.spacing.xs),
                               CategoriesSearchField(
@@ -149,4 +160,41 @@ class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
       ),
     );
   }
+}
+
+class LocationSetterUtil {
+  static Future<UserddressModel?> pushToSetLocationScreen(
+    BuildContext context,
+  ) async {
+    final UserddressModel? result = await Navigator.push<UserddressModel?>(
+      StatefulNavigationShell.of(context).context,
+      MaterialPageRoute(
+        builder:
+            (_) => const SelectLocationScreen(
+              selectedLocation: LatLng(
+                37.7749,
+                -122.4194,
+              ), //TODO use current user location instead
+            ),
+      ),
+    );
+
+    if (result != null) {
+      print(result.latitude);
+      print(result.longitude);
+      return result;
+    }
+    return null;
+  }
+}
+
+class UserddressModel {
+  final double latitude;
+  final double longitude;
+  final String addressTitle;
+  UserddressModel({
+    required this.latitude,
+    required this.longitude,
+    required this.addressTitle,
+  });
 }

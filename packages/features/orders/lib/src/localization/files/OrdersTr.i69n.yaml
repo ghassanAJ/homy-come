@@ -12,11 +12,11 @@ title:
   todaySchadule: Today Schedule
   markDone: Mark as done
   descraptionWarning: Are you sure you want to mark this task as done?
-  yes: yes
+  yes: Confirm
   
 labels:
   all: All 
-  cancel: cancel
+  cancel: Cancel
   details: Details
   done: Mark done
   getDirection: Get Direction

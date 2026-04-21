@@ -5,6 +5,7 @@ import 'package:booking/src/presentation/screens/service_details_step1.dart';
 import 'package:booking/src/presentation/widgets/booking_step_app_bar.dart';
 import 'package:booking/src/presentation/widgets/price_row_widget.dart';
 import 'package:booking/src/presentation/widgets/step_navigation_bar.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class BaseBookingStep extends StatefulWidget {
   const BaseBookingStep({super.key});
@@ -349,9 +350,10 @@ class SummaryStep extends StatelessWidget {
                               child: SizedBox(
                                 height: 80,
                                 width: double.infinity,
-                                child: UIIamge(
-                                  assetPath: Assets.images.locationImage.path,
-                                  fit: BoxFit.cover,
+                                child: GoogleMap(
+                                  initialCameraPosition: CameraPosition(
+                                    target: LatLng(33.5, 44.2),
+                                  ),
                                 ),
                               ),
                             ),

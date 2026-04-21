@@ -55,8 +55,8 @@ class _TodayScheduleScreenState extends State<TodayScheduleScreen> {
                       UIText.bodySmall(
                         '${state.data?.todaySchaduleOrder.length} pickups',
                       ),
-                      SizedBox(height: 24),
 
+                      // SizedBox(height: 24),
                       Expanded(
                         child: BlocSelector<
                           OrderCubit,

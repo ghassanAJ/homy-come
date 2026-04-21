@@ -1,4 +1,5 @@
 import 'package:design_system/design_system.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LocationWithMapWidget extends StatelessWidget {
   const LocationWithMapWidget({super.key, required this.address});
@@ -19,11 +20,12 @@ class LocationWithMapWidget extends StatelessWidget {
         SizedBox(height: UI.spacing.sm),
         ClipRRect(
           borderRadius: BorderRadius.circular(UI.radius.md),
-          child: UIImage(
-            Assets.images.locationImage.path,
-            height: 72,
-            wigth: double.infinity,
-            fit: BoxFit.cover,
+          child: SizedBox(
+            height: 80,
+            width: double.infinity,
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(target: LatLng(33.5, 44.2)),
+            ),
           ),
         ),
       ],

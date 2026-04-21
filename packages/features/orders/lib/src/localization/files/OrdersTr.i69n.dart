@@ -71,7 +71,7 @@ class TitleOrdersTr implements i69n.I69nMessageBundle {
   String get markDone => "Mark as done";
   String get descraptionWarning =>
       "Are you sure you want to mark this task as done?";
-  String get yes => "yes";
+  String get yes => "Confirm";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
@@ -117,7 +117,7 @@ class LabelsOrdersTr implements i69n.I69nMessageBundle {
   final OrdersTr _parent;
   const LabelsOrdersTr(this._parent);
   String get all => "All";
-  String get cancel => "cancel";
+  String get cancel => "Cancel";
   String get details => "Details";
   String get done => "Mark done";
   String get getDirection => "Get Direction";

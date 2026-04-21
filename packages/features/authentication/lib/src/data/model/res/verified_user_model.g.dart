@@ -14,6 +14,8 @@ _VerifiedUserModel _$VerifiedUserModelFromJson(Map<String, dynamic> json) =>
       otpCode: json['otp_code'] as String?,
       roleType: json['role_type'] as String,
       profilePicture: json['profile_picture'] as String?,
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
       name: json['name'] as String?,
       address: json['address'] as String?,
     );
@@ -26,6 +28,8 @@ Map<String, dynamic> _$VerifiedUserModelToJson(_VerifiedUserModel instance) =>
       'otp_code': instance.otpCode,
       'role_type': instance.roleType,
       'profile_picture': instance.profilePicture,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
       'name': instance.name,
       'address': instance.address,
     };

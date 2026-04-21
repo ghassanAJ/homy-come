@@ -1,4 +1,5 @@
 import 'package:booking/src/presentation/widgets/price_row_widget.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../../booking.dart';
 
@@ -24,7 +25,7 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  UIText.h4('Booking Details', color: UIColor.balck),
+                  UIText.h4('Booking details', color: UIColor.balck),
                   SizedBox(height: UI.spacing.sm),
                   Container(
                     width: double.infinity,
@@ -137,12 +138,22 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(
                                   UI.radius.md,
                                 ),
-                                child: UIImage(
-                                  Assets.images.locationImage.path,
-                                  fit: BoxFit.cover,
+                                child: SizedBox(
                                   height: 72,
-                                  wigth: double.infinity,
+                                  width: double.infinity,
+                                  child: GoogleMap(
+                                    initialCameraPosition: CameraPosition(
+                                      target: LatLng(33.4, 44.5),
+                                    ),
+                                  ),
                                 ),
+
+                                // UIImage(
+                                //   Assets.images.locationImage.path,
+                                //   fit: BoxFit.cover,
+                                //   height: 72,
+                                //   wigth: double.infinity,
+                                // ),
                               ),
                             ],
                           ),

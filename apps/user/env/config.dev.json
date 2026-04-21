@@ -1,5 +1,8 @@
 {
   "BASE_URL": "http://http://localhost:1337/api/v1",
   "ENV": "dev",
-  "API_KEY": "pk_test_51TNwR7LRLlVtHJNJvS0nZFRZu0NApBkxgBXBtosWomxpnNtPtouxZw1SWrwwV0QtpgsNNz1W60cOA5I2iYwVFrf800WNWF079O"
+  "API_KEY": "",
+  "STRIPE_KEY":"pk_test_51TNwR7LRLlVtHJNJvS0nZFRZu0NApBkxgBXBtosWomxpnNtPtouxZw1SWrwwV0QtpgsNNz1W60cOA5I2iYwVFrf800WNWF079O",
+  "GOOGLE_MAPS_KEY":"AIzaSyCVrqFW42fjcdhOX53EnYbSo4h68NMUMTU",
+  "PLACES_KEY":"AIzaSyDpxlMAhVScyZ1itTc1g5Q4tdCKNOaHQP4"
 }
