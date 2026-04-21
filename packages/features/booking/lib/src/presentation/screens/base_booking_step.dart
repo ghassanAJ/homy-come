@@ -6,6 +6,7 @@ import 'package:booking/src/presentation/widgets/booking_step_app_bar.dart';
 import 'package:booking/src/presentation/widgets/price_row_widget.dart';
 import 'package:booking/src/presentation/widgets/step_navigation_bar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class BaseBookingStep extends StatefulWidget {
   const BaseBookingStep({super.key});
@@ -125,7 +126,7 @@ class _BaseBookingStepState extends State<BaseBookingStep> {
     );
   }
 
-  void _onNext(BuildContext context, BookingWizardState state) {
+  void _onNext(BuildContext context, BookingWizardState state) async {
     final bloc = context.read<BookingWizardBloc>();
 
     switch (state.currentStep) {
@@ -142,16 +143,17 @@ class _BaseBookingStepState extends State<BaseBookingStep> {
         break;
 
       case BookingWizardStep.summary:
-        bloc.add(
-          SubmitBooking(
-            serviceId: '',
-            customerId: '',
-            addressId: '',
-            addressLatitude: 0,
-            addressLongitude: 0,
-            addressName: '',
-          ),
-        );
+        await _makePayment(context);
+        // bloc.add(
+        //   SubmitBooking(
+        //     serviceId: '',
+        //     customerId: '',
+        //     addressId: '',
+        //     addressLatitude: 0,
+        //     addressLongitude: 0,
+        //     addressName: '',
+        //   ),
+        // );
         break;
 
       case BookingWizardStep.summary:
@@ -170,6 +172,44 @@ class _BaseBookingStepState extends State<BaseBookingStep> {
       default:
         break;
     }
+  }
+
+  Future<void> _makePayment(BuildContext context) async {
+    final WebViewController controller =
+        WebViewController()
+          ..setJavaScriptMode(JavaScriptMode.unrestricted)
+          ..setNavigationDelegate(
+            NavigationDelegate(
+              onProgress: (int progress) {
+                // Update loading bar.
+              },
+              onPageStarted: (String url) {},
+              onPageFinished: (String url) {},
+              onHttpError: (HttpResponseError error) {},
+              onWebResourceError: (WebResourceError error) {},
+              onNavigationRequest: (NavigationRequest request) {
+                if (request.url.startsWith('https://www.youtube.com/')) {
+                  return NavigationDecision.prevent;
+                }
+                return NavigationDecision.navigate;
+              },
+            ),
+          )
+          ..loadRequest(
+            Uri.parse('https://book.stripe.com/test_eVqbJ274G1dV8nj7SeejK00'),
+          );
+    await UIBottomSheet.show(
+      context: context,
+      content: SizedBox(
+        height: MediaQuery.sizeOf(context).height * .6,
+        child: WebViewWidget(controller: controller),
+
+        // SingleChildScrollView(
+        //   child: Column(children: [WebViewWidget(controller: controller)]),
+        // ),
+      ),
+    );
+    // showSuccessDialog();
   }
 
   void _onBack(BuildContext context, BookingWizardState state) {
