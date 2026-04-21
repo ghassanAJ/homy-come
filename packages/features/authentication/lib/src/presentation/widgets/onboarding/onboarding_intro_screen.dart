@@ -1,7 +1,6 @@
 import 'package:authentication/authentication.dart';
 import 'package:authentication/src/presentation/widgets/common/onboarding_bubble.dart';
 import 'package:design_system/design_system.dart';
-import 'package:design_system/gen/assets.gen.dart';
 import 'package:util/util.dart';
 
 class OnboardingIntroPage extends StatelessWidget {
@@ -52,8 +51,8 @@ class OnboardingIntroPage extends StatelessWidget {
               ),
               SizedBox(height: imageSpacing),
               Assets.images.onboarding.image(
-                package: 'design_system',
-                fit: BoxFit.contain,
+                // package: 'design_system',
+                fit: BoxFit.cover,
               ),
               const Spacer(),
               Padding(
@@ -62,7 +61,7 @@ class OnboardingIntroPage extends StatelessWidget {
                   label: tr.onboarding.getStarted,
                   expanded: true,
                   onPressed: onGetStarted,
-               ),
+                ),
               ),
             ],
           ),

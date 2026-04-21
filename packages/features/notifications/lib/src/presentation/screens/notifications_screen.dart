@@ -1,13 +1,10 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
 import 'package:notifications/src/data/model/res/notification_item_model.dart';
-import 'package:notifications/src/domain/repository/notifications_repository.dart';
+import 'package:notifications/src/domain/repository/mock_notifications_repository.dart';
 import 'package:notifications/src/presentation/cubit/notifications_cubit.dart';
 import 'package:notifications/src/presentation/widgets/notification_section.dart';
-import 'package:notifications/src/presentation/widgets/notifications_header_app_bar.dart';
 import 'package:notifications/src/presentation/widgets/notifications_loading_shimmer.dart';
-import 'package:util/src/base_cubit/base_state.dart';
 import 'package:util/util.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -17,9 +14,8 @@ class NotificationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create:
-          (_) =>
-              NotificationsCubit(GetIt.I<NotificationsRepository>())
-                ..fetchNotifications(),
+          (_) => NotificationsCubit(MockNotificationsRepository()) //TODO
+          ..fetchNotifications(),
       child: const _NotificationsScreenContent(),
     );
   }
@@ -31,10 +27,11 @@ class _NotificationsScreenContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UIScaffold(
+      appBar: UIAppBar(title: 'Notifications'),
       withBackgroundGradient: true,
+
       body: Column(
         children: [
-          const NotificationsHeaderAppBar(title: 'Notifications'),
           SizedBox(height: UI.spacing.xs),
           Divider(height: 1, thickness: 1, color: UIColor.neutral100),
           Expanded(

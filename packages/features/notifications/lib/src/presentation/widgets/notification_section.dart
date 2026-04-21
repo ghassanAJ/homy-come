@@ -34,18 +34,19 @@ class NotificationSectionView extends StatelessWidget {
             fontFamily: UIFontFamily.roboto,
           ),
           SizedBox(height: UI.spacing.xs),
-          ..._buildNotificationItems(section.items),
+
+          ...ListWidgetBuilder.mapWithIsLast(section.items, (
+            item,
+            _,
+            isLastItem,
+          ) {
+            return Padding(
+              padding: UI.padding.notificationsItemSpacing(isLast: isLastItem),
+              child: NotificationCard(item: item),
+            );
+          }),
         ],
       ),
     );
-  }
-
-  List<Widget> _buildNotificationItems(List<NotificationItemModel> items) {
-    return ListWidgetBuilder.mapWithIsLast(items, (item, _, isLastItem) {
-      return Padding(
-        padding: UI.padding.notificationsItemSpacing(isLast: isLastItem),
-        child: NotificationCard(item: item),
-      );
-    });
   }
 }

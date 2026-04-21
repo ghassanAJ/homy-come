@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +49,7 @@ class AuthNavigationListener extends StatelessWidget {
   }
 
   void _onOtpSent(BuildContext context, AuthUserStateOTPSent state) {
+    log('_onOtpSent_onOtpSent_onOtpSent naviagte');
     final tr = context.loc<AuthenticationTranslation>();
     ToastificationUtil.success(tr.verification.codeSent);
 

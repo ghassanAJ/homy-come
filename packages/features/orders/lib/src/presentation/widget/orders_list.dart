@@ -20,24 +20,19 @@ class OrderList extends StatelessWidget {
       onRefresh: () async {
         BlocProvider.of<OrderCubit>(context).getOrders(FilterOrder.all);
       },
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: UI.spacing.md,
-          // vertical: UI.spacing.md,
-        ),
-        child: Builder(
-          builder: (context) {
-            return ListView.separated(
-              shrinkWrap: true,
-              physics: const AlwaysScrollableScrollPhysics(),
-              itemBuilder: (context, i) {
-                return OrderStatusCardContent(item: orders[i]);
-              },
-              separatorBuilder: (context, _) => SizedBox(height: UI.spacing.md),
-              itemCount: orders.length,
-            );
-          },
-        ),
+      child: Builder(
+        builder: (context) {
+          return ListView.separated(
+            padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+            shrinkWrap: true,
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemBuilder: (context, i) {
+              return OrderStatusCardContent(item: orders[i]);
+            },
+            separatorBuilder: (context, _) => SizedBox(height: UI.spacing.md),
+            itemCount: orders.length,
+          );
+        },
       ),
     );
   }

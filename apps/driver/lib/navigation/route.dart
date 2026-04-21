@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:orders/orders.dart';
 
 /// Driver app route paths.
 class DriverPaths {
@@ -17,9 +18,7 @@ class DriverRoute {
   static List<RouteBase> get routes => [
     GoRoute(
       path: DriverPaths.home,
-      builder:
-          (context, state) =>
-              const _PlaceholderScreen(title: 'Home', path: DriverPaths.home),
+      builder: (context, state) => const TodayScheduleScreen(),
     ),
     GoRoute(
       path: DriverPaths.myTeam,

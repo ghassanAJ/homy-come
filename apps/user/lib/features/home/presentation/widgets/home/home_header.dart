@@ -21,11 +21,11 @@ class HomeHeader extends StatelessWidget {
     final user = context.read<AppCubit>().state.user;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 24.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(width: UI.spacing.md),
+          // SizedBox(width: UI.spacing.md),
 
           // ProfilePictureWidget(
           //   imageUrl: resolvedProfileImageUrl,
@@ -91,7 +91,9 @@ class HomeHeader extends StatelessWidget {
                   onTap:
                       onNotificationTap ??
                       () {
-                        // TODO: Navigate to notifications screen when route is ready.
+                        context.push(
+                          UserPaths.notifications,
+                        ); // TODO: Navigate to notifications screen when route is ready.
                       },
                   child: UISvg(Assets.icons.notification, size: 20),
                 ),

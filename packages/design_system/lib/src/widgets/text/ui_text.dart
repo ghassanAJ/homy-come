@@ -67,10 +67,13 @@ class UIText extends StatelessWidget {
     this.softWrap,
     FontWeight? fontWeight,
     String? fontFamily,
+    double? fontSize,
     super.key,
-  }) : style = _typography.h3
-           .copyWith(fontFamily: fontFamily)
-           .copyWith(fontWeight: fontWeight);
+  }) : style = _typography.h3.copyWith(
+         fontFamily: fontFamily,
+         fontWeight: fontWeight,
+         fontSize: fontSize,
+       );
 
   UIText.h4(
     this.data, {
@@ -81,9 +84,7 @@ class UIText extends StatelessWidget {
     this.softWrap,
     double? fontSize,
     super.key,
-  }) : style = _typography.h4.copyWith(
-    fontSize: fontSize
-  );
+  }) : style = _typography.h4.copyWith(fontSize: fontSize);
 
   UIText.h5(
     this.data, {
@@ -372,11 +373,7 @@ class UIText extends StatelessWidget {
     this.softWrap,
     String? fontFamily,
     super.key,
-  }) : style = _typography.bodyBold.copyWith(
-fontFamily: fontFamily
-  );
-
-
+  }) : style = _typography.bodyBold.copyWith(fontFamily: fontFamily);
 
   UIText.labelCircleProgerss(
     this.data, {

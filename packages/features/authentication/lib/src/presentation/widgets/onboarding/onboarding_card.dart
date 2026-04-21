@@ -22,12 +22,7 @@ class MDOnboardingCard extends StatelessWidget {
           padding: UI.padding.onboardingCardImageHorizontal,
           child: AspectRatio(
             aspectRatio: 331 / 278,
-            child: SizedBox(
-              width: double.infinity,
-              child: AssetGenImage(
-                imagePath,
-              ).image(package: 'design_system', fit: BoxFit.cover),
-            ),
+            child: SizedBox(width: double.infinity, child: UISvg(imagePath)),
           ),
         ),
 

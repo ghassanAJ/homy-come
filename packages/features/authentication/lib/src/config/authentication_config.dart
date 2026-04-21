@@ -15,7 +15,7 @@ abstract class AuthenticationConfig {
   // Onboarding configuration
   static int get onBoardingAutoScrollPerSeconds => 4;
   static int get onBoardingAutoScrollDurationPerMilliSeconds => 300;
-  static int get splashScreenDelayInSeconds => 1;
+  static int get splashScreenDelayInSeconds => 3;
 
   // Auth methods per user role
   static List<AuthMethod> allowedMethodsFor(UserRole role) {

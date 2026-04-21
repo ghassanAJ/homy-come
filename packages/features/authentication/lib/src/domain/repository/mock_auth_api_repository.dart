@@ -67,6 +67,7 @@ class MockAuthRepository implements AuthRepository {
       failNextSendOTP = false;
       return failure(APIException.error('Mock sendOTP failure'));
     }
+    await Future.delayed(Duration(seconds: 1));
     return success(_mockSendOTPResponse);
   }
 
@@ -78,6 +79,8 @@ class MockAuthRepository implements AuthRepository {
       failNextVerifyOTP = false;
       return failure(APIException.error('Mock verifyOTP failure'));
     }
+    await Future.delayed(Duration(seconds: 1));
+
     return success(_mockVerifyOTPResponse);
   }
 
@@ -123,6 +126,8 @@ class MockAuthRepository implements AuthRepository {
       failNextLoginWithPin = false;
       return failure(APIException.error('Mock loginWithPin failure'));
     }
+    await Future.delayed(Duration(seconds: 1));
+
     return success(_mockLoginResponse);
   }
 
@@ -132,6 +137,8 @@ class MockAuthRepository implements AuthRepository {
       failNextLogout = false;
       return failure(APIException.error('Mock logout failure'));
     }
+    await Future.delayed(Duration(seconds: 1));
+
     return ResultAsync.fromAsync(() async {});
   }
 }

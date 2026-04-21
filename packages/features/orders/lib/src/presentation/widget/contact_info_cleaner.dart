@@ -1,10 +1,16 @@
 import 'package:design_system/design_system.dart';
 import 'package:util/src/contect_manager/content_manager.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ContactInfoCleaner extends StatelessWidget {
-  const ContactInfoCleaner({super.key, required this.name, required this.rate, required this.phoneNUmber});
+  const ContactInfoCleaner({
+    super.key,
+    required this.name,
+    required this.image,
+    required this.rate,
+    required this.phoneNUmber,
+  });
   final String name;
+  final String image;
   final double rate;
   final String phoneNUmber;
   Future<void> contactUser(String phone) async {
@@ -24,7 +30,8 @@ class ContactInfoCleaner extends StatelessWidget {
             height: UI.sizes.inputHeight,
             child: Avatar(
               size: AvatarSize.large,
-              imageUrl: '',
+              imageUrl: image,
+
               placeholderWidget: Container(
                 color: UIColor.backgroungSilverLight,
               ),
@@ -37,7 +44,7 @@ class ContactInfoCleaner extends StatelessWidget {
               Row(
                 children: [
                   UIText.bodyMedium(name),
-                  SizedBox(width: UI.spacing.xxs),
+                  SizedBox(width: UI.spacing.xs),
                   Row(
                     children: [
                       UISvg(Assets.icons.star, color: UIColor.warning),

@@ -120,13 +120,13 @@ class UIFormBuilderPhoneField extends FormBuilderFieldDecoration<String> {
 
   static Widget _buildCountryCodeSection(_UIFormBuilderPhoneFieldState state) {
     return GestureDetector(
-      onTap:
-          state.enabled
-              ? () {
-                state.focus();
-                state._openCountryPickerDialog();
-              }
-              : null,
+      // onTap:
+      //     state.enabled
+      //         ? () {
+      //           state.focus();
+      //           state._openCountryPickerDialog();
+      //         }
+      //         : null,
       child: _FieldDecoration(
         hasError: false,
         isFocused: state._isFocused,

@@ -80,7 +80,13 @@ class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
                 fit: StackFit.expand,
                 children: [
                   // ── Expanded state: HomeHeader ──────────────────────────
-                  Opacity(opacity: headerOpacity, child: const HomeHeader()),
+                  Opacity(
+                    opacity: headerOpacity,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: const HomeHeader(),
+                    ),
+                  ),
 
                   // ── Collapsed state: location row + search ──────────────
                   if (collapsedOpacity > 0)

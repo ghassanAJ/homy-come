@@ -16,9 +16,9 @@ class OrderAppBar extends StatelessWidget {
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: UIFilterTabBar(
           tabs: [
-            FilterTabContent(text: 'in progress', iconPath: ''),
-            FilterTabContent(text: 'scheduled', iconPath: ''),
-            FilterTabContent(text: 'completed', iconPath: ''),
+            FilterTabContent(text: 'In Progress', iconPath: ''),
+            FilterTabContent(text: 'Scheduled', iconPath: ''),
+            FilterTabContent(text: 'Completed', iconPath: ''),
           ],
           package: 'my order',
           tabController: scrollController,

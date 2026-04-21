@@ -41,19 +41,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i218.MockBookingApiRepository(),
       registerFor: {_mock},
     );
+    gh.factory<_i760.GetTodayScheduleUseCase>(
+      () => _i760.GetTodayScheduleUseCase(repo: gh<_i176.OrdersRepository>()),
+    );
     gh.factoryParam<_i616.GetDetailsBookingUseCase, int, dynamic>(
       (id, _) =>
           _i616.GetDetailsBookingUseCase(gh<_i176.OrdersRepository>(), id: id),
-    );
-    gh.factoryParam<_i1058.CancelOrderUseCase, int, String>(
-      (id, reason) => _i1058.CancelOrderUseCase(
-        repo: gh<_i176.OrdersRepository>(),
-        id: id,
-        reason: reason,
-      ),
-    );
-    gh.factory<_i760.GetTodayScheduleUseCase>(
-      () => _i760.GetTodayScheduleUseCase(repo: gh<_i176.OrdersRepository>()),
     );
     gh.factoryParam<_i717.GetOrderDetailsUseCase, _i260.FilterOrder, dynamic>(
       (status, _) => _i717.GetOrderDetailsUseCase(
@@ -65,6 +58,13 @@ extension GetItInjectableX on _i174.GetIt {
       (id, _) => _i595.GetOrderDetailsByIdUseCase(
         repo: gh<_i176.OrdersRepository>(),
         id: id,
+      ),
+    );
+    gh.factoryParam<_i1058.CancelOrderUseCase, int, String>(
+      (id, reason) => _i1058.CancelOrderUseCase(
+        repo: gh<_i176.OrdersRepository>(),
+        id: id,
+        reason: reason,
       ),
     );
     return this;

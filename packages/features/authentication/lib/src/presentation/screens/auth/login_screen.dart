@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
       phone: phone,
       deviceId: AuthenticationConfig.deviceId,
     );
-
+    log('called');
     context.read<AuthUserBloc>().add(SendOTP(request));
   }
 
@@ -54,21 +56,23 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final tr = context.loc<AuthenticationTranslation>();
     return BlocListener<AuthUserBloc, AuthUserState>(
-      listenWhen:
-          (_, current) =>
-              current is AuthUserStateError &&
-              current.stateType == AuthUserErrorStateType.sendOTP,
+      // listenWhen:
+      //     (_, current) =>
+      //         current is AuthUserStateError &&
+      //         current.stateType == AuthUserErrorStateType.sendOTP,
       listener: (context, state) {
+        log(state.runtimeType.toString());
         if (state is AuthUserStateError) {
           ToastificationUtil.error(state.error.message);
         }
       },
       child: BlocBuilder<AuthUserBloc, AuthUserState>(
-        buildWhen:
-            (previous, current) =>
-                (previous is AuthUserStateLoading) !=
-                (current is AuthUserStateLoading),
+        // buildWhen:
+        //     (previous, current) =>
+        //         (previous is AuthUserStateLoading) !=
+        //         (current is AuthUserStateLoading),
         builder: (context, state) {
+          log('build');
           final isLoading = state is AuthUserStateLoading;
           return _buildLayout(isLoading, tr);
         },
@@ -81,74 +85,65 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         Scaffold(
           backgroundColor: UIColor.background,
-          body: SafeArea(
-            child: Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: UI.padding.authScrollable,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: UI.spacing.xxl),
-                        _buildHeader(tr),
-                        SizedBox(height: UI.spacing.xxl),
-                        Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: FormBuilder(
-                            key: _formKey,
-                            onChanged: _onFormChanged,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                UIText.bodySmall(
-                                  tr.login.phoneLabel,
-                                  color: UIColor.textSecondary,
-                                ),
-                                SizedBox(height: UI.spacing.md),
-                                UIFormBuilderPhoneField(
-                                  name: AuthFormFieldNames.phone,
-                                  placeholder: '321456987',
-                                  defaultSelectedCountryIsoCode: 'AE',
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  validator: FormBuilderValidators.compose([
-                                    FormBuilderValidators.required(),
-                                    FormBuilderValidators.phoneNumber(),
-                                  ]),
-                                ),
-                              ],
-                            ),
+          body: LayoutBuilder(
+            builder: (context, constrais) {
+              return SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: FormBuilder(
+                    key: _formKey,
+                    onChanged: _onFormChanged,
+                    child: SizedBox(
+                      height: constrais.maxHeight,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: UI.spacing.xxl),
+                          Spacer(flex: 2),
+                          _buildHeader(tr),
+                          SizedBox(height: UI.spacing.xxl),
+                          UIText.bodySmall(
+                            tr.login.phoneLabel,
+                            color: UIColor.textSecondary,
                           ),
-                        ),
-                      ],
+                          SizedBox(height: UI.spacing.md),
+                          // TextFormField()
+                          UIFormBuilderPhoneField(
+                            name: AuthFormFieldNames.phone,
+                            placeholder: '555-555-555',
+                            defaultSelectedCountryIsoCode: 'AE',
+                            autovalidateMode: AutovalidateMode.onUnfocus,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(),
+                              FormBuilderValidators.phoneNumber(),
+                            ]),
+                          ),
+                          Spacer(flex: 2),
+
+                          ValueListenableBuilder<bool>(
+                            valueListenable: _isFormValidNotifier,
+                            builder: (context, isValid, _) {
+                              return UIButton.primary(
+                                label: tr.login.verifyButton,
+                                onPressed: isValid ? _sendOTP : null,
+                                expanded: true,
+                              );
+                            },
+                          ),
+                          SizedBox(height: UI.spacing.lg),
+                          _buildSignUpLink(tr),
+                          SizedBox(height: UI.spacing.xl),
+                          _buildJoinAsGuestLink(tr),
+                          SizedBox(height: UI.spacing.lg),
+                          Spacer(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: UI.padding.authActions,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ValueListenableBuilder<bool>(
-                        valueListenable: _isFormValidNotifier,
-                        builder: (context, isValid, _) {
-                          return UIButton.primary(
-                            label: tr.login.verifyButton,
-                            onPressed: isValid ? _sendOTP : null,
-                            expanded: true,
-                          );
-                        },
-                      ),
-                      SizedBox(height: UI.spacing.lg),
-                      _buildSignUpLink(tr),
-                      SizedBox(height: UI.spacing.xl),
-                      _buildJoinAsGuestLink(tr),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              );
+            },
           ),
         ),
         if (isLoading) const MDProgressIndicator(styled: true),
@@ -200,6 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             UISvg(Assets.icons.logOut),
+            SizedBox(width: 5),
             Text(
               tr.login.joinAsGuest,
               style: UI.text.bodySmall.copyWith(

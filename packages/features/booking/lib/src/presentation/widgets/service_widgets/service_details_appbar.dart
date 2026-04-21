@@ -179,9 +179,9 @@ class _ServiceDetailsAppBarState extends State<ServiceDetailsAppBar> {
                   height: 200,
                   child: Stack(
                     children: [
-                      FadeInImage.assetNetwork(
-                        placeholder: Assets.images.onboarding.path,
-                        image: widget.info.image ?? '',
+                      UINetworkImage(
+                        // placeholder: Assets.images.onboarding.path,
+                        imageUrl: widget.info.image ?? '',
                         width: double.infinity,
                         fit: BoxFit.cover,
                       ),

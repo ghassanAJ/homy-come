@@ -25,14 +25,7 @@ class OrderNameAndStatusWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Container(
-                width: UI.sizes.iconXl,
-                height: UI.sizes.iconXl,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: UIColor.backgroungSilverLight,
-                ),
-              ),
+              UISvg(Assets.icons.cleaner),
               SizedBox(width: UI.spacing.sm),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,13 +47,25 @@ class OrderNameAndStatusWidget extends StatelessWidget {
               vertical: UI.spacing.xxs,
             ),
             decoration: BoxDecoration(
-              border: Border.all(color: UIColor.babyBlue, width: 1),
+              border: Border.all(color: _getStatusColor(status), width: 1),
               borderRadius: BorderRadius.circular(UI.radius.xl),
             ),
-            child: UIText.headerBody(status, color: UIColor.babyBlue),
+            child: UIText.headerBody(status, color: _getStatusColor(status)),
           ),
         ],
       ),
     );
+  }
+
+  UIColor _getStatusColor(String status) {
+    switch (status) {
+      case "Scheduled":
+        return UIColor.warning;
+      case "Completed":
+        return UIColor.vividGreen;
+      case "In Progress":
+      default:
+        return UIColor.babyBlue;
+    }
   }
 }

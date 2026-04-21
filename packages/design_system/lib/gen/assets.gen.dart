@@ -124,6 +124,18 @@ class $AssetsIconsGen {
   /// File path: assets/icons/nav_search.svg
   String get navSearch => 'packages/design_system/assets/icons/nav_search.svg';
 
+  /// File path: assets/icons/onboarding-1.svg
+  String get onboarding1 =>
+      'packages/design_system/assets/icons/onboarding-1.svg';
+
+  /// File path: assets/icons/onboarding-2.svg
+  String get onboarding2 =>
+      'packages/design_system/assets/icons/onboarding-2.svg';
+
+  /// File path: assets/icons/onboarding-3.svg
+  String get onboarding3 =>
+      'packages/design_system/assets/icons/onboarding-3.svg';
+
   /// File path: assets/icons/painter.svg
   String get painter => 'packages/design_system/assets/icons/painter.svg';
 
@@ -222,6 +234,9 @@ class $AssetsIconsGen {
     navOrders,
     navProfile,
     navSearch,
+    onboarding1,
+    onboarding2,
+    onboarding3,
     painter,
     paintingService,
     phone,

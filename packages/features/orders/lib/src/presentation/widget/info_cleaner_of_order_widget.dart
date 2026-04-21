@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:design_system/design_system.dart';
 
 class OrderCleanerInfoWidget extends StatelessWidget {
@@ -5,11 +7,14 @@ class OrderCleanerInfoWidget extends StatelessWidget {
     super.key,
     required this.name,
     required this.rating,
+    required this.image,
   });
   final String name;
+  final String image;
   final double rating;
   @override
   Widget build(BuildContext context) {
+    log('image $image');
     return Padding(
       padding: EdgeInsets.symmetric(
         //OrderCleanerInfoWidget
@@ -21,8 +26,8 @@ class OrderCleanerInfoWidget extends StatelessWidget {
         children: [
           SizedBox(
             child: Avatar(
-              imageUrl: '',
-              size: AvatarSize.medium,
+              imageUrl: image,
+              size: AvatarSize.small,
               placeholderWidget: Container(
                 color: UIColor.backgroungSilverLight,
               ),
@@ -33,7 +38,6 @@ class OrderCleanerInfoWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               UIText.bodyMedium(name),
-
               Row(
                 children: [
                   UISvg(Assets.icons.star, color: UIColor.warning),

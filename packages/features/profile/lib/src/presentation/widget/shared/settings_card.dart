@@ -4,10 +4,7 @@ import 'package:profile/src/helper/profile_language_label_extension.dart';
 import 'package:profile/src/presentation/widget/shared/settings_row.dart';
 
 class SettingsCard extends StatelessWidget {
-  const SettingsCard({
-    super.key,
-    required this.onLogout,
-  });
+  const SettingsCard({super.key, required this.onLogout});
 
   final VoidCallback onLogout;
 
@@ -17,7 +14,7 @@ class SettingsCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(color: UIColor.background),
+      decoration: BoxDecoration(color: UIColor.white),
       child: Column(
         children: [
           SettingsRow(title: context.profileTranslation.option.job),

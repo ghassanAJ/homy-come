@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:authentication/authentication.dart';
 import 'package:authentication/src/presentation/widgets/onboarding/onboarding_card.dart';
 import 'package:design_system/design_system.dart';
-import 'package:design_system/gen/assets.gen.dart';
 import 'package:util/util.dart';
 
 class AppIntroSlider extends StatefulWidget {
@@ -23,7 +22,7 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
   @override
   void initState() {
     super.initState();
-    _startAutoScroll();
+    // _startAutoScroll();
   }
 
   @override
@@ -91,17 +90,17 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
     final tr = context.loc<AuthenticationTranslation>();
     final pages = [
       _OnboardingData(
-        imagePath: Assets.images.onboarding1.path,
+        imagePath: Assets.icons.onboarding1,
         title: tr.onboarding.slide1Title,
         subtitle: tr.onboarding.slide1Subtitle,
       ),
       _OnboardingData(
-        imagePath: Assets.images.onboarding2.path,
+        imagePath: Assets.icons.onboarding2,
         title: tr.onboarding.slide2Title,
         subtitle: tr.onboarding.slide2Subtitle,
       ),
       _OnboardingData(
-        imagePath: Assets.images.onboarding3.path,
+        imagePath: Assets.icons.onboarding3,
         title: tr.onboarding.slide3Title,
         subtitle: tr.onboarding.slide3Subtitle,
       ),

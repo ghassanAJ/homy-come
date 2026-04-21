@@ -19,6 +19,7 @@ class ContentCardStatusOrder extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: UI.spacing.md),
           child: OrderCleanerInfoWidget(
+            image: item.provider.image ?? '',
             name: item.provider.name,
             rating: item.provider.rating,
           ),

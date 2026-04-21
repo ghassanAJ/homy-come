@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../tokens/colors.dart';
@@ -174,13 +175,18 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
     final Widget effectiveTitle =
         titleWidget ??
         Text(
-          title!,
+          title ?? '',
           style: UI.text.h4.copyWith(color: effectiveForegroundColor),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         );
 
     return AppBar(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Colors.black, // background color
+        statusBarIconBrightness: Brightness.light, // icons = white
+        statusBarBrightness: Brightness.dark, // for iOS
+      ),
       backgroundColor: effectiveBackgroundColor,
       surfaceTintColor: UIColor.primary,
       leading: _buildLeading(context),

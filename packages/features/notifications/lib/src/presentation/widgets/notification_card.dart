@@ -18,41 +18,27 @@ class NotificationCard extends StatelessWidget {
                 : Colors.transparent,
         borderRadius: BorderRadius.circular(UI.radius.xs),
       ),
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            Icons.notifications_outlined,
-            size: 18,
-            color: item.isHighlighted ? UIColor.neutral850 : UIColor.neutral450,
+          UIText.bodyMedium(
+            item.title,
+            fontWeight: FontWeight.w500,
+            color: UIColor.neutral950,
+            fontFamily: UIFontFamily.poppins,
           ),
-          SizedBox(width: UI.spacing.xs),
-
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                UIText.bodyMedium(
-                  item.title,
-                  fontWeight: FontWeight.w500,
-                  color: UIColor.neutral950,
-                  fontFamily: UIFontFamily.poppins,
-                ),
-                SizedBox(height: UI.spacing.xxs),
-                UIText.bodyXSmall(
-                  item.description,
-                  color: UIColor.neutral450,
-                  fontFamily: UIFontFamily.poppins,
-                  maxLines: 2,
-                ),
-                SizedBox(height: UI.spacing.xxs),
-                UIText.bodyXSmall(
-                  item.timeAgo,
-                  color: UIColor.neutral450,
-                  fontFamily: UIFontFamily.poppins,
-                ),
-              ],
-            ),
+          SizedBox(height: UI.spacing.xxs),
+          UIText.bodyXSmall(
+            item.description,
+            color: UIColor.neutral450,
+            fontFamily: UIFontFamily.poppins,
+            maxLines: 2,
+          ),
+          SizedBox(height: UI.spacing.xxs),
+          UIText.bodyXSmall(
+            item.timeAgo,
+            color: UIColor.neutral450,
+            fontFamily: UIFontFamily.poppins,
           ),
         ],
       ),

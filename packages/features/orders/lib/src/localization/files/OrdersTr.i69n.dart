@@ -64,7 +64,7 @@ class TitleOrdersTr implements i69n.I69nMessageBundle {
   String get date => "Date";
   String get time => "Time";
   String get address => "Address";
-  String get myOrder => "my orders";
+  String get myOrder => "My bookings";
   String get orderDetails => "Order Details";
   String get serviceDetails => "Service Details";
   String get todaySchadule => "Today Schedule";

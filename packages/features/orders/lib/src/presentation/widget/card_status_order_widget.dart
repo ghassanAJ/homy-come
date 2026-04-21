@@ -29,6 +29,7 @@ class OrderStatusCardContent extends StatelessWidget {
           OrderNameAndStatusWidget(name: item.serviceType, status: item.status),
           const Divider(color: UIColor.bordarCard, height: 0.5),
           OrderCleanerInfoWidget(
+            image: item.provider.image ?? '',
             name: item.provider.name,
             rating: item.provider.rating,
           ),

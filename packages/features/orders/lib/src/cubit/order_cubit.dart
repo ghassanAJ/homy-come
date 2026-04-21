@@ -11,11 +11,10 @@ import 'package:orders/src/domain/useCase/get_order_details_use_case.dart';
 import 'package:orders/src/domain/useCase/get_today_schedule_use_case.dart';
 import 'package:orders/src/enum/filter_order_enum.dart';
 import 'package:util/util.dart';
-import 'package:util/src/base_cubit/base_state.dart';
 
 @injectable
 class OrderCubit extends BaseScreenCubit<OrderState> {
-  OrderCubit();//TODO : make cubit depend on useCases 
+  OrderCubit(); //TODO : make cubit depend on useCases
 
   Future<void> getOrders(FilterOrder filter) async {
     emit(state.copyWith(status: BaseCubitStatus.loading));
@@ -24,19 +23,13 @@ class OrderCubit extends BaseScreenCubit<OrderState> {
     result.fold(
       (orders) {
         final completed =
-            orders
-                .where((item) => item.status == FilterOrder.completed.name)
-                .toList();
+            orders.where((item) => item.status == 'Completed').toList();
 
         final inProgress =
-            orders
-                .where((item) => item.status == FilterOrder.in_progress.name)
-                .toList();
+            orders.where((item) => item.status == 'In Progress').toList();
 
         final scheduled =
-            orders
-                .where((item) => item.status == FilterOrder.scheduled.name)
-                .toList();
+            orders.where((item) => item.status == 'Scheduled').toList();
 
         emit(
           state.copyWith(
@@ -122,12 +115,9 @@ class OrderCubit extends BaseScreenCubit<OrderState> {
   }
 
   void getTodayScheduleOrders() async {
-
-    final currentData = state.data ?? const OrderState();
-
     emit(
       state.copyWith(
-        data: currentData.copyWith(
+        data: state.data?.copyWith(
           isLoadingTodayScheduleOrder: true,
           fetchTodayScheduleError: null,
         ),
@@ -161,9 +151,14 @@ class OrderCubit extends BaseScreenCubit<OrderState> {
   }
 
   void getOrderDetailsById(int id) async {
-      final currentData = state.data ?? const OrderState();
-    emit(state.copyWith(data: currentData.copyWith(isLoadingOrderDetailsById: true)));
-    var result = await diContainerOrder<GetOrderDetailsByIdUseCase>(param1: id)();
+    final currentData = state.data ?? const OrderState();
+    emit(
+      state.copyWith(
+        data: currentData.copyWith(isLoadingOrderDetailsById: true),
+      ),
+    );
+    var result =
+        await diContainerOrder<GetOrderDetailsByIdUseCase>(param1: id)();
     result.fold(
       (data) {
         emit(

@@ -5,3 +5,5 @@ export 'src/localization/order_localization_delegate.dart';
 export 'src/localization/order_localization_scope.dart';
 export 'src/navigation/route.dart';
 export 'src/presentation/screen/my_order_screen.dart';
+export 'src/presentation/screen/order_details.dart';
+export 'src/presentation/screen/today_schedule_screen.dart';

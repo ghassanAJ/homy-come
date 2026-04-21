@@ -1,11 +1,9 @@
-import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:driver/navigation/driver_navigation_config.dart';
 import 'package:driver/navigation/route.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:orders/orders.dart';
 import 'package:profile/profile.dart';
-import 'package:util/src/localization/localization_cubit.dart';
 
 /// Configuration for all app routes
 ///
@@ -39,55 +37,21 @@ class DriverAppRouteConfig {
         // Tasks tab
         // StatefulShellBranch(routes: [TaskRoute.router]),
         // Invest tab
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: DriverPaths.myTeam,
-              builder:
-                  (context, state) =>
-                      Scaffold(body: Center(child: Text('My Team'))),
-            ),
-          ],
-        ),
-
+        // StatefulShellBranch(
+        //   routes: [
+        //     GoRoute(
+        //       path: DriverPaths.myTeam,
+        //       builder:
+        //           (context, state) =>
+        //               Scaffold(body: Center(child: Text('My Team'))),
+        //     ),
+        //   ],
+        // ),
         StatefulShellBranch(
           routes: [
             GoRoute(
               path: DriverPaths.home,
-              builder:
-                  (context, state) => Scaffold(
-                    body: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('Home'),
-                          const SizedBox(height: 16),
-                          BlocBuilder<LocalizationCubit, Locale>(
-                            builder:
-                                (context, locale) => UIButton.primary(
-                                  label:
-                                      locale.languageCode == 'en'
-                                          ? 'العربية'
-                                          : 'English',
-                                  onPressed: () {
-                                    context
-                                        .read<LocalizationCubit>()
-                                        .toggleLanguage();
-                                  },
-                                ),
-                          ),
-                          const SizedBox(height: 16),
-                          UIButton.primary(
-                            label: 'logout',
-                            onPressed: () {
-                              context.read<AuthUserBloc>().add(Logout());
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+              builder: (context, state) => TodayScheduleScreen(),
             ),
           ],
         ),

@@ -1,18 +1,14 @@
-import 'dart:developer';
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:orders/orders.dart';
 import 'package:orders/src/cubit/order_cubit.dart';
 import 'package:orders/src/cubit/order_state.dart';
 import 'package:orders/src/data/models/res/today_schadule_model_response.dart';
-import 'package:orders/src/localization/order_localization_scope.dart';
-import 'package:orders/src/presentation/widget/order_error_widgert.dart';
-import 'package:orders/src/presentation/widget/shimmer_schedule_card.dart';
 import 'package:orders/src/presentation/widget/today_schecule_card.dart';
+import 'package:user/features/home/presentation/widgets/home/home_header.dart';
 
 class TodayScheduleScreen extends StatefulWidget {
   const TodayScheduleScreen({super.key});
@@ -31,113 +27,126 @@ class _TodayScheduleScreenState extends State<TodayScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => _orderCubit..getTodayScheduleOrders(),
-      child: Builder(
-        builder: (context) {
-          return RefreshIndicator(
-            onRefresh: () async {
-              BlocProvider.of<OrderCubit>(context).getTodayScheduleOrders();
-            },
-            child: UIScaffold(
-              body: CustomScrollView(
-                slivers: [
-                  UISliverAppBar(
-                    // TODO :delete app bar
-                    titleWidget: UIText.h4('Today’s Schedule'),
-                    centerTitle: true,
-                    variant: UISliverAppBarVariant.transparent,
-                  ),
-                  _buildSectionTitle(),
-                  SliverPadding(
-                    padding: EdgeInsets.fromLTRB(
-                      UI.spacing.md,
-                      0,
-                      UI.spacing.md,
-                      0,
-                    ),
-                    sliver: BlocSelector<
-                      OrderCubit,
-                      BaseState<OrderState>,
-                      TodayScheduleViewState
-                    >(
-                      builder: (context, state) {
-                       
-                        List<TodaySchaduleModelResponse> allData = state.orders;
+    return OrderLocalizationScope(
+      child: BlocProvider(
+        create: (context) => _orderCubit..getTodayScheduleOrders(),
+        child: Builder(
+          builder: (context) {
+            final state = _orderCubit.state;
+            return RefreshIndicator(
+              onRefresh: () async {
+                BlocProvider.of<OrderCubit>(context).getTodayScheduleOrders();
+              },
+              child: UIScaffold(
+                appBar: UIAppBar(
+                  titleWidget: HomeHeader(),
+                  automaticallyImplyLeading: false,
+                ),
+                body: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: UI.spacing.lg),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 24),
+                      UIText.bodyLarge(
+                        context.orderTr.title.todaySchadule,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      UIText.bodySmall(
+                        '${state.data?.todaySchaduleOrder.length} pickups',
+                      ),
+                      SizedBox(height: 24),
 
-                        if (state.isLoading == true) {
-                          return SliverToBoxAdapter(
-                            child: ShimmerScheduleOrderCard(),
-                          );
-                        } else if (state.error != null) {
-                          return SliverToBoxAdapter(
-                            child: OrdersErrorWidget(
-                              message: state.error ?? 'error',
-                              onTap: () {},
-                            ),
-                          );
-                        }
+                      Expanded(
+                        child: BlocSelector<
+                          OrderCubit,
+                          BaseState<OrderState>,
+                          TodayScheduleViewState
+                        >(
+                          builder: (context, state) {
+                            List<TodaySchaduleModelResponse> allData =
+                                state.orders;
 
-                        return SliverList.separated(
-                          itemBuilder:
-                              (context, i) => GestureDetector(
-                                onTap: () {
-                                  context.push(
-                                    OrderPaths.orderDetailswithid(
-                                      id: allData[i].id,
+                            // if (state.isLoading) {
+                            //   return SliverToBoxAdapter(
+                            //     child: ShimmerScheduleOrderCard(),
+                            //   );
+                            // } else if (state.error != null) {
+                            //   return SliverToBoxAdapter(
+                            //     child: OrdersErrorWidget(
+                            //       message: state.error ?? 'error',
+                            //       onTap: () {},
+                            //     ),
+                            //   );
+                            // }
+
+                            return GradientFadeStack(
+                              fadeTop: false,
+                              fadeBottom: true,
+                              fadeLeft: false,
+                              fadeRight: false,
+                              width: 60,
+                              child: ListView.separated(
+                                padding: EdgeInsets.only(top: 12, bottom: 150),
+                                itemBuilder:
+                                    (context, i) => GestureDetector(
+                                      onTap: () {
+                                        context.push(
+                                          OrderPaths.orderDetailswithid(
+                                            id: allData[i].id,
+                                          ),
+                                        );
+                                      },
+                                      child: TodayScheduleCard(
+                                        item: allData[i],
+                                      ),
                                     ),
-                                  );
-                                },
-                                child: TodayScheduleCard(item: allData[i]),
+                                separatorBuilder:
+                                    (context, _) =>
+                                        SizedBox(height: UI.spacing.sm),
+                                itemCount: allData.length,
                               ),
-                          separatorBuilder:
-                              (context, _) => SizedBox(height: UI.spacing.sm),
-                          itemCount: allData.length,
-                        );
-                      },
-                      selector: (state) {
-                        var data = state.data ?? OrderState();
-                        return TodayScheduleViewState(
-                          orders: data.todaySchaduleOrder,
-                          isLoading: data.isLoadingTodayScheduleOrder,
-                          error: data.fetchTodayScheduleError,
-                        );
-                      },
-                    ),
+                            );
+                          },
+                          selector: (state) {
+                            var data = state.data ?? OrderState();
+                            return TodayScheduleViewState(
+                              orders: data.todaySchaduleOrder,
+                              isLoading: data.isLoadingTodayScheduleOrder,
+                              error: data.fetchTodayScheduleError,
+                            );
+                          },
+                        ),
+                      ),
+                      // SizedBox(height: 150),
+                    ],
                   ),
-                ],
+                ),
+                withBackgroundGradient: true,
               ),
-              withBackgroundGradient: true,
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
 
-  SliverToBoxAdapter _buildSectionTitle() {
-    return SliverToBoxAdapter(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: UI.spacing.xl,
-          horizontal: UI.spacing.lg,
-        ),
-        child: BlocSelector<
-          OrderCubit,
-          BaseState<OrderState>,
-          List<TodaySchaduleModelResponse>
-        >(
-          builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                UIText.h4(context.orderTr.title.todaySchadule),
-                UIText.bodySmall('${state.length} pickups'),
-              ],
-            );
-          },
-          selector: (state) => (state.data ?? OrderState()).todaySchaduleOrder,
-        ),
+  Widget _buildSectionTitle() {
+    return Padding(
+      padding: EdgeInsets.all(UI.spacing.lg),
+      child: BlocSelector<
+        OrderCubit,
+        BaseState<OrderState>,
+        List<TodaySchaduleModelResponse>
+      >(
+        builder: (context, state) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [],
+          );
+        },
+        selector: (state) => state.data?.todaySchaduleOrder ?? [],
       ),
     );
   }

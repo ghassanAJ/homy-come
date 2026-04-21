@@ -19,7 +19,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBarTitle: context.profileTranslation.profile.myProfile,
       body: SingleChildScrollView(
         child: Padding(
-          padding: UI.padding.driverProfileContent(topInset: 19), //CHECK
+          padding: EdgeInsetsGeometry.symmetric(horizontal: 24, vertical: 0),
+          // UI.padding.driverProfileContent(topInset: 19), //CHECK
           child: Column(
             children: [
               HeaderCard(),

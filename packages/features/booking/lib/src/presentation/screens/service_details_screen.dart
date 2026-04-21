@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:booking/booking.dart';
 import 'package:booking/src/presentation/screens/base_booking_step.dart';
 import 'package:booking/src/presentation/screens/example_data.dart';
@@ -63,7 +61,6 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
         //         prev.serviceDetailsLoading != curr.serviceDetailsLoading ||
         //         prev.serviceDetails != curr.serviceDetails,
         builder: (context, state) {
-          log('selectedAddOnIds: ${state.selectedAddOns}');
           if (state.serviceDetailsLoading ||
               state.serviceDetails == null ||
               state.selectedAddOns.isEmpty) {
@@ -208,7 +205,6 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
                 data: item,
                 selected: state.selectedAddOns.contains(item),
                 onAddButtonPressed: () {
-                  log(item.id.toString());
                   context.read<BookingWizardBloc>().add(
                     ToggleAddOnFromServiceDetails(addOnId: item),
                   );

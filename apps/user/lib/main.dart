@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:booking/booking.dart';
+import 'package:flutter/services.dart';
 // import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:user/user_app.dart';
 
@@ -11,7 +12,13 @@ void main() async {
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-
+      SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(
+          statusBarColor: Colors.black, // background color
+          statusBarIconBrightness: Brightness.dark, // icons = white
+          statusBarBrightness: Brightness.dark, // for iOS
+        ),
+      );
       // Stripe.publishableKey = String.fromEnvironment(
       //   'API_KEY',
       //   defaultValue: 'mock',

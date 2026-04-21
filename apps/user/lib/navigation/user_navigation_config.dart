@@ -12,18 +12,18 @@ class UserNavigationConfig {
     (
       path: UserPaths.orders,
       label: tr.navigation.orders,
-      iconAsset: Assets.icons.navOrders,
+      iconAsset: Assets.icons.calendar,
     ),
     (
       path: UserPaths.home,
       label: tr.navigation.home,
       iconAsset: Assets.icons.navHome,
     ),
-    (
-      path: UserPaths.category,
-      label: tr.navigation.category,
-      iconAsset: Assets.icons.navCategory,
-    ),
+    // (
+    //   path: UserPaths.category,
+    //   label: tr.navigation.category,
+    //   iconAsset: Assets.icons.navCategory,
+    // ),
     (
       path: UserPaths.profile,
       label: tr.navigation.profile,

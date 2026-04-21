@@ -95,7 +95,7 @@ class NavigationUserTranslation implements i69n.I69nMessageBundle {
   final UserTranslation _parent;
   const NavigationUserTranslation(this._parent);
   String get search => "Search";
-  String get orders => "Orders";
+  String get orders => "Bookings";
   String get home => "Home";
   String get category => "Category";
   String get profile => "Profile";

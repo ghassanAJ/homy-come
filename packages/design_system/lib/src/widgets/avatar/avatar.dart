@@ -1,5 +1,7 @@
-import '../../tokens/colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import '../../tokens/colors.dart';
 import '../../ui.dart';
 
 /// Enum for avatar sizes
@@ -192,18 +194,18 @@ class Avatar extends StatelessWidget {
   Widget _buildAvatarContent() {
     // Try to load image from URL
     if (imageUrl != null && imageUrl!.isNotEmpty) {
-      return Image.network(
-        imageUrl!,
+      return CachedNetworkImage(
+        imageUrl: imageUrl!,
         width: _avatarSize,
         height: _avatarSize,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) {
-          return _buildPlaceholder();
-        },
-        loadingBuilder: (context, child, loadingProgress) {
-          if (loadingProgress == null) return child;
-          return _buildLoadingPlaceholder();
-        },
+        fit: BoxFit.contain,
+        // errorBuilder: (context, error, stackTrace) {
+        //   return _buildPlaceholder();
+        // },
+        // loadingBuilder: (context, child, loadingProgress) {
+        //   if (loadingProgress == null) return child;
+        //   return _buildLoadingPlaceholder();
+        // },
       );
     }
 

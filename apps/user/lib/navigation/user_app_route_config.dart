@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:notifications/notifications.dart';
 import 'package:orders/orders.dart';
 import 'package:profile/profile.dart';
-import 'package:user/features/home/presentation/screens/categories_screen.dart';
 import 'package:user/features/home/presentation/screens/search_screen.dart';
 import 'package:user/features/home/presentation/screens/services_screen.dart';
 import 'package:user/features/home/presentation/screens/stories_screen.dart';
@@ -117,14 +116,14 @@ class UserAppRouteConfig {
           ],
         ),
 
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              path: UserPaths.category,
-              builder: (context, state) => const CategoriesScreen(),
-            ),
-          ],
-        ),
+        // StatefulShellBranch(
+        //   routes: [
+        //     GoRoute(
+        //       path: UserPaths.category,
+        //       builder: (context, state) => const CategoriesScreen(),
+        //     ),
+        //   ],
+        // ),
 
         // Profile tab
         StatefulShellBranch(

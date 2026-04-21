@@ -1,6 +1,6 @@
 import 'package:booking/src/presentation/widgets/price_row_widget.dart';
-import 'package:booking/src/presentation/widgets/warning_section_widget.dart';
-import 'package:design_system/design_system.dart';
+
+import '../../../booking.dart';
 
 class ServiceDetailsSummaryScreen extends StatelessWidget {
   const ServiceDetailsSummaryScreen({super.key, required this.id});
@@ -24,7 +24,7 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  UIText.h4('Service Details', color: UIColor.balck),
+                  UIText.h4('Booking Details', color: UIColor.balck),
                   SizedBox(height: UI.spacing.sm),
                   Container(
                     width: double.infinity,
@@ -137,11 +137,11 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(
                                   UI.radius.md,
                                 ),
-                                child: Container(
+                                child: UIImage(
+                                  Assets.images.locationImage.path,
+                                  fit: BoxFit.cover,
                                   height: 72,
-                                  width: double.infinity,
-                                  color: UIColor.neutral100,
-                                  alignment: Alignment.center,
+                                  wigth: double.infinity,
                                 ),
                               ),
                             ],
@@ -160,12 +160,11 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
                 ],
               ),
             ),
-            WaringSectionWidget(),
+            CancellationSection(),
           ],
         ),
       ),
-
-      bottomNavigationBar: SummaryBottomBar(),
+      floatingActionButton: SummaryBottomBar(),
     );
   }
 }
@@ -178,24 +177,85 @@ class SummaryBottomBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
+          InkWell(
+            onTap: () {
+              showReasons(context);
+            },
             child: UIText.bodyMedium(
               'Cancel Service',
               color: UIColor.balck,
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(width: UI.spacing.md),
-          Expanded(
-            child: UIButton.primary(
-              label: 'Done',
-              expanded: true,
-              onPressed: () {},
-            ),
-          ),
+          // BlocConsumer<OrderCubit, ToastificationUtil.BaseState<OrderState>>(
+          //   listener: (context, state) {
+          //     final data = state.data;
+
+          //     if (data?.isCancelOrderLoading == true) {
+          //       DialogsManager.showLoading(context);
+          //     }
+
+          //     if (data?.isCancelOrderLoading == false &&
+          //         (data?.isOrderCancelled == true ||
+          //             data?.cancelOrderError != null)) {
+          //       DialogsManager.hideLoading(context);
+          //     }
+          //     if (data?.isOrderCancelled == true &&
+          //         data?.isCancelOrderLoading == false) {
+          //       ToastificationUtil.success('Order cancelled successfully');
+          //     }
+          //   },
+          //   builder: (context, state) {
+          //     return InkWell(
+          //       onTap: () {
+          //         showReasons(context);
+          //       },
+          //       child: UIText.bodyMedium(
+          //         'Cancel Service',
+          //         color: UIColor.balck,
+          //         textAlign: TextAlign.center,
+          //       ),
+          //     );
+          //   },
+          // ),
+
+          // SizedBox(width: UI.spacing.md),
+          // Expanded(
+          //   child: UIButton.primary(
+          //     label: 'Done',
+          //     expanded: true,
+          //     onPressed: () {},
+          //   ),
+          // ),
         ],
       ),
     );
+  }
+
+  Future<void> showReasons(BuildContext context) async {
+    final result =
+        await BottomSheetManager.showReasonsRejectionBottomSheet<String>(
+          context,
+          title: 'Cancel Booking',
+          description: 'Please select a reason for cancellation',
+          reasons: const [
+            'Service price is not suitable',
+            'Change my mind',
+            'Booked by mistake',
+            'Other',
+          ],
+        );
+
+    if (result != null) {
+      // context.read<OrderCubit>().cancelOrder(
+      //   item.id,
+      //   item.status == "scheduled"
+      //       ? FilterOrder.scheduled
+      //       : FilterOrder.in_progress,
+      //   result,
+      // );
+    }
   }
 }

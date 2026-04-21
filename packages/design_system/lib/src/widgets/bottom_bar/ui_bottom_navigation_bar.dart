@@ -30,8 +30,8 @@ class UiBottomNavigationBar extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: UIColor.black.withValues(alpha: 0.1),
-            blurRadius: 14.6,
+            color: UIColor.black.withValues(alpha: 0.2),
+            blurRadius: 20.6,
             offset: const Offset(0, 4),
           ),
         ],

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -136,10 +138,10 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
 
   Future<void> _sendOTP(SendOTP event, Emitter<AuthUserState> emit) async {
     emit(AuthUserStateLoading());
-
     final response = await _authRepository.sendOTP(
       event.request.copyWith(role: _userRole),
     );
+
     emit(
       response.fold(
         (data) => AuthUserStateOTPSent(
@@ -149,6 +151,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
         (error) => AuthUserStateError(error, AuthUserErrorStateType.sendOTP),
       ),
     );
+    log(' afree response $response ');
   }
 
   Future<void> _unifiedVerifyOTP(
