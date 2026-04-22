@@ -1,7 +1,6 @@
 import 'package:booking/booking.dart';
 import 'package:go_router/go_router.dart';
 import 'package:user/features/home/presentation/widgets/shared/base_category_item.dart';
-import 'package:user/features/home/presentation/widgets/shared/categories_search_field.dart';
 import 'package:user/navigation/route.dart';
 import 'package:util/util.dart';
 
@@ -21,12 +20,9 @@ class CategoriesScrollViewContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: UI.padding
-            .userSearchBottomSectionContent(bottomInset: 110 + bottomSafeArea)
-            .copyWith(top: UI.spacing.md),
+        padding: EdgeInsetsGeometry.symmetric(horizontal: 24),
         child: Column(
           children: [
-            CategoriesSearchField(controller: searchController),
             SizedBox(height: UI.spacing.lg),
             ..._buildCategoryItems(context, categories),
           ],

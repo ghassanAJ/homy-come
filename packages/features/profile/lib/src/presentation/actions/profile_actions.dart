@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 
 final class ProfileActions {
@@ -21,11 +22,37 @@ final class ProfileActions {
   }
 
   static Future<void> onLogoutPressed(BuildContext context) async {
-    final isConfirmed = await _showDestructiveConfirmation(
-      context: context,
-      title: context.profileTranslation.option.logout,
-      description:
-          context.profileTranslation.driverProfile.logoutConfirmDescription,
+    final isConfirmed = await UIBottomSheet.show(
+      context: StatefulNavigationShell.of(context).context,
+      content: SizedBox(
+        width: double.infinity,
+        child: Column(
+          children: [
+            UIText.bodyLarge('Logout', fontWeight: FontWeight.w600),
+            SizedBox(height: 8),
+            UIText.bodySmall(
+              'Are you sure to logout?',
+              color: UIColor.neutral500,
+            ),
+            SizedBox(height: 16),
+            UIButton.primary(
+              expanded: true,
+              label: 'Stay logged in',
+              onPressed: () {
+                context.pop();
+              },
+            ),
+            SizedBox(height: 16),
+            GestureDetector(
+              onTap: () {},
+              child: UIText.bodySmall(
+                'Confirm logout',
+                color: UIColor.iconsAvaterRed,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
 
     if (!context.mounted || !isConfirmed) return;

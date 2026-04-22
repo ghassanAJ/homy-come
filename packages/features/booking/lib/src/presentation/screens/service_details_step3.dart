@@ -104,10 +104,10 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
                   SizedBox(height: UI.spacing.lg),
 
                   ProvidersSection(state: state),
-                  SizedBox(height: UI.spacing.md),
 
-                  // const FrequencySection(),
-                  //SizedBox(height: UI.spacing.lg),
+                  // SizedBox(height: UI.spacing.md),
+                  const FrequencySection(),
+                  SizedBox(height: UI.spacing.sm),
                   DateSection(state: state),
                   SizedBox(height: UI.spacing.md),
 
@@ -255,7 +255,22 @@ class DateSection extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsetsDirectional.symmetric(horizontal: 16.0),
-          child: UIText.h6('Select date & time please'),
+          child: UIText.h6('Select date & time please', fontSize: 14),
+        ),
+        SizedBox(height: 12),
+        GestureDetector(
+          onTap: () {
+            // showDatePicker(context: context, firstDate: firstDate, lastDate: lastDate)
+          },
+          child: Padding(
+            padding: const EdgeInsetsDirectional.symmetric(horizontal: 16.0),
+            child: Row(
+              children: [
+                UIText.h6('September 2025', fontSize: 14),
+                Icon(Icons.keyboard_arrow_down_rounded),
+              ],
+            ),
+          ),
         ),
         SizedBox(height: UI.spacing.sm),
 
@@ -339,12 +354,13 @@ class SlotsShimmarWidget extends StatelessWidget {
         crossAxisCount: 3,
         mainAxisSpacing: 3,
         crossAxisSpacing: 3,
-        childAspectRatio: 2.9,
+        childAspectRatio: 3.5,
       ),
       children: [
         ...List.generate(
           9,
           (index) => ShimmerBox(
+            border: Border.all(color: UIColor.border),
             width: 40,
             height: 1,
             radius: 24,
@@ -421,16 +437,51 @@ class FrequencySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox();
+    return Container(
+      margin: EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: UIColor.babyPink,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: UIColor.pink),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              UIText.bodyBold('Frequency'),
+              InkWell(
+                onTap: () {
+                  UIBottomSheet.show(
+                    context: context,
+                    content: FrequencyChangeSheetContent(
+                      initialValue: FrequencyType.oneTime,
+                      onSubmit: (value) {},
+                    ),
+                  );
+                },
+                child: UIText.bodyBold('Change', color: UIColor.babyBlue),
+              ),
+            ],
+          ),
+          SizedBox(height: 14),
+          ElevatedButton(
+            onPressed: () {},
 
-    // FrequencyWidget(
-    //   onFrequencySelected: () {
-    //     UIBottomSheet.show(
-    //       context: context,
-    //       content: const FrequencyChangeSheetContent(),
-    //     );
-    //   },
-    // );
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+              backgroundColor: UIColor.pink,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadiusGeometry.circular(12),
+              ),
+            ),
+            child: UIText.bodyBold('Repeats Bi-week', color: UIColor.white),
+          ),
+        ],
+      ),
+    );
   }
 }
 

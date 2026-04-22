@@ -33,7 +33,6 @@ class ProviderAvatarItem extends StatelessWidget {
                 clipBehavior: Clip.none,
                 alignment: Alignment.bottomRight,
                 children: [
-                  // 👤 Avatar with animated border
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
                     curve: Curves.easeOut,
@@ -119,7 +118,12 @@ class ProviderAvatarItem extends StatelessWidget {
                 color: UIColor.balck,
                 fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
               ),
-              child: Text(name, maxLines: 1, overflow: TextOverflow.ellipsis),
+              child: UIText.bodySmall(
+                name,
+                maxLines: 1,
+                fontWeight: selected ? FontWeight.w600 : null,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
 
             Row(

@@ -49,6 +49,7 @@ class StepNavigationBar extends StatelessWidget {
         )
         : Container(
           width: double.infinity,
+          margin: EdgeInsets.symmetric(vertical: UI.spacing.md, horizontal: 12),
           padding: EdgeInsets.all(UI.spacing.md),
           decoration: BoxDecoration(
             color: UIColor.background,

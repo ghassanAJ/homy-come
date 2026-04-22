@@ -7,11 +7,19 @@ import 'package:booking/src/presentation/widgets/step_navigation_bar.dart';
 import 'package:rect_getter/rect_getter.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:user/features/home/presentation/screens/services_screen.dart';
+import 'package:util/util.dart';
 
 class ServiceDetailsScreen extends StatefulWidget {
-  const ServiceDetailsScreen({required this.serviceId, super.key});
+  const ServiceDetailsScreen({
+    required this.serviceId,
+    super.key,
+    this.discountCode,
+    this.discountPercentage,
+  });
 
   final String serviceId;
+  final String? discountCode;
+  final double? discountPercentage;
 
   @override
   _ServiceDetailsScreenState createState() => _ServiceDetailsScreenState();
@@ -53,6 +61,23 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      bottomSheet:
+          widget.discountCode == null
+              ? null
+              : BlocBuilder<BookingWizardBloc, BookingWizardState>(
+                // buildWhen:
+                //     (prev, curr) =>
+                //         prev.serviceDetailsLoading != curr.serviceDetailsLoading ||
+                //         prev.serviceDetails != curr.serviceDetails,
+                builder: (context, state) {
+                  if (state.serviceDetailsLoading ||
+                      state.serviceDetails == null ||
+                      state.selectedAddOns.isNotEmpty) {
+                    return const SizedBox.shrink();
+                  }
+                  return _buildVoucherBottomSheet();
+                },
+              ),
       backgroundColor: UIColor.background,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: BlocBuilder<BookingWizardBloc, BookingWizardState>(
@@ -135,14 +160,55 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
                     controller: scrollController,
                     slivers: [
                       buildAppBar(data),
+                      SliverToBoxAdapter(child: SizedBox(height: 12)),
+                      if (state.serviceDetails?.discountCode != null &&
+                          state.serviceDetails?.discountPercentage != null &&
+                          widget.discountCode == null)
+                        SliverToBoxAdapter(
+                          child: ApplyOfferLabelWidget(
+                            discountCode: state.serviceDetails!.discountCode!,
+                            discountPercentage:
+                                state.serviceDetails!.discountPercentage!,
+                          ),
+                        ),
                       buildBody(data, state),
-                      SliverToBoxAdapter(child: SizedBox(height: 18)),
+                      SliverToBoxAdapter(child: SizedBox(height: 150)),
                     ],
                   ),
                 ),
               )
               : const SizedBox.shrink();
         },
+      ),
+    );
+  }
+
+  Container _buildVoucherBottomSheet() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+      decoration: BoxDecoration(color: UIColor.babyPink),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.discount),
+          SizedBox(width: 8),
+          Expanded(
+            child: Text.rich(
+              TextSpan(
+                text: widget.discountCode,
+                style: UI.text.bodySmall.copyWith(fontWeight: FontWeight.w600),
+                children: [
+                  TextSpan(
+                    style: UI.text.bodySmall,
+                    text:
+                        ' voucher code is ready, please select one or more oe options from the list to get this voucher code applied!',
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -269,5 +335,60 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
     scrollController
         .scrollToIndex(index, preferPosition: AutoScrollPosition.begin)
         .then((_) => pauseRectGetterIndex = false);
+  }
+}
+
+class ApplyOfferLabelWidget extends StatelessWidget {
+  const ApplyOfferLabelWidget({
+    super.key,
+    required this.discountCode,
+    required this.discountPercentage,
+  });
+
+  final String discountCode;
+  final double discountPercentage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: EdgeInsets.symmetric(horizontal: 24),
+      // height: 100,
+      decoration: BoxDecoration(
+        color: UIColor.babyPink,
+        border: Border.all(color: UIColor.pink),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Icon(Icons.discount_outlined),
+          SizedBox(width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Icon(Icons),
+              UIText.bodyBold('$discountPercentage% Off'),
+              UIText.bodySmall('Code: $discountCode'),
+            ],
+          ),
+          Spacer(),
+          ElevatedButton(
+            onPressed: () {
+              ToastificationUtil.success('Your voucher code is applied!');
+            },
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+              backgroundColor: UIColor.pink,
+            ),
+            child: UIText.bodySmall(
+              'Apply',
+              color: UIColor.black,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -5,10 +5,14 @@ class UIChipWidget extends StatelessWidget {
     required this.title,
     required this.isSelected,
     required this.onTap,
+    this.selectedBackgroundColor,
+    this.borderColor,
     super.key,
   });
 
   final String title;
+  final UIColor? selectedBackgroundColor;
+  final UIColor? borderColor;
   final bool isSelected;
   final VoidCallback onTap;
 
@@ -19,12 +23,15 @@ class UIChipWidget extends StatelessWidget {
       child: Container(
         padding: UI.padding.userSearchChipContent,
         decoration: BoxDecoration(
-          color: UIColor.white,
+          color:
+              isSelected
+                  ? selectedBackgroundColor ?? UIColor.white
+                  : UIColor.white,
           borderRadius: BorderRadius.circular(UI.radius.full),
           border: Border.all(
             color:
                 isSelected
-                    ? UIColor.neutral100.withValues(alpha: 0.3)
+                    ? borderColor ?? UIColor.neutral100.withValues(alpha: 0.3)
                     : UIColor.neutral100.withValues(alpha: 0.9),
             width: 1,
           ),

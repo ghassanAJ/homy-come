@@ -78,6 +78,7 @@ class AppProviders extends StatelessWidget {
                   diContainer.get<HomeBloc>()
                     ..add(LoadHomeContentEvent())
                     ..add(LoadOffersEvent())
+                    ..add(LoadStoriesEvent())
                     ..add(LoadSlidersEvent()),
         ),
         BlocProvider.value(value: diContainer.get<AppCubit>()),

@@ -18,12 +18,14 @@ class CategoriesSearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppTextField(
       onTap: onTap,
+      hideBorder: true,
       readOnly: readOnly,
       borderRadius: BorderRadius.circular(UI.radius.xl),
       controller: controller,
       placeholder: placeholder,
       showClearButton: false,
       isFlat: true,
+
       contentPadding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
 
       prefixIcon:

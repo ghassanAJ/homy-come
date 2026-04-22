@@ -36,6 +36,8 @@ Map<String, dynamic> _$HomeResponseModelToJson(_HomeResponseModel instance) =>
 
 _OfferModel _$OfferModelFromJson(Map<String, dynamic> json) => _OfferModel(
   imageUrl: json['image_url'] as String?,
+  discountPercentage: (json['discount_percentage'] as num).toDouble(),
+  discountCode: json['discount_code'] as String,
   service:
       json['service'] == null
           ? null
@@ -47,5 +49,7 @@ _OfferModel _$OfferModelFromJson(Map<String, dynamic> json) => _OfferModel(
 Map<String, dynamic> _$OfferModelToJson(_OfferModel instance) =>
     <String, dynamic>{
       'image_url': instance.imageUrl,
+      'discount_percentage': instance.discountPercentage,
+      'discount_code': instance.discountCode,
       'service': instance.service,
     };

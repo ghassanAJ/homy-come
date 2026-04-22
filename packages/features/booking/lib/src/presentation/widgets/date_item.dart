@@ -20,6 +20,7 @@ class DateItemWidget extends StatelessWidget {
       onTap: onTap,
       child: SizedBox(
         width: UI.sizes.avatarLg,
+
         child: Column(
           children: [
             Container(
@@ -40,7 +41,7 @@ class DateItemWidget extends StatelessWidget {
               ),
             ),
             SizedBox(height: UI.spacing.xxs),
-            UIText.bodyMediumRoboto(weekDay, color: UIColor.balck),
+            Expanded(child: UIText.bodyMedium(weekDay, color: UIColor.balck)),
           ],
         ),
       ),

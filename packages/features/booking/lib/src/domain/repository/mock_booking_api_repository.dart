@@ -201,6 +201,8 @@ final ServiceDetailsResponseModel _mockServiceDetails =
       id: int.parse('1'),
       rating: 5,
       reviewsCount: 331,
+      discountCode: 'CHFd777',
+      discountPercentage: 30,
       info: InfoModel(
         id: 2,
         name: 'Home Deep Cleaning',

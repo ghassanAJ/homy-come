@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'colors.dart';
 
 /// Shadow tokens for the design system
@@ -10,62 +11,57 @@ class UIShadows {
   /// Small shadow - subtle elevation
   ///
   /// Usage: Cards, buttons
-  /// 
-     List<BoxShadow> get xxs => [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.06),
-          offset: const Offset(0, -1),
-          blurRadius: 4,
-          spreadRadius: 0,
-        ),
-      ];
+  ///
+  List<BoxShadow> get xxs => [
+    BoxShadow(
+      color: Colors.black.withValues(alpha: 0.06),
+      offset: const Offset(0, -1),
+      blurRadius: 4,
+      spreadRadius: 0,
+    ),
+  ];
 
-
-
-
-   List<BoxShadow> get xs => [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.06),
-          offset: const Offset(0, 2),
-          blurRadius: 16,
-          spreadRadius: 0,
-        ),
-      ];
-
-
+  List<BoxShadow> get xs => [
+    BoxShadow(
+      color: Colors.black.withValues(alpha: 0.06),
+      offset: const Offset(0, 2),
+      blurRadius: 16,
+      spreadRadius: 0,
+    ),
+  ];
 
   List<BoxShadow> get sm => [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.1),
-          offset: const Offset(0, 4),
-          blurRadius: 4,
-          spreadRadius: 0,
-        ),
-      ];
+    BoxShadow(
+      color: Colors.black.withValues(alpha: 0.1),
+      offset: const Offset(0, 4),
+      blurRadius: 4,
+      spreadRadius: 0,
+    ),
+  ];
 
   /// Medium shadow - moderate elevation
   ///
   /// Usage: Dropdowns, modals
   List<BoxShadow> get md => [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.1),
-          offset: const Offset(0, 4),
-          blurRadius: 12,
-          spreadRadius: 0,
-        ),
-      ];
+    BoxShadow(
+      color: Colors.black.withValues(alpha: 0.1),
+      offset: const Offset(0, 4),
+      blurRadius: 12,
+      spreadRadius: 0,
+    ),
+  ];
 
   /// Large shadow - high elevation
   ///
   /// Usage: Dialogs, floating action buttons
   List<BoxShadow> get lg => [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.15),
-          offset: const Offset(0, 8),
-          blurRadius: 24,
-          spreadRadius: 0,
-        ),
-      ];
+    BoxShadow(
+      color: Colors.black.withValues(alpha: 0.15),
+      offset: const Offset(0, 8),
+      blurRadius: 24,
+      spreadRadius: 0,
+    ),
+  ];
 
   /// Input field shadow - default/resting state
   ///
@@ -77,33 +73,32 @@ class UIShadows {
   /// Usage: Text input fields in default state
   /// Subtle shadow for visual depth
   List<BoxShadow> get input => [
-        BoxShadow(
-          color: UIColor.shadow.withValues(alpha: 0.05),
-          offset: const Offset(0, 1),
-          blurRadius: 2,
-          spreadRadius: 0,
-        ),
-      ];
+    BoxShadow(
+      color: UIColor.shadow.withValues(alpha: 0.05),
+      offset: const Offset(0, 1),
+      blurRadius: 2,
+      spreadRadius: 0,
+    ),
+  ];
 
   /// Input field shadow - focused state
   ///
   /// Usage: Text input fields when focused
   /// More prominent shadow for emphasis (enhanced from default)
   List<BoxShadow> get inputFocused => [
-        BoxShadow(
-          color: UIColor.shadow.withValues(alpha: 0.08),
-          offset: const Offset(0, 2),
-          blurRadius: 8,
-          spreadRadius: 0,
-        ),
-      ];
-
+    BoxShadow(
+      color: UIColor.shadow.withValues(alpha: 0.08),
+      offset: const Offset(0, 2),
+      blurRadius: 8,
+      spreadRadius: 0,
+    ),
+  ];
 
   List<BoxShadow> get cardMd => [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 44,
-                offset: const Offset(0, 4),
-              ),
-      ];
+    BoxShadow(
+      color: Colors.black.withOpacity(0.3),
+      blurRadius: 44,
+      offset: const Offset(0, 4),
+    ),
+  ];
 }

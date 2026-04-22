@@ -29,14 +29,14 @@ class BookingStepAppBar extends UIAppBar {
         children: [
           Text(
             step == BookingWizardStep.summary ? 'Summary' : title,
-            style: UI.text.h4.copyWith(
+            style: UI.text.bodyMedium.copyWith(
               fontWeight: FontWeight.bold,
-              fontSize: 18,
+              // fontSize: 18,
               color: UIColor.balck,
             ),
           ),
           if (step != BookingWizardStep.summary)
-            UIText.bodyMedium(
+            UIText.bodySmall(
               'Step ${getStepNUmber(step)} of 3',
               color: UIColor.textSecondary,
             ),

@@ -17,6 +17,7 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
         LoadHomeContentEvent() => _loadCategories(event, emit),
         LoadSlidersEvent() => _loadSliders(event, emit),
         LoadOffersEvent() => _loadOffers(event, emit),
+        LoadStoriesEvent() => _loadStories(event, emit),
         LoadSearchContentEvent() => _loadSearchContent(event, emit),
         LoadServiceDetailsEvent() => _loadServiceDetails(event, emit),
         LoadCategoryServicesEvent() => _loadCategoryServices(event, emit),
@@ -208,6 +209,31 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
       ),
       (error) =>
           emit(state.copyWith(error: error, status: HomeBlocStatus.error)),
+    );
+  }
+
+  Future<void> _loadStories(
+    HomeBlocEvent event,
+    Emitter<HomeBlocState> emit,
+  ) async {
+    emit(state.copyWith(storiesLoading: true));
+    final result = await _homeRepository.getStories();
+    result.fold(
+      (data) => emit(
+        state.copyWith(
+          stories: data,
+          storiesLoading: false,
+          status: HomeBlocStatus.success,
+          error: null,
+        ),
+      ),
+      (error) => emit(
+        state.copyWith(
+          error: error,
+          storiesLoading: false,
+          status: HomeBlocStatus.error,
+        ),
+      ),
     );
   }
 }

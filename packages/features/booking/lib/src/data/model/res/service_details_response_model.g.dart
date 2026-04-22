@@ -12,6 +12,8 @@ _ServiceDetailsResponseModel _$ServiceDetailsResponseModelFromJson(
   id: (json['id'] as num).toInt(),
   rating: (json['rating'] as num?)?.toInt(),
   reviewsCount: (json['reviews_count'] as num?)?.toInt(),
+  discountPercentage: (json['discount_percentage'] as num?)?.toDouble(),
+  discountCode: json['discount_code'] as String?,
   info: InfoModel.fromJson(json['info'] as Map<String, dynamic>),
   price: ServicePriceModel.fromJson(json['price'] as Map<String, dynamic>),
   addonCategories:
@@ -27,6 +29,8 @@ Map<String, dynamic> _$ServiceDetailsResponseModelToJson(
   'id': instance.id,
   'rating': instance.rating,
   'reviews_count': instance.reviewsCount,
+  'discount_percentage': instance.discountPercentage,
+  'discount_code': instance.discountCode,
   'info': instance.info,
   'price': instance.price,
   'add_on_categories': instance.addonCategories,

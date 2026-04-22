@@ -18,7 +18,9 @@ class HomeCategoriesRow extends StatelessWidget {
         children: [
           for (var index = 0; index < items.length; index++)
             Padding(
-              padding: UI.padding.userHomeItemStartAndEnd(isFirst: index == 0),
+              padding:
+              // EdgeInsets.zero,
+              UI.padding.userHomeItemStartAndEnd(isFirst: index == 0),
               child: BaseCategoryItem(
                 onTap: () => _handleCategoryTap(context, items[index]),
                 title: items[index].info.name,

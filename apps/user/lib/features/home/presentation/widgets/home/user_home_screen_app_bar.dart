@@ -8,6 +8,7 @@ import 'package:user/di/di_container.dart';
 import 'package:user/features/home/presentation/screens/set_location_screen.dart';
 import 'package:user/features/home/presentation/widgets/home/home_header.dart';
 import 'package:user/features/home/presentation/widgets/shared/categories_search_field.dart';
+import 'package:user/navigation/route.dart';
 
 class HomeScreenAppBar extends StatefulWidget {
   final bool isCollapsed;
@@ -125,13 +126,10 @@ class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        size: 16,
-                                        color: UIColor.neutral400,
-                                      ),
+                                    Icon(
+                                      Icons.keyboard_arrow_down_rounded,
+                                      size: 16,
+                                      color: UIColor.neutral400,
                                     ),
                                   ],
                                 ),
@@ -139,13 +137,10 @@ class _HomeScreenAppBarState extends State<HomeScreenAppBar> {
                               SizedBox(height: UI.spacing.xs),
                               CategoriesSearchField(
                                 withIcon: false,
-                                placeholder: 'search for a srevice',
+                                placeholder: 'Search for a srevice',
                                 controller: TextEditingController(),
                                 readOnly: true,
-                                // onTap:
-                                //     () => diContainer.get<CustomRouter>().push(
-                                //       UserPaths.services,
-                                //     ),
+                                onTap: () => context.push(UserPaths.search),
                               ),
                             ],
                           ),

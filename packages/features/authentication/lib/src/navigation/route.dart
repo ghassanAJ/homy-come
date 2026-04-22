@@ -1,6 +1,6 @@
 import 'package:authentication/authentication.dart';
 import 'package:authentication/src/localization/auth_localization_scope.dart';
-import 'package:authentication/src/presentation/screens/onboarding/splash_screen.dart';
+import 'package:authentication/src/presentation/screens/onboarding/animated_splash_screen.dart';
 import 'package:design_system/design_system.dart';
 import 'package:go_provider/go_provider.dart';
 import 'package:go_router/go_router.dart';
@@ -36,7 +36,7 @@ class AuthenticationRoute {
       routes: [
         GoRoute(
           path: AuthenticationPaths.splash,
-          builder: (context, state) => const SplashScreen(),
+          builder: (context, state) => const MyCustomWidget(),
         ),
         GoRoute(
           path: AuthenticationPaths.onboarding,

@@ -10,6 +10,8 @@ abstract class ServiceDetailsResponseModel with _$ServiceDetailsResponseModel {
     required int id,
     required int? rating,
     @JsonKey(name: 'reviews_count') required int? reviewsCount,
+    @JsonKey(name: 'discount_percentage') double? discountPercentage,
+    @JsonKey(name: 'discount_code') String? discountCode,
     required InfoModel info,
     required ServicePriceModel price,
     @JsonKey(name: 'add_on_categories')

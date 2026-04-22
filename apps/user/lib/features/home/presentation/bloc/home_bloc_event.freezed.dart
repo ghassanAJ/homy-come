@@ -55,13 +55,14 @@ extension HomeBlocEventPatterns on HomeBlocEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( LoadHomeContentEvent value)?  loadCategories,TResult Function( LoadSlidersEvent value)?  loadSliders,TResult Function( LoadOffersEvent value)?  loadOffers,TResult Function( LoadCategoryServicesEvent value)?  loadCategoryServices,TResult Function( LoadServiceDetailsEvent value)?  loadServiceDetails,TResult Function( LoadSearchContentEvent value)?  loadSearchContent,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( LoadHomeContentEvent value)?  loadCategories,TResult Function( LoadSlidersEvent value)?  loadSliders,TResult Function( LoadOffersEvent value)?  loadOffers,TResult Function( LoadStoriesEvent value)?  loadStories,TResult Function( LoadCategoryServicesEvent value)?  loadCategoryServices,TResult Function( LoadServiceDetailsEvent value)?  loadServiceDetails,TResult Function( LoadSearchContentEvent value)?  loadSearchContent,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case LoadHomeContentEvent() when loadCategories != null:
 return loadCategories(_that);case LoadSlidersEvent() when loadSliders != null:
 return loadSliders(_that);case LoadOffersEvent() when loadOffers != null:
-return loadOffers(_that);case LoadCategoryServicesEvent() when loadCategoryServices != null:
+return loadOffers(_that);case LoadStoriesEvent() when loadStories != null:
+return loadStories(_that);case LoadCategoryServicesEvent() when loadCategoryServices != null:
 return loadCategoryServices(_that);case LoadServiceDetailsEvent() when loadServiceDetails != null:
 return loadServiceDetails(_that);case LoadSearchContentEvent() when loadSearchContent != null:
 return loadSearchContent(_that);case _:
@@ -82,13 +83,14 @@ return loadSearchContent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( LoadHomeContentEvent value)  loadCategories,required TResult Function( LoadSlidersEvent value)  loadSliders,required TResult Function( LoadOffersEvent value)  loadOffers,required TResult Function( LoadCategoryServicesEvent value)  loadCategoryServices,required TResult Function( LoadServiceDetailsEvent value)  loadServiceDetails,required TResult Function( LoadSearchContentEvent value)  loadSearchContent,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( LoadHomeContentEvent value)  loadCategories,required TResult Function( LoadSlidersEvent value)  loadSliders,required TResult Function( LoadOffersEvent value)  loadOffers,required TResult Function( LoadStoriesEvent value)  loadStories,required TResult Function( LoadCategoryServicesEvent value)  loadCategoryServices,required TResult Function( LoadServiceDetailsEvent value)  loadServiceDetails,required TResult Function( LoadSearchContentEvent value)  loadSearchContent,}){
 final _that = this;
 switch (_that) {
 case LoadHomeContentEvent():
 return loadCategories(_that);case LoadSlidersEvent():
 return loadSliders(_that);case LoadOffersEvent():
-return loadOffers(_that);case LoadCategoryServicesEvent():
+return loadOffers(_that);case LoadStoriesEvent():
+return loadStories(_that);case LoadCategoryServicesEvent():
 return loadCategoryServices(_that);case LoadServiceDetailsEvent():
 return loadServiceDetails(_that);case LoadSearchContentEvent():
 return loadSearchContent(_that);}
@@ -105,13 +107,14 @@ return loadSearchContent(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( LoadHomeContentEvent value)?  loadCategories,TResult? Function( LoadSlidersEvent value)?  loadSliders,TResult? Function( LoadOffersEvent value)?  loadOffers,TResult? Function( LoadCategoryServicesEvent value)?  loadCategoryServices,TResult? Function( LoadServiceDetailsEvent value)?  loadServiceDetails,TResult? Function( LoadSearchContentEvent value)?  loadSearchContent,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( LoadHomeContentEvent value)?  loadCategories,TResult? Function( LoadSlidersEvent value)?  loadSliders,TResult? Function( LoadOffersEvent value)?  loadOffers,TResult? Function( LoadStoriesEvent value)?  loadStories,TResult? Function( LoadCategoryServicesEvent value)?  loadCategoryServices,TResult? Function( LoadServiceDetailsEvent value)?  loadServiceDetails,TResult? Function( LoadSearchContentEvent value)?  loadSearchContent,}){
 final _that = this;
 switch (_that) {
 case LoadHomeContentEvent() when loadCategories != null:
 return loadCategories(_that);case LoadSlidersEvent() when loadSliders != null:
 return loadSliders(_that);case LoadOffersEvent() when loadOffers != null:
-return loadOffers(_that);case LoadCategoryServicesEvent() when loadCategoryServices != null:
+return loadOffers(_that);case LoadStoriesEvent() when loadStories != null:
+return loadStories(_that);case LoadCategoryServicesEvent() when loadCategoryServices != null:
 return loadCategoryServices(_that);case LoadServiceDetailsEvent() when loadServiceDetails != null:
 return loadServiceDetails(_that);case LoadSearchContentEvent() when loadSearchContent != null:
 return loadSearchContent(_that);case _:
@@ -131,12 +134,13 @@ return loadSearchContent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loadCategories,TResult Function()?  loadSliders,TResult Function()?  loadOffers,TResult Function( String categoryId)?  loadCategoryServices,TResult Function( GetServiceDetailsRequestModel request)?  loadServiceDetails,TResult Function()?  loadSearchContent,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loadCategories,TResult Function()?  loadSliders,TResult Function()?  loadOffers,TResult Function()?  loadStories,TResult Function( String categoryId)?  loadCategoryServices,TResult Function( GetServiceDetailsRequestModel request)?  loadServiceDetails,TResult Function()?  loadSearchContent,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case LoadHomeContentEvent() when loadCategories != null:
 return loadCategories();case LoadSlidersEvent() when loadSliders != null:
 return loadSliders();case LoadOffersEvent() when loadOffers != null:
-return loadOffers();case LoadCategoryServicesEvent() when loadCategoryServices != null:
+return loadOffers();case LoadStoriesEvent() when loadStories != null:
+return loadStories();case LoadCategoryServicesEvent() when loadCategoryServices != null:
 return loadCategoryServices(_that.categoryId);case LoadServiceDetailsEvent() when loadServiceDetails != null:
 return loadServiceDetails(_that.request);case LoadSearchContentEvent() when loadSearchContent != null:
 return loadSearchContent();case _:
@@ -157,12 +161,13 @@ return loadSearchContent();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loadCategories,required TResult Function()  loadSliders,required TResult Function()  loadOffers,required TResult Function( String categoryId)  loadCategoryServices,required TResult Function( GetServiceDetailsRequestModel request)  loadServiceDetails,required TResult Function()  loadSearchContent,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loadCategories,required TResult Function()  loadSliders,required TResult Function()  loadOffers,required TResult Function()  loadStories,required TResult Function( String categoryId)  loadCategoryServices,required TResult Function( GetServiceDetailsRequestModel request)  loadServiceDetails,required TResult Function()  loadSearchContent,}) {final _that = this;
 switch (_that) {
 case LoadHomeContentEvent():
 return loadCategories();case LoadSlidersEvent():
 return loadSliders();case LoadOffersEvent():
-return loadOffers();case LoadCategoryServicesEvent():
+return loadOffers();case LoadStoriesEvent():
+return loadStories();case LoadCategoryServicesEvent():
 return loadCategoryServices(_that.categoryId);case LoadServiceDetailsEvent():
 return loadServiceDetails(_that.request);case LoadSearchContentEvent():
 return loadSearchContent();}
@@ -179,12 +184,13 @@ return loadSearchContent();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loadCategories,TResult? Function()?  loadSliders,TResult? Function()?  loadOffers,TResult? Function( String categoryId)?  loadCategoryServices,TResult? Function( GetServiceDetailsRequestModel request)?  loadServiceDetails,TResult? Function()?  loadSearchContent,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loadCategories,TResult? Function()?  loadSliders,TResult? Function()?  loadOffers,TResult? Function()?  loadStories,TResult? Function( String categoryId)?  loadCategoryServices,TResult? Function( GetServiceDetailsRequestModel request)?  loadServiceDetails,TResult? Function()?  loadSearchContent,}) {final _that = this;
 switch (_that) {
 case LoadHomeContentEvent() when loadCategories != null:
 return loadCategories();case LoadSlidersEvent() when loadSliders != null:
 return loadSliders();case LoadOffersEvent() when loadOffers != null:
-return loadOffers();case LoadCategoryServicesEvent() when loadCategoryServices != null:
+return loadOffers();case LoadStoriesEvent() when loadStories != null:
+return loadStories();case LoadCategoryServicesEvent() when loadCategoryServices != null:
 return loadCategoryServices(_that.categoryId);case LoadServiceDetailsEvent() when loadServiceDetails != null:
 return loadServiceDetails(_that.request);case LoadSearchContentEvent() when loadSearchContent != null:
 return loadSearchContent();case _:
@@ -283,6 +289,38 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'HomeBlocEvent.loadOffers()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class LoadStoriesEvent implements HomeBlocEvent {
+  const LoadStoriesEvent();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadStoriesEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HomeBlocEvent.loadStories()';
 }
 
 

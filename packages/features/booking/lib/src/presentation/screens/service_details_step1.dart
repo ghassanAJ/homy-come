@@ -30,13 +30,10 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
   }
 
   Widget _sectionTitle(String title) =>
-      UIText.h6(title, color: UIColor.balck, maxLines: 2);
+      UIText.h6(title, color: UIColor.balck, maxLines: 2, fontSize: 14);
 
   @override
   Widget build(BuildContext context) {
-    final topContentPadding =
-        MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
-
     return BlocConsumer<BookingWizardBloc, BookingWizardState>(
       listenWhen:
           (prev, curr) =>
@@ -59,17 +56,18 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(
-                  UI.spacing.lg,
-                  UI.spacing.lg,
-                  UI.spacing.xxs,
-                  0,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 0,
+                  vertical: UI.spacing.md,
+                  // UI.spacing.lg,
+                  // UI.spacing.xxs,
+                  // 0,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _sectionTitle(
-                      'How many hours do you need your professional to stay?',
+                      'How many hours do you need your professional \n to stay?',
                     ),
                     SizedBox(height: UI.spacing.sm),
                     SingleChildScrollView(
@@ -157,7 +155,7 @@ class _ServiceDetailsScreenStep1State extends State<ServiceDetailsScreenStep1> {
                     ),
                     SizedBox(height: UI.spacing.lg),
                     _sectionTitle('Any notes?'),
-                    SizedBox(height: UI.spacing.sm),
+                    // SizedBox(height: UI.spacing.sm),
                   ],
                 ),
               ),

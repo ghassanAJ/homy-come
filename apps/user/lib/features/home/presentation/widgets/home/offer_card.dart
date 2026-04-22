@@ -14,7 +14,11 @@ class OfferCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: UIColor.pink, width: 1.5),
+        borderRadius: BorderRadius.circular(16),
+      ),
       width: width,
       child: AspectRatio(
         aspectRatio: aspectRatio,

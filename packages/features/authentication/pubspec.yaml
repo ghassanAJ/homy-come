@@ -44,6 +44,7 @@ dependencies:
   equatable: ^2.0.7
   synchronized: ^3.3.0+3
   rxdart: ^0.28.0
+  
 
   user:
     path: ../../../apps/user
@@ -51,6 +52,8 @@ dependencies:
     path: ../../../apps/driver
   homy_provider:
     path: ../../../apps/provider
+  animated_text_kit: ^4.3.0
+  animations: ^2.1.2
 
 dev_dependencies:
   injectable_generator: ^2.9.1

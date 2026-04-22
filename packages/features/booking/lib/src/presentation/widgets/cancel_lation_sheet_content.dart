@@ -122,6 +122,7 @@ class CancellationSheetContent extends StatelessWidget {
                   child: UIText.bodySmall(
                     'You can reschedule bookings paid for in cash up to twice.',
                     color: UIColor.error,
+                    maxLines: 4,
                   ),
                 ),
               ],

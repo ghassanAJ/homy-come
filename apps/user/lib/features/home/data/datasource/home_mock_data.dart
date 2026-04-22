@@ -184,12 +184,17 @@ final List<OfferModel> _mockOffers = [
         id: 1,
       ),
     ),
+    discountPercentage: 44,
+    discountCode: 'SdfSAfa',
   ),
   const OfferModel(
+    discountPercentage: 55,
+    discountCode: 'Csadfsfd',
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
     service: ServicePreviewResponseModel(
       rating: 5,
       reviewsCount: 10,
+
       id: 1,
       info: InfoModel(id: 1, name: 'Service 1'),
       documentId: '1',
@@ -205,6 +210,9 @@ final List<OfferModel> _mockOffers = [
 
 final List<OfferModel> _mockSliders = [
   const OfferModel(
+    discountPercentage: 22,
+    discountCode: 'Asddsddsf',
+
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
 
     service: ServicePreviewResponseModel(
@@ -222,6 +230,9 @@ final List<OfferModel> _mockSliders = [
     ),
   ),
   const OfferModel(
+    discountPercentage: 88,
+    discountCode: 'Kdcsaccsd',
+
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
     service: ServicePreviewResponseModel(
       rating: 5,
@@ -238,6 +249,8 @@ final List<OfferModel> _mockSliders = [
     ),
   ),
   const OfferModel(
+    discountPercentage: 33,
+    discountCode: 'Ndsads',
     imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
     service: ServicePreviewResponseModel(
       rating: 5,

@@ -13,6 +13,7 @@ class HomeAPIEndpoints {
   static const String getSearchContent = '/api/v1/home/search';
   static const String getCategoryServices = '/api/categories/{categoryId}';
   static const String getOffers = '/api/offers?populate=*';
+  static const String getStories = '/api/offers?populate=*';
   static const String getSliders = '/api/sliders?populate=*';
 }
 
@@ -38,4 +39,7 @@ abstract class HomeAPI {
 
   @GET(HomeAPIEndpoints.getSliders)
   Future<APIResponse<List<OfferModel>>> getSliders();
+
+  @GET(HomeAPIEndpoints.getStories)
+  Future<APIResponse<List<OfferModel>>> getStories();
 }

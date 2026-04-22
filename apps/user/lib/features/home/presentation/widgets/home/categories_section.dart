@@ -23,7 +23,7 @@ class CategoriesSection extends StatelessWidget {
         return HomeSection(
           title: tr.home.category,
           titleBottomSpacing: UI.spacing.md,
-          sectionBottomSpacing: UI.spacing.xxl2,
+          sectionBottomSpacing: 24,
           child: HomeCategoriesRow(items: categories),
         );
       },

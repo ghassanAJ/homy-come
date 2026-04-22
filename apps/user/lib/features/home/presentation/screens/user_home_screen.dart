@@ -5,6 +5,7 @@ import 'package:user/features/home/presentation/widgets/home/categories_section.
 import 'package:user/features/home/presentation/widgets/home/home_divider.dart';
 import 'package:user/features/home/presentation/widgets/home/home_services_section.dart';
 import 'package:user/features/home/presentation/widgets/home/sliders_section.dart';
+import 'package:user/features/home/presentation/widgets/home/stories_section.dart';
 import 'package:user/features/home/presentation/widgets/home/user_home_screen_app_bar.dart';
 
 class UserHomeScreen extends StatefulWidget {
@@ -48,8 +49,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 const HomeDivider(),
                 const CategoriesSection(),
                 const HomeDivider(),
-                // const StoriesSection(),
-                // const HomeDivider(),
+                const StoriesSection(),
+                const HomeDivider(),
                 const HomeServicesSection(),
 
                 SliverToBoxAdapter(child: SizedBox(height: _getBottomInset())),

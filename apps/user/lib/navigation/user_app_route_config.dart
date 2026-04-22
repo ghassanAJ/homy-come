@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:notifications/notifications.dart';
 import 'package:orders/orders.dart';
 import 'package:profile/profile.dart';
-import 'package:user/features/home/presentation/screens/search_screen.dart';
+import 'package:user/features/home/presentation/screens/categories_screen.dart';
 import 'package:user/features/home/presentation/screens/services_screen.dart';
 import 'package:user/features/home/presentation/screens/stories_screen.dart';
 import 'package:user/features/home/presentation/screens/user_home_screen.dart';
@@ -32,7 +32,13 @@ class UserAppRouteConfig {
         builder: (context, state) {
           final data = state.extra as Map<String, dynamic>;
           final id = data['id'] as String;
-          return ServiceDetailsScreen(serviceId: id);
+          final discountCode = data['discountCode'] as String?;
+          final discountPercentage = data['discountPercentage'] as double?;
+          return ServiceDetailsScreen(
+            serviceId: id,
+            discountCode: discountCode,
+            discountPercentage: discountPercentage,
+          );
         },
       ),
       GoRoute(
@@ -61,7 +67,7 @@ class UserAppRouteConfig {
       ),
       GoRoute(
         path: UserPaths.search,
-        builder: (context, state) => const SearchScreen(),
+        builder: (context, state) => const CategoriesScreen(),
       ),
       GoRoute(
         path: UserPaths.services,

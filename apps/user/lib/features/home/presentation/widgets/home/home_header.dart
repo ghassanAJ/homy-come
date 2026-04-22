@@ -95,10 +95,10 @@ class HomeHeader extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap:
-                      onSearchTap ??
-                      () {
-                        context.push(UserPaths.search);
-                      },
+                  // onSearchTap ??
+                  () {
+                    context.push(UserPaths.search);
+                  },
                   child: UISvg(Assets.icons.navSearch, size: 20),
                 ),
                 SizedBox(width: UI.spacing.sm),

@@ -20,6 +20,8 @@ abstract class HomeResponseModel with _$HomeResponseModel {
 abstract class OfferModel with _$OfferModel {
   const factory OfferModel({
     @JsonKey(name: 'image_url') String? imageUrl,
+    @JsonKey(name: 'discount_percentage') required double discountPercentage,
+    @JsonKey(name: 'discount_code') required String discountCode,
     @JsonKey(name: 'service') ServicePreviewResponseModel? service,
     // ignore: invalid_annotation_target
   }) = _OfferModel;

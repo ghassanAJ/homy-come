@@ -5,6 +5,9 @@ import 'package:user/features/home/data/model/res/home_response_model.dart';
 import 'package:user/features/home/data/model/res/search_response_model.dart';
 import 'package:user/features/home/domain/repository/home_api_repository.dart';
 import 'package:util/util.dart';
+//
+//
+//
 
 /// Mock implementation of [HomeRepository] for testing and development.
 ///
@@ -32,7 +35,7 @@ class MockHomeRepository implements HomeRepository {
             info: InfoModel(
               id: index,
               name: '$name $index',
-              image: 'https://i.ibb.co/9m8XQCvr/image.png',
+              image: 'https://ibb.co/bj4fyrtd',
             ),
             priceModel: ServicePriceModel(
               currentPrice: 100,
@@ -46,17 +49,15 @@ class MockHomeRepository implements HomeRepository {
         ),
         documentId: name,
         id: 1,
-        info: InfoModel(
-          id: 1,
-          name: name,
-          image: 'https://i.ibb.co/9m8XQCvr/image.png',
-        ),
+        info: InfoModel(id: 1, name: name, image: 'https://ibb.co/Q7PJ2Lwf'),
         servicesCount: 8,
       );
-
-  static List<OfferModel> get _mockOffer => [
+  static List<OfferModel> get _mockStories => [
     const OfferModel(
-      imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
+      discountPercentage: 33,
+      discountCode: 'Ndsads',
+      imageUrl:
+          'https://i.ibb.co/1t2TrD33/a709adca-5598-472d-a961-609645790545.jpg',
       service: ServicePreviewResponseModel(
         priceModel: ServicePriceModel(
           currentPrice: 100,
@@ -72,7 +73,28 @@ class MockHomeRepository implements HomeRepository {
       ),
     ),
     const OfferModel(
-      imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
+      discountPercentage: 44,
+      discountCode: 'CDsdaDF',
+      imageUrl:
+          'https://i.ibb.co/Hpdx226Z/c6b0414f-c76b-4dcf-9793-4ce0537c1ef9.jpg',
+      service: ServicePreviewResponseModel(
+        priceModel: ServicePriceModel(
+          currentPrice: 100,
+          newPrice: 150,
+          currency: 'AED',
+          id: 1,
+        ),
+        rating: 5,
+        reviewsCount: 10,
+        documentId: '1',
+        id: 1,
+        info: InfoModel(id: 1, name: 'Service 1'),
+      ),
+    ),
+    const OfferModel(
+      discountPercentage: 35,
+      discountCode: 'KvfdsfKK',
+      imageUrl: 'https://i.ibb.co/q3wYp1w8/11688038.jpg',
       service: ServicePreviewResponseModel(
         priceModel: ServicePriceModel(
           currentPrice: 100,
@@ -88,7 +110,9 @@ class MockHomeRepository implements HomeRepository {
       ),
     ),
     const OfferModel(
-      imageUrl: 'https://i.ibb.co/9m8XQCvr/image.png',
+      discountPercentage: 55,
+      discountCode: 'Jfudsf',
+      imageUrl: 'https://i.ibb.co/WpMxY0xC/10813121.jpg',
       service: ServicePreviewResponseModel(
         documentId: '3',
         priceModel: ServicePriceModel(
@@ -101,6 +125,80 @@ class MockHomeRepository implements HomeRepository {
         reviewsCount: 10,
         id: 3,
         info: InfoModel(id: 3, name: 'Service 3'),
+      ),
+    ),
+
+    // const OfferModel(
+    //   imageUrl: 'https://ibb.co/whVvjwY2',
+    //   service: ServicePreviewResponseModel(
+    //     documentId: '3',
+    //     priceModel: ServicePriceModel(
+    //       currentPrice: 100,
+    //       newPrice: 150,
+    //       currency: 'AED',
+    //       id: 3,
+    //     ),
+    //     rating: 5,
+    //     reviewsCount: 10,
+    //     id: 3,
+    //     info: InfoModel(id: 3, name: 'Service 3'),
+    //   ),
+    // ),
+  ];
+
+  static List<OfferModel> get _mockOffer => [
+    const OfferModel(
+      discountPercentage: 67,
+      discountCode: 'Udsdasd',
+      imageUrl: 'https://i.ibb.co/rGxkckqV/9667729.jpg',
+      service: ServicePreviewResponseModel(
+        priceModel: ServicePriceModel(
+          currentPrice: 100,
+          newPrice: 150,
+          currency: 'AED',
+          id: 2,
+        ),
+        rating: 5,
+        reviewsCount: 10,
+        documentId: '2',
+        id: 2,
+        info: InfoModel(id: 2, name: 'Service 2'),
+      ),
+    ),
+    const OfferModel(
+      discountPercentage: 82,
+      discountCode: 'Ldsfc234',
+      imageUrl: 'https://i.ibb.co/dh3t2Tc/4302409.jpg',
+      service: ServicePreviewResponseModel(
+        documentId: '3',
+        priceModel: ServicePriceModel(
+          currentPrice: 100,
+          newPrice: 150,
+          currency: 'AED',
+          id: 3,
+        ),
+        rating: 5,
+        reviewsCount: 10,
+        id: 3,
+        info: InfoModel(id: 3, name: 'Service 3'),
+      ),
+    ),
+    const OfferModel(
+      discountPercentage: 72,
+      discountCode: 'Ujfsdasd',
+      imageUrl: 'https://i.ibb.co/KcZBqKy7/17537.jpg',
+      service: ServicePreviewResponseModel(
+        priceModel: ServicePriceModel(
+          currentPrice: 100,
+          newPrice: 150,
+          currency: 'AED',
+          id: 1,
+        ),
+        rating: 5,
+        reviewsCount: 10,
+        documentId: '1',
+        id: 1,
+        info: InfoModel(id: 1, name: 'Service 1'),
       ),
     ),
   ];
@@ -155,5 +253,12 @@ class MockHomeRepository implements HomeRepository {
     await Future.delayed(const Duration(milliseconds: 500));
 
     return success(_mockOffer);
+  }
+
+  @override
+  Future<Result<List<OfferModel>, APIException>> getStories() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    return success(_mockStories);
   }
 }

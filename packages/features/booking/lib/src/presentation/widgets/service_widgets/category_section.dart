@@ -15,7 +15,7 @@ class CategorySection<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 16),
+      margin: const EdgeInsets.symmetric(vertical: 0),
       color: UIColor.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

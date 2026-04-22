@@ -1,5 +1,4 @@
 import '../../../design_system.dart';
-import '../../../gen/assets.gen.dart';
 import '../../localization/design_system_localization_delegate.dart';
 import 'delete_confirmation_dialog.dart';
 
@@ -18,6 +17,7 @@ class DialogsManager {
       barrierLabel: barrierLabel ?? '',
       barrierColor: barrierColor ?? Colors.black54,
       transitionDuration: duration,
+
       pageBuilder: (_, __, ___) => Center(child: child),
       transitionBuilder: (_, animation, __, widget) {
         final curve = CurvedAnimation(
@@ -45,9 +45,7 @@ class DialogsManager {
           context: context,
           child: Localizations.override(
             context: context,
-            delegates: const [
-              DesignSystemLocalizationDelegate(),
-            ],
+            delegates: const [DesignSystemLocalizationDelegate()],
             child: DeleteConfirmationDialog(
               confirmButtonLabel: confirmButtonLabel,
               cancelButtonLabel: cancelButtonLabel,

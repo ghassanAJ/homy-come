@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ServiceDetailsResponseModel {
 
- int get id; int? get rating;@JsonKey(name: 'reviews_count') int? get reviewsCount; InfoModel get info; ServicePriceModel get price;@JsonKey(name: 'add_on_categories') List<AddOnCategoryModel> get addonCategories;
+ int get id; int? get rating;@JsonKey(name: 'reviews_count') int? get reviewsCount;@JsonKey(name: 'discount_percentage') double? get discountPercentage;@JsonKey(name: 'discount_code') String? get discountCode; InfoModel get info; ServicePriceModel get price;@JsonKey(name: 'add_on_categories') List<AddOnCategoryModel> get addonCategories;
 /// Create a copy of ServiceDetailsResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ServiceDetailsResponseModelCopyWith<ServiceDetailsResponseModel> get copyWith =
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServiceDetailsResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount)&&(identical(other.info, info) || other.info == info)&&(identical(other.price, price) || other.price == price)&&const DeepCollectionEquality().equals(other.addonCategories, addonCategories));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServiceDetailsResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount)&&(identical(other.discountPercentage, discountPercentage) || other.discountPercentage == discountPercentage)&&(identical(other.discountCode, discountCode) || other.discountCode == discountCode)&&(identical(other.info, info) || other.info == info)&&(identical(other.price, price) || other.price == price)&&const DeepCollectionEquality().equals(other.addonCategories, addonCategories));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,rating,reviewsCount,info,price,const DeepCollectionEquality().hash(addonCategories));
+int get hashCode => Object.hash(runtimeType,id,rating,reviewsCount,discountPercentage,discountCode,info,price,const DeepCollectionEquality().hash(addonCategories));
 
 @override
 String toString() {
-  return 'ServiceDetailsResponseModel(id: $id, rating: $rating, reviewsCount: $reviewsCount, info: $info, price: $price, addonCategories: $addonCategories)';
+  return 'ServiceDetailsResponseModel(id: $id, rating: $rating, reviewsCount: $reviewsCount, discountPercentage: $discountPercentage, discountCode: $discountCode, info: $info, price: $price, addonCategories: $addonCategories)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ServiceDetailsResponseModelCopyWith<$Res>  {
   factory $ServiceDetailsResponseModelCopyWith(ServiceDetailsResponseModel value, $Res Function(ServiceDetailsResponseModel) _then) = _$ServiceDetailsResponseModelCopyWithImpl;
 @useResult
 $Res call({
- int id, int? rating,@JsonKey(name: 'reviews_count') int? reviewsCount, InfoModel info, ServicePriceModel price,@JsonKey(name: 'add_on_categories') List<AddOnCategoryModel> addonCategories
+ int id, int? rating,@JsonKey(name: 'reviews_count') int? reviewsCount,@JsonKey(name: 'discount_percentage') double? discountPercentage,@JsonKey(name: 'discount_code') String? discountCode, InfoModel info, ServicePriceModel price,@JsonKey(name: 'add_on_categories') List<AddOnCategoryModel> addonCategories
 });
 
 
@@ -65,12 +65,14 @@ class _$ServiceDetailsResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of ServiceDetailsResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? rating = freezed,Object? reviewsCount = freezed,Object? info = null,Object? price = null,Object? addonCategories = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? rating = freezed,Object? reviewsCount = freezed,Object? discountPercentage = freezed,Object? discountCode = freezed,Object? info = null,Object? price = null,Object? addonCategories = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as int?,reviewsCount: freezed == reviewsCount ? _self.reviewsCount : reviewsCount // ignore: cast_nullable_to_non_nullable
-as int?,info: null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
+as int?,discountPercentage: freezed == discountPercentage ? _self.discountPercentage : discountPercentage // ignore: cast_nullable_to_non_nullable
+as double?,discountCode: freezed == discountCode ? _self.discountCode : discountCode // ignore: cast_nullable_to_non_nullable
+as String?,info: null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
 as InfoModel,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as ServicePriceModel,addonCategories: null == addonCategories ? _self.addonCategories : addonCategories // ignore: cast_nullable_to_non_nullable
 as List<AddOnCategoryModel>,
@@ -176,10 +178,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount,  InfoModel info,  ServicePriceModel price, @JsonKey(name: 'add_on_categories')  List<AddOnCategoryModel> addonCategories)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount, @JsonKey(name: 'discount_percentage')  double? discountPercentage, @JsonKey(name: 'discount_code')  String? discountCode,  InfoModel info,  ServicePriceModel price, @JsonKey(name: 'add_on_categories')  List<AddOnCategoryModel> addonCategories)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ServiceDetailsResponseModel() when $default != null:
-return $default(_that.id,_that.rating,_that.reviewsCount,_that.info,_that.price,_that.addonCategories);case _:
+return $default(_that.id,_that.rating,_that.reviewsCount,_that.discountPercentage,_that.discountCode,_that.info,_that.price,_that.addonCategories);case _:
   return orElse();
 
 }
@@ -197,10 +199,10 @@ return $default(_that.id,_that.rating,_that.reviewsCount,_that.info,_that.price,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount,  InfoModel info,  ServicePriceModel price, @JsonKey(name: 'add_on_categories')  List<AddOnCategoryModel> addonCategories)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount, @JsonKey(name: 'discount_percentage')  double? discountPercentage, @JsonKey(name: 'discount_code')  String? discountCode,  InfoModel info,  ServicePriceModel price, @JsonKey(name: 'add_on_categories')  List<AddOnCategoryModel> addonCategories)  $default,) {final _that = this;
 switch (_that) {
 case _ServiceDetailsResponseModel():
-return $default(_that.id,_that.rating,_that.reviewsCount,_that.info,_that.price,_that.addonCategories);case _:
+return $default(_that.id,_that.rating,_that.reviewsCount,_that.discountPercentage,_that.discountCode,_that.info,_that.price,_that.addonCategories);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -217,10 +219,10 @@ return $default(_that.id,_that.rating,_that.reviewsCount,_that.info,_that.price,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount,  InfoModel info,  ServicePriceModel price, @JsonKey(name: 'add_on_categories')  List<AddOnCategoryModel> addonCategories)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int? rating, @JsonKey(name: 'reviews_count')  int? reviewsCount, @JsonKey(name: 'discount_percentage')  double? discountPercentage, @JsonKey(name: 'discount_code')  String? discountCode,  InfoModel info,  ServicePriceModel price, @JsonKey(name: 'add_on_categories')  List<AddOnCategoryModel> addonCategories)?  $default,) {final _that = this;
 switch (_that) {
 case _ServiceDetailsResponseModel() when $default != null:
-return $default(_that.id,_that.rating,_that.reviewsCount,_that.info,_that.price,_that.addonCategories);case _:
+return $default(_that.id,_that.rating,_that.reviewsCount,_that.discountPercentage,_that.discountCode,_that.info,_that.price,_that.addonCategories);case _:
   return null;
 
 }
@@ -232,12 +234,14 @@ return $default(_that.id,_that.rating,_that.reviewsCount,_that.info,_that.price,
 @JsonSerializable()
 
 class _ServiceDetailsResponseModel implements ServiceDetailsResponseModel {
-  const _ServiceDetailsResponseModel({required this.id, required this.rating, @JsonKey(name: 'reviews_count') required this.reviewsCount, required this.info, required this.price, @JsonKey(name: 'add_on_categories') final  List<AddOnCategoryModel> addonCategories = const []}): _addonCategories = addonCategories;
+  const _ServiceDetailsResponseModel({required this.id, required this.rating, @JsonKey(name: 'reviews_count') required this.reviewsCount, @JsonKey(name: 'discount_percentage') this.discountPercentage, @JsonKey(name: 'discount_code') this.discountCode, required this.info, required this.price, @JsonKey(name: 'add_on_categories') final  List<AddOnCategoryModel> addonCategories = const []}): _addonCategories = addonCategories;
   factory _ServiceDetailsResponseModel.fromJson(Map<String, dynamic> json) => _$ServiceDetailsResponseModelFromJson(json);
 
 @override final  int id;
 @override final  int? rating;
 @override@JsonKey(name: 'reviews_count') final  int? reviewsCount;
+@override@JsonKey(name: 'discount_percentage') final  double? discountPercentage;
+@override@JsonKey(name: 'discount_code') final  String? discountCode;
 @override final  InfoModel info;
 @override final  ServicePriceModel price;
  final  List<AddOnCategoryModel> _addonCategories;
@@ -261,16 +265,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServiceDetailsResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount)&&(identical(other.info, info) || other.info == info)&&(identical(other.price, price) || other.price == price)&&const DeepCollectionEquality().equals(other._addonCategories, _addonCategories));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServiceDetailsResponseModel&&(identical(other.id, id) || other.id == id)&&(identical(other.rating, rating) || other.rating == rating)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount)&&(identical(other.discountPercentage, discountPercentage) || other.discountPercentage == discountPercentage)&&(identical(other.discountCode, discountCode) || other.discountCode == discountCode)&&(identical(other.info, info) || other.info == info)&&(identical(other.price, price) || other.price == price)&&const DeepCollectionEquality().equals(other._addonCategories, _addonCategories));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,rating,reviewsCount,info,price,const DeepCollectionEquality().hash(_addonCategories));
+int get hashCode => Object.hash(runtimeType,id,rating,reviewsCount,discountPercentage,discountCode,info,price,const DeepCollectionEquality().hash(_addonCategories));
 
 @override
 String toString() {
-  return 'ServiceDetailsResponseModel(id: $id, rating: $rating, reviewsCount: $reviewsCount, info: $info, price: $price, addonCategories: $addonCategories)';
+  return 'ServiceDetailsResponseModel(id: $id, rating: $rating, reviewsCount: $reviewsCount, discountPercentage: $discountPercentage, discountCode: $discountCode, info: $info, price: $price, addonCategories: $addonCategories)';
 }
 
 
@@ -281,7 +285,7 @@ abstract mixin class _$ServiceDetailsResponseModelCopyWith<$Res> implements $Ser
   factory _$ServiceDetailsResponseModelCopyWith(_ServiceDetailsResponseModel value, $Res Function(_ServiceDetailsResponseModel) _then) = __$ServiceDetailsResponseModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int? rating,@JsonKey(name: 'reviews_count') int? reviewsCount, InfoModel info, ServicePriceModel price,@JsonKey(name: 'add_on_categories') List<AddOnCategoryModel> addonCategories
+ int id, int? rating,@JsonKey(name: 'reviews_count') int? reviewsCount,@JsonKey(name: 'discount_percentage') double? discountPercentage,@JsonKey(name: 'discount_code') String? discountCode, InfoModel info, ServicePriceModel price,@JsonKey(name: 'add_on_categories') List<AddOnCategoryModel> addonCategories
 });
 
 
@@ -298,12 +302,14 @@ class __$ServiceDetailsResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of ServiceDetailsResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? rating = freezed,Object? reviewsCount = freezed,Object? info = null,Object? price = null,Object? addonCategories = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? rating = freezed,Object? reviewsCount = freezed,Object? discountPercentage = freezed,Object? discountCode = freezed,Object? info = null,Object? price = null,Object? addonCategories = null,}) {
   return _then(_ServiceDetailsResponseModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,rating: freezed == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as int?,reviewsCount: freezed == reviewsCount ? _self.reviewsCount : reviewsCount // ignore: cast_nullable_to_non_nullable
-as int?,info: null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
+as int?,discountPercentage: freezed == discountPercentage ? _self.discountPercentage : discountPercentage // ignore: cast_nullable_to_non_nullable
+as double?,discountCode: freezed == discountCode ? _self.discountCode : discountCode // ignore: cast_nullable_to_non_nullable
+as String?,info: null == info ? _self.info : info // ignore: cast_nullable_to_non_nullable
 as InfoModel,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as ServicePriceModel,addonCategories: null == addonCategories ? _self._addonCategories : addonCategories // ignore: cast_nullable_to_non_nullable
 as List<AddOnCategoryModel>,

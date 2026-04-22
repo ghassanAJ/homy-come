@@ -1,7 +1,7 @@
 import 'package:design_system/design_system.dart';
+import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/helper/profile_language_label_extension.dart';
-import 'package:profile/src/presentation/actions/profile_actions.dart';
 import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 
 class ProfileSettingWidget extends StatelessWidget {
@@ -83,7 +83,42 @@ class ProfileSettingWidget extends StatelessWidget {
             imgUrl: Assets.icons.logOut,
             colorIcon: UIColor.errorDark,
             color: UIColor.backgroungAvaterRed,
-            onTap: () => ProfileActions.onLogoutPressed(context),
+            onTap: () {
+              UIBottomSheet.show(
+                context: StatefulNavigationShell.of(context).context,
+                content: SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      UIText.bodyLarge('Logout', fontWeight: FontWeight.w600),
+                      SizedBox(height: 8),
+                      UIText.bodySmall(
+                        'Are you sure to logout?',
+                        color: UIColor.neutral500,
+                      ),
+                      SizedBox(height: 16),
+                      UIButton.primary(
+                        expanded: true,
+                        label: 'Stay logged in',
+                        onPressed: () {
+                          context.pop();
+                        },
+                      ),
+                      SizedBox(height: 16),
+                      GestureDetector(
+                        onTap: () {},
+                        child: UIText.bodySmall(
+                          'Confirm logout',
+                          color: UIColor.iconsAvaterRed,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+
+            // ProfileActions.onLogoutPressed(context),
           ),
           // ProfileSettingOptionWidget(
           //   title: context.profileTranslation.option.deleteAccount,

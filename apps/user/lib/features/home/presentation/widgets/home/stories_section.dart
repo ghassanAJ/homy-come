@@ -13,16 +13,19 @@ class StoriesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final tr = context.loc<UserTranslation>();
     return BlocBuilder<HomeBloc, HomeBlocState>(
-      buildWhen: (previous, current) => previous.offers != current.offers,
+      buildWhen: (previous, current) => previous.stories != current.stories,
       builder: (context, state) {
-        final offers = state.offers;
+        final offers = state.stories;
         if (offers.isEmpty) {
           return const SliverToBoxAdapter(child: SizedBox.shrink());
         }
         return HomeSection(
           title: tr.home.storiesOffers,
           sectionBottomSpacing: UI.spacing.lg,
-          child: SizedBox(height: 145, child: HomeStoryCards(items: offers)),
+          child: SizedBox(
+            height: 145,
+            child: HomeStoryCards(stories: state.stories),
+          ),
         );
       },
     );

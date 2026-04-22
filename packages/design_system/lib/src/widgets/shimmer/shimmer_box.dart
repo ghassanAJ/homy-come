@@ -6,6 +6,7 @@ class ShimmerBox extends StatelessWidget {
   final double radius;
   final Color? color;
   final BoxShape? shape;
+  final BoxBorder? border;
 
   const ShimmerBox({
     super.key,
@@ -13,6 +14,7 @@ class ShimmerBox extends StatelessWidget {
     required this.height,
     required this.radius,
     this.color,
+    this.border,
     this.shape = BoxShape.rectangle,
   });
 
@@ -26,10 +28,11 @@ class ShimmerBox extends StatelessWidget {
               ? BoxDecoration(
                 color: color ?? UIColor.white,
                 shape: BoxShape.circle,
+                border: border,
               )
               : BoxDecoration(
                 color: color ?? UIColor.white,
-
+                border: border,
                 borderRadius: BorderRadius.circular(radius),
               ),
     );
