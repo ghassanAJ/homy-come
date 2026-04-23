@@ -28,9 +28,9 @@ class ChoiceChipButtonWidget extends StatelessWidget {
           border: selected ? Border.all(color: UIColor.pink) : null,
           boxShadow: UI.shadows.xs,
         ),
-        child: UIText.bodyMedium(
+        child: UIText.bodySmall(
           label,
-          fontWeight: selected ? FontWeight.w700 : FontWeight.w400,
+          fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
           color: selected ? UIColor.pink : UIColor.grey,
         ),
       ),

@@ -26,6 +26,7 @@ class StepNavigationBar extends StatelessWidget {
                 .reduce((a, b) => a + b);
     return (state.currentStep == BookingWizardStep.summary)
         ? SizedBox(
+          height: 40,
           width: double.infinity,
           child: ElevatedButton(
             onPressed: next,
@@ -82,12 +83,15 @@ class StepNavigationBar extends StatelessWidget {
                               //   decorationColor: UIColor.textSliverLight,
                               // ),
                             ),
+
                             UIPriceText(
                               isOldPrice: true,
+
                               text: UIText.h6(
                                 total.toStringAsFixed(2),
                                 color: UIColor.textSliverLight,
                                 textAlign: TextAlign.right,
+
                                 // style: UI.text.bodyMedium.copyWith(
                                 //
                                 //   decoration: TextDecoration.lineThrough,
@@ -106,7 +110,7 @@ class StepNavigationBar extends StatelessWidget {
                     ],
                   ),
                 ),
-              UIButton.primary(label: 'Next', onPressed: next),
+              UIButton.primary(height: 40, label: 'Next', onPressed: next),
             ],
           ),
         );

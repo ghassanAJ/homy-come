@@ -1,3 +1,4 @@
+import 'package:authentication/authentication.dart';
 import 'package:booking/src/presentation/widgets/price_row_widget.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -135,7 +136,7 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
                               UIText.bodyXSmall('Address', color: UIColor.grey),
                               SizedBox(height: 2),
                               UIText.bodySmall(
-                                'UEA Location name , details locations , street name 12357',
+                                'UAE, ${context.read<AppCubit>().state.user?.address} details locations , street name 12357',
                               ),
                               SizedBox(height: UI.spacing.sm),
                               ClipRRect(

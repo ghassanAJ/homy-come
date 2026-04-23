@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:authentication/authentication.dart';
 import 'package:booking/booking.dart';
 import 'package:booking/src/presentation/screens/service_details_step1.dart';
 import 'package:booking/src/presentation/widgets/booking_step_app_bar.dart';
@@ -389,7 +390,7 @@ class SummaryStep extends StatelessWidget {
                             UIText.bodyXSmall('Address', color: UIColor.grey),
                             SizedBox(height: 2),
                             UIText.bodySmall(
-                              'UEA Location name , details locations , street name 12357',
+                              '${context.read<AppCubit>().state.user?.address}',
                             ),
                             SizedBox(height: UI.spacing.sm),
                             ClipRRect(
@@ -407,7 +408,20 @@ class SummaryStep extends StatelessWidget {
                                   tiltGesturesEnabled: false,
                                   compassEnabled: false,
                                   initialCameraPosition: CameraPosition(
-                                    target: LatLng(33.5, 44.2),
+                                    target: LatLng(
+                                      context
+                                              .read<AppCubit>()
+                                              .state
+                                              .user
+                                              ?.latitude ??
+                                          33.5,
+                                      context
+                                              .read<AppCubit>()
+                                              .state
+                                              .user
+                                              ?.longitude ??
+                                          44.2,
+                                    ),
                                   ),
                                 ),
                               ),

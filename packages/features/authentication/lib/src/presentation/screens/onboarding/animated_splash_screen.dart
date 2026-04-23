@@ -168,7 +168,6 @@ class _AnimatedSplashScreenState extends State<AnimatedSplashScreen> {
                           : 20,
                   decoration: BoxDecoration(
                     color: _b ? UIColor.pink : Colors.transparent,
-                    // shape: _c? BoxShape.rectangle : BoxShape.circle,
                     borderRadius:
                         _d ? BorderRadius.only() : BorderRadius.circular(30),
                   ),
