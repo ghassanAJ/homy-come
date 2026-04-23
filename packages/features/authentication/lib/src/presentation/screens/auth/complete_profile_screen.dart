@@ -1,7 +1,6 @@
 import 'package:authentication/authentication.dart';
 import 'package:authentication/src/presentation/widgets/complete_profile/complete_profile_logout_button.dart';
 import 'package:design_system/design_system.dart';
-import 'package:design_system/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
@@ -30,7 +29,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
 
   void _submitProfileUpdate(
     BuildContext context,
-    Map<String, dynamic> profileData,
+    VerifiedUserModel profileData,
   ) {
     context.read<AuthUserBloc>().add(UpdateProfile(profileData));
   }
@@ -42,7 +41,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         formData,
         gender: _selectedGender?.value,
       );
-      _submitProfileUpdate(context, profileData);
+      // _submitProfileUpdate(context, profileData); //TODO
     }
   }
 

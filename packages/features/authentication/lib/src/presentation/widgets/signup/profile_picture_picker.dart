@@ -2,8 +2,7 @@ import 'dart:io';
 
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
-import 'package:design_system/gen/assets.gen.dart';
-import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:util/util.dart';
 
 class ProfilePicturePicker extends StatefulWidget {
@@ -20,20 +19,21 @@ class _ProfilePicturePickerState extends State<ProfilePicturePicker> {
   File? _selectedPhoto;
 
   Future<void> _showImageSourceSheet() async {
+    final usedContext = StatefulNavigationShell.of(context).context;
     await UIImageSelectionBottomSheet.show(
-      context: context,
+      context: usedContext,
       showDelete: _selectedPhoto != null,
       onDelete: () {
         setState(() {
           _selectedPhoto = null;
         });
         widget.onPhotoPicked(null);
-        Navigator.of(context).pop();
+        Navigator.of(usedContext).pop();
       },
       onChooseFromLibrary: () async {
         final pickedFile = await _imagePicker.pickPhotoFromGallery();
         if (!mounted) return;
-        Navigator.of(context).pop();
+        Navigator.of(usedContext).pop();
         if (pickedFile == null) return;
         setState(() {
           _selectedPhoto = pickedFile;
@@ -43,7 +43,7 @@ class _ProfilePicturePickerState extends State<ProfilePicturePicker> {
       onTakePhoto: () async {
         final pickedFile = await _imagePicker.pickPhotoFromCamera();
         if (!mounted) return;
-        Navigator.of(context).pop();
+        Navigator.of(usedContext).pop();
         if (pickedFile == null) return;
         setState(() {
           _selectedPhoto = pickedFile;

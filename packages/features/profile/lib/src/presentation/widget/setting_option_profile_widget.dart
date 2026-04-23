@@ -1,5 +1,4 @@
 import 'package:design_system/design_system.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileSettingOptionWidget extends StatelessWidget {
   const ProfileSettingOptionWidget({
@@ -10,7 +9,7 @@ class ProfileSettingOptionWidget extends StatelessWidget {
     this.onTap,
     required this.imgUrl,
     this.color = UIColor.neutral25,
-    this.isSvgIcon = false,
+    this.isSvgIcon = true,
     this.colorIcon,
   });
   final String title;
@@ -65,11 +64,23 @@ class ProfileSettingOptionWidget extends StatelessWidget {
     UIColor? colorIcon,
   }) {
     if (isSvgIcon) {
-      return UIIconBackground(
-        size: UI.sizes.avatarMd,
-        iconSize: UI.sizes.avatarMd,
-        backgroundColor: color ?? UIColor.charcoal,
-        child: UISvg(imgUrl, color: colorIcon ?? UIColor.grey),
+      return Avatar(
+        assetPath: imgUrl,
+        placeholderWidget: Container(
+          color: color,
+          child: Padding(
+            padding: UI.padding.profileSettingOptionIconContent,
+            child: SizedBox(
+              child: UISvg(
+                imgUrl,
+                colorFilter: ColorFilter.mode(
+                  colorIcon ?? UIColor.charcoal,
+                  BlendMode.srcIn,
+                ),
+              ),
+            ),
+          ),
+        ),
       );
     }
 
@@ -80,12 +91,13 @@ class ProfileSettingOptionWidget extends StatelessWidget {
         child: Padding(
           padding: UI.padding.profileSettingOptionIconContent,
           child: SizedBox(
-            child: SvgPicture.asset(
+            child: UIImage(
               imgUrl,
-              colorFilter: ColorFilter.mode(
-                colorIcon ?? UIColor.charcoal,
-                BlendMode.srcIn,
-              ),
+
+              // colorFilter: ColorFilter.mode(
+              //   colorIcon ?? UIColor.charcoal,
+              //   BlendMode.srcIn,
+              // ),
             ),
           ),
         ),

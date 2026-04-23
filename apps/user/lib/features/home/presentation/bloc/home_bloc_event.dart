@@ -14,5 +14,6 @@ sealed class HomeBlocEvent with _$HomeBlocEvent {
   const factory HomeBlocEvent.loadServiceDetails(
     GetServiceDetailsRequestModel request,
   ) = LoadServiceDetailsEvent;
-  const factory HomeBlocEvent.loadSearchContent() = LoadSearchContentEvent;
+  const factory HomeBlocEvent.loadSearchContent(String qwery) =
+      LoadSearchContentEvent;
 }

@@ -11,7 +11,9 @@ abstract class HomeRepository {
   Future<Result<List<OfferModel>, APIException>> getOffers();
   Future<Result<List<OfferModel>, APIException>> getSliders();
   Future<Result<List<OfferModel>, APIException>> getStories();
-  Future<Result<SearchResponseModel, APIException>> getSearchContent();
+  Future<Result<SearchResponseModel, APIException>> getSearchContent(
+    String qwery,
+  );
   Future<Result<ServiceCategoryModel, APIException>> getCategoryServices(
     String categoryId,
   );
@@ -28,8 +30,9 @@ class HomeRepositoryImpl implements HomeRepository {
       _homeAPI.getCategories().toResult();
 
   @override
-  Future<Result<SearchResponseModel, APIException>> getSearchContent() =>
-      _homeAPI.getSearchContent().toResult();
+  Future<Result<SearchResponseModel, APIException>> getSearchContent(
+    String qwery,
+  ) => _homeAPI.getSearchContent(qwery).toResult();
 
   @override
   Future<Result<ServiceCategoryModel, APIException>> getCategoryServices(

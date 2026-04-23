@@ -41,13 +41,6 @@ class UserApp extends StatelessWidget {
                             GlobalWidgetsLocalizations.delegate,
                             ProfileLocalizationDelegate(),
                             OrdersLocalizationDelegate(),
-
-                            // BaseLocalization<ChildTranslation>().delegate(
-                            //   ChildTranslationMap.translation,
-                            // ),
-                            // BaseLocalization<TaskTranslation>().delegate(
-                            //   TaskTranslationMap.translation,
-                            // ),
                           ],
                           supportedLocales: Config.supportedLocales,
                           locale: locale,
@@ -81,7 +74,9 @@ class AppProviders extends StatelessWidget {
                     ..add(LoadStoriesEvent())
                     ..add(LoadSlidersEvent()),
         ),
-        BlocProvider.value(value: diContainer.get<AppCubit>()),
+        BlocProvider.value(
+          value: diContainer.get<AppCubit>()..init(UserRole.user),
+        ),
         BlocProvider.value(
           value: AuthUserBloc(
             diContainer.get<AuthRepository>(),

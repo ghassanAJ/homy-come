@@ -140,83 +140,81 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
 
           return Stack(
             children: [
-              Scaffold(
+              UIScaffold(
                 backgroundColor: UIColor.background,
-                body: SafeArea(
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          padding: UI.padding.authScrollable,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: UIIconBackground(
-                                  size: 90,
-                                  iconSize: 45,
-                                  backgroundColor: UIColor.softGreen,
-                                  child: UISvg(Assets.icons.message),
-                                ),
-                              ),
-                              SizedBox(height: UI.spacing.lg),
-                              Center(
-                                child: UIText.bodyMedium(
-                                  tr.verification.title,
-                                  textAlign: TextAlign.center,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              SizedBox(height: UI.spacing.sm),
-                              Center(child: _buildVerificationDescription(tr)),
-                              SizedBox(height: 70),
-                              PinInput(
-                                controller: _otpController,
-                                length: AuthenticationConfig.otpLength,
-                                hasError: hasError,
-                                errorText: otpErrorMessage,
-                                onCompleted: _handleOTPCompleted,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: UI.padding.authActions,
+                body: Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: UI.padding.authScrollable,
                         child: Column(
-                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            UIButton.primary(
-                              label: tr.login.verifyButton,
-                              expanded: true,
-                              onPressed:
-                                  (_isOtpValid && !isLoading)
-                                      ? _handleVerify
-                                      : null,
+                            Center(
+                              child: UIIconBackground(
+                                size: 90,
+                                iconSize: 45,
+                                backgroundColor: UIColor.softGreen,
+                                child: UISvg(Assets.icons.message),
+                              ),
                             ),
                             SizedBox(height: UI.spacing.lg),
-                            if (_resendTimer.canResend)
-                              GestureDetector(
-                                onTap: _handleResendCode,
-                                child: UIText.buttonText(
-                                  tr.verification.resendCode,
-                                  color: UIColor.successBright,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              )
-                            else
-                              UIText.bodyMedium(
-                                '${tr.verification.resendCode} ${tr.verification.resendCodeIn.replaceAll('{seconds}', _resendTimer.remainingSeconds.toString())}',
-                                color: UIColor.textPlaceholder,
+                            Center(
+                              child: UIText.bodyMedium(
+                                tr.verification.title,
                                 textAlign: TextAlign.center,
-                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
                               ),
+                            ),
+                            SizedBox(height: UI.spacing.sm),
+                            Center(child: _buildVerificationDescription(tr)),
+                            SizedBox(height: 70),
+                            PinInput(
+                              controller: _otpController,
+                              length: AuthenticationConfig.otpLength,
+                              hasError: hasError,
+                              errorText: otpErrorMessage,
+                              onCompleted: _handleOTPCompleted,
+                            ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: UI.padding.authActions,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          UIButton.primary(
+                            label: tr.login.verifyButton,
+                            expanded: true,
+                            onPressed:
+                                (_isOtpValid && !isLoading)
+                                    ? _handleVerify
+                                    : null,
+                          ),
+                          SizedBox(height: UI.spacing.lg),
+                          if (_resendTimer.canResend)
+                            GestureDetector(
+                              onTap: _handleResendCode,
+                              child: UIText.buttonText(
+                                tr.verification.resendCode,
+                                color: UIColor.successBright,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            )
+                          else
+                            UIText.bodyMedium(
+                              '${tr.verification.resendCode} ${tr.verification.resendCodeIn.replaceAll('{seconds}', _resendTimer.remainingSeconds.toString())}',
+                              color: UIColor.textPlaceholder,
+                              textAlign: TextAlign.center,
+                              fontWeight: FontWeight.w500,
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
               if (isLoading) const MDProgressIndicator(styled: true),

@@ -11,11 +11,6 @@ class MockBookingRepository implements BookingRepository {
   Future<Result<ServiceDetailsResponseModel, APIException>> getServiceDetails(
     GetServiceDetailsRequestModel request,
   ) async {
-    if (failNextGetServiceDetails) {
-      failNextGetServiceDetails = false;
-      return failure(APIException.error('Mock getServiceDetails failure'));
-    }
-
     await Future.delayed(const Duration(milliseconds: 500));
     return success(_mockServiceDetails);
   }

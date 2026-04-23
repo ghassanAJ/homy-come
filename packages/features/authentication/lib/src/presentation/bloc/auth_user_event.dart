@@ -34,8 +34,8 @@ class CompleteOtpAuthentication extends AuthUserEvent {
 /// Update user profile - used to complete profile after registration
 /// The userId is retrieved automatically from the current session
 class UpdateProfile extends AuthUserEvent {
-  final Map<String, dynamic> profileData;
-  UpdateProfile(this.profileData);
+  final VerifiedUserModel user;
+  UpdateProfile(this.user);
 }
 
 /// Direct login with 6-digit PIN code (no OTP verification needed)

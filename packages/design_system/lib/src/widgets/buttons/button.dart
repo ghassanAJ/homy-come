@@ -92,6 +92,7 @@ class _BaseButton extends StatelessWidget {
   final double? borderRadius;
   final bool? centerLabel;
   final UIColor? labelColor;
+  final double? height;
 
   const _BaseButton({
     required this.label,
@@ -104,6 +105,7 @@ class _BaseButton extends StatelessWidget {
     this.isLoading = false,
     this.expanded = false,
     this.width,
+    this.height = 50,
     this.centerLabel,
     this.customBackgroundColor,
     this.customForegroundColor,
@@ -166,28 +168,30 @@ class _BaseButton extends StatelessWidget {
       );
     }
 
-    return ElevatedButton(
-      onPressed: isLoading ? null : onPressed,
-      style: ElevatedButton.styleFrom(
-        // maximumSize: Size(double.infinity, 24),
-        backgroundColor: effectiveBackgroundColor,
-        foregroundColor: effectiveForegroundColor,
-        disabledBackgroundColor: styleConfig.disabledBackgroundColor,
-        disabledForegroundColor: styleConfig.disabledForegroundColor,
-        elevation: 0,
-        padding: EdgeInsets.symmetric(
-          horizontal: UI.spacing.buttonHorizontal,
-          vertical: verticalPadding,
+    return SizedBox(
+      height: height ?? 50,
+      child: ElevatedButton(
+        onPressed: isLoading ? null : onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: effectiveBackgroundColor,
+          foregroundColor: effectiveForegroundColor,
+          disabledBackgroundColor: styleConfig.disabledBackgroundColor,
+          disabledForegroundColor: styleConfig.disabledForegroundColor,
+          elevation: 0,
+          padding: EdgeInsets.symmetric(
+            horizontal: UI.spacing.buttonHorizontal,
+            vertical: verticalPadding,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(effectiveBorderRadius),
+            side:
+                borderColor != null
+                    ? BorderSide(color: borderColor!, width: 1)
+                    : BorderSide.none,
+          ),
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(effectiveBorderRadius),
-          side:
-              borderColor != null
-                  ? BorderSide(color: borderColor!, width: 1)
-                  : BorderSide.none,
-        ),
+        child: content,
       ),
-      child: content,
     );
   }
 
@@ -201,9 +205,9 @@ class _BaseButton extends StatelessWidget {
           // width: UI.sizes.loadingIndicatorSm,
           child: CircularProgressIndicator.adaptive(
             // strokeWidth: UI.sizes.loadingIndicatorStroke,
-            // valueColor: AlwaysStoppedAnimation<Color>(
-            //   customForegroundColor ?? styleConfig.foregroundColor,
-            // ),
+            valueColor: AlwaysStoppedAnimation<Color>(
+              customForegroundColor ?? styleConfig.foregroundColor,
+            ),
           ),
         ),
       );
@@ -245,7 +249,11 @@ class _BaseButton extends StatelessWidget {
         Expanded(
           child: Align(
             alignment: Alignment.centerLeft,
-            child: UIText.bodyMedium(label, color: customForegroundColor),
+            child: UIText.bodyMedium(
+              label,
+              color: customForegroundColor,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       );
@@ -296,7 +304,9 @@ class _BaseButton extends StatelessWidget {
       children.add(SizedBox(width: UI.spacing.xs));
     }
 
-    children.add(UIText.buttonText(label, color: customForegroundColor));
+    children.add(
+      UIText.buttonText(label, color: customForegroundColor, fontSize: 16),
+    );
 
     // Add trailing icon or widget
     if (hasTrailingWidget) {
@@ -398,6 +408,7 @@ class UIButton {
     bool isLoading = false,
     bool expanded = false,
     double? width,
+    double? height,
   }) {
     return _BaseButton(
       borderRadius: 4,
@@ -409,6 +420,7 @@ class UIButton {
       isLoading: isLoading,
       expanded: expanded,
       width: width,
+      height: height,
     );
   }
 

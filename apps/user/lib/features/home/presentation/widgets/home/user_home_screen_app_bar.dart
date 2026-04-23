@@ -1,11 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:authentication/authentication.dart';
 import 'package:booking/booking.dart';
-import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:user/di/di_container.dart';
-import 'package:user/features/home/presentation/screens/set_location_screen.dart';
 import 'package:user/features/home/presentation/widgets/home/home_header.dart';
 import 'package:user/features/home/presentation/widgets/shared/categories_search_field.dart';
 import 'package:user/navigation/route.dart';
@@ -161,22 +158,25 @@ class LocationSetterUtil {
   static Future<UserddressModel?> pushToSetLocationScreen(
     BuildContext context,
   ) async {
-    final UserddressModel? result = await Navigator.push<UserddressModel?>(
-      StatefulNavigationShell.of(context).context,
-      MaterialPageRoute(
-        builder:
-            (_) => const SelectLocationScreen(
-              selectedLocation: LatLng(
-                37.7749,
-                -122.4194,
-              ), //TODO use current user location instead
-            ),
-      ),
+    final UserddressModel? result = await context.push<UserddressModel?>(
+      UserPaths.setLocation,
     );
 
     if (result != null) {
       print(result.latitude);
       print(result.longitude);
+      final state = context.read<AppCubit>().state;
+      final currentUserData = state.user;
+      if (currentUserData == null) return null;
+      context.read<AuthUserBloc>().add(
+        UpdateProfile(
+          currentUserData.copyWith(
+            latitude: result.latitude,
+            longitude: result.longitude,
+            address: result.addressTitle,
+          ),
+        ),
+      );
       return result;
     }
     return null;
@@ -184,9 +184,9 @@ class LocationSetterUtil {
 }
 
 class UserddressModel {
-  final double latitude;
-  final double longitude;
-  final String addressTitle;
+  final double? latitude;
+  final double? longitude;
+  final String? addressTitle;
   UserddressModel({
     required this.latitude,
     required this.longitude,

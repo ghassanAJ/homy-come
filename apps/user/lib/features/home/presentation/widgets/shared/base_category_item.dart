@@ -151,11 +151,11 @@ class BaseCategoryItem extends StatelessWidget {
         return UISvg(Assets.icons.carpenter, size: iconSize);
       case 'Electrician':
         return UISvg(Assets.icons.electrician, size: iconSize);
-      case 'Plumber':
+      case 'Plumber Services':
         return UISvg(Assets.icons.plumber, size: iconSize);
       case 'Painter':
         return UISvg(Assets.icons.painter, size: iconSize);
-      case 'Cleaner':
+      case 'General Cleaning':
         return UISvg(Assets.icons.cleaner, size: iconSize);
       default:
         return UISvg(iconPath, size: iconSize);

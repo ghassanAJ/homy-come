@@ -9,6 +9,7 @@ class UISvg extends StatelessWidget {
     this.package,
     this.matchTextDirection = false,
     this.size,
+    this.colorFilter,
   });
 
   final String icon;
@@ -16,6 +17,7 @@ class UISvg extends StatelessWidget {
   final String? package;
   final bool matchTextDirection;
   final double? size;
+  final ColorFilter? colorFilter;
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
@@ -23,9 +25,12 @@ class UISvg extends StatelessWidget {
       package: package,
       width: size,
       height: size,
+
       matchTextDirection: matchTextDirection,
       colorFilter:
-          color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
+          color != null
+              ? ColorFilter.mode(color!, BlendMode.srcIn)
+              : colorFilter,
     );
   }
 }

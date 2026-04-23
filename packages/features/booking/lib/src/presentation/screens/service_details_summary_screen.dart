@@ -45,7 +45,11 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
                                 height: 48,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: UIColor.neutral25,
+                                  color: UIColor.babyPink,
+                                ),
+                                child: UINetworkImage(
+                                  imageUrl:
+                                      'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
                                 ),
                               ),
                               SizedBox(width: UI.spacing.sm),
@@ -142,6 +146,13 @@ class ServiceDetailsSummaryScreen extends StatelessWidget {
                                   height: 72,
                                   width: double.infinity,
                                   child: GoogleMap(
+                                    myLocationButtonEnabled: false,
+                                    zoomControlsEnabled: false,
+                                    zoomGesturesEnabled: false,
+                                    scrollGesturesEnabled: false,
+                                    rotateGesturesEnabled: false,
+                                    tiltGesturesEnabled: false,
+                                    compassEnabled: false,
                                     initialCameraPosition: CameraPosition(
                                       target: LatLng(33.4, 44.5),
                                     ),
@@ -195,7 +206,7 @@ class SummaryBottomBar extends StatelessWidget {
               showReasons(context);
             },
             child: UIText.bodyMedium(
-              'Cancel Service',
+              'Cancel service',
               color: UIColor.balck,
               textAlign: TextAlign.center,
             ),

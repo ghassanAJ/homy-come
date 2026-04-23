@@ -7,6 +7,7 @@ class OrderAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return UISliverAppBar(
+      automaticallyImplyLeading: false,
       // toolbarHeight: 10,
       floating: true,
       snap: false,

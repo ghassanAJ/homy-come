@@ -17,7 +17,7 @@ mixin _$VerifiedUserModel {
 
  int get id;@JsonKey(name: 'documentId') String get documentId; String get phone;@JsonKey(name: 'otp_code') String? get otpCode;@JsonKey(name: 'role_type') String get roleType;@JsonKey(name: 'profile_picture') String? get profilePicture;/// The latitude in degrees between -90.0 and 90.0, both inclusive.
  double? get latitude;/// The longitude in degrees between -180.0 (inclusive) and 180.0 (exclusive).
- double? get longitude; String? get name; String? get address;
+ double? get longitude; String? get name; String? get email; String? get address;
 /// Create a copy of VerifiedUserModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,16 +30,16 @@ $VerifiedUserModelCopyWith<VerifiedUserModel> get copyWith => _$VerifiedUserMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifiedUserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.documentId, documentId) || other.documentId == documentId)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.otpCode, otpCode) || other.otpCode == otpCode)&&(identical(other.roleType, roleType) || other.roleType == roleType)&&(identical(other.profilePicture, profilePicture) || other.profilePicture == profilePicture)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.name, name) || other.name == name)&&(identical(other.address, address) || other.address == address));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VerifiedUserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.documentId, documentId) || other.documentId == documentId)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.otpCode, otpCode) || other.otpCode == otpCode)&&(identical(other.roleType, roleType) || other.roleType == roleType)&&(identical(other.profilePicture, profilePicture) || other.profilePicture == profilePicture)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.address, address) || other.address == address));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,documentId,phone,otpCode,roleType,profilePicture,latitude,longitude,name,address);
+int get hashCode => Object.hash(runtimeType,id,documentId,phone,otpCode,roleType,profilePicture,latitude,longitude,name,email,address);
 
 @override
 String toString() {
-  return 'VerifiedUserModel(id: $id, documentId: $documentId, phone: $phone, otpCode: $otpCode, roleType: $roleType, profilePicture: $profilePicture, latitude: $latitude, longitude: $longitude, name: $name, address: $address)';
+  return 'VerifiedUserModel(id: $id, documentId: $documentId, phone: $phone, otpCode: $otpCode, roleType: $roleType, profilePicture: $profilePicture, latitude: $latitude, longitude: $longitude, name: $name, email: $email, address: $address)';
 }
 
 
@@ -50,7 +50,7 @@ abstract mixin class $VerifiedUserModelCopyWith<$Res>  {
   factory $VerifiedUserModelCopyWith(VerifiedUserModel value, $Res Function(VerifiedUserModel) _then) = _$VerifiedUserModelCopyWithImpl;
 @useResult
 $Res call({
- int id,@JsonKey(name: 'documentId') String documentId, String phone,@JsonKey(name: 'otp_code') String? otpCode,@JsonKey(name: 'role_type') String roleType,@JsonKey(name: 'profile_picture') String? profilePicture, double? latitude, double? longitude, String? name, String? address
+ int id,@JsonKey(name: 'documentId') String documentId, String phone,@JsonKey(name: 'otp_code') String? otpCode,@JsonKey(name: 'role_type') String roleType,@JsonKey(name: 'profile_picture') String? profilePicture, double? latitude, double? longitude, String? name, String? email, String? address
 });
 
 
@@ -67,7 +67,7 @@ class _$VerifiedUserModelCopyWithImpl<$Res>
 
 /// Create a copy of VerifiedUserModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? documentId = null,Object? phone = null,Object? otpCode = freezed,Object? roleType = null,Object? profilePicture = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? name = freezed,Object? address = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? documentId = null,Object? phone = null,Object? otpCode = freezed,Object? roleType = null,Object? profilePicture = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? name = freezed,Object? email = freezed,Object? address = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
@@ -78,6 +78,7 @@ as String,profilePicture: freezed == profilePicture ? _self.profilePicture : pro
 as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
 as double?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
@@ -164,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'documentId')  String documentId,  String phone, @JsonKey(name: 'otp_code')  String? otpCode, @JsonKey(name: 'role_type')  String roleType, @JsonKey(name: 'profile_picture')  String? profilePicture,  double? latitude,  double? longitude,  String? name,  String? address)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'documentId')  String documentId,  String phone, @JsonKey(name: 'otp_code')  String? otpCode, @JsonKey(name: 'role_type')  String roleType, @JsonKey(name: 'profile_picture')  String? profilePicture,  double? latitude,  double? longitude,  String? name,  String? email,  String? address)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _VerifiedUserModel() when $default != null:
-return $default(_that.id,_that.documentId,_that.phone,_that.otpCode,_that.roleType,_that.profilePicture,_that.latitude,_that.longitude,_that.name,_that.address);case _:
+return $default(_that.id,_that.documentId,_that.phone,_that.otpCode,_that.roleType,_that.profilePicture,_that.latitude,_that.longitude,_that.name,_that.email,_that.address);case _:
   return orElse();
 
 }
@@ -185,10 +186,10 @@ return $default(_that.id,_that.documentId,_that.phone,_that.otpCode,_that.roleTy
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'documentId')  String documentId,  String phone, @JsonKey(name: 'otp_code')  String? otpCode, @JsonKey(name: 'role_type')  String roleType, @JsonKey(name: 'profile_picture')  String? profilePicture,  double? latitude,  double? longitude,  String? name,  String? address)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'documentId')  String documentId,  String phone, @JsonKey(name: 'otp_code')  String? otpCode, @JsonKey(name: 'role_type')  String roleType, @JsonKey(name: 'profile_picture')  String? profilePicture,  double? latitude,  double? longitude,  String? name,  String? email,  String? address)  $default,) {final _that = this;
 switch (_that) {
 case _VerifiedUserModel():
-return $default(_that.id,_that.documentId,_that.phone,_that.otpCode,_that.roleType,_that.profilePicture,_that.latitude,_that.longitude,_that.name,_that.address);case _:
+return $default(_that.id,_that.documentId,_that.phone,_that.otpCode,_that.roleType,_that.profilePicture,_that.latitude,_that.longitude,_that.name,_that.email,_that.address);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -205,10 +206,10 @@ return $default(_that.id,_that.documentId,_that.phone,_that.otpCode,_that.roleTy
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'documentId')  String documentId,  String phone, @JsonKey(name: 'otp_code')  String? otpCode, @JsonKey(name: 'role_type')  String roleType, @JsonKey(name: 'profile_picture')  String? profilePicture,  double? latitude,  double? longitude,  String? name,  String? address)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'documentId')  String documentId,  String phone, @JsonKey(name: 'otp_code')  String? otpCode, @JsonKey(name: 'role_type')  String roleType, @JsonKey(name: 'profile_picture')  String? profilePicture,  double? latitude,  double? longitude,  String? name,  String? email,  String? address)?  $default,) {final _that = this;
 switch (_that) {
 case _VerifiedUserModel() when $default != null:
-return $default(_that.id,_that.documentId,_that.phone,_that.otpCode,_that.roleType,_that.profilePicture,_that.latitude,_that.longitude,_that.name,_that.address);case _:
+return $default(_that.id,_that.documentId,_that.phone,_that.otpCode,_that.roleType,_that.profilePicture,_that.latitude,_that.longitude,_that.name,_that.email,_that.address);case _:
   return null;
 
 }
@@ -220,7 +221,7 @@ return $default(_that.id,_that.documentId,_that.phone,_that.otpCode,_that.roleTy
 @JsonSerializable()
 
 class _VerifiedUserModel implements VerifiedUserModel {
-  const _VerifiedUserModel({required this.id, @JsonKey(name: 'documentId') required this.documentId, required this.phone, @JsonKey(name: 'otp_code') this.otpCode, @JsonKey(name: 'role_type') required this.roleType, @JsonKey(name: 'profile_picture') this.profilePicture, this.latitude, this.longitude, this.name, this.address});
+  const _VerifiedUserModel({required this.id, @JsonKey(name: 'documentId') required this.documentId, required this.phone, @JsonKey(name: 'otp_code') this.otpCode, @JsonKey(name: 'role_type') required this.roleType, @JsonKey(name: 'profile_picture') this.profilePicture, this.latitude, this.longitude, this.name, this.email, this.address});
   factory _VerifiedUserModel.fromJson(Map<String, dynamic> json) => _$VerifiedUserModelFromJson(json);
 
 @override final  int id;
@@ -234,6 +235,7 @@ class _VerifiedUserModel implements VerifiedUserModel {
 /// The longitude in degrees between -180.0 (inclusive) and 180.0 (exclusive).
 @override final  double? longitude;
 @override final  String? name;
+@override final  String? email;
 @override final  String? address;
 
 /// Create a copy of VerifiedUserModel
@@ -249,16 +251,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VerifiedUserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.documentId, documentId) || other.documentId == documentId)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.otpCode, otpCode) || other.otpCode == otpCode)&&(identical(other.roleType, roleType) || other.roleType == roleType)&&(identical(other.profilePicture, profilePicture) || other.profilePicture == profilePicture)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.name, name) || other.name == name)&&(identical(other.address, address) || other.address == address));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _VerifiedUserModel&&(identical(other.id, id) || other.id == id)&&(identical(other.documentId, documentId) || other.documentId == documentId)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.otpCode, otpCode) || other.otpCode == otpCode)&&(identical(other.roleType, roleType) || other.roleType == roleType)&&(identical(other.profilePicture, profilePicture) || other.profilePicture == profilePicture)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.address, address) || other.address == address));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,documentId,phone,otpCode,roleType,profilePicture,latitude,longitude,name,address);
+int get hashCode => Object.hash(runtimeType,id,documentId,phone,otpCode,roleType,profilePicture,latitude,longitude,name,email,address);
 
 @override
 String toString() {
-  return 'VerifiedUserModel(id: $id, documentId: $documentId, phone: $phone, otpCode: $otpCode, roleType: $roleType, profilePicture: $profilePicture, latitude: $latitude, longitude: $longitude, name: $name, address: $address)';
+  return 'VerifiedUserModel(id: $id, documentId: $documentId, phone: $phone, otpCode: $otpCode, roleType: $roleType, profilePicture: $profilePicture, latitude: $latitude, longitude: $longitude, name: $name, email: $email, address: $address)';
 }
 
 
@@ -269,7 +271,7 @@ abstract mixin class _$VerifiedUserModelCopyWith<$Res> implements $VerifiedUserM
   factory _$VerifiedUserModelCopyWith(_VerifiedUserModel value, $Res Function(_VerifiedUserModel) _then) = __$VerifiedUserModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id,@JsonKey(name: 'documentId') String documentId, String phone,@JsonKey(name: 'otp_code') String? otpCode,@JsonKey(name: 'role_type') String roleType,@JsonKey(name: 'profile_picture') String? profilePicture, double? latitude, double? longitude, String? name, String? address
+ int id,@JsonKey(name: 'documentId') String documentId, String phone,@JsonKey(name: 'otp_code') String? otpCode,@JsonKey(name: 'role_type') String roleType,@JsonKey(name: 'profile_picture') String? profilePicture, double? latitude, double? longitude, String? name, String? email, String? address
 });
 
 
@@ -286,7 +288,7 @@ class __$VerifiedUserModelCopyWithImpl<$Res>
 
 /// Create a copy of VerifiedUserModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? documentId = null,Object? phone = null,Object? otpCode = freezed,Object? roleType = null,Object? profilePicture = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? name = freezed,Object? address = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? documentId = null,Object? phone = null,Object? otpCode = freezed,Object? roleType = null,Object? profilePicture = freezed,Object? latitude = freezed,Object? longitude = freezed,Object? name = freezed,Object? email = freezed,Object? address = freezed,}) {
   return _then(_VerifiedUserModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,documentId: null == documentId ? _self.documentId : documentId // ignore: cast_nullable_to_non_nullable
@@ -297,6 +299,7 @@ as String,profilePicture: freezed == profilePicture ? _self.profilePicture : pro
 as String?,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
 as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
 as double?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

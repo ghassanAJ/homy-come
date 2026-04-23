@@ -70,6 +70,11 @@ final class SelectProvider extends BookingWizardEvent {
   final ProviderModel providerId;
 }
 
+final class SelectFrequency extends BookingWizardEvent {
+  const SelectFrequency({required this.frequencyType});
+  final FrequencyType frequencyType;
+}
+
 class LoadProviders extends BookingWizardEvent {
   final String serviceId;
 
@@ -103,6 +108,13 @@ class LoadTimeSlots extends BookingWizardEvent {
   final String serviceId;
 
   LoadTimeSlots({required this.date, required this.serviceId});
+}
+
+class LoadDaysAvailable extends BookingWizardEvent {
+  final DateTime date;
+  final String serviceId;
+
+  LoadDaysAvailable({required this.date, required this.serviceId});
 }
 
 // ── Submission ────────────────────────────────────────────────────────────────

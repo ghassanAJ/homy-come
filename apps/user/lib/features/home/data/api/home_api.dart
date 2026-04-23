@@ -27,7 +27,7 @@ abstract class HomeAPI {
   Future<APIResponse<List<ServiceCategoryModel>>> getCategories();
 
   @GET(HomeAPIEndpoints.getSearchContent)
-  Future<APIResponse<SearchResponseModel>> getSearchContent();
+  Future<APIResponse<SearchResponseModel>> getSearchContent(String qwery);
 
   @GET(HomeAPIEndpoints.getCategoryServices)
   Future<APIResponse<ServiceCategoryModel>> getCategoryServices(

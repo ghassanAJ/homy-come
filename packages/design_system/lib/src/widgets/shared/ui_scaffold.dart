@@ -13,12 +13,16 @@ class UIScaffold extends StatelessWidget {
     this.bottomNavigationBar,
     this.floatingActionButton,
     this.bottomSheet,
+    this.resizeToAvoidBottomInset,
+    this.automaticallyImplyLeading = true,
     this.withBackButton = true,
   });
   final bool withBackButton;
   final PreferredSizeWidget? appBar;
   final Widget body;
   final bool extendBodyBehindAppBar;
+  final bool? resizeToAvoidBottomInset;
+  final bool automaticallyImplyLeading;
   final bool extendBody;
   final bool withBackgroundGradient;
   final Color? backgroundColor;
@@ -36,6 +40,7 @@ class UIScaffold extends StatelessWidget {
       appBar:
           appBarTitle != null && appBar == null
               ? UIAppBar(
+                automaticallyImplyLeading: automaticallyImplyLeading,
                 title: appBarTitle,
                 backgroundColor: Colors.transparent,
               )
@@ -53,6 +58,7 @@ class UIScaffold extends StatelessWidget {
               )
               : body,
       backgroundColor: UIColor.background,
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       extendBody: extendBody,
       bottomNavigationBar: bottomNavigationBar,

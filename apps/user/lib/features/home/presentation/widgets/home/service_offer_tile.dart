@@ -16,102 +16,148 @@ class ServiceOfferTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      decoration: BoxDecoration(
-        color: UIColor.neutral000,
-        borderRadius: BorderRadius.circular(UI.radius.md),
-        border: Border.all(color: UIColor.border),
-      ),
-      child: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(UI.radius.md),
-                ),
-                child: SizedBox(
-                  height: 160,
-                  width: width,
-                  child: UINetworkImage(
-                    imageUrl: servicePreviewResponseModel.info?.image ?? '',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
+    return GestureDetector(
+      onTap: () {
+        context.push(
+          UserPaths.serviceDetails,
+          extra: {'id': servicePreviewResponseModel.documentId},
+        );
+      },
+      child: SizedBox(
+        width: width,
 
-              Padding(
-                padding: UI.padding.userHomeServiceOfferTileContent,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+        child: Card(
+          margin: EdgeInsets.zero,
+          elevation: 1,
+          color: UIColor.neutral000,
+
+          shape: OutlineInputBorder(
+            borderSide: BorderSide(color: UIColor.border, width: 1.5),
+            borderRadius: BorderRadius.circular(UI.radius.md),
+          ),
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(UI.radius.md),
+                    ),
+                    child: SizedBox(
+                      height: 160,
+                      width: double.infinity,
+                      child: UINetworkImage(
+                        imageUrl: servicePreviewResponseModel.info?.image ?? '',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+
+                  Padding(
+                    padding: UI.padding.userHomeServiceOfferTileContent,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (servicePreviewResponseModel.rating != null)
-                          Row(
-                            children: List.generate(
-                              servicePreviewResponseModel.rating!,
-                              (index) => Icon(
-                                Icons.star,
-                                size: 20,
-                                color: UIColor.babyBlue,
+                        Row(
+                          children: [
+                            if (servicePreviewResponseModel.rating != null)
+                              Row(
+                                children: List.generate(
+                                  servicePreviewResponseModel.rating!,
+                                  (index) => Icon(
+                                    Icons.star,
+                                    size: 20,
+                                    color: UIColor.babyBlue,
+                                  ),
+                                ),
                               ),
+                            SizedBox(width: UI.spacing.xs),
+                            UIText.captionSmall(
+                              '(${servicePreviewResponseModel.reviewsCount} Reviews)',
+                              color: UIColor.midnight,
+                              // fontWeight: FontWeight.w300,
                             ),
-                          ),
-                        SizedBox(width: UI.spacing.xs),
-                        UIText.bodyXSmall(
-                          '(${servicePreviewResponseModel.reviewsCount} Reviews)',
-                          color: UIColor.midnight,
-                          fontWeight: FontWeight.w300,
+                          ],
                         ),
+
+                        SizedBox(height: UI.spacing.xxs),
+                        UIText.bodySmall(
+                          servicePreviewResponseModel.info?.name ?? '',
+                          color: UIColor.primaryDark,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        SizedBox(height: UI.spacing.xxs),
+                        if (servicePreviewResponseModel.priceModel != null)
+                          Row(
+                            children: [
+                              UIText.bodySmall('Start from '),
+                              UIPriceText(
+                                // oldPrice:
+                                //     servicePreviewResponseModel
+                                //         .priceModel!
+                                //         .currentPrice
+                                //         .toString(),
+                                text: UIText.bodySmall(
+                                  servicePreviewResponseModel
+                                      .priceModel!
+                                      .newPrice
+                                      .toString(),
+                                  color: UIColor.midnight,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                        // SizedBox(height: 10),
+                        // UIButton.primary(
+                        //   height: 40,
+                        //   expanded: true,
+                        //   label: 'Book now',
+                        //   onPressed: () {
+                        //     context.push(
+                        //       UserPaths.serviceDetails,
+                        //       extra: {'id': servicePreviewResponseModel.documentId},
+                        //     );
+                        //   },
+                        // ),
+                        // UIPriceText(
+                        //   oldPrice:
+                        //       servicePreviewResponseModel.priceModel!.currentPrice
+                        //           .toString(),
+                        //   text: UIText.bodySmall(
+                        //     servicePreviewResponseModel.priceModel!.newPrice
+                        //         .toString(),
+                        //     color: UIColor.midnight,
+                        //     fontWeight: FontWeight.w400,
+                        //   ),
+                        // ),
                       ],
                     ),
-
-                    SizedBox(height: UI.spacing.xxs),
-                    UIText.bodySmall(
-                      servicePreviewResponseModel.info?.name ?? '',
-                      color: UIColor.primaryDark,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    SizedBox(height: UI.spacing.xxs),
-                    if (servicePreviewResponseModel.priceModel != null)
-                      UIPriceText(
-                        oldPrice:
-                            servicePreviewResponseModel.priceModel!.currentPrice
-                                .toString(),
-                        text: UIText.bodySmall(
-                          servicePreviewResponseModel.priceModel!.newPrice
-                              .toString(),
-                          color: UIColor.midnight,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+
+              // PositionedDirectional(
+              //   bottom: UI.spacing.xs,
+              //   end: UI.spacing.sm,
+              //   child: UIActionButton(
+              //     label: 'Book now',
+              //     onTap: () {
+              //       context.push(
+              //         UserPaths.serviceDetails,
+              //         extra: {'id': servicePreviewResponseModel.documentId},
+              //       );
+              //     },
+              //     padding: EdgeInsets.symmetric(horizontal: UI.spacing.md),
+              //     // width: 67,
+              //     height: 36,
+              //     fontWeight: FontWeight.w600,
+              //   ),
+              // ),
             ],
           ),
-
-          PositionedDirectional(
-            bottom: UI.spacing.xs,
-            end: UI.spacing.sm,
-            child: UIActionButton(
-              label: 'Book now',
-              onTap: () {
-                context.push(
-                  UserPaths.serviceDetails,
-                  extra: {'id': servicePreviewResponseModel.documentId},
-                );
-              },
-              padding: EdgeInsets.symmetric(horizontal: UI.spacing.md),
-              // width: 67,
-              height: 36,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

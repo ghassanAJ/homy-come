@@ -19,6 +19,7 @@ abstract class VerifiedUserModel with _$VerifiedUserModel {
     /// The longitude in degrees between -180.0 (inclusive) and 180.0 (exclusive).
     double? longitude,
     String? name,
+    String? email,
     String? address,
   }) = _VerifiedUserModel;
 

@@ -28,6 +28,8 @@ class AuthNavigationListener extends StatelessWidget {
   }
 
   bool _shouldListen(AuthUserState previous, AuthUserState current) {
+    log('_shouldListen');
+
     return current is AuthUserStateOTPSent ||
         current is AuthUserStateAuthenticated ||
         current is AuthUserStateLoggedOut ||
@@ -35,6 +37,7 @@ class AuthNavigationListener extends StatelessWidget {
   }
 
   void _onStateChanged(BuildContext context, AuthUserState state) {
+    log('_onStateChanged');
     switch (state) {
       case AuthUserStateOTPSent():
         _onOtpSent(context, state);
@@ -42,7 +45,7 @@ class AuthNavigationListener extends StatelessWidget {
         _onAuthenticated(context, state);
       case AuthUserStateLoggedOut():
       case AuthUserStateSessionExpired():
-        _onLoggedOut();
+        _onLoggedOut(context);
       default:
         break;
     }
@@ -74,6 +77,7 @@ class AuthNavigationListener extends StatelessWidget {
     BuildContext context,
     AuthUserStateAuthenticated state,
   ) {
+    context.read<AppCubit>().updateUser(state.user);
     final hasCompletedProfile =
         true; // state.session.user?.hasCompletedProfile ?? false;
     final authContext = state.context;
@@ -98,17 +102,19 @@ class AuthNavigationListener extends StatelessWidget {
     }
   }
 
-  void _onLoggedOut() {
+  void _onLoggedOut(BuildContext context) {
+    log('_onLoggedOut');
+    context.read<AppCubit>().clearUser();
     router.go(AuthenticationPaths.login);
   }
 
-  void _navigateAfterOtpVerification(BuildContext _, bool __) {
+  void _navigateAfterOtpVerification(BuildContext context, bool __) {
     // OTP success flow is handled by OTPVerificationScreen bottom sheet action.
     return;
   }
 
   void _navigateAfterProfileSave(BuildContext context) {
-    router.go(dashboardPath);
+    // router.go(dashboardPath);
   }
 
   void _navigateAfterPinLogin(BuildContext context, bool hasCompletedProfile) {

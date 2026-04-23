@@ -10,6 +10,7 @@ abstract class AuthUserState with _$AuthUserState {
 
   const factory AuthUserState.authenticated({
     required SessionModel session,
+    required VerifiedUserModel user,
     @Default(AuthenticationContext.unknown) AuthenticationContext context,
   }) = AuthUserStateAuthenticated;
 
@@ -58,6 +59,8 @@ enum AuthenticationContext {
 
   /// Context is unknown or not specified (default/legacy)
   unknown,
+
+  logout,
 }
 
 enum AuthUserErrorStateType {

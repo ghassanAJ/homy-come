@@ -48,12 +48,14 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
         if (session == null) {
           emit(AuthUserStateInitial());
         } else {
-          emit(
-            AuthUserStateAuthenticated(
-              session: session,
-              context: AuthenticationContext.tokenLogin,
-            ),
-          );
+          //TODO
+          // emit(
+          //   AuthUserStateAuthenticated(
+
+          //     session: session,
+          //     context: AuthenticationContext.tokenLogin,
+          //   ),
+          // );
         }
       },
       (error) {
@@ -68,17 +70,18 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
   }
 
   Future<void> _logout(Logout event, Emitter<AuthUserState> emit) async {
+    log('message');
     emit(AuthUserStateLoading());
 
-    final refreshToken = await _sessionRepository.getRefreshToken();
+    // final refreshToken = await _sessionRepository.getRefreshToken();
 
     final result = await ResultAsync.fromAsync(_sessionRepository.clearSession);
 
-    if (refreshToken != null && refreshToken.isNotEmpty) {
-      _authRepository.logout(refreshToken);
-    }
+    // if (refreshToken != null && refreshToken.isNotEmpty) {
+    // }
+    final result1 = await _authRepository.logout('refreshToken');
 
-    result.fold(
+    result1.fold(
       (data) => emit(AuthUserStateLoggedOut()),
       (error) => emit(
         AuthUserStateError(
@@ -103,22 +106,22 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
   ) async {
     emit(AuthUserStateLoading());
 
-    final userResult = await ResultAsync.fromAsync(_sessionRepository.getUser);
-    final userId = userResult.fold((user) => user?.id, (error) => null);
+    // final userResult = await ResultAsync.fromAsync(_sessionRepository.getUser);
+    // final userId = userResult.fold((user) => user?.id, (error) => null);
 
-    if (userId == null) {
-      emit(
-        AuthUserStateError(
-          APIException.error('User session not found'),
-          AuthUserErrorStateType.saveProfile,
-        ),
-      );
-      return;
-    }
+    // if (userId == null) {
+    //   emit(
+    //     AuthUserStateError(
+    //       APIException.error('User session not found'),
+    //       AuthUserErrorStateType.saveProfile,
+    //     ),
+    //   );
+    //   return;
+    // }
 
     final response = await _authRepository.updateUserProfile(
-      userId: userId,
-      profileData: event.profileData,
+      userId: event.user.id,
+      profileData: event.user.toJson(),
     );
 
     await response.fold(
@@ -128,6 +131,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
           emit,
           AuthenticationContext.profileSave,
           AuthUserErrorStateType.saveProfile,
+          updatedUser,
         );
       },
       (error) {
@@ -151,7 +155,6 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
         (error) => AuthUserStateError(error, AuthUserErrorStateType.sendOTP),
       ),
     );
-    log(' afree response $response ');
   }
 
   Future<void> _unifiedVerifyOTP(
@@ -192,6 +195,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
     emit(
       AuthUserStateAuthenticated(
         session: session,
+        user: data.user!, //TODO
         context: AuthenticationContext.otpVerification,
       ),
     );
@@ -220,6 +224,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
       emit,
       AuthenticationContext.pinLogin,
       AuthUserErrorStateType.verifyOTP,
+      response.user!,
     );
   }
 
@@ -227,6 +232,7 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
     Emitter<AuthUserState> emit,
     AuthenticationContext authContext,
     AuthUserErrorStateType errorType,
+    VerifiedUserModel user,
   ) async {
     final sessionResult = await ResultAsync.fromAsync(
       _sessionRepository.getSession,
@@ -236,7 +242,11 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
       (session) {
         if (session != null) {
           emit(
-            AuthUserStateAuthenticated(session: session, context: authContext),
+            AuthUserStateAuthenticated(
+              session: session,
+              context: authContext,
+              user: user,
+            ),
           );
         } else {
           emit(
@@ -275,11 +285,11 @@ class AuthUserBloc extends Bloc<AuthUserEvent, AuthUserState> {
         }
 
         // await _sessionRepository.saveSessionFromResponse(loginResponse);//TODO
-        await _emitAuthenticatedState(
-          emit,
-          AuthenticationContext.pinLogin,
-          AuthUserErrorStateType.loginWithPin,
-        );
+        // await _emitAuthenticatedState( //TODO
+        //   emit,
+        //   AuthenticationContext.pinLogin,
+        //   AuthUserErrorStateType.loginWithPin,
+        // );
       },
       (error) async =>
           emit(AuthUserStateError(error, AuthUserErrorStateType.loginWithPin)),

@@ -59,7 +59,9 @@ class _HomeAPI implements HomeAPI {
   }
 
   @override
-  Future<APIResponse<SearchResponseModel>> getSearchContent() async {
+  Future<APIResponse<SearchResponseModel>> getSearchContent(
+    String qwery,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};

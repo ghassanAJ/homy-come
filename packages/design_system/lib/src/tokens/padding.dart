@@ -158,7 +158,7 @@ class UIPadding {
   /// - All items have end spacing
   EdgeInsetsDirectional userHomeItemStartAndEnd({required bool isFirst}) =>
       EdgeInsetsDirectional.only(
-        start: isFirst ? _spacing.md : 0,
+        start: isFirst ? _spacing.lg : 0,
         end: _spacing.md,
       );
 

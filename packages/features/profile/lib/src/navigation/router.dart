@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/presentation/screens/about_app_screen.dart';
 import 'package:profile/src/presentation/screens/driver_language_settings_screen.dart';
+import 'package:profile/src/presentation/screens/help_and_support_screen.dart';
 import 'package:profile/src/presentation/screens/my_team_screen.dart';
 import 'package:profile/src/presentation/screens/profile_settings_screen.dart';
 import 'package:profile/src/presentation/screens/provider_all_reviews_screen.dart';
@@ -19,7 +20,9 @@ class ProfilePaths {
   static const String driverLanguageSettings = '/driver-language-settings';
   static const String providerAllReviews = '/provider-all-reviews';
   static const String myTeams = '/my-team';
-
+  static const String privacy = '/privacy';
+  static const String faq = '/faq';
+  static const String help = '/help';
 }
 
 class ProfileRoute {
@@ -41,7 +44,24 @@ class ProfileRoute {
     ),
     GoRoute(
       path: ProfilePaths.aboutApp,
-      builder: (context, state) => AboutUsScreen(),
+      builder:
+          (context, state) =>
+              AboutUsScreen(title: context.profileTranslation.option.about),
+    ),
+    GoRoute(
+      path: ProfilePaths.privacy,
+      builder: (context, state) => AboutUsScreen(title: 'Privacy Policy'),
+    ),
+    GoRoute(
+      path: ProfilePaths.help,
+      builder: (context, state) => HelpAndSupportScreen(),
+    ),
+
+    GoRoute(
+      path: ProfilePaths.faq,
+      builder:
+          (context, state) =>
+              AboutUsScreen(title: context.profileTranslation.option.faq),
     ),
     GoRoute(
       path: ProfilePaths.driverProfileSettings,
@@ -62,7 +82,7 @@ class ProfileRoute {
           (context, state) =>
               const ProfileLocalizationScope(child: ProviderAllReviewsScreen()),
     ),
-        GoRoute(
+    GoRoute(
       path: ProfilePaths.myTeams,
       builder:
           (context, state) =>

@@ -10,8 +10,6 @@ class HomeServicesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeBlocState>(
-      // buildWhen:
-      //     (previous, current) => previous.categories != current.categories,
       builder: (context, state) {
         final categories = state.categories;
         if (categories.isEmpty) {

@@ -16,6 +16,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return UIScaffold(
+      automaticallyImplyLeading: false,
       appBarTitle: context.profileTranslation.profile.myProfile,
       body: SingleChildScrollView(
         child: Padding(
@@ -25,14 +26,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               HeaderCard(),
               SizedBox(height: UI.spacing.sm),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ProfileSettingWidget(),
-                  // SizedBox(height: UI.spacing.md),
-                  // MoreSettingWidget(),
-                ],
-              ),
+              ProfileSettingWidget(),
+              // UIText.bodySmall('More'),
+              // ProfileSettingWidget(),
             ],
           ),
         ),

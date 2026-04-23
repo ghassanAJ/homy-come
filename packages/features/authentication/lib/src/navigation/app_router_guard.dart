@@ -58,6 +58,7 @@ class AppRouterGuard {
           currentPath != AuthenticationPaths.completeProfile) {
         return AuthenticationPaths.completeProfile;
       }
+
       return _handleAuthenticatedRedirect(currentPath, appState, dashboardPath);
     }
 
@@ -81,8 +82,6 @@ class AppRouterGuard {
 
   static String _getDashboardPath(String? userType, String dashboard) {
     return dashboard;
-
-    UserPaths.home;
   }
 
   static String? _handleAuthenticatedRedirect(

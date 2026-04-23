@@ -5,19 +5,21 @@ class AddonServiceCard extends StatelessWidget {
   const AddonServiceCard({
     super.key,
     required this.title,
+    required this.image,
     required this.reviews,
     required this.price,
     required this.oldPrice,
     required this.selected,
-    required this.onTap,
+    required this.onAdded,
   });
 
   final String title;
+  final String? image;
   final String reviews;
   final String price;
   final String oldPrice;
   final bool selected;
-  final VoidCallback onTap;
+  final VoidCallback onAdded;
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +41,10 @@ class AddonServiceCard extends StatelessWidget {
                 top: Radius.circular(UI.radius.md),
               ),
               child: Container(
-                //  TODO : Use UINetworkImage
                 width: double.infinity,
                 color: UIColor.neutral100,
                 child: UINetworkImage(
-                  imageUrl:
-                      //      'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
-                      'https://i.ibb.co/vCPn6j6p/Home-Cleaning.jpg',
+                  imageUrl: image,
                   fit: BoxFit.contain,
                   // placeholder: (context, url) => Center(child: SizedBox()),
                 ),
@@ -113,7 +112,7 @@ class AddonServiceCard extends StatelessWidget {
               child:
                   selected
                       ? GestureDetector(
-                        onTap: onTap,
+                        onTap: onAdded,
                         child: CustomButtonWithIconWidget(),
                       )
                       : UIButton.outlined(
@@ -122,7 +121,7 @@ class AddonServiceCard extends StatelessWidget {
                         backgroundColor: UIColor.babyBlue,
                         borderColor: UIColor.babyBlue,
                         foregroundColor: UIColor.white,
-                        onPressed: onTap,
+                        onPressed: onAdded,
                       ),
             ),
           ),

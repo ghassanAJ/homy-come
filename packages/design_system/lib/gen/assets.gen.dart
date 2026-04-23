@@ -273,6 +273,9 @@ class $AssetsImagesGen {
   AssetGenImage get checkMark1 =>
       const AssetGenImage('assets/images/check-mark 1.png');
 
+  /// File path: assets/images/help1.png
+  AssetGenImage get help1 => const AssetGenImage('assets/images/help1.png');
+
   /// File path: assets/images/location.png
   AssetGenImage get location =>
       const AssetGenImage('assets/images/location.png');
@@ -308,11 +311,15 @@ class $AssetsImagesGen {
   /// File path: assets/images/search.png
   AssetGenImage get search => const AssetGenImage('assets/images/search.png');
 
+  /// File path: assets/images/support.png
+  AssetGenImage get support => const AssetGenImage('assets/images/support.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     intersect1,
     intersect,
     checkMark1,
+    help1,
     location,
     locationImage,
     notification,
@@ -322,6 +329,7 @@ class $AssetsImagesGen {
     onboarding,
     phoneCall21,
     search,
+    support,
   ];
 }
 

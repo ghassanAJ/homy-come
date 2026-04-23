@@ -24,6 +24,13 @@ class LocationWithMapWidget extends StatelessWidget {
             height: 80,
             width: double.infinity,
             child: GoogleMap(
+              myLocationButtonEnabled: false,
+              zoomControlsEnabled: false,
+              zoomGesturesEnabled: false,
+              scrollGesturesEnabled: false,
+              rotateGesturesEnabled: false,
+              tiltGesturesEnabled: false,
+              compassEnabled: false,
               initialCameraPosition: CameraPosition(target: LatLng(33.5, 44.2)),
             ),
           ),

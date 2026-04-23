@@ -17,6 +17,7 @@ _VerifiedUserModel _$VerifiedUserModelFromJson(Map<String, dynamic> json) =>
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
       name: json['name'] as String?,
+      email: json['email'] as String?,
       address: json['address'] as String?,
     );
 
@@ -31,5 +32,6 @@ Map<String, dynamic> _$VerifiedUserModelToJson(_VerifiedUserModel instance) =>
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'name': instance.name,
+      'email': instance.email,
       'address': instance.address,
     };

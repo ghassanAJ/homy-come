@@ -1,29 +1,31 @@
+import 'dart:developer';
+
 import 'package:authentication/authentication.dart';
-import 'package:authentication/src/presentation/widgets/signup/profile_picture_picker.dart';
 import 'package:design_system/design_system.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:go_router/go_router.dart';
 import 'package:util/util.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key, this.isEditMood = false});
+  final bool isEditMood;
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   static const _fullNameField = 'full_name';
   static const _countryField = 'country';
+  Map<String, dynamic> initialValue = const <String, dynamic>{};
 
   final _formKey = GlobalKey<FormBuilderState>();
-
-  void _onSignupPressed() {
-    FocusManager.instance.primaryFocus?.unfocus();
-    final isValid = _formKey.currentState?.saveAndValidate() ?? false;
-    if (!isValid) return;
-
-    // TODO: Submit signup request.
+  @override
+  void initState() {
+    initEditMood();
+    super.initState();
   }
 
   @override
@@ -31,134 +33,260 @@ class _SignupScreenState extends State<SignupScreen> {
     final tr = context.loc<AuthenticationTranslation>();
     final personalInfo = tr.personalInfo;
 
-    return Scaffold(
+    return widget.isEditMood
+        ? _buildEditBody(tr, personalInfo, context)
+        : _buildScreenContent(tr, personalInfo, context);
+  }
+
+  Widget _buildEditBody(
+    AuthenticationTranslation tr,
+    PersonalInfoAuthenticationTranslation personalInfo,
+    BuildContext context,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12.0),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildForm(tr, personalInfo, context),
+            BlocConsumer<AuthUserBloc, AuthUserState>(
+              listener: (context, state) {
+                if (state is AuthUserStateAuthenticated) {
+                  context.pop();
+                  ToastificationUtil.success('Profile updated sucssessfully!');
+                }
+              },
+              builder: (context, state) {
+                return Container(
+                  color: Colors.white,
+                  child: UIButton.primary(
+                    isLoading: state is AuthUserStateLoading,
+                    label: 'Save changes',
+                    expanded: true,
+                    onPressed: _handleSaveChanges,
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  UIScaffold _buildScreenContent(
+    AuthenticationTranslation tr,
+    PersonalInfoAuthenticationTranslation personalInfo,
+    BuildContext context,
+  ) {
+    return UIScaffold(
       resizeToAvoidBottomInset: true,
+
+      appBar: UIAppBar(title: ''),
       backgroundColor: UIColor.background,
-      body: AuthEllipseBackground(
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: UI.padding.authScrollable.copyWith(bottom: 0),
-            child: FormBuilder(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        child: _buildBody(tr, personalInfo, context),
+      ),
+    );
+  }
+
+  Widget _buildBody(
+    AuthenticationTranslation tr,
+    PersonalInfoAuthenticationTranslation personalInfo,
+    BuildContext context,
+  ) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          padding: const EdgeInsets.only(bottom: 24),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minHeight: constraints.maxHeight),
+            child: IntrinsicHeight(
+              child: _buildForm(tr, personalInfo, context),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildForm(
+    AuthenticationTranslation tr,
+    PersonalInfoAuthenticationTranslation personalInfo,
+    BuildContext context, {
+    double? height,
+  }) {
+    return SizedBox(
+      height: height,
+      child: FormBuilder(
+        initialValue: initialValue,
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (!widget.isEditMood) ...[
+              UIText.h2(tr.login.signUp),
+              SizedBox(height: UI.spacing.xs),
+              UIText.bodySmall(
+                personalInfo.subtitle,
+                fontWeight: FontWeight.w500,
+              ),
+              SizedBox(height: UI.spacing.lg),
+            ],
+
+            SizedBox(height: UI.spacing.xs),
+
+            AppFormBuilderTextField(
+              name: _fullNameField,
+              label: personalInfo.fullName,
+              placeholder: personalInfo.username,
+              prefixIcon: _FieldPrefixIcon(iconPath: Assets.icons.user),
+              validator: FormBuilderValidators.required(
+                errorText: personalInfo.fullNameRequired,
+              ),
+            ),
+
+            SizedBox(height: UI.spacing.md),
+            Text(
+              'Phone',
+              style: UI.text.fieldLabel.copyWith(color: UIColor.primaryDark),
+            ),
+            SizedBox(height: UI.spacing.xs),
+
+            UIFormBuilderPhoneField(
+              name: AuthFormFieldNames.phone,
+
+              placeholder: personalInfo.phonePlaceholder,
+              // keyboardType: TextInputType.phone,
+              // prefixIcon: _FieldPrefixIcon(iconPath: Assets.icons.call),
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(
+                  errorText: personalInfo.phoneRequired,
+                ),
+              ]),
+            ),
+            SizedBox(height: UI.spacing.md),
+
+            AppFormBuilderTextField(
+              name: AuthFormFieldNames.email,
+              label: tr.authIdentity.emailTitle,
+              placeholder: personalInfo.emailPlaceholder,
+              prefixIcon: _FieldPrefixIcon(iconPath: Assets.icons.email),
+              // validator: FormBuilderValidators.compose([
+              //   FormBuilderValidators.required(
+              //     errorText: personalInfo.emailRequired,
+              //   ),
+              //   FormBuilderValidators.email(
+              //     errorText: personalInfo.emailInvalid,
+              //   ),
+              // ]),
+            ),
+            SizedBox(height: 32),
+
+            if (!widget.isEditMood) ...[
+              Spacer(),
+              BlocBuilder<AuthUserBloc, AuthUserState>(
+                builder: (context, state) {
+                  return UIButton.primary(
+                    isLoading: state is AuthUserStateLoading,
+                    label: tr.login.signUp,
+                    expanded: true,
+                    onPressed: _onSignupPressed,
+                  );
+                },
+              ),
+              SizedBox(height: UI.spacing.lg),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  UIText.h2(tr.login.signUp),
-                  SizedBox(height: UI.spacing.xs),
-                  UIText.bodySmall(
-                    personalInfo.subtitle,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  SizedBox(height: UI.spacing.lg),
-
-                  UIText.bodySmall(
-                    personalInfo.personalPhoto,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  SizedBox(height: UI.spacing.xs),
-                  ProfilePicturePicker(onPhotoPicked: (_) {}),
-                  SizedBox(height: UI.spacing.xl),
-
-                  AppFormBuilderTextField(
-                    name: _fullNameField,
-                    label: personalInfo.fullName,
-                    placeholder: personalInfo.username,
-                    prefixIcon: _FieldPrefixIcon(iconPath: Assets.icons.user),
-                    validator: FormBuilderValidators.required(
-                      errorText: personalInfo.fullNameRequired,
-                    ),
-                  ),
-                  SizedBox(height: UI.spacing.md),
-
-                  AppFormBuilderTextField(
-                    name: AuthFormFieldNames.email,
-                    label: tr.authIdentity.emailTitle,
-                    placeholder: personalInfo.emailPlaceholder,
-                    prefixIcon: _FieldPrefixIcon(iconPath: Assets.icons.email),
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(
-                        errorText: personalInfo.emailRequired,
-                      ),
-                      FormBuilderValidators.email(
-                        errorText: personalInfo.emailInvalid,
-                      ),
-                    ]),
-                  ),
-                  SizedBox(height: UI.spacing.md),
-
-                  AppFormBuilderTextField(
-                    name: AuthFormFieldNames.phone,
-                    label: tr.login.phoneLabel,
-                    placeholder: personalInfo.phonePlaceholder,
-                    keyboardType: TextInputType.phone,
-                    prefixIcon: _FieldPrefixIcon(iconPath: Assets.icons.call),
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(
-                        errorText: personalInfo.phoneRequired,
-                      ),
-                      FormBuilderValidators.match(
-                        RegExp(r'^\d{10}$'),
-                        errorText: personalInfo.phoneInvalid,
-                      ),
-                    ]),
-                  ),
-                  SizedBox(height: UI.spacing.md),
-
-                  AppFormBuilderTextField(
-                    name: _countryField,
-                    label: personalInfo.country,
-                    placeholder: personalInfo.countryPlaceholder,
-                    prefixIcon: _FieldPrefixIcon(
-                      iconPath: Assets.icons.location,
-                    ),
-                    validator: FormBuilderValidators.required(
-                      errorText: personalInfo.countryRequired,
-                    ),
-                  ),
-                  SizedBox(height: UI.spacing.xxl2),
-                  Padding(
-                    padding: UI.padding.authActions,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        UIButton.primary(
-                          label: tr.login.signUp,
-                          expanded: true,
-                          onPressed: _onSignupPressed,
-                        ),
-                        SizedBox(height: UI.spacing.lg),
-                        GestureDetector(
-                          onTap: () => AuthInternalRouter.of(context).toLogin(),
-                          child: UIText.bodyMedium(
-                            tr.authEntry.loginButton,
-                            color: UIColor.successBright,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        SizedBox(height: UI.spacing.xl),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            UISvg(Assets.icons.logOut),
-                            SizedBox(width: UI.spacing.xs),
-                            Text(
-                              tr.login.joinAsGuest,
-                              style: UI.text.bodySmall.copyWith(
-                                color: UIColor.grey,
-                                decoration: TextDecoration.underline,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                  UIText.bodySmall('Already have an account?'),
+                  SizedBox(width: 5),
+                  GestureDetector(
+                    onTap: () => context.pop(),
+                    child: UIText.buttonText(
+                      tr.authEntry.loginButton,
+                      color: UIColor.successBright,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ],
               ),
-            ),
-          ),
+
+              SizedBox(height: UI.spacing.xl),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBottomAction(
+    AuthenticationTranslation tr,
+    BuildContext context,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        children: [],
+      ),
+    );
+  }
+
+  void _handleSaveChanges() {
+    FocusManager.instance.primaryFocus?.unfocus();
+
+    final formState = _formKey.currentState;
+
+    if (formState == null) return;
+    log('hdhhdahdh');
+
+    final isValid = formState.save(); // 🔥 FIX
+
+    // if (!isValid) return;
+
+    final values = formState.value;
+    print(values[AuthFormFieldNames.phone]);
+
+    final currentUser = context.read<AppCubit>().state.user!;
+    context.read<AuthUserBloc>().add(
+      UpdateProfile(
+        currentUser.copyWith(
+          name: values[_fullNameField],
+          phone: values[AuthFormFieldNames.phone],
+          email: values[AuthFormFieldNames.email],
+        ),
+      ),
+    );
+  }
+
+  void initEditMood() {
+    if (!widget.isEditMood) return;
+    final currentUserInfo = context.read<AppCubit>().state.user;
+    initialValue = {
+      _fullNameField: currentUserInfo?.name,
+      _countryField: currentUserInfo?.address,
+      AuthFormFieldNames.phone: currentUserInfo?.phone,
+      AuthFormFieldNames.email: currentUserInfo?.email,
+    };
+  }
+
+  void _onSignupPressed() {
+    FocusManager.instance.primaryFocus?.unfocus();
+    final isValid = _formKey.currentState?.saveAndValidate() ?? false;
+    // if (!isValid) return;
+
+    context.read<AuthUserBloc>().add(
+      SendOTP(
+        SendOTPRequestModel(
+          deviceId: '',
+          phone: _formKey.currentState?.value[AuthFormFieldNames.phone],
+          // email:  _formKey.currentState?.value[AuthFormFieldNames.phone],
         ),
       ),
     );

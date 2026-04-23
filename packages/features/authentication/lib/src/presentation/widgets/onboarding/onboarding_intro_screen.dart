@@ -26,47 +26,49 @@ class OnboardingIntroPage extends StatelessWidget {
     final subtitleSpacing = UI.spacing.md + UI.spacing.xxs;
     final imageSpacing = UI.spacing.lg;
 
-    return Stack(
-      children: [
-        ..._decorativeBubbles.map((bubble) => OnboardingBubble(spec: bubble)),
-        Padding(
-          padding: UI.padding.onboardingIntroContent(
-            screenHeight: mediaQuery.size.height,
-            safeTop: safePadding.top,
-            safeBottom: safePadding.bottom,
-          ),
-          child: Column(
-            children: [
-              UIText.h1(
-                tr.onboarding.introTitle,
-                textAlign: TextAlign.center,
-                color: UIColor.balck,
-              ),
-              SizedBox(height: subtitleSpacing),
-              UIText.bodySmall(
-                tr.onboarding.introSubtitle,
-                textAlign: TextAlign.center,
-                color: UIColor.balck,
-                fontWeight: FontWeight.w500,
-              ),
-              SizedBox(height: imageSpacing),
-              Assets.images.onboarding.image(
-                // package: 'design_system',
-                fit: BoxFit.cover,
-              ),
-              const Spacer(),
-              Padding(
-                padding: UI.padding.onboardingActionsBottomOnly,
-                child: UIButton.primary(
-                  label: tr.onboarding.getStarted,
-                  expanded: true,
-                  onPressed: onGetStarted,
+    return Scaffold(
+      body: Stack(
+        children: [
+          ..._decorativeBubbles.map((bubble) => OnboardingBubble(spec: bubble)),
+          Padding(
+            padding: UI.padding.onboardingIntroContent(
+              screenHeight: mediaQuery.size.height,
+              safeTop: safePadding.top,
+              safeBottom: safePadding.bottom,
+            ),
+            child: Column(
+              children: [
+                UIText.h1(
+                  tr.onboarding.introTitle,
+                  textAlign: TextAlign.center,
+                  color: UIColor.balck,
                 ),
-              ),
-            ],
+                SizedBox(height: subtitleSpacing),
+                UIText.bodySmall(
+                  tr.onboarding.introSubtitle,
+                  textAlign: TextAlign.center,
+                  color: UIColor.balck,
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(height: imageSpacing),
+                Assets.images.onboarding.image(
+                  // package: 'design_system',
+                  fit: BoxFit.cover,
+                ),
+                const Spacer(),
+                Padding(
+                  padding: UI.padding.onboardingActionsBottomOnly,
+                  child: UIButton.primary(
+                    label: tr.onboarding.getStarted,
+                    expanded: true,
+                    onPressed: onGetStarted,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

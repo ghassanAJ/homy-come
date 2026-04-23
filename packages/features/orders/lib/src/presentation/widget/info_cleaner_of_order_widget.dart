@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:design_system/design_system.dart';
 
 class OrderCleanerInfoWidget extends StatelessWidget {
@@ -14,7 +12,6 @@ class OrderCleanerInfoWidget extends StatelessWidget {
   final double rating;
   @override
   Widget build(BuildContext context) {
-    log('image $image');
     return Padding(
       padding: EdgeInsets.symmetric(
         //OrderCleanerInfoWidget
@@ -24,15 +21,18 @@ class OrderCleanerInfoWidget extends StatelessWidget {
 
       child: Row(
         children: [
-          SizedBox(
-            child: Avatar(
-              imageUrl: image,
-              size: AvatarSize.small,
-              placeholderWidget: Container(
-                color: UIColor.backgroungSilverLight,
-              ),
+          SizedBox(width: UI.spacing.md),
+
+          Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: UIColor.babyPink,
             ),
+            child: UINetworkImage(imageUrl: image),
           ),
+
           SizedBox(width: UI.spacing.xs),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -23,24 +23,40 @@ class _AppBarStyleConfig {
   const _AppBarStyleConfig({
     required this.backgroundColor,
     required this.foregroundColor,
+    required this.statusBarStyle,
   });
 
   final Color backgroundColor;
   final Color foregroundColor;
-
+  final SystemUiOverlayStyle statusBarStyle;
   static const standard = _AppBarStyleConfig(
     backgroundColor: Colors.transparent,
     foregroundColor: UIColor.textPrimary,
+    statusBarStyle: SystemUiOverlayStyle(
+      statusBarColor: Colors.black,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
+    ),
   );
 
   static const transparent = _AppBarStyleConfig(
     backgroundColor: Colors.transparent,
     foregroundColor: UIColor.textPrimary,
+    statusBarStyle: SystemUiOverlayStyle(
+      statusBarColor: Colors.black,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
+    ),
   );
 
   static const primary = _AppBarStyleConfig(
-    backgroundColor: UIColor.primary,
+    backgroundColor: Colors.transparent,
     foregroundColor: UIColor.onPrimary,
+    statusBarStyle: SystemUiOverlayStyle(
+      statusBarColor: Colors.black,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light,
+    ),
   );
 
   /// Returns the style configuration for the given variant.
@@ -176,19 +192,18 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
         titleWidget ??
         Text(
           title ?? '',
-          style: UI.text.h3.copyWith(color: effectiveForegroundColor),
+          style: UI.text.h3.copyWith(
+            color: effectiveForegroundColor,
+            fontWeight: FontWeight.w600,
+          ),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         );
 
     return AppBar(
-      systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: Colors.black, // background color
-        statusBarIconBrightness: Brightness.light, // icons = white
-        statusBarBrightness: Brightness.dark, // for iOS
-      ),
+      systemOverlayStyle: styleConfig.statusBarStyle,
       backgroundColor: effectiveBackgroundColor,
-      surfaceTintColor: UIColor.primary,
+      surfaceTintColor: Colors.transparent,
       leading: _buildLeading(context),
       title: effectiveTitle,
       actions: _buildTrailing() != null ? [_buildTrailing()!] : null,

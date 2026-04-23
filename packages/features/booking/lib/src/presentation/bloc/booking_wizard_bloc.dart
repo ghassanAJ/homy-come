@@ -25,6 +25,7 @@ class BookingWizardBloc extends Bloc<BookingWizardEvent, BookingWizardState> {
     on<SelectDay>(_onSelectDay);
     on<LoadTimeSlots>(_onLoadTimeSlots);
     on<SelectScheduledAt>(_onSelectScheduledAt);
+    on<SelectFrequency>(_onSelectFrequency);
   }
 
   final BookingRepository _repository;
@@ -35,6 +36,7 @@ class BookingWizardBloc extends Bloc<BookingWizardEvent, BookingWizardState> {
     LoadServiceDetails event,
     Emitter<BookingWizardState> emit,
   ) async {
+    emit(const BookingWizardState());
     emit(
       state.copyWith(serviceDetailsLoading: true, serviceDetailsError: null),
     );
@@ -203,6 +205,12 @@ class BookingWizardBloc extends Bloc<BookingWizardEvent, BookingWizardState> {
     );
   }
 
+  void _onSelectFrequency(
+    SelectFrequency event,
+    Emitter<BookingWizardState> emit,
+  ) {
+    emit(state.copyWith(frequencyType: event.frequencyType));
+  }
   // ── Submission ───────────────────────────────────────────────────────────────
 
   Future<void> _onSubmitBooking(

@@ -34,6 +34,7 @@ abstract class BookingWizardState with _$BookingWizardState {
     @Default(false) bool needCleaningMaterials,
     @Default('') String notes,
     String? step1ValidationError,
+    @Default(FrequencyType.oneTime) FrequencyType frequencyType,
 
     // ── Step 2 – Add-ons ──────────────────────────────────────────────────────
     @Default([]) List<AddOnServiceModel> selectedAddOns,

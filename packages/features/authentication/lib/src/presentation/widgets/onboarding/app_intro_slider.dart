@@ -194,6 +194,7 @@ class _AppIntroSliderState extends State<AppIntroSlider> {
             ),
           ),
           UIButton.primary(
+            height: 40,
             label: isLastPage ? tr.onboarding.finish : tr.onboarding.next,
             onPressed: () => _onNext(pagesLength),
           ),

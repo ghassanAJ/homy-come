@@ -120,12 +120,13 @@ class HomeBloc extends Bloc<HomeBlocEvent, HomeBlocState> {
     Emitter<HomeBlocState> emit,
   ) async {
     emit(state.copyWith(searchContentLoading: true));
-    final result = await _homeRepository.getSearchContent();
+    final result = await _homeRepository.getSearchContent(event.qwery);
     result.fold(
       (data) => emit(
         state.copyWith(
           searchContent: data,
           searchContentLoading: false,
+          categoryServices: data.services,
           status: HomeBlocStatus.success,
           error: null,
         ),

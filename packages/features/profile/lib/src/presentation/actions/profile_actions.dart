@@ -22,38 +22,45 @@ final class ProfileActions {
   }
 
   static Future<void> onLogoutPressed(BuildContext context) async {
-    final isConfirmed = await UIBottomSheet.show(
-      context: StatefulNavigationShell.of(context).context,
-      content: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: [
-            UIText.bodyLarge('Logout', fontWeight: FontWeight.w600),
-            SizedBox(height: 8),
-            UIText.bodySmall(
-              'Are you sure to logout?',
-              color: UIColor.neutral500,
+    final isConfirmed =
+        await UIBottomSheet.show<bool?>(
+          context: StatefulNavigationShell.of(context).context,
+          content: SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                UIText.bodyLarge('Logout', fontWeight: FontWeight.w600),
+                SizedBox(height: 8),
+                UIText.bodySmall(
+                  'Are you sure to logout?',
+                  color: UIColor.neutral500,
+                ),
+                SizedBox(height: 16),
+                UIButton.primary(
+                  expanded: true,
+                  label: 'Stay logged in',
+                  onPressed: () {
+                    print('yes');
+                    context.pop();
+                  },
+                ),
+                SizedBox(height: 16),
+                GestureDetector(
+                  onTap:
+                      () => context.pop(
+                        // StatefulNavigationShell.of(context).context,
+                        true,
+                      ),
+                  child: UIText.bodySmall(
+                    'Confirm logout',
+                    color: UIColor.iconsAvaterRed,
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 16),
-            UIButton.primary(
-              expanded: true,
-              label: 'Stay logged in',
-              onPressed: () {
-                context.pop();
-              },
-            ),
-            SizedBox(height: 16),
-            GestureDetector(
-              onTap: () {},
-              child: UIText.bodySmall(
-                'Confirm logout',
-                color: UIColor.iconsAvaterRed,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ) ??
+        false;
 
     if (!context.mounted || !isConfirmed) return;
     context.read<AuthUserBloc>().add(Logout());

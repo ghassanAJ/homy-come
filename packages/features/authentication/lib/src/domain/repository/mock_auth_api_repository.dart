@@ -26,13 +26,15 @@ class MockAuthRepository implements AuthRepository {
 
   static VerifyOTPResponseModel get _mockVerifyOTPResponse =>
       VerifyOTPResponseModel(
-        jwt: 'mock-jwt',
+        jwt: 'jsadfvjlksfjslkafjlksafjksadflskafjkslfjlkasdfjl',
         user: VerifiedUserModel(
           id: 1,
+          name: 'John',
           documentId: 'mock-document-id',
-          phone: 'mock-phone',
+          phone: '+971935377786',
           otpCode: 'mock-otp-code',
           roleType: 'mock-role-type',
+          address: 'Dubai',
         ),
       );
 
@@ -45,8 +47,10 @@ class MockAuthRepository implements AuthRepository {
   static VerifiedUserModel get _mockUser => VerifiedUserModel(
     id: 1,
     documentId: 'mock-document-id',
-    phone: 'mock-phone',
+    phone: '971935377786',
     otpCode: 'mock-otp-code',
+    name: 'Jhon',
+    address: 'Dubai',
     roleType: 'mock-role-type',
   );
 
@@ -81,7 +85,20 @@ class MockAuthRepository implements AuthRepository {
     }
     await Future.delayed(Duration(seconds: 1));
 
-    return success(_mockVerifyOTPResponse);
+    return success(
+      VerifyOTPResponseModel(
+        jwt: 'jsadfvjlksfjslkafjlksafjksadflskafjkslfjlkasdfjl',
+        user: VerifiedUserModel(
+          id: 1,
+          name: 'John',
+          documentId: 'mock-document-id',
+          phone: verifyOTPRequestModel.phone,
+          otpCode: 'mock-otp-code',
+          roleType: 'mock-role-type',
+          address: 'Dubai',
+        ),
+      ),
+    );
   }
 
   @override
@@ -111,11 +128,23 @@ class MockAuthRepository implements AuthRepository {
     required int userId,
     required Map<String, dynamic> profileData,
   }) async {
-    if (failNextUpdateUserProfile) {
-      failNextUpdateUserProfile = false;
-      return failure(APIException.error('Mock updateUserProfile failure'));
-    }
-    return success(_mockUser);
+    await Future.delayed(Duration(milliseconds: 500));
+    print(profileData['name']);
+    return success(
+      VerifiedUserModel(
+        id: 1,
+        name: profileData['name'],
+        documentId: 'mock-document-id',
+        phone: profileData['phone'],
+        otpCode: 'mock-otp-code',
+        roleType: 'mock-role-type',
+        address: profileData['address'],
+        latitude: profileData['latitude'],
+        longitude: profileData['longitude'],
+        email: profileData['email'],
+        profilePicture: profileData['profilePicture'],
+      ),
+    );
   }
 
   @override
@@ -133,11 +162,7 @@ class MockAuthRepository implements AuthRepository {
 
   @override
   Future<Result<void, APIException>> logout(String refreshToken) async {
-    if (failNextLogout) {
-      failNextLogout = false;
-      return failure(APIException.error('Mock logout failure'));
-    }
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(Duration(milliseconds: 500));
 
     return ResultAsync.fromAsync(() async {});
   }

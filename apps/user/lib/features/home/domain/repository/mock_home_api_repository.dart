@@ -35,7 +35,7 @@ class MockHomeRepository implements HomeRepository {
             info: InfoModel(
               id: index,
               name: '$name $index',
-              image: 'https://ibb.co/bj4fyrtd',
+              image: 'https://i.ibb.co/7tgS7hR6/Plumber-service-1.jpg',
             ),
             priceModel: ServicePriceModel(
               currentPrice: 100,
@@ -49,7 +49,11 @@ class MockHomeRepository implements HomeRepository {
         ),
         documentId: name,
         id: 1,
-        info: InfoModel(id: 1, name: name, image: 'https://ibb.co/Q7PJ2Lwf'),
+        info: InfoModel(
+          id: 1,
+          name: name,
+          image: 'https://i.ibb.co/7tgS7hR6/Plumber-service-1.jpg',
+        ),
         servicesCount: 8,
       );
   static List<OfferModel> get _mockStories => [
@@ -214,11 +218,10 @@ class MockHomeRepository implements HomeRepository {
   }
 
   @override
-  Future<Result<SearchResponseModel, APIException>> getSearchContent() async {
-    if (failNextGetSearchContent) {
-      failNextGetSearchContent = false;
-      return failure(APIException.error('Mock getSearchContent failure'));
-    }
+  Future<Result<SearchResponseModel, APIException>> getSearchContent(
+    String qwery,
+  ) async {
+    await Future.delayed(Duration(milliseconds: 500));
     return success(mockSearchResponseModel);
   }
 

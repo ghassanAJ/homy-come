@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../tokens/colors.dart';
@@ -185,6 +186,11 @@ class UISliverAppBar extends StatelessWidget {
     final Widget? effectiveTitle = _buildTitle(effectiveForegroundColor);
 
     return SliverAppBar(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Colors.black,
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.light,
+      ),
       backgroundColor: effectiveBackgroundColor,
       foregroundColor: effectiveForegroundColor,
       elevation: elevation,

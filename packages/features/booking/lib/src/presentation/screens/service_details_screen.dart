@@ -95,16 +95,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
             padding: const EdgeInsets.all(8.0),
             child: StepNavigationBar(
               next: () {
-                context.read<BookingWizardBloc>().add(const ProceedToStep1());
-                Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder:
-                        (_) => BlocProvider.value(
-                          value: context.read<BookingWizardBloc>(),
-                          child: const BaseBookingStep(), //TODO
-                        ),
-                  ),
-                );
+                _handlePushToStep2(context);
               },
             ),
           );
@@ -160,6 +151,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
                     controller: scrollController,
                     slivers: [
                       buildAppBar(data),
+
                       SliverToBoxAdapter(child: SizedBox(height: 12)),
                       if (state.serviceDetails?.discountCode != null &&
                           state.serviceDetails?.discountPercentage != null &&
@@ -183,6 +175,19 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
     );
   }
 
+  void _handlePushToStep2(BuildContext context) {
+    context.read<BookingWizardBloc>().add(const ProceedToStep1());
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder:
+            (_) => BlocProvider.value(
+              value: context.read<BookingWizardBloc>(),
+              child: const BaseBookingStep(), //TODO
+            ),
+      ),
+    );
+  }
+
   Container _buildVoucherBottomSheet() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
@@ -202,7 +207,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
                   TextSpan(
                     style: UI.text.bodySmall,
                     text:
-                        ' voucher code is ready, please select one or more oe options from the list to get this voucher code applied!',
+                        ' Voucher code is ready, please select one or more oe options from the list to get this voucher code applied!',
                   ),
                 ],
               ),

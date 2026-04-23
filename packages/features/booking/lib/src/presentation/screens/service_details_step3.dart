@@ -81,8 +81,11 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
   @override
   void initState() {
     super.initState();
-    context.read<BookingWizardBloc>().add(LoadProviders(serviceId: '1'));
-    context.read<BookingWizardBloc>().add(LoadAvailableDays(serviceId: '1'));
+    final bloc = context.read<BookingWizardBloc>();
+    if (bloc.state.selectedProviders.isEmpty) {
+      bloc.add(LoadProviders(serviceId: '1'));
+      bloc.add(LoadAvailableDays(serviceId: '1'));
+    }
   }
 
   @override
@@ -98,6 +101,14 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
           padding: EdgeInsets.only(bottom: UI.sizes.bottomPadding),
           child: Column(
             children: [
+              SizedBox(height: UI.spacing.sm),
+
+              Divider(
+                height: 1,
+                thickness: 1,
+                color: Colors.grey.withOpacity(0.12),
+              ),
+              SizedBox(height: UI.spacing.sm),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -106,17 +117,18 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
                   ProvidersSection(state: state),
 
                   // SizedBox(height: UI.spacing.md),
-                  const FrequencySection(),
                   SizedBox(height: UI.spacing.sm),
                   DateSection(state: state),
                   SizedBox(height: UI.spacing.md),
 
                   TimeSection(state: state),
-                  SizedBox(height: UI.spacing.lg),
+                  SizedBox(height: UI.spacing.sm),
+                  const FrequencySection(),
+
+                  // SizedBox(height: UI.spacing.lg),
                 ],
               ),
 
-              const CancellationSection(),
               if (state.step3ValidationError != null) ...[
                 SizedBox(height: UI.spacing.md),
 
@@ -168,7 +180,7 @@ class ProvidersSection extends StatelessWidget {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: state.availableProviders.length,
-        separatorBuilder: (_, __) => SizedBox(width: UI.spacing.md),
+        separatorBuilder: (_, __) => SizedBox(width: 8),
         itemBuilder: (_, index) {
           final provider = state.availableProviders[index];
 
@@ -259,14 +271,26 @@ class DateSection extends StatelessWidget {
         ),
         SizedBox(height: 12),
         GestureDetector(
-          onTap: () {
-            // showDatePicker(context: context, firstDate: firstDate, lastDate: lastDate)
+          onTap: () async {
+            final DateTime? scheduledAt = await showMonthPicker(
+              context,
+              // firstDate: DateTime.now(),
+              // lastDate: DateTime(2027),
+            );
+            if (scheduledAt != null) {
+              context.read<BookingWizardBloc>().add(
+                SelectScheduledAt(scheduledAt: scheduledAt),
+              );
+            }
           },
           child: Padding(
             padding: const EdgeInsetsDirectional.symmetric(horizontal: 16.0),
             child: Row(
               children: [
-                UIText.h6('September 2025', fontSize: 14),
+                UIText.h6(
+                  '${DateTime.now().year} ${_monthName(context.watch<BookingWizardBloc>().state.scheduledAt?.month ?? 0)}',
+                  fontSize: 14,
+                ),
                 Icon(Icons.keyboard_arrow_down_rounded),
               ],
             ),
@@ -283,6 +307,87 @@ class DateSection extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<DateTime?> showMonthPicker(BuildContext context) async {
+    final now = DateTime.now();
+
+    // return showModalBottomSheet<DateTime>(
+    //   context: context,
+    //   shape: const RoundedRectangleBorder(
+    //     borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+    //   ),
+    //   builder: (_) {
+    //     return
+
+    //   },
+    // );
+    return UIBottomSheet.show<DateTime>(
+      context: context,
+      content: SizedBox(
+        height: 300,
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
+            Text(
+              'Select Month',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: GridView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 12,
+                  crossAxisSpacing: 12,
+                  childAspectRatio: 2.5,
+                ),
+                itemCount: 12,
+                itemBuilder: (_, index) {
+                  final month = index + 1;
+                  final date = DateTime(now.year, month);
+
+                  return GestureDetector(
+                    onTap: () => Navigator.pop(context, date),
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.grey.shade200,
+                      ),
+                      child: Text(
+                        _monthName(month),
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  String _monthName(int month) {
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'Jun',
+      'July',
+      'August',
+      'Septmper',
+      'Octobar',
+      'Novmber',
+      'Decmber',
+    ];
+    final indexOfMonth = month - 1 == -1 ? DateTime.now().month : month - 1;
+    return months[indexOfMonth];
   }
 }
 
@@ -439,36 +544,31 @@ class FrequencySection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(16),
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         color: UIColor.babyPink,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: UIColor.pink),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              UIText.bodyBold('Frequency'),
-              InkWell(
-                onTap: () {
-                  UIBottomSheet.show(
-                    context: context,
-                    content: FrequencyChangeSheetContent(
-                      initialValue: FrequencyType.oneTime,
-                      onSubmit: (value) {},
-                    ),
-                  );
-                },
-                child: UIText.bodyBold('Change', color: UIColor.babyBlue),
-              ),
-            ],
-          ),
-          SizedBox(height: 14),
+          UIText.bodyBold('Frequency'),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              UIBottomSheet.show(
+                context: context,
+                content: FrequencyChangeSheetContent(
+                  initialValue:
+                      context.read<BookingWizardBloc>().state.frequencyType,
+                  onSubmit: (value) {
+                    context.read<BookingWizardBloc>().add(
+                      SelectFrequency(frequencyType: value),
+                    );
+                  },
+                ),
+              );
+            },
 
             style: ElevatedButton.styleFrom(
               elevation: 0,
@@ -477,8 +577,17 @@ class FrequencySection extends StatelessWidget {
                 borderRadius: BorderRadiusGeometry.circular(12),
               ),
             ),
-            child: UIText.bodyBold('Repeats Bi-week', color: UIColor.white),
+            child: UIText.bodyBold(
+              context.watch<BookingWizardBloc>().state.frequencyType.name,
+              color: UIColor.white,
+            ),
           ),
+          // InkWell(
+          //   onTap: () {
+
+          //   },
+          //   child: UIText.bodyBold('Change', color: UIColor.babyBlue),
+          // ),
         ],
       ),
     );

@@ -15,6 +15,7 @@ class UserPaths {
   static const String category = '/category';
   static const String orders = '/orders';
   static const String search = '/search';
+  static const String setLocation = '/set-Location';
   static const String profile = '/profile';
   static const String services = '/services';
   static const String notifications = '/notifications';

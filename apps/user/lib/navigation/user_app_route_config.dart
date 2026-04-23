@@ -1,3 +1,4 @@
+import 'package:authentication/authentication.dart';
 import 'package:booking/booking.dart';
 import 'package:go_router/go_router.dart';
 import 'package:notifications/notifications.dart';
@@ -5,8 +6,10 @@ import 'package:orders/orders.dart';
 import 'package:profile/profile.dart';
 import 'package:user/features/home/presentation/screens/categories_screen.dart';
 import 'package:user/features/home/presentation/screens/services_screen.dart';
+import 'package:user/features/home/presentation/screens/set_location_screen.dart';
 import 'package:user/features/home/presentation/screens/stories_screen.dart';
 import 'package:user/features/home/presentation/screens/user_home_screen.dart';
+import 'package:user/features/home/presentation/widgets/home/user_home_screen_app_bar.dart';
 import 'package:user/localization/files/userTranslation.i69n.dart';
 import 'package:user/localization/user_localization_scope.dart';
 import 'package:user/navigation/route.dart';
@@ -58,11 +61,56 @@ class UserAppRouteConfig {
       ),
       GoRoute(
         path: UserPaths.storiesScreen,
-        builder: (context, state) {
+        parentNavigatorKey: AppRouter.rootNavigatorKey, // 👈 THIS IS THE FIX
+        pageBuilder: (context, state) {
           final data = state.extra as Map<String, dynamic>;
           final pageIndex = data['pageIndex'] as int;
           final storyItems = data['storyItems'] as List<StoryPageData>;
-          return StoriesScreen(pageIndex: pageIndex, pages: storyItems);
+
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: StoriesScreen(pageIndex: pageIndex, pages: storyItems),
+
+            // transitionDuration: const Duration(seconds: 1),
+            reverseTransitionDuration: const Duration(milliseconds: 200),
+
+            transitionsBuilder: (
+              context,
+              animation,
+              secondaryAnimation,
+              child,
+            ) {
+              final curved = CurvedAnimation(
+                parent: animation,
+                curve: Curves.easeOutCubic,
+              );
+
+              return FadeTransition(
+                opacity: curved,
+                child: SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 1),
+                    end: Offset.zero,
+                  ).animate(curved),
+                  child: child,
+                ),
+              );
+            },
+          );
+        },
+      ),
+
+      GoRoute(
+        path: UserPaths.setLocation,
+        builder: (context, state) {
+          final currentUser = context.read<AppCubit>().state.user;
+          return SelectLocationScreen(
+            selectedLocation: UserddressModel(
+              latitude: null, // currentUser?.latitude,
+              longitude: currentUser?.longitude,
+              addressTitle: currentUser?.address,
+            ),
+          );
         },
       ),
       GoRoute(
@@ -117,7 +165,26 @@ class UserAppRouteConfig {
           routes: [
             GoRoute(
               path: UserPaths.home,
-              builder: (context, state) => const UserHomeScreen(),
+              pageBuilder: (context, state) {
+                return CustomTransitionPage(
+                  key: state.pageKey,
+                  child: const UserHomeScreen(),
+                  transitionsBuilder: (
+                    context,
+                    animation,
+                    secondaryAnimation,
+                    child,
+                  ) {
+                    return SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(0, 1), // 👈 bottom to top
+                        end: Offset.zero,
+                      ).animate(animation),
+                      child: child,
+                    );
+                  },
+                );
+              },
             ),
           ],
         ),

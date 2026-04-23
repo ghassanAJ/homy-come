@@ -66,48 +66,43 @@ class _FrequencyChangeSheetContentState
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            /// Title
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Choose your frequency",
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            /// Items
-            ...items.map(
-              (item) => Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: _FrequencyItem(
-                  model: item,
-                  onTap: () => onSelect(item.type),
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            /// Submit
-            UIButton.primary(
-              label: 'Submit',
-              expanded: true,
-              onPressed: () {
-                final selected = items.firstWhere((e) => e.isSelected);
-                widget.onSubmit(selected.type);
-                Navigator.pop(context);
-              },
-            ),
-          ],
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        /// Title
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Choose your frequency",
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
         ),
-      ),
+        const SizedBox(height: 16),
+
+        /// Items
+        ...items.map(
+          (item) => Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: _FrequencyItem(
+              model: item,
+              onTap: () => onSelect(item.type),
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 16),
+
+        /// Submit
+        UIButton.primary(
+          label: 'Submit',
+          expanded: true,
+          onPressed: () {
+            final selected = items.firstWhere((e) => e.isSelected);
+            widget.onSubmit(selected.type);
+            Navigator.pop(context);
+          },
+        ),
+      ],
     );
   }
 }
@@ -194,11 +189,17 @@ class _FrequencyItem extends StatelessWidget {
                 border: Border.all(
                   color: isSelected ? Colors.green : Colors.grey,
                 ),
-                color: isSelected ? Colors.green : Colors.transparent,
+                // color: isSelected ? Colors.green : Colors.transparent,
               ),
               child:
                   isSelected
-                      ? const Icon(Icons.check, size: 14, color: Colors.white)
+                      ? UIImage(
+                        Assets.images.checkMark1.path,
+                        key: const ValueKey('check'),
+                        wigth: UI.sizes.iconMd,
+                        height: UI.sizes.iconMd,
+                        fit: BoxFit.contain,
+                      )
                       : null,
             ),
           ],

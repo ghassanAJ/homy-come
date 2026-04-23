@@ -135,6 +135,7 @@ class _BaseBookingStepState extends State<BaseBookingStep> {
       //   break;
 
       case BookingWizardStep.hoursStep:
+        FocusScope.of(context).unfocus();
         bloc.add(ProceedToStep3());
         break;
 
@@ -175,6 +176,11 @@ class _BaseBookingStepState extends State<BaseBookingStep> {
   }
 
   Future<void> _makePayment(BuildContext context) async {
+    // await StripePaymentService.initPaymentSheet(
+    //   'pi_test_51FakeSecretClientSecretFromStripeTestMode',
+    // );
+    // await StripePaymentService.presentPaymentSheet();
+
     final WebViewController controller =
         WebViewController()
           ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -201,12 +207,12 @@ class _BaseBookingStepState extends State<BaseBookingStep> {
     await UIBottomSheet.show(
       context: context,
       content: SizedBox(
-        height: MediaQuery.sizeOf(context).height * .6,
-        child: WebViewWidget(controller: controller),
-
-        // SingleChildScrollView(
-        //   child: Column(children: [WebViewWidget(controller: controller)]),
-        // ),
+        height: MediaQuery.sizeOf(context).height * .8,
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onVerticalDragStart: (_) {}, // 👈 important hack
+          child: WebViewWidget(controller: controller),
+        ),
       ),
     );
     // showSuccessDialog();
@@ -221,7 +227,7 @@ class _BaseBookingStepState extends State<BaseBookingStep> {
         break;
 
       case BookingWizardStep.selectDateTimeStep:
-        bloc.add(const ProceedToStep2());
+        bloc.add(const ProceedToStep1()); //TODO
         break;
 
       case BookingWizardStep.summary:
@@ -256,13 +262,15 @@ class SummaryStep extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(0, 0, 0, 145),
       child: Column(
         children: [
+          SizedBox(height: UI.spacing.sm),
+
+          Divider(
+            height: 1,
+            thickness: 1,
+            color: Colors.grey.withOpacity(0.12),
+          ),
           Padding(
-            padding: EdgeInsets.fromLTRB(
-              UI.spacing.lg,
-              UI.spacing.md,
-              UI.spacing.lg,
-              0,
-            ),
+            padding: EdgeInsets.fromLTRB(UI.spacing.lg, 12, UI.spacing.lg, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -286,7 +294,7 @@ class SummaryStep extends StatelessWidget {
                               height: 48,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: UIColor.neutral25,
+                                color: UIColor.babyPink,
                               ),
                               child: UINetworkImage(
                                 imageUrl: selectedProvider.image,
@@ -391,6 +399,13 @@ class SummaryStep extends StatelessWidget {
                                 height: 80,
                                 width: double.infinity,
                                 child: GoogleMap(
+                                  myLocationButtonEnabled: false,
+                                  zoomControlsEnabled: false,
+                                  zoomGesturesEnabled: false,
+                                  scrollGesturesEnabled: false,
+                                  rotateGesturesEnabled: false,
+                                  tiltGesturesEnabled: false,
+                                  compassEnabled: false,
                                   initialCameraPosition: CameraPosition(
                                     target: LatLng(33.5, 44.2),
                                   ),

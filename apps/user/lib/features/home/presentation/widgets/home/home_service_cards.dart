@@ -10,13 +10,18 @@ class HomeServiceCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
+      separatorBuilder: (context, index) => SizedBox(width: 8),
+      padding: EdgeInsets.zero,
       scrollDirection: Axis.horizontal,
       itemCount: servicePreviews.length,
       itemBuilder: (context, index) {
         final item = servicePreviews[index];
         return Padding(
-          padding: UI.padding.userHomeItemStartAndEnd(isFirst: index == 0),
+          padding:
+              index == 0
+                  ? EdgeInsetsDirectional.only(start: 24)
+                  : EdgeInsets.zero,
           child: ServiceCard(
             onTap:
                 () => context.push(

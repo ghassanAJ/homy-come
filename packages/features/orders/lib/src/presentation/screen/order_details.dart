@@ -17,8 +17,7 @@ class OrderDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tr = context.orderTr;
-    final topContentPadding =
-        MediaQuery.paddingOf(context).top + kToolbarHeight + UI.spacing.md;
+
     return BlocProvider(
       create:
           (context) => diContainerOrder<OrderCubit>()..getOrderDetailsById(id),

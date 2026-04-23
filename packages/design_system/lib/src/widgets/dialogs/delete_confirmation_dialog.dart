@@ -8,7 +8,7 @@ class DeleteConfirmationDialog extends StatelessWidget {
     required this.description,
     this.confirmButtonLabel,
     this.cancelButtonLabel,
-    this.iconColor
+    this.iconColor,
   });
   final String title;
   final String description;
@@ -28,15 +28,16 @@ class DeleteConfirmationDialog extends StatelessWidget {
         cancelButtonLabel ?? translation?.dialog.cancel ?? 'Cancel';
 
     return AlertDialog(
+      // contentPadding: EdgeInsets.all(2),
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color:iconColor ?? UIColor.error.withOpacity(0.2),
+              color: iconColor ?? UIColor.error.withOpacity(0.2),
               borderRadius: BorderRadius.circular(100),
             ),
             child: UISvg(Assets.icons.warning),
@@ -56,10 +57,7 @@ class DeleteConfirmationDialog extends StatelessWidget {
                 ),
               ),
               onPressed: () => Navigator.of(context).pop(true),
-              child: UIText.bodyMedium(
-                confirmLabel,
-                color: UIColor.error,
-              ),
+              child: UIText.bodyMedium(confirmLabel, color: UIColor.error),
             ),
           ),
           const SizedBox(height: 4),
@@ -73,10 +71,7 @@ class DeleteConfirmationDialog extends StatelessWidget {
                 ),
               ),
               onPressed: () => Navigator.of(context).pop(false),
-              child: UIText.bodyMedium(
-                cancelLabel,
-                color: UIColor.primaryDark,
-              ),
+              child: UIText.bodyMedium(cancelLabel, color: UIColor.primaryDark),
             ),
           ),
         ],

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:booking/booking.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 // import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:user/user_app.dart';
 
@@ -24,11 +23,11 @@ void main() async {
         ),
       );
 
-      Stripe.merchantIdentifier = 'merchant.flutter.stripe.test';
-      Stripe.urlScheme = 'flutterstripe';
-      Stripe.publishableKey =
-          'pk_test_51TNwR7LRLlVtHJNJvS0nZFRZu0NApBkxgBXBtosWomxpnNtPtouxZw1SWrwwV0QtpgsNNz1W60cOA5I2iYwVFrf800WNWF079O';
-      await Stripe.instance.applySettings();
+      // Stripe.merchantIdentifier = 'merchant.flutter.stripe.test';
+      // Stripe.urlScheme = 'flutterstripe';
+      // Stripe.publishableKey =
+      //     'pk_test_51TNwR7LRLlVtHJNJvS0nZFRZu0NApBkxgBXBtosWomxpnNtPtouxZw1SWrwwV0QtpgsNNz1W60cOA5I2iYwVFrf800WNWF079O';
+      // await Stripe.instance.applySettings();
 
       await UIDesignSystemInitializer.initialize();
       var env = const String.fromEnvironment('ENV', defaultValue: 'mock');

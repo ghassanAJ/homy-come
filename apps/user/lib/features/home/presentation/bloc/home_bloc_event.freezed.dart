@@ -134,7 +134,7 @@ return loadSearchContent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loadCategories,TResult Function()?  loadSliders,TResult Function()?  loadOffers,TResult Function()?  loadStories,TResult Function( String categoryId)?  loadCategoryServices,TResult Function( GetServiceDetailsRequestModel request)?  loadServiceDetails,TResult Function()?  loadSearchContent,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loadCategories,TResult Function()?  loadSliders,TResult Function()?  loadOffers,TResult Function()?  loadStories,TResult Function( String categoryId)?  loadCategoryServices,TResult Function( GetServiceDetailsRequestModel request)?  loadServiceDetails,TResult Function( String qwery)?  loadSearchContent,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case LoadHomeContentEvent() when loadCategories != null:
 return loadCategories();case LoadSlidersEvent() when loadSliders != null:
@@ -143,7 +143,7 @@ return loadOffers();case LoadStoriesEvent() when loadStories != null:
 return loadStories();case LoadCategoryServicesEvent() when loadCategoryServices != null:
 return loadCategoryServices(_that.categoryId);case LoadServiceDetailsEvent() when loadServiceDetails != null:
 return loadServiceDetails(_that.request);case LoadSearchContentEvent() when loadSearchContent != null:
-return loadSearchContent();case _:
+return loadSearchContent(_that.qwery);case _:
   return orElse();
 
 }
@@ -161,7 +161,7 @@ return loadSearchContent();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loadCategories,required TResult Function()  loadSliders,required TResult Function()  loadOffers,required TResult Function()  loadStories,required TResult Function( String categoryId)  loadCategoryServices,required TResult Function( GetServiceDetailsRequestModel request)  loadServiceDetails,required TResult Function()  loadSearchContent,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loadCategories,required TResult Function()  loadSliders,required TResult Function()  loadOffers,required TResult Function()  loadStories,required TResult Function( String categoryId)  loadCategoryServices,required TResult Function( GetServiceDetailsRequestModel request)  loadServiceDetails,required TResult Function( String qwery)  loadSearchContent,}) {final _that = this;
 switch (_that) {
 case LoadHomeContentEvent():
 return loadCategories();case LoadSlidersEvent():
@@ -170,7 +170,7 @@ return loadOffers();case LoadStoriesEvent():
 return loadStories();case LoadCategoryServicesEvent():
 return loadCategoryServices(_that.categoryId);case LoadServiceDetailsEvent():
 return loadServiceDetails(_that.request);case LoadSearchContentEvent():
-return loadSearchContent();}
+return loadSearchContent(_that.qwery);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -184,7 +184,7 @@ return loadSearchContent();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loadCategories,TResult? Function()?  loadSliders,TResult? Function()?  loadOffers,TResult? Function()?  loadStories,TResult? Function( String categoryId)?  loadCategoryServices,TResult? Function( GetServiceDetailsRequestModel request)?  loadServiceDetails,TResult? Function()?  loadSearchContent,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loadCategories,TResult? Function()?  loadSliders,TResult? Function()?  loadOffers,TResult? Function()?  loadStories,TResult? Function( String categoryId)?  loadCategoryServices,TResult? Function( GetServiceDetailsRequestModel request)?  loadServiceDetails,TResult? Function( String qwery)?  loadSearchContent,}) {final _that = this;
 switch (_that) {
 case LoadHomeContentEvent() when loadCategories != null:
 return loadCategories();case LoadSlidersEvent() when loadSliders != null:
@@ -193,7 +193,7 @@ return loadOffers();case LoadStoriesEvent() when loadStories != null:
 return loadStories();case LoadCategoryServicesEvent() when loadCategoryServices != null:
 return loadCategoryServices(_that.categoryId);case LoadServiceDetailsEvent() when loadServiceDetails != null:
 return loadServiceDetails(_that.request);case LoadSearchContentEvent() when loadSearchContent != null:
-return loadSearchContent();case _:
+return loadSearchContent(_that.qwery);case _:
   return null;
 
 }
@@ -474,32 +474,66 @@ $GetServiceDetailsRequestModelCopyWith<$Res> get request {
 
 
 class LoadSearchContentEvent implements HomeBlocEvent {
-  const LoadSearchContentEvent();
+  const LoadSearchContentEvent(this.qwery);
   
 
+ final  String qwery;
 
-
+/// Create a copy of HomeBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoadSearchContentEventCopyWith<LoadSearchContentEvent> get copyWith => _$LoadSearchContentEventCopyWithImpl<LoadSearchContentEvent>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadSearchContentEvent);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadSearchContentEvent&&(identical(other.qwery, qwery) || other.qwery == qwery));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,qwery);
 
 @override
 String toString() {
-  return 'HomeBlocEvent.loadSearchContent()';
+  return 'HomeBlocEvent.loadSearchContent(qwery: $qwery)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class $LoadSearchContentEventCopyWith<$Res> implements $HomeBlocEventCopyWith<$Res> {
+  factory $LoadSearchContentEventCopyWith(LoadSearchContentEvent value, $Res Function(LoadSearchContentEvent) _then) = _$LoadSearchContentEventCopyWithImpl;
+@useResult
+$Res call({
+ String qwery
+});
 
 
+
+
+}
+/// @nodoc
+class _$LoadSearchContentEventCopyWithImpl<$Res>
+    implements $LoadSearchContentEventCopyWith<$Res> {
+  _$LoadSearchContentEventCopyWithImpl(this._self, this._then);
+
+  final LoadSearchContentEvent _self;
+  final $Res Function(LoadSearchContentEvent) _then;
+
+/// Create a copy of HomeBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? qwery = null,}) {
+  return _then(LoadSearchContentEvent(
+null == qwery ? _self.qwery : qwery // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
 
 // dart format on

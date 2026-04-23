@@ -1,5 +1,6 @@
+import 'package:design_system/gen/assets.gen.dart';
+import 'package:design_system/src/widgets/shared/ui_svg.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../tokens/colors.dart';
 import '../../ui.dart';
@@ -56,7 +57,7 @@ class UIImageSelectionBottomSheet extends StatelessWidget {
       children: [
         // Choose from library option
         _buildOption(
-          iconPath: 'assets/icons/gallery.svg',
+          iconPath: Assets.icons.gallery,
           label: 'Choose from library',
           onTap: onChooseFromLibrary,
           textColor: UIColor.primaryDark,
@@ -66,7 +67,7 @@ class UIImageSelectionBottomSheet extends StatelessWidget {
 
         // Take photo option
         _buildOption(
-          iconPath: 'assets/icons/camera.svg',
+          iconPath: Assets.icons.camera,
           label: 'Take photo',
           onTap: onTakePhoto,
           textColor: UIColor.primaryDark,
@@ -77,7 +78,7 @@ class UIImageSelectionBottomSheet extends StatelessWidget {
         if (showDelete) ...[
           SizedBox(height: UI.spacing.lg),
           _buildOption(
-            iconPath: 'assets/icons/trash.svg',
+            iconPath: Assets.icons.trash,
             label: 'Delete',
             onTap: onDelete!,
             textColor: UIColor.error,
@@ -101,8 +102,7 @@ class UIImageSelectionBottomSheet extends StatelessWidget {
       borderRadius: BorderRadius.circular(UI.radius.md),
       child: Row(
         children: [
-          // TODO: use built in image widget, when it's ready
-          SvgPicture.asset(iconPath, package: 'ui'),
+          UISvg(iconPath),
           SizedBox(width: UI.spacing.xs),
           UIText.bodyMedium(label, color: textColor),
         ],

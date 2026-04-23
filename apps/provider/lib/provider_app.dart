@@ -7,8 +7,6 @@ import 'package:homy_provider/localization/provider_localization_delegate.dart';
 import 'package:homy_provider/navigation/route.dart';
 import 'package:util/util.dart';
 
-const UserRole userRole = UserRole.provider;
-
 class ProviderApp extends StatelessWidget {
   const ProviderApp({super.key});
 
@@ -60,12 +58,14 @@ class AppProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider.value(value: diContainer.get<AppCubit>()),
+        BlocProvider.value(
+          value: diContainer.get<AppCubit>()..init(UserRole.provider),
+        ),
         BlocProvider.value(
           value: AuthUserBloc(
             diContainer.get<AuthRepository>(),
             diContainer.get<SessionRepository>(),
-            userRole: userRole,
+            userRole: UserRole.provider,
           ),
         ),
       ],

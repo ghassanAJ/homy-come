@@ -1,6 +1,5 @@
 import 'package:authentication/src/presentation/widgets/common/onboarding_bubble.dart';
 import 'package:design_system/design_system.dart';
-import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});

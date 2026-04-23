@@ -36,7 +36,7 @@ class AuthenticationRoute {
       routes: [
         GoRoute(
           path: AuthenticationPaths.splash,
-          builder: (context, state) => const MyCustomWidget(),
+          builder: (context, state) => const AnimatedSplashScreen(),
         ),
         GoRoute(
           path: AuthenticationPaths.onboarding,
@@ -48,7 +48,7 @@ class AuthenticationRoute {
         ),
         GoRoute(
           path: AuthenticationPaths.signup,
-          builder: (context, state) => const SignupScreen(),
+          builder: (context, state) => const SignUpScreen(),
         ),
         GoRoute(
           path: AuthenticationPaths.authEntry,

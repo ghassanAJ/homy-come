@@ -9,6 +9,7 @@ abstract class SearchResponseModel with _$SearchResponseModel {
   const factory SearchResponseModel({
     @Default([]) List<String> popularSearch,
     @Default([]) List<ServiceCategoryModel> topCategories,
+    @Default([]) List<ServicePreviewResponseModel> services,
   }) = _SearchResponseModel;
 
   factory SearchResponseModel.fromJson(Map<String, dynamic> json) =>

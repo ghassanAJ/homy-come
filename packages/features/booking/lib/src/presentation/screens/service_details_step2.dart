@@ -40,16 +40,16 @@ class ServiceDetailsStep2 extends StatelessWidget {
                   final item = allAddOns[i];
                   final isSelected = state.selectedAddOns.contains(item);
                   return AddonServiceCard(
+                    onAdded:
+                        () => context.read<BookingWizardBloc>().add(
+                          ToggleAddOn(addOnId: item),
+                        ),
+                    image: item.info.image,
                     title: item.info.name,
-
                     reviews: '(${item.durationMinutes} min)',
                     price: item.price.currentPrice?.toString() ?? '-',
                     oldPrice: item.price.newPrice?.toString() ?? '-',
                     selected: isSelected,
-                    onTap:
-                        () => context.read<BookingWizardBloc>().add(
-                          ToggleAddOn(addOnId: item),
-                        ),
                   );
                 },
               ),

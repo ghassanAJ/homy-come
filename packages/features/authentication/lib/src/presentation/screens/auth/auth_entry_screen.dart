@@ -2,7 +2,6 @@ import 'package:authentication/authentication.dart';
 import 'package:authentication/src/presentation/widgets/auth_entry/auth_entry_header.dart';
 import 'package:authentication/src/presentation/widgets/auth_entry/auth_entry_submit_button.dart';
 import 'package:authentication/src/presentation/widgets/auth_entry/auth_method_selector.dart';
-import 'package:authentication/src/presentation/widgets/common/auth_terms_and_privacy.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';

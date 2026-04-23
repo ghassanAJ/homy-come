@@ -19,7 +19,7 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<AppCubit>().state.user;
+    final user = context.watch<AppCubit>().state.user;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0),
@@ -39,46 +39,55 @@ class HomeHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UIText.bodySmall(
-                  'Hi, ${user?.phone}' ?? '',
+                  'Hi, ${user?.name}' ?? '',
                   fontWeight: FontWeight.w700,
                   color: UIColor.black,
                 ),
                 SizedBox(height: 2),
-                GestureDetector(
-                  onTap: () async {
-                    final userddressModel =
-                        await LocationSetterUtil.pushToSetLocationScreen(
-                          context,
-                        );
-                    if (userddressModel != null) {
-                      context.read<AuthUserBloc>().add(
-                        UpdateProfile({
-                          "latitude": userddressModel.latitude,
-                          "longitude": userddressModel.longitude,
-                          "address": userddressModel.addressTitle,
-                        }),
-                      );
-                    }
-                  },
-                  child: Row(
-                    children: [
-                      UISvg(Assets.icons.location, size: 16),
+                BlocBuilder<AuthUserBloc, AuthUserState>(
+                  builder: (context, state) {
+                    return GestureDetector(
+                      onTap: () async {
+                        final userddressModel =
+                            await LocationSetterUtil.pushToSetLocationScreen(
+                              context,
+                            );
+                        // if (userddressModel != null) {
+                        //   final state = context.read<AppCubit>().state;
+                        //   final currentUserData = state.user;
+                        //   if (currentUserData == null) return;
+                        //   context.read<AuthUserBloc>().add(
+                        //     UpdateProfile(
+                        //       currentUserData.copyWith(
+                        //         latitude: userddressModel.latitude,
+                        //         longitude: userddressModel.longitude,
+                        //         address: userddressModel.addressTitle,
+                        //       ),
+                        //     ),
+                        //   );
+                        // }
+                      },
+                      child: Row(
+                        children: [
+                          UISvg(Assets.icons.location, size: 16),
 
-                      SizedBox(width: UI.spacing.xxs),
-                      Flexible(
-                        child: UIText.bodySmall(
-                          user?.phone ?? 'no phone selected',
-                          color: UIColor.neutral400,
-                          maxLines: 1,
-                        ),
+                          SizedBox(width: UI.spacing.xxs),
+                          Flexible(
+                            child: UIText.bodySmall(
+                              user?.address ?? 'no address selected',
+                              color: UIColor.neutral400,
+                              maxLines: 1,
+                            ),
+                          ),
+                          Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            size: 16,
+                            color: UIColor.neutral400,
+                          ),
+                        ],
                       ),
-                      Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        size: 16,
-                        color: UIColor.neutral400,
-                      ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
               ],
             ),

@@ -60,7 +60,9 @@ class AppProviders extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider.value(value: diContainer.get<AppCubit>()),
+        BlocProvider.value(
+          value: diContainer.get<AppCubit>()..init(UserRole.driver),
+        ),
         BlocProvider.value(
           value: AuthUserBloc(
             diContainer.get<AuthRepository>(),

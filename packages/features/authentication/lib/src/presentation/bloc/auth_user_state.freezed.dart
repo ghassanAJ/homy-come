@@ -137,11 +137,11 @@ return otpSent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( SessionModel session,  AuthenticationContext context)?  authenticated,TResult Function()?  loading,TResult Function( APIException error,  AuthUserErrorStateType stateType)?  error,TResult Function()?  loggedOut,TResult Function()?  sessionExpired,TResult Function( String sessionId,  String identifier,  String? userType)?  otpSent,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( SessionModel session,  VerifiedUserModel user,  AuthenticationContext context)?  authenticated,TResult Function()?  loading,TResult Function( APIException error,  AuthUserErrorStateType stateType)?  error,TResult Function()?  loggedOut,TResult Function()?  sessionExpired,TResult Function( String sessionId,  String identifier,  String? userType)?  otpSent,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case AuthUserStateInitial() when initial != null:
 return initial();case AuthUserStateAuthenticated() when authenticated != null:
-return authenticated(_that.session,_that.context);case AuthUserStateLoading() when loading != null:
+return authenticated(_that.session,_that.user,_that.context);case AuthUserStateLoading() when loading != null:
 return loading();case AuthUserStateError() when error != null:
 return error(_that.error,_that.stateType);case AuthUserStateLoggedOut() when loggedOut != null:
 return loggedOut();case AuthUserStateSessionExpired() when sessionExpired != null:
@@ -164,11 +164,11 @@ return otpSent(_that.sessionId,_that.identifier,_that.userType);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( SessionModel session,  AuthenticationContext context)  authenticated,required TResult Function()  loading,required TResult Function( APIException error,  AuthUserErrorStateType stateType)  error,required TResult Function()  loggedOut,required TResult Function()  sessionExpired,required TResult Function( String sessionId,  String identifier,  String? userType)  otpSent,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( SessionModel session,  VerifiedUserModel user,  AuthenticationContext context)  authenticated,required TResult Function()  loading,required TResult Function( APIException error,  AuthUserErrorStateType stateType)  error,required TResult Function()  loggedOut,required TResult Function()  sessionExpired,required TResult Function( String sessionId,  String identifier,  String? userType)  otpSent,}) {final _that = this;
 switch (_that) {
 case AuthUserStateInitial():
 return initial();case AuthUserStateAuthenticated():
-return authenticated(_that.session,_that.context);case AuthUserStateLoading():
+return authenticated(_that.session,_that.user,_that.context);case AuthUserStateLoading():
 return loading();case AuthUserStateError():
 return error(_that.error,_that.stateType);case AuthUserStateLoggedOut():
 return loggedOut();case AuthUserStateSessionExpired():
@@ -190,11 +190,11 @@ return otpSent(_that.sessionId,_that.identifier,_that.userType);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( SessionModel session,  AuthenticationContext context)?  authenticated,TResult? Function()?  loading,TResult? Function( APIException error,  AuthUserErrorStateType stateType)?  error,TResult? Function()?  loggedOut,TResult? Function()?  sessionExpired,TResult? Function( String sessionId,  String identifier,  String? userType)?  otpSent,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( SessionModel session,  VerifiedUserModel user,  AuthenticationContext context)?  authenticated,TResult? Function()?  loading,TResult? Function( APIException error,  AuthUserErrorStateType stateType)?  error,TResult? Function()?  loggedOut,TResult? Function()?  sessionExpired,TResult? Function( String sessionId,  String identifier,  String? userType)?  otpSent,}) {final _that = this;
 switch (_that) {
 case AuthUserStateInitial() when initial != null:
 return initial();case AuthUserStateAuthenticated() when authenticated != null:
-return authenticated(_that.session,_that.context);case AuthUserStateLoading() when loading != null:
+return authenticated(_that.session,_that.user,_that.context);case AuthUserStateLoading() when loading != null:
 return loading();case AuthUserStateError() when error != null:
 return error(_that.error,_that.stateType);case AuthUserStateLoggedOut() when loggedOut != null:
 return loggedOut();case AuthUserStateSessionExpired() when sessionExpired != null:
@@ -243,10 +243,11 @@ String toString() {
 
 
 class AuthUserStateAuthenticated implements AuthUserState {
-  const AuthUserStateAuthenticated({required this.session, this.context = AuthenticationContext.unknown});
+  const AuthUserStateAuthenticated({required this.session, required this.user, this.context = AuthenticationContext.unknown});
   
 
  final  SessionModel session;
+ final  VerifiedUserModel user;
 @JsonKey() final  AuthenticationContext context;
 
 /// Create a copy of AuthUserState
@@ -259,16 +260,16 @@ $AuthUserStateAuthenticatedCopyWith<AuthUserStateAuthenticated> get copyWith => 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthUserStateAuthenticated&&(identical(other.session, session) || other.session == session)&&(identical(other.context, context) || other.context == context));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthUserStateAuthenticated&&(identical(other.session, session) || other.session == session)&&(identical(other.user, user) || other.user == user)&&(identical(other.context, context) || other.context == context));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,session,context);
+int get hashCode => Object.hash(runtimeType,session,user,context);
 
 @override
 String toString() {
-  return 'AuthUserState.authenticated(session: $session, context: $context)';
+  return 'AuthUserState.authenticated(session: $session, user: $user, context: $context)';
 }
 
 
@@ -279,11 +280,11 @@ abstract mixin class $AuthUserStateAuthenticatedCopyWith<$Res> implements $AuthU
   factory $AuthUserStateAuthenticatedCopyWith(AuthUserStateAuthenticated value, $Res Function(AuthUserStateAuthenticated) _then) = _$AuthUserStateAuthenticatedCopyWithImpl;
 @useResult
 $Res call({
- SessionModel session, AuthenticationContext context
+ SessionModel session, VerifiedUserModel user, AuthenticationContext context
 });
 
 
-
+$VerifiedUserModelCopyWith<$Res> get user;
 
 }
 /// @nodoc
@@ -296,15 +297,25 @@ class _$AuthUserStateAuthenticatedCopyWithImpl<$Res>
 
 /// Create a copy of AuthUserState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? session = null,Object? context = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? session = null,Object? user = null,Object? context = null,}) {
   return _then(AuthUserStateAuthenticated(
 session: null == session ? _self.session : session // ignore: cast_nullable_to_non_nullable
-as SessionModel,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
+as SessionModel,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as VerifiedUserModel,context: null == context ? _self.context : context // ignore: cast_nullable_to_non_nullable
 as AuthenticationContext,
   ));
 }
 
-
+/// Create a copy of AuthUserState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$VerifiedUserModelCopyWith<$Res> get user {
+  
+  return $VerifiedUserModelCopyWith<$Res>(_self.user, (value) {
+    return _then(_self.copyWith(user: value));
+  });
+}
 }
 
 /// @nodoc

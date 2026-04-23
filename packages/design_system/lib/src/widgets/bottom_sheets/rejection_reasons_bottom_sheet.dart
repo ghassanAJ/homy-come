@@ -41,7 +41,8 @@ class _ReasonsRejectionBottomSheetState
           ),
         ),
         child: SingleChildScrollView(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               // Drag handle
@@ -147,7 +148,8 @@ class _ReasonsRejectionBottomSheetState
                           ),
                           child: UIText.bodyMedium(
                             'Cancel',
-                            fontWeight: FontWeight.w600,
+                            color: UIColor.black,
+                            // fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
@@ -155,16 +157,20 @@ class _ReasonsRejectionBottomSheetState
                     const SizedBox(width: 12),
                     // Send button
                     Expanded(
-                      child: UIButton.primary(label: 'send',onPressed:   _canSend()
-                                    ? () {
-                                      final reason =
-                                          _selectedReason == 'Other'
-                                              ? _customReasonController.text
-                                                  .trim()
-                                              : _selectedReason;
-                                      Navigator.of(context).pop(reason);
-                                    }
-                                    : null, expanded: true),
+                      child: UIButton.primary(
+                        label: 'Send',
+                        onPressed:
+                            _canSend()
+                                ? () {
+                                  final reason =
+                                      _selectedReason == 'Other'
+                                          ? _customReasonController.text.trim()
+                                          : _selectedReason;
+                                  Navigator.of(context).pop(reason);
+                                }
+                                : null,
+                        expanded: true,
+                      ),
                     ),
                   ],
                 ),
@@ -188,7 +194,7 @@ class _ReasonsRejectionBottomSheetState
       },
       borderRadius: BorderRadius.circular(8),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 16),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: Row(
           children: [
             Container(

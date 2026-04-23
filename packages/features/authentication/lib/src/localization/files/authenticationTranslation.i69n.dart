@@ -5,33 +5,60 @@ import 'package:i69n/i69n.dart' as i69n;
 String get _languageCode => 'en';
 String get _localeName => 'en';
 
-String _plural(int count,
-        {String? zero,
-        String? one,
-        String? two,
-        String? few,
-        String? many,
-        String? other}) =>
-    i69n.plural(count, _languageCode,
-        zero: zero, one: one, two: two, few: few, many: many, other: other);
-String _ordinal(int count,
-        {String? zero,
-        String? one,
-        String? two,
-        String? few,
-        String? many,
-        String? other}) =>
-    i69n.ordinal(count, _languageCode,
-        zero: zero, one: one, two: two, few: few, many: many, other: other);
-String _cardinal(int count,
-        {String? zero,
-        String? one,
-        String? two,
-        String? few,
-        String? many,
-        String? other}) =>
-    i69n.cardinal(count, _languageCode,
-        zero: zero, one: one, two: two, few: few, many: many, other: other);
+String _plural(
+  int count, {
+  String? zero,
+  String? one,
+  String? two,
+  String? few,
+  String? many,
+  String? other,
+}) => i69n.plural(
+  count,
+  _languageCode,
+  zero: zero,
+  one: one,
+  two: two,
+  few: few,
+  many: many,
+  other: other,
+);
+String _ordinal(
+  int count, {
+  String? zero,
+  String? one,
+  String? two,
+  String? few,
+  String? many,
+  String? other,
+}) => i69n.ordinal(
+  count,
+  _languageCode,
+  zero: zero,
+  one: one,
+  two: two,
+  few: few,
+  many: many,
+  other: other,
+);
+String _cardinal(
+  int count, {
+  String? zero,
+  String? one,
+  String? two,
+  String? few,
+  String? many,
+  String? other,
+}) => i69n.cardinal(
+  count,
+  _languageCode,
+  zero: zero,
+  one: one,
+  two: two,
+  few: few,
+  many: many,
+  other: other,
+);
 
 class AuthenticationTranslation implements i69n.I69nMessageBundle {
   const AuthenticationTranslation();
@@ -58,8 +85,8 @@ class AuthenticationTranslation implements i69n.I69nMessageBundle {
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
-      return (this[key.substring(0, index)]
-          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+      return (this[key.substring(0, index)] as i69n.I69nMessageBundle)[key
+          .substring(index + 1)];
     }
     switch (key) {
       case 'common':
@@ -98,8 +125,8 @@ class CommonAuthenticationTranslation implements i69n.I69nMessageBundle {
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
-      return (this[key.substring(0, index)]
-          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+      return (this[key.substring(0, index)] as i69n.I69nMessageBundle)[key
+          .substring(index + 1)];
     }
     switch (key) {
       case 'continueLabel':
@@ -127,8 +154,8 @@ class LoginAuthenticationTranslation implements i69n.I69nMessageBundle {
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
-      return (this[key.substring(0, index)]
-          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+      return (this[key.substring(0, index)] as i69n.I69nMessageBundle)[key
+          .substring(index + 1)];
     }
     switch (key) {
       case 'title':
@@ -164,8 +191,8 @@ class VerificationAuthenticationTranslation implements i69n.I69nMessageBundle {
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
-      return (this[key.substring(0, index)]
-          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+      return (this[key.substring(0, index)] as i69n.I69nMessageBundle)[key
+          .substring(index + 1)];
     }
     switch (key) {
       case 'title':
@@ -207,7 +234,7 @@ class PersonalInfoAuthenticationTranslation implements i69n.I69nMessageBundle {
   String get emailPlaceholder => "Enter your email address";
   String get emailRequired => "Email is required";
   String get emailInvalid => "Please enter a valid email";
-  String get phonePlaceholder => "Ex : +971 50 123 4567";
+  String get phonePlaceholder => "55-123-4567";
   String get phoneRequired => "Phone number is required";
   String get phoneInvalid => "Phone number must be 10 digits";
   String get country => "Country";
@@ -232,8 +259,8 @@ class PersonalInfoAuthenticationTranslation implements i69n.I69nMessageBundle {
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
-      return (this[key.substring(0, index)]
-          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+      return (this[key.substring(0, index)] as i69n.I69nMessageBundle)[key
+          .substring(index + 1)];
     }
     switch (key) {
       case 'title':
@@ -317,8 +344,8 @@ class AuthEntryAuthenticationTranslation implements i69n.I69nMessageBundle {
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
-      return (this[key.substring(0, index)]
-          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+      return (this[key.substring(0, index)] as i69n.I69nMessageBundle)[key
+          .substring(index + 1)];
     }
     switch (key) {
       case 'pinLabel':
@@ -363,8 +390,8 @@ class OnboardingAuthenticationTranslation implements i69n.I69nMessageBundle {
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
-      return (this[key.substring(0, index)]
-          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+      return (this[key.substring(0, index)] as i69n.I69nMessageBundle)[key
+          .substring(index + 1)];
     }
     switch (key) {
       case 'introTitle':
@@ -416,8 +443,8 @@ class UserRoleAuthenticationTranslation implements i69n.I69nMessageBundle {
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
-      return (this[key.substring(0, index)]
-          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+      return (this[key.substring(0, index)] as i69n.I69nMessageBundle)[key
+          .substring(index + 1)];
     }
     switch (key) {
       case 'welcome':
@@ -450,8 +477,8 @@ class AuthIdentityAuthenticationTranslation implements i69n.I69nMessageBundle {
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
-      return (this[key.substring(0, index)]
-          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+      return (this[key.substring(0, index)] as i69n.I69nMessageBundle)[key
+          .substring(index + 1)];
     }
     switch (key) {
       case 'emailTitle':
@@ -476,8 +503,8 @@ class ChildLoginAuthenticationTranslation implements i69n.I69nMessageBundle {
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
-      return (this[key.substring(0, index)]
-          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+      return (this[key.substring(0, index)] as i69n.I69nMessageBundle)[key
+          .substring(index + 1)];
     }
     switch (key) {
       case 'title':
@@ -501,8 +528,8 @@ class TermsAndPrivacyAuthenticationTranslation
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {
-      return (this[key.substring(0, index)]
-          as i69n.I69nMessageBundle)[key.substring(index + 1)];
+      return (this[key.substring(0, index)] as i69n.I69nMessageBundle)[key
+          .substring(index + 1)];
     }
     switch (key) {
       case 'agreementText':

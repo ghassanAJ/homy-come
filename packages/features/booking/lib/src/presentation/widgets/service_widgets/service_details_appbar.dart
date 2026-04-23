@@ -176,7 +176,7 @@ class _ServiceDetailsAppBarState extends State<ServiceDetailsAppBar> {
               Opacity(
                 opacity: heroOpacity,
                 child: SizedBox(
-                  height: 200,
+                  height: 230,
                   child: Stack(
                     children: [
                       UINetworkImage(

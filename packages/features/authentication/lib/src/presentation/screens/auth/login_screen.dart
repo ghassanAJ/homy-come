@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -41,7 +42,6 @@ class _LoginScreenState extends State<LoginScreen> {
       phone: phone,
       deviceId: AuthenticationConfig.deviceId,
     );
-    log('called');
     context.read<AuthUserBloc>().add(SendOTP(request));
   }
 
@@ -81,73 +81,76 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildLayout(bool isLoading, AuthenticationTranslation tr) {
-    return Stack(
-      children: [
-        Scaffold(
-          backgroundColor: UIColor.background,
-          body: LayoutBuilder(
-            builder: (context, constrais) {
-              return SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 24),
-                child: Directionality(
-                  textDirection: TextDirection.ltr,
-                  child: FormBuilder(
-                    key: _formKey,
-                    onChanged: _onFormChanged,
-                    child: SizedBox(
-                      height: constrais.maxHeight,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: UI.spacing.xxl),
-                          Spacer(flex: 2),
-                          _buildHeader(tr),
-                          SizedBox(height: UI.spacing.xxl),
-                          UIText.bodySmall(
-                            tr.login.phoneLabel,
-                            color: UIColor.textSecondary,
-                          ),
-                          SizedBox(height: UI.spacing.md),
-                          // TextFormField()
-                          UIFormBuilderPhoneField(
-                            name: AuthFormFieldNames.phone,
-                            placeholder: '555-555-555',
-                            defaultSelectedCountryIsoCode: 'AE',
-                            autovalidateMode: AutovalidateMode.onUnfocus,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.phoneNumber(),
-                            ]),
-                          ),
-                          Spacer(flex: 2),
+    return UIScaffold(
+      resizeToAvoidBottomInset: true, // ✅ IMPORTANT
+      backgroundColor: UIColor.background,
+      body: SafeArea(
+        child: Column(
+          children: [
+            /// 🔹 Scrollable Content
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                child: FormBuilder(
+                  key: _formKey,
+                  onChanged: _onFormChanged,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: UI.spacing.xxl),
+                      _buildHeader(tr),
+                      SizedBox(height: UI.spacing.xxl),
 
-                          ValueListenableBuilder<bool>(
-                            valueListenable: _isFormValidNotifier,
-                            builder: (context, isValid, _) {
-                              return UIButton.primary(
-                                label: tr.login.verifyButton,
-                                onPressed: isValid ? _sendOTP : null,
-                                expanded: true,
-                              );
-                            },
-                          ),
-                          SizedBox(height: UI.spacing.lg),
-                          _buildSignUpLink(tr),
-                          SizedBox(height: UI.spacing.xl),
-                          _buildJoinAsGuestLink(tr),
-                          SizedBox(height: UI.spacing.lg),
-                          Spacer(),
-                        ],
+                      UIText.bodySmall(
+                        tr.login.phoneLabel,
+                        color: UIColor.textSecondary,
                       ),
-                    ),
+                      SizedBox(height: UI.spacing.md),
+
+                      UIFormBuilderPhoneField(
+                        name: AuthFormFieldNames.phone,
+                        placeholder: '555-555-555',
+                        defaultSelectedCountryIsoCode: 'AE',
+                        autovalidateMode: AutovalidateMode.onUnfocus,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                            errorText: 'The phone number is required',
+                          ),
+                          FormBuilderValidators.phoneNumber(
+                            errorText: 'phone number not valid',
+                          ),
+                        ]),
+                      ),
+
+                      SizedBox(height: UI.spacing.xl),
+
+                      _buildSignUpLink(tr),
+
+                      if (context.read<AppCubit>().state.userType ==
+                          UserRole.user) ...[
+                        SizedBox(height: UI.spacing.lg),
+                      ],
+                      // AuthTermsAndPrivacy(),
+
+                      // SizedBox(height: 100), // 👈 space for button
+                    ],
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            ),
+
+            /// 🔹 Sticky Button
+            _BottomAction(
+              isLoading: isLoading,
+              isFormValidNotifier: _isFormValidNotifier,
+              onPressed: _sendOTP,
+              label: tr.login.verifyButton,
+            ),
+          ],
         ),
-        if (isLoading) const MDProgressIndicator(styled: true),
-      ],
+      ),
     );
   }
 
@@ -175,15 +178,20 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildSignUpLink(AuthenticationTranslation tr) {
-    return Center(
-      child: GestureDetector(
-        onTap: () => AuthInternalRouter.of(context).toSignup(),
-        child: UIText.buttonText(
-          tr.login.signUp,
-          color: UIColor.successBright,
-          fontWeight: FontWeight.w700,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        UIText.bodySmall('Don\'t have an account?'),
+        SizedBox(width: 5),
+        GestureDetector(
+          onTap: () => AuthInternalRouter.of(context).toSignup(),
+          child: UIText.buttonText(
+            tr.login.signUp,
+            color: UIColor.successBright,
+            fontWeight: FontWeight.w700,
+          ),
         ),
-      ),
+      ],
     );
   }
 
@@ -205,6 +213,101 @@ class _LoginScreenState extends State<LoginScreen> {
                 fontWeight: FontWeight.w500,
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _BottomAction extends StatelessWidget {
+  const _BottomAction({
+    required this.isLoading,
+    required this.isFormValidNotifier,
+    required this.onPressed,
+    required this.label,
+  });
+
+  final bool isLoading;
+  final ValueNotifier<bool> isFormValidNotifier;
+  final VoidCallback onPressed;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.of(context).viewInsets.bottom;
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 250),
+      padding: EdgeInsets.fromLTRB(
+        24,
+        12,
+        24,
+        bottomInset > 0 ? bottomInset : 24, // 👈 moves above keyboard
+      ),
+      decoration: BoxDecoration(
+        color: UIColor.white,
+        boxShadow: [
+          BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(0.05)),
+        ],
+      ),
+      child: ValueListenableBuilder<bool>(
+        valueListenable: isFormValidNotifier,
+        builder: (_, isValid, __) {
+          return UIButton.primary(
+            isLoading: isLoading,
+            label: label,
+            expanded: true,
+            onPressed: isValid ? onPressed : null,
+          );
+        },
+      ),
+    );
+  }
+}
+
+class AuthTermsAndPrivacy extends StatelessWidget {
+  final VoidCallback? onTermsTap;
+  final VoidCallback? onPrivacyTap;
+
+  const AuthTermsAndPrivacy({super.key, this.onTermsTap, this.onPrivacyTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final tr = AuthenticationTranslation();
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12),
+      child: RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          style: UI.text.caption.copyWith(color: UIColor.textSecondary),
+          children: [
+            TextSpan(
+              text: '${tr.termsAndPrivacy.agreementText} ',
+              style: UI.text.bodySmall.copyWith(color: UIColor.black),
+            ),
+            TextSpan(
+              text: tr.termsAndPrivacy.termsOfUse,
+              style: UI.text.bodySmall.copyWith(
+                color: UIColor.babyBlue,
+                fontWeight: FontWeight.w700,
+              ),
+              recognizer: TapGestureRecognizer()..onTap = onTermsTap,
+            ),
+            TextSpan(
+              text: ' ${tr.termsAndPrivacy.and} ',
+              style: UI.text.bodySmall.copyWith(color: UIColor.black),
+            ),
+            TextSpan(
+              text: tr.termsAndPrivacy.privacyPolicy,
+              style: UI.text.bodySmall.copyWith(
+                color: UIColor.babyBlue,
+                fontWeight: FontWeight.w700,
+              ),
+              recognizer: TapGestureRecognizer()..onTap = onPrivacyTap,
+            ),
+            TextSpan(text: '.'),
           ],
         ),
       ),

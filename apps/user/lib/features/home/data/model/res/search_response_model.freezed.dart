@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SearchResponseModel {
 
- List<String> get popularSearch; List<ServiceCategoryModel> get topCategories;
+ List<String> get popularSearch; List<ServiceCategoryModel> get topCategories; List<ServicePreviewResponseModel> get services;
 /// Create a copy of SearchResponseModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SearchResponseModelCopyWith<SearchResponseModel> get copyWith => _$SearchRespon
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchResponseModel&&const DeepCollectionEquality().equals(other.popularSearch, popularSearch)&&const DeepCollectionEquality().equals(other.topCategories, topCategories));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SearchResponseModel&&const DeepCollectionEquality().equals(other.popularSearch, popularSearch)&&const DeepCollectionEquality().equals(other.topCategories, topCategories)&&const DeepCollectionEquality().equals(other.services, services));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(popularSearch),const DeepCollectionEquality().hash(topCategories));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(popularSearch),const DeepCollectionEquality().hash(topCategories),const DeepCollectionEquality().hash(services));
 
 @override
 String toString() {
-  return 'SearchResponseModel(popularSearch: $popularSearch, topCategories: $topCategories)';
+  return 'SearchResponseModel(popularSearch: $popularSearch, topCategories: $topCategories, services: $services)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $SearchResponseModelCopyWith<$Res>  {
   factory $SearchResponseModelCopyWith(SearchResponseModel value, $Res Function(SearchResponseModel) _then) = _$SearchResponseModelCopyWithImpl;
 @useResult
 $Res call({
- List<String> popularSearch, List<ServiceCategoryModel> topCategories
+ List<String> popularSearch, List<ServiceCategoryModel> topCategories, List<ServicePreviewResponseModel> services
 });
 
 
@@ -65,11 +65,12 @@ class _$SearchResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of SearchResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? popularSearch = null,Object? topCategories = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? popularSearch = null,Object? topCategories = null,Object? services = null,}) {
   return _then(_self.copyWith(
 popularSearch: null == popularSearch ? _self.popularSearch : popularSearch // ignore: cast_nullable_to_non_nullable
 as List<String>,topCategories: null == topCategories ? _self.topCategories : topCategories // ignore: cast_nullable_to_non_nullable
-as List<ServiceCategoryModel>,
+as List<ServiceCategoryModel>,services: null == services ? _self.services : services // ignore: cast_nullable_to_non_nullable
+as List<ServicePreviewResponseModel>,
   ));
 }
 
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> popularSearch,  List<ServiceCategoryModel> topCategories)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<String> popularSearch,  List<ServiceCategoryModel> topCategories,  List<ServicePreviewResponseModel> services)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SearchResponseModel() when $default != null:
-return $default(_that.popularSearch,_that.topCategories);case _:
+return $default(_that.popularSearch,_that.topCategories,_that.services);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.popularSearch,_that.topCategories);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> popularSearch,  List<ServiceCategoryModel> topCategories)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<String> popularSearch,  List<ServiceCategoryModel> topCategories,  List<ServicePreviewResponseModel> services)  $default,) {final _that = this;
 switch (_that) {
 case _SearchResponseModel():
-return $default(_that.popularSearch,_that.topCategories);case _:
+return $default(_that.popularSearch,_that.topCategories,_that.services);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +196,10 @@ return $default(_that.popularSearch,_that.topCategories);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> popularSearch,  List<ServiceCategoryModel> topCategories)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<String> popularSearch,  List<ServiceCategoryModel> topCategories,  List<ServicePreviewResponseModel> services)?  $default,) {final _that = this;
 switch (_that) {
 case _SearchResponseModel() when $default != null:
-return $default(_that.popularSearch,_that.topCategories);case _:
+return $default(_that.popularSearch,_that.topCategories,_that.services);case _:
   return null;
 
 }
@@ -210,7 +211,7 @@ return $default(_that.popularSearch,_that.topCategories);case _:
 @JsonSerializable()
 
 class _SearchResponseModel implements SearchResponseModel {
-  const _SearchResponseModel({final  List<String> popularSearch = const [], final  List<ServiceCategoryModel> topCategories = const []}): _popularSearch = popularSearch,_topCategories = topCategories;
+  const _SearchResponseModel({final  List<String> popularSearch = const [], final  List<ServiceCategoryModel> topCategories = const [], final  List<ServicePreviewResponseModel> services = const []}): _popularSearch = popularSearch,_topCategories = topCategories,_services = services;
   factory _SearchResponseModel.fromJson(Map<String, dynamic> json) => _$SearchResponseModelFromJson(json);
 
  final  List<String> _popularSearch;
@@ -227,6 +228,13 @@ class _SearchResponseModel implements SearchResponseModel {
   return EqualUnmodifiableListView(_topCategories);
 }
 
+ final  List<ServicePreviewResponseModel> _services;
+@override@JsonKey() List<ServicePreviewResponseModel> get services {
+  if (_services is EqualUnmodifiableListView) return _services;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_services);
+}
+
 
 /// Create a copy of SearchResponseModel
 /// with the given fields replaced by the non-null parameter values.
@@ -241,16 +249,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchResponseModel&&const DeepCollectionEquality().equals(other._popularSearch, _popularSearch)&&const DeepCollectionEquality().equals(other._topCategories, _topCategories));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SearchResponseModel&&const DeepCollectionEquality().equals(other._popularSearch, _popularSearch)&&const DeepCollectionEquality().equals(other._topCategories, _topCategories)&&const DeepCollectionEquality().equals(other._services, _services));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_popularSearch),const DeepCollectionEquality().hash(_topCategories));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_popularSearch),const DeepCollectionEquality().hash(_topCategories),const DeepCollectionEquality().hash(_services));
 
 @override
 String toString() {
-  return 'SearchResponseModel(popularSearch: $popularSearch, topCategories: $topCategories)';
+  return 'SearchResponseModel(popularSearch: $popularSearch, topCategories: $topCategories, services: $services)';
 }
 
 
@@ -261,7 +269,7 @@ abstract mixin class _$SearchResponseModelCopyWith<$Res> implements $SearchRespo
   factory _$SearchResponseModelCopyWith(_SearchResponseModel value, $Res Function(_SearchResponseModel) _then) = __$SearchResponseModelCopyWithImpl;
 @override @useResult
 $Res call({
- List<String> popularSearch, List<ServiceCategoryModel> topCategories
+ List<String> popularSearch, List<ServiceCategoryModel> topCategories, List<ServicePreviewResponseModel> services
 });
 
 
@@ -278,11 +286,12 @@ class __$SearchResponseModelCopyWithImpl<$Res>
 
 /// Create a copy of SearchResponseModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? popularSearch = null,Object? topCategories = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? popularSearch = null,Object? topCategories = null,Object? services = null,}) {
   return _then(_SearchResponseModel(
 popularSearch: null == popularSearch ? _self._popularSearch : popularSearch // ignore: cast_nullable_to_non_nullable
 as List<String>,topCategories: null == topCategories ? _self._topCategories : topCategories // ignore: cast_nullable_to_non_nullable
-as List<ServiceCategoryModel>,
+as List<ServiceCategoryModel>,services: null == services ? _self._services : services // ignore: cast_nullable_to_non_nullable
+as List<ServicePreviewResponseModel>,
   ));
 }
 

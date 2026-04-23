@@ -170,6 +170,7 @@ class UIFormBuilderPhoneField extends FormBuilderFieldDecoration<String> {
             color: UIColor.textPrimary,
             height: 1.0,
           ),
+          textInputAction: TextInputAction.done,
           focusNode: state.effectiveFocusNode,
           decoration: InputDecoration(
             border: InputBorder.none,
@@ -191,9 +192,11 @@ class UIFormBuilderPhoneField extends FormBuilderFieldDecoration<String> {
           keyboardType: TextInputType.phone,
           controller: state._effectiveController,
           autocorrect: false,
+
           inputFormatters: [
             FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(15),
+            UAEPhoneNumberFormatter(), // 🔥 NEW
+            // LengthLimitingTextInputF34ormatter(15),
           ],
         ),
       ),
@@ -220,7 +223,7 @@ class _FieldDecoration extends StatelessWidget {
     return Container(
       height: UI.sizes.inputHeight,
       decoration: BoxDecoration(
-        color: UIColor.turshry,
+        color: UIColor.white,
         borderRadius: BorderRadius.circular(UI.radius.input),
         border: Border.all(
           color:
@@ -228,7 +231,7 @@ class _FieldDecoration extends StatelessWidget {
                   ? UIColor.borderError
                   : isFocused
                   ? UIColor.border
-                  : UIColor.turshry,
+                  : UIColor.border,
           width: isFocused ? 2 : 1,
         ),
         boxShadow:
@@ -429,6 +432,35 @@ class _UIFormBuilderPhoneFieldState
         '+${country.phoneCode}',
         style: UI.text.bodyMedium.copyWith(color: UIColor.textSecondary),
       ),
+    );
+  }
+}
+
+class UAEPhoneNumberFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final digits = newValue.text.replaceAll(RegExp(r'\D'), '');
+
+    // Limit to 9 digits (UAE mobile numbers without country code)
+    final limited = digits.length > 9 ? digits.substring(0, 9) : digits;
+
+    final buffer = StringBuffer();
+
+    for (int i = 0; i < limited.length; i++) {
+      if (i == 2 || i == 5) {
+        buffer.write('-');
+      }
+      buffer.write(limited[i]);
+    }
+
+    final formatted = buffer.toString();
+
+    return TextEditingValue(
+      text: formatted,
+      selection: TextSelection.collapsed(offset: formatted.length),
     );
   }
 }

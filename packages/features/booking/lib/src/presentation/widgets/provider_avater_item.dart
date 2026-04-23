@@ -36,11 +36,11 @@ class ProviderAvatarItem extends StatelessWidget {
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
                     curve: Curves.easeOut,
-                    height: UI.sizes.avatarxL,
-                    width: UI.sizes.avatarxL,
+                    height: 90,
+                    width: 90,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: UIColor.neutral100,
+                      color: selected ? UIColor.babyPink : UIColor.neutral100,
                       border: Border.all(
                         color: selected ? UIColor.primary : Colors.transparent,
                         width: 2,

@@ -16,6 +16,7 @@ class HomeStoryCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.zero,
       itemCount: stories.length,
       itemBuilder: (context, index) {
         final item = stories[index];

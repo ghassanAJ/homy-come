@@ -24,6 +24,7 @@ dependencies:
     path: ../../utility/util
   api_client:
     path: ../../utility/api_client
+  user:
   dio: ^5.9.0
   get_it: ^9.1.0
   injectable: ^2.6.0

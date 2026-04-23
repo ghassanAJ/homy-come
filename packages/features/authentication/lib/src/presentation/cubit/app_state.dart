@@ -1,9 +1,10 @@
 import 'package:authentication/authentication.dart';
-import 'package:flutter/material.dart';
+import 'package:design_system/design_system.dart';
 
 class AppState {
   final VerifiedUserModel? user;
   final ThemeMode themeMode;
+  final UserRole userType;
   final bool isOnline;
   final bool isInitializing;
 
@@ -12,9 +13,11 @@ class AppState {
     this.themeMode = ThemeMode.light,
     this.isOnline = true,
     this.isInitializing = true,
+    required this.userType,
   });
 
-  factory AppState.initial() => const AppState(isInitializing: true);
+  factory AppState.initial(UserRole userType) =>
+      AppState(isInitializing: true, userType: userType);
 
   bool get isAuthenticated => user != null;
   bool get isProfileComplete => true; //  user?.hasCompletedProfile ?? false;
@@ -26,12 +29,14 @@ class AppState {
     ThemeMode? themeMode,
     bool? isOnline,
     bool? isInitializing,
+    UserRole? role,
   }) {
     return AppState(
       user: user ?? this.user,
       themeMode: themeMode ?? this.themeMode,
       isOnline: isOnline ?? this.isOnline,
       isInitializing: isInitializing ?? this.isInitializing,
+      userType: role ?? userType,
     );
   }
 

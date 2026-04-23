@@ -1,8 +1,13 @@
+import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/helper/profile_language_label_extension.dart';
+import 'package:profile/src/navigation/router.dart';
+import 'package:profile/src/presentation/actions/profile_actions.dart';
 import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
+import 'package:user/features/home/presentation/widgets/home/user_home_screen_app_bar.dart';
 
 class ProfileSettingWidget extends StatelessWidget {
   const ProfileSettingWidget({super.key});
@@ -17,63 +22,75 @@ class ProfileSettingWidget extends StatelessWidget {
         children: [
           ProfileSettingOptionWidget(
             title: context.profileTranslation.option.location,
-            descreption: 'my location I selected UEA',
-            imgUrl: Assets.icons.profile,
+            descreption:
+                'I selected ${context.read<AppCubit>().state.user?.address ?? 'UAE'} ',
+            imgUrl: Assets.icons.location,
             onTap: () {
+              LocationSetterUtil.pushToSetLocationScreen(context);
+
+              // context.push()
               // log('pressed on FAQ button');
             },
           ),
-          ProfileSettingOptionWidget(
-            title: context.profileTranslation.driverProfile.language,
-            imgUrl: Assets.icons.profile,
-            customTrailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                UIText.bodySmall(
-                  currentLanguage,
-                  color: UIColor.textGray,
-                  fontWeight: FontWeight.w500,
-                ),
-                SizedBox(width: UI.spacing.xs),
-                UISvg(
-                  Assets.icons.arrowRightSvg,
-                  color: UIColor.textGray,
-                  matchTextDirection: true,
-                ),
-              ],
-            ),
-            onTap: ProfileInternalRouter.of(context).toDriverLanguageSettings,
-          ),
-          ProfileSettingOptionWidget(
-            title: context.profileTranslation.option.savedBeneficiary,
-            descreption: 'Manage your saved account',
-            imgUrl: Assets.icons.profile,
-            onTap: () {
-              // log('pressed on FAQ button');
-            },
-          ),
+          // ProfileSettingOptionWidget(
+          //   title: context.profileTranslation.driverProfile.language,
+          //   imgUrl: Assets.icons.profile,
+          //   customTrailing: Row(
+          //     mainAxisSize: MainAxisSize.min,
+          //     children: [
+          //       UIText.bodySmall(
+          //         currentLanguage,
+          //         color: UIColor.textGray,
+          //         fontWeight: FontWeight.w500,
+          //       ),
+          //       SizedBox(width: UI.spacing.xs),
+          //       UISvg(
+          //         Assets.icons.arrowRightSvg,
+          //         color: UIColor.textGray,
+          //         matchTextDirection: true,
+          //       ),
+          //     ],
+          //   ),
+          //   onTap: ProfileInternalRouter.of(context).toDriverLanguageSettings,
+          // ),
+          // // ProfileSettingOptionWidget(
+          //   title: context.profileTranslation.option.savedBeneficiary,
+          //   descreption: 'Manage your saved account',
+          //   imgUrl: Assets.icons.profile,
+          //   onTap: () {
+          //     // log('pressed on FAQ button');
+          //   },
+          // ),
           ProfileSettingOptionWidget(
             title: context.profileTranslation.termsAndPrivacy.privacyPolicy,
             descreption:
                 context.profileTranslation.termsAndPrivacy.privacyPolicy,
             imgUrl: Assets.icons.shieldDone,
             onTap: () {
+              context.push(ProfilePaths.privacy);
+
               // log('pressed on FAQ button');
             },
           ),
-          // ProfileSettingOptionWidget(
-          //   title: context.profileTranslation.option.faq,
-          //   descreption: 'FAQ',
-          //   imgUrl: Assets.icons.shieldDone,
-          //   onTap: () {
-          //     // log('pressed on FAQ button');
-          //   },
-          // ),
+          ProfileSettingOptionWidget(
+            title: context.profileTranslation.option.faq,
+            descreption: 'FAQ',
+            imgUrl: Assets.images.help1.path,
+            isSvgIcon: false,
+            // colorIcon: UIColor.borderFocused,
+            onTap: () {
+              context.push(ProfilePaths.faq);
+              // log('pressed on FAQ button');
+            },
+          ),
           ProfileSettingOptionWidget(
             title: context.profileTranslation.option.contact,
             descreption: 'Contact Us',
-            imgUrl: Assets.icons.shieldDone,
+            isSvgIcon: false,
+            imgUrl: Assets.images.support.path,
             onTap: () {
+              context.push(ProfilePaths.help);
+
               // log('pressed on FAQ button');
             },
           ),
@@ -81,53 +98,22 @@ class ProfileSettingWidget extends StatelessWidget {
             title: context.profileTranslation.option.logout,
             descreption: 'Log out',
             imgUrl: Assets.icons.logOut,
-            colorIcon: UIColor.errorDark,
+            colorIcon: UIColor.error,
             color: UIColor.backgroungAvaterRed,
             onTap: () {
-              UIBottomSheet.show(
-                context: StatefulNavigationShell.of(context).context,
-                content: SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    children: [
-                      UIText.bodyLarge('Logout', fontWeight: FontWeight.w600),
-                      SizedBox(height: 8),
-                      UIText.bodySmall(
-                        'Are you sure to logout?',
-                        color: UIColor.neutral500,
-                      ),
-                      SizedBox(height: 16),
-                      UIButton.primary(
-                        expanded: true,
-                        label: 'Stay logged in',
-                        onPressed: () {
-                          context.pop();
-                        },
-                      ),
-                      SizedBox(height: 16),
-                      GestureDetector(
-                        onTap: () {},
-                        child: UIText.bodySmall(
-                          'Confirm logout',
-                          color: UIColor.iconsAvaterRed,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
+              ProfileActions.onLogoutPressed(context);
             },
 
             // ProfileActions.onLogoutPressed(context),
           ),
-          // ProfileSettingOptionWidget(
-          //   title: context.profileTranslation.option.deleteAccount,
-          //   descreption: context.profileTranslation.option.DeleteMyAccount,
-          //   imgUrl: Assets.icons.logOut,
-          //   color: UIColor.backgroungAvaterRed,
-          //   colorIcon: UIColor.iconsAvaterRed,
-          //   onTap: () => ProfileActions.onDeleteAccountPressed(context),
-          // ),
+          ProfileSettingOptionWidget(
+            title: context.profileTranslation.option.deleteAccount,
+            descreption: context.profileTranslation.option.deleteAccount,
+            imgUrl: Assets.icons.trash,
+            color: UIColor.backgroungAvaterRed,
+            colorIcon: UIColor.error,
+            onTap: () => ProfileActions.onDeleteAccountPressed(context),
+          ),
         ],
       ),
     );
