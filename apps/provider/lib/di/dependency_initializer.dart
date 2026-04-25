@@ -1,6 +1,7 @@
 import 'package:api_client/api_client.dart';
 import 'package:authentication/authentication.dart';
 import 'package:homy_provider/di/di_container.dart';
+import 'package:orders/orders.dart';
 import 'package:profile/profile.dart';
 import 'package:util/util.dart';
 
@@ -15,6 +16,7 @@ void initializeDependencies(String env) {
   initProfile(diContainer, env);
 
   initAuth(diContainer, env);
+  initOrder(diContainer, env);
 
   _configureAuthInterceptor();
   initMain(diContainer, env);

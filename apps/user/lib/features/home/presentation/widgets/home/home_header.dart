@@ -19,7 +19,8 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<AppCubit>().state.user;
+    final appState = context.watch<AppCubit>().state;
+    final user = appState.user;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24.0),
@@ -44,51 +45,52 @@ class HomeHeader extends StatelessWidget {
                   color: UIColor.black,
                 ),
                 SizedBox(height: 2),
-                BlocBuilder<AuthUserBloc, AuthUserState>(
-                  builder: (context, state) {
-                    return GestureDetector(
-                      onTap: () async {
-                        final userddressModel =
-                            await LocationSetterUtil.pushToSetLocationScreen(
-                              context,
-                            );
-                        // if (userddressModel != null) {
-                        //   final state = context.read<AppCubit>().state;
-                        //   final currentUserData = state.user;
-                        //   if (currentUserData == null) return;
-                        //   context.read<AuthUserBloc>().add(
-                        //     UpdateProfile(
-                        //       currentUserData.copyWith(
-                        //         latitude: userddressModel.latitude,
-                        //         longitude: userddressModel.longitude,
-                        //         address: userddressModel.addressTitle,
-                        //       ),
-                        //     ),
-                        //   );
-                        // }
-                      },
-                      child: Row(
-                        children: [
-                          UISvg(Assets.icons.location, size: 16),
+                if (appState.userType == UserRole.user)
+                  BlocBuilder<AuthUserBloc, AuthUserState>(
+                    builder: (context, state) {
+                      return GestureDetector(
+                        onTap: () async {
+                          final userddressModel =
+                              await LocationSetterUtil.pushToSetLocationScreen(
+                                context,
+                              );
+                          // if (userddressModel != null) {
+                          //   final state = context.read<AppCubit>().state;
+                          //   final currentUserData = state.user;
+                          //   if (currentUserData == null) return;
+                          //   context.read<AuthUserBloc>().add(
+                          //     UpdateProfile(
+                          //       currentUserData.copyWith(
+                          //         latitude: userddressModel.latitude,
+                          //         longitude: userddressModel.longitude,
+                          //         address: userddressModel.addressTitle,
+                          //       ),
+                          //     ),
+                          //   );
+                          // }
+                        },
+                        child: Row(
+                          children: [
+                            UISvg(Assets.icons.location, size: 16),
 
-                          SizedBox(width: UI.spacing.xxs),
-                          Flexible(
-                            child: UIText.bodySmall(
-                              user?.address ?? 'no address selected',
-                              color: UIColor.neutral400,
-                              maxLines: 1,
+                            SizedBox(width: UI.spacing.xxs),
+                            Flexible(
+                              child: UIText.bodySmall(
+                                user?.address ?? 'no address selected',
+                                color: UIColor.neutral400,
+                                maxLines: 1,
+                              ),
                             ),
-                          ),
-                          Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            size: 16,
-                            color: UIColor.neutral400,
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                            Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              size: 16,
+                              color: UIColor.neutral400,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
               ],
             ),
           ),
@@ -102,15 +104,17 @@ class HomeHeader extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                GestureDetector(
-                  onTap:
-                  // onSearchTap ??
-                  () {
-                    context.push(UserPaths.search);
-                  },
-                  child: UISvg(Assets.icons.navSearch, size: 20),
-                ),
-                SizedBox(width: UI.spacing.sm),
+                if (appState.userType == UserRole.user) ...[
+                  GestureDetector(
+                    onTap:
+                    // onSearchTap ??
+                    () {
+                      context.push(UserPaths.search);
+                    },
+                    child: UISvg(Assets.icons.navSearch, size: 20),
+                  ),
+                  SizedBox(width: UI.spacing.sm),
+                ],
                 GestureDetector(
                   onTap:
                       onNotificationTap ??

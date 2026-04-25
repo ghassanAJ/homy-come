@@ -15,6 +15,6 @@ class CancelOrderUseCase extends BaseUseCase<bool> {
   final String reason;
   @override
   Future<Result<bool, APIException>> call() async {
-    return _repo.cancelOrder(id, reason);
+    return _repo.changeOrderStatus(id, reason);
   }
 }

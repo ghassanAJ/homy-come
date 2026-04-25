@@ -3,7 +3,47 @@ import 'package:homy_provider/features/home/presentation/widget/bank_card.dart';
 import 'package:homy_provider/features/home/presentation/widget/bank_transfers_card.dart';
 import 'package:homy_provider/features/home/presentation/widget/earning_chart_widget.dart';
 import 'package:homy_provider/localization/files/providerTr.i69n.dart';
+import 'package:user/features/home/presentation/widgets/home/home_header.dart';
 import 'package:util/util.dart';
+
+final List<BankTransferModel> mockBankTransfers = [
+  BankTransferModel(
+    amount: 1180,
+    startDate: DateTime(2025, 8, 25),
+    endDate: DateTime(2025, 8, 31),
+    status: StatusBankTransfers.inprogress,
+  ),
+  BankTransferModel(
+    amount: 1370,
+    startDate: DateTime(2025, 8, 18),
+    endDate: DateTime(2025, 8, 24),
+    status: StatusBankTransfers.success,
+  ),
+  BankTransferModel(
+    amount: 2600,
+    startDate: DateTime(2025, 9, 1),
+    endDate: DateTime(2025, 9, 7),
+    status: StatusBankTransfers.upcoming,
+  ),
+  BankTransferModel(
+    amount: 3050,
+    startDate: DateTime(2025, 8, 10),
+    endDate: DateTime(2025, 8, 16),
+    status: StatusBankTransfers.success,
+  ),
+  BankTransferModel(
+    amount: 4080,
+    startDate: DateTime(2025, 9, 8),
+    endDate: DateTime(2025, 9, 14),
+    status: StatusBankTransfers.upcoming,
+  ),
+  BankTransferModel(
+    amount: 5000,
+    startDate: DateTime(2025, 8, 1),
+    endDate: DateTime(2025, 8, 7),
+    status: StatusBankTransfers.success,
+  ),
+];
 
 class ProviderHomeScreen extends StatelessWidget {
   const ProviderHomeScreen({super.key});
@@ -14,6 +54,10 @@ class ProviderHomeScreen extends StatelessWidget {
     final tr = context.loc<ProviderTr>();
 
     return UIScaffold(
+      appBar: UIAppBar(
+        titleWidget: HomeHeader(),
+        automaticallyImplyLeading: false,
+      ),
       body: Padding(
         padding: EdgeInsets.only(top: 0),
         child: Column(
@@ -22,19 +66,7 @@ class ProviderHomeScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //   HomeScreenAppBar(
-                //   appBarTitle: 'Home',
-                //   isCollapsed: isCollapsed,
-                //   expandedHeightappBar: expandedHeight,
-                //   collapsedHeightappBar: collapsedHeight,
-                //   onCollapsed: onCollapsed,
-                //   onTap: (index) {},
-                // ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: UI.spacing.lg),
-                  child: UIText.h4(tr.title.money),
-                ),
-                SizedBox(height: UI.spacing.md),
+                SizedBox(height: UI.spacing.sm),
                 BankCard(),
                 SizedBox(height: UI.spacing.md),
                 EarningsChart(),
@@ -57,11 +89,13 @@ class ProviderHomeScreen extends StatelessWidget {
                           index == 0
                               ? EdgeInsetsDirectional.only(start: UI.spacing.lg)
                               : EdgeInsets.zero,
-                      child: BankTransfersCardWidget(),
+                      child: BankTransfersCardWidget(
+                        model: mockBankTransfers[index],
+                      ),
                     ),
                 separatorBuilder:
                     (context, _) => SizedBox(width: UI.spacing.xs),
-                itemCount: 6,
+                itemCount: mockBankTransfers.length,
               ),
             ),
           ],
@@ -71,5 +105,3 @@ class ProviderHomeScreen extends StatelessWidget {
     );
   }
 }
-
-enum StatusBankTransfers { success, inprogress, upcoming }

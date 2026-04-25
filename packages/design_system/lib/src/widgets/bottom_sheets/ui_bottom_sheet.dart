@@ -50,6 +50,7 @@ class UIBottomSheet extends StatelessWidget {
       context: context,
       isScrollControlled: true,
       isDismissible: isDismissible,
+      useRootNavigator: true,
       enableDrag: enableDrag,
       backgroundColor: Colors.transparent,
       builder: (BuildContext context) {
@@ -76,9 +77,10 @@ class UIBottomSheet extends StatelessWidget {
       padding: EdgeInsets.only(bottom: keyboardHeight),
       child: Container(
         constraints: BoxConstraints(
-          maxHeight: maxHeightFactor != null
-              ? availableHeight * maxHeightFactor!
-              : availableHeight * 0.9,
+          maxHeight:
+              maxHeightFactor != null
+                  ? availableHeight * maxHeightFactor!
+                  : availableHeight * 0.9,
         ),
         child: Container(
           decoration: BoxDecoration(

@@ -26,8 +26,7 @@ class DashboardNavigationScaffold extends StatelessWidget {
     return Scaffold(
       backgroundColor: UIColor.background,
       body: navigationShell,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: UiBottomNavigationBar(
+      bottomNavigationBar: UiBottomNavigationBar(
         currentIndex: navigationShell.currentIndex,
         onTap: (index) => _onTabTapped(index),
         items: bottomBarItems,

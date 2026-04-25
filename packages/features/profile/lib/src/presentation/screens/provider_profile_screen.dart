@@ -4,11 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:profile/profile.dart';
 import 'package:profile/src/data/model/res/review_model.dart';
 import 'package:profile/src/di/di_container.dart';
+import 'package:profile/src/presentation/actions/profile_actions.dart';
 import 'package:profile/src/presentation/cubit/provider_rating_and_reviews_cubit.dart';
 import 'package:profile/src/presentation/widget/provider/rating_and_reviews_card.dart';
 import 'package:profile/src/presentation/widget/provider/rating_and_reviews_card_shimmer.dart';
+import 'package:profile/src/presentation/widget/setting_option_profile_widget.dart';
 import 'package:profile/src/presentation/widget/shared/header_card.dart';
-import 'package:profile/src/presentation/widget/shared/settings_section.dart';
 
 class ProviderProfileScreen extends StatelessWidget {
   const ProviderProfileScreen({super.key});
@@ -51,13 +52,30 @@ class ProviderProfileScreen extends StatelessWidget {
                         reviews: reviews,
                       ),
                     SizedBox(height: UI.spacing.sm),
-                    SettingsSection(
-                      onTap:
-                          ProfileInternalRouter.of(
-                            context,
-                          ).toDriverProfileSettings,
-                      title: context.profileTranslation.driverProfile.settings,
+                    UICardContainer(
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 16,
+                          right: 16,
+                          left: 16,
+                          bottom: 8,
+                        ),
+                        child: ProfileSettingOptionWidget(
+                          title: context.profileTranslation.option.logout,
+                          descreption: 'Log out',
+                          imgUrl: Assets.icons.logOut,
+                          colorIcon: UIColor.error,
+                          color: UIColor.backgroungAvaterRed,
+                          onTap: () {
+                            ProfileActions.onLogoutPressed(context);
+                          },
+
+                          // ProfileActions.onLogoutPressed(context),
+                        ),
+                      ),
                     ),
+
                     SizedBox(height: 120),
                   ],
                 ),

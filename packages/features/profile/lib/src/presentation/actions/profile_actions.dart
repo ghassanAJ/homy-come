@@ -37,6 +37,7 @@ final class ProfileActions {
                 ),
                 SizedBox(height: 16),
                 UIButton.primary(
+                  height: 40,
                   expanded: true,
                   label: 'Stay logged in',
                   onPressed: () {

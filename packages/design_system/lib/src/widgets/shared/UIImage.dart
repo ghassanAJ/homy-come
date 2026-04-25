@@ -8,11 +8,13 @@ class UIImage extends StatelessWidget {
     this.wigth,
     this.height,
     this.fit,
+    this.color,
   });
   final String urlImage;
   final String? package;
   final double? wigth;
   final double? height;
+  final UIColor? color;
   final BoxFit? fit;
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class UIImage extends StatelessWidget {
       height: height,
       fit: fit ?? BoxFit.cover,
       package: 'design_system',
+      color: color,
     );
   }
 }

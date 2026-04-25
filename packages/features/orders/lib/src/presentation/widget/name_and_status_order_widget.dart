@@ -1,4 +1,5 @@
 import 'package:design_system/design_system.dart';
+import 'package:orders/src/data/models/res/booking_model_response.dart';
 import 'package:orders/src/localization/order_localization_scope.dart';
 
 class OrderNameAndStatusWidget extends StatelessWidget {
@@ -8,7 +9,7 @@ class OrderNameAndStatusWidget extends StatelessWidget {
     required this.status,
   });
   final String name;
-  final String status;
+  final OrderStatus status;
   @override
   Widget build(BuildContext context) {
     final tr = context.orderTr;
@@ -50,22 +51,37 @@ class OrderNameAndStatusWidget extends StatelessWidget {
               border: Border.all(color: _getStatusColor(status), width: 1),
               borderRadius: BorderRadius.circular(UI.radius.xl),
             ),
-            child: UIText.headerBody(status, color: _getStatusColor(status)),
+            child: UIText.headerBody(
+              _getStatus(status),
+              color: _getStatusColor(status),
+            ),
           ),
         ],
       ),
     );
   }
 
-  UIColor _getStatusColor(String status) {
+  UIColor _getStatusColor(OrderStatus status) {
     switch (status) {
-      case "Scheduled":
+      case OrderStatus.scheduled:
         return UIColor.warning;
-      case "Completed":
+      case OrderStatus.completed:
         return UIColor.vividGreen;
-      case "In Progress":
+      case OrderStatus.inProgress:
       default:
         return UIColor.babyBlue;
+    }
+  }
+
+  String _getStatus(OrderStatus status) {
+    switch (status) {
+      case OrderStatus.scheduled:
+        return 'Scheduled';
+      case OrderStatus.completed:
+        return 'Completed';
+      case OrderStatus.inProgress:
+      default:
+        return 'In Progress';
     }
   }
 }

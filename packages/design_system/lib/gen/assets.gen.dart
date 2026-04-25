@@ -314,6 +314,9 @@ class $AssetsImagesGen {
   /// File path: assets/images/support.png
   AssetGenImage get support => const AssetGenImage('assets/images/support.png');
 
+  /// File path: assets/images/team.png
+  AssetGenImage get team => const AssetGenImage('assets/images/team.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     intersect1,
@@ -330,6 +333,7 @@ class $AssetsImagesGen {
     phoneCall21,
     search,
     support,
+    team,
   ];
 }
 

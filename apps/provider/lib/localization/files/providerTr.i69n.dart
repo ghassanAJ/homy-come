@@ -58,9 +58,9 @@ class TitleProviderTr implements i69n.I69nMessageBundle {
   String get finacial => "Finacial";
   String get earnedMonth => "Earned this month";
   String get bankTransfers => "Banks Transfers";
-  String get success => "success";
-  String get inProgerss => "Inprogress";
-  String get uncoming => "uncoming";
+  String get success => "Success";
+  String get inProgerss => "In Progress";
+  String get uncoming => "Upcoming";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {

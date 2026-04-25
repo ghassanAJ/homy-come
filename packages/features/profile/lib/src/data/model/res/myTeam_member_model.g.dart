@@ -11,6 +11,7 @@ _MyteamMemberModel _$MyteamMemberModelFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       nameMember: json['name_member'] as String,
       phone: json['phone'] as String,
+      imageUrl: json['imageUrl'] as String,
       status: json['status'],
     );
 
@@ -19,5 +20,6 @@ Map<String, dynamic> _$MyteamMemberModelToJson(_MyteamMemberModel instance) =>
       'id': instance.id,
       'name_member': instance.nameMember,
       'phone': instance.phone,
+      'imageUrl': instance.imageUrl,
       'status': instance.status,
     };

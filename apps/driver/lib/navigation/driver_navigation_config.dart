@@ -8,13 +8,12 @@ typedef NavigationItem = ({String path, String label, String iconAsset});
 class DriverNavigationConfig {
   /// Navigation items for the bottom navigation bar
   static final List<NavigationItem> items = [
-    // (
-    //   path: DriverPaths.myTeam,
-    //   label: 'My Team',
-    //   iconAsset: Assets.icons.myteam,
-    // ),
     (path: DriverPaths.home, label: 'Home', iconAsset: Assets.icons.navHome),
-
+    (
+      path: DriverPaths.myTeam,
+      label: 'My Team',
+      iconAsset: Assets.images.team.path,
+    ),
     (
       path: DriverPaths.profile,
       label: 'Profile',

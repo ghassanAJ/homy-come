@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MyteamMemberModel {
 
- int get id;@JsonKey(name: 'name_member') String get nameMember; String get phone; dynamic get status;
+ int get id;@JsonKey(name: 'name_member') String get nameMember; String get phone; String get imageUrl; dynamic get status;
 /// Create a copy of MyteamMemberModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $MyteamMemberModelCopyWith<MyteamMemberModel> get copyWith => _$MyteamMemberMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MyteamMemberModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nameMember, nameMember) || other.nameMember == nameMember)&&(identical(other.phone, phone) || other.phone == phone)&&const DeepCollectionEquality().equals(other.status, status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MyteamMemberModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nameMember, nameMember) || other.nameMember == nameMember)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other.status, status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,nameMember,phone,const DeepCollectionEquality().hash(status));
+int get hashCode => Object.hash(runtimeType,id,nameMember,phone,imageUrl,const DeepCollectionEquality().hash(status));
 
 @override
 String toString() {
-  return 'MyteamMemberModel(id: $id, nameMember: $nameMember, phone: $phone, status: $status)';
+  return 'MyteamMemberModel(id: $id, nameMember: $nameMember, phone: $phone, imageUrl: $imageUrl, status: $status)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $MyteamMemberModelCopyWith<$Res>  {
   factory $MyteamMemberModelCopyWith(MyteamMemberModel value, $Res Function(MyteamMemberModel) _then) = _$MyteamMemberModelCopyWithImpl;
 @useResult
 $Res call({
- int id,@JsonKey(name: 'name_member') String nameMember, String phone, dynamic status
+ int id,@JsonKey(name: 'name_member') String nameMember, String phone, String imageUrl, dynamic status
 });
 
 
@@ -65,11 +65,12 @@ class _$MyteamMemberModelCopyWithImpl<$Res>
 
 /// Create a copy of MyteamMemberModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? nameMember = null,Object? phone = null,Object? status = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? nameMember = null,Object? phone = null,Object? imageUrl = null,Object? status = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,nameMember: null == nameMember ? _self.nameMember : nameMember // ignore: cast_nullable_to_non_nullable
 as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as dynamic,
   ));
@@ -156,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'name_member')  String nameMember,  String phone,  dynamic status)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'name_member')  String nameMember,  String phone,  String imageUrl,  dynamic status)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MyteamMemberModel() when $default != null:
-return $default(_that.id,_that.nameMember,_that.phone,_that.status);case _:
+return $default(_that.id,_that.nameMember,_that.phone,_that.imageUrl,_that.status);case _:
   return orElse();
 
 }
@@ -177,10 +178,10 @@ return $default(_that.id,_that.nameMember,_that.phone,_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'name_member')  String nameMember,  String phone,  dynamic status)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'name_member')  String nameMember,  String phone,  String imageUrl,  dynamic status)  $default,) {final _that = this;
 switch (_that) {
 case _MyteamMemberModel():
-return $default(_that.id,_that.nameMember,_that.phone,_that.status);case _:
+return $default(_that.id,_that.nameMember,_that.phone,_that.imageUrl,_that.status);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -197,10 +198,10 @@ return $default(_that.id,_that.nameMember,_that.phone,_that.status);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'name_member')  String nameMember,  String phone,  dynamic status)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'name_member')  String nameMember,  String phone,  String imageUrl,  dynamic status)?  $default,) {final _that = this;
 switch (_that) {
 case _MyteamMemberModel() when $default != null:
-return $default(_that.id,_that.nameMember,_that.phone,_that.status);case _:
+return $default(_that.id,_that.nameMember,_that.phone,_that.imageUrl,_that.status);case _:
   return null;
 
 }
@@ -212,12 +213,13 @@ return $default(_that.id,_that.nameMember,_that.phone,_that.status);case _:
 @JsonSerializable()
 
 class _MyteamMemberModel implements MyteamMemberModel {
-   _MyteamMemberModel({required this.id, @JsonKey(name: 'name_member') required this.nameMember, required this.phone, required this.status});
+   _MyteamMemberModel({required this.id, @JsonKey(name: 'name_member') required this.nameMember, required this.phone, required this.imageUrl, required this.status});
   factory _MyteamMemberModel.fromJson(Map<String, dynamic> json) => _$MyteamMemberModelFromJson(json);
 
 @override final  int id;
 @override@JsonKey(name: 'name_member') final  String nameMember;
 @override final  String phone;
+@override final  String imageUrl;
 @override final  dynamic status;
 
 /// Create a copy of MyteamMemberModel
@@ -233,16 +235,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MyteamMemberModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nameMember, nameMember) || other.nameMember == nameMember)&&(identical(other.phone, phone) || other.phone == phone)&&const DeepCollectionEquality().equals(other.status, status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MyteamMemberModel&&(identical(other.id, id) || other.id == id)&&(identical(other.nameMember, nameMember) || other.nameMember == nameMember)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&const DeepCollectionEquality().equals(other.status, status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,nameMember,phone,const DeepCollectionEquality().hash(status));
+int get hashCode => Object.hash(runtimeType,id,nameMember,phone,imageUrl,const DeepCollectionEquality().hash(status));
 
 @override
 String toString() {
-  return 'MyteamMemberModel(id: $id, nameMember: $nameMember, phone: $phone, status: $status)';
+  return 'MyteamMemberModel(id: $id, nameMember: $nameMember, phone: $phone, imageUrl: $imageUrl, status: $status)';
 }
 
 
@@ -253,7 +255,7 @@ abstract mixin class _$MyteamMemberModelCopyWith<$Res> implements $MyteamMemberM
   factory _$MyteamMemberModelCopyWith(_MyteamMemberModel value, $Res Function(_MyteamMemberModel) _then) = __$MyteamMemberModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id,@JsonKey(name: 'name_member') String nameMember, String phone, dynamic status
+ int id,@JsonKey(name: 'name_member') String nameMember, String phone, String imageUrl, dynamic status
 });
 
 
@@ -270,11 +272,12 @@ class __$MyteamMemberModelCopyWithImpl<$Res>
 
 /// Create a copy of MyteamMemberModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? nameMember = null,Object? phone = null,Object? status = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? nameMember = null,Object? phone = null,Object? imageUrl = null,Object? status = freezed,}) {
   return _then(_MyteamMemberModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,nameMember: null == nameMember ? _self.nameMember : nameMember // ignore: cast_nullable_to_non_nullable
 as String,phone: null == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
+as String,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as dynamic,
   ));

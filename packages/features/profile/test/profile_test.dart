@@ -1,5 +1,6 @@
 // import 'package:profile/profile.dart';
 
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -8,9 +9,7 @@ import 'package:profile/src/domain/repository/profile_repository.dart';
 import 'package:profile/src/domain/use_cases/get_my_team_use_case.dart';
 import 'package:profile/src/presentation/cubit/myTeam_cubit.dart';
 import 'package:util/util.dart';
-import '../lib/src/domain/repository/mock_profile_repository.dart' as mock;
-import 'package:bloc_test/bloc_test.dart';
-import '../lib/profile.dart';
+
 import 'profile_test.mocks.dart';
 
 @GenerateMocks([ProfileRepository])
@@ -39,6 +38,8 @@ void main() {
           nameMember: 'ghassan',
           phone: '963123456789',
           status: 'working',
+          imageUrl:
+              'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
         ),
       ];
       when(
@@ -80,6 +81,8 @@ void main() {
             nameMember: 'ghassan',
             phone: '963123456789',
             status: 'working',
+            imageUrl:
+                'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
           ),
         ];
         when(

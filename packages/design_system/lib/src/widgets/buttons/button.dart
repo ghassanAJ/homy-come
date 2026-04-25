@@ -93,12 +93,14 @@ class _BaseButton extends StatelessWidget {
   final bool? centerLabel;
   final UIColor? labelColor;
   final double? height;
+  final TextStyle? labelStyle;
 
   const _BaseButton({
     required this.label,
     required this.styleConfig,
     this.onPressed,
     this.leadingIcon,
+    this.labelStyle,
     this.trailingIcon,
     this.leadingWidget,
     this.trailingWidget,
@@ -249,10 +251,14 @@ class _BaseButton extends StatelessWidget {
         Expanded(
           child: Align(
             alignment: Alignment.centerLeft,
-            child: UIText.bodyMedium(
+            child: Text(
               label,
-              color: customForegroundColor,
-              fontWeight: FontWeight.w600,
+              style:
+                  labelStyle ??
+                  UI.text.bodyMedium.copyWith(
+                    color: customForegroundColor,
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
           ),
         ),
@@ -305,7 +311,15 @@ class _BaseButton extends StatelessWidget {
     }
 
     children.add(
-      UIText.buttonText(label, color: customForegroundColor, fontSize: 16),
+      Text(
+        label,
+        style:
+            labelStyle ??
+            UI.text.buttonText.copyWith(
+              color: customForegroundColor,
+              fontSize: 16,
+            ),
+      ),
     );
 
     // Add trailing icon or widget
@@ -409,6 +423,7 @@ class UIButton {
     bool expanded = false,
     double? width,
     double? height,
+    TextStyle? labelStyle,
   }) {
     return _BaseButton(
       borderRadius: 4,
@@ -421,6 +436,7 @@ class UIButton {
       expanded: expanded,
       width: width,
       height: height,
+      labelStyle: labelStyle,
     );
   }
 
@@ -539,11 +555,13 @@ class UIButton {
     UIColor? foregroundColor,
     UIColor? borderColor,
     double? borderRadius,
+    double? height,
     bool isLoading = false,
     bool expanded = false,
     double? width,
     bool? centerLabel,
     UIColor? labelColor,
+    TextStyle? labelStyle,
   }) {
     return _BaseButton(
       label: label,
@@ -560,6 +578,8 @@ class UIButton {
       isLoading: isLoading,
       expanded: expanded,
       width: width,
+      labelStyle: labelStyle,
+      height: height,
       centerLabel: centerLabel,
       labelColor: labelColor ?? UIColor.neutral500,
     );

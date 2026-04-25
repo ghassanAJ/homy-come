@@ -18,19 +18,14 @@ class CallAndChatWidget extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            GestureDetector(
-              onTap: () {
-                makePhoneCall(number);
-              },
-              child: Padding(
-                padding: EdgeInsets.all(UI.spacing.xxs),
-                child: UISvg(Assets.icons.call),
-              ),
+            IconButton(
+              onPressed: () => makePhoneCall(number),
+              icon: UISvg(Assets.icons.call, size: 18),
             ),
-            Padding(
-              padding: EdgeInsets.all(UI.spacing.xxs),
-              child: UISvg(Assets.icons.chat),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.all(UI.spacing.xxs),
+            //   child: UISvg(Assets.icons.chat, size: 28),
+            // ),
           ],
         ),
       ),

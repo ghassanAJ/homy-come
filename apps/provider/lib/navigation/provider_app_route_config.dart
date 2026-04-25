@@ -1,6 +1,7 @@
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homy_provider/features/home/presentation/screens/provider_home_screen.dart';
+import 'package:homy_provider/features/home/presentation/screens/provider_working_screen.dart';
 import 'package:homy_provider/localization/provider_localization_scope.dart';
 import 'package:homy_provider/navigation/provider_navigation_config.dart';
 import 'package:homy_provider/navigation/route.dart';
@@ -38,20 +39,18 @@ class ProviderAppRouteConfig {
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: ProviderPaths.myWork,
+              path: ProviderPaths.homeProvider,
               builder:
                   (context, state) =>
-                      Scaffold(body: Center(child: Text('Services'))),
+                      ProviderLocalizationScope(child: ProviderHomeScreen()),
             ),
           ],
         ),
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: ProviderPaths.homeProvider,
-              builder:
-                  (context, state) =>
-                      ProviderLocalizationScope(child: ProviderHomeScreen()),
+              path: ProviderPaths.myWork,
+              builder: (context, state) => ProviderWorkingScreen(),
             ),
           ],
         ),

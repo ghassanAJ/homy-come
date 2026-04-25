@@ -8,7 +8,7 @@ abstract class BookingModelResponse with _$BookingModelResponse {
   factory BookingModelResponse({
     required int id,
     @JsonKey(name: 'service_type') required String serviceType,
-    required String status,
+    required OrderStatus status,
     required ProviderModel provider,
     required String date,
     required String time,
@@ -52,3 +52,5 @@ abstract class BookingDetailseModelResponse
   factory BookingDetailseModelResponse.fromJson(Map<String, dynamic> json) =>
       _$BookingDetailseModelResponseFromJson(json);
 }
+
+enum OrderStatus { draft, canceled, completed, scheduled, inProgress }

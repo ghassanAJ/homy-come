@@ -16,11 +16,11 @@ class MockBookingApiRepository implements OrdersRepository {
   List<TodaySchaduleModelResponse> allSchedule = [
     TodaySchaduleModelResponse(
       id: 1,
-      time: '12:12',
+      time: '12:12 PM',
       address: 'kafarsousah, damascus ,syria',
       cleanerInfo: ProviderModel(
         id: 5,
-        name: 'ghassan',
+        name: 'Ghassan',
         rating: 5.0,
         image:
             'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
@@ -30,11 +30,11 @@ class MockBookingApiRepository implements OrdersRepository {
     ),
     TodaySchaduleModelResponse(
       id: 2,
-      time: '07:30',
+      time: '07:30 PM',
       address: '125,2nd Street, California ,19288',
       cleanerInfo: ProviderModel(
         id: 5,
-        name: 'maya Ali',
+        name: 'Maya Ali',
         rating: 5.0,
         numberPhone: '963991212193',
         image:
@@ -44,11 +44,11 @@ class MockBookingApiRepository implements OrdersRepository {
     ),
     TodaySchaduleModelResponse(
       id: 3,
-      time: '11:30',
+      time: '11:30 PM',
       address: '125,2nd Street, California ,19288',
       cleanerInfo: ProviderModel(
         id: 5,
-        name: 'kamel',
+        name: 'Kamel',
         rating: 5.0,
         numberPhone: '963991212193',
         image:
@@ -61,7 +61,7 @@ class MockBookingApiRepository implements OrdersRepository {
     BookingModelResponse(
       id: 101,
       serviceType: 'Deep cleaning',
-      status: 'Scheduled',
+      status: OrderStatus.scheduled,
       provider: ProviderModel(
         id: 5,
         name: 'kamel',
@@ -75,9 +75,25 @@ class MockBookingApiRepository implements OrdersRepository {
       address: 'kafarsousah ,damascus ,syria',
     ),
     BookingModelResponse(
+      id: 120,
+      serviceType: 'Deep cleaning',
+      status: OrderStatus.inProgress,
+      provider: ProviderModel(
+        id: 5,
+        name: 'Jameel',
+        rating: 0.5,
+        numberPhone: '96399121299',
+        image:
+            'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
+      ),
+      date: '27 tue, Des',
+      time: '03:30 AM',
+      address: 'Dubai,123 street',
+    ),
+    BookingModelResponse(
       id: 102,
       serviceType: 'Cleaner',
-      status: 'In Progress',
+      status: OrderStatus.scheduled,
       provider: ProviderModel(
         id: 5,
         name: 'ghassan',
@@ -93,7 +109,7 @@ class MockBookingApiRepository implements OrdersRepository {
     BookingModelResponse(
       id: 103,
       serviceType: 'Cleaner',
-      status: 'In Progress',
+      status: OrderStatus.completed,
       provider: ProviderModel(
         id: 5,
         name: 'ghassan',
@@ -109,7 +125,7 @@ class MockBookingApiRepository implements OrdersRepository {
     BookingModelResponse(
       id: 101,
       serviceType: 'Deep cleaning',
-      status: 'Completed',
+      status: OrderStatus.completed,
       provider: ProviderModel(
         id: 5,
         name: 'kamel',
@@ -179,13 +195,10 @@ class MockBookingApiRepository implements OrdersRepository {
   }
 
   @override
-  Future<Result<bool, APIException>> cancelOrder(int id, String reason) async {
-    if (canceltedOrderData) {
-      canceltedOrderData = false;
-      return failure(APIException.error('Mock getServiceDetails failure'));
-    }
-    var index = all.indexWhere((node) => node.id == id);
-    all[index].copyWith(status: 'cancelted');
+  Future<Result<bool, APIException>> changeOrderStatus(
+    int id,
+    String reason,
+  ) async {
     await Future.delayed(const Duration(milliseconds: 500));
     return success(true);
   }
@@ -211,6 +224,6 @@ class MockBookingApiRepository implements OrdersRepository {
     }
     await Future.delayed(const Duration(milliseconds: 500));
     var index = allSchedule.indexWhere((item) => item.id == id);
-    return success(allSchedule[index]);
+    return success(allSchedule[index == -1 ? 0 : index]);
   }
 }

@@ -17,7 +17,7 @@ class DialogsManager {
       barrierLabel: barrierLabel ?? '',
       barrierColor: barrierColor ?? Colors.black54,
       transitionDuration: duration,
-
+      useRootNavigator: true,
       pageBuilder: (_, __, ___) => Center(child: child),
       transitionBuilder: (_, animation, __, widget) {
         final curve = CurvedAnimation(
@@ -63,13 +63,17 @@ class DialogsManager {
       barrierDismissible: false,
       barrierColor: Colors.transparent,
       context: context,
+
       child: LoadingDialog(),
     );
   }
 
   static void hideLoading(BuildContext context) {
     if (context.mounted) {
-      Navigator.of(context).pop();
+      final navigator = Navigator.of(context, rootNavigator: true);
+      if (navigator.canPop()) {
+        navigator.pop();
+      }
     }
   }
 

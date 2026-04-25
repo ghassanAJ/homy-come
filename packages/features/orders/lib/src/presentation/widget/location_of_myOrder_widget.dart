@@ -1,24 +1,25 @@
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:orders/src/cubit/order_cubit.dart';
 import 'package:orders/src/data/models/res/booking_model_response.dart';
-import 'package:orders/src/enum/filter_order_enum.dart';
 import 'package:orders/src/localization/order_localization_scope.dart';
-import 'package:user/navigation/route.dart';
 
 class CurrentOrderLocationView extends StatelessWidget {
   const CurrentOrderLocationView({
     super.key,
     required this.location,
     required this.item,
+    required this.onTap,
+    this.withDetailsButton = true,
   });
 
+  final bool withDetailsButton;
+  final VoidCallback onTap;
   final String location;
   final BookingModelResponse item;
   Future<void> showReasons(BuildContext context) async {
     final result =
-        await BottomSheetManager.showReasonsRejectionBottomSheet<String>(
+        await BottomSheetManager.showReasonsRejectionBottomSheet<String?>(
           context,
           title: 'Reject Order',
           description: 'Please select a reason for rejection',
@@ -31,12 +32,12 @@ class CurrentOrderLocationView extends StatelessWidget {
         );
 
     if (result != null) {
-      context.read<OrderCubit>().cancelOrder(
+      context.read<OrderCubit>().changeOrderStatus(
         item.id,
-        item.status == "scheduled"
-            ? FilterOrder.scheduled
-            : FilterOrder.in_progress,
-        result,
+        item.status == OrderStatus.scheduled
+            ? OrderStatus.scheduled
+            : OrderStatus.inProgress,
+        reason: result,
       );
     }
   }
@@ -59,27 +60,24 @@ class CurrentOrderLocationView extends StatelessWidget {
                 UIText.bodyXSmall(tr.title.address, color: UIColor.grey),
                 SizedBox(height: 2),
                 UIText.bodySmall(location, overflow: TextOverflow.clip),
-                SizedBox(height: UI.spacing.md),
-                SizedBox(
-                  height: UI.spacing.xl,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: UIButton.primary(
-                          label: tr.labels.details,
-                          expanded: true,
-                          onPressed: () {
-                            context.push(
-                              UserPaths.serviceDetailsSummarywithid(
-                                id: item.id,
-                              ),
-                            );
-                          },
+                if (withDetailsButton) ...[
+                  SizedBox(height: UI.spacing.md),
+
+                  SizedBox(
+                    height: UI.spacing.xl,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: UIButton.primary(
+                            label: tr.labels.details,
+                            expanded: true,
+                            onPressed: onTap,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ],
             ),
           ),

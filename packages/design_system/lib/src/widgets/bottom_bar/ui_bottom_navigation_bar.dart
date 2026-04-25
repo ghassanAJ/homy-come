@@ -5,6 +5,8 @@ class UiBottomNavigationItem {
 
   final String iconAsset;
   final String label;
+
+  bool isSvg() => iconAsset.contains('svg');
 }
 
 class UiBottomNavigationBar extends StatelessWidget {
@@ -18,11 +20,10 @@ class UiBottomNavigationBar extends StatelessWidget {
   final List<UiBottomNavigationItem> items;
   final int currentIndex;
   final ValueChanged<int> onTap;
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 37, vertical: 16),
+      // margin: EdgeInsets.symmetric(horizontal: 37, vertical: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(UI.radius.xl),
@@ -50,7 +51,7 @@ class UiBottomNavigationBar extends StatelessWidget {
           currentIndex: currentIndex,
           onTap: onTap,
           backgroundColor: UIColor.white,
-          selectedItemColor: UIColor.babyBlue,
+          selectedItemColor: UIColor.pink,
           unselectedItemColor: UIColor.neutral400,
           showSelectedLabels: true,
           showUnselectedLabels: true,
@@ -66,19 +67,27 @@ class UiBottomNavigationBar extends StatelessWidget {
     return BottomNavigationBarItem(
       icon: Padding(
         padding: EdgeInsets.symmetric(vertical: UI.spacing.xs),
-        child: SizedBox(
-          // width: UI.sizes.iconMd,
-          // height: UI.sizes.iconMd,
-          child: UISvg(item.iconAsset, color: UIColor.steel, size: 20),
-        ),
+        child:
+            item.isSvg()
+                ? UISvg(item.iconAsset, color: UIColor.steel, size: 20)
+                : UIImage(
+                  item.iconAsset,
+                  height: 28,
+                  wigth: 28,
+                  color: UIColor.steel,
+                ),
       ),
       activeIcon: Padding(
-        padding: EdgeInsets.only(bottom: UI.spacing.xs),
-        child: SizedBox(
-          // width: UI.sizes.iconMd,
-          // height: UI.sizes.iconMd,
-          child: UISvg(item.iconAsset, color: UIColor.babyBlue, size: 20),
-        ),
+        padding: EdgeInsets.symmetric(vertical: UI.spacing.xs),
+        child:
+            item.isSvg()
+                ? UISvg(item.iconAsset, color: UIColor.pink, size: 20)
+                : UIImage(
+                  item.iconAsset,
+                  height: 28,
+                  wigth: 28,
+                  color: UIColor.pink,
+                ),
       ),
       label: item.label,
     );

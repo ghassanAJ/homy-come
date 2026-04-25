@@ -208,7 +208,7 @@ class UITypography {
     overflow: TextOverflow.ellipsis,
   );
 
-    TextStyle get titleSm => const TextStyle(
+  TextStyle get titleSm => const TextStyle(
     fontFamily: _fontFamily,
     fontSize: 13,
     fontWeight: FontWeight.w500,
@@ -370,7 +370,6 @@ class UITypography {
     height: 1.33,
     letterSpacing: 0,
   );
-
 
   // ============================================================================
   // ALIASES (for convenience)

@@ -9,7 +9,7 @@ title:
   myOrder: My bookings
   orderDetails: Order Details
   serviceDetails: Service Details
-  todaySchadule: Today Schedule
+  todaySchadule: Today’s Schedule
   markDone: Mark as done
   descraptionWarning: Are you sure you want to mark this task as done?
   yes: Confirm
@@ -19,4 +19,4 @@ labels:
   cancel: Cancel
   details: Details
   done: Mark done
-  getDirection: Get Direction
+  getDirection: Get direction

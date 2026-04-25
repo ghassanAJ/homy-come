@@ -67,7 +67,7 @@ class TitleOrdersTr implements i69n.I69nMessageBundle {
   String get myOrder => "My bookings";
   String get orderDetails => "Order Details";
   String get serviceDetails => "Service Details";
-  String get todaySchadule => "Today Schedule";
+  String get todaySchadule => "Today’s Schedule";
   String get markDone => "Mark as done";
   String get descraptionWarning =>
       "Are you sure you want to mark this task as done?";
@@ -120,7 +120,7 @@ class LabelsOrdersTr implements i69n.I69nMessageBundle {
   String get cancel => "Cancel";
   String get details => "Details";
   String get done => "Mark done";
-  String get getDirection => "Get Direction";
+  String get getDirection => "Get direction";
   Object operator [](String key) {
     var index = key.indexOf('.');
     if (index > 0) {

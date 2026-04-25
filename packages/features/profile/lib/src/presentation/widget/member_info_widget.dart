@@ -10,24 +10,34 @@ class MemeberInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final tr = context.profileTranslation;
 
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              SizedBox.square(
-                dimension: 64,
-                child: FittedBox(
-                  fit: BoxFit.contain,
-                  child: Avatar(
-                    size: AvatarSize.large,
-                    imageUrl: '',
-                    placeholderWidget: Container(color: UIColor.neutral100),
-                  ),
+              Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: UIColor.babyPink,
+                  border: Border.all(color: UIColor.primary, width: 1),
                 ),
+                child: UINetworkImage(imageUrl: item.imageUrl),
               ),
+              // SizedBox.square(
+              //   dimension: 64,
+              //   child: FittedBox(
+              //     fit: BoxFit.contain,
+              //     child: Avatar(
+              //       size: AvatarSize.large,
+              //       imageUrl: item.imageUrl,
+              //       placeholderWidget: Container(color: UIColor.neutral100),
+              //     ),
+              //   ),
+              // ),
               SizedBox(width: UI.spacing.sm),
 
               Column(
@@ -40,11 +50,13 @@ class MemeberInfoWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                  SizedBox(height: UI.spacing.xxs),
                   UIText.h5(
                     item.status,
                     overflow: TextOverflow.ellipsis,
-                    color: UIColor.success,
+                    color:
+                        item.status == 'working'
+                            ? UIColor.success
+                            : UIColor.neutral400,
                   ),
                 ],
               ),
@@ -56,9 +68,3 @@ class MemeberInfoWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-

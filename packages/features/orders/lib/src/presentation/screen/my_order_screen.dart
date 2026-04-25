@@ -1,7 +1,6 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:orders/orders.dart';
 import 'package:orders/src/cubit/order_cubit.dart';
 import 'package:orders/src/cubit/order_state.dart';
 import 'package:orders/src/enum/filter_order_enum.dart';
@@ -26,7 +25,7 @@ class _MyOrderScreenState extends State<MyOrderScreen>
   @override
   void initState() {
     super.initState();
-    _orderCubit = diContainerOrder<OrderCubit>();
+    _orderCubit = OrderCubit(OrderState())..getOrders(filter: FilterOrder.all);
 
     _tabController = TabController(length: 3, vsync: this);
     _scrollController = ScrollController();
@@ -38,21 +37,22 @@ class _MyOrderScreenState extends State<MyOrderScreen>
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => _orderCubit..getOrders(FilterOrder.all),
+      create: (context) => _orderCubit,
       child: Builder(
         builder: (context) {
           return Scaffold(
             body: UIBackground(
               child: RefreshIndicator(
                 color: UIColor.babyBlue,
-                onRefresh: () async => _orderCubit.getOrders(FilterOrder.all),
+                onRefresh:
+                    () async => _orderCubit.getOrders(filter: FilterOrder.all),
                 child: NestedScrollView(
                   controller: _scrollController,
                   headerSliverBuilder:
                       (context, innerBoxIsScrolled) => [
                         OrderAppBar(scrollController: _tabController),
                       ],
-                  body: BlocBuilder<OrderCubit, BaseState<OrderState>>(
+                  body: BlocBuilder<OrderCubit, OrderState>(
                     builder: (context, state) {
                       if (state.status == BaseCubitStatus.loading) {
                         return Center(child: OrdersShimmerLoadingWidget());
@@ -62,16 +62,16 @@ class _MyOrderScreenState extends State<MyOrderScreen>
                         return OrdersErrorWidget(
                           message: state.error!.message,
                           onTap: () async {
-                            _orderCubit.getOrders(FilterOrder.all);
+                            _orderCubit.getOrders(filter: FilterOrder.all);
                           },
                         );
                       }
                       return TabBarView(
                         controller: _tabController,
                         children: [
-                          OrderList(orders: state.data?.inProcessOrder ?? []),
-                          OrderList(orders: state.data?.schaduledOrder ?? []),
-                          OrderList(orders: state.data?.completedOrder ?? []),
+                          OrderList(orders: state.inProcessOrder ?? []),
+                          OrderList(orders: state.schaduledOrder ?? []),
+                          OrderList(orders: state.completedOrder ?? []),
                         ],
                       );
                     },

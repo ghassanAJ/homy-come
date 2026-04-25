@@ -1,4 +1,8 @@
 import 'package:design_system/design_system.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:orders/src/cubit/order_cubit.dart';
+import 'package:orders/src/data/models/res/booking_model_response.dart';
 import 'package:orders/src/data/models/res/today_schadule_model_response.dart';
 import 'package:orders/src/localization/order_localization_scope.dart';
 import 'package:orders/src/presentation/widget/direction_and_done_action.dart';
@@ -27,7 +31,7 @@ class TodayScheduleCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           UIText.h3(
-            '${item.time} PM',
+            item.time,
             fontFamily: 'Roboto',
             fontWeight: FontWeight.w500,
             fontSize: 20,
@@ -43,14 +47,24 @@ class TodayScheduleCard extends StatelessWidget {
             fontWeight: FontWeight.w500,
             fontFamily: 'Roboto',
           ),
-          SizedBox(height: UI.spacing.xxs),
           OrderCleanerInfoWidget(
             name: item.cleanerInfo.name,
             rating: 5.0,
             image: item.cleanerInfo.image ?? '',
           ),
           SizedBox(height: UI.spacing.xxs),
-          DirectionAndDoneActions(address: item.address),
+          DirectionAndDoneActions(
+            item: item,
+            address: item.address,
+            bottomSheetcontext: StatefulNavigationShell.of(context).context,
+            onConfirmed: (value) {
+              context.read<OrderCubit>().changeOrderStatus(
+                item.id,
+                OrderStatus.completed,
+              );
+              DialogsManager.showLoading(context);
+            },
+          ),
         ],
       ),
     );

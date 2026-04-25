@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
+import 'package:driver/driver_app.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -126,10 +127,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       SizedBox(height: UI.spacing.xl),
 
-                      _buildSignUpLink(tr),
+                      if (userRole == UserRole.user) ...[
+                        _buildSignUpLink(tr),
 
-                      if (context.read<AppCubit>().state.userType ==
-                          UserRole.user) ...[
                         SizedBox(height: UI.spacing.lg),
                       ],
                       // AuthTermsAndPrivacy(),

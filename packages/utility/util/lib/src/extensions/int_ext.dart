@@ -22,4 +22,23 @@ extension IntExtension on int {
         return 'Invalid weekday';
     }
   }
+
+  String get toMonthName {
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'Jun',
+      'July',
+      'August',
+      'Septmper',
+      'Octobar',
+      'Novmber',
+      'Decmber',
+    ];
+    final indexOfMonth = this - 1 == -1 ? DateTime.now().month : this - 1;
+    return months[indexOfMonth];
+  }
 }

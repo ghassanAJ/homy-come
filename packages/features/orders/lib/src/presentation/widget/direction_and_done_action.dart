@@ -1,10 +1,21 @@
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
 import 'package:orders/orders.dart';
+import 'package:orders/src/data/models/res/today_schadule_model_response.dart';
 
 class DirectionAndDoneActions extends StatelessWidget {
-  const DirectionAndDoneActions({super.key, required this.address});
+  const DirectionAndDoneActions({
+    super.key,
+    required this.address,
+    required this.item,
+    this.bottomSheetcontext,
+    required this.onConfirmed,
+  });
   final String address;
+  final TodaySchaduleModelResponse item;
+  final ValueChanged<TodaySchaduleModelResponse> onConfirmed;
+
+  final BuildContext? bottomSheetcontext;
   @override
   Widget build(BuildContext context) {
     final tr = context.orderTr;
@@ -12,6 +23,7 @@ class DirectionAndDoneActions extends StatelessWidget {
       children: [
         Expanded(
           child: UIButton.outlined(
+            height: 40,
             label: tr.labels.getDirection,
             onPressed: () {
               context.push(
@@ -22,19 +34,22 @@ class DirectionAndDoneActions extends StatelessWidget {
             expanded: true,
             centerLabel: true,
             borderRadius: 4,
-            labelColor: UIColor.black,
+            labelColor: UIColor.charcoal,
             borderColor: UIColor.bordarCard,
             backgroundColor: UIColor.background,
+            labelStyle: UI.text.bodySmall.copyWith(fontWeight: FontWeight.w600),
           ),
         ),
         SizedBox(width: UI.spacing.xxs),
         Expanded(
           child: UIButton.primary(
+            height: 40,
+            expanded: true,
             label: tr.labels.done,
+            labelStyle: UI.text.bodySmall.copyWith(fontWeight: FontWeight.w600),
             onPressed: () async {
-              // final confirmed = await
-
-              UIBottomSheet.show(
+              await UIBottomSheet.show<bool>(
+                context: bottomSheetcontext ?? context,
                 content: Column(
                   children: [
                     UIText.bodyLarge(
@@ -46,25 +61,18 @@ class DirectionAndDoneActions extends StatelessWidget {
                     SizedBox(height: 16),
 
                     UIButton.primary(
+                      height: 40,
                       label: tr.title.yes,
                       expanded: true,
-                      onPressed: () => Navigator.pop(context, true),
+                      onPressed: () {
+                        context.pop();
+                        onConfirmed(item);
+                      },
                     ),
                   ],
                 ),
-                context: StatefulNavigationShell.of(context).context,
-                // title:,
-                // description: ,
-                // confirmButtonLabel: tr.title.yes,
-                // cancelButtonLabel: tr.labels.cancel,
-                // iconColor: UIColor.softYellow, context:context,
               );
-
-              // if (confirmed) {
-
-              // }
             },
-            expanded: true,
           ),
         ),
       ],

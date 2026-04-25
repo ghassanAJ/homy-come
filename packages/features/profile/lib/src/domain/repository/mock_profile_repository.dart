@@ -114,33 +114,43 @@ class MockProfileRepository implements ProfileRepository {
     return success([
       MyteamMemberModel(
         id: 1,
-        nameMember: 'ghassan',
+        nameMember: 'Ghassan',
         phone: '963123456789',
-        status: 'working',
+        status: 'on leave',
+        imageUrl:
+            'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
       ),
       MyteamMemberModel(
         id: 2,
-        nameMember: 'hala gh',
+        nameMember: 'Hala gh',
         phone: '963123456789',
         status: 'working',
+        imageUrl:
+            'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
       ),
       MyteamMemberModel(
         id: 3,
-        nameMember: 'bushra',
+        nameMember: 'Bushra',
         phone: '963123456789',
         status: 'working',
+        imageUrl:
+            'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
       ),
       MyteamMemberModel(
         id: 4,
-        nameMember: 'meya  ali',
+        nameMember: 'Maya  ali',
         phone: '963123456789',
         status: 'working',
+        imageUrl:
+            'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
       ),
       MyteamMemberModel(
         id: 1,
-        nameMember: 'Samia mohammad ghhhghghghghghg',
+        nameMember: 'Samia mohammad',
         phone: '963123456789',
         status: 'working',
+        imageUrl:
+            'https://i.ibb.co/Xk4DRFtn/3a39546fa6e781e18a8f28ab571d4d0e6fb75834.png',
       ),
     ]);
   }

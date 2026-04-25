@@ -37,16 +37,6 @@ class DriverAppRouteConfig {
         // Tasks tab
         // StatefulShellBranch(routes: [TaskRoute.router]),
         // Invest tab
-        // StatefulShellBranch(
-        //   routes: [
-        //     GoRoute(
-        //       path: DriverPaths.myTeam,
-        //       builder:
-        //           (context, state) =>
-        //               Scaffold(body: Center(child: Text('My Team'))),
-        //     ),
-        //   ],
-        // ),
         StatefulShellBranch(
           routes: [
             GoRoute(
@@ -55,7 +45,14 @@ class DriverAppRouteConfig {
             ),
           ],
         ),
-
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: DriverPaths.myTeam,
+              builder: (context, state) => MyTeamScreen(),
+            ),
+          ],
+        ),
         // Profile tab
         StatefulShellBranch(
           routes: [

@@ -1,5 +1,6 @@
 import 'package:design_system/design_system.dart';
 import 'package:go_router/go_router.dart';
+import 'package:orders/src/cubit/order_cubit.dart';
 import 'package:orders/src/localization/order_localization_scope.dart';
 import 'package:orders/src/presentation/screen/my_order_screen.dart';
 import 'package:orders/src/presentation/screen/order_details.dart';
@@ -46,7 +47,9 @@ class OrderRoute {
       path: OrderPaths.orderDetailswithid(),
       builder: (context, state) {
         final id = int.parse(state.pathParameters['id']!);
-        return OrderLocalizationScope(child: OrderDetails(id: id));
+        return OrderLocalizationScope(
+          child: OrderDetailsScreen(id: id, cubit: state.extra as OrderCubit),
+        );
       },
     ),
   ];

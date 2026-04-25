@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$BookingModelResponse {
 
- int get id;@JsonKey(name: 'service_type') String get serviceType; String get status; ProviderModel get provider; String get date; String get time; String get address;
+ int get id;@JsonKey(name: 'service_type') String get serviceType; OrderStatus get status; ProviderModel get provider; String get date; String get time; String get address;
 /// Create a copy of BookingModelResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $BookingModelResponseCopyWith<$Res>  {
   factory $BookingModelResponseCopyWith(BookingModelResponse value, $Res Function(BookingModelResponse) _then) = _$BookingModelResponseCopyWithImpl;
 @useResult
 $Res call({
- int id,@JsonKey(name: 'service_type') String serviceType, String status, ProviderModel provider, String date, String time, String address
+ int id,@JsonKey(name: 'service_type') String serviceType, OrderStatus status, ProviderModel provider, String date, String time, String address
 });
 
 
@@ -70,7 +70,7 @@ class _$BookingModelResponseCopyWithImpl<$Res>
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,serviceType: null == serviceType ? _self.serviceType : serviceType // ignore: cast_nullable_to_non_nullable
 as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as String,provider: null == provider ? _self.provider : provider // ignore: cast_nullable_to_non_nullable
+as OrderStatus,provider: null == provider ? _self.provider : provider // ignore: cast_nullable_to_non_nullable
 as ProviderModel,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String,time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
@@ -168,7 +168,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'service_type')  String serviceType,  String status,  ProviderModel provider,  String date,  String time,  String address)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'service_type')  String serviceType,  OrderStatus status,  ProviderModel provider,  String date,  String time,  String address)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BookingModelResponse() when $default != null:
 return $default(_that.id,_that.serviceType,_that.status,_that.provider,_that.date,_that.time,_that.address);case _:
@@ -189,7 +189,7 @@ return $default(_that.id,_that.serviceType,_that.status,_that.provider,_that.dat
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'service_type')  String serviceType,  String status,  ProviderModel provider,  String date,  String time,  String address)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id, @JsonKey(name: 'service_type')  String serviceType,  OrderStatus status,  ProviderModel provider,  String date,  String time,  String address)  $default,) {final _that = this;
 switch (_that) {
 case _BookingModelResponse():
 return $default(_that.id,_that.serviceType,_that.status,_that.provider,_that.date,_that.time,_that.address);case _:
@@ -209,7 +209,7 @@ return $default(_that.id,_that.serviceType,_that.status,_that.provider,_that.dat
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'service_type')  String serviceType,  String status,  ProviderModel provider,  String date,  String time,  String address)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id, @JsonKey(name: 'service_type')  String serviceType,  OrderStatus status,  ProviderModel provider,  String date,  String time,  String address)?  $default,) {final _that = this;
 switch (_that) {
 case _BookingModelResponse() when $default != null:
 return $default(_that.id,_that.serviceType,_that.status,_that.provider,_that.date,_that.time,_that.address);case _:
@@ -229,7 +229,7 @@ class _BookingModelResponse implements BookingModelResponse {
 
 @override final  int id;
 @override@JsonKey(name: 'service_type') final  String serviceType;
-@override final  String status;
+@override final  OrderStatus status;
 @override final  ProviderModel provider;
 @override final  String date;
 @override final  String time;
@@ -268,7 +268,7 @@ abstract mixin class _$BookingModelResponseCopyWith<$Res> implements $BookingMod
   factory _$BookingModelResponseCopyWith(_BookingModelResponse value, $Res Function(_BookingModelResponse) _then) = __$BookingModelResponseCopyWithImpl;
 @override @useResult
 $Res call({
- int id,@JsonKey(name: 'service_type') String serviceType, String status, ProviderModel provider, String date, String time, String address
+ int id,@JsonKey(name: 'service_type') String serviceType, OrderStatus status, ProviderModel provider, String date, String time, String address
 });
 
 
@@ -290,7 +290,7 @@ class __$BookingModelResponseCopyWithImpl<$Res>
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,serviceType: null == serviceType ? _self.serviceType : serviceType // ignore: cast_nullable_to_non_nullable
 as String,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as String,provider: null == provider ? _self.provider : provider // ignore: cast_nullable_to_non_nullable
+as OrderStatus,provider: null == provider ? _self.provider : provider // ignore: cast_nullable_to_non_nullable
 as ProviderModel,date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String,time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
 as String,address: null == address ? _self.address : address // ignore: cast_nullable_to_non_nullable

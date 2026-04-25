@@ -88,9 +88,9 @@ class _LocationDirectionsScreenState extends State<LocationDirectionsScreen> {
         polylines: {
           Polyline(
             polylineId: PolylineId("route"),
-            color: UIColor.black,
+            color: UIColor.pink,
             points: polylineCoordinates,
-            width: 5,
+            width: 7,
           ),
         },
       ),
@@ -123,7 +123,7 @@ class _LocationDirectionsScreenState extends State<LocationDirectionsScreen> {
               height: 4,
               width: 40,
             ),
-            const SizedBox(height: 8),
+            // const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(

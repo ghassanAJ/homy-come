@@ -37,6 +37,7 @@ export 'src/presentation/widgets/choice_chip_button.dart';
 export 'src/presentation/widgets/circle_number_option.dart';
 export 'src/presentation/widgets/custom_button_with_Icon.dart';
 export 'src/presentation/widgets/date_item.dart';
+export 'src/presentation/widgets/date_section.dart';
 export 'src/presentation/widgets/frequenct_change_sheet_context.dart';
 export 'src/presentation/widgets/provider_avater_item.dart';
 export 'src/presentation/widgets/service_widgets/service_details_appbar.dart';

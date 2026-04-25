@@ -1,9 +1,11 @@
 import 'dart:developer';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:orders/orders.dart';
 import 'package:orders/src/cubit/order_state.dart';
 import 'package:orders/src/data/models/res/booking_model_response.dart';
+import 'package:orders/src/data/models/res/today_schadule_model_response.dart';
 import 'package:orders/src/domain/useCase/cancel_order_use_case.dart';
 import 'package:orders/src/domain/useCase/get_details_booking_use_case.dart';
 import 'package:orders/src/domain/useCase/get_order_details_by_Id_use_case.dart';
@@ -13,38 +15,55 @@ import 'package:orders/src/enum/filter_order_enum.dart';
 import 'package:util/util.dart';
 
 @injectable
-class OrderCubit extends BaseScreenCubit<OrderState> {
-  OrderCubit(); //TODO : make cubit depend on useCases
+class OrderCubit extends Cubit<OrderState> {
+  OrderCubit(super.initialState);
 
-  Future<void> getOrders(FilterOrder filter) async {
-    emit(state.copyWith(status: BaseCubitStatus.loading));
+  Future<void> getOrders({
+    FilterOrder filter = FilterOrder.all,
+    int selectedDayIndex = 1,
+    String month = '',
+  }) async {
+    emit(
+      state.copyWith(
+        status: BaseCubitStatus.loading,
+        isOrdersLoading: true,
+        selectedDayIndex: selectedDayIndex,
+      ),
+    );
     final result =
         await diContainerOrder<GetOrderDetailsUseCase>(param1: filter)();
     result.fold(
       (orders) {
         final completed =
-            orders.where((item) => item.status == 'Completed').toList();
+            orders
+                .where((item) => item.status == OrderStatus.completed)
+                .toList();
 
         final inProgress =
-            orders.where((item) => item.status == 'In Progress').toList();
+            orders
+                .where((item) => item.status == OrderStatus.inProgress)
+                .toList();
 
         final scheduled =
-            orders.where((item) => item.status == 'Scheduled').toList();
+            orders
+                .where((item) => item.status == OrderStatus.scheduled)
+                .toList();
 
         emit(
           state.copyWith(
-            data: (state.data ?? OrderState()).copyWith(
-              allOrder: orders,
-              completedOrder: completed,
-              inProcessOrder: inProgress,
-              schaduledOrder: scheduled,
-            ),
+            // data: (state.data ?? OrderState()).copyWith(
+            allOrder: orders,
+            completedOrder: completed,
+            inProcessOrder: inProgress,
+            schaduledOrder: scheduled,
+            // ),
+            isOrdersLoading: false,
             status: BaseCubitStatus.success,
           ),
         );
       },
       (error) {
-        emit(state.errorState(error));
+        emit(state.copyWith(error: error, isOrdersLoading: false));
       },
     );
   }
@@ -57,10 +76,7 @@ class OrderCubit extends BaseScreenCubit<OrderState> {
     result.fold(
       (data) {
         emit(
-          state.copyWith(
-            data: state.data?.copyWith(orderDetailse: data),
-            status: BaseCubitStatus.success,
-          ),
+          state.copyWith(orderDetailse: data, status: BaseCubitStatus.success),
         );
       },
       (error) {
@@ -69,58 +85,51 @@ class OrderCubit extends BaseScreenCubit<OrderState> {
     );
   }
 
-  void cancelOrder(int id, FilterOrder status, String reason) async {
-    if (status == FilterOrder.scheduled) {
-      List<BookingModelResponse> all = [];
-      emit(
-        state.copyWith(data: state.data?.copyWith(isCancelOrderLoading: true)),
-      );
+  void changeOrderStatus(int id, OrderStatus status, {String? reason}) async {
+    emit(state.copyWith(isOrderStatusChangeLoading: true));
 
-      final result =
-          await diContainerOrder<CancelOrderUseCase>(
-            param1: id,
-            param2: reason,
-          )();
-      result.fold(
-        (isSucces) {
-          if (isSucces) {
-            if (status == FilterOrder.scheduled) {
-              all = List.from((state.data ?? OrderState()).schaduledOrder);
-              int index = all.indexWhere((item) => item.id == id);
-              all.removeAt(index);
-              emit(
-                state.copyWith(
-                  data: state.data?.copyWith(
-                    schaduledOrder: all,
-                    isCancelOrderLoading: false,
-                    isOrderCancelled: true,
-                  ),
-                ),
-              );
-            }
-          }
-        },
-        (failure) {
+    final result =
+        await diContainerOrder<CancelOrderUseCase>(
+          param1: id,
+          param2: 'reason',
+        )();
+    result.fold(
+      (isSucces) {
+        if (isSucces) {
+          log('succss');
+          final all = List<TodaySchaduleModelResponse>.from(
+            state.todaySchaduleOrder,
+          );
+          final index = all.indexWhere((item) {
+            return item.id == id;
+          });
+          if (index == -1) return;
+          all.removeAt(index);
           emit(
             state.copyWith(
-              data: state.data?.copyWith(
-                cancelOrderError: failure.message,
-                isCancelOrderLoading: false,
-              ),
+              todaySchaduleOrder: all,
+              isOrderStatusChangeLoading: false,
+              isOrderStatusChanged: true,
             ),
           );
-        },
-      );
-    }
+        }
+      },
+      (failure) {
+        emit(
+          state.copyWith(
+            changeOrderError: failure.message,
+            isOrderStatusChangeLoading: false,
+          ),
+        );
+      },
+    );
   }
 
   void getTodayScheduleOrders() async {
     emit(
       state.copyWith(
-        data: state.data?.copyWith(
-          isLoadingTodayScheduleOrder: true,
-          fetchTodayScheduleError: null,
-        ),
+        isLoadingTodayScheduleOrder: true,
+        fetchTodayScheduleError: null,
       ),
     );
     var result = await diContainerOrder<GetTodayScheduleUseCase>()();
@@ -129,21 +138,17 @@ class OrderCubit extends BaseScreenCubit<OrderState> {
         log(data.length.toString());
         emit(
           state.copyWith(
-            data: (state.data ?? const OrderState()).copyWith(
-              todaySchaduleOrder: data,
-              isLoadingTodayScheduleOrder: false,
-              fetchTodayScheduleError: null,
-            ),
+            todaySchaduleOrder: data,
+            isLoadingTodayScheduleOrder: false,
+            fetchTodayScheduleError: null,
           ),
         );
       },
       (error) {
         emit(
           state.copyWith(
-            data: (state.data ?? const OrderState()).copyWith(
-              fetchTodayScheduleError: error.message,
-              isLoadingTodayScheduleOrder: false,
-            ),
+            fetchTodayScheduleError: error.message,
+            isLoadingTodayScheduleOrder: false,
           ),
         );
       },
@@ -151,32 +156,23 @@ class OrderCubit extends BaseScreenCubit<OrderState> {
   }
 
   void getOrderDetailsById(int id) async {
-    final currentData = state.data ?? const OrderState();
-    emit(
-      state.copyWith(
-        data: currentData.copyWith(isLoadingOrderDetailsById: true),
-      ),
-    );
+    emit(state.copyWith(isLoadingOrderDetailsById: true));
     var result =
         await diContainerOrder<GetOrderDetailsByIdUseCase>(param1: id)();
     result.fold(
       (data) {
         emit(
           state.copyWith(
-            data: currentData.copyWith(
-              orderDetailsById: data,
-              isLoadingOrderDetailsById: false,
-            ),
+            orderDetailsById: data,
+            isLoadingOrderDetailsById: false,
           ),
         );
       },
       (error) {
         emit(
           state.copyWith(
-            data: currentData.copyWith(
-              fetchOrderDetailsError: error.message,
-              isLoadingOrderDetailsById: false,
-            ),
+            fetchOrderDetailsError: error.message,
+            isLoadingOrderDetailsById: false,
           ),
         );
       },

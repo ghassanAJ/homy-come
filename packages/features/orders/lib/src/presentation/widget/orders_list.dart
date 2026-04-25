@@ -18,7 +18,7 @@ class OrderList extends StatelessWidget {
     return RefreshIndicator(
       color: UIColor.babyBlue,
       onRefresh: () async {
-        BlocProvider.of<OrderCubit>(context).getOrders(FilterOrder.all);
+        BlocProvider.of<OrderCubit>(context).getOrders(filter: FilterOrder.all);
       },
       child: Builder(
         builder: (context) {
@@ -27,7 +27,10 @@ class OrderList extends StatelessWidget {
             shrinkWrap: true,
             physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: (context, i) {
-              return OrderStatusCardContent(item: orders[i]);
+              return OrderStatusCardContent(
+                item: orders[i],
+                withDetailsButton: false,
+              );
             },
             separatorBuilder: (context, _) => SizedBox(height: UI.spacing.md),
             itemCount: orders.length,
