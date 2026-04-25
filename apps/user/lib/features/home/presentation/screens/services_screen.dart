@@ -9,8 +9,9 @@ import 'package:user/features/home/presentation/widgets/home/service_offer_tile.
 import 'package:user/navigation/route.dart';
 
 class ServicesScreen extends StatefulWidget {
-  const ServicesScreen({required this.id, super.key});
+  const ServicesScreen({required this.id, super.key, required this.title});
   final String id;
+  final String title;
   @override
   State<ServicesScreen> createState() => _ServicesScreenState();
 }
@@ -39,7 +40,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
 
     return UIScaffold(
       backgroundColor: UIColor.background,
-      appBarTitle: 'All Services',
+      appBarTitle: widget.title,
       body: Column(
         children: [
           Divider(
@@ -48,6 +49,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
             color: Colors.grey.withOpacity(0.12),
           ),
           // SizedBox(height: UI.spacing.sm),
+          SizedBox(height: UI.spacing.md),
+
           Expanded(
             child: BlocBuilder<HomeBloc, HomeBlocState>(
               builder: (context, state) {
@@ -69,37 +72,35 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   fadeRight: false,
                   fadeBottom: true,
                   width: 80,
-                  child: ListView(
+                  child: GridView.builder(
                     padding: UI.padding
                         .userSearchBottomSectionContent(
                           bottomInset: 110 + bottomSafeArea,
                         )
                         .copyWith(top: UI.spacing.md),
-                    children: [
-                      SizedBox(height: UI.spacing.md),
-                      ...displayedPreviews.asMap().entries.map(
-                        (entry) => Padding(
-                          padding: EdgeInsetsDirectional.only(
-                            bottom:
-                                entry.key == displayedPreviews.length - 1
-                                    ? 0
-                                    : UI.spacing.lg,
-                          ),
-                          child: GestureDetector(
-                            onTap:
-                                () => context.push(
-                                  UserPaths.serviceDetails,
-                                  extra: {'id': entry.value.documentId},
-                                ),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 1.6,
+                    ),
+                    itemCount: displayedPreviews.length,
+                    itemBuilder:
+                        (BuildContext context, int index) => GestureDetector(
+                          onTap:
+                              () => context.push(
+                                UserPaths.serviceDetails,
+                                extra: {
+                                  'id': displayedPreviews[index].documentId,
+                                },
+                              ),
 
-                            child: ServiceOfferTile(
-                              servicePreviewResponseModel: entry.value,
-                              width: double.infinity,
-                            ),
+                          child: ServiceOfferTile(
+                            servicePreviewResponseModel:
+                                displayedPreviews[index],
+                            width: double.infinity,
                           ),
                         ),
-                      ),
-                    ],
                   ),
                 );
               },

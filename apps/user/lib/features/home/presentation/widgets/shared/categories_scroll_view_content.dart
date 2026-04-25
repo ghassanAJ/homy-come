@@ -48,7 +48,7 @@ class CategoriesScrollViewContent extends StatelessWidget {
           onTap:
               () => context.push(
                 UserPaths.services,
-                extra: {'id': category.documentId},
+                extra: {'id': category.documentId, 'title': category.info.name},
               ),
           title: category.info.name,
           subtitle: '${category.servicesCount} services',

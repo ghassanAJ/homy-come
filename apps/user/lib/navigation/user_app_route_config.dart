@@ -122,7 +122,8 @@ class UserAppRouteConfig {
         builder: (context, state) {
           final data = state.extra as Map<String, dynamic>;
           final id = data['id'] as String;
-          return ServicesScreen(id: id);
+          final title = data['title'] as String;
+          return ServicesScreen(id: id, title: title);
         },
       ),
     ];
@@ -154,16 +155,6 @@ class UserAppRouteConfig {
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: UserPaths.orders,
-              builder:
-                  (context, state) =>
-                      OrderLocalizationScope(child: MyOrderScreen()),
-            ),
-          ],
-        ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
               path: UserPaths.home,
               pageBuilder: (context, state) {
                 return CustomTransitionPage(
@@ -188,7 +179,16 @@ class UserAppRouteConfig {
             ),
           ],
         ),
-
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: UserPaths.orders,
+              builder:
+                  (context, state) =>
+                      OrderLocalizationScope(child: MyOrderScreen()),
+            ),
+          ],
+        ),
         // StatefulShellBranch(
         //   routes: [
         //     GoRoute(

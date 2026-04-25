@@ -21,9 +21,10 @@ class CategoriesSection extends StatelessWidget {
           return const SliverToBoxAdapter(child: SizedBox.shrink());
         }
         return HomeSection(
-          title: tr.home.category,
+          // title: tr.home.category,
           titleBottomSpacing: UI.spacing.md,
           sectionBottomSpacing: 24,
+          sectionTopSpacing: 0,
           child: HomeCategoriesRow(items: categories),
         );
       },

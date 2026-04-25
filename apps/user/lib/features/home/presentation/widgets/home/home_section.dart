@@ -4,7 +4,7 @@ import 'package:user/features/home/presentation/widgets/home/section_header.dart
 class HomeSection extends StatelessWidget {
   const HomeSection({
     super.key,
-    required this.title,
+    this.title,
     required this.child,
     this.actionLabel,
     this.onActionTap,
@@ -14,7 +14,7 @@ class HomeSection extends StatelessWidget {
     this.sectionBottomSpacing,
   });
 
-  final String title;
+  final String? title;
   final Widget child;
   final String? actionLabel;
   final VoidCallback? onActionTap;
@@ -33,9 +33,11 @@ class HomeSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (sectionTopSpacing != null) SizedBox(height: sectionTopSpacing),
-          Padding(padding: hp, child: _buildHeader()),
-          SizedBox(height: tb),
+          if (title != null) ...[
+            if (sectionTopSpacing != null) SizedBox(height: sectionTopSpacing),
+            Padding(padding: hp, child: _buildHeader()),
+            SizedBox(height: tb),
+          ],
           child,
           if (sectionBottomSpacing != null)
             SizedBox(height: sectionBottomSpacing),
@@ -47,11 +49,11 @@ class HomeSection extends StatelessWidget {
   Widget _buildHeader() {
     if (_hasAction) {
       return SectionHeaderWithAction(
-        title: title,
+        title: title!,
         actionLabel: actionLabel!,
         onActionTap: onActionTap,
       );
     }
-    return SectionTitle(title: title);
+    return SectionTitle(title: title!);
   }
 }

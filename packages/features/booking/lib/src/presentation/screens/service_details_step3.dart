@@ -112,10 +112,10 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: UI.spacing.lg),
-
+                  // SizedBox(height: UI.spacing.lg),
                   ProvidersSection(state: state),
-
+                  // SizedBox(height: UI.spacing.sm),
+                  const FrequencySection(),
                   // SizedBox(height: UI.spacing.md),
                   SizedBox(height: UI.spacing.sm),
                   Padding(
@@ -141,8 +141,6 @@ class _ServiceDetailsStep3State extends State<ServiceDetailsStep3> {
                   SizedBox(height: UI.spacing.md),
 
                   TimeSection(state: state),
-                  SizedBox(height: UI.spacing.sm),
-                  const FrequencySection(),
 
                   // SizedBox(height: UI.spacing.lg),
                 ],
@@ -416,8 +414,21 @@ class DaysSelector extends StatelessWidget {
 // FREQUENCY SECTION
 // ─────────────────────────────────────────────────────────────
 
-class FrequencySection extends StatelessWidget {
+class FrequencySection extends StatefulWidget {
   const FrequencySection({super.key});
+
+  @override
+  State<FrequencySection> createState() => _FrequencySectionState();
+}
+
+class _FrequencySectionState extends State<FrequencySection> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showFrequencyBottomSheet(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -435,18 +446,7 @@ class FrequencySection extends StatelessWidget {
           UIText.bodyBold('Frequency'),
           ElevatedButton(
             onPressed: () {
-              UIBottomSheet.show(
-                context: context,
-                content: FrequencyChangeSheetContent(
-                  initialValue:
-                      context.read<BookingWizardBloc>().state.frequencyType,
-                  onSubmit: (value) {
-                    context.read<BookingWizardBloc>().add(
-                      SelectFrequency(frequencyType: value),
-                    );
-                  },
-                ),
-              );
+              _showFrequencyBottomSheet(context);
             },
 
             style: ElevatedButton.styleFrom(
@@ -468,6 +468,20 @@ class FrequencySection extends StatelessWidget {
           //   child: UIText.bodyBold('Change', color: UIColor.babyBlue),
           // ),
         ],
+      ),
+    );
+  }
+
+  void _showFrequencyBottomSheet(BuildContext context) {
+    UIBottomSheet.show(
+      context: context,
+      content: FrequencyChangeSheetContent(
+        initialValue: context.read<BookingWizardBloc>().state.frequencyType,
+        onSubmit: (value) {
+          context.read<BookingWizardBloc>().add(
+            SelectFrequency(frequencyType: value),
+          );
+        },
       ),
     );
   }

@@ -18,7 +18,9 @@ class UIIconBackground extends StatelessWidget {
     required this.backgroundColor,
     this.borderRadius,
     super.key,
+    this.padding,
   });
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class UIIconBackground extends StatelessWidget {
 
     return Container(
       width: width ?? size,
+      padding: padding,
       height: height ?? size,
       decoration: BoxDecoration(
         color: backgroundColor,
@@ -33,11 +36,7 @@ class UIIconBackground extends StatelessWidget {
         borderRadius: isCircle ? null : borderRadius,
       ),
       alignment: Alignment.center,
-      child: SizedBox(
-        width: iconSize,
-        height: iconSize,
-        child: child,
-      ),
+      child: SizedBox(width: iconSize, height: iconSize, child: child),
     );
   }
 }

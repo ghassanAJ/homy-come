@@ -10,14 +10,14 @@ class UserNavigationConfig {
   /// Navigation items for the bottom navigation bar
   static List<NavigationItem> items(UserTranslation tr) => [
     (
-      path: UserPaths.orders,
-      label: tr.navigation.orders,
-      iconAsset: Assets.icons.calendar,
-    ),
-    (
       path: UserPaths.home,
       label: tr.navigation.home,
       iconAsset: Assets.icons.navHome,
+    ),
+    (
+      path: UserPaths.orders,
+      label: tr.navigation.orders,
+      iconAsset: Assets.icons.calendar,
     ),
     // (
     //   path: UserPaths.category,

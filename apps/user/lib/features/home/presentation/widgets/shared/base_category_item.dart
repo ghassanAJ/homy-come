@@ -9,7 +9,7 @@ class BaseCategoryItem extends StatelessWidget {
     this.axis = Axis.vertical,
     this.width,
     this.iconContainerSize = 52,
-    this.iconSize = 30,
+    this.iconSize = 45,
     this.iconBorderRadius,
     this.itemSpacing,
     this.textSpacing,
@@ -77,8 +77,10 @@ class BaseCategoryItem extends StatelessWidget {
 
     final icon = UIIconBackground(
       borderRadius: resolvedIconBorderRadius,
-      size: iconContainerSize,
+      // size: iconContainerSize,
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       iconSize: iconSize,
+
       backgroundColor: UIColor.grey.withValues(alpha: 0.05),
       child: _buildSvgIcon(title),
     );
@@ -88,6 +90,7 @@ class BaseCategoryItem extends StatelessWidget {
             ? UIText.bodyXSmall(
               title,
               textAlign: textAlign,
+              maxLines: 2,
               color: UIColor.ink,
               fontWeight: titleFontWeight,
             )
@@ -96,6 +99,7 @@ class BaseCategoryItem extends StatelessWidget {
               textAlign: textAlign,
               color: UIColor.ink,
               fontSize: titleFontSize,
+              maxLines: 2,
               fontWeight: titleFontWeight,
             );
 
@@ -104,6 +108,7 @@ class BaseCategoryItem extends StatelessWidget {
       textAlign: textAlign,
       color: UIColor.grey,
       fontWeight: subtitleFontWeight,
+      maxLines: 2,
     );
 
     final textBlock = Column(
