@@ -7,6 +7,8 @@ import 'package:homy_provider/localization/provider_localization_delegate.dart';
 import 'package:homy_provider/navigation/route.dart';
 import 'package:util/util.dart';
 
+const userRole = UserRole.provider;
+
 class ProviderApp extends StatelessWidget {
   const ProviderApp({super.key});
 

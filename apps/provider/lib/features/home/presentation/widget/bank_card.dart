@@ -18,65 +18,70 @@ class BankCard extends StatelessWidget {
 
         decoration: BoxDecoration(
           color: const Color(0xFFADD8F7),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(25),
         ),
         child: LayoutBuilder(
           builder: (context, constraints) {
             final parentWidth = constraints.maxWidth;
             final parentHeight = constraints.maxHeight;
 
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: 2,
-                    left: 2,
-                    height: parentHeight * 0.3,
+            return Stack(
+              children: [
+                Positioned(
+                  top: 2,
+                  left: 2,
+                  height: parentHeight * 0.3,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+
                     child: UIIamge(
                       assetPath: Assets.images.intersect1.path,
 
                       height: parentHeight * 0.3,
                     ),
                   ),
-                  Positioned(
-                    right: 1,
-                    bottom: 2,
+                ),
+                Positioned(
+                  right: 1,
+                  bottom: 2,
 
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
                     child: UIIamge(
                       assetPath: Assets.images.intersect.path,
 
                       height: parentHeight * 0.6,
                     ),
                   ),
+                ),
 
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: UI.spacing.lg,
-                      horizontal: UI.spacing.lg,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            UIText.h4(
-                              tr.title.finacial,
-                              color: UIColor.background,
-                              fontSize: 20,
-                            ),
-                            SizedBox(height: UI.spacing.sm),
-                            UIText.h4('220,304 AED'),
-                          ],
-                        ),
-                        FinancialProgressIndicator(parentWidth: parentWidth),
-                      ],
-                    ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: UI.spacing.lg,
+                    horizontal: UI.spacing.lg,
                   ),
-                ],
-              ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          UIText.h4(
+                            tr.title.finacial,
+                            color: UIColor.background,
+                            fontSize: 20,
+                          ),
+                          SizedBox(height: UI.spacing.sm),
+
+                          UIPriceText(text: UIText.h4('20,304')),
+                        ],
+                      ),
+                      FinancialProgressIndicator(parentWidth: parentWidth),
+                    ],
+                  ),
+                ),
+              ],
             );
           },
         ),

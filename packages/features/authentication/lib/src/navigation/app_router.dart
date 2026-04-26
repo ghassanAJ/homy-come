@@ -3,12 +3,15 @@ import 'package:design_system/design_system.dart';
 import 'package:driver/navigation/driver_app_route_config.dart';
 import 'package:driver/navigation/route.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:homy_provider/navigation/provider_app_route_config.dart';
 import 'package:homy_provider/navigation/route.dart';
 import 'package:injectable/injectable.dart';
 import 'package:orders/orders.dart';
 import 'package:profile/src/navigation/router.dart';
+import 'package:user/features/home/presentation/screens/set_location_screen.dart';
+import 'package:user/features/home/presentation/widgets/home/user_home_screen_app_bar.dart';
 import 'package:user/navigation/route.dart';
 import 'package:user/navigation/user_app_route_config.dart';
 
@@ -63,6 +66,21 @@ class AppRouter {
         ...routes,
         ...ProfileRoute.routes,
         ...OrderRoute.routes,
+        GoRoute(
+          path: UserPaths.setLocation,
+          builder: (context, state) {
+            final currentUser = context.read<AppCubit>().state.user;
+            return SelectLocationScreen(
+              selectedLocation: UserddressModel(
+                latitude: currentUser?.latitude ?? 0, // currentUser?.latitude,
+                longitude: currentUser?.longitude ?? 0,
+                addressTitle: currentUser?.address,
+                id: 1,
+              ),
+            );
+          },
+        ),
+        // ...UserAppRouteConfig.createRoutes(shellNavigatorKey),
         // ...ProviderRoute.routes,
       ],
     );

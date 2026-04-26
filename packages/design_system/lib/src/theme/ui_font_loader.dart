@@ -32,19 +32,19 @@ class UIFontLoader {
     //     'Lemon Milk Pro Bold Italic.otf',
     //   ],
     // },
-    'Cairo': {
-      'basePath': 'cairo',
-      'variants': [
-        'Cairo-ExtraLight.ttf',
-        'Cairo-Light.ttf',
-        'Cairo-Regular.ttf',
-        'Cairo-Medium.ttf',
-        'Cairo-SemiBold.ttf',
-        'Cairo-Bold.ttf',
-        'Cairo-ExtraBold.ttf',
-        'Cairo-Black.ttf',
-      ],
-    },
+    // 'Cairo': {
+    //   'basePath': 'cairo',
+    //   'variants': [
+    //     'Cairo-ExtraLight.ttf',
+    //     'Cairo-Light.ttf',
+    //     'Cairo-Regular.ttf',
+    //     'Cairo-Medium.ttf',
+    //     'Cairo-SemiBold.ttf',
+    //     'Cairo-Bold.ttf',
+    //     'Cairo-ExtraBold.ttf',
+    //     'Cairo-Black.ttf',
+    //   ],
+    // },
     'Montserrat': {
       'basePath': 'Montserrat',
       'variants': [
@@ -70,32 +70,32 @@ class UIFontLoader {
         'Roboto_Condensed-Black.ttf',
       ],
     },
-    'DMSans': {
-      'basePath': 'DMSens',
-      'variants': [
-        'DMSans-ExtraLight.ttf',
-        'DMSans-Light.ttf',
-        'DMSans-Regular.ttf',
-        'DMSans-Medium.ttf',
-        'DMSans-SemiBold.ttf',
-        'DMSans-Bold.ttf',
-        'DMSans-ExtraBold.ttf',
-        'DMSans-Black.ttf',
-      ],
-    },
-    'Lexend': {
-      'basePath': 'Lexend',
-      'variants': [
-        'Lexend-ExtraLight.ttf',
-        'Lexend-Light.ttf',
-        'Lexend-Regular.ttf',
-        'Lexend-Medium.ttf',
-        'Lexend-SemiBold.ttf',
-        'Lexend-Bold.ttf',
-        'Lexend-ExtraBold.ttf',
-        'Lexend-Black.ttf',
-      ],
-    },
+    // 'DMSans': {
+    //   'basePath': 'DMSens',
+    //   'variants': [
+    //     'DMSans-ExtraLight.ttf',
+    //     'DMSans-Light.ttf',
+    //     'DMSans-Regular.ttf',
+    //     'DMSans-Medium.ttf',
+    //     'DMSans-SemiBold.ttf',
+    //     'DMSans-Bold.ttf',
+    //     'DMSans-ExtraBold.ttf',
+    //     'DMSans-Black.ttf',
+    //   ],
+    // },
+    // 'Lexend': {
+    //   'basePath': 'Lexend',
+    //   'variants': [
+    //     'Lexend-ExtraLight.ttf',
+    //     'Lexend-Light.ttf',
+    //     'Lexend-Regular.ttf',
+    //     'Lexend-Medium.ttf',
+    //     'Lexend-SemiBold.ttf',
+    //     'Lexend-Bold.ttf',
+    //     'Lexend-ExtraBold.ttf',
+    //     'Lexend-Black.ttf',
+    //   ],
+    // },
     'Poppins': {
       'basePath': 'Poppins',
       'variants': [
@@ -109,27 +109,27 @@ class UIFontLoader {
         'Poppins-Black.ttf',
       ],
     },
-    'SFPro': {
-      'basePath': 'SFPro',
-      'variants': [
-        'SF-Pro-Text-Light.otf',
-        'SF-Pro-Text-Regular.otf',
-        'SF-Pro-Text-Medium.otf',
-        'SF-Pro-Text-Semibold.otf',
-        'SF-Pro-Text-Bold.otf',
-        'SF-Pro-Text-Black.otf',
-      ],
-    },
-        'Almarai': {
-      'basePath': 'Almarai',
-      'variants': [
-        'Almarai-Light.otf',
-        'Almarai-Regular.otf',
-        'Almarai-Bold.otf',
-        'Almarai-ExtraBold.otf',
+    // 'SFPro': {
+    //   'basePath': 'SFPro',
+    //   'variants': [
+    //     'SF-Pro-Text-Light.otf',
+    //     'SF-Pro-Text-Regular.otf',
+    //     'SF-Pro-Text-Medium.otf',
+    //     'SF-Pro-Text-Semibold.otf',
+    //     'SF-Pro-Text-Bold.otf',
+    //     'SF-Pro-Text-Black.otf',
+    //   ],
+    // },
+    //     'Almarai': {
+    //   'basePath': 'Almarai',
+    //   'variants': [
+    //     'Almarai-Light.otf',
+    //     'Almarai-Regular.otf',
+    //     'Almarai-Bold.otf',
+    //     'Almarai-ExtraBold.otf',
 
-      ],
-    },
+    //   ],
+    // },
     // 'IconsaxPlusBold': {
     //   'packagePath': 'packages/iconsax_plus/fonts',
     //   'variants': ['IconsaxPlusBold.ttf'],

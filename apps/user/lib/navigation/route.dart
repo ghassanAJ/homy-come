@@ -1,9 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:user/features/home/presentation/screens/categories_screen.dart';
-import 'package:user/localization/files/userTranslation.i69n.dart';
-import 'package:util/util.dart';
-
 /// User app route paths.
 ///
 /// Align with [AppPaths] in the authentication package where dashboard
@@ -28,67 +22,4 @@ class UserPaths {
           : '/service-details-summary/$id';
   // static const String serviceDetailsSummary = '/service-details-summary/:id';
   static const String storiesScreen = '/stories-screen';
-}
-
-/// User app route definitions.
-///
-/// Add user-app-specific routes here. Dashboard and shell tabs are
-/// configured in [UserAppRouteConfig] (authentication package).
-class UserRoute {
-  UserRoute._();
-
-  static List<RouteBase> get routes => [
-    GoRoute(
-      path: UserPaths.home,
-      builder:
-          (context, state) => _PlaceholderScreen(
-            title: context.loc<UserTranslation>().navigation.home,
-            path: UserPaths.home,
-          ),
-    ),
-
-    GoRoute(
-      path: UserPaths.category,
-      builder:
-          (context, state) => _PlaceholderScreen(
-            title: context.loc<UserTranslation>().navigation.category,
-            path: UserPaths.category,
-          ),
-    ),
-    GoRoute(
-      path: UserPaths.orders,
-      builder:
-          (context, state) => _PlaceholderScreen(
-            title: context.loc<UserTranslation>().navigation.orders,
-            path: UserPaths.orders,
-          ),
-    ),
-    GoRoute(
-      path: UserPaths.search,
-      builder: (context, state) => const CategoriesScreen(),
-    ),
-    GoRoute(
-      path: UserPaths.profile,
-      builder:
-          (context, state) => _PlaceholderScreen(
-            title: context.loc<UserTranslation>().navigation.profile,
-            path: UserPaths.profile,
-          ),
-    ),
-  ];
-}
-
-class _PlaceholderScreen extends StatelessWidget {
-  final String title;
-  final String path;
-
-  const _PlaceholderScreen({required this.title, required this.path});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Center(child: Text('$title - $path')),
-    );
-  }
 }

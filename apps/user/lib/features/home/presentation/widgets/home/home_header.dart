@@ -46,7 +46,7 @@ class HomeHeader extends StatelessWidget {
                   color: UIColor.black,
                 ),
                 SizedBox(height: 2),
-                if (appState.userType == UserRole.user)
+                if (appState.userType != UserRole.driver)
                   BlocBuilder<AppCubit, AppState>(
                     builder: (context, state) {
                       return GestureDetector(

@@ -12,7 +12,7 @@ class AppCubit extends Cubit<AppState> {
   final SessionRepository _sessionRepository;
   StreamSubscription<VerifiedUserModel?>? _userSubscription;
 
-  AppCubit(this._sessionRepository) : super(AppState.initial(UserRole.user)) {
+  AppCubit(this._sessionRepository) : super(AppState.initial()) {
     _userSubscription = _sessionRepository.userStream.listen((user) async {
       if (user == null) {
         clearUser();

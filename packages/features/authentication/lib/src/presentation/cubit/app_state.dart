@@ -5,7 +5,7 @@ import 'package:user/features/home/presentation/widgets/home/user_home_screen_ap
 class AppState {
   final VerifiedUserModel? user;
   final ThemeMode themeMode;
-  final UserRole userType;
+  final UserRole? userType;
   final bool isOnline;
   final int? selectedAddressId;
   final bool isInitializing;
@@ -18,11 +18,10 @@ class AppState {
     this.isInitializing = true,
     this.addresses = const [],
     this.selectedAddressId,
-    required this.userType,
+    this.userType,
   });
 
-  factory AppState.initial(UserRole userType) =>
-      AppState(isInitializing: true, userType: userType);
+  factory AppState.initial() => AppState(isInitializing: true);
 
   bool get isAuthenticated => user != null;
   bool get isProfileComplete => true; //  user?.hasCompletedProfile ?? false;
