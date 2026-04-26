@@ -29,7 +29,7 @@ class HomeServicesSection extends StatelessWidget {
                       title: categories[index].info.name,
                       sectionBottomSpacing: UI.spacing.xl,
                       child: SizedBox(
-                        height: 158,
+                        height: 140,
                         child: HomeServiceCards(
                           servicePreviews: state.categories[index].services,
                         ),
