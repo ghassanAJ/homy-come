@@ -133,6 +133,7 @@ class _ServiceDetailsAppBarState extends State<ServiceDetailsAppBar> {
       title: Opacity(
         opacity: titleOpacity,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             UIText.bodyMedium(
@@ -170,13 +171,15 @@ class _ServiceDetailsAppBarState extends State<ServiceDetailsAppBar> {
         child: FlexibleSpaceBar(
           collapseMode: CollapseMode.pin,
           background: Column(
+            mainAxisSize: MainAxisSize.min,
+
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Hero image with fade-out
               Opacity(
                 opacity: heroOpacity,
                 child: SizedBox(
-                  height: 230,
+                  height: 180,
                   child: Stack(
                     children: [
                       UINetworkImage(
@@ -199,6 +202,7 @@ class _ServiceDetailsAppBarState extends State<ServiceDetailsAppBar> {
                   child: Padding(
                     padding: const EdgeInsetsDirectional.only(start: 12.0),
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 16.0),

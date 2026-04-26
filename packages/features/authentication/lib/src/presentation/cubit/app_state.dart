@@ -1,18 +1,23 @@
 import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
+import 'package:user/features/home/presentation/widgets/home/user_home_screen_app_bar.dart';
 
 class AppState {
   final VerifiedUserModel? user;
   final ThemeMode themeMode;
   final UserRole userType;
   final bool isOnline;
+  final int? selectedAddressId;
   final bool isInitializing;
+  final List<UserddressModel> addresses;
 
   const AppState({
     this.user,
     this.themeMode = ThemeMode.light,
     this.isOnline = true,
     this.isInitializing = true,
+    this.addresses = const [],
+    this.selectedAddressId,
     required this.userType,
   });
 
@@ -30,6 +35,8 @@ class AppState {
     bool? isOnline,
     bool? isInitializing,
     UserRole? role,
+    List<UserddressModel>? addresses,
+    int? selectedAddressId,
   }) {
     return AppState(
       user: user ?? this.user,
@@ -37,6 +44,8 @@ class AppState {
       isOnline: isOnline ?? this.isOnline,
       isInitializing: isInitializing ?? this.isInitializing,
       userType: role ?? userType,
+      addresses: addresses ?? this.addresses,
+      selectedAddressId: selectedAddressId ?? this.selectedAddressId,
     );
   }
 

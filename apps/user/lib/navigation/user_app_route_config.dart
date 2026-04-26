@@ -106,9 +106,10 @@ class UserAppRouteConfig {
           final currentUser = context.read<AppCubit>().state.user;
           return SelectLocationScreen(
             selectedLocation: UserddressModel(
-              latitude: null, // currentUser?.latitude,
-              longitude: currentUser?.longitude,
+              latitude: currentUser?.latitude ?? 0, // currentUser?.latitude,
+              longitude: currentUser?.longitude ?? 0,
               addressTitle: currentUser?.address,
+              id: 1,
             ),
           );
         },

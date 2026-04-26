@@ -158,7 +158,7 @@ class LocationSetterUtil {
   static Future<UserddressModel?> pushToSetLocationScreen(
     BuildContext context,
   ) async {
-    final UserddressModel? result = await context.push<UserddressModel?>(
+    final UserddressModel? result = await context.push<UserddressModel>(
       UserPaths.setLocation,
     );
 
@@ -184,12 +184,37 @@ class LocationSetterUtil {
 }
 
 class UserddressModel {
-  final double? latitude;
-  final double? longitude;
+  final int id;
+  final String? name;
   final String? addressTitle;
+  final double latitude;
+  final double longitude;
+  final bool isDefault;
+
   UserddressModel({
+    required this.id,
+    this.name,
+    this.addressTitle,
     required this.latitude,
     required this.longitude,
-    required this.addressTitle,
+    this.isDefault = false,
   });
+
+  UserddressModel copyWith({
+    int? id,
+    String? name,
+    String? addressTitle,
+    double? latitude,
+    double? longitude,
+    bool? isDefault,
+  }) {
+    return UserddressModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      addressTitle: addressTitle ?? this.addressTitle,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      isDefault: isDefault ?? this.isDefault,
+    );
+  }
 }

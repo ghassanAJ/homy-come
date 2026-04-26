@@ -25,6 +25,7 @@ class SelectLocationScreen extends StatefulWidget {
 class _SelectLocationScreenState extends State<SelectLocationScreen> {
   final Completer<GoogleMapController> _mapController = Completer();
   final TextEditingController _searchController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
 
   LatLng? _selectedLatLng;
   Marker? _marker;
@@ -41,15 +42,13 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
   }
 
   Future<void> _initializeLocation() async {
-    final hasInitialLocation =
-        widget.selectedLocation.latitude != null &&
-        widget.selectedLocation.longitude != null;
+    final hasInitialLocation = widget.selectedLocation.longitude != null;
 
     if (hasInitialLocation) {
       _updateLocation(
         LatLng(
-          widget.selectedLocation.latitude!,
-          widget.selectedLocation.longitude!,
+          widget.selectedLocation.latitude,
+          widget.selectedLocation.longitude,
         ),
       );
       return;
@@ -151,7 +150,17 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
           latitude: _selectedLatLng!.latitude,
           longitude: _selectedLatLng!.longitude,
           address: _addressTitle ?? '',
+          name: _nameController.text,
         ),
+      ),
+    );
+    context.read<AppCubit>().addAddress(
+      UserddressModel(
+        id: context.read<AppCubit>().state.addresses.last.id + 1, //TODO
+        latitude: _selectedLatLng!.latitude,
+        longitude: _selectedLatLng!.longitude,
+        addressTitle: _addressSubtitle ?? '',
+        name: _nameController.text,
       ),
     );
 
@@ -184,6 +193,18 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
     return UIScaffold(
       appBar: const UIAppBar(title: 'Confirm delivery location'),
       bottomSheet: _BottomSheet(
+        onSuccess: () {
+          context.pop<UserddressModel>(
+            UserddressModel(
+              id: context.read<AppCubit>().state.addresses.last.id + 1, //TODO
+              latitude: _selectedLatLng!.latitude,
+              longitude: _selectedLatLng!.longitude,
+              addressTitle: _addressTitle ?? '',
+              name: _nameController.text,
+            ),
+          );
+        },
+        addressNameController: _nameController,
         addressTitle: _addressTitle,
         addressSubtitle: _addressSubtitle,
         onConfirm: _selectedLatLng == null ? null : _confirmLocation,
@@ -379,11 +400,15 @@ class _BottomSheet extends StatelessWidget {
     required this.addressTitle,
     required this.addressSubtitle,
     required this.onConfirm,
+    required this.onSuccess,
+    required this.addressNameController,
   });
 
   final String? addressTitle;
   final String? addressSubtitle;
+  final TextEditingController addressNameController;
   final VoidCallback? onConfirm;
+  final VoidCallback onSuccess;
 
   @override
   Widget build(BuildContext context) {
@@ -414,13 +439,21 @@ class _BottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             _AddressInfo(title: addressTitle, subtitle: addressSubtitle),
+            if (addressTitle != null && addressTitle!.isNotEmpty) ...[
+              const SizedBox(height: 24),
+              AppTextField(
+                controller: addressNameController,
+                placeholder: 'Home, Office ...',
+                label: 'Address title',
+              ),
+            ],
             const SizedBox(height: 24),
 
             BlocConsumer<AuthUserBloc, AuthUserState>(
               listener: (context, state) {
                 if (state is AuthUserStateAuthenticated) {
-                  context.pop();
-                  ToastificationUtil.success('Address updated');
+                  onSuccess();
+                  // ToastificationUtil.success('Address updated');
                 }
               },
               builder: (contex, state) {

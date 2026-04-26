@@ -31,7 +31,7 @@ class _ServiceDetailsScreenState extends State<ServiceDetailsScreen>
   late TabController tabController;
 
   bool isCollapsed = false;
-  final double expandedHeight = 290.0;
+  final double expandedHeight = 250.0;
   final double collapsedHeight = kToolbarHeight;
 
   final listViewKey = RectGetter.createGlobalKey();
