@@ -2,6 +2,7 @@ import 'package:authentication/authentication.dart';
 import 'package:design_system/design_system.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notifications/notifications.dart';
 import 'package:user/features/home/presentation/widgets/home/user_home_screen_app_bar.dart';
 import 'package:user/navigation/route.dart';
 
@@ -152,9 +153,13 @@ class HomeHeader extends StatelessWidget {
                   onTap:
                       onNotificationTap ??
                       () {
-                        context.push(
-                          UserPaths.notifications,
-                        ); // TODO: Navigate to notifications screen when route is ready.
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (c) => NotificationsScreen(),
+                          ),
+                        );
+                        // context.push(UserPaths.notifications); //
                       },
                   child: UISvg(Assets.icons.notification, size: 20),
                 ),
